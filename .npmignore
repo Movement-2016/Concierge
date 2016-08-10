@@ -1,0 +1,10 @@
+.npmignore
+.gitignore
+.babelrc
+.env
+.jshintrc
+gulpfile.js
+Procfile
+
+src/
+test/

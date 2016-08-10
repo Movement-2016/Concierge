@@ -1,0 +1,23 @@
+{
+  "extends": "airbnb",
+
+  "env": {
+    "browser":true ,
+    "node": true,
+    "mocha": true
+  },
+
+  "rules": {
+    "arrow-body-style": ["error", "always"],
+    "func-names": "off",
+    "newline-per-chained-call": "off",
+    "no-console": "off",
+    "no-else-return": "off",
+    "no-spaced-func": "off",
+    "no-underscore-dangle": "off",
+    "no-use-before-define": "off",
+    "space-before-function-paren": ["error", "always"],
+
+    "jsx-quotes": ["error", "prefer-single"]
+  }
+}

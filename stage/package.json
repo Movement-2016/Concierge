@@ -1,0 +1,26 @@
+{
+  "name": "Movement2016",
+  "author": "Joe McIntyre (j_h_mcintyre@yahoo.com)",
+  "description": "Movement 2016 Concierge",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/movement-2016/concierge"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "1.15.2",
+    "cookie-parser": "1.4.3",
+    "express": "4.14.0",
+    "express-session": "1.14.0",
+    "mongodb": "2.2.5",
+    "passport": "0.3.2",
+    "passport-local": "1.0.0"
+  },
+  "scripts": {
+    "start": "node dist/main.js --port=3000"
+  },
+  "engines": {
+    "node": "6.2.1"
+  }
+}

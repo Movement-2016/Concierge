@@ -1,0 +1,129 @@
+.planArea {
+  max-width: 900px;
+  margin: 100px auto 0 auto;
+  overflow: hidden;
+
+  .donorArea {
+    width: 96%;
+    max-width: 600px;
+    margin: 0 auto 0 auto;
+
+    h2 {
+      text-align: center;
+      color: #42A5F5;
+      margin: 0 0 30px 0;
+    }
+
+    .infoArea {
+      margin-top: 1em;
+      padding-bottom: 16px;
+      border: 1px solid lightgray;
+
+      h3 {
+        padding: 8px 12px 8px 12px;
+        text-align: left;
+        color: white;
+        background-color: #42A5F5;
+      }
+
+      p {
+        padding: 12px 12px 12px 12px;
+        color: darkgray;
+        border-bottom: 1px solid lightgray;
+      }
+
+      input[type='text'] {
+        width: 40%;
+        font-size: 16px;
+        margin-top: 20px;
+        margin-left: 7%;
+        border: none;
+        border-bottom: 1px solid darkgray;
+      }
+    }
+  }
+  .planDisplayArea {
+    width: 100%;
+    margin-bottom: 30%;
+
+    .planGroupsArea {
+      width: 96%;
+      max-width: 600px;
+      margin: 16px auto 0 auto;
+
+      .stateGroupPlan {
+        margin-bottom: 16px;
+
+        h3 {
+          color: white;
+          width: 200px;
+          font-size: 16px;
+          padding: 2px 0px 2px 4px;
+        }
+        .groupPlan {
+          border: 1px solid lightgray;
+          overflow: hidden;
+
+          .namePlan {
+            float: left;
+            padding: 8px 0px 8px 12px;
+            font-size: 16px;
+            font-weight: 400;
+          }
+          .tagsPlan {
+            font-size: 12px;
+          }
+          .givingArea {
+            float: right;
+            overflow: hidden;
+            margin-left: 8px;
+            padding: 8px 0px 0px 0px;
+            background-color: white;
+            font-size: 18px;
+
+            label {
+              margin-right: 2px;
+            }
+            input[type=text] {
+              text-align: right;
+              width: 70px;
+              font-size: 14px;
+              margin-right: 4px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.planFooter {
+  width: 100%;
+  height: 60px;
+  background-color: #EEEEEE;
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid darkgray;
+
+  div {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 0 auto;
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    button {
+      float: left;
+      font-size: 18px;
+      padding: 4px 10px;
+      border-radius: 8px;
+      border-color:  #42A5F5;
+      color: white;
+      background-color: #42A5F5;
+    }
+    span {
+      font-size: 20px;
+      float: right;
+    }
+  }
+}

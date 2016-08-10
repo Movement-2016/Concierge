@@ -1,0 +1,118 @@
+.groupsArea {
+  @media screen and (min-width: 740px) {
+    width: calc(100% - 240px);
+  }
+  @media screen and (min-width: 901px) {
+    width: calc(100% - ((100% - 900px) / 2) - 240px);
+  }
+  @media screen and (max-width: 739px) {
+    width: calc(100%);
+  }
+  margin-bottom: 30%;
+  padding-top: 8px;
+}
+
+h3.purple {
+  background-color: #b46ec9;
+}
+h3.lightblue {
+  background-color: #79A6D2;
+}
+h3.lightred {
+  background-color: #D4867F;
+}
+h3.darkblue {
+  background-color: #1F81BB;
+}
+h3.darkred {
+  background-color: #B5473C;
+}
+
+.stateGroup {
+  margin: 0px 4px 16px 4px;
+
+  h3 {
+    font-size: 24px;
+    font-weight: 900;
+    color: white;
+    padding: 16px 0px 16px 8px;
+    margin: 0;
+  }
+
+  .group {
+    border: 1px solid lightgray;
+    overflow: hidden;
+
+    .name {
+      padding: 12px 0px 12px 8px;
+      cursor: pointer;
+
+      img {
+        vertical-align: top;
+      }
+      span {
+        font-size: 20px;
+        font-weight: 700;
+      }
+    }
+    .linksArea {
+      height: 24px;
+      margin: 0px 8px 12px 8px;
+    }
+    .orgTypeArea {
+      margin: 0px 8px 12px 8px;
+
+      span {
+        margin-right: 4px;
+        padding: 4px 12px;
+        border-radius: 10px;
+        color: black;
+        background-color: #EEEEEE;
+      }
+    }
+    .descriptionArea {
+      margin: 0px 8px 12px 8px;
+      font-size: 18px;
+    }
+    .socialArea {
+      height: 24px;
+      margin: 0px 8px 12px 8px;
+    }
+  }
+
+  .selected.purple {
+    background-color: rgba(180,110,201,0.03);
+    border-right: 8px solid #b46ec9;
+  }
+  .selected.lightblue {
+    background-color: rgba(121,166,210,0.03);
+    border-right: 8px solid #79A6D2;
+  }
+  .selected.lightred {
+    background-color: rgba(212,134,127,0.03);
+    border-right: 8px solid #D4867F;
+  }
+  .selected.darkblue {
+    background-color: rgba(31,129,187,0.03);
+    border-right: 8px solid #1F81BB;
+  }
+  .selected.darkred {
+    background-color: rgba(181,71,60,0.03);
+    border-right: 8px solid #B5473C;
+  }
+}
+
+.imglink {
+  height: 24px;
+  color: red;
+  text-decoration: none;
+  margin-right: 8px;
+
+  img {
+    vertical-align: top;
+  }
+  span {
+    margin-left: 2px;
+    font-size: 16px;
+  }
+}

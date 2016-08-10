@@ -1,0 +1,113 @@
+// dialogs
+.dialogMessage {
+  padding-top: 40px;
+  text-align: center;
+}
+
+.dialogGroupButtonArea {
+  text-align: center;
+}
+
+.dialogGroupButton {
+  display: inline-block;
+  margin: 24px 3px 16px 3px;
+  height: 40px;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  padding: 0px 16px 0px 16px;
+  background-color: white;
+  font-size: 18px;
+}
+
+.dialogButton {
+  display: block;
+  margin: 24px auto 16px auto;
+  height: 40px;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  padding: 0px 16px 0px 16px;
+  background-color: white;
+  font-size: 18px;
+}
+
+.errorMessage {
+  color: red;
+}
+
+.dialogUser {
+  margin: 100px auto 0px auto;
+  width: 90%;
+  max-width: 400px;
+
+  h2 {
+    padding: 8px;
+    color: white;
+    background-color: $cBlue;
+  }
+  form {
+    border: 1px solid lightgray;
+
+    input[type=text] {
+      display: block;
+      width: 90%;
+      max-width: 380px;
+      margin: 16px auto 0px auto;
+      height: 32px;
+      font-size: 16px;
+      border-radius: 8px;
+      background-image: url('../images/user-20.png');
+      background-position: 2px 4px;
+      background-repeat: no-repeat;
+      padding-left: 30px;
+    }
+    input[type=password] {
+      display: block;
+      width: 90%;
+      max-width: 380px;
+      margin: 16px auto 0px auto;
+      height: 32px;
+      font-size: 16px;
+      border-radius: 8px;
+      background-image: url('../images/key-20.png');
+      background-position: 2px 12px;
+      background-repeat: no-repeat;
+      padding-left: 30px;
+    }
+  }
+}
+
+.dialogProfile {
+  padding-top: 8px;
+  margin: 100px auto 0px auto;
+  width: 90%;
+  max-width: 400px;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  background-color: rgba(0,0,255,0.02);
+
+  h2 {
+    margin-left: 12px;
+  }
+  form {
+    margin-top: 12px;
+
+    div {
+      margin: 0px 0px 8px 8px;
+
+      label {
+        display: inline-block;
+        font-size: 16px;
+        width: 60px;
+        text-align: left;
+        margin-left: 8px;
+        margin-right: 8px;
+      }
+      input[type=text] {
+        font-size: 16px;
+        border-radius: 8px;
+        max-width: 200px;
+        padding: 2px;
+      }
+    }
+  }
+}

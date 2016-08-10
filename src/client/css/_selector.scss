@@ -1,0 +1,85 @@
+.filterButton {
+  position: fixed;
+  z-index: 10;
+  top: 62px;
+  color: white;
+  background-color: $cBlue;
+  border-color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  right: 10px;
+  padding: 4px 8px;
+}
+
+.groupSelectorArea {
+  position: fixed;
+  z-index: 10;
+  top: 90px;
+  width: 220px;
+  background-color: white;
+  padding-left: 8px;
+
+  @media screen and (min-width: 901px) {
+    right: calc((100% - 900px) / 2);
+  }
+  @media screen and (max-width: 900px) {
+    right: 0;
+  }
+
+  h4 {
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: #45798a;
+  }
+  .filterTitleToggle {
+    color: $cBlue;
+    margin-right: 4px;
+    cursor: pointer;
+  }
+  .filterTitleName {
+    font-size: 14px;
+    font-weight: 900;
+    margin-right: 8px;
+    margin-bottom: 6px;
+    color: #45798a;
+    cursor: pointer;
+  }
+  .filterTitleButton {
+    min-width: 3em;
+    font-size: 12px;
+    color: white;
+    border: none;
+    background-color: $cBlue;
+    padding: 1px 6px 1px 4px;
+    border-radius: 4px;
+    margin: 0 4px 0 0;
+  }
+  p {
+    font-size: 14px;
+    margin: 0px 0px 8px 0px;
+    color: #333333;
+  }
+  .filterGroup {
+    width: 100%;
+    margin-bottom: 8px;
+
+    a {
+      margin-left: 8px;
+      display: block;
+      text-decoration: none;
+      color: black;
+    }
+    a:visited {
+      color: black;
+    }
+    a:hover {
+      color: $cBlue;
+    }
+    select {
+      font-size: 20px;
+      margin-top: 4px;
+      margin-left: 8px;
+      width: 180px;
+    }
+  }
+}

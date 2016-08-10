@@ -1,0 +1,67 @@
+.aboutArea {
+  margin: 100px auto 10% auto;
+  width: 80%;
+  max-width: 800px;
+
+  h2 {
+    text-align: center;
+    color: #42A5F5;
+    margin: 30px 0 30px 0;
+  }
+  h5 {
+    font-size: 24px;
+    text-align: center;
+    margin: 1em 0 1em 0;
+  }
+  p {
+    margin-bottom: 1em;
+  }
+  hr {
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+  .aboutPartnerHeader {
+    text-align: center;
+    font-size: 18px;
+    color: darkgray;
+  }
+  .logos {
+    margin-top: 12px;
+
+    .logo {
+      display: inline-block;
+      vertical-align: top;
+    }
+    .wfLogo {
+      height: 50px;
+      padding: 12px 10px;
+    }
+    .busLogo {
+      height: 50px;
+      padding: 12px 10px;
+    }
+    .paLogo {
+      height: 32px;
+      padding: 21px 10px;
+    }
+    .spLogo {
+      height: 32px;
+      padding: 21px 10px;
+    }
+    .lacLogo {
+      height: 32px;
+      padding: 21px 10px;
+    }
+    .ppacLogo {
+      height: 20px;
+      padding: 27px 10px;
+    }
+    .cpdLogo {
+      height: 60px;
+      padding: 7px 10px;
+    }
+    a img {
+      height: 100%;
+    }
+  }
+}
