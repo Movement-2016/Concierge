@@ -25,7 +25,7 @@ export default class StaffPage extends React.Component {
         return res.json ();
       }
     }).then (data => {
-      this.setState ({ error: null, data: JSON.parse (data) });
+      this.setState ({ error: null, data });
     }).catch (err => {
       this.setState ({ error: `Error statuscode: ${err}`, data: null });
     });
