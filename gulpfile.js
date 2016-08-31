@@ -1,3 +1,4 @@
+'use strict';
 /* eslint prefer-arrow-callback: off */
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 const gulp = require ('gulp');
