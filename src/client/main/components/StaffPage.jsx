@@ -58,13 +58,16 @@ export default class StaffPage extends React.Component {
       }
       for (const user of this.state.data) {
         for (const donation of user.donations) {
-          userRows.push (
-            <tr key={key++}>
-              <td className='s-user'>{`${user.firstName} ${user.lastName}`}</td>
-              <td className='s-group'>{getGroupName (groups, donation.group)}</td>
-              <td className='s-amount'>{donation.amount}</td>
-            </tr>
-          );
+          console.log (user.firstName, donation.group, donation.amount);
+          if (donation.amount !== '0') {
+            userRows.push (
+              <tr key={key++}>
+                <td className='s-user'>{`${user.firstName} ${user.lastName}`}</td>
+                <td className='s-group'>{getGroupName (groups, donation.group)}</td>
+                <td className='s-amount'>{donation.amount}</td>
+              </tr>
+            );
+          }
           if (groupTotal[donation.group] === undefined) {
             groupTotal[donation.group] = 0;
           }
@@ -72,12 +75,15 @@ export default class StaffPage extends React.Component {
         }
       }
       for (const group of Object.keys (groupTotal)) {
-        groupRows.push (
-          <tr key={key++}>
-            <td className='s-group'>{getGroupName (groups, group)}</td>
-            <td className='s-amount'>{groupTotal[group]}</td>
-          </tr>
-        );
+        if (groupTotal[group] > 0) {
+          const total = groupTotal[group].toString ().replace (/\B(?=(\d{3})+\b)/g, ',');
+          groupRows.push (
+            <tr key={key++}>
+              <td className='s-group'>{getGroupName (groups, group)}</td>
+              <td className='s-amount'>{total}</td>
+            </tr>
+          );
+        }
       }
     }
 
