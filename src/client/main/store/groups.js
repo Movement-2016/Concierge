@@ -3,7 +3,7 @@ import { INIT_GROUP_DATA, SET_SELECTED_GROUPS, TOGGLE_GROUP } from './constants'
 const initialState = {};
 // cache stateList
 const stateList = [];
-const colors = ['purple', 'lightblue', 'lightred', 'darkblue', 'darkred'];
+const colors = ['purple', 'light-blue', 'light-red', 'dark-blue', 'dark-red'];
 
 export default function groups (state = initialState, action) {
   switch (action.type) {

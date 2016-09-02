@@ -29,7 +29,7 @@ const Group = ({ group, onClick }) => {
         onClick={() => { onClick (group.id); }}
       >
         { group.favorite ? <img src='/images/ic_done_black_24dp.png' alt='' /> : null }
-        <span>{group.name}</span>
+        <span dangerouslySetInnerHTML={{__html:group.name}}  /> 
       </div>
       <div className='linksArea'>
         {webLink}
@@ -40,9 +40,7 @@ const Group = ({ group, onClick }) => {
         {(tags.indexOf ('501c4') !== -1) ? <span>501c4</span> : null}
         {(tags.indexOf ('pac') !== -1) ? <span>PAC</span> : null}
       </div>
-      <div className='descriptionArea'>
-        {group.description}
-      </div>
+      <div className='descriptionArea' dangerouslySetInnerHTML={{__html:group.description}} />
     </div>
   );
 };

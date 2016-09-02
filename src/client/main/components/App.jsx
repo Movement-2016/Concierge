@@ -8,6 +8,8 @@ import configureStore from '../../store/configureStore';
 import { initGroupData, setSelectedGroups } from '../store/actions';
 import { verifyLogin } from '../../account/store/actions';
 
+import Groups from '../../groups';
+
 import SelectPage from './SelectPage.jsx';
 import PlanPage from './PlanPage.jsx';
 import RegisterPage from '../../account/components/RegisterPage.jsx';
@@ -19,28 +21,32 @@ import NotFoundPage from './NotFoundPage.jsx';
 import StaffPage from './StaffPage.jsx';
 
 const store = configureStore ();
-store.dispatch (initGroupData (window.__GROUP_DATA__));
-store.dispatch (verifyLogin ())
-.then (() => {
-  render (
-    <Router
-      history={browserHistory}
-      render={applyRouterMiddleware (useScroll (scrolling))}
-    >
-      <Route path='/' component={App}>
-        <IndexRoute component={SelectPage} />
-        <Route path='/plan' component={PlanPage} onEnter={requireAuth} />
-        <Route path='/aboutus' component={AboutPage} />
-        <Route path='/getintouch' component={ContactPage} />
-        <Route path='/report' component={ReportPage} onEnter={requireAuth} />
-        <Route path='/signup' component={RegisterPage} />
-        <Route path='/login' component={LoginPage} />
-        <Route path='/staff' component={StaffPage} />
-        <Route path='*' component={NotFoundPage} />
-      </Route>
-    </Router>,
-    document.getElementById ('app')
-  );
+
+Groups.fetch().then( group_data => {
+  store.dispatch (initGroupData (group_data));
+  store.dispatch (verifyLogin ())
+  .then (() => {
+    render (
+      <Router
+        history={browserHistory}
+        render={applyRouterMiddleware (useScroll (scrolling))}
+      >
+        <Route path='/' component={App}>
+          <IndexRoute component={SelectPage} />
+          <Route path='/plan' component={PlanPage} onEnter={requireAuth} />
+          <Route path='/aboutus' component={AboutPage} />
+          <Route path='/getintouch' component={ContactPage} />
+          <Route path='/report' component={ReportPage} onEnter={requireAuth} />
+          <Route path='/signup' component={RegisterPage} />
+          <Route path='/login' component={LoginPage} />
+          <Route path='/staff' component={StaffPage} />
+          <Route path='*' component={NotFoundPage} />
+        </Route>
+      </Router>,
+      document.getElementById ('app')
+    );
+  });
+
 });
 
 export default class App extends React.Component {

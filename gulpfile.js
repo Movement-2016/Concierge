@@ -29,9 +29,9 @@ const dependencies = [
 const stageDir = '../concierge-stage';
 let base = 'dist';
 
-gulp.task ('default', ['html', 'images', 'server', 'data', 'styles', 'fonts',
+gulp.task ('default', ['html', 'images', 'server', 'styles', 'fonts',
   'vendor', 'browserify-watch', 'watch']);
-gulp.task ('stage', ['set-stage', 'html', 'images', 'server', 'data',
+gulp.task ('stage', ['set-stage', 'html', 'images', 'server', 
   'styles', 'fonts', 'vendor-stage', 'browserify-stage']);
 
 // set the destination for staging output and copy stage root files
@@ -46,7 +46,6 @@ gulp.task ('watch', function () {
   gulp.watch ('src/client/index.html', ['html']);
   gulp.watch ('src/client/images/**/*', ['images']);
   gulp.watch ('src/server/*.js', ['server']);
-  gulp.watch ('src/server/public/data/data.js', ['data']);
   gulp.watch (dependencies, ['vendor']);
   gulp.watch('src/client/css/**/*.scss', ['styles']);
   gulp.watch('src/client/fonts/**/*', ['fonts']);
@@ -74,12 +73,6 @@ gulp.task ('fonts', function () {
 gulp.task ('server', function () {
   return gulp.src ('src/server/*.js')
     .pipe (gulp.dest (base));
-});
-
-// copy pre-packaged data
-gulp.task ('data', function () {
-  return gulp.src ('src/server/public/js/data.js')
-    .pipe (gulp.dest (`${base}/public/js`));
 });
 
 // compile third-party dependencies
