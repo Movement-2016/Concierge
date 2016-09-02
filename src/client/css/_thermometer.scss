@@ -1,0 +1,15 @@
+.thermometerArea {
+  .thermometer {
+    margin: 0px 12%;
+    text-align: center;
+    border: 2px solid black;
+    min-height: 24px;
+    border-radius: 12px;
+    background: white;
+  }
+  .mercury {
+    background: pink;
+    border-radius: 12px;
+    min-height: 100%;
+  }
+}

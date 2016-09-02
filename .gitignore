@@ -1,6 +1,7 @@
 .env
 .DS_Store
 
+npm-debug.log
 data/
 node_modules/
 dist/

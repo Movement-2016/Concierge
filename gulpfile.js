@@ -1,6 +1,5 @@
-'use strict';
 /* eslint prefer-arrow-callback: off */
-/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+/* eslint- import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 const gulp = require ('gulp');
 const gutil = require ('gulp-util');
 const cssmin = require ('gulp-cssmin');
@@ -12,9 +11,11 @@ const browserify = require ('browserify');
 const watchify = require ('watchify');
 const uglify = require ('gulp-uglify');
 const gzip = require ('gulp-gzip');
+const concat = require('gulp-concat');
 const sourcemaps = require ('gulp-sourcemaps');
 
 const dependencies = [
+  'bootstrap',
   'react',
   'react-dom',
   'react-masonry-component',
@@ -27,12 +28,13 @@ const dependencies = [
 ];
 
 const stageDir = '../concierge-stage';
+
 let base = 'dist';
 
-gulp.task ('default', ['html', 'images', 'server', 'styles', 'fonts',
-  'vendor', 'browserify-watch', 'watch']);
-gulp.task ('stage', ['set-stage', 'html', 'images', 'server', 
-  'styles', 'fonts', 'vendor-stage', 'browserify-stage']);
+var stdTasks = ['html', 'images', 'server', 'styles', 'fonts', 'vendor-styles' ];
+
+gulp.task ('default', [             ...stdTasks, 'vendor',       'browserify-watch', 'watch']);
+gulp.task ('stage',   ['set-stage', ...stdTasks, 'vendor-stage', 'browserify-stage' ]);
 
 // set the destination for staging output and copy stage root files
 gulp.task ('set-stage', function () {
@@ -65,7 +67,11 @@ gulp.task ('images', function () {
 
 // copy fonts
 gulp.task ('fonts', function () {
-  return gulp.src ('src/client/fonts/**/*')
+  const src = [
+    'src/client/fonts/**/*',
+    'node_modules/bootstrap/dist/fonts/*'
+  ];
+  return gulp.src (src)
     .pipe (gulp.dest (`${base}/public/fonts`));
 });
 
@@ -92,6 +98,16 @@ gulp.task ('styles', function () {
     .pipe (sass ().on ('error', sass.logError))
     .pipe (cssmin ())
     .pipe (gulp.dest (`${base}/public/css`));
+});
+
+gulp.task ('vendor-styles', function () {
+  const src = [
+    'node_modules/bootstrap/dist/css/bootstrap.min.css',
+    'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
+  ];
+ return gulp.src( src )
+            .pipe(concat('vendor.css'))
+            .pipe(gulp.dest(`${base}/public/css`));  
 });
 
 gulp.task ('browserify-watch', function () {

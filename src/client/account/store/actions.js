@@ -104,12 +104,14 @@ export function verifyLogin () {
           dispatch (setAuthenticated (true, data.user.username));
           dispatch (setProfile (data.user.firstName, data.user.lastName, data.user.email,
             data.user.phone, data.user.favorites, data.user.donations));
-          dispatch (setSelectedGroups (data.user.favorites));
+          // TODO: fix this when data is loaded
+          // dispatch (setSelectedGroups (data.user.favorites));
           return resolve (true);
         } else {
           dispatch (setAuthenticated (false, ''));
           dispatch (setProfile ('', '', '', '', [], []));
-          dispatch (setSelectedGroups ([]));
+          // TODO: fix this when data is loaded
+          //dispatch (setSelectedGroups ([]));
           return resolve (false);
         }
       }).catch (err => {
