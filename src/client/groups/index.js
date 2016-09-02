@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 
-const WP_API_HOST = 'm2016dev.wpengine.com';
+const WP_API_HOST = 'movement2016.org'; // 'm2016dev.wpengine.com';
 
 const WP_API_BASE = 'http://' + WP_API_HOST + '/wp-json/movement-2.1/';
 
@@ -22,6 +22,7 @@ class Groups {
   constructor() {
     this.base = WP_API_BASE;
     this.data = null;
+    this.taxonomy = null;
   }
 
   _fetch(part) {
@@ -34,13 +35,21 @@ class Groups {
     if( this.data !== null ) {
       return Promise.resolve(this.data);
     }
-    return this._fetch( 'orgs' )
-        .then ( data => {
+    return Promise.all( [ this._fetch( 'orgs' ), this._fetch('tags') ] )
+        .then ( ([ data, tags ])  => {
           this.data = data;
+          this.taxonomy = tags;
           return data;
         });
   }
 
+  get states() {
+    return this.taxonomy.groupings.states;
+  }
+
+  get filters() {
+    return this.taxonomy.filters;
+  }
 }
 
 module.exports = new Groups();
