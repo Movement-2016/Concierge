@@ -15,7 +15,6 @@ const concat = require('gulp-concat');
 const sourcemaps = require ('gulp-sourcemaps');
 
 const dependencies = [
-  'bootstrap',
   'react',
   'react-dom',
   'react-masonry-component',
@@ -27,11 +26,26 @@ const dependencies = [
   'whatwg-fetch',
 ];
 
+const fonts = [
+  'src/client/fonts/**/*',
+  'node_modules/bootstrap/dist/fonts/*'
+];
+
+const vendorStyles = [
+  'node_modules/bootstrap/dist/css/bootstrap.min.css',
+  'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
+];
+
+const vendorClientJS = [
+  'node_modules/jquery/dist/jquery.min.js',
+  'node_modules/bootstrap/dist/js/bootstrap.min.js'
+];
+
 const stageDir = '../concierge-stage';
 
 let base = 'dist';
 
-var stdTasks = ['html', 'images', 'server', 'styles', 'fonts', 'vendor-styles' ];
+var stdTasks = ['html', 'images', 'server', 'styles', 'fonts', 'vendor-styles', 'vendor-client-js' ];
 
 gulp.task ('default', [             ...stdTasks, 'vendor',       'browserify-watch', 'watch']);
 gulp.task ('stage',   ['set-stage', ...stdTasks, 'vendor-stage', 'browserify-stage' ]);
@@ -67,11 +81,7 @@ gulp.task ('images', function () {
 
 // copy fonts
 gulp.task ('fonts', function () {
-  const src = [
-    'src/client/fonts/**/*',
-    'node_modules/bootstrap/dist/fonts/*'
-  ];
-  return gulp.src (src)
+  return gulp.src (fonts)
     .pipe (gulp.dest (`${base}/public/fonts`));
 });
 
@@ -101,13 +111,15 @@ gulp.task ('styles', function () {
 });
 
 gulp.task ('vendor-styles', function () {
-  const src = [
-    'node_modules/bootstrap/dist/css/bootstrap.min.css',
-    'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
-  ];
- return gulp.src( src )
+ return gulp.src( vendorStyles )
             .pipe(concat('vendor.css'))
             .pipe(gulp.dest(`${base}/public/css`));  
+});
+
+gulp.task ('vendor-client-js', function () {
+ return gulp.src( vendorClientJS )
+            .pipe(concat('vendor.browser.js'))
+            .pipe(gulp.dest(`${base}/public/js`));  
 });
 
 gulp.task ('browserify-watch', function () {

@@ -1,4 +1,8 @@
-nav.navbar {
+
+// overwrite Bootstrap defaults
+
+.topNavArea {
+
   position: fixed;
   top: $thermometerHeight;
   width: 100%;  
@@ -8,18 +12,33 @@ nav.navbar {
   border-bottom: 1px solid $cBlue;
   height: $navBarHeight;
   border-radius: 0px;
-}
 
-.navbar-toggle .icon-bar {
-  background: black;
-}
+  .navbar-toggle .icon-bar {
+    background: $cBlue;
+  }
 
-.navbar-brand,
-.navbar-brand:hover,
-.navbar-brand:visited, {
-  font-family: Arvo;
-  font-size: 30;
-  font-weight: 700;  
-  color: $cBlue;
-  text-decoration: none;
+  #nav-collapse .nav.navbar-nav {
+    background: white;
+  }
+
+  .navbar-brand,
+  .navbar-brand:hover,
+  .navbar-brand:visited {
+    font-family: Arvo;
+    font-size: 35;
+    font-weight: 700;
+    color: $cBlue;
+    text-decoration: none;
+    margin-top: 11px;
+  }
+
+  .navbar-nav > li > a {
+    padding-top: 20px;    
+    padding-bottom: 20px;    
+  }
+
+  .navbar-nav > li > a.active {
+    color: #777;
+    border-bottom: 2px solid $cBlue;
+  }
 }

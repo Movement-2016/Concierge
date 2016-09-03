@@ -1,7 +1,7 @@
 $cBlue: #42A5F5;
 $thermometerHeight: 34px;
-$navBarHeight: 50px;
-$headerHeight: 84px;
+$navBarHeight: 64px;
+$headerHeight: $thermometerHeight + $navBarHeight;
 
 @import 'fonts';
 @import 'defaults';
@@ -17,6 +17,7 @@ $headerHeight: 84px;
 @import 'staff';
 @import 'home';
 @import 'thermometer';
+@import 'donate';
 
 #app {
   width: 100%;
@@ -42,6 +43,8 @@ $headerHeight: 84px;
   overflow: hidden;
   background-color: white;
 }
+
+// overwrite Bootstrap defaults
 
 .btn-primary {
     background-image: -webkit-linear-gradient(top,#337ab7 0,$cBlue 100%);

@@ -40,8 +40,8 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <div>
-          <Thermometer goal={10000000} pledged={904402} />
-          <Nav loggedIn={this.state.authenticated} />
+          <Thermometer goal={10000000} pledged={1304402} />
+          <Nav loggedIn={this.state.authenticated} isAdmin />
           <div className='mainArea'>
             {this.props.children}
           </div>

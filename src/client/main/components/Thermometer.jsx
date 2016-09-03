@@ -19,6 +19,7 @@ function commaize(value) {
 }
 
 const ONE_HUNDRED = 100;
+const ANIMATE_DELAY = 1500;
 
 class Thermometer extends React.Component {
 
@@ -29,13 +30,14 @@ class Thermometer extends React.Component {
     this.percent = (pledged / goal) * ONE_HUNDRED;
   }
 
+  componentDidMount() {
+    /* globals $ */
+    setTimeout( () => $('.mercury').animate( {maxWidth:this.percent + '%'}, 'slow' ), ANIMATE_DELAY );
+  }
+
   render() {
     
     let { pledged, goal } = this.props;
-
-    const mercuryStyle = {
-      maxWidth:  this.percent + '%'
-    };
 
     goal    = '$' + commaize(goal);
     pledged = '$' + commaize(pledged);
@@ -55,7 +57,7 @@ class Thermometer extends React.Component {
               </div>
               <div className="col-md-5 no-pad-left no-pad-right" >
                 <div className="thermometer hidden-sm hidden-xs">
-                  <div className="mercury" style={mercuryStyle} />
+                  <div className="mercury" />
                 </div>
               </div>
               <div className="col-md-1 no-pad-left hidden-sm hidden-xs">

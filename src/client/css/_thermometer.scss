@@ -6,7 +6,7 @@ $widgetHeight: 15px;
   position: fixed;
   top: 0;
   width: 100%;
-  background: #E91E63;
+  background: #673AB7;
   color: #fff;
   font-size: small;
   z-index: 100;
@@ -38,6 +38,7 @@ $widgetHeight: 15px;
   .mercury {
     background: $cBlue;    
     min-height: $widgetHeight;
+    max-width: 0;
     border-radius: 6px;  
   }
 

@@ -12,6 +12,7 @@ import AboutPage from './AboutPage.jsx';
 import NotFoundPage from './NotFoundPage.jsx';
 import StaffPage from './StaffPage.jsx';
 import HomePage from './HomePage.jsx';
+import DonatePage from './DonatePage.jsx';
 
 class Routes extends React.Component
 {
@@ -42,6 +43,7 @@ class Routes extends React.Component
         >
           <Route path='/' component={this.props.App}>
             <IndexRoute component={HomePage} />
+            <Route path='/donate' component={DonatePage} />
             <Route path='/groups' component={SelectPage} onEnter={this.requireAuth} />
             <Route path='/plan' component={PlanPage} onEnter={this.requireAuth} />
             <Route path='/aboutus' component={AboutPage} />

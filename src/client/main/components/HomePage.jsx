@@ -1,13 +1,9 @@
-/* eslint "react/jsx-closing-bracket-location":"off" */
 import React    from 'react';
 import { Link } from 'react-router';
 
-const ActBlueUrl = 'https://secure.actblue.com/contribute/page/mvmt-us-movement2016-c4?refcode=homepage';
 const TravelUrl  = 'https://docs.google.com/forms/d/e/1FAIpQLSfH_n5RoI7DZbQpZ739Fm5-8_hjUHt4YIGSlrg6_wWRnNvrkw/viewform';
 
-const Tile = props => {
-
-  const { linkto, href, glyph, img, text } = props;
+const Tile = ({ linkto, href, glyph, img, text, children }) => {
 
   const icon     = glyph 
                      ? <i className={`glyphicon glyphicon-${glyph} tile-icon tile-glyph`} />
@@ -24,7 +20,7 @@ const Tile = props => {
   return (
       <div className="tile">
         {iconlink}
-        <div className="tile-desc">{props.children}</div>
+        <div className="tile-desc">{children}</div>
         {link}
       </div>
     );
@@ -47,7 +43,7 @@ const HomePage = () => {
 
       <div className="row content-area">
         <div className="col-md-3 col-md-offset-1">
-          <Tile href={ActBlueUrl} glyph="ok" text="Donate Easy">
+          <Tile linkto="/donate" glyph="ok" text="Donate Easy">
             Split your contribution evenly between Movement 2016 groups
           </Tile>
         </div>
