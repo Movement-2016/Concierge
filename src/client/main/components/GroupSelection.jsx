@@ -31,19 +31,6 @@ export default class GroupSelection extends React.Component {
     this.handleResize = this.handleResize.bind (this);
   }
 
-  componentWillMount() {
-
-    let groups = this.props.location.query.groups;
-    if (groups) {
-      groups = groups.split (',');
-      groups = groups.filter ((group) => {
-        return Number.isInteger (Number (group));
-      });
-      groups = groups.map ((group) => { return Number (group); });
-      this.props.store.dispatch (setSelectedGroups (groups));
-    }
-
-  }
   componentDidMount () {
     window.addEventListener ('resize', this.handleResize);
   }

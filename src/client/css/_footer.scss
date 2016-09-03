@@ -1,0 +1,36 @@
+.footerArea {
+
+  text-align: center;
+  height: 200px;
+  padding: 50px;
+  margin-bottom: 50px;
+  border-top: 2px solid $cBlue;
+
+  .partner-logos,
+  .site-links {
+    list-style: none;
+  }
+
+  .panel-heading {
+    font-size: 110%;
+    font-weight: 700;
+    letter-spacing: 1.2;
+  }
+  .partner-logos li,
+  .site-links li {
+    float: left;
+    margin: 20px;
+  }
+
+  .partner-logos li {
+    min-height: 100;
+  }
+
+  .partner-logos li img {
+    max-width: 80px;
+  }
+
+  .license {
+    padding-bottom: 50px;
+  }
+}

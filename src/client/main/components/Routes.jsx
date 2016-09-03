@@ -2,9 +2,8 @@ import React from 'react';
 import { Router, Route, IndexRoute, applyRouterMiddleware, browserHistory } from 'react-router';
 import useScroll from 'react-router-scroll/lib/useScroll';
 
-import SelectPage from './SelectPage.jsx';
+import CustomDonatePage from './CustomDonatePage.jsx';
 import PlanPage from './PlanPage.jsx';
-import RegisterPage from '../../account/components/RegisterPage.jsx';
 import LoginPage from '../../account/components/LoginPage.jsx';
 import ContactPage from './ContactPage.jsx';
 import ReportPage from './ReportPage.jsx';
@@ -44,12 +43,11 @@ class Routes extends React.Component
           <Route path='/' component={this.props.App}>
             <IndexRoute component={HomePage} />
             <Route path='/donate' component={DonatePage} />
-            <Route path='/groups' component={SelectPage} onEnter={this.requireAuth} />
+            <Route path='/custom' component={CustomDonatePage}  />
             <Route path='/plan' component={PlanPage} onEnter={this.requireAuth} />
             <Route path='/aboutus' component={AboutPage} />
             <Route path='/getintouch' component={ContactPage} />
             <Route path='/report' component={ReportPage} onEnter={this.requireAuth} />
-            <Route path='/signup' component={RegisterPage} />
             <Route path='/login' component={LoginPage} />
             <Route path='/staff' component={StaffPage} />
             <Route path='*' component={NotFoundPage} />

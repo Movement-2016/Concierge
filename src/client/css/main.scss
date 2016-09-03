@@ -18,6 +18,7 @@ $headerHeight: $thermometerHeight + $navBarHeight;
 @import 'home';
 @import 'thermometer';
 @import 'donate';
+@import 'footer';
 
 #app {
   width: 100%;
@@ -60,4 +61,12 @@ $headerHeight: $thermometerHeight + $navBarHeight;
 .btn-primary:focus, .btn-primary:hover {
     background-color: #4a9de2;
     background-position: 0 -8px;
+}
+
+// TODO: Move this somewhere else
+
+.loginRegisterArea {
+  .login-or-register {
+    margin-top: 210px;
+  }
 }

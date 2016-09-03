@@ -25,8 +25,7 @@ const MENU_SELECTORS = 'nav navbar-nav navbar-right';
 const MenuAnonymous = () => {
   return (
       <ul className={MENU_SELECTORS}>
-        <li key={1}><Link to='/signup' activeClassName='active'>Sign up</Link></li>
-        <li key={2}><Link to='/login' activeClassName='active'>Login</Link></li>        
+        <li><Link to='/login' activeClassName='active'>Sign Up / Login</Link></li>
       </ul> 
     );
 };
@@ -35,8 +34,8 @@ const MenuLoggedIn = ({ isAdmin, store }) => {
   const onLogout = () => { store.dispatch (logout ()); };
   return (
     <ul className={MENU_SELECTORS}>
-                  <li key={1} onClick={onLogout} ><Link to='/'>Logout</Link></li>
-      {isAdmin && <li key={2}><Link to='/staff' activeClassName='active'>Staff</Link></li>}
+                  <li onClick={onLogout} ><Link to='/'>Logout</Link></li>
+      {isAdmin && <li><Link to='/staff' activeClassName='active'>Staff</Link></li>}
     </ul>
   );
 };

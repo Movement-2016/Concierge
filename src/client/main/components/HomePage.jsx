@@ -48,7 +48,7 @@ const HomePage = () => {
           </Tile>
         </div>
         <div className="col-md-3">
-          <Tile linkto="/plan" img="/images/photos/murika.png" text="Donate Customized">  
+          <Tile linkto="/custom" img="/images/photos/murika.png" text="Donate Customized">  
             Create your own giving plan
           </Tile>
         </div>

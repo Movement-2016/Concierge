@@ -8,6 +8,7 @@ import { verifyLogin }       from '../../account/store/actions';
 import Routes      from './Routes.jsx';
 import Nav         from './Nav.jsx';
 import Thermometer from './Thermometer.jsx';
+import Footer      from './Footer.jsx';
 
 const store = configureStore ();
 
@@ -45,6 +46,7 @@ class App extends React.Component {
           <div className='mainArea'>
             {this.props.children}
           </div>
+          <Footer />
         </div>
       </Provider>
     );

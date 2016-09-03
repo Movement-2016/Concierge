@@ -32,6 +32,14 @@
     margin-top: 11px;
   }
 
+  @media screen and (max-width: 740px) {
+    .navbar-brand,
+    .navbar-brand:hover,
+    .navbar-brand:visited {
+      font-size: inherit;
+    }
+  }
+
   .navbar-nav > li > a {
     padding-top: 20px;    
     padding-bottom: 20px;    
