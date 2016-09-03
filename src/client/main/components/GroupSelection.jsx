@@ -16,19 +16,34 @@ const end2 = start2 + tagsConstituency.length;
 const start3 = end2;
 const end3 = start3 + tagsIssue.length;
 
+const MIN_INNER_WIDTH = 741;
+
 export default class GroupSelection extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
-      visible1: (window.innerWidth >= 740),
-      visible2: (window.innerWidth >= 740),
-      visible3: (window.innerWidth >= 740),
+      visible1: (window.innerWidth >= MIN_INNER_WIDTH),
+      visible2: (window.innerWidth >= MIN_INNER_WIDTH),
+      visible3: (window.innerWidth >= MIN_INNER_WIDTH),
       displayWidth: window.innerWidth,
       visible: false,
     };
     this.handleResize = this.handleResize.bind (this);
   }
 
+  componentWillMount() {
+
+    let groups = this.props.location.query.groups;
+    if (groups) {
+      groups = groups.split (',');
+      groups = groups.filter ((group) => {
+        return Number.isInteger (Number (group));
+      });
+      groups = groups.map ((group) => { return Number (group); });
+      this.props.store.dispatch (setSelectedGroups (groups));
+    }
+
+  }
   componentDidMount () {
     window.addEventListener ('resize', this.handleResize);
   }
@@ -47,7 +62,7 @@ export default class GroupSelection extends React.Component {
     let tags1;
     let tags2;
     let tags3;
-    if (this.state.displayWidth < 740) {
+    if (this.state.displayWidth < MIN_INNER_WIDTH) {
       filterButton = (this.state.visible) ? (
         <button className='filterButton' onClick={() => { this.setState ({ visible: false }); }}>
         Filters &#9651;
@@ -58,7 +73,7 @@ export default class GroupSelection extends React.Component {
         </button>
       );
     }
-    if ((this.state.displayWidth >= 740) || (this.state.visible)) {
+    if ((this.state.displayWidth >= MIN_INNER_WIDTH) || (this.state.visible)) {
       // populate states select component
       stateOptions = [];
       const states = getStateList ();
@@ -113,7 +128,7 @@ export default class GroupSelection extends React.Component {
         }
       }
     }
-    if ((this.state.displayWidth < 740) && (this.state.visible === false)) {
+    if ((this.state.displayWidth < MIN_INNER_WIDTH) && (this.state.visible === false)) {
       return (
         <div className='groupSelectorArea'>
           {filterButton}

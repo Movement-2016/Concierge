@@ -5,8 +5,9 @@ import { Provider } from 'react-redux';
 import configureStore        from '../../store/configureStore';
 import { verifyLogin }       from '../../account/store/actions';
 
-import Routes from './Routes.jsx';
-import Nav    from './Nav.jsx';
+import Routes      from './Routes.jsx';
+import Nav         from './Nav.jsx';
+import Thermometer from './Thermometer.jsx';
 
 const store = configureStore ();
 
@@ -39,8 +40,9 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <div>
+          <Thermometer goal={10000000} pledged={904402} />
           <Nav loggedIn={this.state.authenticated} />
-          <div>
+          <div className='mainArea'>
             {this.props.children}
           </div>
         </div>

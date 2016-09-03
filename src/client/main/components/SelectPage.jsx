@@ -137,7 +137,7 @@ export default class SelectPage extends React.Component {
     }
 
     return (
-      <div className='mainArea'>
+      <div>
         <div className='orgArea'>
           <GroupSelection
             tags={tags}

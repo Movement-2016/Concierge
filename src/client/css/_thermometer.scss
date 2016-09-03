@@ -1,15 +1,49 @@
+$widgetHeight: 15px;
+
 .thermometerArea {
-  .thermometer {
-    margin: 0px 12%;
-    text-align: center;
-    border: 2px solid black;
-    min-height: 24px;
-    border-radius: 12px;
-    background: white;
+
+  padding: 8px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #E91E63;
+  color: #fff;
+  font-size: small;
+  z-index: 100;
+  height: $thermometerHeight;
+
+  div.text {
+    font-weight: 400;
+    margin-left: 10px;
   }
+
+  .no-pad-left {
+    padding-left: 0;
+  }
+
+  .no-pad-right {
+    padding-right: 5;
+  }
+
+  .thermometer-current {
+    text-align: right;
+  }
+
+  .thermometer {
+    background: #d9edf7;
+    border: 2px solid #2e6da4;
+    border-radius: 14px;
+  }
+
   .mercury {
-    background: pink;
-    border-radius: 12px;
-    min-height: 100%;
+    background: $cBlue;    
+    min-height: $widgetHeight;
+    border-radius: 6px;  
+  }
+
+  .donate-button {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin: -4px;
   }
 }

@@ -1,4 +1,7 @@
 $cBlue: #42A5F5;
+$thermometerHeight: 34px;
+$navBarHeight: 50px;
+$headerHeight: 84px;
 
 @import 'fonts';
 @import 'defaults';
@@ -35,8 +38,23 @@ $cBlue: #42A5F5;
 
 // main content area under Nav area
 .mainArea {
-  max-width: 900px;
-  margin: 0 auto 0 auto;
+  margin: $headerHeight auto 0 auto;
   overflow: hidden;
   background-color: white;
+}
+
+.btn-primary {
+    background-image: -webkit-linear-gradient(top,#337ab7 0,$cBlue 100%);
+    background-image: -o-linear-gradient(top,#337ab7 0,$cBlue 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#337ab7),to($cBlue));
+    background-image: linear-gradient(to bottom,#337ab7 0,$cBlue 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff337ab7', endColorstr='#ff265a88', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    background-repeat: repeat-x;
+    border-color: #245580;
+}
+
+.btn-primary:focus, .btn-primary:hover {
+    background-color: #4a9de2;
+    background-position: 0 -8px;
 }

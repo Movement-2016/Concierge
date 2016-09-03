@@ -1,6 +1,65 @@
 .homeArea {
   div.intro {
     padding: 50px;
-    margin-top: 60px;
+  }
+
+  div.intro-text {
+    color: white;
+    margin-bottom: 20px;
+    text-shadow: rgba(0, 0, 0, 0.721569) 0px 1px 12px;
+    font-size: 38px;
+    max-width: 856px;
+    font-weight: 900;
+    font-family: Lato,sans-serif;
+    margin: 0 auto;
+  }
+
+  div.row {
+    margin-bottom: 20px;
+  }
+
+  .content-area > div {
+    padding-top: 20px;
+    padding-bottom: 8px;
+    background: white;
+    opacity: 0.85;    
+    border-radius: 7px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    margin-right: 12px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .tile {
+    min-height: 220px;
+    position: relative;
+  }
+
+  .tile a.btn {
+    font-size: 120%;
+    position: absolute;
+    bottom: 1px;
+    left: 5%;
+    width: 90%;
+  }
+
+  .tile .tile-glyph {
+    max-width: 200px;
+    min-height: 125px;
+    display: block;
+    margin: 7px auto;    
+  }
+
+  .tile img {
+  }
+
+  .tile .tile-icon {
+    font-size: 100px;
+    color: $cBlue;
+  }
+
+  .tile-desc {
+    margin-top: 7px;
+    font-size: 80%;
   }
 }
