@@ -1,0 +1,84 @@
+.tiles {
+  .tile {
+    min-height: 220px;
+    position: relative;
+  }
+
+  .row.tiles-row {
+    margin-bottom: 20px;
+  }
+
+  .tiles-parent {
+    padding-top: 20px;
+    padding-bottom: 8px;
+    background: white;
+    opacity: 0.85;    
+    border-radius: 7px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    margin-right: 12px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .tile {
+    .tile-title {
+      text-align: center;
+      font-weight: 600;
+      font-size: 110%;
+      margin-bottom: 10px;
+    }
+
+    a.btn {
+      font-size: 120%;
+      position: absolute;
+      bottom: 1px;
+      left: 5%;
+      width: 90%
+    }
+
+    .tile-glyph {
+      max-width: 200px;
+      min-height: 125px;
+      display: block;
+      margin: 7px auto
+    }
+
+    .tile-icon {
+      font-size: 100px;
+      color: #42A5F5
+    }
+
+    .tile-body {
+      margin-top: 7px;
+      font-size: 80%;
+    }
+  }
+
+  .tile.compact {
+    min-height: initial;
+
+    a.btn {
+      position: relative;
+      margin: 0 auto;
+      width: initial;
+      bottom: auto;
+      font-size: initial;
+    }
+
+    .tile-glyph {
+      font-size: 33px;
+      display: inline-block;
+      float: left;
+      min-height: 40px;
+      margin-right: 20px;
+    }
+
+    .tile-body {
+      min-height: 55px;
+      text-align: left;
+      margin-bottom: 12px;
+    }
+  }
+
+
+}

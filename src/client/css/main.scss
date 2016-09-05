@@ -19,6 +19,7 @@ $headerHeight: $thermometerHeight + $navBarHeight;
 @import 'thermometer';
 @import 'donate';
 @import 'footer';
+@import 'tile';
 
 #app {
   width: 100%;
@@ -40,9 +41,14 @@ $headerHeight: $thermometerHeight + $navBarHeight;
 
 // main content area under Nav area
 .mainArea {
-  margin: $headerHeight auto 0 auto;
+  margin-top: $headerHeight;
   overflow: hidden;
   background-color: white;
+}
+
+.mainArea > main,
+.mainArea > div {
+  padding-top: 20px;  
 }
 
 // overwrite Bootstrap defaults

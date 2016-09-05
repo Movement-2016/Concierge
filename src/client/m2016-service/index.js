@@ -90,12 +90,15 @@ class M2016Service {
     return this._taxonomy.filters;
   }
 
-  get tandemForms() {
-    return tandemForms;
-  }
-
   get stateColorSchemes() {
     return stateColorSchemes;
+  }
+
+  get pages() {
+    return {
+        home,
+        donate
+      };
   }
 }
 
@@ -124,53 +127,88 @@ const stateColorSchemes = {
   }
 };
 
-const tandemForms = [
+
+
+const homePageTiles = [
   {
-    title: 'Purple States',
-    desc:  'Spread out donations to all purple states',
-    url:   'https://secure.actblue.com/contribute/page/mvmt-us-movement2016-c4?refcode=homepage'
+    linkto: '/donate',
+    glyph: 'ok',
+    text: 'Donate Easy',
+    body: 'Split your contribution evenly between Movement 2016 groups'
   },
   {
-    title: 'Purple States (501c3)',
-    desc:  'Spread out tax deductable donations to all purple states',
-    url:   'https://secure.actblue.com/contribute/page/mvmt-us-movement2016-c4?refcode=homepage'
+    linkto: '/custom',
+    img: '/images/photos/murika.png',
+    text: 'Donate Customized',
+    body: 'Create your own giving plan'
   },
   {
-    title: 'Florida',
-    desc:  'Spread out donations to organizations in Florida',
-    url:   'https://secure.actblue.com/contribute/page/mvmt-us-movement2016-c4?refcode=homepage'
+    linkto: 'getintouch',
+    glyph: 'phone',
+    text: 'Talk to a Human',
+    body: 'Get research on states and organizations'
   },
   {
-    title: 'Ohio',
-    desc:  'Spread out donations to organizations in Ohio',
-    url:   'https://secure.actblue.com/contribute/page/mvmt-us-movement2016-c4?refcode=homepage'
+    href: 'https://docs.google.com/forms/d/e/1FAIpQLSfH_n5RoI7DZbQpZ739Fm5-8_hjUHt4YIGSlrg6_wWRnNvrkw/viewform',
+    glyph: 'plane',
+    text: 'Travel',
+    body: 'Volunteer to travel and work in a purple state',
+    compact: true
   },
   {
-    title: 'Focus Voter ID Laws (501c3)',
-    desc:  'Spread out tax deductable donations organizations dealing with new voter ID laws',
-    url:   'https://secure.actblue.com/contribute/page/mvmt-us-movement2016-c4?refcode=homepage'
+    linkto: '/plan',
+    glyph: 'glass',
+    text: 'Host a Party',
+    body: 'Create your own donor house party',
+    compact: true
   },
   {
-    title: 'Get Out the Purple Vote',
-    desc:  'Give to organizations focused on voter turnout in purple states',
-    url:   'https://secure.actblue.com/contribute/page/mvmt-us-movement2016-c4?refcode=homepage'
+    linkto: '/aboutus',
+    glyph: 'info-sign',
+    text: 'About Us',
+    body: 'Learn more about the hows and whys of Movement 2016',
+    compact: true
+  }
+];
+
+const home = {
+  title: 'Support the Best Community-Based<br />Vote Groups in the Country',
+  tiles: homePageTiles
+};
+
+const donatePageTiles = [
+  {
+    title:    'Purple States',
+    body:     'Spread out donations to all purple states',
   },
   {
-    title: 'Immigration',
-    desc:  'Give to organizations focused on issues related to immigration',
-    url:   'https://secure.actblue.com/contribute/page/mvmt-us-movement2016-c4?refcode=homepage'
   },
   {
-    title: 'Environment',
-    desc:  'Spread out tax deductable donations to all purple states',
-    url:   'https://secure.actblue.com/contribute/page/mvmt-us-movement2016-c4?refcode=homepage'
   },
   {
-    title: 'Environment',
-    desc:  'Spread out tax deductable donations to all purple states',
-    url:   'https://secure.actblue.com/contribute/page/mvmt-us-movement2016-c4?refcode=homepage'
+  },
+  {
+  },
+  {
+  },
+  {
+  },
+  {
+  },
+  {
   },
 ];
 
+const donate = {
+  title: 'Easy Donation',
+  tiles: donatePageTiles,
+  defaultTile: {
+    compact: true,
+    text:    'Donate Now',
+    title:   'Lorem ipsum dolor.',
+    body:    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dolor augue, varius accumsan eleifend quis.',
+    href:    'https://secure.actblue.com/contribute/page/mvmt-us-movement2016-c4?refcode=homepage'
+  }
+};
 
 module.exports = new M2016Service();

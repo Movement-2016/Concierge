@@ -1,9 +1,12 @@
 .homeArea {
-  div.intro {
-    padding: 50px;
-  }
 
-  div.intro-text {
+  background-image: url(/images/photos/hands.jpg);
+  background-size: 'cover';
+  background-positionY: 'top';
+  background-repeat: 'no-repeat';
+
+  .tiles-title {
+    text-align: center;
     color: white;
     margin-bottom: 20px;
     text-shadow: rgba(0, 0, 0, 0.721569) 0px 1px 12px;
@@ -14,52 +17,4 @@
     margin: 0 auto;
   }
 
-  div.row {
-    margin-bottom: 20px;
-  }
-
-  .content-area > div {
-    padding-top: 20px;
-    padding-bottom: 8px;
-    background: white;
-    opacity: 0.85;    
-    border-radius: 7px;
-    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
-    margin-right: 12px;
-    margin-top: 20px;
-    text-align: center;
-  }
-
-  .tile {
-    min-height: 220px;
-    position: relative;
-  }
-
-  .tile a.btn {
-    font-size: 120%;
-    position: absolute;
-    bottom: 1px;
-    left: 5%;
-    width: 90%;
-  }
-
-  .tile .tile-glyph {
-    max-width: 200px;
-    min-height: 125px;
-    display: block;
-    margin: 7px auto;    
-  }
-
-  .tile img {
-  }
-
-  .tile .tile-icon {
-    font-size: 100px;
-    color: $cBlue;
-  }
-
-  .tile-desc {
-    margin-top: 7px;
-    font-size: 80%;
-  }
 }

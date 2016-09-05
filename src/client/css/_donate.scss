@@ -1,7 +1,8 @@
 .donatePage {
 
+  background: rgba(115, 138, 158, 0.17);
+
   h1 {
-    margin: 20px;
     margin-bottom: 44px;
     margin-left: 10%;
     padding-top: 22px;  
@@ -24,39 +25,8 @@
       font-size: 80%;
   }
   
-  .easy-donations {
+  .container-fluid {
     width: 85%;
     margin: 0 auto;
-    list-style: none;
   }
-
-  .tile {
-    float: left;
-    margin: 20px;
-    border: 2px solid $cBlue;
-    border-radius: 5px;
-    padding: 8px;
-    width: 220px;
-    min-height: 180px;
-    position: relative;
-  }
-
-  .tile .title {
-    text-align: center;
-    font-weight: 600;
-    font-size: 110%;
-    margin-bottom: 10px;
-  }
-
-  .tile a.btn {
-    font-size: 110%;
-    position: absolute;
-    bottom: 7px;
-    left: 5%;
-    width: 90%;
-  }
-
-  .tile .desc {
-    font-size: 90%;
-  }  
 }
