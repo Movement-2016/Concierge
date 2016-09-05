@@ -1,6 +1,8 @@
 import React    from 'react';
 import { Link } from 'react-router';
 
+const BOOTSTRAP_MAX_COLUMNS = 12;
+
 const Tile = ({ linkto, href, glyph, img, title, text, body, compact }) => {
 
   const kompact  = compact ? 'compact' : '';
@@ -27,22 +29,22 @@ const Tile = ({ linkto, href, glyph, img, title, text, body, compact }) => {
     );
 };
 
-const Row = ({ row, defaultTile, colWidth, offset }) => {
+const Row = ({ row, defaultTile, colWidth }) => {
   const cls = `col-md-${colWidth} tiles-parent `;
   return(
       <div className="row tiles-row">{
-        row.map( (t,n) => <div className={cls + (!n && 'col-md-offset-'+offset)} key={n} ><Tile {...defaultTile} {...t} /></div>)
+        row.map( (t,n) => <div className={cls} key={n} ><Tile {...defaultTile} {...t} /></div>)
       }</div>
     );
 };
 
-const Tiles = ({ tiles, defaultTile, colsPerRow, colWidth, offset }) => {
+const Tiles = ({ tiles, defaultTile, colsPerRow }) => {
   var rows = new Array( Math.trunc(tiles.length/ colsPerRow) + ((tiles.length % colsPerRow) & 1) )
                   .fill(true)
                   .map( (a,i) => tiles.slice(i*colsPerRow,i*colsPerRow+colsPerRow));
   return(
         <div className="tiles container-fluid" >
-          {rows.map( (row,i) =>  <Row key={i} row={row} defaultTile={defaultTile} colWidth={colWidth} offset={offset}/>)};
+          {rows.map( (row,i) =>  <Row key={i} row={row} defaultTile={defaultTile} colWidth={BOOTSTRAP_MAX_COLUMNS/colsPerRow} />)};
         </div>
     );
 };

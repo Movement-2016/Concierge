@@ -1,26 +1,22 @@
 .tiles {
+
+  margin: 0 8%;
+
   .tile {
-    min-height: 220px;
-    position: relative;
   }
 
   .row.tiles-row {
-    margin-bottom: 20px;
-  }
-
-  .tiles-parent {
-    padding-top: 20px;
-    padding-bottom: 8px;
-    background: white;
-    opacity: 0.85;    
-    border-radius: 7px;
-    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
-    margin-right: 12px;
-    margin-top: 20px;
-    text-align: center;
+    margin-top: 30px;
   }
 
   .tile {
+    padding: 20px 12px 8px 12px;
+    background: white;
+    opacity: 0.80;
+    border-radius: 7px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    text-align: center;
+
     .tile-title {
       text-align: center;
       font-weight: 600;
@@ -30,9 +26,6 @@
 
     a.btn {
       font-size: 120%;
-      position: absolute;
-      bottom: 1px;
-      left: 5%;
       width: 90%
     }
 
@@ -50,7 +43,9 @@
 
     .tile-body {
       margin-top: 7px;
+      margin-bottom: 12px;
       font-size: 80%;
+      min-height: 3em;
     }
   }
 
@@ -58,10 +53,8 @@
     min-height: initial;
 
     a.btn {
-      position: relative;
       margin: 0 auto;
       width: initial;
-      bottom: auto;
       font-size: initial;
     }
 
@@ -71,12 +64,12 @@
       float: left;
       min-height: 40px;
       margin-right: 20px;
+      margin-left: 20px;
     }
 
     .tile-body {
       min-height: 55px;
       text-align: left;
-      margin-bottom: 12px;
     }
   }
 
