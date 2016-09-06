@@ -71,8 +71,11 @@ $headerHeight: $thermometerHeight + $navBarHeight;
 
 // TODO: Move this somewhere else
 
-.loginRegisterArea {
-  .login-or-register {
-    margin-top: 210px;
+@media screen and (min-width: 980px) {
+  .loginRegisterArea {
+    .login-or-register {
+      margin-top: 210px;
+      white-space: nowrap;
+    }
   }
 }

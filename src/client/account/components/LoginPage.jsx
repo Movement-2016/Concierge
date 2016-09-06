@@ -11,8 +11,13 @@ const LoginPage = () => {
             <Login />
           </div>
           <div className="col-md-1">
-            <p className="login-or-register">
+            <p className="login-or-register hidden-xs hidden-sm">
               <span className="glyphicon glyphicon-arrow-left" /> OR <span className="glyphicon glyphicon-arrow-right" />
+            </p>
+            <p className="login-or-register text-center hidden-md hidden-lg hidden-md hidden-xl">
+              <span className="glyphicon glyphicon-arrow-up" /><br />
+               OR <br />
+               <span className="glyphicon glyphicon-arrow-down" />
             </p>
           </div>
           <div className="col-md-4">
