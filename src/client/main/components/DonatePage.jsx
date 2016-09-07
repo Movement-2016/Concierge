@@ -1,6 +1,8 @@
-import React from 'react';
+import React    from 'react';
 import { Link } from 'react-router';
-import TilesPage from './TilesPage.jsx';
+
+import TilesPage       from './TilesPage.jsx';
+import { PageContext } from './ContextMixins.js';
 
 const PlanLinkBox = () => {
   return (
@@ -11,12 +13,18 @@ const PlanLinkBox = () => {
     );
 };
 
-const DonatePage = () => {
-  return(
-      <TilesPage page='donate' className="donatePage">
-        <PlanLinkBox />
-      </TilesPage>
-    );
-};
+class DonatePage extends PageContext(React.Component) {
+  get page() {
+    return 'donate';
+  }
+
+  render() {
+    return(
+        <TilesPage page={this.state.page} className="donatePage">
+          <PlanLinkBox />
+        </TilesPage>    
+      );
+  }
+}
 
 module.exports = DonatePage;

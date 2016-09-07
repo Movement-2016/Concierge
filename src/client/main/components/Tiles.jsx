@@ -13,23 +13,24 @@ const Tile = ({ linkto, href, glyph, img, title, text, body, compact }) => {
 
   const iconlink = icon && (linkto
                               ? <Link to={linkto}>{icon}</Link>
-                              : <a href={href}>{icon}</a>);
+                              : href && <a href={href}>{icon}</a>);
 
   const link     = linkto
                     ? <Link to={linkto} className="btn btn-primary">{text}</Link>
-                    : <a href={href} className="btn btn-primary">{text}</a>;
+                    : href && <a href={href} className="btn btn-primary">{text}</a>;
 
   return (
       <div className={`tile ${kompact}`}>
         {title && <div className="tile-title">{title}</div>}
         {iconlink}
-        {body && <div className="tile-body">{body}</div>}
+        {!iconlink && icon}
+        {body && <div className="tile-body" dangerouslySetInnerHTML={{__html:body}} />}
         {link}
       </div>
     );
 };
 
-const Row = ({ row, defaultTile, colWidth }) => {
+const Row = ({ row, defaultTile = {}, colWidth }) => {
   const cls = `col-md-${colWidth} tiles-parent `;
   return(
       <div className="row tiles-row">{
@@ -38,15 +39,21 @@ const Row = ({ row, defaultTile, colWidth }) => {
     );
 };
 
-const Tiles = ({ tiles, defaultTile, colsPerRow }) => {
-  var rows = new Array( Math.trunc(tiles.length/ colsPerRow) + ((tiles.length % colsPerRow) & 1) )
+const Tiles = ({ tiles, defaultTile = {}, colsPerRow }) => {
+
+  const numRows = Math.trunc(tiles.length/ colsPerRow) + ((tiles.length % colsPerRow) & 1);
+
+  const rows = new Array( numRows )
                   .fill(true)
                   .map( (a,i) => tiles.slice(i*colsPerRow,i*colsPerRow+colsPerRow));
+
   return(
         <div className="tiles container-fluid" >
           {rows.map( (row,i) =>  <Row key={i} row={row} defaultTile={defaultTile} colWidth={BOOTSTRAP_MAX_COLUMNS/colsPerRow} />)};
         </div>
     );
 };
+
+Tiles.MAX_COLUMNS = BOOTSTRAP_MAX_COLUMNS;
 
 module.exports = Tiles;

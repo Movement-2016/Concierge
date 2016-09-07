@@ -1,3 +1,9 @@
+# Notes on full-site branch:
+
+- Everything regarding the main branch below applies to this branch as well
+- If you are switching from the main branch make sure to do a `npm install` before running the build
+- So far this branch is experimental, in particular I haven't worked out the right factoring of the main branch's notion of 'groups' and this branch's 'service'
+
 # Movement 2016 Concierge
 
 Web application for donor interaction with the groups supported by Movement

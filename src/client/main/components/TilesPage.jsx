@@ -1,50 +1,24 @@
 import React    from 'react';
 import Tiles    from './Tiles.jsx';
 
-import M2016Service from '../../m2016-service';
-
 const NUM_COLS_PER_ROW = 3;
 
 class TilesPage extends React.Component {
 
-  constructor() {
-    super(...arguments);
-    this.state = {
-      loading: true,
-      page: null
-    };
-  }
-
-  componentDidMount() {
-    M2016Service.init().then( service => {
-      this.setState({ 
-        loading: false, 
-        page: service.pages[this.props.page]
-      });
-    });
-  }
-
   render() {
 
     const { 
-      loading, 
-      page
-    } = this.state;
-
-    const { 
+      page,
       className, 
-      children 
+      children,
+      numColsPerRow = NUM_COLS_PER_ROW
     } = this.props;
-
-    if( loading ) {
-      return <div className="well loading">Loading...</div>;
-    }
 
     return (
       <main className={className} >
         {children}
         <h1 className="tiles-title" dangerouslySetInnerHTML={{__html:page.title}}/>
-        <Tiles {...page} colsPerRow={NUM_COLS_PER_ROW} />
+        <Tiles {...page} colsPerRow={numColsPerRow} />
       </main>
     );
   }

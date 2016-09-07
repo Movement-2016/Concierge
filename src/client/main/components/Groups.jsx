@@ -2,9 +2,6 @@ import React from 'react';
 import GroupSelection from './GroupSelection.jsx';
 import StateGroup from './StateGroup.jsx';
 
-import { initGroupData } from '../store/actions';
-import M2016Service from '../../m2016-service';
-
 const tags = ['501c3', '501c4', 'pac', 'african-american', 'arab', 'asian',
   'latino', 'native-american', 'white', 'women', 'youth', 'economic-justice',
   'racial-justice', 'immigrant-rights', 'lgbtq', 'reproductive-justice',
@@ -31,7 +28,6 @@ export default class GroupsWidget extends React.Component {
     super (props, context);
     const store = context.store.getState ();
     this.state = {
-      loading: true,
       groups: store.groups,
       checked: [true, true, true, true, true, true, true, true, true, true,
         true, true, true, true, true, true, true],
@@ -41,20 +37,14 @@ export default class GroupsWidget extends React.Component {
   }
 
   componentWillMount () {
-    M2016Service.init().then( service => {
+    const { store } = this.context;
 
-      const { store } = this.context;
-
-      this.unsubscribe = store.subscribe (() => {
-        const { groups } = store.getState ();
-        this.setState ({ 
-          groups, 
-          loading: false 
-        });
+    this.unsubscribe = store.subscribe (() => {
+      const { groups } = store.getState ();
+      this.setState ({ 
+        groups, 
+        loading: false 
       });
-
-      store.dispatch (initGroupData (service.groups));
-
     });
   }
 
@@ -77,11 +67,7 @@ export default class GroupsWidget extends React.Component {
   }
 
   render () {
-    const { loading, checked, groups } = this.state;
-
-    if( loading ) {
-      return <div className="well">loading groups...</div>;
-    }
+    const { checked, groups } = this.state;
 
     let displayGroups = [];
 

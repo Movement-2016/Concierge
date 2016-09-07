@@ -1,9 +1,9 @@
 .homeArea {
 
   background-image: url(/images/photos/hands.jpg);
-  background-size: 'cover';
-  background-positionY: 'top';
-  background-repeat: 'no-repeat';
+  background-size: cover;
+  background-position-y: top;
+  background-repeat: no-repeat;
 
   .tiles-title {
     text-align: center;
@@ -17,4 +17,15 @@
     margin: 0 auto;
   }
 
+}
+
+main.homeArea {
+  padding-top: 60px;
+  padding-bottom: 90px;
+}
+
+.aboutUsArea {
+  background: rgba(115,138,158,.17);  
+  padding-top: 60px;
+  padding-bottom: 90px;
 }

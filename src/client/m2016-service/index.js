@@ -1,3 +1,4 @@
+/* globals fetch */
 import 'whatwg-fetch';
 
 const WP_API_HOST = 'movement2016.org'; // 'm2016dev.wpengine.com';
@@ -41,6 +42,13 @@ class M2016Service {
           this._taxonomy = tags;
           return this;
         });    
+  }
+
+  get donateStats() {
+    return {
+      goal: 10000000,
+      pledged: 1403000
+    };
   }
 
   get groups() {
@@ -97,7 +105,9 @@ class M2016Service {
   get pages() {
     return {
         home,
-        donate
+        donate,
+        testimonials,
+        aboutSection
       };
   }
 }
@@ -209,6 +219,31 @@ const donate = {
     body:    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dolor augue, varius accumsan eleifend quis.',
     href:    'https://secure.actblue.com/contribute/page/mvmt-us-movement2016-c4?refcode=homepage'
   }
+};
+
+const testimonials = {
+  title: 'Testimonials',
+  tiles: [
+    {},
+    {},
+    {}
+  ],
+  defaultTile: {
+    title: 'Lorem Ipsum',
+    body:  '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dolor augue, varius accumsan eleifend quis."',
+    glyph: 'comment',
+    compact: true
+  }
+};
+
+const aboutSection = {
+  title: 'What we\'re about',
+  tiles: [
+    {
+      title: 'Lorem Ipsum',
+      body: '<iframe width="100%" height="315" src="https://www.youtube.com/embed/ZLFnSfM8VKc" frameborder="0" allowfullscreen></iframe>'
+    }
+  ]
 };
 
 module.exports = new M2016Service();
