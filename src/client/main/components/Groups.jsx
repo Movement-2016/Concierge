@@ -1,16 +1,18 @@
 import React from 'react';
 import { ServiceContext } from './ContextMixins';
 
+
 class Section extends React.Component {
   render() {
     const {
-      section,
+      name,
+      label,
       states
     } = this.props;
 
     return (
       <div className="section">
-        <div className="sectionHead">{section.label}</div>
+        <div className="sectionHead">{label}</div>
       </div>
       );
   }
@@ -25,12 +27,13 @@ class Groups extends ServiceContext(React.Component) {
 
   render() {
     const {
-      sections
+      groupSections,
+      orgs
     } = this.state.service;
 
     return (
         <div className="groups">
-          {sections.map( s => <Section key={s.section.name} {...s} />)}
+          {Object.keys(groupSections).map( name => <Section key={name} {...groupSections[name]} states={orgs[name]} />)}
         </div>
       );
   }

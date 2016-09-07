@@ -1,5 +1,7 @@
 import React from 'react';
-import Groups from './Groups.jsx';
+
+import OrgsList from './OrgsList.jsx';
+import Filters  from './Filters.jsx';
 
 class StateMap extends React.Component {
 
@@ -39,12 +41,42 @@ class StateMap extends React.Component {
 
 class CustomDonatePage extends React.Component {
 
+  constructor() {
+    super(...arguments);
+    this.state = {
+      selectedTerms: []      
+    };
+    this.onShowSection  = this.onShowSection.bind(this);
+    this.onShowGroup    = this.onShowGroup.bind(this);
+    this.onTermsChecked = this.onTermsChecked.bind(this);
+  }
+
+  onShowSection() {
+
+  }
+
+  onShowGroup() {
+
+  }
+
+  onTermsChecked() {
+
+  }
+
   render() {
+    const fprops = {
+      onShowGroup: this.onShowGroup,
+      onShowSection: this.onShowSection,
+      onTermsChecked: this.onTermsChecked,
+      selected: this.state.selectedTerms
+    };
+
     return (
       <div className="customDonateArea">
         <h1>Custom Donation Plan</h1>
         <StateMap />
-        <Groups />
+        <Filters {...fprops} />
+        <OrgsList />
       </div>
     );
   }

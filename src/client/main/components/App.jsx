@@ -6,7 +6,6 @@ import configureStore        from '../../store/configureStore';
 
 import { verifyLogin }       from '../../account/store/actions';
 import { initService }       from '../../m2016-service/actions';
-import { initGroupData }     from '../store/actions';
 
 import service               from '../../m2016-service';
 
@@ -30,7 +29,6 @@ class App extends React.Component {
     service.init().then( service => {
 
       store.dispatch( initService(service) );
-      store.dispatch( initGroupData (service.groups) );
 
       this.unsubscribe = store.subscribe (() => {
         const authenticated = store.getState ().user.authenticated;

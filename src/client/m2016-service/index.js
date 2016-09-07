@@ -3,7 +3,7 @@ import 'whatwg-fetch';
 import path from 'jsonpath-plus';
 import TagString from 'tag-string';
 
-const WP_API_HOST = 'movement2016.org'; // 'm2016dev.wpengine.com';
+const WP_API_HOST = 'm2016dev.wpengine.com'; // 'movement2016.org'; // 
 
 const WP_API_BASE = 'http://' + WP_API_HOST + '/wp-json/movement-2.1/';
 
@@ -24,7 +24,7 @@ function parseJSON(response) {
 class M2016Service {
   constructor() {
     this._base = WP_API_BASE;
-    this._groups = null;
+    this._orgs = null;
     this._taxonomy = null;
   }
 
@@ -35,13 +35,12 @@ class M2016Service {
   }
 
   init() {
-    if( this._groups ) {
+    if( this._orgs ) {
       return Promise.resolve(this);
     }
     return Promise.all( [ this._fetch( 'orgs' ), this._fetch('tags') ] )
         .then ( ([ orgs, tags ])  => {
-          orgs.forEach( o => o.tags = TagString.fromString(o.tags) );
-          this._groups = orgs;
+          this._orgs = orgs;
           this._taxonomy = tags;
           return this;
         });    
@@ -58,42 +57,8 @@ class M2016Service {
     return this._taxonomy.filters;
   }
 
-  get groups() {
-    return this._groups;
-  }
-
-  get sections() {
-    if( this._sections ) {
-      return this._sections;
-    }
-
-    const sections = {};
-
-    path('*[name]',this.groupSections).forEach( name => {
-      
-      const states    = [];
-      let   currState = null;
-
-      const addSection = name => {
-        currState = {
-          state: path(`$.[?(@.label=="${name}")]`,this.groupings),
-          groups: []
-        };
-        states.push(currState);
-      };
-
-      path(`$.[?(@.color=="${name}")]`,this._groups).forEach( g => {
-        ( !currState || g.state !== currState.state.label ) && addSection();
-        currState.groups.push(g);
-      });
-
-      sections[name] = {
-        section: sections[name],
-        states
-      };
-    });    
-    this._sections = sections;
-    return sections;
+  get orgs() {
+    return this._orgs;
   }
 
   get groupings() {

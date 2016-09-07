@@ -45,16 +45,7 @@ const PageContext = baseClass => class extends ContextMixin(baseClass) {
 
 };
 
-const GroupsContext = baseClass => class extends ContextMixin(baseClass) {
-  
-  stateFromStore(store) {
-    const state = store.getState ();      
-    this.setState ({ groups: state.service.groups });
-  }
-};
-
 module.exports = {
   PageContext,
-  GroupsContext,
   ServiceContext
 };

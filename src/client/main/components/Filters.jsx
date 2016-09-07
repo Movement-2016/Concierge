@@ -32,7 +32,6 @@ class Filter extends React.Component {
 
     this.onAll   = this.onAll.bind(this);
     this.onClear = this.onClear.bind(this);
-    this.onTerm  = this.onTerm.bind(this);
   }
 
   componentDidMount() {
@@ -150,10 +149,10 @@ class Filters extends ServiceContext(React.Component) {
 }
 
 Filters.propTypes = {
-  selected:      React.PropTypes.arrayOf (React.PropTypes.string).isRequired,
-  onTermChecked: React.PropTypes.func.isRequired,
-  onShowGroup:   React.PropTypes.func.isRequired,
-  onShowSection: React.PropTypes.func.isRequired
+  selected:       React.PropTypes.arrayOf (React.PropTypes.string).isRequired,
+  onTermsChecked: React.PropTypes.func.isRequired,
+  onShowGroup:    React.PropTypes.func.isRequired,
+  onShowSection:  React.PropTypes.func.isRequired
 };
 
 
