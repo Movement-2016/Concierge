@@ -1,5 +1,7 @@
 /* globals fetch */
 import 'whatwg-fetch';
+import path from 'jsonpath-plus';
+import TagString from 'tag-string';
 
 const WP_API_HOST = 'movement2016.org'; // 'm2016dev.wpengine.com';
 
@@ -38,6 +40,7 @@ class M2016Service {
     }
     return Promise.all( [ this._fetch( 'orgs' ), this._fetch('tags') ] )
         .then ( ([ orgs, tags ])  => {
+          orgs.forEach( o => o.tags = TagString.fromString(o.tags) );
           this._groups = orgs;
           this._taxonomy = tags;
           return this;
@@ -47,59 +50,58 @@ class M2016Service {
   get donateStats() {
     return {
       goal: 10000000,
-      pledged: 1403000
+      pledged: 1503000
     };
-  }
-
-  get groups() {
-    return this._groups;
-  }
-
-  get groupsByStateColor() {
-    if( !this._groupsByStateColor ) {
-      const gbsc = {};
-      const schemes = this.stateColorSchemes;
-      for( let color in Object.keys(schemes) ) {
-        gbsc[color] = {
-          color: schemes[color],
-          states: {}
-        };
-      }
-      const states = this.states;
-      for( let group in this._groups ) {
-        const { stateId:state } = group;
-        const color = states[state].color;
-        !gbsc[color].states[state] && (gbsc[color].states[state] = []);
-        gbsc[color].states[state].push(group);
-      }
-      this._groupsByStateColor = gbsc;
-    }
-    return this._groupsByStateColor;
-  }
-
-  get states() {
-    return this._taxonomy.groupings.states;
-  }
-
-  get statesByColor() {
-    if( !this._statesByColor ) {
-      this._statesByColor = {};
-      for( let state of this.states ) {
-        const { color } = state;
-        let states = this._statesByColor[color];
-        !states && (this._statesByColor[color] = states = []);
-        states.push(state);
-      }
-    }
-    return this._statesByColor;
   }
 
   get filters() {
     return this._taxonomy.filters;
   }
 
-  get stateColorSchemes() {
-    return stateColorSchemes;
+  get groups() {
+    return this._groups;
+  }
+
+  get sections() {
+    if( this._sections ) {
+      return this._sections;
+    }
+
+    const sections = {};
+
+    path('*[name]',this.groupSections).forEach( name => {
+      
+      const states    = [];
+      let   currState = null;
+
+      const addSection = name => {
+        currState = {
+          state: path(`$.[?(@.label=="${name}")]`,this.groupings),
+          groups: []
+        };
+        states.push(currState);
+      };
+
+      path(`$.[?(@.color=="${name}")]`,this._groups).forEach( g => {
+        ( !currState || g.state !== currState.state.label ) && addSection();
+        currState.groups.push(g);
+      });
+
+      sections[name] = {
+        section: sections[name],
+        states
+      };
+    });    
+    this._sections = sections;
+    return sections;
+  }
+
+  get groupings() {
+    return this._taxonomy.groupings.state;
+  }
+
+  get groupSections() {
+    return groupSections;
   }
 
   get pages() {
@@ -112,9 +114,12 @@ class M2016Service {
   }
 }
 
-// TODO: This data should be at the WP Engine site as custom exportable fields
 
-const stateColorSchemes = {
+/**********************************************************************************
+// TODO: This data should be at the WP Engine site as custom exportable fields
+**********************************************************************************/
+
+const groupSections = {
   purple: {
     name: 'purple',
     label: 'Purple States'
@@ -150,7 +155,7 @@ const homePageTiles = [
     linkto: '/custom',
     img: '/images/photos/murika.png',
     text: 'Donate Customized',
-    body: 'Create your own giving plan'
+    body: 'Browse all of our groups and create your own giving plan'
   },
   {
     linkto: 'getintouch',

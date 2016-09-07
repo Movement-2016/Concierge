@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ContextMixins = baseClass => class extends baseClass {
+const ContextMixin = baseClass => class extends baseClass {
 
   constructor() {
     super(...arguments);
@@ -24,7 +24,15 @@ const ContextMixins = baseClass => class extends baseClass {
 
 };
 
-const PageContext = baseClass => class extends ContextMixins(baseClass) {
+const ServiceContext = baseClass => class extends ContextMixin(baseClass) {
+
+  stateFromStore(store) {
+    const { service } = store.getState ();
+    this.setState({ service });
+  }
+};
+
+const PageContext = baseClass => class extends ContextMixin(baseClass) {
 
   stateFromStore(store) {
     const { service } = store.getState ();
@@ -37,7 +45,7 @@ const PageContext = baseClass => class extends ContextMixins(baseClass) {
 
 };
 
-const GroupsContext = baseClass => class extends ContextMixins(baseClass) {
+const GroupsContext = baseClass => class extends ContextMixin(baseClass) {
   
   stateFromStore(store) {
     const state = store.getState ();      
@@ -47,5 +55,6 @@ const GroupsContext = baseClass => class extends ContextMixins(baseClass) {
 
 module.exports = {
   PageContext,
-  GroupsContext
+  GroupsContext,
+  ServiceContext
 };

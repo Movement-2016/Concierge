@@ -14,28 +14,24 @@
 .groupSelectorArea {
   position: fixed;
   z-index: 10;
-  top: 90px;
+  top: 99px;
   width: 220px;
   background-color: white;
   padding-left: 8px;
-
-  @media screen and (min-width: 901px) {
-    right: calc((100% - 900px) / 2);
-  }
-  @media screen and (max-width: 900px) {
-    right: 0;
-  }
+  right: 10px;
 
   h4 {
     font-size: 16px;
     margin-bottom: 6px;
     color: #45798a;
   }
+
   .filterTitleToggle {
     color: $cBlue;
     margin-right: 4px;
     cursor: pointer;
   }
+
   .filterTitleName {
     font-size: 14px;
     font-weight: 900;
@@ -44,6 +40,7 @@
     color: #45798a;
     cursor: pointer;
   }
+
   .filterTitleButton {
     min-width: 3em;
     font-size: 12px;
@@ -54,11 +51,13 @@
     border-radius: 4px;
     margin: 0 4px 0 0;
   }
+
   p {
     font-size: 14px;
     margin: 0px 0px 8px 0px;
     color: #333333;
   }
+
   .filterGroup {
     width: 100%;
     margin-bottom: 8px;
@@ -72,14 +71,17 @@
     a:visited {
       color: black;
     }
+
     a:hover {
       color: $cBlue;
     }
-    select {
-      font-size: 20px;
-      margin-top: 4px;
-      margin-left: 8px;
-      width: 180px;
+      select {
+        font-size: 20px;
+        margin-top: 4px;
+        margin-left: 8px;
+        width: 180px;
+      }
     }
-  }
 }
+
+

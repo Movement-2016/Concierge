@@ -1,16 +1,26 @@
-.groupsArea {
-  @media screen and (min-width: 740px) {
-    width: calc(100% - 240px);
+.customDonateArea {
+  padding-top: 40px;
+  position: relative;
+
+  h1 {
+    margin-left: 10%;
   }
-  @media screen and (min-width: 901px) {
-    width: calc(100% - ((100% - 900px) / 2) - 240px);
+
+  a.hide-map {
+    display: inline-block;
+    text-align: right;
+    position: absolute;
+    right: 310px;
+    top: 90px;    
   }
-  @media screen and (max-width: 739px) {
-    width: calc(100%);
-  }
-  margin-bottom: 30%;
-  padding-top: 8px;
 }
+
+.groupsArea {
+    width: calc(100% - 300px);
+    margin-bottom: 30%;
+    padding-top: 8px;
+    margin-left: 40px;
+  }
 
 h3.purple {
   background-color: #b46ec9;
@@ -37,10 +47,12 @@ h3.darkred {
     color: white;
     padding: 16px 0px 16px 8px;
     margin: 0;
+    border-radius: 6px 6px 0 0;
   }
 
   .group {
     border: 1px solid lightgray;
+    border-radius: 5px;
     overflow: hidden;
 
     .name {

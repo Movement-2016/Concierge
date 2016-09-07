@@ -25,19 +25,30 @@
   .navbar-brand:hover,
   .navbar-brand:visited {
     font-family: Arvo;
+    font-style: italic;
     font-size: 35;
     font-weight: 700;
     color: $cBlue;
     text-decoration: none;
-    margin-top: 11px;
+    margin-top: 6px;
+  }
+
+  .navbar-header {
+    margin-left: 5%;
   }
 
   @media screen and (max-width: 740px) {
+    
     .navbar-brand,
     .navbar-brand:hover,
     .navbar-brand:visited {
       font-size: inherit;
     }
+
+    .navbar-header {
+      margin-left: 1%;
+    }
+    
   }
 
   .navbar-nav > li > a {

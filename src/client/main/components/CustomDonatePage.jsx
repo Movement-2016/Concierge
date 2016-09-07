@@ -10,13 +10,13 @@ class StateMap extends React.Component {
 
   componentDidMount() {
     /* globals $ */
-    $('#map-collapser')
+    $('#state-map')
       .on('show.bs.collapse', () => this.setState( {mapShowing:true} ) )
       .on('hide.bs.collapse', () => this.setState( {mapShowing:false} ) );
   }
 
   componenWillUnmount() {
-    $('#map-collapser')
+    $('#state-map')
       .off('show.bs.collapse')
       .off('hide.bs.collapse');
   }
@@ -28,10 +28,10 @@ class StateMap extends React.Component {
 
     return (
         <div className="stateMapArea">
-          <button className="btn" id="map-collapser" data-toggle="collapse" data-target="#state-map">{btnText}</button>
           <div className="collapse in" id="state-map">
             <img src="/images/photos/fake-map.png" />
           </div>
+          <a className="hide-map" data-toggle="collapse" data-target="#state-map" href="#">{btnText}</a>
         </div>
       );
   }
