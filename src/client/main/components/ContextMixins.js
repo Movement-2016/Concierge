@@ -4,8 +4,7 @@ const ContextMixin = baseClass => class extends baseClass {
 
   constructor() {
     super(...arguments);
-    const { store } = this.context;
-    this.stateFromStore = this.stateFromStore.bind(this,store);
+    this.stateFromStore = this.stateFromStore.bind(this);
   }
 
   static contextTypes = {
@@ -14,8 +13,8 @@ const ContextMixin = baseClass => class extends baseClass {
 
   componentWillMount () {
     const { store } = this.context;
-    this.unsubscribe = store.subscribe( this.stateFromStore );
-    this.stateFromStore();
+    this.unsubscribe = store.subscribe( () => this.stateFromStore(store.getState()) );
+    this.stateFromStore(store.getState());
   }
 
   componentWillUnmount () {
@@ -26,16 +25,16 @@ const ContextMixin = baseClass => class extends baseClass {
 
 const ServiceContext = baseClass => class extends ContextMixin(baseClass) {
 
-  stateFromStore(store) {
-    const { service } = store.getState ();
+  stateFromStore(storeState) {
+    const { service } = storeState;
     this.setState({ service });
   }
 };
 
 const PageContext = baseClass => class extends ContextMixin(baseClass) {
 
-  stateFromStore(store) {
-    const { service } = store.getState ();
+  stateFromStore(storeState) {
+    const { service } = storeState;
     const { pages, page } = this;
     const state = { pages: {} };
     pages && pages.forEach( p => state.pages[p] = service.pages[p] );
@@ -46,6 +45,7 @@ const PageContext = baseClass => class extends ContextMixin(baseClass) {
 };
 
 module.exports = {
+  ContextMixin,
   PageContext,
   ServiceContext
 };

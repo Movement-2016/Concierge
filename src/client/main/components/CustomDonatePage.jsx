@@ -1,54 +1,69 @@
-import React from 'react';
+import React     from 'react';
+import TagString from 'tag-string';
 
 import OrgsList from './OrgsList.jsx';
 import Filters  from './Filters.jsx';
+import StateMap from './StateMap.jsx';
 
-class StateMap extends React.Component {
+import { ContextMixin } from './ContextMixins';
 
-  constructor() {
-    super(...arguments);
-    this.state = { mapShowing: true };
+import { setVisibility } from '../store/actions';
+
+function getVisibleOrgs(orgs,filters) {
+
+  var visible = {};
+  
+  for( var section in orgs ) {
+    for( var state in orgs[section] ) {
+      for( var i in orgs[section][state] ) {
+
+        const org  = orgs[section][state][i];
+        let   ok   = true;
+        const tags = TagString.fromArray(org.tags);
+
+        Object.keys(filters).forEach( f => {
+          ok = ok && tags.contains(filters[f]);
+        });
+
+        if( ok ) {
+          !visible[section] && (visible[section] = {});
+          !visible[section][state] && (visible[section][state] = []);
+          visible[section][state].push(org);
+        }
+
+      }
+    }
   }
-
-  componentDidMount() {
-    /* globals $ */
-    $('#state-map')
-      .on('show.bs.collapse', () => this.setState( {mapShowing:true} ) )
-      .on('hide.bs.collapse', () => this.setState( {mapShowing:false} ) );
-  }
-
-  componenWillUnmount() {
-    $('#state-map')
-      .off('show.bs.collapse')
-      .off('hide.bs.collapse');
-  }
-
-  render() {
-    const { mapShowing } = this.state;
-
-    const btnText = mapShowing ? 'hide map' : 'show map';
-
-    return (
-        <div className="stateMapArea">
-          <div className="collapse in" id="state-map">
-            <img src="/images/photos/fake-map.png" />
-          </div>
-          <a className="hide-map" data-toggle="collapse" data-target="#state-map" href="#">{btnText}</a>
-        </div>
-      );
-  }
+  
+  return visible;
 }
 
-class CustomDonatePage extends React.Component {
+class CustomDonatePage extends ContextMixin(React.Component) {
 
   constructor() {
     super(...arguments);
     this.state = {
-      selectedTerms: []      
+      selectedTerms: this.context.store.getState().groups.visibility    
     };
     this.onShowSection  = this.onShowSection.bind(this);
     this.onShowGroup    = this.onShowGroup.bind(this);
     this.onTermsChecked = this.onTermsChecked.bind(this);
+  }
+
+  stateFromStore(storeState) {
+    const { 
+      groups: {
+        visibility
+      }, 
+      service: {
+        orgs
+      }
+    } = storeState;
+
+    this.setState( { 
+      selectedTerms: visibility,
+      orgs: getVisibleOrgs( orgs, visibility )
+    });
   }
 
   onShowSection() {
@@ -59,16 +74,22 @@ class CustomDonatePage extends React.Component {
 
   }
 
-  onTermsChecked() {
-
+  onTermsChecked(cat, terms, toggle) {
+    const tags = TagString.fromArray( this.state.selectedTerms[cat] ).toggle(terms,toggle).toArray();
+    this.context.store.dispatch( setVisibility( cat, tags ) );
   }
 
   render() {
+    const {
+      selectedTerms,
+      orgs
+    } = this.state;
+    
     const fprops = {
       onShowGroup: this.onShowGroup,
       onShowSection: this.onShowSection,
       onTermsChecked: this.onTermsChecked,
-      selected: this.state.selectedTerms
+      selected: selectedTerms
     };
 
     return (
@@ -76,7 +97,7 @@ class CustomDonatePage extends React.Component {
         <h1>Custom Donation Plan</h1>
         <StateMap />
         <Filters {...fprops} />
-        <OrgsList />
+        <OrgsList orgs={orgs} />
       </div>
     );
   }

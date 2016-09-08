@@ -1,7 +1,7 @@
 import 'whatwg-fetch';
 import { SET_AUTHENTICATED, SET_PROFILE, SET_USER_FIRSTNAME, SET_USER_LASTNAME,
   SET_USER_EMAIL, SET_USER_PHONE, UPDATE_PLANNED, UPDATE_GIVEN } from './constants';
-import { setSelectedGroups } from '../../main/store/actions';
+
 
 export function register (username, password) {
   return () => {
@@ -51,7 +51,7 @@ export function login (username, password) {
         dispatch (setAuthenticated (true, user.username));
         dispatch (setProfile (user.firstName, user.lastName, user.email,
           user.phone, user.favorites, user.donations));
-        dispatch (setSelectedGroups (user.favorites));
+        //dispatch (setSelectedGroups (user.favorites));
         return resolve ();
       }).catch (err => {
         return reject (err);
@@ -65,7 +65,7 @@ export function logout () {
     return new Promise ((resolve, reject) => {
       dispatch (setAuthenticated (false, ''));
       dispatch (setProfile ('', '', '', '', [], []));
-      dispatch (setSelectedGroups ([]));
+      //dispatch (setSelectedGroups ([]));
 
       fetch (`${location.origin}/api/logout`, {
         method: 'post',

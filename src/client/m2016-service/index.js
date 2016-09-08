@@ -1,7 +1,6 @@
 /* globals fetch */
 import 'whatwg-fetch';
-import path from 'jsonpath-plus';
-import TagString from 'tag-string';
+import path  from 'jsonpath-plus';
 
 const WP_API_HOST = 'm2016dev.wpengine.com'; // 'movement2016.org'; // 
 
@@ -55,6 +54,14 @@ class M2016Service {
 
   get filters() {
     return this._taxonomy.filters;
+  }
+
+  get filterDict() {
+    if( !this._filterDict ) {
+      this._filterDict = {};
+      path('$.[*].terms[*]', this.filters ).forEach( f => this._filterDict[f.name] = f.label );
+    }
+    return this._filterDict;
   }
 
   get orgs() {

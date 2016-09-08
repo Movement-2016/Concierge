@@ -1,15 +1,22 @@
 import React from 'react';
 
 export default class Checkbox extends React.Component {
+
   render() {
+    const {
+      id,
+      checked,
+      label,
+      onChange
+    } = this.props;
+
     return (
       <div className='customcb'>
-        <input type='checkbox' id={this.props.id}
-          checked={this.props.checked}
-          onChange={(e) => this.props.onChange (this.props.index, e.target.checked)}/>
-        <label htmlFor={this.props.id}>
-          {this.props.label}
-        </label>
+        <input type='checkbox' id={id}
+          checked={checked}
+          onChange={e => onChange (e.target.checked)}
+        />
+        <label htmlFor={id}>{label}</label>
       </div>
     );
   }
@@ -17,8 +24,7 @@ export default class Checkbox extends React.Component {
 
 Checkbox.propTypes = {
   id: React.PropTypes.string.isRequired,
-  index: React.PropTypes.number.isRequired,
   checked: React.PropTypes.bool.isRequired,
   onChange: React.PropTypes.func.isRequired,
   label: React.PropTypes.string.isRequired
-}
+};

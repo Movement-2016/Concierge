@@ -1,13 +1,17 @@
-import { INIT_GROUP_DATA, SET_SELECTED_GROUPS, TOGGLE_GROUP } from './constants';
+import { 
+  INIT_FILTERS,
+  TOGGLE_ITEM,
+  SET_VISIBILITY
+} from './constants';
 
-export function initGroupData (data) {
-  return { type: INIT_GROUP_DATA, data };
+export function toggleItem (id) {
+  return { type: TOGGLE_ITEM, id };
 }
 
-export function setSelectedGroups (favorites) {
-  return { type: SET_SELECTED_GROUPS, favorites };
+export function setVisibility(cat, tags) {
+  return { type: SET_VISIBILITY, cat, tags };
 }
 
-export function toggleGroup (id) {
-  return { type: TOGGLE_GROUP, id };
+export function initFilters(filters) {
+  return { type: INIT_FILTERS, filters };
 }

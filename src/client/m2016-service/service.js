@@ -1,4 +1,6 @@
-import { INIT_SERVICE } from './constants';
+import { 
+  INIT_SERVICE
+} from './constants';
 
 const initialState = {};
 

@@ -5,13 +5,12 @@ import { ServiceContext } from './ContextMixins';
 
 import Checkbox from '../../ui/Checkbox.jsx';
 
-const FilterCheckbox = ({ label, name, onTermsChecked, selected }) => {
+const FilterCheckbox = ({ label, name, cat, onTermsChecked, selected }) => {
   return (
     <Checkbox
       id={name}
-      index={1}
-      checked={selected.includes(name)}
-      onChange={(index, checked) => onTermsChecked ([name], checked)}
+      checked={selected[cat].includes(name)}
+      onChange={checked => onTermsChecked (cat, [name], checked)}
       label={label}
     />
   );
@@ -58,13 +57,12 @@ class Filter extends React.Component {
   _sendSelected(clear) {
     const { 
       terms, 
-      selected,
+      name,
       onTermsChecked 
     } = this.props;
 
     const names = path('$.[*].name', terms );
-    const clean = selected.filter(t => !names.includes(t));
-    onTermsChecked( clear ? clean : [ ...clear, ...names ] );
+    onTermsChecked( name, names, !clear );
   }
 
   render() {
@@ -86,10 +84,10 @@ class Filter extends React.Component {
               <span className="filterTitleName">{label}</span>
             </a>
             { expanded && <button className="filterTitleButton" onClick={this.onAll}>All</button> }
-            { expanded && <button className="filterTitleButton" onClick={this.onCliear}>Clear</button> }
+            { expanded && <button className="filterTitleButton" onClick={this.onClear}>Clear</button> }
           </div>
           <div className="filterGroup collapse out" id={this.optsId}>
-            {Object.keys(terms).map( t => <FilterCheckbox key={t} {...this.props} {...terms[t]}  /> )}
+            {Object.keys(terms).map( t => <FilterCheckbox {...this.props} {...terms[t]} key={t} cat={name}  /> )}
           </div>
         </div>
       );
@@ -149,7 +147,7 @@ class Filters extends ServiceContext(React.Component) {
 }
 
 Filters.propTypes = {
-  selected:       React.PropTypes.arrayOf (React.PropTypes.string).isRequired,
+  selected:       React.PropTypes.object.isRequired,
   onTermsChecked: React.PropTypes.func.isRequired,
   onShowGroup:    React.PropTypes.func.isRequired,
   onShowSection:  React.PropTypes.func.isRequired
