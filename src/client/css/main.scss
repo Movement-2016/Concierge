@@ -20,6 +20,7 @@ $headerHeight: $thermometerHeight + $navBarHeight;
 @import 'donate';
 @import 'footer';
 @import 'tile';
+@import 'shoppingcart';
 
 #app {
   width: 100%;
@@ -40,13 +41,13 @@ $headerHeight: $thermometerHeight + $navBarHeight;
 }
 
 // main content area under Nav area
-.mainArea {
+.main-area {
   margin-top: $headerHeight;
   overflow: hidden;
   background-color: white;
 }
 
-.mainArea main {
+.main-area main {
   padding-top: 20px;  
 }
 

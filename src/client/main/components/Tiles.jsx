@@ -41,7 +41,7 @@ const Row = ({ row, defaultTile = {}, colWidth }) => {
 
 const Tiles = ({ tiles, defaultTile = {}, colsPerRow }) => {
 
-  const numRows = Math.trunc(tiles.length/ colsPerRow) + ((tiles.length % colsPerRow) & 1);
+  const numRows = Math.trunc(tiles.length/ colsPerRow) + ((tiles.length % colsPerRow) ? 1 : 0);
 
   const rows = new Array( numRows )
                   .fill(true)
@@ -49,7 +49,7 @@ const Tiles = ({ tiles, defaultTile = {}, colsPerRow }) => {
 
   return(
         <div className="tiles container-fluid" >
-          {rows.map( (row,i) =>  <Row key={i} row={row} defaultTile={defaultTile} colWidth={BOOTSTRAP_MAX_COLUMNS/colsPerRow} />)};
+          {rows.map( (row,i) =>  <Row key={i} row={row} defaultTile={defaultTile} colWidth={BOOTSTRAP_MAX_COLUMNS/colsPerRow} />)}
         </div>
     );
 };

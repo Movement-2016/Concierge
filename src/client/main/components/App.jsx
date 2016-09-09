@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 
 import configureStore        from '../../store/configureStore';
 
-import { verifyLogin }       from '../../account/store/actions';
 import { initService }       from '../../m2016-service/actions';
 import { initFilters }       from '../store/actions';
 
@@ -41,12 +40,9 @@ class App extends React.Component {
 
       this.setState({ 
         loading: false,
-        donateStats: service.donateStats,
-        authenticated: store.getState ().user.authenticated,
+        donateStats: service.donateStats
       });
-    });
-    
-    store.dispatch (verifyLogin ());
+    });    
   }
 
   // before unmount, remove store listener
@@ -65,8 +61,8 @@ class App extends React.Component {
       <Provider store={store}>
         <div>
           <Thermometer goal={goal} pledged={pledged} />
-          <Nav loggedIn={this.state.authenticated} isAdmin />
-          <div className='mainArea'>
+          <Nav />
+          <div className='main-area'>
             {this.props.children}
           </div>
           <Footer />

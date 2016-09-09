@@ -1,4 +1,4 @@
-import path  from 'jsonpath-plus';
+import path from 'jspath';
 
 import { 
   INIT_FILTERS,
@@ -29,7 +29,7 @@ export default function groups (state = initialState, action) {
     case INIT_FILTERS: {
       const { filters } = action;
       const visibility = {};
-      Object.keys(filters).forEach( f => { visibility[f] = path(`$.${f}[terms][*].name`,filters); } );
+      Object.keys(filters).forEach( f => { visibility[f] = path('.terms..name',filters[f]); } );
       return { ...state, visibility };
     }
 

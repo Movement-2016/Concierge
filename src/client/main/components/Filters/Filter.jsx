@@ -1,9 +1,8 @@
 import React from 'react';
-import path  from 'jsonpath-plus';
 
-import { ServiceContext } from './ContextMixins';
+import {apply as path}  from 'jspath';
 
-import Checkbox from '../../ui/Checkbox.jsx';
+import Checkbox from '../../../ui/Checkbox.jsx';
 
 const FilterCheckbox = ({ label, name, cat, onTermsChecked, selected }) => {
   return (
@@ -61,7 +60,7 @@ class Filter extends React.Component {
       onTermsChecked 
     } = this.props;
 
-    const names = path('$.[*].name', terms );
+    const names = path('..name', terms );
     onTermsChecked( name, names, !clear );
   }
 
@@ -94,64 +93,4 @@ class Filter extends React.Component {
   }
 }
 
-const ScrollLink = ({ name, label }) => {
-  return <a href={'#' + name}>{label}</a>;
-};
-
-const ScrollLinks = ({ links }) => {
-  const keys = Object.keys(links);
-  const { name } = links[keys[0]];
-  return(
-      <div className="filterGroup">
-        <ScrollLink name={name} label="Top" />
-        {keys.map( k => <ScrollLink key={k} {...links[k]} /> )}
-      </div>
-    );
-};
-
-const Groupings = ({ terms, onShowGroup }) => {
-  return (
-      <select onChange={e => onShowGroup(e.target.value)}>
-        {Object.keys(terms).map( k => <option key={k} value={terms[k].name}>{terms[k].label}</option>)}
-      </select>
-    );
-};
-
-class Filters extends ServiceContext(React.Component) {
-
-  constructor() {
-    super(...arguments);
-  }
-
-  render() {
-    const { 
-      filters, 
-      groupings:{terms},
-      groupSections 
-    } = this.state.service;
-
-    const { 
-      onShowGroup,
-      onShowSection } = this.props;
-
-    return (
-        <div className="groupSelectorArea">
-          <h4>Filter by</h4>
-          {Object.keys(filters).map( f => <Filter key={f} {...this.props} {...filters[f]} /> )}
-          <h4>Go to...</h4>
-          <ScrollLinks links={groupSections} onShowSection={onShowSection} />
-          <Groupings terms={terms} onShowGroup={onShowGroup} />
-        </div>
-      );
-  }
-}
-
-Filters.propTypes = {
-  selected:       React.PropTypes.object.isRequired,
-  onTermsChecked: React.PropTypes.func.isRequired,
-  onShowGroup:    React.PropTypes.func.isRequired,
-  onShowSection:  React.PropTypes.func.isRequired
-};
-
-
-module.exports = Filters;
+module.exports = Filter;

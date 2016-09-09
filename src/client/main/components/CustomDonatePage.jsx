@@ -1,42 +1,19 @@
 import React     from 'react';
 import TagString from 'tag-string';
 
-import OrgsList from './OrgsList.jsx';
-import Filters  from './Filters.jsx';
+import OrgList  from './OrgList';
+import Filters  from './Filters';
 import StateMap from './StateMap.jsx';
+import Tray     from './ShoppingCart/Tray.jsx';
 
 import { ContextMixin } from './ContextMixins';
 
 import { setVisibility } from '../store/actions';
 
-function getVisibleOrgs(orgs,filters) {
-
-  var visible = {};
-  
-  for( var section in orgs ) {
-    for( var state in orgs[section] ) {
-      for( var i in orgs[section][state] ) {
-
-        const org  = orgs[section][state][i];
-        let   ok   = true;
-        const tags = TagString.fromArray(org.tags);
-
-        Object.keys(filters).forEach( f => {
-          ok = ok && tags.contains(filters[f]);
-        });
-
-        if( ok ) {
-          !visible[section] && (visible[section] = {});
-          !visible[section][state] && (visible[section][state] = []);
-          visible[section][state].push(org);
-        }
-
-      }
-    }
-  }
-  
-  return visible;
-}
+import {
+  getVisibleOrgs,
+  getVisibleStates
+} from '../store/utils';
 
 class CustomDonatePage extends ContextMixin(React.Component) {
 
@@ -86,10 +63,12 @@ class CustomDonatePage extends ContextMixin(React.Component) {
     } = this.state;
     
     const fprops = {
-      onShowGroup: this.onShowGroup,
-      onShowSection: this.onShowSection,
-      onTermsChecked: this.onTermsChecked,
-      selected: selectedTerms
+      onShowGroup:     this.onShowGroup,
+      onShowSection:   this.onShowSection,
+      onTermsChecked:  this.onTermsChecked,
+      selected:        selectedTerms,
+      visibleSections: Object.keys(orgs),
+      visibleGroups:   getVisibleStates(orgs)
     };
 
     return (
@@ -97,7 +76,8 @@ class CustomDonatePage extends ContextMixin(React.Component) {
         <h1>Custom Donation Plan</h1>
         <StateMap />
         <Filters {...fprops} />
-        <OrgsList orgs={orgs} />
+        <OrgList orgs={orgs} />
+        <Tray />
       </div>
     );
   }

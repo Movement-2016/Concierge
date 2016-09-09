@@ -1,8 +1,6 @@
 import React               from 'react';
 import { Link, IndexLink } from 'react-router';
 
-import { logout } from '../../account/store/actions';
-
 var NavbarHeader = React.createClass({
   render: function() {
     const { homeLink } = this.props;
@@ -22,31 +20,28 @@ var NavbarHeader = React.createClass({
 
 const MENU_SELECTORS = 'nav navbar-nav navbar-right';
 
-const MenuAnonymous = () => {
-  return (
-      <ul className={MENU_SELECTORS}>
-        <li><Link to='/login' activeClassName='active'>Sign Up / Login</Link></li>
-      </ul> 
-    );
+const MenuItem = ({href,linkto,text}) => {
+
+  if( href ) {
+    return <a href={href}>{text}</a>;
+  }
+
+  return <Link to={linkto}>{text}</Link>;
 };
 
-const MenuLoggedIn = ({ isAdmin, store }) => {
-  const onLogout = () => { store.dispatch (logout ()); };
+const MenuAnonymous = ({store}) => {
+  const { content: { mainMenu } } = store.getState().service;
+
   return (
-    <ul className={MENU_SELECTORS}>
-                  <li onClick={onLogout} ><Link to='/'>Logout</Link></li>
-      {isAdmin && <li><Link to='/staff' activeClassName='active'>Staff</Link></li>}
-    </ul>
-  );
+      <ul className={MENU_SELECTORS}>
+        {mainMenu.map( (m,i) => <li key={i}><MenuItem {...m} /></li>)}
+      </ul> 
+    );
 };
 
 class Nav extends React.Component {
 
   render () {
-
-    const { 
-      loggedIn, 
-      isAdmin } = this.props;
 
     const { store } = this.context;
 
@@ -57,20 +52,13 @@ class Nav extends React.Component {
           <div className="container-fluid">
             <NavbarHeader title="Movement 2016" homeLink={homeLink}/>
             <div className="collapse navbar-collapse" id="nav-collapse">
-              {loggedIn
-                ? <MenuLoggedIn store={store, isAdmin} />
-                : <MenuAnonymous />
-              }
+              <MenuAnonymous store={store}/>
             </div>
           </div>
         </nav>
       );
   }
 }
-
-Nav.propTypes = {
-  loggedIn: React.PropTypes.bool.isRequired,
-};
 
 Nav.contextTypes = {
   store: React.PropTypes.object.isRequired,

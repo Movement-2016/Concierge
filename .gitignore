@@ -5,3 +5,4 @@ npm-debug.log
 data/
 node_modules/
 dist/
+vendor/

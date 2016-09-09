@@ -8,7 +8,7 @@ const PlanLinkBox = () => {
   return (
       <div className="plan-link-box">
         <p>Create your own custom donation plan by browsing all the groups we work with.</p>
-        <Link className="btn btn-primary btn-sm" to="/custom">Create Custom Plan</Link>
+        <Link className="btn btn-primary btn-sm" to="/groups">Create Custom Plan</Link>
       </div>
     );
 };

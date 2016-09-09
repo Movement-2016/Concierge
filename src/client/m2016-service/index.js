@@ -1,8 +1,8 @@
 /* globals fetch */
 import 'whatwg-fetch';
-import path  from 'jsonpath-plus';
+import path  from 'jspath';
 
-const WP_API_HOST = 'm2016dev.wpengine.com'; // 'movement2016.org'; // 
+const WP_API_HOST =  'movement2016.org'; // 'm2016dev.wpengine.com'; //
 
 const WP_API_BASE = 'http://' + WP_API_HOST + '/wp-json/movement-2.1/';
 
@@ -59,7 +59,7 @@ class M2016Service {
   get filterDict() {
     if( !this._filterDict ) {
       this._filterDict = {};
-      path('$.[*].terms[*]', this.filters ).forEach( f => this._filterDict[f.name] = f.label );
+      path('...terms.*', this.filters ).forEach( f => this._filterDict[f.name] = f.label );
     }
     return this._filterDict;
   }
@@ -74,6 +74,13 @@ class M2016Service {
 
   get groupSections() {
     return groupSections;
+  }
+
+  get content() {
+    return {
+      mainMenu,
+      pages: this.pages
+    };
   }
 
   get pages() {
@@ -115,6 +122,24 @@ const groupSections = {
 };
 
 
+const mainMenu = [
+  {
+    linkto: '/donate',
+    text: 'Donate'
+  },
+  {
+    linkto: '/getintouch',
+    text: 'Contact'
+  },
+  {
+    href: 'https://docs.google.com/forms/d/e/1FAIpQLSfH_n5RoI7DZbQpZ739Fm5-8_hjUHt4YIGSlrg6_wWRnNvrkw/viewform',
+    text: 'Travel',
+  },
+  {    
+    linkto: '/houseparty',
+    text: 'Host a Party',
+  }
+];
 
 const homePageTiles = [
   {
@@ -124,13 +149,13 @@ const homePageTiles = [
     body: 'Split your contribution evenly between Movement 2016 groups'
   },
   {
-    linkto: '/custom',
+    linkto: '/groups',
     img: '/images/photos/murika.png',
     text: 'Donate Customized',
     body: 'Browse all of our groups and create your own giving plan'
   },
   {
-    linkto: 'getintouch',
+    linkto: '/getintouch',
     glyph: 'phone',
     text: 'Talk to a Human',
     body: 'Get research on states and organizations'
@@ -143,7 +168,7 @@ const homePageTiles = [
     compact: true
   },
   {
-    linkto: '/plan',
+    linkto: '/houseparty',
     glyph: 'glass',
     text: 'Host a Party',
     body: 'Create your own donor house party',
@@ -167,20 +192,6 @@ const donatePageTiles = [
   {
     title:    'Purple States',
     body:     'Spread out donations to all purple states',
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
   },
   {
   },
