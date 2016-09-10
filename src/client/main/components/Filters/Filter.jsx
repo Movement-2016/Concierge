@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {apply as path}  from 'jspath';
+import path  from 'jspath';
 
 import Checkbox from '../../../ui/Checkbox.jsx';
 

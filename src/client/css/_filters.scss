@@ -1,17 +1,5 @@
-.filterButton {
-  position: fixed;
-  z-index: 10;
-  top: 62px;
-  color: white;
-  background-color: $cBlue;
-  border-color: white;
-  border-radius: 8px;
-  font-size: 16px;
-  right: 10px;
-  padding: 4px 8px;
-}
+.group-selector-area {
 
-.groupSelectorArea {
   position: fixed;
   z-index: 10;
   top: 99px;
@@ -20,19 +8,32 @@
   padding-left: 8px;
   right: 10px;
 
+  .filterButton {
+    position: fixed;
+    z-index: 10;
+    top: 62px;
+    color: white;
+    background-color: $cBlue;
+    border-color: white;
+    border-radius: 8px;
+    font-size: 16px;
+    right: 10px;
+    padding: 4px 8px;
+  }
+
   h4 {
     font-size: 16px;
     margin-bottom: 6px;
     color: #45798a;
   }
 
-  .filterTitleToggle {
+  .filter-title-toggle {
     color: $cBlue;
     margin-right: 4px;
     cursor: pointer;
   }
 
-  .filterTitleName {
+  .filter-title-name {
     font-size: 14px;
     font-weight: 900;
     margin-right: 8px;
@@ -41,7 +42,7 @@
     cursor: pointer;
   }
 
-  .filterTitleButton {
+  .filter-title-button {
     min-width: 3em;
     font-size: 12px;
     color: white;
@@ -58,7 +59,8 @@
     color: #333333;
   }
 
-  .filterGroup {
+  .filter-group {
+
     width: 100%;
     margin-bottom: 8px;
 
@@ -75,13 +77,15 @@
     a:hover {
       color: $cBlue;
     }
-      select {
-        font-size: 20px;
-        margin-top: 4px;
-        margin-left: 8px;
-        width: 180px;
-      }
+
+    select {
+      font-size: 20px;
+      margin-top: 4px;
+      margin-left: 8px;
+      width: 180px;
     }
-}
+  }
+}  
+
 
 

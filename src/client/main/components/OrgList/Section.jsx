@@ -51,12 +51,12 @@ class Section extends React.Component {
       <div className="section" id={name}>
         <a name={name} />
         <a data-toggle="collapse" data-target={this.hashId}>
-          <div className="sectionHead">
-            <span className={`sectionToggle glyphicon glyphicon-${toggle}`} />
+          <div className="section-head">
+            <span className={`section-toggle glyphicon glyphicon-${toggle}`} />
             {label}
           </div>
         </a>
-        <div className="sectionGroups collapse in" id={this.grpsId}>
+        <div className="section-groups collapse in" id={this.grpsId}>
           {Object.keys(groups).map( s => <Group key={s} {...allGroups[s]} items={groups[s]} />)}
         </div>
       </div>

@@ -1,41 +1,135 @@
 .shopping-cart {
+  max-width: 900px;
+  margin: 100px auto 0 auto;
+  overflow: hidden;
 
-  padding: 20px;
+  .donor-area {
+    width: 96%;
+    max-width: 600px;
+    margin: 0 auto 0 auto;
 
-  .shopping-cart-items {
-    margin: 20px 40% 40px 25px;
-    padding: 20px;
-    border: 1px solid #888;
-    background-color: #ededed;
-    border-radius: 5px;
+    h2 {
+      text-align: center;
+      color: #42A5F5;
+      margin: 0 0 30px 0;
+    }
 
-    .shopping-cart-line {
+    .info-Area {
+      margin-top: 1em;
+      padding-bottom: 16px;
+      border: 1px solid lightgray;
 
-      margin-bottom: 10px;
+      h3 {
+        padding: 8px 12px 8px 12px;
+        text-align: left;
+        color: white;
+        background-color: #42A5F5;
+      }
 
-      .name {
-        display: inline-block;
-        margin-right: 12px;        
+      p {
+        padding: 12px 12px 12px 12px;
+        color: darkgray;
+        border-bottom: 1px solid lightgray;
+      }
+
+      input[type='text'] {
+        width: 40%;
+        font-size: 16px;
+        margin-top: 20px;
+        margin-left: 7%;
+        border: none;
+        border-bottom: 1px solid darkgray;
+      }
+    }
+  }
+  .plan-display-area {
+    width: 100%;
+    margin-bottom: 30%;
+
+    .plan-groups-area {
+      width: 96%;
+      max-width: 600px;
+      margin: 16px auto 0 auto;
+
+      .state-group-plan {
+        margin-bottom: 16px;
+
+        h3 {
+          color: white;
+          width: 200px;
+          font-size: 16px;
+          padding: 2px 0px 2px 4px;
+        }
+
+        .group-plan {
+          border: 1px solid lightgray;
+          overflow: hidden;
+
+          .name-plan {
+            float: left;
+            padding: 8px 0px 8px 12px;
+            font-size: 16px;
+            font-weight: 400;
+          }
+
+          .tags-plan {
+            font-size: 12px;
+          }
+
+          .giving-area {
+            float: right;
+            overflow: hidden;
+            margin-left: 8px;
+            padding: 8px 0px 0px 0px;
+            background-color: white;
+            font-size: 18px;
+
+            label {
+              margin-right: 2px;
+            }
+
+            input[type=text] {
+              text-align: right;
+              width: 70px;
+              font-size: 14px;
+              margin-right: 4px;
+            }
+          }
+        }
       }
     }
   }
 }
 
-.shopping-cart-menu {
+.plan-footer {
+  width: 100%;
+  height: 60px;
+  background-color: #EEEEEE;
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid darkgray;
 
-  width: 200px;
-  float: right;
-  margin-right: 22px;
+  div {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 0 auto;
+    padding-top: 12px;
+    padding-bottom: 12px;
 
-  ul {
-    padding: 0px;
-    list-style: none;
+    button {
+      float: left;
+      font-size: 18px;
+      padding: 4px 10px;
+      border-radius: 8px;
+      border-color:  #42A5F5;
+      color: white;
+      background-color: #42A5F5;
+    }
+    span {
+      font-size: 20px;
+      float: right;
+    }
   }
-
-  li {
-    margin-bottom: 28px;
-  }
-
 }
 
 .shopping-cart-tray {

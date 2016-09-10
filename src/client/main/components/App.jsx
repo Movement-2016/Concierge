@@ -16,6 +16,8 @@ import Footer      from './Footer.jsx';
 
 const store = configureStore ();
 
+const SITE_TITLE = 'Movement 2016';
+
 class App extends React.Component {
   constructor (props) {
     super (props);
@@ -61,7 +63,7 @@ class App extends React.Component {
       <Provider store={store}>
         <div>
           <Thermometer goal={goal} pledged={pledged} />
-          <Nav />
+          <Nav siteTitle={SITE_TITLE} />
           <div className='main-area'>
             {this.props.children}
           </div>

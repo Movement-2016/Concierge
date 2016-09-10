@@ -6,21 +6,17 @@ $headerHeight: $thermometerHeight + $navBarHeight;
 @import 'fonts';
 @import 'defaults';
 @import 'header';
-@import 'groups';
-@import 'plan';
-@import 'report';
 @import 'about';
 @import 'contact';
-@import 'selector';
 @import 'checkbox';
-@import 'dialog';
-@import 'staff';
 @import 'home';
 @import 'thermometer';
 @import 'donate';
 @import 'footer';
 @import 'tile';
 @import 'shoppingcart';
+@import 'filters';
+@import 'groups';
 
 #app {
   width: 100%;
@@ -29,18 +25,8 @@ $headerHeight: $thermometerHeight + $navBarHeight;
   background-color: white;
 }
 
-#purple-states, #lightblue-states, #lightred-states, #darkblue-states, #darkred-states {
-  padding-top: 80px;
-}
+/* main content area under Nav area */
 
-.stateGroup:before {
-  content: '';
-  display: block;
-  height: 80px;
-  margin: -80px 0 0 0;
-}
-
-// main content area under Nav area
 .main-area {
   margin-top: $headerHeight;
   overflow: hidden;
@@ -54,28 +40,18 @@ $headerHeight: $thermometerHeight + $navBarHeight;
 // overwrite Bootstrap defaults
 
 .btn-primary {
-    background-image: -webkit-linear-gradient(top,#337ab7 0,$cBlue 100%);
-    background-image: -o-linear-gradient(top,#337ab7 0,$cBlue 100%);
-    background-image: -webkit-gradient(linear,left top,left bottom,from(#337ab7),to($cBlue));
-    background-image: linear-gradient(to bottom,#337ab7 0,$cBlue 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff337ab7', endColorstr='#ff265a88', GradientType=0);
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-    background-repeat: repeat-x;
-    border-color: #245580;
+  background-image: -webkit-linear-gradient(top,#337ab7 0,$cBlue 100%);
+  background-image: -o-linear-gradient(top,#337ab7 0,$cBlue 100%);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#337ab7),to($cBlue));
+  background-image: linear-gradient(to bottom,#337ab7 0,$cBlue 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff337ab7', endColorstr='#ff265a88', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  background-repeat: repeat-x;
+  border-color: #245580;
 }
 
 .btn-primary:focus, .btn-primary:hover {
-    background-color: #4a9de2;
-    background-position: 0 -8px;
+  background-color: #4a9de2;
+  background-position: 0 -8px;
 }
 
-// TODO: Move this somewhere else
-
-@media screen and (min-width: 980px) {
-  .loginRegisterArea {
-    .login-or-register {
-      margin-top: 210px;
-      white-space: nowrap;
-    }
-  }
-}

@@ -10,7 +10,7 @@ const ScrollLinks = ({ visible, links }) => {
   }
   const { name } = visible[0];
   return(
-      <div className="filterGroup">
+      <div className="filter-group">
         <ScrollLink name={name} label="Top" />
         {visible.map( k => <ScrollLink key={k} {...links[k]} /> )}
       </div>

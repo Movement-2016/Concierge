@@ -20,7 +20,7 @@ class DonatePage extends PageContext(React.Component) {
 
   render() {
     return(
-        <TilesPage page={this.state.page} className="donatePage">
+        <TilesPage page={this.state.page} className="donate-page">
           <PlanLinkBox />
         </TilesPage>    
       );
