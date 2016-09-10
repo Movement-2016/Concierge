@@ -7,7 +7,7 @@ const Footer = () => {
   const ccStyle = { borderWidth: 0 };
 
   return (
-    <footer className="site-footer footerArea container-fluid">
+    <footer className="site-footer footer-area container-fluid">
       <div className="row">
         <div className="col-md-6">
           <div className="partners panel">

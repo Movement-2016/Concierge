@@ -60,15 +60,15 @@ class Item extends ContextMixin(React.Component) {
     return(
         <div className={`item ${group} ${cls}`}>
           <div className="name"><span dangerouslySetInnerHTML={{__html:name}} /></div>
-          <div className="linksArea">
-            {urlWeb && <a className="imgLink" href={urlWeb} target="_blank" rel="noopener noreferrer"><img src="/images/ic_link_red_24dp.png" alt="" /><span> Website</span></a>}
-            {urlGive && <a className="imgLink" href={urlGive}><img src="/images/ic_star_border_red_24dp.png" alt="" /><span> Contribute</span></a>}
-            <a className="imgLink" href="#" onClick={this.onItemClick}><span><span className="glyphicon glyphicon-tasks" /> {text}</span></a>
+          <div className="links-area">
+            {urlWeb && <a className="img-link" href={urlWeb} target="_blank" rel="noopener noreferrer"><img src="/images/ic_link_red_24dp.png" alt="" /><span> Website</span></a>}
+            {urlGive && <a className="img-link" href={urlGive}><img src="/images/ic_star_border_red_24dp.png" alt="" /><span> Contribute</span></a>}
+            <a className="img-link" href="#" onClick={this.onItemClick}><span><span className="glyphicon glyphicon-tasks" /> {text}</span></a>
           </div>
-          <div className="orgTypeArea">
+          <div className="org-type-area">
             {tags.map( t => <span key={t}>{this.filters[t]}</span> )}
           </div>
-          <div className="descriptionArea" dangerouslySetInnerHTML={{__html:description}} />
+          <div className="description-area" dangerouslySetInnerHTML={{__html:description}} />
         </div>
       );
   }

@@ -79,13 +79,13 @@ class Filter extends React.Component {
         <div className={`filter ${name}`} >
           <div className="filter-header">
             <a data-toggle="collapse" data-target={this.hashId}>
-              <span className={`filterTitleToggle glyphicon glyphicon-${toggle}`} />
-              <span className="filterTitleName">{label}</span>
+              <span className={`filter-title-toggle glyphicon glyphicon-${toggle}`} />
+              <span className="filter-title-name">{label}</span>
             </a>
-            { expanded && <button className="filterTitleButton" onClick={this.onAll}>All</button> }
-            { expanded && <button className="filterTitleButton" onClick={this.onClear}>Clear</button> }
+            { expanded && <button className="filter-title-button" onClick={this.onAll}>All</button> }
+            { expanded && <button className="filter-title-button" onClick={this.onClear}>Clear</button> }
           </div>
-          <div className="filterGroup collapse out" id={this.optsId}>
+          <div className="filter-group collapse out" id={this.optsId}>
             {Object.keys(terms).map( t => <FilterCheckbox {...this.props} {...terms[t]} key={t} cat={name}  /> )}
           </div>
         </div>

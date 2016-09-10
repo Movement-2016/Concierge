@@ -29,7 +29,7 @@ class Filters extends ServiceContext(React.Component) {
     const hasSections = visibleSections.length + visibleGroups.length > 0;
 
     return (
-        <div className="groupSelectorArea">
+        <div className="group-selector-area">
           <h4>Filter by</h4>
           {Object.keys(filters).map( f => <Filter key={f} {...this.props} {...filters[f]} /> )}
           {hasSections && <h4>Go to...</h4>}

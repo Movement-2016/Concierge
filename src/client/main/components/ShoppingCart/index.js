@@ -26,6 +26,8 @@ const CartMenu = () => {
     );
 };
 
+// {this.state.orgs.map( o => <CartLine key={o.id} {...o} />)}
+
 class Cart extends ContextMixin(React.Component) {
 
   stateFromStore(storeState) {
@@ -47,7 +49,7 @@ class Cart extends ContextMixin(React.Component) {
         <CartMenu />
         <h1>Your Donation Plan</h1>
         <div className="shopping-cart-items">
-          {this.state.orgs.map( o => <CartLine key={o.id} {...o} />)}
+          <h4>coming soon...</h4>
         </div>
       </div>
     );

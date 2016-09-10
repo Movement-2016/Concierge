@@ -3,7 +3,7 @@ import React from 'react';
 export default class AboutPage extends React.Component {
   render () {
     return (
-      <div className='aboutArea' ref={ref => { this._div = ref; }}>
+      <div className='about-area' ref={ref => { this._div = ref; }}>
         <h2>About Movement 2016</h2>
         <p>
           Movement 2016 is a service to donors – from grassroots to major
@@ -139,7 +139,7 @@ export default class AboutPage extends React.Component {
           use us!
         </p>
         <hr />
-        <div className='aboutPartnerHeader'>NATIONAL PARTNERS</div>
+        <div className='about-partner-header'>NATIONAL PARTNERS</div>
         <div className='logos'>
           <div className='logo wfLogo'>
             <a href='http://workingfamilies.org' target='_blank' rel='noopener noreferrer'>

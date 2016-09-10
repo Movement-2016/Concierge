@@ -72,7 +72,7 @@ class CustomDonatePage extends ContextMixin(React.Component) {
     };
 
     return (
-      <div className="customDonateArea">
+      <div className="custom-donate-area">
         <h1>Custom Donation Plan</h1>
         <StateMap />
         <Filters {...fprops} />

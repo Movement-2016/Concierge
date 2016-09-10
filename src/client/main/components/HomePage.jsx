@@ -22,8 +22,8 @@ class HomePage extends PageContext(React.Component) {
     const { home, aboutSection, testimonials } = this.state.pages;
     return(
       <div>
-        <TilesPage page={home} className="homeArea" />
-        <div className="row aboutUsArea">
+        <TilesPage page={home} className="home-area" />
+        <div className="row about-us-area">
           <SubSection section={aboutSection} numCols={6} colsPerRow={1} />
           <SubSection section={testimonials} numCols={6} colsPerRow={2} />
         </div>
