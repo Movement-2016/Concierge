@@ -78,7 +78,7 @@ hooks:
 #   in the script specified in "location" starting from the root of the 
 #   revision's file bundle.
   ApplicationStop:
-    - location: killall node
+    - location: /home/ec2-user/concierge/stage/killallnode.sh
       timeout: 180
     #   runas:
     # - location: 
