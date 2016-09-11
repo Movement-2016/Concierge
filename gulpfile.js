@@ -14,6 +14,21 @@ const gzip = require ('gulp-gzip');
 const concat = require('gulp-concat');
 const sourcemaps = require ('gulp-sourcemaps');
 
+const browserifyConfig =  {
+  entries: 'src/client/main/components/App.jsx',
+  debug: true,
+};
+
+const babelifyOpts = { 
+  presets: [
+    'es2015', 
+    'react'],
+  plugins: [
+    'transform-class-properties',
+    'transform-object-rest-spread'
+    ]    
+};
+
 const dependencies = [
   'react',
   'react-dom',
@@ -47,8 +62,9 @@ let base = 'dist';
 
 var stdTasks = ['html', 'images', 'server', 'styles', 'fonts', 'vendor-styles', 'vendor-client-js' ];
 
-gulp.task ('default', [             ...stdTasks, 'vendor',       'browserify-watch', 'watch']);
-gulp.task ('stage',   ['set-stage', ...stdTasks, 'vendor-stage', 'browserify-stage' ]);
+gulp.task ('default',   [             ...stdTasks, 'vendor',       'browserify-watch', 'watch']);
+gulp.task ('stage',     ['set-stage', ...stdTasks, 'vendor-stage', 'browserify-stage' ]);
+gulp.task ('no-watch',  [             ...stdTasks, 'vendor-stage', 'browserify-stage' ]);
 
 // set the destination for staging output and copy stage root files
 gulp.task ('set-stage', function () {
@@ -123,21 +139,9 @@ gulp.task ('vendor-client-js', function () {
 });
 
 gulp.task ('browserify-watch', function () {
-  const config = {
-    entries: 'src/client/main/components/App.jsx',
-    debug: true,
-  };
-  const bundler = watchify (browserify (config, watchify.args));
+  const bundler = watchify (browserify (browserifyConfig, watchify.args));
   bundler.external (dependencies);
-  bundler.transform (babelify, { 
-    presets: [
-      'es2015', 
-      'react'],
-    plugins: [
-      'transform-class-properties',
-      'transform-object-rest-spread'
-      ]    
-    });
+  bundler.transform (babelify, babelifyOpts);
   bundler.on ('update', rebundle);
   return rebundle ();
 
@@ -176,9 +180,10 @@ gulp.task ('vendor-stage', function () {
 
 gulp.task ('browserify-stage', function () {
   process.env.NODE_ENV = 'production';
-  const bundler = browserify ({ entries: 'src/client/main/components/App.jsx', debug: true });
+  // browserifyConfig.debug = false;
+  const bundler = browserify (browserifyConfig);
   bundler.external (dependencies);
-  bundler.transform (babelify, { presets: ['es2015', 'react'] });
+  bundler.transform (babelify, babelifyOpts);
   bundler.on ('update', rebundle);
   return rebundle ();
 
