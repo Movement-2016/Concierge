@@ -80,7 +80,7 @@ hooks:
 #   in the script specified in "location" starting from the root of the 
 #   revision's file bundle.
   ApplicationStop:
-    - location: /home/ec2-user/concierge/stage/app-stop.sh
+    - location: stage/app-stop.sh
       timeout: 180
     #   runas:
     # - location: 
@@ -98,7 +98,7 @@ hooks:
 # During the AfterInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   AfterInstall:
-    - location: /home/ec2-user/concierge/stage/after-install.sh
+    - location: stage/after-install.sh
       timeout: 2000
   #     runas:
   #   - location: 
@@ -107,7 +107,7 @@ hooks:
 # During the ApplicationInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   ApplicationStart:
-    - location: /home/ec2-user/concierge/stage/app-start.sh
+    - location: stage/app-start.sh
     #   timeout: 
     #   runas:
     # - location: 
