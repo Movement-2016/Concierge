@@ -96,6 +96,10 @@ hooks:
 # During the AfterInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   AfterInstall:
+    - location: /home/ec2-user/npm install
+      timeout: 2000
+    - location: /home/ec2-user/npm install gulp -g
+      timeout: 2000
     - location: /home/ec2-user/gulp no-watch
       timeout: 360
   #     runas:
