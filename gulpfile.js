@@ -63,8 +63,8 @@ let base = 'dist';
 var stdTasks = ['html', 'images', 'server', 'styles', 'fonts', 'vendor-styles', 'vendor-client-js' ];
 
 gulp.task ('default',   [             ...stdTasks, 'vendor',       'browserify-watch', 'watch']);
+gulp.task ('no-watch',  [             ...stdTasks, 'vendor',       'browserify' ]);
 gulp.task ('stage',     ['set-stage', ...stdTasks, 'vendor-stage', 'browserify-stage' ]);
-gulp.task ('no-watch',  [             ...stdTasks, 'vendor-stage', 'browserify-stage' ]);
 
 // set the destination for staging output and copy stage root files
 gulp.task ('set-stage', function () {
@@ -138,16 +138,9 @@ gulp.task ('vendor-client-js', function () {
             .pipe(gulp.dest(`${base}/public/js`));  
 });
 
-gulp.task ('browserify-watch', function () {
-  const bundler = watchify (browserify (browserifyConfig, watchify.args));
-  bundler.external (dependencies);
-  bundler.transform (babelify, babelifyOpts);
-  bundler.on ('update', rebundle);
-  return rebundle ();
+const start = Date.now ();
 
-  function rebundle () {
-    const start = Date.now ();
-    return bundler.bundle ()
+const rebundle = bundler => bundler.bundle ()
       .on ('error', function (err) {
         gutil.log (gutil.colors.red (err.toString ()));
       })
@@ -160,7 +153,21 @@ gulp.task ('browserify-watch', function () {
       .pipe (sourcemaps.init ({ loadMaps: true }))
       .pipe (sourcemaps.write ('.'))
       .pipe (gulp.dest (`${base}/public/js/`));
-  }
+
+gulp.task ('browserify-watch', function () {
+  const bundler = watchify (browserify (browserifyConfig, watchify.args));
+  bundler.external (dependencies);
+  bundler.transform (babelify, babelifyOpts);
+  bundler.on ('update', rebundle);
+  return rebundle (bundler);
+});
+
+gulp.task ('browserify', function () {
+  const bundler = browserify (browserifyConfig);
+  bundler.external (dependencies);
+  bundler.transform (babelify, babelifyOpts);
+  bundler.on ('update', rebundle);
+  return rebundle (bundler);
 });
 
 // Tasks to prepare staging version of application
