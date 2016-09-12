@@ -37,21 +37,14 @@ files:
 #   then remove the 
 #   "permissions" section altogether. A blank or incomplete "permissions"
 #   section may cause associated deployments to fail.
-# permissions:
-#   - object:
-#     pattern:
-#     except:
-#     owner:
-#     group:
-#     mode: 
-#     acls:
-#       -
-#     context:
-#       user:
-#       type:
-#       range:
-#     type:
-#       -
+permissions:
+  - object: /home/ec2-user
+    owner: ec2-user
+    group: ec2-user
+    type:
+      - directory
+      - file#       
+
 # If you are not running any commands on the Amazon EC2 instance, then remove 
 #   the "hooks" section altogether. A blank or incomplete "hooks" section
 #   may cause associated deployments to fail.
@@ -82,10 +75,8 @@ hooks:
   ApplicationStop:
     - location: stage/app-stop.sh
       timeout: 180
-    #   runas:
-    # - location: 
-    #   timeout:
-    #   runas: 
+      runas: ec2-user
+
 # During the BeforeInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   # BeforeInstall:
@@ -100,7 +91,7 @@ hooks:
   AfterInstall:
     - location: stage/after-install.sh
       timeout: 2000
-  #     runas:
+      runas: ec2-user
   #   - location: 
   #     timeout:
   #     runas:
@@ -108,8 +99,8 @@ hooks:
 #   in the script specified in "location".
   ApplicationStart:
     - location: stage/app-start.sh
-    #   timeout: 
-    #   runas:
+      timeout: 500
+      runas: ec2-user
     # - location: 
     #   timeout:
     #   runas:

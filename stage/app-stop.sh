@@ -1,2 +1,3 @@
-echo "Not sure if this is needed..?"
-#killall node
+set -e
+
+pm2 stop all
