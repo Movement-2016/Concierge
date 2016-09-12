@@ -16,7 +16,7 @@ import Footer      from './Footer.jsx';
 
 const store = configureStore ();
 
-const SITE_TITLE = 'Movement 2016 (AWS)';
+const SITE_TITLE = 'Movement 2016 (AWS-us-east-1)';
 
 class App extends React.Component {
   constructor (props) {
