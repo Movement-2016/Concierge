@@ -1,4 +1,4 @@
 apps:
   - script   : /home/ec2-user/concierge/dist/main.js
-    instances: 4
-    exec_mode: fork
+    # instances: 4
+    # exec_mode: fork
