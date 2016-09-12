@@ -84,14 +84,14 @@ hooks:
 #   in the script specified in "location".
   AfterInstall:
     - location: stage/after-install.sh
-      timeout: 1800
+      timeout: 180
       runas: ec2-user
 
 # During the ApplicationInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   ApplicationStart:
     - location: stage/app-start.sh
-      timeout: 500
+      timeout: 60
       runas: ec2-user
 
 # During the ValidateService deployment lifecycle event, run the commands 
