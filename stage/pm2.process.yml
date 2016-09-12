@@ -1,5 +1,5 @@
 apps:
   - script   : /home/ec2-user/concierge/dist/main.js
     instances: 4
-    exec_mode: cluster
+    exec_mode: fork
     watch  : true
