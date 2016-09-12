@@ -84,7 +84,7 @@ hooks:
 #   in the script specified in "location".
   AfterInstall:
     - location: stage/after-install.sh
-      timeout: 180
+      timeout: 480
       runas: ec2-user
 
 # During the ApplicationInstall deployment lifecycle event, run the commands 
