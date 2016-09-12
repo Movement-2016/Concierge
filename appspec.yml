@@ -33,10 +33,6 @@ files:
 #   in the "files" section as they are being copied over to 
 #   the Amazon EC2 instance.
 #   For more information, see the documentation.
-# If you are deploying to Windows Server instances,
-#   then remove the 
-#   "permissions" section altogether. A blank or incomplete "permissions"
-#   section may cause associated deployments to fail.
 permissions:
   - object: /home/ec2-user
     owner: ec2-user
@@ -83,33 +79,25 @@ hooks:
   #   - location: 
   #     timeout:
   #     runas: 
-  #   - location: 
-  #     timeout:
-  #     runas:
+
 # During the AfterInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   AfterInstall:
     - location: stage/after-install.sh
       timeout: 2000
       runas: ec2-user
-  #   - location: 
-  #     timeout:
-  #     runas:
+
 # During the ApplicationInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   ApplicationStart:
     - location: stage/app-start.sh
       timeout: 500
       runas: ec2-user
-    # - location: 
-    #   timeout:
-    #   runas:
+
 # During the ValidateService deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   # ValidateService:
   #   - location:     
   #     timeout: 
   #     runas:
-  #   - location: 
-  #     timeout:
-  #     runas:
+
