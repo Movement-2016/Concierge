@@ -1,8 +1,6 @@
 import React               from 'react';
 import { Link, IndexLink } from 'react-router';
 
-const SITE_TITLE = "Movement 2016";
-
 var NavbarHeader = React.createClass({
   render: function() {
     const { homeLink } = this.props;
