@@ -103,7 +103,7 @@ gulp.task ('fonts', function () {
 
 // copy server
 gulp.task ('server', function () {
-  return gulp.src ('src/server/*.js')
+  return gulp.src ( ['src/server/*.js', 'src/client/m2016-service/*.js' ])
     .pipe (gulp.dest (base));
 });
 

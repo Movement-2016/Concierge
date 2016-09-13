@@ -1,10 +1,12 @@
 import React     from 'react';
-
-import { Link }         from 'react-router';
+import 'whatwg-fetch';
 
 import { ContextMixin } from '../ContextMixins';
 
 import { getSelectedOrgs } from '../../store/utils';
+
+/*
+import { Link }         from 'react-router';
 
 import CartLine from './CartLine.jsx';
 
@@ -14,8 +16,10 @@ const CartMenu=() => {
       </div>
     );
 };
-
+*/
 // {this.state.orgs.map( o => <CartLine key={o.id} {...o} />)}
+
+const ADVISOR_EMAIL = 'victor.stone@gmail.com';
 
 class Cart extends ContextMixin(React.Component) {
 
@@ -32,19 +36,56 @@ class Cart extends ContextMixin(React.Component) {
     this.setState({ orgs: getSelectedOrgs(selected,orgs) });
   }
 
+  onEmailMe() {
+    this._emailPlan(this.refs['email']);
+  }
+
+  onRequestAdvisor() {
+    this._emailPlan(ADVISOR_EMAIL);
+  }
+
+  _emailPlan(addr) {
+    const { fname, lname, email, phone } = this.refs;
+    const fakeData = [
+      { id: 245, amount: 100 },
+      { id: 247, amount: 200 }
+    ];
+    const payload = {
+      fname,
+      lname,
+      email,
+      phone,
+      addr,
+      items: fakeData
+    };
+    fetch (`${location.origin}/api/plan/send`, {
+      method: 'post',
+      headers: {
+        accept: 'application/json',
+        'content-type': 'application/json',
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify (payload),
+    }).then ( () => window.alert('Your plan has been sent') )
+    .catch( err => window.alert('there was a problem! ' + err) );
+  }
+
   render() {
     return (
       <div className="shopping-cart">
           <div className="donor-area"> 
             <h2> Plan Your Contributions </h2>
             <p>Use this worksheet to help plan how to most effectively make your donations to grassroots movement groups.</p> 
-            <p>Put in a planned donation for each group you are considering, and a report page will show how to give to those groups once you’ re finished. </p>
             <div className="info-area">
               <h3>Your Information</h3> 
-              <input type="text" placeholder="First Name" value="" /> 
-              <input type="text" placeholder="Last Name" value="" /> 
-              <input type="text" placeholder="Email" value="" /> 
-              <input type="text" placeholder="Phone" value="" />
+              <input ref="fname" type="text" placeholder="First Name" value="" /> 
+              <input ref="lname" type="text" placeholder="Last Name" value="" /> 
+              <input ref="email" type="text" placeholder="Email" value="" /> 
+              <input ref="phone" type="text" placeholder="Phone" value="" />
+              <div className="action-area">
+                You can email this plan to yoursefl <button className="btn btn-success">Email me</button>{' or '}
+                you can request a consultation with a donation advisor<button className="btn btn-success">Request consultation</button>
+              </div>
             </div>
 
             <div className="plan-display-area">

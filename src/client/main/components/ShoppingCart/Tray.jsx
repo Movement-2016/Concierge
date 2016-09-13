@@ -14,6 +14,10 @@ class Tray extends ContextMixin(React.Component) {
     this.hashId = '#' + this.id;
   }
 
+  componentDidMount() {
+    this._closeTray();
+  }
+  
   stateFromStore(storeState) {
     const { groups:{ selected } } = storeState;
 
@@ -21,8 +25,12 @@ class Tray extends ContextMixin(React.Component) {
       /* globals $ */
       $(this.hashId).animate( { height: 80 }, () => this.setState({ open: true, selected }) );
     } else {
-      open && $(this.hashId).animate( { height: 0 }, () => this.setState({ open: false }) );
+      open && this._closeTray();
     }
+  }
+
+  _closeTray() {
+    $(this.hashId).animate( { height: 0 }, () => this.setState({ open: false }) );
   }
 
   render() {

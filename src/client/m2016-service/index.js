@@ -71,6 +71,12 @@ class M2016Service {
     return this._filterDict;
   }
 
+  getOrgs() {
+    return this._orgs 
+      ? Promise.resolve(this._orgs)
+      : this._fetch( 'orgs' ).then( o => this._orgs = o );
+  }
+  
   get orgs() {
     return this._orgs;
   }

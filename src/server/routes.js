@@ -1,11 +1,14 @@
 const listenerApp = require ('./listenerApp');
 const listenerUser = require ('./listenerUser');
+const listenerMail = require('./listenerMail');
 
-// Initialize routes.
+
 function init (app) {
   listenerApp.init ();
   listenerUser.init ();
+  listenerMail.init();
 
+  /*
   app.post ('/api/login', listenerUser.login);
   app.post ('/api/logout', listenerUser.logout);
   app.get ('/api/verifylogin', listenerUser.verifyLogin);
@@ -18,9 +21,13 @@ function init (app) {
   app.post ('/api/plan/:_id', listenerApp.updatePlan);
 
   app.get ('/api/data', listenerApp.getData);
+  */
+
+  app.get( '/api/plan/send', listenerMail.sendPlan );
 }
 
 // authenticate, if passing continue, otherwise return 401 (auth failure)
+/*
 function isAuthenticated (req, res, next) {
   if (req.isAuthenticated ()) {
     return next ();
@@ -28,5 +35,6 @@ function isAuthenticated (req, res, next) {
     return res.status (401).json ({});
   }
 }
+*/
 
 exports.init = init;
