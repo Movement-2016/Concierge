@@ -18,13 +18,30 @@ var NavbarHeader = React.createClass({
   }
 });
 
-const MenuItem = ({href,linkto,text}) => {
-
+const _MenuItem = ({href,linkto,text} ) => {
   if( href ) {
-    return <a href={href}>{text}</a>;
+    return <li><a href={href}>{text}</a></li>;
   }
 
-  return <Link to={linkto}>{text}</Link>;
+  return <li><Link to={linkto}>{text}</Link></li>;
+};
+
+const MenuItem = ({href,linkto,menu,text}) => {
+  if( menu ) {
+    return (
+      <li>
+        <a href="#" className="dropdown-toggle" data-toggle="dropdown">
+          {text}
+          <span className="caret" />
+        </a>
+        <ul className="dropdown-menu">
+          {menu.map( (m,i) => <_MenuItem key={i} {...m} />)}
+        </ul>
+      </li>
+    );
+  }
+
+  return <_MenuItem href={href} linkto={linkto} text={text} />;
 };
 
 const MenuAnonymous = ({store}) => {
@@ -32,7 +49,7 @@ const MenuAnonymous = ({store}) => {
 
   return (
       <ul className="nav navbar-nav navbar-right">
-        {mainMenu.map( (m,i) => <li key={i}><MenuItem {...m} /></li>)}
+        {mainMenu.map( (m,i) => <MenuItem key={i} {...m} />)}
       </ul> 
     );
 };

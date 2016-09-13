@@ -138,9 +138,7 @@ gulp.task ('vendor-client-js', function () {
             .pipe(gulp.dest(`${base}/public/js`));  
 });
 
-const start = Date.now ();
-
-const rebundle = bundler => bundler.bundle ()
+const _rebundle = (bundler,start = Date.now()) => bundler.bundle ()
       .on ('error', function (err) {
         gutil.log (gutil.colors.red (err.toString ()));
       })
@@ -159,15 +157,21 @@ gulp.task ('browserify-watch', function () {
   bundler.external (dependencies);
   bundler.transform (babelify, babelifyOpts);
   bundler.on ('update', rebundle);
-  return rebundle (bundler);
+
+  function rebundle() {
+    const start = Date.now ();
+    return _rebundle(bundler,start);
+  }
+
+  return rebundle ();
 });
 
 gulp.task ('browserify', function () {
   const bundler = browserify (browserifyConfig);
   bundler.external (dependencies);
   bundler.transform (babelify, babelifyOpts);
-  bundler.on ('update', rebundle);
-  return rebundle (bundler);
+//bundler.on ('update', rebundle);
+  return _rebundle (bundler);
 });
 
 // Tasks to prepare staging version of application

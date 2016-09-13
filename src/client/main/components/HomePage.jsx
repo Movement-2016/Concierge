@@ -15,16 +15,16 @@ const SubSection = ({ section, numCols, colsPerRow }) => {
 
 class HomePage extends PageContext(React.Component) {
   get pages() {
-    return ['home', 'aboutSection', 'testimonials'];
+    return ['home', 'info', 'testimonials'];
   }
 
   render() {
-    const { home, aboutSection, testimonials } = this.state.pages;
+    const { home, info, testimonials } = this.state.pages;
     return(
       <div>
         <TilesPage page={home} className="home-area" />
         <div className="row about-us-area">
-          <SubSection section={aboutSection} numCols={6} colsPerRow={1} />
+          <SubSection section={info}         numCols={6} colsPerRow={1} />
           <SubSection section={testimonials} numCols={6} colsPerRow={2} />
         </div>
       </div>

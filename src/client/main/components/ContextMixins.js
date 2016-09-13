@@ -39,6 +39,14 @@ const PageContext = baseClass => class extends ContextMixin(baseClass) {
     const state = { pages: {} };
     pages && pages.forEach( p => state.pages[p] = service.pages[p] );
     page && (state.page = service.pages[page]);
+    if( state.page ) {
+      const { pageId } = state.page;
+      if( pageId ) {
+        service.getPage( pageId ).then( content => {
+          this.setState( {content} );
+        });
+      }
+    }
     this.setState (state);
   }
 

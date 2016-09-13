@@ -2,7 +2,7 @@
 import 'whatwg-fetch';
 import path  from 'jspath';
 
-const WP_API_HOST =  'movement2016.org'; // 'm2016dev.wpengine.com'; //
+const WP_API_HOST =   'movement2016.org'; // 'm2016dev.wpengine.com'; //
 
 const WP_API_BASE = 'http://' + WP_API_HOST + '/wp-json/movement-2.1/';
 
@@ -37,14 +37,21 @@ class M2016Service {
     if( this._orgs ) {
       return Promise.resolve(this);
     }
-    return Promise.all( [ this._fetch( 'orgs' ), this._fetch('tags') ] )
-        .then ( ([ orgs, tags ])  => {
+    return Promise.all( [ this._fetch( 'orgs' ), 
+                          this._fetch( 'tags' ),
+                          this._fetch( 'content' ) ] )
+        .then ( ([ orgs, tags, content ])  => {
           this._orgs = orgs;
           this._taxonomy = tags;
+          this._content = content;
           return this;
         });    
   }
 
+  getPage(id) {
+    return this._fetch( 'page/' + id ).then( p => p.content );
+  }
+  
   get donateStats() {
     return {
       goal: 10000000,
@@ -72,24 +79,32 @@ class M2016Service {
     return this._taxonomy.groupings.state;
   }
 
+/*
+
+  return array( 
+      'groupSections' => $groupSections,
+      'mainMenu'      => $mainMenu,
+      'pages' => array(
+          'home'         => $homePage,
+          'testimonials' => $testimonialsPage,
+          'donate'       => $donatePage,
+          'info'         => $infoPage,
+          'advisors'     => $advisorsPages,
+          'meetTheTeam'  => $meetTheTeamPage,
+          'aboutUs'      => $aboutUsPage
+        )
+    );
+*/
   get groupSections() {
-    return groupSections;
+    return this._content.groupSections;
   }
 
   get content() {
-    return {
-      mainMenu,
-      pages: this.pages
-    };
+    return this._content;
   }
 
   get pages() {
-    return {
-        home,
-        donate,
-        testimonials,
-        aboutSection
-      };
+    return this._content.pages;
   }
 }
 
@@ -98,6 +113,7 @@ class M2016Service {
 // TODO: This data should be at the WP Engine site as custom exportable fields
 **********************************************************************************/
 
+/*
 const groupSections = {
   purple: {
     name: 'purple',
@@ -233,5 +249,5 @@ const aboutSection = {
     }
   ]
 };
-
+*/
 module.exports = new M2016Service();

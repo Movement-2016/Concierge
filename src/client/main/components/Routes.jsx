@@ -10,14 +10,20 @@ import {
 
 import useScroll from 'react-router-scroll/lib/useScroll';
 
+import ContentPage      from './ContentPage.jsx';
+
 import CustomDonatePage from './CustomDonatePage.jsx';
 import HouseParty       from './HouseParty.jsx';
 import ContactPage      from './ContactPage.jsx';
-import AboutPage        from './AboutPage.jsx';
+//import AboutPage        from './AboutPage.jsx';
 import NotFoundPage     from './NotFoundPage.jsx';
 import HomePage         from './HomePage.jsx';
 import DonatePage       from './DonatePage.jsx';
 import ShoppingCart     from './ShoppingCart';
+
+const MeetTheTeamPage = () => <ContentPage page="meetTheTeam" />;
+const AboutUsPage     = () => <ContentPage page="aboutUs" />;
+const AdivsorsPage    = () => <ContentPage page="advisors" />;
 
 class Routes extends React.Component
 {
@@ -32,7 +38,9 @@ class Routes extends React.Component
             <Route path='/donate'     component={DonatePage} />
             <Route path='/groups'     component={CustomDonatePage}  />
             <Route path='/plan'       component={ShoppingCart} />
-            <Route path='/aboutus'    component={AboutPage} />
+            <Route path='/about'      component={AboutUsPage} />
+            <Route path='/partners'   component={AdivsorsPage} />
+            <Route path='/team'       component={MeetTheTeamPage} />
             <Route path='/getintouch' component={ContactPage} />
             <Route path='/houseparty' component={HouseParty} />
             <Route path='*'           component={NotFoundPage} />
