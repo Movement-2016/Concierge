@@ -16,8 +16,10 @@ class Alert extends React.Component {
   }
 
   _toggleShow(e) {
+    const { onClose } = this.props;
     e.preventDefault();
     this.setState({showing:false});
+    onClose && onClose();
   }
 
   render() {

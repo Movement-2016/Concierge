@@ -158,8 +158,8 @@ export function updateProfile (firstName, lastName, email, phone, favorites, don
   };
 }
 
-export function setProfile (firstName, lastName, email, phone, favorites, donations) {
-  return { type: SET_PROFILE, firstName, lastName, email, phone, favorites, donations };
+export function setProfile (profile) {
+  return { type: SET_PROFILE, profile};
 }
 
 // Save current profile to server

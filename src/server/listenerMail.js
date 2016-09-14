@@ -3,29 +3,13 @@ var GMail = require('./gmail');
 var M2016 = require('./m2016-service'); 
 var path = require('jspath');
 var Entities = require('html-entities').AllHtmlEntities;
- 
+var commaize = require('commaize');
+
 const entities = new Entities();
 
 const mailer = new GMail();
 
 let orgs = null;
-
-function commaize(value) {
-  if( value === 0 || value === '0' ) {
-      return '0';
-  } else if( value ) {
-      var regex = /([0-9]+)(([0-9]{3})($|,))/g;
-      var str;
-      var commaized = (value.string || value) + '';
-
-      do {
-          str = commaized;
-          commaized = str.replace(regex,'$1,$2');
-      } while( str !== commaized );
-
-      return commaized;
-  }
-}
 
 function init () {
   console.log( 'starting mail init');

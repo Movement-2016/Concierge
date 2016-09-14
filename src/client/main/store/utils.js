@@ -59,8 +59,8 @@ const getVisibleStates = orgs => {
   return path('..state',orgs).reduce( (a,e) => { a.indexOf(e) < 0 && a.push(e); return a; }, [] ).sort();
 };
 
-const getSelectedOrgs = (ids,orgs) => {
-  if( !ids ) { return []; }
+const getSelectedOrgs = (ids =[],orgs) => {
+  if( !ids.length ) { return []; }
   var p = '..{' + ids.map( id => '.id == ' + id ).join('||') + '}';
   return path( p, orgs );
 };

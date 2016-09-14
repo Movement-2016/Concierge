@@ -23,47 +23,57 @@ class EmailPlanButton extends React.Component {
   }
 
   onEmailMe() {
-    const { form, onError } = this.props;
-    var addr = form['email'].value;
-    if( !addr ) {
+    const sstate      = this.context.store.getState();
+    const { onError } = this.props;
+    const { 
+      user,
+      user:{
+        email
+      } 
+    } = sstate;
+
+    if( !email ) {
       return onError('Hey, you forgot to put in your email address.');
     }
-    this._emailPlan(addr);
+    this._emailPlan(email,user);
   }
 
   onRequestAdvisor() {
-    const { form, onError } = this.props;
+    const sstate      = this.context.store.getState();
+    const { onError } = this.props;
+
     const { 
-      email:{value:email}, 
-      phone:{value:phone} 
-    } = form;
+      user,
+      user:{
+        email,
+        phone
+      } 
+    } = sstate;
 
     if( !email && !phone ) {
       return onError( 'Hey, you should include either your email address or a phone number.' );
     }
-    this._emailPlan(ADVISOR_EMAIL);
+    this._emailPlan(ADVISOR_EMAIL,user);
   }
 
-  _emailPlan(addr) {
+  _emailPlan(addr,user) {
 
     const { onError, onDone } = this.props;
 
-    const { 
-      fname:{value:fname}, 
-      lname:{value:lname}, 
-      email:{value:email}, 
-      phone:{value:phone} 
-    } = this.props.form;
-    
+    onDone(''); // clear error messages
+
     const storeState = this.context.store.getState();
 
+    const {
+      plan: items,
+      planTotal
+    } = storeState.groups;
+
     const payload = {
-      fname,
-      lname,
-      email,
-      phone,
+      ...user,
       addr,
-      items: storeState.groups.plan
+      items,
+      planTotal
     };
 
     fetch (`${location.origin}/api/plan/send`, {
@@ -74,13 +84,15 @@ class EmailPlanButton extends React.Component {
       },
       credentials: 'same-origin',
       body: JSON.stringify (payload),
-    }).then ( resp => {
-      if( resp && resp.labelIds && resp.labelIds.includes('SENT') ) {
+    })
+    .then( resp => resp.json() )
+    .then( resp => {
+      // this is a gmail api thing
+      if( resp.labelIds && resp.labelIds.includes('SENT') ) {
         onDone('Mail was sent!');  
       } else {
-        onError('could not send mail, sorr about that');
-      }
-      
+        onError('could not send mail, sorry about that');
+      }      
     }).catch( () => onError('wups, something went wrong') );
   }
 

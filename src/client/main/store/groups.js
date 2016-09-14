@@ -10,7 +10,8 @@ import {
 const initialState = {
   selected: [],
   visibility: {},
-  plan: []
+  plan: [],
+  planTotal: 0
 };
 
 export default function groups (state = initialState, action) {
@@ -40,7 +41,11 @@ export default function groups (state = initialState, action) {
       let { plan }         = state;
       const { id, amount } = action;
 
-      return { ...state, plan: [ ...path(`..{.id!=${id}}`, plan), { id, amount } ] };
+      const st = { ...state, plan: [ ...path(`..{.id!=${id}}`, plan), { id, amount } ] };
+
+      st.planTotal = path('..amount',st.plan).reduce( (total,amount) => total + Number(amount), 0 );
+
+      return st;
     }
 
     case SET_VISIBILITY: {

@@ -5,8 +5,8 @@ import { SET_SELECTED_GROUPS, TOGGLE_GROUP } from '../../main/store/constants';
 const initialState = {
   authenticated: false,
   username: '',
-  firstName: '',
-  lastName: '',
+  fname: '',
+  lname: '',
   email: '',
   phone: '',
   favorites: [],
@@ -22,23 +22,16 @@ export default function user (state = initialState, action) {
       });
 
     case SET_PROFILE:
-      return Object.assign ({}, state, {
-        firstName: action.firstName,
-        lastName: action.lastName,
-        email: action.email,
-        phone: action.phone,
-        favorites: action.favorites,
-        donations: action.donations,
-      });
+      return { ...state, ...action.profile };
 
     case SET_USER_FIRSTNAME:
       return Object.assign ({}, state, {
-        firstName: action.firstName,
+        fname: action.fname,
       });
 
     case SET_USER_LASTNAME:
       return Object.assign ({}, state, {
-        lastName: action.lastName,
+        lname: action.lname,
       });
 
     case SET_USER_EMAIL:

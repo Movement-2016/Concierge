@@ -2,7 +2,7 @@ import React     from 'react';
 import Alert     from '../../../ui/Alert.jsx';
 
 import EmailPlanButton from './EmailPlanButton.jsx';
-  
+import ProfileInput    from './ProfileInput.jsx';
 
 class PlanForm extends React.Component {
 
@@ -13,8 +13,9 @@ class PlanForm extends React.Component {
       error: null,
       msg: null
     };
-    this.onEmailMe = this.onEmailMe.bind(this);
-    this.onRequestAdvisor = this.onRequestAdvisor.bind(this);
+
+    this.onError = this.onError.bind(this);
+    this.onDone  = this.onDone.bind(this);
   }
 
   onError(error) {
@@ -30,8 +31,7 @@ class PlanForm extends React.Component {
 
     const btnProps = {
       onError: this.onError,
-      onDone: this.onDone,
-      form: this.refs
+      onDone: this.onDone
     };
 
     return (
@@ -41,10 +41,10 @@ class PlanForm extends React.Component {
           <Alert msg={error || msg} type={error ? Alert.DANGER : Alert.SUCCESS} />
           <div className="info-area">
             <h3>Your Information</h3> 
-            <input ref="fname" name="fname" type="text" placeholder="First Name" defaultValue="" /> 
-            <input ref="lname" name="lname" type="text" placeholder="Last Name" defaultValue="" /> 
-            <input ref="email" name="email" type="text" placeholder="Email" defaultValue="" /> 
-            <input ref="phone" name="phone" type="text" placeholder="Phone" defaultValue="" />
+            <ProfileInput name="fname" placeholder="First Name" /> 
+            <ProfileInput name="lname" placeholder="Last Name"  /> 
+            <ProfileInput name="email" placeholder="Email"      /> 
+            <ProfileInput name="phone" placeholder="Phone"      />
             <div className="action-area"> 
               <EmailPlanButton {...btnProps} >Email me this plan</EmailPlanButton>
               {' or '}
