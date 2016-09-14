@@ -1,8 +1,12 @@
 /* globals fetch */
 let _fetch = null;
 if( typeof window !== 'undefined') {
-  require('whatwg-fetch');
-  _fetch = fetch;
+  // require('whatwg-fetch');
+  // _fetch = fetch;
+  /* global $ */
+  _fetch = (url) => {
+    return new Promise( (success,error) => $.ajax({url,success,error,xhrFields: {withCredentials:true}} ) );
+  };
 } else {
   _fetch = require('node-fetch');
 }
@@ -14,7 +18,7 @@ const WP_API_HOST =   'movement2016.org'; // 'm2016dev.wpengine.com'; //
 const WP_API_BASE = 'http://' + WP_API_HOST + '/wp-json/movement-2.1/';
 
 function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
+  if (!response.status || (response.status >= 200 && response.status < 300)) {
     return response;
   } else {
     var error = new Error(response.statusText);
@@ -24,7 +28,7 @@ function checkStatus(response) {
 }
  
 function parseJSON(response) {
-  return response.json();
+  return response.json ? response.json() : response;
 }
 
 class M2016Service {

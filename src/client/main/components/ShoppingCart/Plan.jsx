@@ -1,5 +1,4 @@
 import React     from 'react';
-import path      from 'jspath';
 
 import { ContextMixin } from '../ContextMixins';
 
@@ -8,33 +7,7 @@ import {
   organizeOrgs 
 } from '../../store/utils';
 
-class Org extends React.Component {
-
-  constructor() {
-    super(...arguments);
-    const { filters, tags } = this.props;
-    const pred = tags.map( t => `.name=="${t}"` ).join('||');
-    this.tags = path(`."nonprofit-type".terms..{${pred}}.label`,filters);
-  }
-
-  render() {
-
-    const {
-      id,
-      name
-    } = this.props;    
-
-    return(
-      <div className="group-plan">
-        <div className="giving-area">{'$'}<input type="text" id={`amount${id}`} defaultValue="0" /></div>
-        <div className="name-plan" dangerouslySetInnerHTML={{__html:name}} />
-        <div className="org-type-area">
-          {this.tags.map( t => <span key={t}>{t} </span> )}
-        </div>
-      </div>
-    );
-  }
-}
+import Org from './Org.jsx';
 
 class StateOrgs extends React.Component {
   render() {

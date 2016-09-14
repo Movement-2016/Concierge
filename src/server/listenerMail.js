@@ -2,6 +2,9 @@
 var GMail = require('./gmail');
 var M2016 = require('./m2016-service'); 
 var path = require('jspath');
+var Entities = require('html-entities').AllHtmlEntities;
+ 
+const entities = new Entities();
 
 const mailer = new GMail();
 
@@ -89,7 +92,7 @@ function mailPlan (req, res) {
   items.forEach( item => {
     const { id, amount } = item;
     const group = path(`..{.id==${id}}`,orgs)[0];
-    total += amount;
+    total += Number(amount);
     mail += planFormatter(Object.assign({},group,{amount}));
   });
   mail += mailFooter(total);
@@ -99,11 +102,11 @@ function mailPlan (req, res) {
   const payload = {
     to: addr,
     subject: 'Your Movement 2016 Giving Plan',
-    message: mail
+    message: entities.decode(mail)
   };
 
   mailer.send( payload )
-    .then( result => { console.log(result); res.status( 200 ).json(result); } )
+    .then( result => { console.log(addr,result); res.status( 200 ).json(result); } )
     .catch( err => { console.log('error', err ); res.status( 500 ).json( err ); } );
 }
 
