@@ -49,10 +49,12 @@ class M2016Service {
       return Promise.resolve(this);
     }
     return Promise.all( [ this._fetch( 'orgs' ), 
+                          this._fetch( 'donationstats'),
                           this._fetch( 'tags' ),
                           this._fetch( 'content' ) ] )
-        .then ( ([ orgs, tags, content ])  => {
+        .then ( ([ orgs, donationstats, tags, content ])  => {
           this._orgs = orgs;
+          this._donationstats = donationstats;
           this._taxonomy = tags;
           this._content = content;
           return this;
@@ -64,10 +66,7 @@ class M2016Service {
   }
   
   get donateStats() {
-    return {
-      goal: 10000000,
-      pledged: 1503000
-    };
+    return this._donationstats;
   }
 
   get filters() {
