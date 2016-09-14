@@ -9,33 +9,17 @@ const fastArrCmp = (a,b) => {
   return false;
 };
 
-/*
-  A filter is an array of tags. The fiters are grouped by 
-  a key. (type of org, constituency, etc.)
-
-  If any one of the keyed groups of tags doesn't match
-  the org's tags then the group is not visible.
-*/
-const getVisibleOrgs = (orgs,filters) => {
+const _iterateOrgs = (orgs,callback) => {
 
   var visible = {};
-  var tags = Object.keys(filters).map( k => filters[k] ); 
-  
+
   for( var section in orgs ) {
     for( var state in orgs[section] ) {
       for( var i in orgs[section][state] ) {
 
         const org  = orgs[section][state][i];
-        let   ok   = true;
 
-        for( var n = 0; n < tags.length; n++ ) {
-          if( !fastArrCmp(org.tags,tags[n]) ) {
-            ok = false;
-            break;
-          }
-        }
-
-        if( ok ) {
+        if( !callback || callback(org) ) {
           !visible[section] && (visible[section] = {});
           !visible[section][state] && (visible[section][state] = []);
           visible[section][state].push(org);
@@ -46,6 +30,29 @@ const getVisibleOrgs = (orgs,filters) => {
   }
   
   return visible;
+
+};
+
+/*
+  A filter is an array of tags. The fiters are grouped by 
+  a key. (type of org, constituency, etc.)
+
+  If any one of the keyed groups of tags doesn't match
+  the org's tags then the group is not visible.
+*/
+const getVisibleOrgs = (orgs,filters) => {
+
+  var tags = Object.keys(filters).map( k => filters[k] ); 
+  
+  return _iterateOrgs( orgs, org => {
+    for( var n = 0; n < tags.length; n++ ) {
+      if( !fastArrCmp(org.tags,tags[n]) ) {
+        return false;
+      }
+    }
+    return true;
+  });
+
 };
 
 const getVisibleStates = orgs => {
@@ -53,12 +60,23 @@ const getVisibleStates = orgs => {
 };
 
 const getSelectedOrgs = (ids,orgs) => {
+  if( !ids ) { return []; }
   var p = '..{' + ids.map( id => '.id == ' + id ).join('||') + '}';
   return path( p, orgs );
+};
+
+const organizeOrgs = orgs => {
+  return orgs.reduce( (states,org) => {
+    const { state } = org;
+    !states[state] && (states[state] = []);
+    states[state].push( org );
+    return states;
+  }, {});
 };
 
 module.exports = {
   getVisibleStates,
   getVisibleOrgs,
-  getSelectedOrgs
+  getSelectedOrgs,
+  organizeOrgs
 };

@@ -30,6 +30,8 @@ const babelifyOpts = {
 };
 
 const dependencies = [
+  'jspath',
+  'node-fetch',
   'react',
   'react-dom',
   'react-masonry-component',
@@ -102,8 +104,15 @@ gulp.task ('fonts', function () {
 });
 
 // copy server
-gulp.task ('server', function () {
-  return gulp.src ( ['src/server/*.js', 'src/client/m2016-service/*.js' ])
+gulp.task( 'server', ['_service','_server']);
+
+gulp.task ('_service', function () {
+  return gulp.src ( 'src/client/m2016-service/index.js')
+    .pipe (gulp.dest (base + '/m2016-service'));
+});
+
+gulp.task ('_server', function () {
+  return gulp.src ( 'src/server/*.js')
     .pipe (gulp.dest (base));
 });
 

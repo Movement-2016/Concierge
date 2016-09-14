@@ -1,6 +1,13 @@
 /* globals fetch */
-import 'whatwg-fetch';
-import path  from 'jspath';
+let _fetch = null;
+if( typeof window !== 'undefined') {
+  require('whatwg-fetch');
+  _fetch = fetch;
+} else {
+  _fetch = require('node-fetch');
+}
+
+var path = require('jspath');
 
 const WP_API_HOST =   'movement2016.org'; // 'm2016dev.wpengine.com'; //
 
@@ -28,7 +35,7 @@ class M2016Service {
   }
 
   _fetch(part) {
-    return fetch( this._base + part )
+    return _fetch( this._base + part )
             .then( checkStatus )
             .then( parseJSON );
   }

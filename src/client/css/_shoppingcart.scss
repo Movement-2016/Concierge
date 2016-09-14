@@ -1,6 +1,6 @@
 .shopping-cart {
   max-width: 900px;
-  margin: 100px auto 0 auto;
+  margin: 30px auto 50 auto;
   overflow: hidden;
 
   .donor-area {
@@ -40,6 +40,12 @@
         border: none;
         border-bottom: 1px solid darkgray;
       }
+
+      .action-area {
+        text-align: center;
+        margin-top: 20px;
+        letter-spacing: 0.4em;
+      }
     }
   }
   .plan-display-area {
@@ -56,13 +62,35 @@
 
         h3 {
           color: white;
-          width: 200px;
           font-size: 16px;
-          padding: 2px 0px 2px 4px;
+          padding: 5px 0 5px 14px;
+          border-radius: 5px 5px 0px 0px;
+        }
+
+        h3.purple {
+          background-color: #b46ec9;
+        }
+
+        h3.light-blue {
+          background-color: #79A6D2;
+        }
+        
+        h3.light-red {
+          background-color: #D4867F;
+        }
+        
+        h3.dark-blue {
+          background-color: #1F81BB;
+        }
+        
+        h3.dark-red {
+          background-color: #B5473C;
         }
 
         .group-plan {
-          border: 1px solid lightgray;
+          border-top: 1px solid lightgray;
+          border-left: 1px solid lightgray;
+          border-right: 1px solid lightgray;
           overflow: hidden;
 
           .name-plan {
@@ -70,16 +98,29 @@
             padding: 8px 0px 8px 12px;
             font-size: 16px;
             font-weight: 400;
+            margin-right: 12px;
+            max-width: 80%;
           }
 
-          .tags-plan {
-            font-size: 12px;
+          .org-type-area {
+            margin: 0px 8px 12px 8px;
+            clear: both;
+
+            span {
+              margin-right: 4px;
+              padding: 4px 12px;
+              border-radius: 10px;
+              color: black;
+              background-color: #EEEEEE;
+              display: inline-block;
+            }
           }
 
           .giving-area {
             float: right;
             overflow: hidden;
             margin-left: 8px;
+            margin-rigth: 8px;
             padding: 8px 0px 0px 0px;
             background-color: white;
             font-size: 18px;
@@ -96,6 +137,16 @@
             }
           }
         }
+        
+        .group-plan:first-child {
+          border-top: 0px;
+        }
+        
+        .group-plan:last-child {
+          border-bottom: 1px solid lightgray;
+          border-radius: 0px 0px 5px 5px;
+        }
+
       }
     }
   }

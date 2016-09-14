@@ -1,6 +1,7 @@
 const db = require ('./db');
 
 function init () {
+  console.log( 'app init');
 }
 
 function getPlan (req, res) {

@@ -22,8 +22,8 @@ function init (app) {
 
   app.get ('/api/data', listenerApp.getData);
   */
+  app.post( '/api/plan/send', listenerMail.mailPlan );
 
-  app.get( '/api/plan/send', listenerMail.sendPlan );
 }
 
 // authenticate, if passing continue, otherwise return 401 (auth failure)

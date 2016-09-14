@@ -54,6 +54,8 @@ function start (port, dbLocation) {
       // create server with HTML and REST routes
       routes.init (app);
 
+        console.log ('back from routes');
+
       // handle zipped javascript content
       app.get ('*.js', (req, res) => {
         const file = path.join (__dirname, `public${req.path}.gz`);

@@ -41,7 +41,7 @@ class GMail {
   _authorize(credentials) {
     return new Promise( resolve => {
 
-      if( !this._oauth2Client ) {
+      //if( !this._oauth2Client ) {
         const { 
           client_secret, 
           client_id,
@@ -50,7 +50,7 @@ class GMail {
 
         var auth = new googleAuth();
         this._oauth2Client = new auth.OAuth2(client_id, client_secret, redirect_uris[0] );        
-      }
+      //}
 
       readJSON( GMail.TOKEN_PATH )
         .then( credentials => resolve( Object.assign( this._oauth2Client, { credentials })))
@@ -62,17 +62,18 @@ class GMail {
     if( this._profile ) {
       return Promise.resolve(this._profile);
     }
-    return readJSON( GMail.PROFILE_PATH ).then( p => this._profile = p);
+    return readJSON( GMail.PROFILE_PATH ).then( p => this._profile = p.profile);
   }
 
   send(mail) {
     return this.authorize().then( auth => 
       this.profile.then( profile => new Promise( (resolve,reject) => {
+        const head = Object.assign( {}, mail, profile );
         const payload = {
           auth: auth,
           userId: 'me',
           resource: { 
-            raw: createMessage( Object.assign( {}, mail, profile ) )
+            raw: createMessage( head )
           }
         };
         google.gmail('v1').users.messages.send(payload, (err,resp) => {
