@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 export default class FilteredInput extends React.Component {
   render () {
@@ -10,11 +9,12 @@ export default class FilteredInput extends React.Component {
             e.preventDefault ();
           }
         }
-      }/>
+      }
+      />
     );
   }
 }
 
 FilteredInput.PropTypes = {
   filter: React.PropTypes.object.isRequired
-}
+};

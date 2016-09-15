@@ -1,0 +1,47 @@
+$lighter-text: rgba(0,0,0,0.54);
+// Map
+$map-purple: #b46ec9;
+$map-dark-red: #B5473C;
+$map-light-red: #D4867F;
+$map-dark-blue: #1F81BB;
+$map-light-blue: #79A6D2;
+
+.map-area {
+	padding: 0px 0;
+    width: 200px;
+    text-align: center;
+	color: $lighter-text;
+	.map-title {
+		margin-top: 0px;
+	}
+    .map-dark-red /* was .q0-7 */ {
+        fill: $map-dark-red;
+        &:hover {
+            fill: darken($map-dark-red, 8%);
+        }
+    }
+    .map-light-red /* .q2-7 */ {
+        fill: $map-light-red;
+        &:hover {
+            fill: darken($map-light-red, 8%);
+        }
+    }
+    .map-purple /* .q3-7 */ {
+        fill: $map-purple;
+        &:hover {
+            fill: darken($map-purple, 8%);
+        }
+    }
+    .map-light-blue /* .q4-7 */ {
+        fill: $map-light-blue;
+        &:hover {
+            fill: darken($map-light-blue, 8%);
+        }
+    }
+    .map-dark-blue /* .q5-7 */ {
+        fill: $map-dark-blue;
+        &:hover {
+            fill: darken($map-dark-blue, 8%);
+        }
+    }
+}

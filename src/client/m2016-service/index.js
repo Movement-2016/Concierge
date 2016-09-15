@@ -57,6 +57,7 @@ class M2016Service {
           this._donationstats = donationstats;
           this._taxonomy = tags;
           this._content = content;
+          this._taxonomy.states = this._taxonomy.state;
           return this;
         });    
   }
