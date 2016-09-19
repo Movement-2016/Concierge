@@ -123,7 +123,7 @@ gulp.task ('vendor', function () {
     .bundle ()
     .pipe (source ('vendor.bundle.js'))
     .pipe (buffer ())
-    .pipe (uglify ({ mangle: false }))
+//    .pipe (uglify ({ mangle: false }))
     .pipe (gzip ({ append: true }))
     .pipe (gulp.dest (`${base}/public/js`));
 });

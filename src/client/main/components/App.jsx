@@ -2,6 +2,8 @@ import React        from 'react';
 import { render }   from 'react-dom';
 import { Provider } from 'react-redux';
 
+import '../../lib/polyfills';
+
 import configureStore        from '../../store/configureStore';
 
 import { initService }       from '../../m2016-service/actions';
