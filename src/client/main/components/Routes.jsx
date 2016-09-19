@@ -24,6 +24,8 @@ import ShoppingCart     from './ShoppingCart';
 const MeetTheTeamPage = () => <ContentPage page="meetTheTeam" />;
 const AboutUsPage     = () => <ContentPage page="aboutUs" />;
 const AdivsorsPage    = () => <ContentPage page="advisors" />;
+const PressPage       = () => <ContentPage page="press" />;
+const TookkitsPage    = () => <ContentPage page="toolkits" />;
 
 class Routes extends React.Component
 {
@@ -43,6 +45,8 @@ class Routes extends React.Component
             <Route path='/team'       component={MeetTheTeamPage} />
             <Route path='/getintouch' component={ContactPage} />
             <Route path='/houseparty' component={HouseParty} />
+            <Route path='/press'      component={PressPage} />
+            <Route path='/toolkits'   component={TookkitsPage} />
             <Route path='*'           component={NotFoundPage} />
           </Route>
         </Router>
