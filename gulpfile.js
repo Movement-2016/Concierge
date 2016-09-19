@@ -49,14 +49,14 @@ const fonts = [
 ];
 
 const vendorStyles = [
-  'node_modules/bootstrap/dist/css/bootstrap.min.css',
+//  'node_modules/bootstrap/dist/css/bootstrap.min.css',
 //  'node_modules/materialize-css/dist/css/materialize.min.css'
 ];
 
 const vendorClientJS = [
   'node_modules/jquery/dist/jquery.min.js',
-  'node_modules/bootstrap/dist/js/bootstrap.min.js',
-//  'node_modules/materialize-css/dist/js/materialize.min.js'
+//  'node_modules/bootstrap/dist/js/bootstrap.min.js',
+  'node_modules/materialize-css/dist/js/materialize.min.js'
 ];
 
 const stageDir = '../concierge-stage';

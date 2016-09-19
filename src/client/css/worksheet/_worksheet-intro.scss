@@ -1,0 +1,61 @@
+@media #{$medium-and-up} {
+    .form-header {
+        padding: 0 10%;
+    }
+}
+
+.infobox {
+    @extend .z-depth-1;
+    background-color: $white;
+    margin-top: 30px;
+    .infobox-title {
+        background-color: $primary-color-light;
+        padding: 8px 15px;
+        h5 {
+            color: $white;
+        }
+    }
+    .infobox-description {
+        color: $lighter-text;
+        border-top: 1px solid $light-border;
+        border-bottom: 1px solid $light-border;
+        padding: 15px;
+    }
+    .infobox-form {
+        padding: 0px 15px 24px;
+		[type="checkbox"] + label {
+			padding-left: 30px;
+			margin: 8px 0;
+			line-height: 1.3;
+		}
+		text-align: right;
+    }
+	.checkbox-group {
+		margin-top: 12px;
+		margin-bottom: 12px;
+		text-align: left;
+	}
+	input.input-city {
+		width: calc(100% - 73px);
+	}
+	input.input-state {
+		width: 60px;
+		margin-left: 10px;
+	}
+	textarea {
+		margin: 15px 0;
+	}
+    @media #{$medium-and-up} {
+        .infobox-title, .infobox-description, .infobox-form {
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+    }
+}
+#reset-button {
+    text-transform: uppercase;
+    color: lighten($secondary-color, 20%);
+    &:hover {
+        color: $secondary-color;
+    }
+}

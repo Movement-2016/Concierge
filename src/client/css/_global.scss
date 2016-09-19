@@ -1,0 +1,53 @@
+body {
+    background-color: $body-bg-color;
+    overflow-wrap: break-word;
+}
+
+ul {
+    margin:0;
+}
+@media #{$large-and-up} {
+	.container {
+		width: 80%;
+		max-width: 1000px;
+	}
+}
+.small-container {
+	margin: 0 auto;
+	@media #{$medium-and-up} {
+		width: 75%;
+	}
+	@media #{$large-and-up} {
+		width: 66%;
+	}
+}
+
+.row {
+    margin-bottom: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+textarea {
+    border-color: $light-border;
+    background: color('grey', 'lighten-5');
+    padding: 6px;
+	max-width: 100%;
+}
+
+// Class for when element is above threshold
+.filter-col.pin-top {
+    position: relative;
+}
+
+// Class for when element is below threshold
+.filter-col.pin-bottom {
+    position: relative;
+}
+
+// Class for when element is pinned
+.filter-col.pinned {
+    position: fixed !important;
+}
