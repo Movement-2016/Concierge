@@ -4,7 +4,7 @@ $almost-white: rgba(240,240,240,0.97);
 
 
 $navBarHeight: 64px;
-$thermometerHeight: 0;
+$thermometerHeight: 50px;
 $headerHeight: $thermometerHeight + $navBarHeight;
 
 @mixin z-depth-1 {
