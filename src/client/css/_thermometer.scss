@@ -1,7 +1,7 @@
 $widgetHeight: 15px;
 
 .thermometerArea {
-
+  display: none;
   padding: 8px;
   position: fixed;
   top: 0;
@@ -36,7 +36,7 @@ $widgetHeight: 15px;
   }
 
   .mercury {
-    background: $cBlue;    
+    background: $blue;    
     min-height: $widgetHeight;
     max-width: 0;
     border-radius: 6px;  

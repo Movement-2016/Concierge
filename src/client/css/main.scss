@@ -1,8 +1,4 @@
-$cBlue: #42A5F5;
-$thermometerHeight: 34px;
-$navBarHeight: 64px;
-$headerHeight: $thermometerHeight + $navBarHeight;
-
+@import 'variables';
 @import 'fonts';
 @import 'defaults';
 @import 'header';
@@ -28,7 +24,6 @@ $headerHeight: $thermometerHeight + $navBarHeight;
 }
 
 /* main content area under Nav area */
-
 .main-area {
   margin-top: $headerHeight;
   overflow: hidden;
@@ -37,23 +32,5 @@ $headerHeight: $thermometerHeight + $navBarHeight;
 
 .main-area main {
   padding-top: 20px;  
-}
-
-// overwrite Bootstrap defaults
-
-.btn-primary {
-  background-image: -webkit-linear-gradient(top,#337ab7 0,$cBlue 100%);
-  background-image: -o-linear-gradient(top,#337ab7 0,$cBlue 100%);
-  background-image: -webkit-gradient(linear,left top,left bottom,from(#337ab7),to($cBlue));
-  background-image: linear-gradient(to bottom,#337ab7 0,$cBlue 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff337ab7', endColorstr='#ff265a88', GradientType=0);
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-  background-repeat: repeat-x;
-  border-color: #245580;
-}
-
-.btn-primary:focus, .btn-primary:hover {
-  background-color: #4a9de2;
-  background-position: 0 -8px;
 }
 

@@ -13,7 +13,7 @@
     z-index: 10;
     top: 62px;
     color: white;
-    background-color: $cBlue;
+    background-color: $blue;
     border-color: white;
     border-radius: 8px;
     font-size: 16px;
@@ -28,7 +28,7 @@
   }
 
   .filter-title-toggle {
-    color: $cBlue;
+    color: $blue;
     margin-right: 4px;
     cursor: pointer;
   }
@@ -47,7 +47,7 @@
     font-size: 12px;
     color: white;
     border: none;
-    background-color: $cBlue;
+    background-color: $blue;
     padding: 1px 6px 1px 4px;
     border-radius: 4px;
     margin: 0 4px 0 0;
@@ -75,7 +75,7 @@
     }
 
     a:hover {
-      color: $cBlue;
+      color: $blue;
     }
 
     select {

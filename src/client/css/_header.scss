@@ -1,63 +1,54 @@
-
-// overwrite Bootstrap defaults
+.top-nav-area, .navbar-header, .navbar-nav, .navbar-brand, .navbar-nav>li>a {
+  height: $navBarHeight;
+  line-height: $navBarHeight;
+  padding-top: 0;
+  padding-bottom: 0;
+}
 
 .top-nav-area {
-
   position: fixed;
   top: $thermometerHeight;
   width: 100%;  
-  background: white;
-  z-index: 100;
-  opacity: 1.0;
-  border-bottom: 1px solid $cBlue;
-  height: $navBarHeight;
-  border-radius: 0px;
+  background-color: $almost-white;
+  @include z-depth-1;
+  border: 0;
 
-  .navbar-toggle .icon-bar {
-    background: $cBlue;
-  }
-
-  #nav-collapse .nav.navbar-nav {
-    background: white;
-  }
-
-  .navbar-brand,
-  .navbar-brand:hover,
-  .navbar-brand:visited {
+  .navbar-brand {
     font-family: Arvo;
     font-style: italic;
-    font-size: 35;
     font-weight: 700;
-    color: $cBlue;
+    font-size: 24px;
+    padding: 0 15px;
+    color: $blue;
     text-decoration: none;
-    margin-top: 6px;
   }
-
-  .navbar-header {
-    margin-left: 5%;
-  }
-
-  @media screen and (max-width: 740px) {
-    
-    .navbar-brand,
-    .navbar-brand:hover,
-    .navbar-brand:visited {
-      font-size: inherit;
+  
+  .navbar-nav>li>a {
+    color: $dark-grey;
+    &:hover, &:focus {
+      background: #e0e0e0;
     }
-
-    .navbar-header {
-      margin-left: 1%;
+  }
+  .nav .open {
+    a {
+      background: none;
+      &:hover, &:focus {
+        background: #e0e0e0;
+      }
     }
+    .dropdown-menu {
+      left: 0;
+      right: auto;
+      border: 0;
+      border-radius: 0;
+      background: $almost-white;
+      li {
+        width: 100%;
+        a {
+          padding: 8px 20px;
+        }
+      }
+    }
+  }
     
-  }
-
-  .navbar-nav > li > a {
-    padding-top: 20px;    
-    padding-bottom: 20px;    
-  }
-
-  .navbar-nav > li > a.active {
-    color: #777;
-    border-bottom: 2px solid $cBlue;
-  }
 }

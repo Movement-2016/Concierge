@@ -1,0 +1,13 @@
+$blue: #42A5F5;
+$dark-grey: rgba(0,0,0,0.83);
+$almost-white: rgba(240,240,240,0.97); 
+
+
+$navBarHeight: 64px;
+$thermometerHeight: 0;
+$headerHeight: $thermometerHeight + $navBarHeight;
+
+@mixin z-depth-1 {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+  z-index: 100;
+}
