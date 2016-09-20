@@ -1,23 +1,6 @@
 import React               from 'react';
 import { Link, IndexLink } from 'react-router';
 
-var NavbarHeader = React.createClass({
-  render: function() {
-    const { homeLink } = this.props;
-    return (
-        <div className="navbar-header">
-          <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse" aria-expanded="false">
-          <span className="sr-only">{"Toggle navigation"}</span>
-          <span className="icon-bar" />
-          <span className="icon-bar" />
-          <span className="icon-bar" />
-          </button>
-          {homeLink}
-        </div>
-      );
-  }
-});
-
 const _MenuItem = ({href,linkto,text} ) => {
   if( href ) {
     return <li><a href={href}>{text}</a></li>;
@@ -26,29 +9,30 @@ const _MenuItem = ({href,linkto,text} ) => {
   return <li><Link to={linkto}>{text}</Link></li>;
 };
 
-const MenuItem = ({href,linkto,menu,text}) => {
-  if( menu ) {
-    return (
-      <li>
-        <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-          {text}
-          <span className="caret" />
-        </a>
-        <ul className="dropdown-menu">
+const MenuDropDown = ({menu,text}) => {
+  const href1 = menu[0].href;
+  return (
+    <li className="drop-down-btn" >
+      <a href={href1}>{text}</a>
+        <ul className="drop-down">
           {menu.map( (m,i) => <_MenuItem key={i} {...m} />)}
         </ul>
       </li>
-    );
-  }
-
-  return <_MenuItem href={href} linkto={linkto} text={text} />;
+      );
 };
 
-const MenuAnonymous = ({store}) => {
+const MenuItem = ({href,linkto,menu,text}) => {
+
+  return menu
+      ? <MenuDropDown text={text} menu={menu} />
+      : <_MenuItem href={href} linkto={linkto} text={text} />;
+};
+
+const MenuAnonymous = ({store,className,id}) => {
   const { content: { mainMenu } } = store.getState().service;
 
   return (
-      <ul className="nav navbar-nav navbar-right">
+      <ul className={className} id={id}>
         {mainMenu.map( (m,i) => <MenuItem key={i} {...m} />)}
       </ul> 
     );
@@ -56,29 +40,36 @@ const MenuAnonymous = ({store}) => {
 
 class Nav extends React.Component {
 
+  static contextTypes = {
+    store: React.PropTypes.object.isRequired,
+  };
+
+  componentDidMount() {
+    /* global $ */
+    $('.button-collapse').sideNav();    
+  }
+
   render() {
 
     const { siteTitle } = this.props;
 
     const { store } = this.context;
 
-    var homeLink = <IndexLink to="/" className="navbar-brand">{siteTitle}</IndexLink>;
-
     return (
-        <nav className="navbar top-nav-area">
-          <div className="container-fluid">
-            <NavbarHeader title={siteTitle} homeLink={homeLink}/>
-            <div className="collapse navbar-collapse" id="nav-collapse">
-              <MenuAnonymous store={store}/>
-            </div>
+      <div className="navbar-fixed">
+        {this.dropdowns}
+        <nav>
+          <div className="nav-wrapper">
+            <IndexLink to="/" className="brand-logo">{siteTitle}</IndexLink>
+            <a href="#" data-activates="mobile-menu" className="button-collapse"><i className="material-icons">menu</i></a>
+            <MenuAnonymous className="right hide-on-med-and-down" store={store}/>
+            <MenuAnonymous className="side-nav" id="mobile-menu" store={store} />
           </div>
         </nav>
+      </div>
       );
   }
 }
 
-Nav.contextTypes = {
-  store: React.PropTypes.object.isRequired,
-};
 
 module.exports = Nav;

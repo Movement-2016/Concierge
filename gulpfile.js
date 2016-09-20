@@ -45,7 +45,7 @@ const dependencies = [
 
 const fonts = [
   'src/client/fonts/**/*',
-  'node_modules/bootstrap/dist/fonts/*'
+//  'node_modules/bootstrap/dist/fonts/*'
 ];
 
 const vendorStyles = [
