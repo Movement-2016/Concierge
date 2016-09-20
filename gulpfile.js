@@ -2,7 +2,6 @@
 /* eslint- import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 const gulp = require ('gulp');
 const gutil = require ('gulp-util');
-const cssmin = require ('gulp-cssmin');
 const sass = require ('gulp-sass');
 const buffer = require ('vinyl-buffer');
 const source = require ('vinyl-source-stream');
@@ -131,8 +130,10 @@ gulp.task ('vendor', function () {
 
 gulp.task ('styles', function () {
   return gulp.src ('src/client/css/main.scss')
+    .pipe(sourcemaps.init())
     .pipe (sass ().on ('error', sass.logError))
-    .pipe (cssmin ())
+    .pipe(sourcemaps.write())
+//    .pipe (cssmin ())
     .pipe (gulp.dest (`${base}/public/css`));
 });
 
