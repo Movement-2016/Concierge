@@ -1,5 +1,6 @@
 import React from 'react';
 import { PageContext } from './ContextMixins';
+import Loading from './Loading.jsx';
 
 class ContentPage extends PageContext(React.Component) {
 
@@ -17,7 +18,7 @@ class ContentPage extends PageContext(React.Component) {
     } = this.state;
 
     if( !content ) {
-      return <div className="well loading">loading...</div>;
+      return <Loading />;
     }
 
     return(

@@ -4,6 +4,7 @@ import TagString from 'tag-string';
 import OrgList  from './OrgList';
 import Filters  from './Filters';
 import Tray     from './ShoppingCart/Tray.jsx';
+import Loading  from './Loading';
 
 import { ContextMixin } from './ContextMixins';
 
@@ -19,7 +20,8 @@ class CustomDonatePage extends ContextMixin(React.Component) {
   constructor() {
     super(...arguments);
     this.state = {
-      selectedTerms: this.context.store.getState().groups.visibility    
+      selectedTerms: this.context.store.getState().groups.visibility,
+      loading: true
     };
     this.onShowSection  = this.onShowSection.bind(this);
     this.onShowGroup    = this.onShowGroup.bind(this);
@@ -38,7 +40,8 @@ class CustomDonatePage extends ContextMixin(React.Component) {
 
     this.setState( { 
       selectedTerms: visibility,
-      orgs: getVisibleOrgs( orgs, visibility )
+      orgs: getVisibleOrgs( orgs, visibility ),
+      loading: false
     });
   }
 
@@ -58,9 +61,14 @@ class CustomDonatePage extends ContextMixin(React.Component) {
   render() {
     const {
       selectedTerms,
-      orgs
+      orgs,
+      loading
     } = this.state;
     
+    if( loading ) {
+      return <Loading />;
+    }
+
     const fprops = {
       onShowGroup:     this.onShowGroup,
       onShowSection:   this.onShowSection,

@@ -31,7 +31,6 @@ nav {
     }
 
 	.drop-down {
-		display: none;
 		line-height: 48px;
 		position: absolute;
 		min-width: 160px;
@@ -44,6 +43,10 @@ nav {
 				background-color: color('grey','lighten-2');
 			}
 		}
+
+        li {
+            float:none;
+        }
 	}
 	.drop-down-btn:hover .drop-down {
 		display: block;

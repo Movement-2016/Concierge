@@ -1,6 +1,7 @@
 import React from 'react';
 import 'whatwg-fetch';
 import { findDOMNode } from 'react-dom';
+import Loading from './Loading.jsx';
 
 class StateMap extends React.Component {
 
@@ -83,7 +84,7 @@ class StateMap extends React.Component {
         <div className="map-area">
           {mapData
             ? <div id="map" dangerouslySetInnerHTML={{__html:mapData}} />
-            : <div className="well loading">Loading...</div>
+            : <Loading />
           }
         </div>
       );
