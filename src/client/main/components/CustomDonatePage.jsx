@@ -4,7 +4,7 @@ import TagString from 'tag-string';
 import OrgList  from './OrgList';
 import Filters  from './Filters';
 import Tray     from './ShoppingCart/Tray.jsx';
-import Loading  from './Loading';
+import Loading  from './Loading.jsx';
 
 import { ContextMixin } from './ContextMixins';
 
