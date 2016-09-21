@@ -4,7 +4,27 @@ import {
   ContextMixin 
 } from '../ContextMixins';
 
-import { toggleItem } from '../../store/actions';
+import { toggleItem }        from '../../store/actions';
+import { filterTagsByTypes } from '../../store/utils';
+
+class TagBlock extends React.Component {
+  render() {
+    const { tagTypes } = this.props;
+    return (
+        <div>
+        {Object.keys(tagTypes).map( (t,i) => {
+          const { label, tags } = tagTypes[t];
+          return (
+              <div className="tagblock" key={i} >
+                <div className="tagblock-title">{label}</div>
+                <div className="tagblock-tags">{tags.map( (g,i) => <span key={i}>{g}</span>)}</div>
+              </div>
+            );
+        })}
+        </div>
+      );
+  }
+}
 
 class Item extends ContextMixin(React.Component) {
 
@@ -17,7 +37,8 @@ class Item extends ContextMixin(React.Component) {
     
     this.onItemClick = this.onItemClick.bind(this);
 
-    this.filters = this.context.store.getState().service.filterDict;
+    this.filters = this.context.store.getState().service.filters;
+
   }
 
   shouldComponentUpdate() {
@@ -47,7 +68,7 @@ class Item extends ContextMixin(React.Component) {
       urlGive,
       description,
       tags,
-      group
+      id
     } = this.props;
 
     const {
@@ -57,18 +78,28 @@ class Item extends ContextMixin(React.Component) {
     const text = selected ? 'Remove from plan' : 'Add to plan';
     const cls  = selected ? 'selected' : '';
 
+    const {
+      'nonprofit-type': nonProfitType,
+      constituency,
+      'issue-area': issueArea
+    } = filterTagsByTypes({tags,filters:this.filters});
+    
+
     return(
-        <div className={`item ${group} ${cls}`}>
-          <div className="name"><span dangerouslySetInnerHTML={{__html:name}} /></div>
-          <div className="links-area">
-            {urlWeb && <a className="img-link" href={urlWeb} target="_blank" rel="noopener noreferrer"><img src="/images/ic_link_red_24dp.png" alt="" /><span> Website</span></a>}
-            {urlGive && <a className="img-link" href={urlGive}><img src="/images/ic_star_border_red_24dp.png" alt="" /><span> Contribute</span></a>}
-            <a className="img-link" href="#" onClick={this.onItemClick}><span><span className="glyphicon glyphicon-tasks" /> {text}</span></a>
+        <div className={`group ${cls}`}>
+          <h5 className="group-title" data-id={id}><a href={`/groups#${id}`} dangerouslySetInnerHTML={{__html:name}} /></h5>        
+          <div className="row">
+            <div className="links-col col s12 m8">
+              {urlWeb  && <a className="group-link" href={urlWeb}  target="_blank"><i className="material-icons">link</i>Website</a>}
+              {urlGive && <a className="group-link" href={urlGive} target="_blank"><i className="material-icons">star_border</i>Contribute</a>}
+              <a className="group-link" href="#" onClick={this.onItemClick}><span><i className="material-icons">toc</i> {text}</span></a>
+            </div>
+            <div className="nonprofit-tags col s12 m4">
+              {nonProfitType.tags.map( t => <span key={t}>{t}</span> )}
+            </div>
           </div>
-          <div className="org-type-area">
-            {tags.map( t => <span key={t}>{this.filters[t]}</span> )}
-          </div>
-          <div className="description-area" dangerouslySetInnerHTML={{__html:description}} />
+          <div className="group-content"><p dangerouslySetInnerHTML={{__html:description}} /></div>
+          <TagBlock tagTypes={{constituency,issueArea}} />
         </div>
       );
   }

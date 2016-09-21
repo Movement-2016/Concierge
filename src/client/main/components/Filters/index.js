@@ -12,6 +12,11 @@ class Filters extends ServiceContext(React.Component) {
     super(...arguments);
   }
 
+  componentDidMount() {
+    /* globals $ */
+    $('.filter-col .collapsible'). collapsible();
+  }
+
   render() {
     const { 
       filters, 
@@ -29,12 +34,16 @@ class Filters extends ServiceContext(React.Component) {
     const hasSections = visibleSections.length + visibleGroups.length > 0;
 
     return (
-        <div className="group-selector-area">
-          <h4>Filter by</h4>
-          {Object.keys(filters).map( f => <Filter key={f} {...this.props} {...filters[f]} /> )}
-          {hasSections && <h4>Go to...</h4>}
-          <ScrollLinks links={groupSections} onShowSection={onShowSection} visible={visibleSections} />
-          <Groupings terms={terms} onShowGroup={onShowGroup} visible={visibleGroups} />
+        <div className="filter-menu closed">
+          <div className="filters-title">Filter By:</div>
+          <ul className="filters collapsible" data-collapsible="accordion">
+            {Object.keys(filters).map( f => <Filter key={f} {...this.props} {...filters[f]} /> )}
+          </ul>
+          {hasSections && <div className="groups-nav">
+            <div className="groups-nav-title">Go To:</div>
+            <ScrollLinks links={groupSections} onShowSection={onShowSection} visible={visibleSections} />
+            <Groupings terms={terms} onShowGroup={onShowGroup} visible={visibleGroups} />
+          </div>}
         </div>
       );
   }

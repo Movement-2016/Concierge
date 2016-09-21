@@ -1,19 +1,18 @@
 import React from 'react';
 
 const ScrollLink = ({ name, label }) => {
-  return <a href={'#' + name}>{label}</a>;
+  return <li><a href={'#' + name + '-states'}>{label}</a></li>;
 };
 
 const ScrollLinks = ({ visible, links }) => {
   if( !visible.length ) {
     return <span />;
   }
-  const { name } = visible[0];
   return(
-      <div className="filter-group">
-        <ScrollLink name={name} label="Top" />
+      <ul>
+        <li key="top"><a href="#header">Top</a></li>
         {visible.map( k => <ScrollLink key={k} {...links[k]} /> )}
-      </div>
+      </ul>
     );
 };
 

@@ -71,12 +71,24 @@ class CustomDonatePage extends ContextMixin(React.Component) {
       visibleGroups:   getVisibleStates(orgs)
     };
 
+    /* put a '-' in front of pinned b/c I couldn't see below it
+       on a MBP */
+       
     return (
       <div className="custom-donate-area">
         <h1>Custom Donation Plan</h1>
-        <StateMap />
-        <Filters {...fprops} />
-        <OrgList orgs={orgs} />
+        <div className="group-area">
+          <div className="row">
+            <div className="group-col col s12 m9">
+              <OrgList orgs={orgs} />
+            </div>
+            <div className="col s12 m3">
+              <div className="filter-col -pinned" style={{top:0}} >
+                <Filters {...fprops} />
+              </div>
+            </div>
+          </div>
+        </div>
         <Tray />
       </div>
     );
