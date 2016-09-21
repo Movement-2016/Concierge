@@ -3,7 +3,7 @@ import React from 'react';
 import path  from 'jspath';
 
 
-const FilterCheckbox = ({ label, name, cat, onTermsChecked, selected, seeAll }) => {
+const FilterCheckbox = ({ label, name, cat, onTermsChecked, selected, disabled }) => {
 
   const checked = selected[cat].includes(name);
 
@@ -11,12 +11,13 @@ const FilterCheckbox = ({ label, name, cat, onTermsChecked, selected, seeAll }) 
     type:      'checkbox',
     className: `filter-checkbox ${selected ? 'filled-in' : ''}`,
     id:        'checkbox-' + name,
-    onChange:   checked => onTermsChecked (cat, [name], checked),
-    checked
+    onChange:   () => onTermsChecked (cat, [name], !checked),
+    checked,
+    disabled
   };
 
   return (
-    <div className={`filter ${seeAll ? 'see-all-mode' : ''}`}>
+    <div className={`filter ${disabled ? 'disabled' : ''}`}>
       <input {...cProps} /> <label htmlFor={cProps.id}>{label}</label>
     </div>
   );
@@ -26,36 +27,21 @@ class Filter extends React.Component {
 
   constructor() {  
     super(...arguments);
-    const { name, expanded = false} = this.props;
 
     this.state = { 
-      expanded, 
       seeAll: true,
     };
 
-    this.optsId = 'filter-opts-' + name;
-    this.hashId = '#' + this.optsId;
-
     this.onAll   = this.onAll.bind(this);
-    this.onClear = this.onClear.bind(this);
   }
 
-  componentWillReceiveProps(props) {
-    const { expanded } = props;
-    this.setState({ expanded });
-  }
-
-  onAll(e) {
-    const seeAll = e.target.value === 'true';
+  onAll() {
+    const seeAll = !this.state.seeAll;
     this.setState({ seeAll });
-    this._sendSelected(seeAll);
+    seeAll && this._sendSelected(seeAll);
   }
 
-  onClear() {
-    this._sendSelected(true);
-  }
-
-  _sendSelected(clear) {
+  _sendSelected(seeAll) {
     const { 
       terms, 
       name,
@@ -63,12 +49,11 @@ class Filter extends React.Component {
     } = this.props;
 
     const names = path('..name', terms );
-    onTermsChecked( name, names, !clear );
+    onTermsChecked( name, names, seeAll );
   }
 
   render() {
     const { 
-      expanded,
       seeAll,
     } = this.state;
 
@@ -78,19 +63,18 @@ class Filter extends React.Component {
       terms,
     } = this.props;
 
-    const toggle = expanded ? '-' : '+';
-    const cls    = 'filter-checkbox ' + (seeAll ? 'filled-in' : '');
-    const id     = `checkbox-${name}-see-all`;
+    const cls = 'filter-checkbox ' + (seeAll ? 'filled-in' : '');
+    const id  = `checkbox-${name}-see-all`;
 
     return (
       <li className={`filter-group ${name}-filters`}>
-          <div className="collapsible-header" onClick={this.toggleExpanded}><span>{toggle}</span>{label}</div>
+          <div className="collapsible-header"><span className="toggle"/>{label}</div>
           <div className="collapsible-body" style={{display:'none'}}>
             <div className="filter" key="all">
-                <input type="checkbox" ref="seeAll" className={cls} id={id} value={seeAll} onChange={this.onAll} />
+                <input type="checkbox" ref="seeAll" className={cls} id={id} checked={seeAll} onChange={this.onAll} />
                 <label htmlFor={id}>See All</label>
             </div>
-            {Object.keys(terms).map( t => <FilterCheckbox {...this.props} {...terms[t]} key={t} cat={name} seeAll={seeAll} /> )}
+            {Object.keys(terms).map( t => <FilterCheckbox {...this.props} {...terms[t]} key={t} cat={name} disabled={seeAll} /> )}
           </div>
       </li>
     );

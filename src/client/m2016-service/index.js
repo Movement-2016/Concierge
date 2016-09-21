@@ -15,7 +15,7 @@ var path = require('jspath');
 
 const WP_API_HOST =   'movement2016.org'; // 'm2016dev.wpengine.com'; //
 
-const WP_API_BASE = 'http://' + WP_API_HOST + '/wp-json/movement-2.1/';
+const WP_API_BASE = 'https://' + WP_API_HOST + '/wp-json/movement-2.1/';
 
 function checkStatus(response) {
   if (!response.status || (response.status >= 200 && response.status < 300)) {

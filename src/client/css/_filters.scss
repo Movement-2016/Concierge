@@ -7,27 +7,53 @@
 
 .filter-menu {
     color: $lighter-text;
-    @media #{$medium-and-up} {
+    padding: 0px 8px;
+/*    @media #{$medium-and-up} {
         padding-left: 0.75rem;
     }
     @media #{$large-and-up} {
         padding-left: 3rem;
     }
-}
+*/}
 
 .filters-title, .groups-nav-title {
     font-weight: 700;
 }
 
+.filter-col {
+    top: 0px;
+    margin-top: 120px;
+    padding: 0px;
+
+    div, ul, li,
+    .collapsible-header,
+    .collapsible-body,
+    .collapsible {
+        border: 0px;
+        background-color: #f5f5f5;
+        box-shadow: 0px 0px 0px 0px;
+    }
+}
+
 .filters {
+
     .filter-group {
         padding: 10px 0 6px;
     }
+
     .collapsible-header {
+        min-height: 0px;
+        line-height: initial;
+
         &.active {
             font-weight: 700;
+            span.toggle:before {
+                content: '-';
+            }
         }
-        span {
+        
+        span.toggle:before {
+            content: '+';
             font-weight: 700;
             color: $primary-color;
             padding-right: 8px;
@@ -37,6 +63,10 @@
         padding: 6px 8px 0 2px;
     }
 
+    .filter.disabled {
+        opacity: 0.4;
+    }
+    
     [type="checkbox"].filled-in {
         & + label {
             height: 18px;

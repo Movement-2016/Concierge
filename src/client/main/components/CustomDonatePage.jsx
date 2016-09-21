@@ -3,7 +3,6 @@ import TagString from 'tag-string';
 
 import OrgList  from './OrgList';
 import Filters  from './Filters';
-import StateMap from './StateMap.jsx';
 import Tray     from './ShoppingCart/Tray.jsx';
 
 import { ContextMixin } from './ContextMixins';
@@ -83,7 +82,7 @@ class CustomDonatePage extends ContextMixin(React.Component) {
               <OrgList orgs={orgs} />
             </div>
             <div className="col s12 m3">
-              <div className="filter-col -pinned" style={{top:0}} >
+              <div className="filter-col pinned" >
                 <Filters {...fprops} />
               </div>
             </div>
