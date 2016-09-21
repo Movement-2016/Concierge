@@ -46,8 +46,8 @@ class CustomDonatePage extends ContextMixin(React.Component) {
 
   }
 
-  onShowGroup() {
-
+  onShowGroup(state) {
+    document.getElementById(state).scrollIntoView();
   }
 
   onTermsChecked(cat, terms, toggle) {
