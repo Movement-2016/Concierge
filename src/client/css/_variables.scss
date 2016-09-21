@@ -15,12 +15,14 @@ $xl-and-up: "only screen and (min-width : #{$large-screen-up})";
 
 // Base Color
 $white: #fff;
-$primary-color: #2196f3;
-$primary-color-light: #42a5f5;
-$secondary-color: #f44336;
+$primary-color: color("blue", "base");
+$primary-color-light: color("blue", "lighten-1");
+$secondary-color: color("red", "base");
+$success-color: color("green", "base");
+$error-color: color("deep-orange", "darken-1");
 $link-color: $secondary-color;
 
-$body-bg-color: #fafafa;
+$body-bg-color: color('grey', 'lighten-5');
 
 // Text
 $dark-text: rgba(0, 0, 0, 0.87);
@@ -40,7 +42,7 @@ $thermometer-color: $primary-color;
 
 // Groups
 $group-area-bg-color: $white;
-$group-tag-color: #eeeeee;
+$group-tag-color: color('grey', 'lighten-3');
 $title-bg-color: $primary-color-light;
 
 // Navbar
@@ -54,3 +56,4 @@ $map-dark-red: #B5473C;
 $map-light-red: #D4867F;
 $map-dark-blue: #1F81BB;
 $map-light-blue: #79A6D2;
+

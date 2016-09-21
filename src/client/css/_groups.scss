@@ -47,7 +47,7 @@
 	background: $map-dark-red;
 }
 .state {
-	@extend .z-depth-1;
+	@include z-depth-1;
 	background-color: $white;
 	padding: 0;
 }

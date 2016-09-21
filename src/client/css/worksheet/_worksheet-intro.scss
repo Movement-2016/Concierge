@@ -5,7 +5,7 @@
 }
 
 .infobox {
-    @extend .z-depth-1;
+    @include z-depth-1;
     background-color: $white;
     margin-top: 30px;
     .infobox-title {
