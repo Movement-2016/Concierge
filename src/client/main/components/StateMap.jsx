@@ -2,6 +2,13 @@ import React from 'react';
 import 'whatwg-fetch';
 import { findDOMNode } from 'react-dom';
 import Loading from './Loading.jsx';
+import { browserHistory } from 'react-router';
+
+window.slink = function(e,a) {
+  e.stopPropagation();
+  e.preventDefault();
+  browserHistory.push(a);
+};
 
 class StateMap extends React.Component {
 
@@ -55,7 +62,8 @@ class StateMap extends React.Component {
               cls   = 'map-no-groups';
             }
 
-            $e.attr('xlink:href', link);
+            $e.attr('onclick', 'window.slink(event,"'+link+'")');
+            $e.attr('xlink:href', '#');
             $e.attr('data-tooltip', title);
             $('path',a).addClass( cls );
 
