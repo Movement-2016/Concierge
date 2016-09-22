@@ -64,7 +64,7 @@ class App extends React.Component {
 
     return (
       <Provider store={store}>
-        <div>
+        <div className="site-wrapper">
           <Thermometer goal={goal} pledged={pledged} />
           <Nav siteTitle={SITE_TITLE} />
           <div className='main-area'>

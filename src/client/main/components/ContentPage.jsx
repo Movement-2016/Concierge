@@ -22,10 +22,12 @@ class ContentPage extends PageContext(React.Component) {
     }
 
     return(
-        <div className={`content-page ${this.page}`}>
-          <h1>{title}</h1>
-          <div className="content" dangerouslySetInnerHTML={{__html:content}} />;
-        </div>
+        <main className={`content-page ${this.page}`}>
+          <div className="container small-container">
+            <h1 className="page-title">{title}</h1>
+            <div className="content" dangerouslySetInnerHTML={{__html:content}} />;
+          </div>
+        </main>
       );
   }
 }

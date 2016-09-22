@@ -7,18 +7,19 @@
 @import "mixins";
 @import "typography";
 @import "navigation";
+@import "content-page";
+@import "contact-page";
 @import "homepage/donate-section";
 @import "homepage/testimonial-section";
 @import "homepage/map-section";
+@import "footer";
+@import "groups";
 @import "filters";
 @import "mobile-filters";
-@import "groups";
-@import "footer";
 @import "single-post";
 @import "worksheet/worksheet-intro";
 @import "worksheet/worksheet-groups";
 @import "worksheet/worksheet-results";
-@import "contact";
 @import "partners";
 @import "partner-logos";
 
@@ -29,17 +30,3 @@
 @import 'new-styles/thermometer';
 @import 'new-styles/donate';
 @import 'new-styles/shoppingcart'; 
-
-#app {
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: white;
-}
-
-/* main content area under Nav area */
-.main-area {
-/*  margin-top: $headerHeight;
-*/  overflow: hidden;
-  background-color: white;
-}

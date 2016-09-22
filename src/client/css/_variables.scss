@@ -1,6 +1,13 @@
-// Heights
+// Sizes
 $thermometerHeight: 40px;
-$headerHeight: 100px;
+$navbar-height: 64px;
+$navbar-height-mobile: 56px;
+
+
+//Base font sizes
+$h1-fontsize: 2.28rem;
+$h5-fontsize: 1.4rem;
+
 
 // Media Query Ranges
 $small-screen-up: 761px;
@@ -21,7 +28,8 @@ $secondary-color: color("red", "base");
 $success-color: color("green", "base");
 $error-color: color("deep-orange", "darken-1");
 $link-color: $secondary-color;
-$trans-grey: rgba(240, 240, 240, 0.97);
+
+$navbar-color: rgba(247, 247, 247, 0.97);
 
 $body-bg-color: color('grey', 'lighten-5');
 

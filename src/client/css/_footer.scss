@@ -1,10 +1,11 @@
 .site-footer {
   @include z-depth-2;
   background-color: $white;
+  border-top: 1px solid $light-border;
   text-align: center;
   padding: 30px;
   @media #{$medium-and-up} {
-    padding-top: 40px;
+    padding-top: 50px;
   }
   .partners-title {
     text-transform: uppercase;

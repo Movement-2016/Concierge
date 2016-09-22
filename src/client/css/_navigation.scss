@@ -2,14 +2,11 @@
   margin-top: 37px;
 }
 nav {
-  background-color: $trans-grey;
+  background-color: $navbar-color;
   ul a {
     font-size: 1.1rem;
     color: rgba(0, 0, 0, 0.83);
     padding: 0 20px;
-    &.highlight {
-      color: $secondary-color;
-    }
     &:hover {
       background-color: color('grey', 'lighten-2');
     }
@@ -37,7 +34,7 @@ nav {
     padding-left: 30px;
     padding-right: 15px;
     .drop-down-btn {
-      a {
+      &>a {
         height: 64px;
       }
       i {
