@@ -14,6 +14,14 @@ const getVisibleSections = (allSections,orgs) => {
 
 class OrgsList extends ServiceContext(React.Component) {
 
+  componentDidMount() {
+    if( location.hash ) {
+      const state = location.hash.replace('#','');
+      const groups = document.getElementById(state);
+      groups && setTimeout( () => groups.scrollIntoView(), 200 );
+    }
+  }
+
   render() {
     const {
       groupSections,

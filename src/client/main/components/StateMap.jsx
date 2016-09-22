@@ -3,6 +3,7 @@ import 'whatwg-fetch';
 import { findDOMNode } from 'react-dom';
 import Loading from './Loading.jsx';
 import { browserHistory } from 'react-router';
+import '../../lib/tooltip';
 
 window.slink = function(e,a) {
   e.stopPropagation();
@@ -64,7 +65,7 @@ class StateMap extends React.Component {
 
             $e.attr('onclick', 'window.slink(event,"'+link+'")');
             $e.attr('xlink:href', '#');
-            $e.attr('data-tooltip', title);
+            $e.attr('title', title);
             $('path',a).addClass( cls );
 
           });
@@ -81,7 +82,7 @@ class StateMap extends React.Component {
     if( !this.gotTT ) {
       const $e = $(findDOMNode(this));
       const $links = $('[data-toggle="tooltip"]',$e);
-      $links.tooltip(); // { container:'.map-area' }); 
+      $links.tooltip({ container:'.map-area' }); 
       this.gotTT = true;      
     }
   }
