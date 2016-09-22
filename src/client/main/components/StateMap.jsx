@@ -38,6 +38,7 @@ class StateMap extends React.Component {
             const state = states[stateName] || null;
 
             $e.attr('data-toggle', 'tooltip');
+            $e.attr('data-position', 'bottom');
 
             let link, title, cls;
 
@@ -55,7 +56,7 @@ class StateMap extends React.Component {
             }
 
             $e.attr('xlink:href', link);
-            $e.attr('title', title);
+            $e.attr('data-tooltip', title);
             $('path',a).addClass( cls );
 
           });
@@ -72,9 +73,13 @@ class StateMap extends React.Component {
     if( !this.gotTT ) {
       const $e = $(findDOMNode(this));
       const $links = $('[data-toggle="tooltip"]',$e);
-      $links.tooltip({ container:'.map-area' }); 
+      $links.tooltip(); // { container:'.map-area' }); 
       this.gotTT = true;      
     }
+  }
+
+  onStateClick(e) {
+    location.href = e.target.href;
   }
 
   render() {
