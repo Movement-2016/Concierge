@@ -31,18 +31,23 @@
 		}
 	}
 }
+.state-title.purple,
 .purple-states-title:before {
 	background: $map-purple;
 }
+.state-title.light-blue,
 .light-blue-states-title:before {
 	background: $map-light-blue;
 }
+.state-title.dark-blue,
 .dark-blue-states-title:before {
 	background: $map-dark-blue;
 }
+.state-title.light-red,
 .light-red-states-title:before {
 	background: $map-light-red;
 }
+.state-title.dark-red,
 .dark-red-states-title:before {
 	background: $map-dark-red;
 }

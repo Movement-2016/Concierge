@@ -23,6 +23,7 @@ function init (app) {
   app.get ('/api/data', listenerApp.getData);
   */
   app.post( '/api/plan/send', listenerMail.mailPlan );
+  app.post( '/api/houseparty', listenerMail.houseParty );
 
 }
 
