@@ -42,20 +42,20 @@ class HomePage extends PageContext(React.Component) {
               <div className="thermometer-area">
                 <Mercury {...this.state.donateStats} />
                 <div className="thermometer-numbers">
-                  <div className="thermometer-current">{'$' + commaize(pledged) + 'Pledged'}</div>
-                  <div className="thermometer-goal">{'$' + commaize(goal) + 'Goal'}</div>
+                  <div className="thermometer-current">{'$' + commaize(pledged) + ' Pledged'}</div>
+                  <div className="thermometer-goal">{'$' + commaize(goal) + ' Goal'}</div>
                 </div>
               </div>
               <div className="pledge-area row">
                 <div className="pledge-col col s12 m4">
                   <div className="pledge">
-                    <Link className="pledge-button btn waves-effect waves-light" to="/donate">Easy</Link>
+                    <Link className="pledge-button btn waves-effect waves-light" to="/donate">Easy Donate</Link>
                     <div className="pledge-desc">Split your contribution evenly between all Movement 2016 groups in purple states.</div>
                   </div>
                 </div>
                 <div className="pledge-col col s12 m4">
                   <div className="pledge">
-                    <Link className="pledge-button btn waves-effect waves-light" to="/groups">Customized</Link>
+                    <Link className="pledge-button btn waves-effect waves-light" to="/groups">Browse Groups</Link>
                     <div className="pledge-desc">Custom plan your giving. Filter groups by state, issue area, or nonprofit tax status.</div>
                   </div>
                 </div>
@@ -70,37 +70,39 @@ class HomePage extends PageContext(React.Component) {
           </div>
         </section>
         <section className="testimonial-section">
+          <div className="container">
           <div className="row">
             <div className="col s12 m6 l3">
               <div className="testimonial">
                 <div className="testimonial-content">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</div>
-                <div className="testimonial-author">- Steve Baliwag</div>
+                <div className="testimonial-author">Steve Baliwag</div>
               </div>
             </div>
-          <div className="col s12 m6 l3">
+            <div className="col s12 m6 l3">
               <div className="testimonial">
                 <div className="testimonial-content">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</div>
-                <div className="testimonial-author">- Steve Baliwag</div>
+                <div className="testimonial-author">Ringo Brewn</div>
               </div>
             </div>
-          <div className="col s12 m6 l3">
-              <div className="testimonial">
-                <div className="testimonial-content">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</div>
-                <div className="testimonial-author">- Steve Baliwag</div>
-              </div>
+            <div className="col s12 m6 l3">
+            <div className="testimonial">
+              <div className="testimonial-content">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</div>
+              <div className="testimonial-author">Floppy Fern</div>
             </div>
-          <div className="col s12 m6 l3">
-              <div className="testimonial">
-                <div className="testimonial-content">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</div>
-                <div className="testimonial-author">- Steve Baliwag</div>
-              </div>
+            </div>
+            <div className="col s12 m6 l3">
+            <div className="testimonial">
+              <div className="testimonial-content">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</div>
+              <div className="testimonial-author">Sierra Sierra</div>
+            </div>
             </div>
           </div>
+        </div>
         </section>
         <section className="volunteer-section">
         </section>
         <section className="map-section">
-          <div className="container">
+          <div className="container">             
             <StateMap />
           </div>
         </section>

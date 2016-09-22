@@ -73,7 +73,7 @@
   height: 100%;
   background: $thermometer-color;
   border-radius: 9px 0 0 9px;
-  @include push-right;
+//  @include push-right;
 }
 .thermometer-numbers {
   @include clearfix;

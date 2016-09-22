@@ -1,7 +1,18 @@
+.map-section {
+  background-color: $body-bg-color;
+  border-top: 1px solid $light-border;
+  border-bottom: 1px solid $light-border;
+  padding: 30px 0;
+  @media #{$medium-and-up} {
+    padding: 60px 0;
+  }
+}
+
 .map-area {
-	padding: 60px 0;
-    text-align: center;
-	color: $lighter-text;
+  margin: 0 auto;
+  text-align: center;
+  color: $lighter-text;
+    max-width: 856px;
 	.map-title {
 		margin-top: 0px;
 	}

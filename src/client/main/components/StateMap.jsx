@@ -94,13 +94,15 @@ class StateMap extends React.Component {
     const { mapData } = this.state;
 
     return (
-        <div className="map-area">
+      <div className="map-area">
+        <h4 className="map-title">Find A Group</h4>
+        <div className="map-desc">Click the map to browse the groups in each state.</div>
           {mapData
             ? <div id="map" dangerouslySetInnerHTML={{__html:mapData}} />
             : <Loading />
           }
-        </div>
-      );
+      </div>
+    );
   }
 }
 
