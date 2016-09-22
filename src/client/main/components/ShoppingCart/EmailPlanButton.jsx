@@ -1,7 +1,7 @@
 import React     from 'react';
 import 'whatwg-fetch';
 
-const ADVISOR_EMAIL = 'victor.stone@gmail.com';
+const ADVISOR_EMAIL = 'advisor@movement2016.org';
 
 class EmailPlanButton extends React.Component {
 
@@ -35,7 +35,7 @@ class EmailPlanButton extends React.Component {
     if( !email ) {
       return onError('Hey, you forgot to put in your email address.');
     }
-    this._emailPlan(email,user);
+    this._emailPlan(email,user,false);
   }
 
   onRequestAdvisor() {
@@ -53,10 +53,10 @@ class EmailPlanButton extends React.Component {
     if( !email && !phone ) {
       return onError( 'Hey, you should include either your email address or a phone number.' );
     }
-    this._emailPlan(ADVISOR_EMAIL,user);
+    this._emailPlan(ADVISOR_EMAIL,user,true);
   }
 
-  _emailPlan(addr,user) {
+  _emailPlan(addr,user,isAdmin) {
 
     const { onError, onDone } = this.props;
 
@@ -73,10 +73,11 @@ class EmailPlanButton extends React.Component {
       ...user,
       addr,
       items,
+      isAdmin,
       planTotal
     };
 
-    fetch (`${location.origin}/api/plan/send`, {
+    const opts = {
       method: 'post',
       headers: {
         accept: 'application/json',
@@ -84,16 +85,18 @@ class EmailPlanButton extends React.Component {
       },
       credentials: 'same-origin',
       body: JSON.stringify (payload),
-    })
-    .then( resp => resp.json() )
-    .then( resp => {
-      // this is a gmail api thing
-      if( resp.labelIds && resp.labelIds.includes('SENT') ) {
-        onDone('Mail was sent!');  
-      } else {
-        onError('could not send mail, sorry about that');
-      }      
-    }).catch( () => onError('wups, something went wrong') );
+    };
+
+    fetch (`${location.origin}/api/plan/send`, opts)
+      .then( resp => resp.json() )
+      .then( resp => {
+        // this is a gmail api thing
+        if( resp.labelIds && resp.labelIds.includes('SENT') ) {
+          onDone('Mail was sent!');  
+        } else {
+          onError('could not send mail, sorry about that');
+        }      
+      }).catch( () => onError('wups, something went wrong') );
   }
 
 
