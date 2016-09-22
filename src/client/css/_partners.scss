@@ -1,21 +1,21 @@
 .template_page-partners {
-	.page-content {
-		text-align: center;
-		h5 {
-			color: $lightest-text;
-		}
-		.national-partners {
-			max-width: 300px;
-			margin: 4rem auto 3rem;
-			@media #{$medium-and-up} {
-				max-width: 670px;
-			}
-		}
-		.advisory-board h5 {
-			padding-bottom: 1rem;
-		}
-	}
-	.site-footer {
-		display: none;
-	}
+  .page-content {
+    text-align: center;
+    h5 {
+      color: $lightest-text;
+    }
+    .national-partners {
+      max-width: 300px;
+      margin: 4rem auto 3rem;
+      @media #{$medium-and-up} {
+        max-width: 670px;
+      }
+    }
+    .advisory-board h5 {
+      padding-bottom: 1rem;
+    }
+  }
+  .site-footer {
+    display: none;
+  }
 }

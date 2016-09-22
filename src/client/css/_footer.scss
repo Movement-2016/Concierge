@@ -1,61 +1,32 @@
 .site-footer {
-    @extend .z-depth-2;
-    background-color: $white;
-    text-align: center;
+  @include z-depth-2;
+  background-color: $white;
+  text-align: center;
+  padding: 30px;
+  .partners-title {
     text-transform: uppercase;
-    padding: 20px 20px 100px;
+    color: lighten($primary-color-light, 25%);
+    @media #{$small-and-down} {
+      padding-bottom: 16px;
+    }
+  } 
+  a {
     color: $lightest-text;
-    border-top: 1px solid $light-border;
-}
-
-#partners {
-    padding: 16px 0;
-	margin: 0 auto;
-	max-width: 850px;
-}
-.partner-logo {
-    display:inline-block;
-    vertical-align: top;
-    margin: 7px;
-    transition: opacity 0.2s;
-    height: 36px;
     &:hover {
-        opacity: 0.6;
+      color: $lighter-text;
     }
-    a {
-        display: block;
-        height: 100%;
+  }
+  .links-section {
+    margin-top: 40px;
+    li {
+      font-size: 12px;
+      padding: 0 8px;
+      display: inline-block;
+      @media #{$medium-and-up} {
+        padding: 0 16px;
+        font-size: 1rem;
+      }
     }
-    img {
-        height: 100%;
-        vertical-align: top;
-    }
-    @media #{$medium-and-up} {
-        margin: 12px;
-        height: 56px;
-    }
-	@media #{$large-and-up} {
-		margin: 15px;
-	}
+  }
 }
 
-.student-power-logo, .peoples-action-logo, .ccca-logo {
-    padding: 6px 0;
-    @media #{$medium-and-up} {
-        padding: 10px 0;
-    }
-}
-
-.lacafe-logo {
-    padding: 8px 0;
-    @media #{$medium-and-up} {
-        padding: 12px 0;
-    }
-}
-
-.powerpac-logo, .dailykos-logo, .paf-logo {
-    padding: 11px 0;
-	@media #{$medium-and-up} {
-		padding: 17px 0;
-    }
-}
