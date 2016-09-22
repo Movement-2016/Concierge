@@ -1,5 +1,6 @@
 import React      from 'react';
 import { Link } from 'react-router';
+import StateMap from './StateMap.jsx';
 
 import { PageContext } from './ContextMixins.js';
 
@@ -89,6 +90,9 @@ class HomePage extends PageContext(React.Component) {
         <section className="volunteer-section">
         </section>
         <section className="map-section">
+          <div className="container">
+            <StateMap />
+          </div>
         </section>
       </main>
 
