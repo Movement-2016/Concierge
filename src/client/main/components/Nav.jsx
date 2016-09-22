@@ -13,7 +13,7 @@ const MenuDropDown = ({menu,text}) => {
   const href1 = menu[0].href;
   return (
     <li className="drop-down-btn" >
-      <a href={href1}>{text}</a>
+      <a href={href1}>{text}<i className="material-icons">arrow_drop_down</i></a>
         <ul className="drop-down">
           {menu.map( (m,i) => <_MenuItem key={i} {...m} />)}
         </ul>

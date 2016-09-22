@@ -3,6 +3,9 @@
   background-color: $white;
   text-align: center;
   padding: 30px;
+  @media #{$medium-and-up} {
+    padding-top: 40px;
+  }
   .partners-title {
     text-transform: uppercase;
     color: lighten($primary-color-light, 25%);
