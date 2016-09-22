@@ -1,170 +1,189 @@
-.custom-donate-area {
-  padding-top: 40px;
-  position: relative;
-
-  h1 {
-    margin-left: 10%;
-  }
-
-  a.hide-map {
-    display: inline-block;
-    text-align: right;
-    position: absolute;
-    right: 310px;
-    top: 90px;    
-  }
+.group-area {
+	background-color: $group-area-bg-color;
+	border-top: 1px solid $light-border;
+	@media #{$medium-and-up} {
+		padding: 0 1.5rem 60px;
+	}
+	@media #{$large-and-up} {
+		padding: 0 5% 60px;
+	}
 }
-
-.groups-area {
-  width: calc(100% - 300px);
-  margin-bottom: 30%;
-  padding-top: 18px;
-  margin-left: 40px;
-
-  .section {
-
-    a[data-toggle=collapse]:hover {
-      text-decoration: none;
-    }
-
-    .section-head {
-      margin: 8px;
-      width: 25%;
-      text-align: center;
-      padding: 3 14;
-      border-radius: 34px;
-      border: 1px solid transparent;
-      color: #666;
-      background-color: #eee;
-
-      span.glyphicon {
-        float: left;
-      }        
-    }
-
-    .section-head:hover {
-      text-decoration: none;
-      cursor: pointer;
-      border: 1px solid black;
-      color: black;
-    }
-
-    .group {
-      margin: 0px 4px 16px 4px;
-
-      h3 {
-        font-size: 24px;
-        font-weight: 900;
-        color: white;
-        padding: 16px 0px 16px 8px;
-        margin: 0;
-        border-radius: 6px 6px 0 0;
-      }
-
-      h3.purple {
-        background-color: #b46ec9;
-      }
-
-      h3.light-blue {
-        background-color: #79A6D2;
-      }
-      
-      h3.light-red {
-        background-color: #D4867F;
-      }
-      
-      h3.dark-blue {
-        background-color: #1F81BB;
-      }
-      
-      h3.dark-red {
-        background-color: #B5473C;
-      }
-
-      .item {
-        border: 1px solid lightgray;
-        overflow: hidden;
-
-        .name {
-          padding: 12px 0px 12px 8px;
-          cursor: pointer;
-
-          img {
-            vertical-align: top;
-          }
-          span {
-            font-size: 20px;
-            font-weight: 700;
-          }
-        }
-
-        .links-area {
-          height: 24px;
-          margin: 0px 8px 12px 8px;
-        }
-
-        .org-type-area {
-          margin: 0px 8px 12px 8px;
-
-          span {
-            margin-right: 4px;
-            padding: 4px 12px;
-            border-radius: 10px;
-            color: black;
-            background-color: #EEEEEE;
-            display: inline-block;
-          }
-        }
-
-        .description-area {
-          margin: 0px 8px 12px 8px;
-          font-size: 18px;
-        }
-
-        .social-area {
-          height: 24px;
-          margin: 0px 8px 12px 8px;
-        }
-      }
-
-      .selected.purple {
-        background-color: rgba(180,110,201,0.03);
-        border-right: 8px solid #b46ec9;
-      }
-      .selected.light-blue {
-        background-color: rgba(121,166,210,0.03);
-        border-right: 8px solid #79A6D2;
-      }
-      .selected.light-red {
-        background-color: rgba(212,134,127,0.03);
-        border-right: 8px solid #D4867F;
-      }
-      .selected.dark-blue {
-        background-color: rgba(31,129,187,0.03);
-        border-right: 8px solid #1F81BB;
-      }
-      .selected.dark-red {
-        background-color: rgba(181,71,60,0.03);
-        border-right: 8px solid #B5473C;
-      }
-    }
-
-
-  }
+.grouping-title {
+	text-align: center;
+	text-transform: uppercase;
+	color: $lighter-text;
+	padding: 60px 0 15px;
+	font-size: 28px;
+	&:before {
+		content: '';
+		display: block;
+		width: 40px;
+		height: 2px;
+		background: $secondary-color;
+		margin: 4px auto;
+	}
+	@media #{$large-and-up} {
+		padding: 64px 0 24px;
+		font-size: 38px;
+		&:before {
+			width: 60px;
+			height: 3px;
+		}
+	}
 }
-
-.img-link {
-  height: 24px;
-  color: red;
-  text-decoration: none;
-  margin-right: 8px;
-
-  img {
-    vertical-align: top;
-  }
-  
-  span {
-    margin-left: 2px;
-    font-size: 16px;
-  }
+.purple-states-title:before {
+	background: $map-purple;
+}
+.light-blue-states-title:before {
+	background: $map-light-blue;
+}
+.dark-blue-states-title:before {
+	background: $map-dark-blue;
+}
+.light-red-states-title:before {
+	background: $map-light-red;
+}
+.dark-red-states-title:before {
+	background: $map-dark-red;
+}
+.state {
+	@include z-depth-1;
+	background-color: $white;
+	padding: 0;
+}
+.state + .state {
+	margin-top: 40px;
+}
+.state-title {
+	background-color: $title-bg-color;
+	padding: 2px 15px;
+	h4 {
+		color: $white;
+	}
+	@media #{$medium-and-up} {
+		padding: 2px 36px;
+	}
+}
+.state .group {
+	border-top: 1px solid $light-border;
+	padding: 12px 15px 24px;
+	.row {
+		margin: 0 -0.75rem;
+	}
+	@media #{$medium-and-up} {
+		padding: 16px 36px 30px;
+	}
+}
+.group-title a {
+	color: inherit;
+	&:hover {
+		color: $primary-color-light;
+	}
+}
+.group-link {
+	margin-bottom: 4px;
+	text-decoration: none;
+	font-weight: 700;
+	display: inline-block;
+	i {
+		@include reg-icon;
+		margin-right: 4px;
+	}
+	&:hover {
+		color: $primary-color-light;
+	}
+	@media #{$medium-and-up} {
+		margin: 3px 0 8px;
+	}
+}
+.group-link + .group-link {
+	margin-left: 40px;
+}
+.nonprofit-tags {
+	@media #{$medium-and-up} {
+		text-align: right;
+	}
+	span {
+		background: $group-tag-color;
+		display: inline-block;
+		line-height: 24px;
+		padding: 0 12px;
+		margin-bottom: 8px;
+		border-radius: 16px;
+		color: $lighter-text;
+		@media #{$medium-and-up} {
+			line-height: 28px;
+			padding: 0 15px;
+		}
+	}
+	span + span {
+		margin-left: 6px;
+	}
+}
+.group-tags {
+	.group-tag {
+		background: $group-tag-color;
+		display: inline-block;
+		line-height: 24px;
+		padding: 0 12px;
+		margin-bottom: 8px;
+		border-radius: 16px;
+		color: $lighter-text;
+		@media #{$medium-and-up} {
+			line-height: 28px;
+			padding: 0 15px;
+		}
+	}
+	.group-tag + .group-tag {
+		margin-left: 6px;
+	}
+}
+.group-content {
+	font-size: 1.15rem;
+	line-height: 1.6;
+	margin-top: 4px;
+	p+p {
+		margin-top: 8px;
+	}
+}
+.group-comments {
+	margin-top: 1rem;
+	font-weight: 700;
+	a {
+		color: lighten($link-color, 20%);
+		&:hover {
+			color: $link-color;
+		}
+	}
+	i {
+		@include reg-icon;
+		margin-right: 4px;
+	}
+}
+.tagblock {
+	color: $lightest-text;
+}
+.tagblock-title {
+	font-weight: 700;
+	display: inline-block;
+	width: calc(7.8 * 1rem);
+	vertical-align: top;
+}
+.tagblock-tags {
+	display: inline-block;
+	span+span:before {
+		content: ", ";
+	}
+	@media #{$medium-and-up} {
+		max-width: calc(100% - 7.8 * 1rem - 4px);
+	}
+}
+.group-content + .tagblock {
+	margin-top: 1rem;
+}
+.tagblock + .tagblock {
+	margin-top: 4px;
+}
+.post-edit-link {
+	float: right;
 }

@@ -14,9 +14,8 @@ class Group extends React.Component {
     } = this.props;
 
     return (
-        <div className="group" id="name">
-          <a name={name} />
-          <h3 className={group}>{label}</h3>
+        <div className="state" id={name}>
+          <div className={`state-title ${group}`}><h4>{label}</h4></div>
           {items.map( o => <Item key={o.id} {...o} />)}
         </div>
       );

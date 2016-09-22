@@ -8,30 +8,6 @@ class Section extends React.Component {
     store: React.PropTypes.object.isRequired
   }
 
-  constructor() {
-    super(...arguments);
-
-    this.state = {
-      expanded: true
-    };
-
-    this.grpsId = 'section-groups-' + this.props.name;
-    this.hashId = '#' + this.grpsId;
-  }
-
-  componentDidMount() {
-    /* globals $ */
-    $(this.hashId)
-      .on('show.bs.collapse', () => this.setState( {expanded:true} ) )
-      .on('hide.bs.collapse', () => this.setState( {expanded:false} ) );
-  }
-
-  componenWillUnmount() {
-    $(this.hashId)
-      .off('show.bs.collapse')
-      .off('hide.bs.collapse');
-  }
-
   render() {
     const {
       name,
@@ -39,23 +15,11 @@ class Section extends React.Component {
       groups
     } = this.props;
 
-    const {
-      expanded
-    } = this.state;
-
     const allGroups = this.context.store.getState().service.groupings.terms;
 
-    const toggle = expanded ? 'minus' : 'plus';
-
     return (
-      <div className="section" id={name}>
-        <a name={name} />
-        <a data-toggle="collapse" data-target={this.hashId}>
-          <div className="section-head">
-            <span className={`section-toggle glyphicon glyphicon-${toggle}`} />
-            {label}
-          </div>
-        </a>
+      <div className="grouping scrollspy" id={`${name}-states`}>
+        <div className={`grouping-title ${name}-states-title`}>{label}</div>
         <div className="section-groups collapse in" id={this.grpsId}>
           {Object.keys(groups).map( s => <Group key={s} {...allGroups[s]} items={groups[s]} />)}
         </div>

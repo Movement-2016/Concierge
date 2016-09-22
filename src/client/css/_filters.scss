@@ -1,91 +1,130 @@
-.group-selector-area {
+.filter-col {
+    @media #{$medium-and-up} {
+        max-height: 80%;
+        margin-top: 120px;
+    }
+}
 
-  position: fixed;
-  z-index: 10;
-  top: 99px;
-  width: 220px;
-  background-color: white;
-  padding-left: 8px;
-  right: 10px;
+.filter-menu {
+    color: $lighter-text;
+    padding: 0px 8px;
+    box-shadow: 
+        0 2px 5px 0 rgba(0, 0, 0, 0.16), 
+        0 2px 10px 0 rgba(0, 0, 0, 0.12);
+/*    @media #{$medium-and-up} {
+        padding-left: 0.75rem;
+    }
+    @media #{$large-and-up} {
+        padding-left: 3rem;
+    }
+*/}
 
-  .filterButton {
-    position: fixed;
-    z-index: 10;
-    top: 62px;
-    color: white;
-    background-color: $blue;
-    border-color: white;
-    border-radius: 8px;
-    font-size: 16px;
-    right: 10px;
-    padding: 4px 8px;
-  }
+.filters-title, .groups-nav-title {
+    font-weight: 700;
+}
 
-  h4 {
-    font-size: 16px;
-    margin-bottom: 6px;
-    color: #45798a;
-  }
+.filter-col {
+    top: 0px;
+    right: 15px;
+    margin-top: 120px;
+    padding: 0px;
 
-  .filter-title-toggle {
-    color: $blue;
-    margin-right: 4px;
-    cursor: pointer;
-  }
+    div, ul, li,
+    .collapsible-header,
+    .collapsible-body,
+    .collapsible {
+        border: 0px;
+        background-color: #f5f5f5;
+        box-shadow: 0px 0px 0px 0px;
+    }
+}
 
-  .filter-title-name {
-    font-size: 14px;
-    font-weight: 900;
-    margin-right: 8px;
-    margin-bottom: 6px;
-    color: #45798a;
-    cursor: pointer;
-  }
+.filters {
 
-  .filter-title-button {
-    min-width: 3em;
-    font-size: 12px;
-    color: white;
-    border: none;
-    background-color: $blue;
-    padding: 1px 6px 1px 4px;
-    border-radius: 4px;
-    margin: 0 4px 0 0;
-  }
+    .filter-group {
+        padding: 10px 0 6px;
+    }
 
-  p {
-    font-size: 14px;
-    margin: 0px 0px 8px 0px;
-    color: #333333;
-  }
+    .collapsible-header {
+        min-height: 0px;
+        line-height: initial;
 
-  .filter-group {
+        &.active {
+            font-weight: 700;
+            span.toggle:before {
+                content: '-';
+            }
+        }
+        
+        span.toggle:before {
+            content: '+';
+            font-weight: 700;
+            color: $primary-color;
+            padding-right: 8px;
+        }
+    }
+    .filter {
+        padding: 6px 8px 0 2px;
+    }
 
-    width: 100%;
-    margin-bottom: 8px;
+    .filter.disabled {
+        opacity: 0.4;
+    }
 
+    [type="checkbox"].filled-in {
+        & + label {
+            height: 18px;
+            line-height: 18px;
+            padding-left: 28px;
+        }
+        &:not(:checked) + label:after {
+            border: 2px solid rgba(0,0,0,0.4);
+            height: 18px;
+            width: 18px;
+        }
+        &:checked + label:after {
+            border: 2px solid $primary-color-light;
+            background-color: $primary-color-light;
+            width: 18px;
+            height: 18px;
+        }
+        &:checked + label:before {
+            width: 7px;
+            height: 12px;
+        }
+    }
+}
+
+.groups-nav {
+    padding-top: 20px;
     a {
-      margin-left: 8px;
-      display: block;
-      text-decoration: none;
-      color: black;
+        color: $lighter-text;
+        display: block;
+        margin: 6px 4px;
+        padding: 1px 12px 2px;
+        border-left: 2px solid transparent;
+        &:hover {
+            color: $primary-color-light;
+            border-left: 2px solid $primary-color-light;
+        }
+        &.active {
+            border-left: 2px solid $primary-color-light;
+            font-weight: bold;
+        }
     }
-    a:visited {
-      color: black;
+}
+
+.feedback-link {
+    max-width: 240px;
+    font-size: 13px;
+    padding-top: 30px;
+    a {
+        color: $lightest-text;
+        &:hover {
+            color: $primary-color-light;
+        }
+        span {
+            text-decoration: underline;
+        }
     }
-
-    a:hover {
-      color: $blue;
-    }
-
-    select {
-      font-size: 20px;
-      margin-top: 4px;
-      margin-left: 8px;
-      width: 180px;
-    }
-  }
-}  
-
-
-
+}

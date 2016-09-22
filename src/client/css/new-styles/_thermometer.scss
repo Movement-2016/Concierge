@@ -16,16 +16,17 @@ $widgetHeight: 15px;
     margin-left: 10px;
   }
 
-  .no-pad-left {
-    padding-left: 0;
-  }
-
   .no-pad-right {
     padding-right: 5;
   }
 
+  .thermometer-goal {
+    float: none;
+  }
+  
   .thermometer-current {
     text-align: right;
+    float: none;
   }
 
   .thermometer {
@@ -35,15 +36,18 @@ $widgetHeight: 15px;
   }
 
   .mercury {
-    background: $blue;    
+    background: $primary-color;    
     min-height: $widgetHeight;
     max-width: 0;
     border-radius: 6px;  
   }
 
   .donate-button {
-    padding-top: 1px;
-    padding-bottom: 1px;
-    margin: -4px;
+    line-height: initial;
+    height: initial;
+    line-height: initial;
+    height: initial;
+    max-width: 100%;
+    padding: 2 0.4em;    
   }
 }

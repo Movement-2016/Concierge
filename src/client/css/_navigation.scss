@@ -1,0 +1,61 @@
+.navbar-fixed {
+  margin-top: 37px;
+}
+nav {
+  background-color: rgba(240, 240, 240, 0.97);
+  ul a {
+    font-size: 1.1rem;
+    color: rgba(0, 0, 0, 0.83);
+    padding: 0 20px;
+    &.highlight {
+      color: $secondary-color;
+    }
+    &:hover {
+      background-color: color('grey', 'lighten-2');
+    }
+  }
+  .brand-logo {
+    color: color('blue', 'lighten-1');
+    @include site-logo;
+  }
+  .button-collapse i {
+    padding-left: 8px;
+    font-size: 2rem;
+    color: color('grey', 'lighten-1');
+  }
+  @media #{$medium-and-down} {
+    .side-nav > li > a {
+      font-weight: 700;
+    }
+    .drop-down a {
+      padding: 0 32px;
+      line-height: 36px;
+      height: 36px;
+    }
+  }
+  @media #{$large-and-up} {
+    padding-left: 30px;
+    padding-right: 15px;
+    .drop-down {
+      display: none;
+      line-height: 48px;
+      position: absolute;
+      min-width: 160px;
+      @include z-depth-1;
+      li {
+        float: none;
+      }
+      a {
+        display: block;
+        color: $lighter-text;
+        background-color: rgba(240, 240, 240, 0.97);
+        &:hover {
+          background-color: color('grey', 'lighten-2');
+        }
+      }
+    }
+    .drop-down-btn:hover .drop-down {
+      display: block;
+    }
+  }
+}

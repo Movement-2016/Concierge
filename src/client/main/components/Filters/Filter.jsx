@@ -2,16 +2,24 @@ import React from 'react';
 
 import path  from 'jspath';
 
-import Checkbox from '../../../ui/Checkbox.jsx';
 
-const FilterCheckbox = ({ label, name, cat, onTermsChecked, selected }) => {
+const FilterCheckbox = ({ label, name, cat, onTermsChecked, selected, disabled }) => {
+
+  const checked = selected[cat].includes(name);
+
+  const cProps = {
+    type:      'checkbox',
+    className: `filter-checkbox ${selected ? 'filled-in' : ''}`,
+    id:        'checkbox-' + name,
+    onChange:   () => onTermsChecked (cat, [name], !checked),
+    checked,
+    disabled
+  };
+
   return (
-    <Checkbox
-      id={name}
-      checked={selected[cat].includes(name)}
-      onChange={checked => onTermsChecked (cat, [name], checked)}
-      label={label}
-    />
+    <div className={`filter ${disabled ? 'disabled' : ''}`}>
+      <input {...cProps} /> <label htmlFor={cProps.id}>{label}</label>
+    </div>
   );
 };
 
@@ -19,41 +27,21 @@ class Filter extends React.Component {
 
   constructor() {  
     super(...arguments);
-    this.state = {
-      expanded: false
-    };
-    
-    const { name } = this.props;
 
-    this.optsId = 'filter-opts-' + name;
-    this.hashId = '#' + this.optsId;
+    this.state = { 
+      seeAll: true,
+    };
 
     this.onAll   = this.onAll.bind(this);
-    this.onClear = this.onClear.bind(this);
-  }
-
-  componentDidMount() {
-    /* globals $ */
-    $(this.hashId)
-      .on('show.bs.collapse', () => this.setState( {expanded:true} ) )
-      .on('hide.bs.collapse', () => this.setState( {expanded:false} ) );
-  }
-
-  componenWillUnmount() {
-    $(this.hashId)
-      .off('show.bs.collapse')
-      .off('hide.bs.collapse');
   }
 
   onAll() {
-    this._sendSelected(false);
+    const seeAll = !this.state.seeAll;
+    this.setState({ seeAll });
+    seeAll && this._sendSelected(seeAll);
   }
 
-  onClear() {
-    this._sendSelected(true);
-  }
-
-  _sendSelected(clear) {
+  _sendSelected(seeAll) {
     const { 
       terms, 
       name,
@@ -61,35 +49,35 @@ class Filter extends React.Component {
     } = this.props;
 
     const names = path('..name', terms );
-    onTermsChecked( name, names, !clear );
+    onTermsChecked( name, names, seeAll );
   }
 
   render() {
-    const { expanded } = this.state;
+    const { 
+      seeAll,
+    } = this.state;
 
     const {      
       label,
       name,
-      terms
+      terms,
     } = this.props;
 
-    const toggle = expanded ? 'minus' : 'plus';
+    const cls = 'filter-checkbox ' + (seeAll ? 'filled-in' : '');
+    const id  = `checkbox-${name}-see-all`;
 
     return (
-        <div className={`filter ${name}`} >
-          <div className="filter-header">
-            <a data-toggle="collapse" data-target={this.hashId}>
-              <span className={`filter-title-toggle glyphicon glyphicon-${toggle}`} />
-              <span className="filter-title-name">{label}</span>
-            </a>
-            { expanded && <button className="filter-title-button" onClick={this.onAll}>All</button> }
-            { expanded && <button className="filter-title-button" onClick={this.onClear}>Clear</button> }
+      <li className={`filter-group ${name}-filters`}>
+          <div className="collapsible-header"><span className="toggle"/>{label}</div>
+          <div className="collapsible-body" style={{display:'none'}}>
+            <div className="filter" key="all">
+                <input type="checkbox" ref="seeAll" className={cls} id={id} checked={seeAll} onChange={this.onAll} />
+                <label htmlFor={id}>See All</label>
+            </div>
+            {Object.keys(terms).map( t => <FilterCheckbox {...this.props} {...terms[t]} key={t} cat={name} disabled={seeAll} /> )}
           </div>
-          <div className="filter-group collapse out" id={this.optsId}>
-            {Object.keys(terms).map( t => <FilterCheckbox {...this.props} {...terms[t]} key={t} cat={name}  /> )}
-          </div>
-        </div>
-      );
+      </li>
+    );
   }
 }
 

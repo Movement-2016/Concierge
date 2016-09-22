@@ -2,7 +2,6 @@
 /* eslint- import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 const gulp = require ('gulp');
 const gutil = require ('gulp-util');
-const cssmin = require ('gulp-cssmin');
 const sass = require ('gulp-sass');
 const buffer = require ('vinyl-buffer');
 const source = require ('vinyl-source-stream');
@@ -45,18 +44,18 @@ const dependencies = [
 
 const fonts = [
   'src/client/fonts/**/*',
-  'node_modules/bootstrap/dist/fonts/*'
+//  'node_modules/bootstrap/dist/fonts/*'
 ];
 
 const vendorStyles = [
-  'node_modules/bootstrap/dist/css/bootstrap.min.css',
+//  'node_modules/bootstrap/dist/css/bootstrap.min.css',
 //  'node_modules/materialize-css/dist/css/materialize.min.css'
 ];
 
 const vendorClientJS = [
   'node_modules/jquery/dist/jquery.min.js',
-  'node_modules/bootstrap/dist/js/bootstrap.min.js',
-//  'node_modules/materialize-css/dist/js/materialize.min.js'
+//  'node_modules/bootstrap/dist/js/bootstrap.min.js',
+  'node_modules/materialize-css/dist/js/materialize.min.js'
 ];
 
 const stageDir = '../concierge-stage';
@@ -131,8 +130,10 @@ gulp.task ('vendor', function () {
 
 gulp.task ('styles', function () {
   return gulp.src ('src/client/css/main.scss')
+    .pipe(sourcemaps.init())
     .pipe (sass ().on ('error', sass.logError))
-    .pipe (cssmin ())
+    .pipe(sourcemaps.write())
+//    .pipe (cssmin ())
     .pipe (gulp.dest (`${base}/public/css`));
 });
 

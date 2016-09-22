@@ -1,7 +1,7 @@
 import React     from 'react';
-import path      from 'jspath';
 
-import { addPlanItem } from '../../store/actions';
+import { addPlanItem }       from '../../store/actions';
+import { filterTagsByTypes } from '../../store/utils';
 
 import {
   selectPrevElement,
@@ -21,8 +21,8 @@ class Org extends React.Component {
   constructor() {
     super(...arguments);
     const { filters, tags } = this.props;
-    const pred = tags.map( t => `.name=="${t}"` ).join('||');
-    this.tags = path(`."nonprofit-type".terms..{${pred}}.label`,filters);
+    const types = filterTagsByTypes({filters,tags});
+    this.tags = types['nonprofit-type'].tags;
 
     this.state = { value: this.props.amt || '' };
 

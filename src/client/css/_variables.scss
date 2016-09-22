@@ -1,13 +1,59 @@
-$blue: #42A5F5;
-$dark-grey: rgba(0,0,0,0.83);
-$almost-white: rgba(240,240,240,0.97); 
+// Heights
+$thermometerHeight: 40px;
+$headerHeight: 100px;
+
+// Media Query Ranges
+$small-screen-up: 761px;
+$medium-screen-up: 993px;
+$large-screen-up: 1201px;
+$small-screen: 760px;
+$medium-screen: 992px;
+$large-screen: 1200px;
+
+$xl-and-up: "only screen and (min-width : #{$large-screen-up})";
 
 
-$navBarHeight: 64px;
-$thermometerHeight: 50px;
-$headerHeight: $thermometerHeight + $navBarHeight;
+// Base Color
+$white: #fff;
+$primary-color: color("blue", "base");
+$primary-color-light: color("blue", "lighten-1");
+$secondary-color: color("red", "base");
+$success-color: color("green", "base");
+$error-color: color("deep-orange", "darken-1");
+$link-color: $secondary-color;
 
-@mixin z-depth-1 {
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-  z-index: 100;
-}
+$body-bg-color: color('grey', 'lighten-5');
+
+// Text
+$dark-text: rgba(0, 0, 0, 0.87);
+$lighter-text: rgba(0,0,0,0.54);
+$lightest-text: rgba(0,0,0,0.38);
+
+// Border
+$light-border: rgba(0,0,0,0.12);
+
+// Input
+$input-border-color: $lighter-text;
+$input-focus-color: $primary-color;
+
+// Intro
+$pledge-box-bg-color: rgba(255, 255, 255, 0.8);
+$thermometer-color: $primary-color;
+
+// Groups
+$group-area-bg-color: $white;
+$group-tag-color: color('grey', 'lighten-3');
+$title-bg-color: $primary-color-light;
+
+// Navbar
+$navbar-font-color: $lighter-text;
+$navbar-brand-font-size: 1.7rem;
+
+
+// Map
+$map-purple: #b46ec9;
+$map-dark-red: #B5473C;
+$map-light-red: #D4867F;
+$map-dark-blue: #1F81BB;
+$map-light-blue: #79A6D2;
+

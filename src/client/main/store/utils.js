@@ -74,9 +74,27 @@ const organizeOrgs = orgs => {
   }, {});
 };
 
+/*
+  Return an object that has grouped the 'tags' param
+  by what type of tag.
+*/
+const filterTagsByTypes = ({tags,filters}) => {
+  const types = Object.keys(filters);
+  const pred  = tags.map( t => `.name=="${t}"` ).join('||');
+  const result = types.reduce( (result,type) => { 
+    result[type] = {
+      tags: path(`."${type}".terms..{${pred}}.label`,filters),
+      label: filters[type].label
+    };
+    return result;
+  }, {});
+  return result;
+};
+
 module.exports = {
   getVisibleStates,
   getVisibleOrgs,
   getSelectedOrgs,
-  organizeOrgs
+  organizeOrgs,
+  filterTagsByTypes
 };

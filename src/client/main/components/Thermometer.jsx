@@ -30,21 +30,21 @@ class Thermometer extends React.Component {
         <div className="thermometerArea">
           <div className="container-fluid">
             <div className="row">
-              <div className="col-md-4 hidden-sm hidden-xs">
-                <div className="text text-center">Our goal is to distribute {goal} to over 220 groups</div>
+              <div className="col s4 hide-on-small-only">
+                <div className="text center">Our goal is to distribute {goal} to over 220 groups</div>
               </div>
-              <div className="col-md-1">
+              <div className="col s1">
                 <Link to="/donate" className="btn btn-sm btn-primary donate-button">donate</Link>
               </div>
-              <div className="col-md-1 no-pad-right hidden-sm hidden-xs">
+              <div className="col s1 hide-on-med-and-down">
                 <div className="thermometer-current">{pledged}</div>
               </div>
-              <div className="col-md-5 no-pad-left no-pad-right" >
-                <div className="thermometer hidden-sm hidden-xs">
+              <div className="col s5 no-pad-left no-pad-right hide-on-small-only" >
+                <div className="thermometer">
                   <div className="mercury" />
                 </div>
               </div>
-              <div className="col-md-1 no-pad-left hidden-sm hidden-xs">
+              <div className="col s1 no-pad-left hide-on-med-and-down">
                 <div className="thermometer-goal">{goal}</div>
               </div>
             </div>

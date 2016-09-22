@@ -15,6 +15,7 @@ import Routes      from './Routes.jsx';
 import Nav         from './Nav.jsx';
 import Thermometer from './Thermometer.jsx';
 import Footer      from './Footer.jsx';
+import Loading     from './Loading.jsx';
 
 const store = configureStore ();
 
@@ -56,7 +57,7 @@ class App extends React.Component {
 
   render () {
     if( this.state.loading ) {
-      return <div className="well loading">Loading...</div>;
+      return <Loading />;
     }
 
     const { goal, pledged } = this.state.donateStats;

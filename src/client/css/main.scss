@@ -1,20 +1,32 @@
-@import 'variables';
-@import 'fonts';
-@import 'defaults';
-@import 'header';
-@import 'about';
-@import 'contact';
-@import 'checkbox';
-@import 'home';
-@import 'thermometer';
-@import 'donate';
-@import 'footer';
-@import 'tile';
-@import 'shoppingcart';
-@import 'filters';
-@import 'groups';
-@import 'contentpage';
-@import 'map';
+/* Old Styles */
+@import "../../../node_modules/materialize-css/sass/components/color";
+@import "variables";
+@import "../../../node_modules/materialize-css/sass/materialize";
+@import "collapsible";
+@import "global";
+@import "mixins";
+@import "typography";
+@import "navigation";
+@import "homepage/donate-section";
+@import "homepage/testimonial-section";
+@import "homepage/map-section";
+@import "filters";
+@import "mobile-filters";
+@import "groups";
+@import "footer";
+@import "single-post";
+@import "worksheet/worksheet-intro";
+@import "worksheet/worksheet-groups";
+@import "worksheet/worksheet-results";
+@import "contact";
+@import "partners";
+
+
+/* New Styles */
+@import 'new-styles/fonts';
+@import 'new-styles/thermometer';
+@import 'new-styles/donate';
+@import 'new-styles/shoppingcart'; 
 
 #app {
   width: 100%;
@@ -25,12 +37,7 @@
 
 /* main content area under Nav area */
 .main-area {
-  margin-top: $headerHeight;
-  overflow: hidden;
+/*  margin-top: $headerHeight;
+*/  overflow: hidden;
   background-color: white;
 }
-
-.main-area main {
-  padding-top: 20px;  
-}
-
