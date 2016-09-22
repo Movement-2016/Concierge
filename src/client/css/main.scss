@@ -8,6 +8,7 @@
 @import "typography";
 @import "navigation";
 @import "homepage/donate-section";
+@import "homepage/testimonial-section";
 @import "homepage/map-section";
 @import "filters";
 @import "mobile-filters";
@@ -40,8 +41,3 @@
 */  overflow: hidden;
   background-color: white;
 }
-
-.main-area main {
-  padding-top: 20px;  
-}
-
