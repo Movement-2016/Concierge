@@ -3,7 +3,8 @@ import { Link } from 'react-router';
 import StateMap from './StateMap.jsx';
 
 import { PageContext } from './ContextMixins.js';
-
+import { Mercury }     from './Thermometer.jsx';
+import commaize        from 'commaize';
 
 const SubSection = ({ section, numCols, colsPerRow }) => {
   return(
@@ -14,11 +15,22 @@ const SubSection = ({ section, numCols, colsPerRow }) => {
 };
 
 class HomePage extends PageContext(React.Component) {
+
   get pages() {
     return ['home', 'info', 'testimonials'];
   }
 
+  stateFromStore( storeState ) {
+    super.stateFromStore( storeState );
+    this.setState( { donateStats: { ...storeState.service.donateStats} });
+  }
+
+  donateStatsFromStore( storeState ) {
+    return storeState.service.donateStates;
+  }
   render() {
+    const { goal, pledged } = this.state.donateStats;
+
     return(
       
       <main>
@@ -28,12 +40,10 @@ class HomePage extends PageContext(React.Component) {
             <div className="pledge-box">
               <div className="pledge-box-title">Choose A Way To Give</div>
               <div className="thermometer-area">
-                <div className="thermometer">
-                  <div className="mercury"></div>
-                </div>
+                <Mercury {...this.state.donateStats} />
                 <div className="thermometer-numbers">
-                  <div className="thermometer-current">$1,776,643 Pledged</div>
-                  <div className="thermometer-goal">$3,000,000 Goal</div>
+                  <div className="thermometer-current">{'$' + commaize(pledged) + 'Pledged'}</div>
+                  <div className="thermometer-goal">{'$' + commaize(goal) + 'Goal'}</div>
                 </div>
               </div>
               <div className="pledge-area row">

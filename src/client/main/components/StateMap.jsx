@@ -2,6 +2,13 @@ import React from 'react';
 import 'whatwg-fetch';
 import { findDOMNode } from 'react-dom';
 import Loading from './Loading.jsx';
+import { browserHistory } from 'react-router';
+
+window.slink = function(e,a) {
+  e.stopPropagation();
+  e.preventDefault();
+  browserHistory.push(a);
+};
 
 class StateMap extends React.Component {
 
@@ -38,6 +45,7 @@ class StateMap extends React.Component {
             const state = states[stateName] || null;
 
             $e.attr('data-toggle', 'tooltip');
+            $e.attr('data-position', 'bottom');
 
             let link, title, cls;
 
@@ -54,8 +62,9 @@ class StateMap extends React.Component {
               cls   = 'map-no-groups';
             }
 
-            $e.attr('xlink:href', link);
-            $e.attr('title', title);
+            $e.attr('onclick', 'window.slink(event,"'+link+'")');
+            $e.attr('xlink:href', '#');
+            $e.attr('data-tooltip', title);
             $('path',a).addClass( cls );
 
           });
@@ -72,9 +81,13 @@ class StateMap extends React.Component {
     if( !this.gotTT ) {
       const $e = $(findDOMNode(this));
       const $links = $('[data-toggle="tooltip"]',$e);
-      $links.tooltip({ container:'.map-area' }); 
+      $links.tooltip(); // { container:'.map-area' }); 
       this.gotTT = true;      
     }
+  }
+
+  onStateClick(e) {
+    location.href = e.target.href;
   }
 
   render() {
