@@ -37,6 +37,9 @@ const Footer = () => {
           <li className="partner-logo paf-logo">
             <a href="http://www.piconetwork.org/" target="_blank"><img src="/images/partner-logos/paf-logo@0,5x.png" /></a>
           </li>
+          <li className="partner-logo courage-logo">
+            <a href="https://www.couragecampaign.org/" target="_blank"><img src="/images/partner-logos/courage-logo@0,5x.png" /></a>
+          </li>
         </ul>
       </section>
       <section className="links-section">
