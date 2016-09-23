@@ -27,12 +27,25 @@ class ProfileInput extends ContextMixin(React.Component) {
   }
 
   render() {
-    const { name, placeholder } = this.props;
+    const { 
+      name, 
+      placeholder,
+      required 
+    } = this.props;
+
     const { value } = this.state;
 
-    return (
-        <input name={name} type="text" onChange={this.onChange} placeholder={placeholder} value={value} /> 
-      );
+    const eProps = {
+      name,
+      onChange: this.onChange,
+      placeholder,
+      value,
+      required,
+      type: 'text'
+    };
+
+    return <input {...eProps} />;
+
   }
 }
 

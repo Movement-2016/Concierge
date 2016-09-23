@@ -3,6 +3,11 @@
   margin: 30px auto 50 auto;
   overflow: hidden;
 
+  .groups-link {
+    top: 130px;
+    left: 80px;
+  }
+
   .donor-area {
     width: 96%;
     max-width: 600px;
@@ -50,7 +55,6 @@
   }
   .plan-display-area {
     width: 100%;
-    margin-bottom: 30%;
 
     .plan-groups-area {
       width: 96%;
@@ -188,7 +192,6 @@
   display: block;
   position: fixed;
   bottom: 0;
-  height: 0;
   border-top: 3px solid black;
   padding: 20px 5%;
   background-color: #673ab7;

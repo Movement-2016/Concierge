@@ -36,14 +36,12 @@ class PlanForm extends React.Component {
 
     return (
         <div className="plan-form">
-          <h2> Plan Your Contributions </h2>
-          <p>Use this worksheet to help plan how to most effectively make your donations to grassroots movement groups.</p> 
           <Alert msg={error || msg} type={error ? Alert.DANGER : Alert.SUCCESS} />
           <div className="info-area">
             <h3>Your Information</h3> 
             <ProfileInput name="fname" placeholder="First Name" /> 
             <ProfileInput name="lname" placeholder="Last Name"  /> 
-            <ProfileInput name="email" placeholder="Email"      /> 
+            <ProfileInput name="email" placeholder="Email *"      required /> 
             <ProfileInput name="phone" placeholder="Phone"      />
             <div className="action-area"> 
               <EmailPlanButton {...btnProps} >Email me this plan</EmailPlanButton>
