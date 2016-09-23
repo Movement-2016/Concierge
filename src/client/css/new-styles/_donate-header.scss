@@ -3,6 +3,9 @@
   @media #{$medium-and-up} {
     display: block;
   }
+  @media #{$medium-only} {
+    text-align: center;
+  }
   position: fixed;
   top: 0;
   width: 100%;

@@ -6,6 +6,20 @@ import { PageContext } from './ContextMixins.js';
 import { Thermometer }     from './DonateHeader.jsx';
 import commaize        from 'commaize';
 
+import {
+  ShareButtons,
+  generateShareIcon,
+} from 'react-share';
+
+const {
+  FacebookShareButton,
+  TwitterShareButton,
+} = ShareButtons;
+
+const FacebookIcon = generateShareIcon('facebook');
+const TwitterIcon = generateShareIcon('twitter');
+  
+  
 const SubSection = ({ section, numCols, colsPerRow }) => {
   return(
       <div className={`col-md-${numCols}`}>
@@ -36,7 +50,7 @@ class HomePage extends PageContext(React.Component) {
       <main>
         <section className="donate-section">
           <div className="container">
-            <h2 className="intro-text">Support The Best Community-Based Vote Groups In The Country</h2>
+            <h2 className="intro-text">Support the best Community-Based Vote&nbsp;Groups&nbsp;in&nbsp;the&nbsp;Country</h2>
             <div className="pledge-box">
               <div className="pledge-box-title">Choose A Way To Give</div>
               <div className="thermometer-area">
@@ -68,9 +82,20 @@ class HomePage extends PageContext(React.Component) {
               </div>
             </div>
             <div className="social-buttons">
-              <a className="simple-share-btn" href="http://www.facebook.com/sharer/sharer.php?u=https://movement2016.org&title=Testing">Test Simple Share Button</a>
-              <div className="fb-share-button" data-href="http://movement2016.org" data-layout="button" data-size="large" data-mobile-iframe="true"><a className="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fmovement2016.org%2F&amp;src=sdkpreparse">Share</a></div>
-              <a href="https://twitter.com/share" className="twitter-share-button" data-size="large" data-text="Donate to support grassroots vote groups, not TV ads" data-url="http://movement2016.org" data-hashtags="Movement2016" data-lang="en" data-dnt="true" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+              <FacebookShareButton
+                url="https://movement2016.org"
+                title="Movement 2016"
+                className="share-button fb-share-button">
+                <FacebookIcon size={40}  />
+                <span>Share on Facebook</span>
+              </FacebookShareButton>
+              <TwitterShareButton
+                url="https://movement2016.org"
+                title="Support the best community-based vote groups in the country!"
+                className="share-button twitter-share-button">
+                <TwitterIcon size={40}  />
+                <span>Share on Twitter</span>
+              </TwitterShareButton>
             </div>
           </div>
         </section>
