@@ -1,5 +1,6 @@
 import React     from 'react';
 import TagString from 'tag-string';
+import { browserHistory } from 'react-router';
 
 import OrgList  from './OrgList';
 import Filters  from './Filters';
@@ -9,6 +10,7 @@ import Loading  from './Loading.jsx';
 import { ContextMixin } from './ContextMixins';
 
 import { setVisibility } from '../store/actions';
+import scrollToElement from '../../lib/scrollToElement';
 
 import {
   getVisibleOrgs,
@@ -24,7 +26,6 @@ class CustomDonatePage extends ContextMixin(React.Component) {
       loading: true,
       showOrgs: false
     };
-    this.onShowSection  = this.onShowSection.bind(this);
     this.onShowGroup    = this.onShowGroup.bind(this);
     this.onTermsChecked = this.onTermsChecked.bind(this);
   }
@@ -50,12 +51,9 @@ class CustomDonatePage extends ContextMixin(React.Component) {
     });
   }
 
-  onShowSection() {
-
-  }
-
   onShowGroup(state) {
-    document.getElementById(state).scrollIntoView();
+    browserHistory.push('/groups#' + state);
+    scrollToElement('#' + state);
   }
 
   onTermsChecked(cat, terms, toggle) {
@@ -77,7 +75,7 @@ class CustomDonatePage extends ContextMixin(React.Component) {
 
     const fprops = {
       onShowGroup:     this.onShowGroup,
-      onShowSection:   this.onShowSection,
+      onShowSection:   this.onShowGroup,
       onTermsChecked:  this.onTermsChecked,
       selected:        selectedTerms,
       visibleSections: Object.keys(orgs),

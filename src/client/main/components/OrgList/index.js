@@ -6,6 +6,8 @@ import {
 
 import Section from './Section.jsx';
 
+import scrollToElement from '../../../lib/scrollToElement';
+
 const getVisibleSections = (allSections,orgs) => {
   const visible = {};
   Object.keys(orgs).forEach( section => visible[section] = allSections[section] );
@@ -18,7 +20,7 @@ class OrgsList extends ServiceContext(React.Component) {
     if( location.hash ) {
       const state = location.hash.replace('#','');
       const groups = document.getElementById(state);
-      groups && setTimeout( () => groups.scrollIntoView(), 200 );
+      groups && setTimeout( () => scrollToElement('#' + state), 200 );
     }
   }
 

@@ -1,17 +1,17 @@
 import React from 'react';
 
-const ScrollLink = ({ name, label }) => {
-  return <li><a href={'#' + name + '-states'}>{label}</a></li>;
+const ScrollLink = ({ name, label, onShowSection }) => {
+  return <li><a href='#' onClick={() => onShowSection(name + '-states')}>{label}</a></li>;
 };
 
-const ScrollLinks = ({ visible, links }) => {
+const ScrollLinks = ({ visible, links, onShowSection }) => {
   if( !visible.length ) {
     return <span />;
   }
   return(
       <ul>
         <li key="top"><a href="#header">Top</a></li>
-        {visible.map( k => <ScrollLink key={k} {...links[k]} /> )}
+        {visible.map( k => <ScrollLink key={k} onShowSection={onShowSection} {...links[k]} /> )}
       </ul>
     );
 };
