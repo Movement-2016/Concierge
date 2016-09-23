@@ -73,7 +73,7 @@
     height: 100%;
     background: $thermometer-color;
     border-radius: 9px 0 0 9px;
-    //  @include push-right;
+    max-width: 0;
   }
   .thermometer-numbers {
     @include clearfix;
@@ -155,7 +155,8 @@
       line-height: 40px;
       padding-right: 12px;
       opacity: 0.95;
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         opacity: 1;
       }
       div {

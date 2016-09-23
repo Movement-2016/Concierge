@@ -29,7 +29,6 @@
   .donate-button {
     display: inline-block;
     vertical-align: middle;
-    margin-bottom: 3px;
   }
   .description {
     margin-right: 24px;
@@ -49,14 +48,14 @@
     }
   }
   .thermometer {
-    height: 14px;
+    height: 10px;
     width: 300px;
     border: 1px solid $white;
-    border-radius: 6px;
-    margin-left: 10px;
-    margin-right: 10px;
+    border-radius: 5px;
+    margin: 0 10px;
   }
   .mercury {
+    max-width: 0;
     height: 100%;
     background: $white;
     border-radius: 5px 0 0 5px;
