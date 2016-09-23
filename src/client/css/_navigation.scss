@@ -1,5 +1,7 @@
 .navbar-fixed {
-  margin-top: $donate-header-height;
+  @media #{$medium-and-up} {
+    margin-top: $donate-header-height;
+  }
 }
 nav {
   background-color: $navbar-color;
@@ -19,6 +21,9 @@ nav {
     padding-left: 8px;
     font-size: 2rem;
     color: color('grey', 'lighten-1');
+    @media #{$medium-only} {
+      padding-left: 33px;
+    }
   }
   @media #{$medium-and-down} {
     .side-nav > li > a {

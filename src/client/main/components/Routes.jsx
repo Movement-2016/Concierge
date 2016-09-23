@@ -23,7 +23,7 @@ import ShoppingCart     from './ShoppingCart';
 
 const MeetTheTeamPage = () => <ContentPage page="meetTheTeam" />;
 const AboutUsPage     = () => <ContentPage page="aboutUs" />;
-const AdivsorsPage    = () => <ContentPage page="advisors" />;
+const AdvisorsPage    = () => <ContentPage page="advisors" />;
 const PressPage       = () => <ContentPage page="press" />;
 const TookkitsPage    = () => <ContentPage page="toolkits" />;
 
@@ -41,7 +41,7 @@ class Routes extends React.Component
             <Route path='/groups'     component={CustomDonatePage}  />
             <Route path='/plan'       component={ShoppingCart} />
             <Route path='/about'      component={AboutUsPage} />
-            <Route path='/partners'   component={AdivsorsPage} />
+            <Route path='/partners'   component={AdvisorsPage} />
             <Route path='/team'       component={MeetTheTeamPage} />
             <Route path='/getintouch' component={ContactPage} />
             <Route path='/houseparty' component={HouseParty} />

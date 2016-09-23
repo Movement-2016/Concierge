@@ -1,10 +1,12 @@
 .donate-header {
+  display: none;
+  @media #{$medium-and-up} {
+    display: block;
+  }
   position: fixed;
   top: 0;
   width: 100%;
   padding: 0 35px;
-  background: $dark-text;
-  background: lighten($primary-color, 10%);
   background: color("indigo", "darken-1");
   color: $white;
   font-size: 12px;
@@ -26,18 +28,22 @@
     vertical-align: middle;
     margin-bottom: 3px;
   }
-  
   .description {
-    margin-right: 35px;
+    margin-right: 24px;
   }
   .donate-button {
-    line-height: 26px;
-    height: 26px;
+    line-height: 24px;
+    height: 24px;
+    padding: 0 1.2rem;
     background-color: $secondary-color-light;
     color: $white;
   }
   .thermometer-area {
-    float: right;
+    display: none;
+    @media #{$large-and-up} {
+      display: block;
+      float: right;
+    }
   }
   .thermometer {
     height: 14px;
@@ -52,4 +58,6 @@
     background: $white;
     border-radius: 5px 0 0 5px;
   }
+}
+
 }
