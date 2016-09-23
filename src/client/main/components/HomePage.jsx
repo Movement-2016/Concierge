@@ -68,6 +68,7 @@ class HomePage extends PageContext(React.Component) {
               </div>
             </div>
             <div className="social-buttons">
+              <a className="simple-share-btn" href="http://www.facebook.com/sharer/sharer.php?u=https://movement2016.org&title=Testing">Test Simple Share Button</a>
               <div className="fb-share-button" data-href="http://movement2016.org" data-layout="button" data-size="large" data-mobile-iframe="true"><a className="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fmovement2016.org%2F&amp;src=sdkpreparse">Share</a></div>
               <a href="https://twitter.com/share" className="twitter-share-button" data-size="large" data-text="Donate to support grassroots vote groups, not TV ads" data-url="http://movement2016.org" data-hashtags="Movement2016" data-lang="en" data-dnt="true" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>

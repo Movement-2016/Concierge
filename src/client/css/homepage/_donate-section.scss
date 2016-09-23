@@ -147,5 +147,13 @@
     .fb-share-button {
       vertical-align: top;
     }
+    .simple-share-btn {
+      display: inline-block;
+      height: 30px;
+      line-height: 30px;
+      padding: 0 1rem;
+      background-color: $primary-color;
+      color: $white;
+    } 
   }
 }
