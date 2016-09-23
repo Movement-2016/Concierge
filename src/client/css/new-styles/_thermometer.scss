@@ -1,53 +1,55 @@
-$widgetHeight: 15px;
-
-.thermometerArea {
-  padding: 8px;
+.donate-header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: #673AB7;
-  color: #fff;
-  font-size: small;
+  padding: 0 35px;
+  background: $dark-text;
+  background: lighten($primary-color, 10%);
+  background: color("indigo", "darken-1");
+  color: $white;
+  font-size: 12px;
   z-index: 100;
-  height: $thermometerHeight;
-
-  div.text {
-    font-weight: 400;
-    margin-left: 10px;
+  height: $donate-header-height;
+  line-height: $donate-header-height;
+  .wrapper {
+    opacity: 0.95;
+    &:hover {
+      opacity: 1;
+    }
   }
-
-  .no-pad-right {
-    padding-right: 5;
-  }
-
-  .thermometer-goal {
-    float: none;
+  .description,
+  .thermometer,
+  .thermometer-current,
+  .thermometer-goal,
+  .donate-button {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 3px;
   }
   
-  .thermometer-current {
-    text-align: right;
-    float: none;
+  .description {
+    margin-right: 35px;
   }
-
-  .thermometer {
-    background: #d9edf7;
-    border: 2px solid #2e6da4;
-    border-radius: 14px;
-  }
-
-  .mercury {
-    background: $primary-color;    
-    min-height: $widgetHeight;
-    max-width: 0;
-    border-radius: 6px;  
-  }
-
   .donate-button {
-    line-height: initial;
-    height: initial;
-    line-height: initial;
-    height: initial;
-    max-width: 100%;
-    padding: 2 0.4em;    
+    line-height: 26px;
+    height: 26px;
+    background-color: $secondary-color-light;
+    color: $white;
+  }
+  .thermometer-area {
+    float: right;
+  }
+  .thermometer {
+    height: 14px;
+    width: 300px;
+    border: 1px solid $white;
+    border-radius: 6px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .mercury {
+    height: 100%;
+    background: $white;
+    border-radius: 5px 0 0 5px;
   }
 }

@@ -1,5 +1,5 @@
 // Sizes
-$thermometerHeight: 40px;
+$donate-header-height: 46px;
 $navbar-height: 64px;
 $navbar-height-mobile: 56px;
 
@@ -25,6 +25,7 @@ $white: #fff;
 $primary-color: color("blue", "base");
 $primary-color-light: color("blue", "lighten-1");
 $secondary-color: color("red", "base");
+$secondary-color-light: lighten(color("red", "lighten-1"), 5%);
 $success-color: color("green", "base");
 $error-color: color("deep-orange", "darken-1");
 $link-color: $secondary-color;

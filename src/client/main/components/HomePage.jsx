@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import StateMap from './StateMap.jsx';
 
 import { PageContext } from './ContextMixins.js';
-import { Mercury }     from './Thermometer.jsx';
+import { Thermometer }     from './DonateHeader.jsx';
 import commaize        from 'commaize';
 
 const SubSection = ({ section, numCols, colsPerRow }) => {
@@ -40,7 +40,7 @@ class HomePage extends PageContext(React.Component) {
             <div className="pledge-box">
               <div className="pledge-box-title">Choose A Way To Give</div>
               <div className="thermometer-area">
-                <Mercury {...this.state.donateStats} />
+                <Thermometer {...this.state.donateStats} />
                 <div className="thermometer-numbers">
                   <div className="thermometer-current">{'$' + commaize(pledged) + ' Pledged'}</div>
                   <div className="thermometer-goal">{'$' + commaize(goal) + ' Goal'}</div>
