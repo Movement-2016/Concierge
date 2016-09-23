@@ -46,7 +46,6 @@ class StateMap extends React.Component {
             const state = states[stateName] || null;
 
             $e.attr('data-toggle', 'tooltip');
-            $e.attr('data-position', 'bottom');
 
             let link, title, cls;
 
@@ -80,9 +79,10 @@ class StateMap extends React.Component {
 
   componentDidUpdate() {
     if( !this.gotTT ) {
-      const $e = $(findDOMNode(this));
+      const $e     = $(findDOMNode(this));
       const $links = $('[data-toggle="tooltip"]',$e);
-      $links.tooltip({ container:'.map-area' }); 
+
+      $links.tooltipX({ container:'.map-area' }); 
       this.gotTT = true;      
     }
   }
@@ -95,7 +95,7 @@ class StateMap extends React.Component {
     const { mapData } = this.state;
 
     return (
-      <div className="map-area">
+      <div className="map-area" style={{position:'relative'}}>
         <h4 className="map-title">Find A Group</h4>
         <div className="map-desc">Click the map to browse the groups in each state.</div>
           {mapData

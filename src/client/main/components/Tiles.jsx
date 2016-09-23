@@ -31,7 +31,7 @@ const Tile = ({ linkto, href, glyph, img, title, text, body, compact }) => {
 };
 
 const Row = ({ row, defaultTile = {}, colWidth }) => {
-  const cls = `col-md-${colWidth} tiles-parent `;
+  const cls = `col map${colWidth} tiles-parent `;
   return(
       <div className="row tiles-row">{
         row.map( (t,n) => <div className={cls} key={n} ><Tile {...defaultTile} {...t} /></div>)

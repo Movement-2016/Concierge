@@ -491,16 +491,8 @@
 
   var old = $.fn.tooltip
 
-  $.fn.tooltip             = Plugin
-  $.fn.tooltip.Constructor = Tooltip
+  $.fn.tooltipX             = Plugin
+  $.fn.tooltipX.Constructor = Tooltip
 
-
-  // TOOLTIP NO CONFLICT
-  // ===================
-
-  $.fn.tooltip.noConflict = function () {
-    $.fn.tooltip = old
-    return this
-  }
 
 }( jQuery ));

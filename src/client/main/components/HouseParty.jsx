@@ -1,5 +1,6 @@
 import React from 'react';
 import Alert from '../../ui/Alert.jsx';
+import ContentPage from './ContentPage.jsx';
 
 class PartyForm extends React.Component {
 
@@ -43,10 +44,16 @@ class PartyForm extends React.Component {
     const { sent, error } = this.state;
 
     if( sent ) {
-      return <AfterSubmit />;
+      return (
+          <ContentPage.Shell name="hostaparty" title="Host A Party">
+            <AfterSubmit />
+          </ContentPage.Shell>
+        );
     }
 
-      return (<div className="infobox">
+      return (
+        <ContentPage.Shell name="hostaparty" title="Host A Party">
+          <div className="infobox">
             <div className="infobox-title">
               <h5>Your Information</h5>
             </div>
@@ -91,6 +98,7 @@ class PartyForm extends React.Component {
               <button id="contact-form-submit" className="waves-effect waves-light btn" type="submit"><i className="material-icons right">send</i>Submit</button>
             </form>
           </div>
+        </ContentPage.Shell>
       );
   }
 }
