@@ -2,6 +2,16 @@
 
   border: 1px solid;
   text-align: center;
+  color: white;
+  cursor: pointer;
+
+  a {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    float: right;
+    margin-right: 12px;
+  }
 }
 
 .alert.alert-info {

@@ -31,9 +31,9 @@ class Alert extends React.Component {
     } = this.state;
 
     return showing && msg && (
-        <div className={`alert alert-${type} ${className}`}>
-          <a href="#" className="btn close" onClick={this._toggleShow}  dangerouslySetInnerHTML={{__html:'&times;'}} />
+        <div className={`alert alert-${type} ${className}`} onClick={this._toggleShow} >
           {msg}
+          <a href="#" className="btn-floating waves-effect waves-light" onClick={this._toggleShow}  dangerouslySetInnerHTML={{__html:'&times;'}} />
         </div>
       );
   }
