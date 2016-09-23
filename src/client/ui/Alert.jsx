@@ -27,12 +27,12 @@ class Alert extends React.Component {
       showing,
       type = 'warning',
       msg,
-      className
+      className = ''
     } = this.state;
 
     return showing && msg && (
         <div className={`alert alert-${type} ${className}`}>
-          <a href="#" className="close" onClick={this._toggleShow}  dangerouslySetInnerHTML={{__html:'&times;'}} />
+          <a href="#" className="btn close" onClick={this._toggleShow}  dangerouslySetInnerHTML={{__html:'&times;'}} />
           {msg}
         </div>
       );

@@ -21,11 +21,16 @@ class CustomDonatePage extends ContextMixin(React.Component) {
     super(...arguments);
     this.state = {
       selectedTerms: this.context.store.getState().groups.visibility,
-      loading: true
+      loading: true,
+      showOrgs: false
     };
     this.onShowSection  = this.onShowSection.bind(this);
     this.onShowGroup    = this.onShowGroup.bind(this);
     this.onTermsChecked = this.onTermsChecked.bind(this);
+  }
+
+  componentDidMount() {
+    setTimeout( () => this.setState({ showOrgs: true }), 300);
   }
 
   stateFromStore(storeState) {
@@ -62,7 +67,8 @@ class CustomDonatePage extends ContextMixin(React.Component) {
     const {
       selectedTerms,
       orgs,
-      loading
+      loading,
+      showOrgs
     } = this.state;
     
     if( loading ) {
@@ -78,16 +84,16 @@ class CustomDonatePage extends ContextMixin(React.Component) {
       visibleGroups:   getVisibleStates(orgs)
     };
 
-    /* put a '-' in front of pinned b/c I couldn't see below it
-       on a MBP */
-       
     return (
       <div className="custom-donate-area">
         <h1>Custom Donation Plan</h1>
         <div className="group-area">
           <div className="row">
             <div className="group-col col s12 m9">
-              <OrgList orgs={orgs} />
+              {showOrgs 
+                ? <OrgList orgs={orgs} />
+                : <Loading />
+              }
             </div>
             <div className="col s12 m3">
               <div className="filter-col pinned" >

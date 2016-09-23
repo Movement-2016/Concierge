@@ -32,10 +32,11 @@ class OrgsList extends ServiceContext(React.Component) {
     } = this.props;
 
     const sections = getVisibleSections(groupSections,orgs);
+    const keys = Object.keys(sections);
 
     return (
         <div className="group-area">
-          {Object.keys(sections).map( name => <Section key={name} {...groupSections[name]} groups={orgs[name]} />)}
+          {keys.map( name => <Section key={name} {...groupSections[name]} groups={orgs[name]} />)}
         </div>
       );
   }

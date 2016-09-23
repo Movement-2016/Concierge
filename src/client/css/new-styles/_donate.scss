@@ -8,6 +8,12 @@
     padding-top: 22px;  
   }
 
+  .container-fluid {
+    width: 85%;
+    margin: 0 auto;
+  }
+}
+
   .plan-link-box {
       background-image: url('/images/photos/murika.png');
       background-repeat: no-repeat;
@@ -25,8 +31,3 @@
       font-size: 80%;
   }
   
-  .container-fluid {
-    width: 85%;
-    margin: 0 auto;
-  }
-}

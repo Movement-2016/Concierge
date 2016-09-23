@@ -7,30 +7,36 @@ class Tray extends ContextMixin(React.Component) {
 
   constructor() {
     super(...arguments);
-    this.state = {
-      open: false
-    };
     this.id = 'shopping-cart-tray';
     this.hashId = '#' + this.id;
+    this.state = {
+      selected: []
+    };
   }
 
   componentDidMount() {
-    this._closeTray();
+    const { selected:{length}, selected } = this.state;
+    !length && this._closeTray();
+    length && this._openTray(selected);
   }
   
   stateFromStore(storeState) {
     const { groups:{ selected } } = storeState;
 
     if( selected.length ) {
-      /* globals $ */
-      $(this.hashId).animate( { height: 80 }, () => this.setState({ open: true, selected }) );
+      this._openTray(selected);
     } else {
       open && this._closeTray();
     }
   }
 
+  _openTray(selected) {
+    /* globals $ */
+      $(this.hashId).fadeIn().animate( { height: 80 }, () => this.setState({ selected }) );    
+    }
+
   _closeTray() {
-    $(this.hashId).animate( { height: 0 }, () => this.setState({ open: false }) );
+    $(this.hashId).fadeOut();
   }
 
   render() {

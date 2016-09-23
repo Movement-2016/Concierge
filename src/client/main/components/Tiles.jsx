@@ -31,7 +31,7 @@ const Tile = ({ linkto, href, glyph, img, title, text, body, compact }) => {
 };
 
 const Row = ({ row, defaultTile = {}, colWidth }) => {
-  const cls = `col map${colWidth} tiles-parent `;
+  const cls = `col m${colWidth} tiles-parent `;
   return(
       <div className="row tiles-row">{
         row.map( (t,n) => <div className={cls} key={n} ><Tile {...defaultTile} {...t} /></div>)
@@ -48,7 +48,7 @@ const Tiles = ({ tiles, defaultTile = {}, colsPerRow }) => {
                   .map( (a,i) => tiles.slice(i*colsPerRow,i*colsPerRow+colsPerRow));
 
   return(
-        <div className="tiles container-fluid" >
+        <div className="tiles" >
           {rows.map( (row,i) =>  <Row key={i} row={row} defaultTile={defaultTile} colWidth={BOOTSTRAP_MAX_COLUMNS/colsPerRow} />)}
         </div>
     );

@@ -17,7 +17,6 @@ class TilesPage extends React.Component {
     return (
       <main className={className} >
         {children}
-        <h1 className="tiles-title" dangerouslySetInnerHTML={{__html:page.title}}/>
         <Tiles {...page} colsPerRow={numColsPerRow} />
       </main>
     );
