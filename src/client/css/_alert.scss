@@ -1,0 +1,22 @@
+.alert {
+
+  border: 1px solid;
+  text-align: center;
+}
+
+.alert.alert-info {
+  background-color: blue;
+}
+
+.alert.alert-success {
+  background-color: green;
+}
+
+.alert.alert-warning {
+  background-color: yellow;
+}
+
+.alert.alert-danger {
+  background-color: red;
+}
+
