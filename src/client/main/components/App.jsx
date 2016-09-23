@@ -13,7 +13,7 @@ import service               from '../../m2016-service';
 
 import Routes      from './Routes.jsx';
 import Nav         from './Nav.jsx';
-import Thermometer from './Thermometer.jsx';
+import DonateHeader from './DonateHeader.jsx';
 import Footer      from './Footer.jsx';
 import Loading     from './Loading.jsx';
 
@@ -65,7 +65,7 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <div className="site-wrapper">
-          <Thermometer goal={goal} pledged={pledged} />
+          <DonateHeader goal={goal} pledged={pledged} />
           <Nav siteTitle={SITE_TITLE} />
           <div className='main-area'>
             {this.props.children}
