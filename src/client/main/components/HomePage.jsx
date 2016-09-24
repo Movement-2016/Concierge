@@ -2,31 +2,11 @@ import React      from 'react';
 import { Link } from 'react-router';
 import StateMap from './StateMap.jsx';
 
-import { PageContext } from './ContextMixins.js';
-import { Thermometer }     from './DonateHeader.jsx';
-import commaize        from 'commaize';
+import { PageContext }  from './ContextMixins.js';
+import { Thermometer }  from './DonateHeader.jsx';
+import commaize         from 'commaize';
 
-import {
-  ShareButtons,
-  generateShareIcon,
-} from 'react-share';
-
-const {
-  FacebookShareButton,
-  TwitterShareButton,
-} = ShareButtons;
-
-const FacebookIcon = generateShareIcon('facebook');
-const TwitterIcon = generateShareIcon('twitter');
-  
-  
-const SubSection = ({ section, numCols, colsPerRow }) => {
-  return(
-      <div className={`col-md-${numCols}`}>
-        <Tiles {...section} colsPerRow={colsPerRow} />
-      </div>
-    );
-};
+import SocialButtons from './Social.jsx';
 
 class HomePage extends PageContext(React.Component) {
 
@@ -39,9 +19,6 @@ class HomePage extends PageContext(React.Component) {
     this.setState( { donateStats: { ...storeState.service.donateStats} });
   }
 
-  donateStatsFromStore( storeState ) {
-    return storeState.service.donateStates;
-  }
   render() {
     const { goal, pledged } = this.state.donateStats;
 
@@ -68,35 +45,20 @@ class HomePage extends PageContext(React.Component) {
                   </div>
                 </div>
                 <div className="pledge-col col s12 m4">
-                  <div className="pledge">
+                  <div className="pledge hide-on-small-and-down">
                     <Link className="pledge-button btn waves-effect waves-light" to="/groups">Browse Groups</Link>
                     <div className="pledge-desc">Custom plan your giving. Filter groups by state, issue area, or nonprofit tax status.</div>
                   </div>
                 </div>
                 <div className="pledge-col col s12 m4">
                   <div className="pledge">
-                    <Link className="pledge-button btn waves-effect waves-light" to="https://movement2016.org/talk-to-a-human">Talk To A Human</Link>
+                    <Link className="pledge-button btn waves-effect waves-light" to="/getintouch">Talk To A Human</Link>
                     <div className="pledge-desc">Our team provides free research on states and organizations based on your priorities. Awesome!</div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="social-buttons">
-              <FacebookShareButton
-                url="https://movement2016.org"
-                title="Movement 2016"
-                className="share-button fb-share-button">
-                <FacebookIcon size={40}  />
-                <span>Share on Facebook</span>
-              </FacebookShareButton>
-              <TwitterShareButton
-                url="https://movement2016.org"
-                title="Support the best community-based vote groups in the country!"
-                className="share-button twitter-share-button">
-                <TwitterIcon size={40}  />
-                <span>Share on Twitter</span>
-              </TwitterShareButton>
-            </div>
+            <SocialButtons />
           </div>
         </section>
         <section className="testimonial-section">
@@ -129,9 +91,8 @@ class HomePage extends PageContext(React.Component) {
           </div>
         </div>
         </section>
-        <section className="volunteer-section">
-        </section>
-        <section className="map-section">
+        <section className="volunteer-section" />
+        <section className="map-section hide-on-small-and-down">
           <div className="container">             
             <StateMap />
           </div>
