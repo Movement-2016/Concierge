@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const Footer = () => {
   return (
     <footer className="site-footer">
-      <section className="partner-logo-section">
+      <section className="partner-logo-section" id="partners">
         <div className="partners-title">National Partners</div>
         <ul className="partner-logos">
           <li className="partner-logo wf-logo">
@@ -47,12 +47,8 @@ const Footer = () => {
       </section>
       <section className="links-section">
         <ul className="site-links">
-          <li>
-            <Link to="/privacy">Privacy</Link>
-          </li>
-          <li>
-            <Link to="/getintouch">Contact</Link>
-          </li>
+          <li><Link to="https://secure.actblue.com/privacy">Privacy</Link></li>
+          <li><Link to="/getintouch">Contact</Link></li>
           <li><a href="https://github.com/movement-2016">@GitHub</a></li>
           <li><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">License</a></li>
         </ul>
