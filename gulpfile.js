@@ -48,6 +48,7 @@ const fonts = [
 ];
 
 const vendorStyles = [
+  'src/client/vendor.css',
 //  'node_modules/bootstrap/dist/css/bootstrap.min.css',
 //  'node_modules/materialize-css/dist/css/materialize.min.css'
 ];

@@ -11,21 +11,39 @@ import { initFilters }       from '../store/actions';
 
 import service               from '../../m2016-service';
 
-import Routes      from './Routes.jsx';
-import Nav         from './Nav.jsx';
+import Routes       from './Routes.jsx';
+import Nav          from './Nav.jsx';
 import DonateHeader from './DonateHeader.jsx';
-import Footer      from './Footer.jsx';
-import Loading     from './Loading.jsx';
+import Footer       from './Footer.jsx';
+import Loading      from './Loading.jsx';
 
 const store = configureStore ();
 
 const SITE_TITLE = 'Movement 2016';
 
+/*
+      <ul><li><pre>{error}</pre></li>
+          <li><pre>{err}</pre></li></ul>
+*/
+
+const ErrorPage = ({ error, err }) => {
+    const msg = error.toString();
+    let   msg2 = err.toString();
+    (msg2 === msg) && (msg2 = '');
+    return (<div className="error-page">
+      <h3>There was a problem</h3>
+      <pre>{msg}</pre>
+      <pre>{msg2}</pre>
+    </div>);
+  };
+
 class App extends React.Component {
   constructor (props) {
     super (props);
     this.state = {      
-      loading: true
+      loading: true,
+      error: '',
+      err: ''
     };
   }
 
@@ -47,7 +65,9 @@ class App extends React.Component {
         loading: false,
         donateStats: service.donateStats
       });
-    });    
+    }).catch( err => {
+        this.setState({ error: err + '', err, loading: false });
+      });    
   }
 
   // before unmount, remove store listener
@@ -60,7 +80,18 @@ class App extends React.Component {
       return <Loading />;
     }
 
-    const { goal, pledged } = this.state.donateStats;
+    const { 
+      donateStats: {
+        goal,
+        pledged
+      } = {},
+      err,
+      error
+    } = this.state;
+
+    if( error ) {
+      return <ErrorPage error={error} err={err} />;
+    }
 
     return (
       <Provider store={store}>

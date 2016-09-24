@@ -29,7 +29,7 @@ const MenuItem = ({href,linkto,menu,text}) => {
 };
 
 const MenuAnonymous = ({store,className,id}) => {
-  const { content: { mainMenu } } = store.getState().service;
+  const { content: { mainMenu = [] } = {} } = store.getState().service;
 
   return (
       <ul className={className} id={id}>

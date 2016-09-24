@@ -40,6 +40,9 @@ const Footer = () => {
           <li className="partner-logo courage-logo">
             <a href="https://www.couragecampaign.org/" target="_blank"><img src="/images/partner-logos/courage-logo@0,5x.png" /></a>
           </li>
+          <li className="partner-logo dfa-logo">
+            <a href="http://democracyforamerica.com/" target="_blank"><img src="/images/partner-logos/dfa.png" /></a>
+          </li>
         </ul>
       </section>
       <section className="links-section">
