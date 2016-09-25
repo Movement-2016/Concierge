@@ -49,6 +49,10 @@ class HomePage extends PageContext(React.Component) {
                     <Link className="pledge-button btn waves-effect waves-light" to="/groups">Browse Groups</Link>
                     <div className="pledge-desc">Custom plan your giving. Filter groups by state, issue area, or nonprofit tax status.</div>
                   </div>
+                  <div className="pledge hide-on-med-and-up">
+                    <Link className="pledge-button btn waves-effect waves-light" to="/groups/mobile">Browse Groups</Link>
+                    <div className="pledge-desc">Customize your giving. Filter groups by state.</div>
+                  </div>
                 </div>
                 <div className="pledge-col col s12 m4">
                   <div className="pledge">

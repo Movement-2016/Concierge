@@ -15,10 +15,10 @@ import ContentPage      from './ContentPage.jsx';
 import CustomDonatePage from './CustomDonatePage.jsx';
 import HouseParty       from './HouseParty.jsx';
 import ContactPage      from './ContactPage.jsx';
-//import AboutPage        from './AboutPage.jsx';
 import NotFoundPage     from './NotFoundPage.jsx';
 import HomePage         from './HomePage.jsx';
 import DonatePage       from './DonatePage.jsx';
+import StatePage        from './StatePage.jsx';
 import ShoppingCart     from './ShoppingCart';
 
 const MeetTheTeamPage = () => <ContentPage page="meetTheTeam" />;
@@ -37,8 +37,10 @@ class Routes extends React.Component
         >
           <Route path='/' component={this.props.App}>
             <IndexRoute component={HomePage} />
-            <Route path='/donate'     component={DonatePage} />
-            <Route path='/groups'     component={CustomDonatePage}  />
+            <Route path='/donate'               component={DonatePage} />
+            <Route path='/groups(/:mobile)'     component={CustomDonatePage}  />
+            <Route path='/state/:name'          component={StatePage} />
+            
             <Route path='/plan'       component={ShoppingCart} />
             <Route path='/about'      component={AboutUsPage} />
             <Route path='/partners'   component={AdvisorsPage} />

@@ -1,12 +1,12 @@
 /* globals fetch */
 let _fetch = null;
 if( typeof window !== 'undefined') {
-   require('whatwg-fetch');
-   _fetch = fetch;
+   // require('whatwg-fetch');
+   // _fetch = fetch;
   /* global $ */
-  // _fetch = (url) => {
-  //   return new Promise( (success,error) => $.ajax({url,success,error,xhrFields: {withCredentials:true}} ) );
-  //};
+  _fetch = (url) => {
+    return new Promise( (success,error) => $.ajax({url,success,error,xhrFields: {withCredentials:true}} ) );
+  };
 } else {
   _fetch = require('node-fetch');
 }

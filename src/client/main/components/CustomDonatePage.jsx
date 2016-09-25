@@ -73,6 +73,10 @@ class CustomDonatePage extends ContextMixin(React.Component) {
       return <Loading />;
     }
 
+    const { 
+      params = {}
+    } = this.props;
+
     const fprops = {
       onShowGroup:     this.onShowGroup,
       onShowSection:   this.onShowGroup,
@@ -89,11 +93,11 @@ class CustomDonatePage extends ContextMixin(React.Component) {
           <div className="row">
             <div className="group-col col s12 m9">
               {showOrgs 
-                ? <OrgList orgs={orgs} />
+                ? <OrgList {...params} orgs={orgs} />
                 : <Loading />
               }
             </div>
-            <div className="col s12 m3">
+            <div className="col s12 m3 hidden-on-small-and-down">
               <div className="filter-col pinned" >
                 <Filters {...fprops} />
               </div>

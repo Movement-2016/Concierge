@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Group from './Group.jsx';
+import State from './State.jsx';
 
-class Section extends React.Component {
+class ColorGroup extends React.Component {
 
   static contextTypes = {
     store: React.PropTypes.object.isRequired
@@ -12,20 +12,20 @@ class Section extends React.Component {
     const {
       name,
       label,
-      groups
+      states
     } = this.props;
 
-    const allGroups = this.context.store.getState().service.groupings.terms;
+    const allStates = this.context.store.getState().service.groupings.terms;
 
     return (
       <div className="grouping scrollspy" id={`${name}-states`}>
         <div className={`grouping-title ${name}-states-title`}>{label}</div>
         <div className="section-groups collapse in" id={this.grpsId}>
-          {Object.keys(groups).map( s => <Group key={s} {...allGroups[s]} items={groups[s]} />)}
+          {Object.keys(states).map( s => <State key={s} {...allStates[s]} items={states[s]} />)}
         </div>
       </div>
       );
   }
 }
 
-module.exports = Section;
+module.exports = ColorGroup;

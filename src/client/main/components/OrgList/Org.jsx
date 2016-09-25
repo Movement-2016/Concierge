@@ -26,7 +26,7 @@ class TagBlock extends React.Component {
   }
 }
 
-class Item extends ContextMixin(React.Component) {
+class Org extends ContextMixin(React.Component) {
 
   constructor() {
     super(...arguments);
@@ -35,7 +35,7 @@ class Item extends ContextMixin(React.Component) {
       selected: false
     };
     
-    this.onItemClick = this.onItemClick.bind(this);
+    this.onOrgClick = this.onOrgClick.bind(this);
 
     this.filters = this.context.store.getState().service.filters;
 
@@ -45,7 +45,7 @@ class Item extends ContextMixin(React.Component) {
     return this.state.selected !== this._isSelected();
   }
   
-  onItemClick(e) {
+  onOrgClick(e) {
     e.preventDefault();
     this.context.store.dispatch( toggleItem(this.props.id) );
   }
@@ -92,7 +92,7 @@ class Item extends ContextMixin(React.Component) {
             <div className="links-col col s12 m8">
               {urlWeb  && <a className="group-link" href={urlWeb}  target="_blank"><i className="material-icons">link</i>Website</a>}
               {urlGive && <a className="group-link" href={urlGive} target="_blank"><i className="material-icons">star_border</i>Contribute</a>}
-              <a className="group-link" href="#" onClick={this.onItemClick}><span><i className="material-icons">toc</i> {text}</span></a>
+              <a className="group-link hide-on-small-and-down" href="#" onClick={this.onOrgClick}><span><i className="material-icons">toc</i> {text}</span></a>
             </div>
             <div className="nonprofit-tags col s12 m4">
               {nonProfitType.tags.map( t => <span key={t}>{t}</span> )}
@@ -105,4 +105,4 @@ class Item extends ContextMixin(React.Component) {
   }
 }
 
-module.exports = Item;
+module.exports = Org;

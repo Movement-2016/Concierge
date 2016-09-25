@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Item from './Item.jsx';
+import Org from './Org.jsx';
 
-class Group extends React.Component {
+class State extends React.Component {
 
   render() {
 
@@ -16,11 +16,11 @@ class Group extends React.Component {
     return (
         <div className="state" id={name}>
           <div className={`state-title ${group}`}><h4>{label}</h4></div>
-          {items.map( o => <Item key={o.id} {...o} />)}
+          {items.map( o => <Org key={o.id} {...o} />)}
         </div>
       );
   }
 }
 
 
-module.exports = Group;
+module.exports = State;
