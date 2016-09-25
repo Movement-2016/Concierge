@@ -74,7 +74,7 @@ class CustomDonatePage extends ContextMixin(React.Component) {
     }
 
     const { 
-      params = {}
+      params:{ mobile = ''} = {}
     } = this.props;
 
     const fprops = {
@@ -86,14 +86,16 @@ class CustomDonatePage extends ContextMixin(React.Component) {
       visibleGroups:   getVisibleStates(orgs)
     };
 
+    const title = mobile ? 'Browse Groups' : 'Custom Donation Plan';
+
     return (
       <div className="custom-donate-area">
-        <h1>Custom Donation Plan</h1>
+        <h1>{title}</h1>
         <div className="group-area">
           <div className="row">
             <div className="group-col col s12 m9">
               {showOrgs 
-                ? <OrgList {...params} orgs={orgs} />
+                ? <OrgList mobile={mobile} orgs={orgs} />
                 : <Loading />
               }
             </div>
