@@ -89,7 +89,7 @@ class CustomDonatePage extends ContextMixin(React.Component) {
     const title = mobile ? 'Browse Groups' : 'Custom Donation Plan';
 
     return (
-      <div className="custom-donate-area">
+      <div className={`custom-donate-area ${mobile}`}>
         <h1>{title}</h1>
         <div className="group-area">
           <div className="row">

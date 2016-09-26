@@ -1,0 +1,42 @@
+.custom-donate-area.mobile {
+  h1 {
+    text-align: center;
+  }
+}
+
+.mobile-group {
+
+  font-size: 150%;
+
+  ul.state-list > li {
+    margin-bottom: 7px;
+  }
+
+  ul.state-list > li > a {
+    margin-left: 33px;
+    color: black;
+  }
+}
+
+.state-page {
+  h1 {
+    display: none;
+  }
+
+  .back-to-group-link {
+    font-size: 18px;
+    margin: 12px 0;
+    display: block;
+    color: black;
+
+    i {
+      margin-right: 0px;
+      -webkit-transform:rotateY(180deg);
+      -moz-transform:rotateY(180deg);
+      -o-transform:rotateY(180deg);
+      -ms-transform:rotateY(180deg);
+      direction:rtl;      
+    }
+  }
+
+}

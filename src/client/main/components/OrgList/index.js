@@ -25,7 +25,7 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
     }
   }
 
-  render() {
+  getVisibleColorGroups() {
 
     const {
       groupSections:colorGroups,
@@ -37,7 +37,14 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
 
     const sections = getVisibleColorGroups(colorGroups,orgs);
     const colors = Object.keys(sections);
-  
+
+    return { sections, colors, orgs, colorGroups };
+  }
+
+  render() {
+
+    const { colors, orgs, colorGroups } = this.getVisibleColorGroups();
+
     return (
         <div className="group-area">
           {colors.map( color => <ColorGroup key={color} {...colorGroups[color]} states={orgs[color]} />)}
@@ -50,25 +57,17 @@ class OrgsListMobile extends OrgsListDesktop {
 
   componentDidMount() {
     /* globals $ */
-    $('.mobile-group-colorGroup.collapsible'). collapsible();
+    $('.mobile-group.collapsible'). collapsible();
   }
 
   render() {
 
-    const {
-      groupSections:colorGroups,
-    } = this.state.service;
-
-    const {
-      orgs
-    } = this.props;
-
-    const colors = Object.keys(colorGroups);
+    const { colors, orgs, colorGroups } = this.getVisibleColorGroups();
   
     const allStates = this.context.store.getState().service.groupings.terms;
 
     return (
-      <ul className="mobile-group-colorGroup collapsible">
+      <ul className="mobile-group collapsible">
         {colors.map( color => {
           return (
             <li key={color} >
