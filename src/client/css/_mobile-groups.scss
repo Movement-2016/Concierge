@@ -1,7 +1,13 @@
 .custom-donate-area.mobile {
+  
   h1 {
     text-align: center;
   }
+
+  select#jump-state {
+    font-size: large;
+  }
+
 }
 
 .mobile-group {
@@ -38,5 +44,4 @@
       direction:rtl;      
     }
   }
-
 }

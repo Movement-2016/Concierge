@@ -4,7 +4,7 @@ import { ServiceContext } from '../ContextMixins';
 
 import Filter      from './Filter.jsx';
 import ScrollLinks from './ScrollLinks.jsx';
-import Groupings   from './Groupings.jsx';
+import StatePicker   from './StatePicker.jsx';
 
 class Filters extends ServiceContext(React.Component) {
 
@@ -13,8 +13,9 @@ class Filters extends ServiceContext(React.Component) {
   }
 
   componentDidMount() {
+    const { mobile } = this.props;
     /* globals $ */
-    $('.filter-col .collapsible'). collapsible();
+    !mobile && $('.filter-col .collapsible'). collapsible();
   }
 
   render() {
@@ -25,14 +26,19 @@ class Filters extends ServiceContext(React.Component) {
     } = this.state.service;
 
     const { 
-      onShowGroup,
+      onShowState,
       onShowSection,
       visibleSections,
-      visibleGroups
+      visibleStates,
+      mobile
     } = this.props;
 
-    const hasSections = visibleSections.length + visibleGroups.length > 0;
+    const hasSections = visibleSections.length + visibleStates.length > 0;
 
+    if( mobile ) {
+      return <StatePicker terms={terms} onShowState={onShowState} visible={visibleStates} />;
+    }
+    
     return (
         <div className="filter-menu closed">
           <div className="filters-title">Filter By:</div>
@@ -42,7 +48,7 @@ class Filters extends ServiceContext(React.Component) {
           {hasSections && <div className="groups-nav">
             <div className="groups-nav-title">Go To:</div>
             <ScrollLinks links={groupSections} onShowSection={onShowSection} visible={visibleSections} />
-            <Groupings terms={terms} onShowGroup={onShowGroup} visible={visibleGroups} />
+            <StatePicker terms={terms} onShowState={onShowState} visible={visibleStates} />
           </div>}
         </div>
       );
@@ -52,7 +58,7 @@ class Filters extends ServiceContext(React.Component) {
 Filters.propTypes = {
   selected:       React.PropTypes.object.isRequired,
   onTermsChecked: React.PropTypes.func.isRequired,
-  onShowGroup:    React.PropTypes.func.isRequired,
+  onShowState:    React.PropTypes.func.isRequired,
   onShowSection:  React.PropTypes.func.isRequired
 };
 

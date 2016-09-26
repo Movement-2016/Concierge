@@ -26,7 +26,7 @@ class CustomDonatePage extends ContextMixin(React.Component) {
       loading: true,
       showOrgs: false
     };
-    this.onShowGroup    = this.onShowGroup.bind(this);
+    this.onShowState    = this.onShowState.bind(this);
     this.onTermsChecked = this.onTermsChecked.bind(this);
   }
 
@@ -51,9 +51,17 @@ class CustomDonatePage extends ContextMixin(React.Component) {
     });
   }
 
-  onShowGroup(state) {
-    browserHistory.push('/groups#' + state);
-    scrollToElement('#' + state);
+  onShowState(state) {
+    const { 
+      params:{ mobile = ''} = {}
+    } = this.props;
+
+    if( mobile ) {
+      browserHistory.push( '/state/' + state );
+    } else {
+      browserHistory.push('/groups#' + state);
+      scrollToElement('#' + state);      
+    }
   }
 
   onTermsChecked(cat, terms, toggle) {
@@ -78,16 +86,18 @@ class CustomDonatePage extends ContextMixin(React.Component) {
     } = this.props;
 
     const fprops = {
-      onShowGroup:     this.onShowGroup,
-      onShowSection:   this.onShowGroup,
+      onShowState:     this.onShowState,
+      onShowSection:   this.onShowState,
       onTermsChecked:  this.onTermsChecked,
       selected:        selectedTerms,
       visibleSections: Object.keys(orgs),
-      visibleGroups:   getVisibleStates(orgs)
+      visibleStates:   getVisibleStates(orgs),
+      mobile
     };
 
-    const title = mobile ? 'Browse Groups' : 'Custom Donation Plan';
-
+    const title     = mobile ? 'Browse Groups' : 'Custom Donation Plan';
+    const filterCls = mobile ? '' : 'filter-col pinned';
+    
     return (
       <div className={`custom-donate-area ${mobile}`}>
         <h1>{title}</h1>
@@ -99,11 +109,11 @@ class CustomDonatePage extends ContextMixin(React.Component) {
                 : <Loading />
               }
             </div>
-            <div className="col s12 m3 hidden-on-small-and-down">
-              <div className="filter-col pinned" >
+            <div className="col s12 m3">
+              <div className={filterCls} >
                 <Filters {...fprops} />
               </div>
-            </div>
+            </div>            
           </div>
         </div>
         <Tray />

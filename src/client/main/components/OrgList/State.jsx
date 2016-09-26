@@ -10,12 +10,12 @@ class State extends React.Component {
       name,
       label,
       items,
-      group
+      group:color
     } = this.props;
 
     return (
         <div className="state" id={name}>
-          <div className={`state-title ${group}`}><h4>{label}</h4></div>
+          <div className={`state-title ${color}`}><h4>{label}</h4></div>
           {items.map( o => <Org key={o.id} {...o} />)}
         </div>
       );
