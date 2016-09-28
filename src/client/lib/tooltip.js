@@ -1,4 +1,10 @@
+/* eslint semi:"off" */
+/* eslint eqeqeq:"off" */
+
 (function ($) {
+
+  // TOOLTIP PUBLIC CLASS DEFINITION
+  // ===============================
 
   var Tooltip = function (element, options) {
     this.type       = null
@@ -278,7 +284,7 @@
     var arrowDelta          = isVertical ? delta.left * 2 - width + actualWidth : delta.top * 2 - height + actualHeight
     var arrowOffsetPosition = isVertical ? 'offsetWidth' : 'offsetHeight'
 
-    //$tip.offset(offset)
+    $tip.offset(offset)
     this.replaceArrow(arrowDelta, $tip[0][arrowOffsetPosition], isVertical)
   }
 
@@ -353,8 +359,16 @@
     var isSvg = window.SVGElement && el instanceof window.SVGElement
     // Avoid using $.offset() on SVGs since it gives incorrect results in jQuery 3.
     // See https://github.com/twbs/bootstrap/issues/20280
-    var elOffset  = isBody ? { top: 0, left: 0 } : (isSvg ? null : $element.offset())
-    var scroll    = { scroll: isBody ? document.documentElement.scrollTop || document.body.scrollTop : $element.scrollTop() }
+    // Victor: so it looks like all we have to do is use DOM's getBoundingClientRect
+    //         and add the body scrollTop - haven't tested on a lot of browsers but
+    //         this works on latest Safari and Chrome
+    var scrollTp = document.documentElement.scrollTop || document.body.scrollTop;
+    var elOffset  = isBody 
+                      ? { top: 0, left: 0 } 
+                      : (isSvg 
+                          ? {top: elRect.top + scrollTp, left: elRect.left} 
+                          : $element.offset())
+    var scroll    = { scroll: isBody ? scrollTp : $element.scrollTop() }
     var outerDims = isBody ? { width: $(window).width(), height: $(window).height() } : null
 
     return $.extend({}, elRect, scroll, outerDims, elOffset)
@@ -494,5 +508,13 @@
   $.fn.tooltipX             = Plugin
   $.fn.tooltipX.Constructor = Tooltip
 
+
+  // TOOLTIP NO CONFLICT
+  // ===================
+
+  $.fn.tooltip.noConflict = function () {
+    $.fn.tooltip = old
+    return this
+  }
 
 }( jQuery ));

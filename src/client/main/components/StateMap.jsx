@@ -82,7 +82,7 @@ class StateMap extends React.Component {
       const $e     = $(findDOMNode(this));
       const $links = $('[data-toggle="tooltip"]',$e);
 
-      $links.tooltipX({ container:'.map-area' }); 
+      $links.tooltipX({ container:'#map' }); 
       this.gotTT = true;      
     }
   }
@@ -95,7 +95,7 @@ class StateMap extends React.Component {
     const { mapData } = this.state;
 
     return (
-      <div className="map-area" style={{position:'relative'}}>
+      <div className="map-area">
         <h4 className="map-title">Find A Group</h4>
         <div className="map-desc">Click the map to browse the groups in each state.</div>
           {mapData
