@@ -35,6 +35,7 @@
     "react-share": "^1.10.0",
     "redux": "3.5.2",
     "redux-thunk": "2.1.0",
+    "tabletop": "^1.4.3",
     "tag-string": "git+https://github.com/victor-stone/tag-string.git",
     "whatwg-fetch": "1.0.0"
   },
