@@ -11,6 +11,13 @@ window.slink = function(e,a) {
   browserHistory.push(a);
 };
 
+const formatRace = race => {
+  return ['category', 'hotraces', 'notes'].reduce( (str,k) => { 
+    race[k] && (str += `<br />${race[k]}`);
+    return str;
+  } , '' );
+};
+
 class StateMap extends React.Component {
 
   static contextTypes = {
@@ -29,9 +36,24 @@ class StateMap extends React.Component {
     const { 
       groupings:{ 
         terms:states 
-      } 
+      },
+      stateRaces 
     } = storeState.service;
 
+    stateRaces.then( races => this.populateMapData(races,states) );
+  }
+
+  componentDidUpdate() {
+    if( !this.gotTT ) {
+      const $e     = $(findDOMNode(this));
+      const $links = $('[data-toggle="tooltip"]',$e);
+
+      $links.tooltipX({ container:'#map', html: true }); 
+      this.gotTT = true;      
+    }
+  }
+
+  populateMapData(raceData,states) {
     /* globals $ */
     fetch( location.origin + '/images/state-map-data.svg')
       .then( response => response.text() )
@@ -62,6 +84,8 @@ class StateMap extends React.Component {
               cls   = 'map-no-groups';
             }
 
+            raceData[stateName] && (title += formatRace(raceData[stateName]));
+
             $e.attr('onclick', 'window.slink(event,"'+link+'")');
             $e.attr('xlink:href', '#');
             $e.attr('title', title);
@@ -75,16 +99,6 @@ class StateMap extends React.Component {
           div.innerHTML = '';
 
         });
-  }
-
-  componentDidUpdate() {
-    if( !this.gotTT ) {
-      const $e     = $(findDOMNode(this));
-      const $links = $('[data-toggle="tooltip"]',$e);
-
-      $links.tooltipX({ container:'#map' }); 
-      this.gotTT = true;      
-    }
   }
 
   onStateClick(e) {

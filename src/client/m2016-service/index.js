@@ -1,19 +1,17 @@
-/* globals fetch */
+var path     = require('jspath');
+var Tabletop = require('tabletop');
+
 let _fetch = null;
 if( typeof window !== 'undefined') {
-   // require('whatwg-fetch');
-   // _fetch = fetch;
   /* global $ */
   _fetch = (url) => {
     return new Promise( (success,error) => $.ajax({url,success,error,xhrFields: {withCredentials:true}} ) );
   };
 } else {
-  _fetch = require('node-fetch');
+  _fetch = require('node-fetch'.trim()); // prevent browserify bundling
 }
 
-var path = require('jspath');
-
-const WP_API_HOST =   'movement2016.org'; // 'm2016dev.wpengine.com'; //
+const WP_API_HOST =   'movement2016.org'; 
 
 const WP_API_BASE = 'https://' + WP_API_HOST + '/wp-json/movement-2.1/';
 
@@ -66,6 +64,27 @@ class M2016Service {
     return this._fetch( 'page/' + id ).then( p => p.content );
   }
   
+  get stateRaces() {
+    if( this._stateStats ) {
+      return Promise.resolve(this._stateStats);
+    }
+    const public_spreadsheet_url = '1YXEv6GslFf_ZnBWgOM0JYQyuBL0mZMycxZZoHuJHNbs';
+    return new Promise( (resolve, reject) => {
+      try {
+        Tabletop.init({
+            key: public_spreadsheet_url,
+            parseNumbers: true,
+            callback: (data, tabletop) => {
+              this._stateStats = {};
+              tabletop.sheets('statecategories').all().reduce( (obj,race) => (obj[race.statelink] = race, obj), this._stateStats );
+              resolve(this._stateStats);
+            },
+        });        
+      } catch( e ) {
+        reject(e);
+      }
+    });
+  }
   get donateStats() {
     return this._donationstats;
   }
