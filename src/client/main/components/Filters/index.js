@@ -36,7 +36,7 @@ class Filters extends ServiceContext(React.Component) {
     const hasSections = visibleSections.length + visibleStates.length > 0;
 
     if( mobile ) {
-      return <StatePicker terms={terms} onShowState={onShowState} visible={visibleStates} />;
+      return <span />; 
     }
     
     return (

@@ -66,7 +66,7 @@ class App extends React.Component {
         donateStats: service.donateStats
       });
     }).catch( err => {
-        this.setState({ error: err + '', err, loading: false });
+        this.setState({ error: err.statusText || err + '', err, loading: false });
       });    
   }
 

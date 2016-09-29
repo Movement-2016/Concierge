@@ -4,24 +4,26 @@
     text-align: center;
   }
 
-  select#jump-state {
-    font-size: large;
-  }
-
 }
 
-.mobile-group {
+ul.mobile-group.state-list >  {
 
   font-size: 150%;
 
-  ul.state-list > li {
+  li {
     margin-bottom: 7px;
+
+    a {
+      margin-left: 13px;
+      color: black;
+
+      .count {
+        font-size: smaller;
+        opacity: 0.5;
+      }
+    }
   }
 
-  ul.state-list > li > a {
-    margin-left: 33px;
-    color: black;
-  }
 }
 
 .state-page {

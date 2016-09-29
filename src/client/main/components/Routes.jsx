@@ -20,10 +20,10 @@ import HomePage         from './HomePage.jsx';
 import DonatePage       from './DonatePage.jsx';
 import StatePage        from './StatePage.jsx';
 import ShoppingCart     from './ShoppingCart';
+import AdvisorsPage     from './AdvisorPage.jsx';
 
 const MeetTheTeamPage = () => <ContentPage page="meetTheTeam" />;
 const AboutUsPage     = () => <ContentPage page="aboutUs" />;
-const AdvisorsPage    = () => <ContentPage page="advisors" />;
 const PressPage       = () => <ContentPage page="press" />;
 const TookkitsPage    = () => <ContentPage page="toolkits" />;
 
@@ -43,7 +43,7 @@ class Routes extends React.Component
             
             <Route path='/plan'       component={ShoppingCart} />
             <Route path='/about'      component={AboutUsPage} />
-            <Route path='/partners'   component={AdvisorsPage} />
+            <Route path='/advisors'   component={AdvisorsPage} />
             <Route path='/team'       component={MeetTheTeamPage} />
             <Route path='/getintouch' component={ContactPage} />
             <Route path='/houseparty' component={HouseParty} />
