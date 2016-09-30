@@ -34,6 +34,7 @@ class M2016Service {
     this._base = WP_API_BASE;
     this._orgs = null;
     this._taxonomy = null;
+    this._pages = {};
   }
 
   _fetch(part) {
@@ -46,24 +47,22 @@ class M2016Service {
     if( this._orgs ) {
       return Promise.resolve(this);
     }
-    return Promise.all( [ this._fetch( 'orgs' ), 
-                          this._fetch( 'donationstats'),
-                          this._fetch( 'tags' ),
-                          this._fetch( 'testimonials' ),
-                          this._fetch( 'content' ) ] )
-        .then ( ([ orgs, donationstats, tags, testimonials, content ])  => {
-          this._orgs = orgs;
-          this._donationstats = donationstats;
+    return Promise.all( [ this._fetch( 'tags' ),
+                          this._fetch( 'content' ),
+                          this.orgs, 
+                          this.donateStats,                          
+                          this.testimonials ] )
+        .then ( ([ tags, content ])  => {
           this._taxonomy = tags;
           this._content = content;
-          this._testimonials = testimonials;
-          this._taxonomy.states = this._taxonomy.state;
           return this;
         });    
   }
 
   getPage(id) {
-    return this._fetch( 'page/' + id ).then( p => p.content );
+    return this.pages[id]
+      ? Promise.resolve(this.pages[id])
+      : this._fetch( 'page/' + id ).then( p => this.page[id] = p.content );
   }
   
   get stateRaces() {
@@ -87,27 +86,20 @@ class M2016Service {
       }
     });
   }
+
   get donateStats() {
-    return this._donationstats;
+    return this._donationstats
+      ? Promise.resolve(this._donationstats)
+      : this._fetch( 'donationstats' ).then( d => this._donationstats = d ); 
   }
 
   get testimonials() {
-    return this._testimonials.testimonials;
+    return this._testimonials
+      ? Promise.resolve(this._testimonials)
+      : this._fetch( 'testimonials' ).then( t => this._testimonials = t.testimonials );
   }
   
-  get filters() {
-    return this._taxonomy.filters;
-  }
-
-  get filterDict() {
-    if( !this._filterDict ) {
-      this._filterDict = {};
-      path('...terms.*', this.filters ).forEach( f => this._filterDict[f.name] = f.label );
-    }
-    return this._filterDict;
-  }
-
-  getOrgs() {
+  get orgs() {
     return this._orgs 
       ? Promise.resolve(this._orgs)
       : this._fetch( 'orgs' ).then( o => this._orgs = o );
@@ -119,8 +111,24 @@ class M2016Service {
       : this._fetch( 'advisors' ).then( a => this._advisors = a );
   }
 
-  get orgs() {
-    return this._orgs;
+  get tandemForms() {
+    return this._tandemforms
+      ? Promise.resolve(this._tandemforms)
+      : this._fetch( 'tandemforms' ).then( a => this._tandemforms = a.tandemforms );
+  }
+
+  get filters() {
+    return this._taxonomy.filters;
+  }
+
+  /* NON PROMISE */
+
+  get filterDict() {
+    if( !this._filterDict ) {
+      this._filterDict = {};
+      path('...terms.*', this.filters ).forEach( f => this._filterDict[f.name] = f.label );
+    }
+    return this._filterDict;
   }
 
   get groupings() {

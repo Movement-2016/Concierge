@@ -7,6 +7,7 @@ import { Thermometer }  from './DonateHeader.jsx';
 import commaize         from 'commaize';
 
 import SocialButtons from './Social.jsx';
+import Loading from './Loading.jsx';
 
 class Testimonials extends React.Component {
   render() {
@@ -19,8 +20,8 @@ class Testimonials extends React.Component {
             {testimonials.map( (t,i) => (
               <div key={i} className="col s12 m6 l3">
                 <div className="testimonial">
-                  <div className="testimonial-content">"{t.quote}"</div>
-                  <div className="testimonial-author">{t.testifier}</div>
+                  <div className="testimonial-content" dangerouslySetInnerHTML={{__html: '"' + t.quote + '"'}} />
+                  <div className="testimonial-author"  dangerouslySetInnerHTML={{__html:t.testifier}} />
                 </div>
               </div>            
             ))}
@@ -34,12 +35,17 @@ class Testimonials extends React.Component {
 class HomePage extends ServiceContext(React.Component) {
 
   stateFromStore( storeState ) {
+
     const {
       donateStats,
       testimonials
     } = storeState.service;
 
-    this.setState( { donateStats, testimonials } );
+    Promise
+      .all( [ donateStats, testimonials ] )
+      .then( ([ donateStats, testimonials ]) => this.setState( { donateStats, testimonials, loading: false } ));
+
+    this.setState({ loading: true });
   }
 
   render() {
@@ -48,9 +54,14 @@ class HomePage extends ServiceContext(React.Component) {
       donateStats: {
         goal,
         pledged
-      },
-      testimonials
+      } = {},
+      testimonials,
+      loading
     } = this.state;
+
+    if( loading ) {
+      return <Loading />;
+    }
 
     return(
       

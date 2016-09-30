@@ -1,9 +1,9 @@
 import React    from 'react';
 import { Link } from 'react-router';
 
-import TilesPage       from './TilesPage.jsx';
-import { PageContext } from './ContextMixins.js';
+import { ServiceContext } from './ContextMixins.js';
 import ContentPage from './ContentPage.jsx';
+import Loading from './Loading.jsx';
 
 const PlanLinkBox = () => {
   return (
@@ -14,19 +14,50 @@ const PlanLinkBox = () => {
     );
 };
 
-class DonatePage extends PageContext(React.Component) {
-  get page() {
-    return 'donate';
+class TandemForms extends React.Component {
+  render() {
+    const { tandemForms } = this.props;
+
+    return(
+      <div className="row">
+          {tandemForms.map( t => (
+            <div key={t.id} className="col s12 m6 l3">
+              <div className="tandem-form">
+                <h4 className="title"  dangerouslySetInnerHTML={{__html:t.label}} />
+                <div className="content" dangerouslySetInnerHTML={{__html:t.body}} />
+                <a className="url btn" href={t.url}>Donate</a>
+              </div>
+            </div>            
+          ))}
+        </div>
+      );
+  }
+}
+
+class DonatePage extends ServiceContext(React.Component) {
+
+  stateFromStore(storeState) {
+    storeState.service.tandemForms.then( unsorted => {
+      const tandemForms = [ ...unsorted ].sort( (a,b) => a.placement > b.placement ? 1 : -1 );
+      this.setState({ tandemForms, loading: false });
+    });
+    this.setState({ loading: true });
   }
 
   render() {
-    const { page } = this.state;
+    const { 
+      tandemForms, 
+      loading 
+    } = this.state;
 
     return(
       <div>
         <PlanLinkBox />
-        <ContentPage.Shell name="donate" title={page.title}>
-          <TilesPage page={page} className="donate-page" />
+        <ContentPage.Shell name="donate" title="Easy Donate">
+        {loading
+          ? <Loading />
+          : <TandemForms tandemForms={tandemForms} />
+        }
         </ContentPage.Shell>
       </div>
       );

@@ -14,7 +14,7 @@ let orgs = null;
 function init () {
   console.log( 'starting mail init');
   process.nextTick( () => {
-    M2016.getOrgs().then( o => {
+    M2016.orgs.then( o => {
       orgs = o;
       console.log('mail init done');
     }).catch( err => {

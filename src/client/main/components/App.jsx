@@ -47,24 +47,14 @@ class App extends React.Component {
     };
   }
 
-  // on mount, subscribe to listen for authentication status changes
   componentWillMount () {
     service.init().then( service => {
 
       store.dispatch( initService(service) );
       store.dispatch( initFilters(service.filters) );
+      
+      service.donateStats.then( donateStats => this.setState({ loading: false, donateStats }));
 
-      this.unsubscribe = store.subscribe (() => {
-        const authenticated = store.getState ().user.authenticated;
-        if (this.state.authenticated !== authenticated) {
-          this.setState ({ authenticated });
-        }
-      });
-
-      this.setState({ 
-        loading: false,
-        donateStats: service.donateStats
-      });
     }).catch( err => {
         this.setState({ error: err.message || err.statusText || err + '', err, loading: false });
       });    
