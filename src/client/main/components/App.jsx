@@ -11,6 +11,11 @@ import { initFilters }       from '../store/actions';
 
 import service               from '../../m2016-service';
 
+import {  
+  unsubscribeFromStore,
+  subscribeToStore
+} from '../../lib/analytics';
+
 import Routes       from './Routes.jsx';
 import Nav          from './Nav.jsx';
 import DonateHeader from './DonateHeader.jsx';
@@ -50,9 +55,11 @@ class App extends React.Component {
   componentWillMount () {
     service.init().then( service => {
 
+      // ORDER DEPENDENT!!
       store.dispatch( initService(service) );
-      store.dispatch( initFilters(service.filters) );
-      
+      store.dispatch( initFilters(service.filters) );      
+      subscribeToStore(store);
+
       service.donateStats.then( donateStats => this.setState({ loading: false, donateStats }));
 
     }).catch( err => {
@@ -63,6 +70,7 @@ class App extends React.Component {
   // before unmount, remove store listener
   componentWillUnmount () {
     this.unsubscribe ();
+    unsubscribeFromStore();
   }
 
   render () {
