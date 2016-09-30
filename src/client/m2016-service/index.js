@@ -49,12 +49,14 @@ class M2016Service {
     return Promise.all( [ this._fetch( 'orgs' ), 
                           this._fetch( 'donationstats'),
                           this._fetch( 'tags' ),
+                          this._fetch( 'testimonials' ),
                           this._fetch( 'content' ) ] )
-        .then ( ([ orgs, donationstats, tags, content ])  => {
+        .then ( ([ orgs, donationstats, tags, testimonials, content ])  => {
           this._orgs = orgs;
           this._donationstats = donationstats;
           this._taxonomy = tags;
           this._content = content;
+          this._testimonials = testimonials;
           this._taxonomy.states = this._taxonomy.state;
           return this;
         });    
@@ -89,6 +91,10 @@ class M2016Service {
     return this._donationstats;
   }
 
+  get testimonials() {
+    return this._testimonials.testimonials;
+  }
+  
   get filters() {
     return this._taxonomy.filters;
   }
@@ -112,7 +118,7 @@ class M2016Service {
       ? Promise.resolve(this._advisors)
       : this._fetch( 'advisors' ).then( a => this._advisors = a );
   }
-  
+
   get orgs() {
     return this._orgs;
   }
@@ -121,22 +127,6 @@ class M2016Service {
     return this._taxonomy.groupings.state;
   }
 
-/*
-
-  return array( 
-      'groupSections' => $groupSections,
-      'mainMenu'      => $mainMenu,
-      'pages' => array(
-          'home'         => $homePage,
-          'testimonials' => $testimonialsPage,
-          'donate'       => $donatePage,
-          'info'         => $infoPage,
-          'advisors'     => $advisorsPages,
-          'meetTheTeam'  => $meetTheTeamPage,
-          'aboutUs'      => $aboutUsPage
-        )
-    );
-*/
   get groupSections() {
     return this._content.groupSections;
   }

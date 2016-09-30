@@ -2,25 +2,55 @@ import React      from 'react';
 import { Link } from 'react-router';
 import StateMap from './StateMap.jsx';
 
-import { PageContext }  from './ContextMixins.js';
+import { ServiceContext }  from './ContextMixins.js';
 import { Thermometer }  from './DonateHeader.jsx';
 import commaize         from 'commaize';
 
 import SocialButtons from './Social.jsx';
 
-class HomePage extends PageContext(React.Component) {
+class Testimonials extends React.Component {
+  render() {
+    const { testimonials } = this.props;
 
-  get pages() {
-    return ['home', 'info', 'testimonials'];
+    return (
+        <section className="testimonial-section">
+          <div className="container">
+          <div className="row">
+            {testimonials.map( (t,i) => (
+              <div key={i} className="col s12 m6 l3">
+                <div className="testimonial">
+                  <div className="testimonial-content">"{t.quote}"</div>
+                  <div className="testimonial-author">{t.testifier}</div>
+                </div>
+              </div>            
+            ))}
+          </div>
+          </div>
+        </section>
+      );
   }
+}
+
+class HomePage extends ServiceContext(React.Component) {
 
   stateFromStore( storeState ) {
-    super.stateFromStore( storeState );
-    this.setState( { donateStats: { ...storeState.service.donateStats} });
+    const {
+      donateStats,
+      testimonials
+    } = storeState.service;
+
+    this.setState( { donateStats, testimonials } );
   }
 
   render() {
-    const { goal, pledged } = this.state.donateStats;
+    const { 
+      donateStats,
+      donateStats: {
+        goal,
+        pledged
+      },
+      testimonials
+    } = this.state;
 
     return(
       
@@ -31,7 +61,7 @@ class HomePage extends PageContext(React.Component) {
             <div className="pledge-box">
               <div className="pledge-box-title">Choose A Way To Give</div>
               <div className="thermometer-area">
-                <Thermometer {...this.state.donateStats} />
+                <Thermometer {...donateStats} />
                 <div className="thermometer-numbers">
                   <div className="thermometer-current">{'$' + commaize(pledged) + ' Pledged'}</div>
                   <div className="thermometer-goal">{'$' + commaize(goal) + ' Goal'}</div>
@@ -65,36 +95,7 @@ class HomePage extends PageContext(React.Component) {
             <SocialButtons />
           </div>
         </section>
-        <section className="testimonial-section">
-          <div className="container">
-          <div className="row">
-            <div className="col s12 m6 l3">
-              <div className="testimonial">
-                <div className="testimonial-content">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</div>
-                <div className="testimonial-author">Steve Baliwag</div>
-              </div>
-            </div>
-            <div className="col s12 m6 l3">
-              <div className="testimonial">
-                <div className="testimonial-content">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</div>
-                <div className="testimonial-author">Ringo Brewn</div>
-              </div>
-            </div>
-            <div className="col s12 m6 l3">
-            <div className="testimonial">
-              <div className="testimonial-content">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</div>
-              <div className="testimonial-author">Floppy Fern</div>
-            </div>
-            </div>
-            <div className="col s12 m6 l3">
-            <div className="testimonial">
-              <div className="testimonial-content">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</div>
-              <div className="testimonial-author">Sierra Sierra</div>
-            </div>
-            </div>
-          </div>
-        </div>
-        </section>
+        <Testimonials testimonials={testimonials} />
         <section className="volunteer-section" />
         <section className="map-section hide-on-small-and-down">
           <div className="container">             
