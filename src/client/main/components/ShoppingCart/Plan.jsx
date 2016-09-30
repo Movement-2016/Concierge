@@ -1,6 +1,7 @@
 import React     from 'react';
 
 import { ContextMixin } from '../ContextMixins';
+import Loading from '../Loading.jsx';
 
 import { 
   getSelectedOrgs,
@@ -37,24 +38,41 @@ class Plan extends ContextMixin(React.Component) {
 
   stateFromStore(storeState) {
 
-    const { 
-      groups: {
-        selected 
-      },
-      service: {
-        orgs,
-        filters,
-        groupings: {
-          terms:states
+    storeState.service.orgs.then( orgs => {
+      const { 
+        groups: {
+          selected 
+        },
+        service: {
+          filters,
+          groupings: {
+            terms:states
+          }
         }
-      }
-    } = storeState;
+      } = storeState;
 
-    this.setState({ states, filters, orgs: organizeOrgs(getSelectedOrgs(selected,orgs)) });
+      this.setState({ 
+        states, 
+        filters, 
+        orgs: organizeOrgs(getSelectedOrgs(selected,orgs)),
+        loading: false
+      });
+    });
+
+    this.setState({ loading: true });
   }
 
   render() {
-    const { orgs, filters, states } = this.state;
+    const { 
+      orgs, 
+      filters, 
+      states,
+      loading 
+    } = this.state;
+
+    if( loading ) {
+      return <Loading />;
+    }
 
     return(
         <div className="plan-display-area">

@@ -21,8 +21,9 @@ class CustomDonatePage extends ContextMixin(React.Component) {
 
   constructor() {
     super(...arguments);
+    const storeState = this.context.store.getState();
     this.state = {
-      selectedTerms: this.context.store.getState().groups.visibility,
+      selectedTerms: storeState.groups.visibility,
       loading: true,
       showOrgs: false
     };
@@ -35,19 +36,18 @@ class CustomDonatePage extends ContextMixin(React.Component) {
   }
 
   stateFromStore(storeState) {
-    const { 
-      groups: {
-        visibility
-      }, 
-      service: {
-        orgs
-      }
-    } = storeState;
+    storeState.service.orgs.then( orgs => {
+      const { 
+        groups: {
+          visibility
+        }
+      } = storeState;
 
-    this.setState( { 
-      selectedTerms: visibility,
-      orgs: getVisibleOrgs( orgs, visibility ),
-      loading: false
+      this.setState( { 
+        selectedTerms: visibility,
+        orgs: getVisibleOrgs( orgs, visibility ),
+        loading: false
+      });
     });
   }
 

@@ -16,16 +16,16 @@ class Testimonials extends React.Component {
     return (
         <section className="testimonial-section">
           <div className="container">
-          <div className="row">
-            {testimonials.map( (t,i) => (
-              <div key={i} className="col s12 m6 l3">
-                <div className="testimonial">
-                  <div className="testimonial-content" dangerouslySetInnerHTML={{__html: '"' + t.quote + '"'}} />
-                  <div className="testimonial-author"  dangerouslySetInnerHTML={{__html:t.testifier}} />
-                </div>
-              </div>            
-            ))}
-          </div>
+            <div className="row">
+              {testimonials.map( (t,i) => (
+                <div key={i} className="col s12 m6 l3">
+                  <div className="testimonial">
+                    <div className="testimonial-content" dangerouslySetInnerHTML={{__html: '"' + t.quote + '"'}} />
+                    <div className="testimonial-author"  dangerouslySetInnerHTML={{__html:t.testifier}} />
+                  </div>
+                </div>            
+              ))}
+            </div>
           </div>
         </section>
       );
