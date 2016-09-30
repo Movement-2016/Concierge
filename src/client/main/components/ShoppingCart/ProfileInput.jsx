@@ -15,7 +15,7 @@ class ProfileInput extends ContextMixin(React.Component) {
   stateFromStore(storeState) {
     const { user } = storeState;
     const { name } = this.props;
-    if( user[name] !== this.value ) {
+    if( user[name] !== this.state.value ) {
       this.setState({ value: user[name] });
     }
   }

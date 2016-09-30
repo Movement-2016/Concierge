@@ -36,7 +36,16 @@ class StateOrgs extends React.Component {
 
 class Plan extends ContextMixin(React.Component) {
 
+  constructor() {
+    super(...arguments);
+    this.state = { loading: true };
+  }
+
   stateFromStore(storeState) {
+
+    if( !this.state.loading ) {
+      return;
+    }
 
     storeState.service.orgs.then( orgs => {
       const { 
@@ -58,8 +67,6 @@ class Plan extends ContextMixin(React.Component) {
         loading: false
       });
     });
-
-    this.setState({ loading: true });
   }
 
   render() {
