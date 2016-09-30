@@ -24,7 +24,7 @@ class OrgsListMobile extends React.Component {
         {Object.keys(states).map( name => 
           <li key={name} >
             <Link to={'/state/' + name}>
-              {states[name].label} <span className="count">{ `(${states[name].count}) group ${states[name].count > 1 ? 's' : ''}`}</span>
+              {states[name].label} <span className="count">{ `(${states[name].count}) group${states[name].count > 1 ? 's' : ''}`}</span>
               <i className="right material-icons">play_arrow</i>
               <div  style={{clear:'both'}} />
             </Link> 

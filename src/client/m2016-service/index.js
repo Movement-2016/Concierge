@@ -62,7 +62,7 @@ class M2016Service {
   getPage(id) {
     return this.pages[id]
       ? Promise.resolve(this.pages[id])
-      : this._fetch( 'page/' + id ).then( p => this.page[id] = p.content );
+      : this._fetch( 'page/' + id ).then( p => this.pages[id] = p.content );
   }
   
   get stateRaces() {

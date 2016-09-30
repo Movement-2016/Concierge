@@ -1,25 +1,37 @@
 import React from 'react';
-import { Shell } from './ContentPage.jsx';
-import State from './OrgList/State.jsx';
-import { ServiceContext } from './ContextMixins';
 import { Link } from 'react-router';
+
+import { Shell }          from './ContentPage.jsx';
+import State              from './OrgList/State.jsx';
+import { ServiceContext } from './ContextMixins';
+import Loading            from './Loading.jsx';
 
 class StatePage extends ServiceContext(React.Component) {
 
+  stateFromStore(storeState) {
+    storeState.service.orgs.then( orgs => {
+      const allStates = storeState.service.groupings.terms;
+      this.setState({ allStates, orgs, loading: false });
+    });
+    this.setState({ loading: true });
+  }
+
   render() {
-    const { params:{name} } = this.props;
 
     const {
-      groupings: {
-        terms:allStates
-      },
-      orgs
-    } = this.state.service;
+      allStates,
+      orgs,
+      loading
+    } = this.state;
+
+    if( loading ) {
+      return <Loading />;
+    }
+    
+    const name = this.props.params.name;
 
     const state  = allStates[name];
-    const { 
-      group:color
-    } = state;
+    const color  = state.group;
 
     return (
       <Shell name={'state-page ' + name} title={''}>
