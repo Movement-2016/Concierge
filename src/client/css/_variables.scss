@@ -6,6 +6,8 @@ $navbar-height-mobile: 56px;
 
 //Base font sizes
 $h1-fontsize: 2.28rem;
+$h2-fontsize: 2.28rem;
+$h3-fontsize: 1.75rem;
 $h5-fontsize: 1.4rem;
 
 
@@ -33,7 +35,8 @@ $link-color: $secondary-color;
 $facebook-blue: rgb(59, 89, 152);
 $twitter-blue: rgb(0, 172, 237);
 
-$navbar-color: rgba(247, 247, 247, 0.97);
+$almost-white: rgba(251, 251, 251, 0.97);
+$navbar-color: $almost-white;
 
 $body-bg-color: color('grey', 'lighten-5');
 

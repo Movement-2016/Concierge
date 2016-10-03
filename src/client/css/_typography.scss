@@ -5,14 +5,14 @@ p {
   margin: 0;
 }
 h1,
-h2,
-h3,
-h4 {
+h2 {
   font-weight: 900;
   color: $primary-color;
 }
-h5 {
+h3, h4, h5 {
   font-weight: 700;
+}
+h5 {
   color: $lighter-text;
 }
 p+h5 {

@@ -65,10 +65,10 @@ class HomePage extends ServiceContext(React.Component) {
 
     return(
       
-      <main>
+      <main className="home">
         <section className="donate-section">
           <div className="container">
-            <h2 className="intro-text">Support the best Community-Based Vote&nbsp;Groups&nbsp;in&nbsp;the&nbsp;Country</h2>
+            <h1 className="intro-text">Support the best Community-Based Vote&nbsp;Groups&nbsp;in&nbsp;the&nbsp;Country</h1>
             <div className="pledge-box">
               <div className="pledge-box-title">Choose A Way To Give</div>
               <div className="thermometer-area">
