@@ -10,6 +10,14 @@
     line-height: 1.42857143;
     opacity: 0;
     line-break: auto;
+
+    b {
+      display: block;
+      padding: 3px;
+      background: black;
+      color: white;
+      border-radius: 4px;
+    }
   }
   .tooltip.in {
     filter: alpha(opacity=9.5);

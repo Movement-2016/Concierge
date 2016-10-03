@@ -75,8 +75,8 @@ class StateMap extends React.Component {
               const { label, group, count } = state;
               link  = '/groups#' + stateName;
               title = count === 1
-                        ? `There is 1 group in ${label}`
-                        : `There are ${count} groups in ${label}`;
+                        ? `<b>There is 1 group in ${label}</b>`
+                        : `<b>There are ${count} groups in ${label}</b>`;
               cls   = 'map-' + group;
             } else {
               link  = '/groups#no-groups';
