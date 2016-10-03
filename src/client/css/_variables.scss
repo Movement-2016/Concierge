@@ -6,6 +6,8 @@ $navbar-height-mobile: 56px;
 
 //Base font sizes
 $h1-fontsize: 2.28rem;
+$h2-fontsize: 2.28rem;
+$h3-fontsize: 1.68rem;
 $h5-fontsize: 1.4rem;
 
 
@@ -24,7 +26,7 @@ $xl-and-up: "only screen and (min-width : #{$large-screen-up})";
 $white: #fff;
 $primary-color: color("blue", "base");
 $primary-color-light: color("blue", "lighten-1");
-$secondary-color: color("red", "base");
+$secondary-color: color("red", "lighten-1");
 $secondary-color-light: lighten(color("red", "lighten-1"), 5%);
 $success-color: color("green", "base");
 $error-color: color("deep-orange", "darken-1");
@@ -33,7 +35,8 @@ $link-color: $secondary-color;
 $facebook-blue: rgb(59, 89, 152);
 $twitter-blue: rgb(0, 172, 237);
 
-$navbar-color: rgba(247, 247, 247, 0.97);
+$almost-white: rgba(251, 251, 251, 0.97);
+$navbar-color: $almost-white;
 
 $body-bg-color: color('grey', 'lighten-5');
 

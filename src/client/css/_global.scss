@@ -11,8 +11,10 @@ body,
   flex-direction: column;
 }
 .main-area {
-  margin-top: $navbar-height-mobile;
   flex: 1;
+}
+main {
+  margin-top: $navbar-height-mobile;
   @media #{$medium-and-up} {
     margin-top: $navbar-height;
   }

@@ -5,13 +5,17 @@ import { ServiceContext } from './ContextMixins.js';
 import ContentPage from './ContentPage.jsx';
 import Loading from './Loading.jsx';
 
-const PlanLinkBox = () => {
+const CustomForm = () => {
   return (
-      <div className="plan-link-box hide-on-small-and-down">
-        <p>Create your own custom donation plan by browsing all the groups we work with.</p>
-        <Link className="btn btn-primary btn-sm" to="/groups">Create Custom Plan</Link>
+    <Link className="custom-form form-block" to="/groups">
+      <div className="wrapper">
+        <h3 className="form-title">Customized</h3>
+        <div className="form-content">
+          <p>Browse Movement 2016 groups to create your own customized donation plan</p>
+        </div>
       </div>
-    );
+    </Link>
+  );
 };
 
 class TandemForms extends React.Component {
@@ -20,17 +24,21 @@ class TandemForms extends React.Component {
 
     return(
       <div className="row">
-          {tandemForms.map( t => (
-            <div key={t.id} className="col s12 m6 l3">
-              <div className="tandem-form">
-                <h4 className="title"  dangerouslySetInnerHTML={{__html:t.label}} />
-                <div className="content" dangerouslySetInnerHTML={{__html:t.body}} />
-                <a className="url btn" href={t.url}>Donate</a>
+        {tandemForms.map( t => (
+          <div key={t.id} className="col s12 m4">
+            <a className="tandem-form form-block" href={t.url}>
+              <div className="wrapper">
+                <h3 className="form-title"  dangerouslySetInnerHTML={{__html:t.label}} />
+                <div className="form-content" dangerouslySetInnerHTML={{__html:t.body}} />
               </div>
-            </div>            
-          ))}
+            </a>
+          </div>            
+        ))}
+        <div className="col s12 m4">
+          <CustomForm />
         </div>
-      );
+      </div>
+    );
   }
 }
 
@@ -51,15 +59,12 @@ class DonatePage extends ServiceContext(React.Component) {
     } = this.state;
 
     return(
-      <div>
-        <PlanLinkBox />
-        <ContentPage.Shell name="donate" title="Easy Donate">
+        <ContentPage.Shell name="donate" title="Select a Donation Plan">
         {loading
           ? <Loading />
           : <TandemForms tandemForms={tandemForms} />
         }
         </ContentPage.Shell>
-      </div>
       );
   }
 }

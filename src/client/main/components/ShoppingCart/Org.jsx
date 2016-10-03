@@ -66,11 +66,17 @@ class Org extends React.Component {
     };
 
     return(
-      <div className="group-plan">
-        <div className="giving-area">{'$'}<input {...inProps}/></div>
-        <div className="name-plan" dangerouslySetInnerHTML={{__html:name}} />
-        <div className="org-type-area">
-          {this.tags.map( t => <span key={t}>{t} </span> )}
+      <div className="group">
+        <div className="row">
+          <div className="col s8 m9">
+            <div className="group-title" dangerouslySetInnerHTML={{__html:name}} />
+            <div className="nonprofit-tags">
+              {this.tags.map( t => <span key={t}>{t} </span> )}
+            </div>
+          </div>
+          <div className="col s4 m3">
+            <div className="amount"><input placeholder="$" {...inProps}/></div>
+          </div>
         </div>
       </div>
     );

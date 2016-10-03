@@ -1,0 +1,36 @@
+.form-block {
+  width: 95%;
+  max-width: 250px;
+  display: block;
+  position: relative;
+  margin: 0 auto 30px;
+  background-color: $almost-white;
+  color: $dark-text;
+  &:hover, &:focus {
+    background-color: $white;
+  }
+  @include z-depth-1;
+  .wrapper {
+    position: absolute;
+    left:0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 30px 20px;
+  }
+  &:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+  .form-title {
+    text-align: center;
+    margin: 0 0 20px;
+    color: $secondary-color-light;
+  }
+  .form-btn {
+    position: absolute;
+    width: 100%;
+    bottom: 1.875rem;
+  }
+}

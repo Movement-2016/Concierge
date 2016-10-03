@@ -110,7 +110,7 @@ class StateMap extends React.Component {
 
     return (
       <div className="map-area">
-        <h4 className="map-title">Find A Group</h4>
+        <h2 className="map-title">Find A Group</h2>
         <div className="map-desc">Click the map to browse the groups in each state.</div>
           {mapData
             ? <div id="map" dangerouslySetInnerHTML={{__html:mapData}} />
