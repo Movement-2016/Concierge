@@ -59,14 +59,12 @@ class DonatePage extends ServiceContext(React.Component) {
     } = this.state;
 
     return(
-      <div>
         <ContentPage.Shell name="donate" title="Select a Donation Plan">
         {loading
           ? <Loading />
           : <TandemForms tandemForms={tandemForms} />
         }
         </ContentPage.Shell>
-      </div>
       );
   }
 }

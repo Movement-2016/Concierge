@@ -1,7 +1,9 @@
 .form-block {
-  width: 100%;
+  width: 95%;
+  max-width: 250px;
   display: block;
   position: relative;
+  margin: 0 auto 30px;
   background-color: $almost-white;
   color: $dark-text;
   &:hover, &:focus {

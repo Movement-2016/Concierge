@@ -26,8 +26,8 @@ class StateOrgs extends React.Component {
     } = state;
 
     return (
-        <div className="state-group-plan" id={name}>
-          <h3 className={group}>{label}</h3>
+        <div className="plan-state" id={name}>
+        <h3 className={`${group}-state`}>{label}</h3>
           {orgs.map( org => <Org key={org.id} filters={filters} {...org} />)}
         </div>    
       );
@@ -82,8 +82,7 @@ class Plan extends ContextMixin(React.Component) {
     }
 
     return(
-        <div className="plan-display-area">
-          <div className="plan-groups-area">
+          <div className="donation-plan">
           {Object.keys(orgs).map( state =>  <StateOrgs name={state} 
                                                        key={state} 
                                                        orgs={orgs[state]} 
@@ -91,7 +90,6 @@ class Plan extends ContextMixin(React.Component) {
                                                        state={states[state]}
                                             /> )} 
         </div>
-      </div>
     );
   }
 }

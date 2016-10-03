@@ -53,15 +53,17 @@ class Summary extends ContextMixin(React.Component) {
 
     return (
         <div className="plan-summary">
-          {error || msg 
-            ? <Alert msg={error || msg} type={error ? Alert.DANGER : Alert.SUCCESS} onClose={this.onClose} />
-            : <div className="summary">
-                Your total contribution amount: ${commaize(planTotal)}
-                <EmailPlanButton {...btnProps} >Email me this plan</EmailPlanButton>
-                {' or '}
-                <EmailPlanButton {...btnProps} advisorMode>Request consultation</EmailPlanButton>
-              </div>
-          }
+          <div className="container small-container">
+            {error || msg 
+              ? <Alert msg={error || msg} type={error ? Alert.DANGER : Alert.SUCCESS} onClose={this.onClose} />
+              : <div className="summary">
+                  Your total contribution amount: ${commaize(planTotal)}
+                  <EmailPlanButton {...btnProps} >Email me this plan</EmailPlanButton>
+                  {' or '}
+                  <EmailPlanButton {...btnProps} advisorMode>Request consultation</EmailPlanButton>
+                </div>
+            }
+          </div>
         </div>
       );
   }

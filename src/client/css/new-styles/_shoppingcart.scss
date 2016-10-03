@@ -1,228 +1,78 @@
-.shopping-cart {
-  max-width: 900px;
-  margin: 30px auto 50 auto;
-  overflow: hidden;
-
-  .groups-link {
-    top: 130px;
-    left: 80px;
-  }
-
-  .donor-area {
-    width: 96%;
-    max-width: 600px;
-    margin: 0 auto 0 auto;
-
-    h2 {
-      text-align: center;
-      color: #42A5F5;
-      margin: 0 0 30px 0;
-    }
-
-    .info-Area {
-      margin-top: 1em;
-      padding-bottom: 16px;
-      border: 1px solid lightgray;
-
-      h3 {
-        padding: 8px 12px 8px 12px;
-        text-align: left;
-        color: white;
-        background-color: #42A5F5;
-      }
-
-      p {
-        padding: 12px 12px 12px 12px;
-        color: darkgray;
-        border-bottom: 1px solid lightgray;
-      }
-
-      input[type='text'] {
-        width: 40%;
-        font-size: 16px;
-        margin-top: 20px;
-        margin-left: 7%;
-        border: none;
-        border-bottom: 1px solid darkgray;
-      }
-
-      .action-area {
-        text-align: center;
-        margin-top: 20px;
-        letter-spacing: 0.4em;
-      }
+.donation-plan {
+  @include z-depth-1;
+  margin: 45px 0;
+  .plan-state {
+    border-bottom: 1px solid $light-border;
+    padding: 10px 30px;
+    h3 {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      color: $lighter-text;
+      margin: 1rem 0 1.33rem;
     }
   }
-  .plan-display-area {
-    width: 100%;
-
-    .plan-groups-area {
-      width: 96%;
-      max-width: 600px;
-      margin: 16px auto 0 auto;
-
-      .state-group-plan {
-        margin-bottom: 16px;
-
-        h3 {
-          color: white;
-          font-size: 16px;
-          padding: 5px 0 5px 14px;
-          border-radius: 5px 5px 0px 0px;
-          margin-bottom: 0px;
-        }
-
-        h3.purple {
-          background-color: #b46ec9;
-        }
-
-        h3.light-blue {
-          background-color: #79A6D2;
-        }
-        
-        h3.light-red {
-          background-color: #D4867F;
-        }
-        
-        h3.dark-blue {
-          background-color: #1F81BB;
-        }
-        
-        h3.dark-red {
-          background-color: #B5473C;
-        }
-
-        .group-plan {
-          border-top: 1px solid lightgray;
-          border-left: 1px solid lightgray;
-          border-right: 1px solid lightgray;
-          overflow: hidden;
-
-          .name-plan {
-            float: left;
-            padding: 8px 0px 8px 12px;
-            font-size: 16px;
-            font-weight: 400;
-            margin-right: 12px;
-            max-width: 80%;
-          }
-
-          .org-type-area {
-            margin: 0px 8px 12px 8px;
-            clear: both;
-
-            span {
-              margin-right: 4px;
-              padding: 4px 12px;
-              border-radius: 10px;
-              color: black;
-              background-color: #EEEEEE;
-              display: inline-block;
-            }
-          }
-
-          .giving-area {
-            float: right;
-            overflow: hidden;
-            margin-left: 8px;
-            margin-rigth: 8px;
-            padding: 8px 0px 0px 0px;
-            background-color: white;
-            font-size: 18px;
-
-            label {
-              margin-right: 2px;
-            }
-
-            input[type=text] {
-              text-align: right;
-              width: 70px;
-              font-size: 14px;
-              margin-right: 4px;
-            }
-          }
-        }
-        
-        .group-plan:first-child {
-          border-top: 0px;
-        }
-        
-        .group-plan:last-child {
-          border-bottom: 1px solid lightgray;
-          border-radius: 0px 0px 5px 5px;
-        }
-
-      }
-    }
+  .group {
+    margin-bottom: 0.5rem;
   }
-}
-
-.plan-footer {
-  width: 100%;
-  height: 60px;
-  background-color: #EEEEEE;
-  position: fixed;
-  bottom: 0;
-  border-top: 1px solid darkgray;
-
-  div {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto 0 auto;
-    padding-top: 12px;
-    padding-bottom: 12px;
-
-    button {
-      float: left;
-      font-size: 18px;
-      padding: 4px 10px;
-      border-radius: 8px;
-      border-color:  #42A5F5;
-      color: white;
-      background-color: #42A5F5;
-    }
+  .group-title {
+    font-size: 1.15rem;
+    margin-bottom: 4px;
+  }
+  .nonprofit-tags {
+    text-align: left;
     span {
-      font-size: 20px;
-      float: right;
+      line-height: 24px;
+      padding: 0 12px;
+      font-size: 12.5px;
+    }
+  }
+  .amount {
+    text-align: right;
+    input {
+      font-size: 1.15rem;
+      border: 1px solid rgba(0, 0, 0, 0.24);
+      padding: 0 10px;
+      width: 100%;
+      max-width: 120px;
+      box-sizing: border-box;
+      height: 2.5rem;
+      margin-top: 0.2rem;
+      font-size: inherit;
+      &:focus {
+        border: 1px solid $primary-color;
+        box-shadow: none;
+      }
     }
   }
 }
-
-.shopping-cart-tray {
-  display: block;
-  position: fixed;
-  bottom: 0;
-  border-top: 3px solid black;
-  padding: 20px 5%;
-  background-color: #673ab7;
-  width: 100%;
-  z-index: 100;
-  color: white;
-  text-shadow: 2px 2px black;
-
-  .info {
-    font-size: 110%;
-    display: inline-block;
-    margin-right: 30px;
+.info-area {
+  padding: 30px;
+  @include z-depth-1;
+  margin: 30px 0 60px;
+  input {
+    width: 47%;
+    margin-right: 2%;
   }
 }
-
-.plan-summary {
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
-    z-index: 100;
-    background: #673ab7;
-    padding: 10px;
-    border-top: 1px solid black;
-    color: white;
-    text-align: center;
+.action-area {
+  text-align: center;
+  margin-top: 20px;
+  .btn {
+    margin: 0 20px;
+  }
 }
-
-.plan-summary .summary button {
+.plan-summary {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  background: $almost-white;
+  @include z-depth-2;
+  border-top: 1px solid $light-border;
+  padding: 30px 0;
+  button {
     display: inline-block;
     margin-left: 20px;
     margin-right: 20px;
-    background-color: blue;
+  }
 }

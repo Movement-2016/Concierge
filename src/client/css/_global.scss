@@ -13,7 +13,7 @@ body,
 .main-area {
   flex: 1;
 }
-main.home {
+main {
   margin-top: $navbar-height-mobile;
   @media #{$medium-and-up} {
     margin-top: $navbar-height;
