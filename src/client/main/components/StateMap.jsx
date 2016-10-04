@@ -8,7 +8,9 @@ import '../../lib/tooltip';
 window.slink = function(e,a) {
   e.stopPropagation();
   e.preventDefault();
-  browserHistory.push(a);
+  if( !/no-groups$/.test(a) ) {
+    browserHistory.push(a);
+  }
 };
 
 const formatRace = race => {
@@ -29,6 +31,7 @@ class StateMap extends React.Component {
     this.state = {
       mapData: null
     };
+    this.unMounted = false;
   }
 
   componentWillMount() {
@@ -53,11 +56,18 @@ class StateMap extends React.Component {
     }
   }
 
+  componentDidUnmount() {
+    this.unMounted = true;
+  }
+
   populateMapData(raceData,states) {
     /* globals $ */
     fetch( location.origin + '/images/state-map-data.svg')
       .then( response => response.text() )
       .then( mapData => {
+          if( this.unMounted ) {
+            return;
+          }
           const div = document.createElement('DIV');
           div.innerHTML = mapData;
           $('a',div).each( (i,a) => {
@@ -99,10 +109,6 @@ class StateMap extends React.Component {
           div.innerHTML = '';
 
         });
-  }
-
-  onStateClick(e) {
-    location.href = e.target.href;
   }
 
   render() {

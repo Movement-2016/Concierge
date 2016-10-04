@@ -23,57 +23,24 @@ class EmailPlanButton extends React.Component {
   }
 
   onEmailMe() {
-    const sstate      = this.context.store.getState();
-    const { onError } = this.props;
-    const { 
-      user,
-      user:{
-        email
-      } 
-    } = sstate;
-
-    if( !email ) {
-      return onError('Hey, you forgot to put in your email address.');
-    }
-    this._emailPlan(email,user,false);
-  }
-
-  onRequestAdvisor() {
-    const sstate      = this.context.store.getState();
-    const { onError } = this.props;
-
-    const { 
-      user,
-      user:{
-        email,
-        phone
-      } 
-    } = sstate;
-
-    if( !email && !phone ) {
-      return onError( 'Hey, you should include either your email address or a phone number.' );
-    }
-    this._emailPlan(ADVISOR_EMAIL,user,true);
-  }
-
-  _emailPlan(addr,user,isAdmin) {
-
     const { onError, onDone } = this.props;
 
     onDone(''); // clear error messages
 
-    const storeState = this.context.store.getState();
+    const sstate = this.context.store.getState();
 
     const {
-      plan: items,
-      planTotal
-    } = storeState.groups;
+      groups:{
+        plan: items,
+        planTotal        
+      },
+      user
+    } = sstate;
 
     const payload = {
       ...user,
-      addr,
+      advisorEmail: ADVISOR_EMAIL,
       items,
-      isAdmin,
       planTotal
     };
 

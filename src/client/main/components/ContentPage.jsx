@@ -4,10 +4,18 @@ import Loading from './Loading.jsx';
 
 class ContentPageShell extends React.Component {
   render() {
-    const { name, title, children } = this.props;
+    const { 
+      name, 
+      title, 
+      children,
+      big 
+    } = this.props;
+
+    const cls = 'container ' + (big ? '' : 'small-container');
+
     return(
         <main className={`content-page ${name}`}>
-          <div className="container small-container">
+          <div className={cls}>
             <h1 className="page-title">{title}</h1>
             {children}
           </div>

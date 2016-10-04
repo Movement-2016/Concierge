@@ -50,7 +50,6 @@
   @include z-depth-1;
   margin: 30px 0 60px;
   input {
-    width: 47%;
     margin-right: 2%;
   }
 }
@@ -59,9 +58,10 @@
   margin-top: 20px;
   .btn {
     margin: 0 20px;
+    white-space: nowrap;
   }
 }
-.plan-summary {
+/*.plan-summary {
   position: fixed;
   bottom: 0px;
   left: 0px;
@@ -76,7 +76,7 @@
     margin-right: 20px;
   }
 }
-
+*/
 .shopping-cart-tray {
   display: block;
   position: fixed;

@@ -6,8 +6,8 @@ class OrgsList extends React.Component {
   render() {
     const { mobile } = this.props;
     return mobile 
-            ? <OrgsListMobile {...this.props} />
-            : <OrgsListDesktop {...this.props} />;
+        ? <OrgsListMobile {...this.props} />
+        : <OrgsListDesktop {...this.props} />;
   }
 }
 module.exports = OrgsList;

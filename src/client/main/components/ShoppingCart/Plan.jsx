@@ -1,11 +1,11 @@
-import React     from 'react';
-
+import React            from 'react';
 import { ContextMixin } from '../ContextMixins';
-import Loading from '../Loading.jsx';
+import Loading          from '../Loading.jsx';
 
 import { 
   getSelectedOrgs,
-  organizeOrgs 
+  organizeOrgsByState,
+  planFromOrg 
 } from '../../store/utils';
 
 import Org from './Org.jsx';
@@ -17,6 +17,7 @@ class StateOrgs extends React.Component {
       name, 
       orgs, 
       filters, 
+      plan,
       state 
     } = this.props;
     
@@ -25,10 +26,15 @@ class StateOrgs extends React.Component {
       group 
     } = state;
 
+    const amountFromOrg = org => {
+      const { amount = 0 } = planFromOrg(plan,org.id) || {};
+      return amount;
+    };
+
     return (
         <div className="plan-state" id={name}>
         <h3 className={`${group}-state`}>{label}</h3>
-          {orgs.map( org => <Org key={org.id} filters={filters} {...org} />)}
+          {orgs.map( org => <Org key={org.id} filters={filters} amount={amountFromOrg(org)} {...org} />)}
         </div>    
       );
   }
@@ -43,14 +49,11 @@ class Plan extends ContextMixin(React.Component) {
 
   stateFromStore(storeState) {
 
-    if( !this.state.loading ) {
-      return;
-    }
-
     storeState.service.orgs.then( orgs => {
       const { 
         groups: {
-          selected 
+          selected,
+          plan 
         },
         service: {
           filters,
@@ -63,7 +66,8 @@ class Plan extends ContextMixin(React.Component) {
       this.setState({ 
         states, 
         filters, 
-        orgs: organizeOrgs(getSelectedOrgs(selected,orgs)),
+        plan,
+        orgs: organizeOrgsByState(getSelectedOrgs(selected,orgs)),
         loading: false
       });
     });
@@ -74,6 +78,7 @@ class Plan extends ContextMixin(React.Component) {
       orgs, 
       filters, 
       states,
+      plan,
       loading 
     } = this.state;
 
@@ -82,10 +87,11 @@ class Plan extends ContextMixin(React.Component) {
     }
 
     return(
-          <div className="donation-plan">
+        <div className="donation-plan">
           {Object.keys(orgs).map( state =>  <StateOrgs name={state} 
                                                        key={state} 
                                                        orgs={orgs[state]} 
+                                                       plan={plan}
                                                        filters={filters} 
                                                        state={states[state]}
                                             /> )} 

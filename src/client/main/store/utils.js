@@ -59,19 +59,26 @@ const getVisibleStates = orgs => {
   return path('..state',orgs).reduce( (a,e) => { a.indexOf(e) < 0 && a.push(e); return a; }, [] ).sort();
 };
 
+const planFromOrg = (plan,id) => path( `..{.id==${id}}`,plan )[0];
+
+
 const getSelectedOrgs = (ids =[],orgs) => {
   if( !ids.length ) { return []; }
   var p = '..{' + ids.map( id => '.id == ' + id ).join('||') + '}';
   return path( p, orgs );
 };
 
-const organizeOrgs = orgs => {
+const organizeOrgsByState = orgs => {
   return orgs.reduce( (states,org) => {
     const { state } = org;
     !states[state] && (states[state] = []);
     states[state].push( org );
     return states;
   }, {});
+};
+
+const organizeByOrgs = orgs => {
+  return orgs.reduce( (orgObj,org) => (orgObj[org.id] = org, orgObj), {} );
 };
 
 /*
@@ -95,6 +102,8 @@ module.exports = {
   getVisibleStates,
   getVisibleOrgs,
   getSelectedOrgs,
-  organizeOrgs,
+  organizeOrgsByState,
+  organizeByOrgs,
+  planFromOrg,
   filterTagsByTypes
 };

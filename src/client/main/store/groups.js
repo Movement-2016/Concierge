@@ -14,6 +14,10 @@ const initialState = {
   planTotal: 0
 };
 
+const updateTotal = st => {
+  st.planTotal = path('..amount',st.plan).reduce( (total,amount) => total + Number(amount), 0 );
+};
+
 export default function groups (state = initialState, action) {
   switch (action.type) {
     case TOGGLE_ITEM: {      
@@ -23,7 +27,7 @@ export default function groups (state = initialState, action) {
 
       const isRemoving = selected.includes(id);
 
-      return { 
+      const st = { 
         ...state, 
 
         plan:     isRemoving 
@@ -34,6 +38,10 @@ export default function groups (state = initialState, action) {
                     ? selected.filter( _id => _id !== id )
                     : [ ...selected, id ] 
       };
+
+      updateTotal(st);
+
+      return st;
     }
 
     case ADD_PLAN_ITEM: {
@@ -43,7 +51,7 @@ export default function groups (state = initialState, action) {
 
       const st = { ...state, plan: [ ...path(`..{.id!=${id}}`, plan), { id, amount } ] };
 
-      st.planTotal = path('..amount',st.plan).reduce( (total,amount) => total + Number(amount), 0 );
+      updateTotal(st);
 
       return st;
     }

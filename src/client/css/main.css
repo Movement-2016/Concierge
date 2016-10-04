@@ -9315,7 +9315,7 @@ input.group-amount {
   .action-area .btn, .action-area .btn-large, .action-area #comments input[type="submit"], #comments .action-area input[type="submit"] {
     margin: 0 20px; }
 
-.plan-summary {
+/*.plan-summary {
   position: fixed;
   bottom: 0px;
   left: 0px;
@@ -9328,3 +9328,4 @@ input.group-amount {
     display: inline-block;
     margin-left: 20px;
     margin-right: 20px; }
+*/

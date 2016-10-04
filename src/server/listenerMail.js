@@ -29,7 +29,7 @@ ${name} - $${amount} ${urlWeb && `\nWebsite: ${urlWeb}`} ${urlGive && `\nDonatio
 -----------------------------------------------------
 `;
 
-const planMailHeader = ({fname,lname,email,phone}) => `
+const planMailHeader = ({fname,lname,email,phone,wantsConsult}) => `
 Hi ${fname}!
 
 Here is your giving plan that you created at movement2016.org and requested be mailed to you.
@@ -39,6 +39,10 @@ ${fname} ${lname}
 ${email}
 ${phone}
 Created ${new Date() + ''}
+
+${wantsConsult 
+  ? 'We noticed that you requested a consultation with a donation advisor. One will be in touch with you shortly!' 
+  : 'We noticed that you declined a consultation with a donation advisor. If you have any questions please reply to this email and will get in touch shortly!'}
 
 `;
 
@@ -52,16 +56,6 @@ Movement 2016
 
 `;
 
-const adminHeader = `
-
-/---------------------------------------/
-  ADMIN NOTE: This person has requested 
-  assistance - please contact them at 
-  the information provided.
-/---------------------------------------/
-
-
-`;
 
 
 const partyFormat = ({
@@ -122,17 +116,18 @@ function mailPlan (req, res) {
   const { 
     fname, 
     lname, 
-    addr, 
     phone, 
     email, 
-    isAdmin,
-    items } = req.body;
+    advisorEmail,
+    wantsConsult,
+    items 
+  } = req.body;
   
   if( !items || !email ) {
     res.status( 500 ).json({});
   }
 
-  let mail = planMailHeader({fname,lname,email,phone});
+  let mail = planMailHeader({fname,lname,email,phone,wantsConsult});
   let total = 0;
   items.forEach( item => {
     const { id, amount } = item;
@@ -142,17 +137,20 @@ function mailPlan (req, res) {
   });
   mail += planMailFooter(total);
 
-  isAdmin && (mail += adminHeader);
-
   const payload = {
-    to: addr,
+    to: advisorEmail,
     subject: '[Movement 2016] Your Giving Plan',
     message: entities.decode(mail)
   };
 
   mailer.send( payload )
-    .then( result => { console.log(addr,result); res.status( 200 ).json(result); } )
-    .catch( err => { console.log('error', err ); res.status( 500 ).json( err ); } );
+    .then( result => {
+      console.log(email,result); 
+      const userPayload = Object.assign({},payload,{to:email});
+      return mailer.send( userPayload );
+    })
+    .then(  result => { console.log( email,   result); res.status( 200 ).json(result); })
+    .catch( err    => { console.log('error', err   ); res.status( 500 ).json( err );  });
 }
 
 module.exports = {

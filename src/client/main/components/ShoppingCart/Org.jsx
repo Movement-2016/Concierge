@@ -1,7 +1,12 @@
 import React     from 'react';
 
-import { addPlanItem }       from '../../store/actions';
+import { 
+  addPlanItem,
+  toggleItem 
+} from '../../store/actions';
+
 import { filterTagsByTypes } from '../../store/utils';
+
 
 import {
   selectPrevElement,
@@ -24,10 +29,11 @@ class Org extends React.Component {
     const types = filterTagsByTypes({filters,tags});
     this.tags = types['nonprofit-type'].tags;
 
-    this.state = { value: this.props.amt || '' };
+    this.state = { value: this.props.amount || '' };
 
     this.onChange = this.onChange.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
+    this.onRemoveOrg = this.onRemoveOrg.bind(this);
   }
 
   onChange(e) {
@@ -45,6 +51,11 @@ class Org extends React.Component {
     } else if( e.keyCode === KEY_ARROW_UP ) {
       selectNextElement(sel);
     }
+  }
+
+  onRemoveOrg(e) {
+    e.preventDefault();
+    this.context.store.dispatch( toggleItem(this.props.id) );
   }
 
   render() {
@@ -73,6 +84,7 @@ class Org extends React.Component {
             <div className="nonprofit-tags">
               {this.tags.map( t => <span key={t}>{t} </span> )}
             </div>
+            <a className="" href="#" onClick={this.onRemoveOrg}><span><i className="material-icons">delete</i> Remove from plan</span></a>
           </div>
           <div className="col s4 m3">
             <div className="amount"><input placeholder="$" {...inProps}/></div>
