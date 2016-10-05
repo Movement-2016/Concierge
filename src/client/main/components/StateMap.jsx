@@ -56,7 +56,7 @@ class StateMap extends React.Component {
     }
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     this.unMounted = true;
   }
 

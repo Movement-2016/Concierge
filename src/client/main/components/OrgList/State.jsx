@@ -2,7 +2,13 @@ import React from 'react';
 
 import Org from './Org.jsx';
 
-class State extends React.Component {
+import CollapseMixin from '../CollapseMixin';
+
+class State extends CollapseMixin(React.Component) {
+
+  get collapsibleSelector() {
+    return '#' + this.props.name + '-list';
+  }
 
   render() {
 
@@ -13,10 +19,18 @@ class State extends React.Component {
       group:color
     } = this.props;
 
+    const {
+      expanded
+    } = this.state;
+
+    const cls = expanded ? 'open' : 'closed';
+
     return (
         <div className="state" id={name}>
-          <div className={`state-title ${color}`}><h4>{label}</h4></div>
-          {items.map( o => <Org key={o.id} {...o} />)}
+          <div onClick={this.onToggleCollapse} className={`expand-trigger state-title ${cls} ${color}`}><h4>{this.expandIcon} {label}</h4></div>
+          <div id={name + '-list'} className="collapse">
+            {expanded && items.map( o => <Org key={o.id} {...o} />)}
+          </div>
         </div>
       );
   }
