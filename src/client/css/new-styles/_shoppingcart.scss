@@ -23,8 +23,8 @@
     margin-top: 1.8rem;
     padding-top: 1.8rem;
   }
-  .group {
-    margin-bottom: 1rem;
+  .group+.group {
+    margin-top: 1rem;
   }
   .group-title {
     margin-bottom: 4px;
@@ -78,7 +78,7 @@
   }
 }
 .complete-section {
-  margin-left: 48px;
+  margin-left: 64px;
   .plan-total {
     @include clearfix;
     text-transform: uppercase;

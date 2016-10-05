@@ -16,7 +16,8 @@ class PlanProfilePage extends React.Component {
 
   render() {
     return (
-      <Shell title="Plan Summary" name="plan-summary-page">
+      <Shell title="Complete Your Plan" name="plan-summary-page">
+        <p className="page-description">Almost done! Enter your info below to save your donation plan and send yourself a copy.</p>
         <PlanForm onSubmit={this.onSubmit} />
       </Shell>
     );

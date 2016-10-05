@@ -10,7 +10,7 @@ nav {
     color: rgba(0, 0, 0, 0.83);
     padding: 0 20px;
     &:hover {
-      background-color: color('grey', 'lighten-2');
+      background-color: color('grey', 'lighten-3');
     }
   }
   .brand-logo {
@@ -68,9 +68,9 @@ nav {
       a {
         display: block;
         color: $lighter-text;
-        background-color: rgba(240, 240, 240, 0.97);
+        background-color: $navbar-color;
         &:hover {
-          background-color: color('grey', 'lighten-2');
+          background-color: color('grey', 'lighten-3');
         }
       }
     }
