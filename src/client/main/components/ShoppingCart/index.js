@@ -15,7 +15,7 @@ const BackToGroups = () => {
 
 const PageDescription = () => {
   return (
-    <p className="page-description">Enter a planned donation for each group. Once you complete your donation plan, we will email you a copy with simple instructions on how to donate directly to your chosen groups.</p> 
+    <p className="page-description">Enter a planned donation for each group. Once you complete your donation plan, we will email you a copy with simple instructions on how to donate directly to your chosen groups. You will also be able to let us know if you want to discuss your plan with a donor advisor.</p> 
   );
 };
 
@@ -42,7 +42,7 @@ class Cart extends React.Component {
 
   render() {
     return (
-      <ContentPage.Shell title="Your Donation Plan" name="shopping-cart" big="false">
+      <ContentPage.Shell title="Your Donation Plan" name="custom-planning cart-page" big="false">
         <PageDescription />
         <div className="donation-plan"> 
           <div className="row">

@@ -2,7 +2,7 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 
 import { Shell } from '../ContentPage.jsx';
-import PlanForm   from './PlanForm.jsx';
+import ProfileForm from './ProfileForm.jsx';
 
 class PlanProfilePage extends React.Component {
   constructor() {
@@ -16,9 +16,9 @@ class PlanProfilePage extends React.Component {
 
   render() {
     return (
-      <Shell title="Complete Your Plan" name="plan-summary-page">
-        <p className="page-description">Almost done! Enter your info below to save your donation plan and send yourself a copy.</p>
-        <PlanForm onSubmit={this.onSubmit} />
+      <Shell title="Complete Your Plan" name="custom-planning profile-page">
+        <p className="page-description">Almost done! Enter your info below to save your donation plan, send yourself a copy, or request to speak with a donor advisor.</p>
+        <ProfileForm onSubmit={this.onSubmit} />
       </Shell>
     );
   }

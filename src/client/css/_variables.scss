@@ -1,53 +1,49 @@
-// Sizes
+// Header heights
 $donate-header-height: 46px;
 $navbar-height: 64px;
 $navbar-height-mobile: 56px;
 
-
-//Base font sizes
+// Base font sizes
 $h1-fontsize: 2.28rem;
 $h2-fontsize: 2.28rem;
 $h3-fontsize: 1.68rem;
 $h5-fontsize: 1.4rem;
 
-
-// Media Query Ranges
+// Media query variables
 $small-screen-up: 761px;
 $medium-screen-up: 993px;
 $large-screen-up: 1201px;
 $small-screen: 760px;
 $medium-screen: 992px;
 $large-screen: 1200px;
-
 $xl-and-up: "only screen and (min-width : #{$large-screen-up})";
 
-
-// Base Color
+// Base colors
 $white: #fff;
 $lightest-grey: #fbfbfb;
+$trans-white: rgba(255, 255, 255, 0.96);
+$facebook-blue: rgb(59, 89, 152);
+$twitter-blue: rgb(0, 172, 237);
+
+// Color theme
 $primary-color: color("blue", "base");
 $primary-color-light: color("blue", "lighten-1");
 $secondary-color: lighten(color("red", "lighten-1"), 5%);
 $secondary-color-light: lighten(color("red", "lighten-1"), 7%);
-$success-color: color("green", "base");
-$error-color: color("deep-orange", "darken-1");
-$link-color: $secondary-color;
-$trans-white: rgba(255, 255, 255, 0.96);
 
-$facebook-blue: rgb(59, 89, 152);
-$twitter-blue: rgb(0, 172, 237);
-
-$main-bg-color: $lightest-grey;
+// Element colors
 $navbar-color: $trans-white;
+$main-bg-color: $lightest-grey;
 $form-bg-color: $white;
+$link-color: $secondary-color;
 
-// Text
+// Text shades
 $dark-text: rgba(0, 0, 0, 0.87);
 $med-text: rgba(0, 0, 0, 0.70);
 $lighter-text: rgba(0,0,0,0.54);
 $lightest-text: rgba(0,0,0,0.38);
 
-// Border
+// Borders
 $light-border: rgba(0,0,0,0.08);
 $med-border: rgba(0,0,0,0.16);
 
@@ -68,11 +64,9 @@ $title-bg-color: $primary-color-light;
 $navbar-font-color: $lighter-text;
 $navbar-brand-font-size: 1.7rem;
 
-
-// Map
+// Map colors
 $map-purple: #b46ec9;
 $map-dark-red: #B5473C;
 $map-light-red: #D4867F;
 $map-dark-blue: #1F81BB;
 $map-light-blue: #79A6D2;
-

@@ -1,15 +1,4 @@
-.shopping-cart .page-description {
-  margin: 0 36px;
-  font-size: 1.33rem;
-  color: $med-text;
-}
-.donation-plan {
-  margin: 50px 0;
-  padding: 48px 36px;
-  background-color: $form-bg-color;
-//  border: 1px solid $light-border; 
-  @include z-depth-1;
-}
+
 .planning-section {
   .plan-state {
     h3 {

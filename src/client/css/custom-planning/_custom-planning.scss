@@ -1,0 +1,15 @@
+.custom-planning .page-description {
+  font-size: 1.33rem;
+  color: $med-text;
+  margin: 0 36px;
+}
+.donation-plan, .plan-form {
+  margin: 50px 0;
+  padding: 48px 36px;
+  background-color: $form-bg-color;
+  //  border: 1px solid $light-border; 
+  @include z-depth-1;
+}
+
+@import 'custom-planning/cart-page';
+@import 'custom-planning/profile-page';

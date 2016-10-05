@@ -1,4 +1,3 @@
-/* Old Styles */
 @import "../../../node_modules/materialize-css/sass/components/color";
 @import "variables";
 @import "../../../node_modules/materialize-css/sass/materialize";
@@ -6,28 +5,24 @@
 @import "global";
 @import "mixins";
 @import "typography";
+@import 'fonts';
+@import 'donate-header';
 @import "navigation";
 @import "content-page";
 @import "contact-page";
 @import "donate-page";
 @import "advisors-page";
 @import "homepage/homepage";
+@import "partner-logos";
 @import "footer";
 @import "groups";
 @import "mobile-groups";
 @import "filters";
 @import "mobile-filters";
 @import "single-post";
-@import "worksheet/worksheet-intro";
-@import "worksheet/worksheet-groups";
-@import "worksheet/worksheet-results";
-@import "partners";
-@import "partner-logos";
+@import "browse-groups/worksheet-intro";
+@import "browse-groups/worksheet-groups";
+@import "browse-groups/worksheet-results";
+@import 'custom-planning/custom-planning';
 @import "alert";
-
 @import "tooltip";
-
-/* New Styles */
-@import 'new-styles/fonts';
-@import 'new-styles/donate-header';
-@import 'new-styles/shoppingcart'; 

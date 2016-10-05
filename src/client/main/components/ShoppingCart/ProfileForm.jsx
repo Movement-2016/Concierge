@@ -1,7 +1,7 @@
 import React         from 'react';
 import ProfileInput  from './ProfileInput.jsx';
 
-class PlanForm extends React.Component {
+class ProfileForm extends React.Component {
 
   constructor() {
     super(...arguments);
@@ -15,7 +15,7 @@ class PlanForm extends React.Component {
 
   render() {
     return (
-        <form className="plan-form" onSubmit={this.onSubmit}>
+        <form className="plan-form profile-form" onSubmit={this.onSubmit}>
           <div className="info-area">
             <h3>Your Information</h3> 
             <ProfileInput name="fname" placeholder="First Name" /> 
@@ -24,12 +24,12 @@ class PlanForm extends React.Component {
             <ProfileInput name="phone" placeholder="Phone *" required />
           </div>
           <div className="action-area"> 
-            <button id="profile-form-submit" className="waves-effect waves-light btn" type="submit"><i className="material-icons right">send</i>Continue</button>
+            <button id="profile-form-submit" className="waves-effect waves-light btn" type="submit">Complete Plan</button>
           </div>
         </form>
       );
   }
 }
 
-module.exports=PlanForm;
+module.exports=ProfileForm;
 
