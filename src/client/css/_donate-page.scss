@@ -4,12 +4,12 @@
   display: block;
   position: relative;
   margin: 0 auto 30px;
-  background-color: $almost-white;
+  background-color: $form-bg-color;
   color: $dark-text;
-  &:hover, &:focus {
-    background-color: $white;
-  }
   @include z-depth-1;
+  &:hover, &:focus {
+    @include z-depth-2;
+  }
   .wrapper {
     position: absolute;
     left:0;

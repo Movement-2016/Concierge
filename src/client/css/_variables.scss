@@ -24,6 +24,7 @@ $xl-and-up: "only screen and (min-width : #{$large-screen-up})";
 
 // Base Color
 $white: #fff;
+$lightest-grey: #fbfbfb;
 $primary-color: color("blue", "base");
 $primary-color-light: color("blue", "lighten-1");
 $secondary-color: lighten(color("red", "lighten-1"), 5%);
@@ -31,14 +32,14 @@ $secondary-color-light: lighten(color("red", "lighten-1"), 7%);
 $success-color: color("green", "base");
 $error-color: color("deep-orange", "darken-1");
 $link-color: $secondary-color;
+$trans-white: rgba(255, 255, 255, 0.96);
 
 $facebook-blue: rgb(59, 89, 152);
 $twitter-blue: rgb(0, 172, 237);
 
-$almost-white: rgba(251, 251, 251, 0.97);
-$navbar-color: $almost-white;
-
-$body-bg-color: color('grey', 'lighten-5');
+$main-bg-color: $lightest-grey;
+$navbar-color: $trans-white;
+$form-bg-color: $white;
 
 // Text
 $dark-text: rgba(0, 0, 0, 0.87);
@@ -48,6 +49,7 @@ $lightest-text: rgba(0,0,0,0.38);
 
 // Border
 $light-border: rgba(0,0,0,0.08);
+$med-border: rgba(0,0,0,0.16);
 
 // Input
 $input-border-color: $lighter-text;

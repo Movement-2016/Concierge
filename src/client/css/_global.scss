@@ -1,3 +1,7 @@
+* {
+  transition: 0.3s all;
+}
+
 html,
 body,
 #app,
@@ -11,6 +15,7 @@ body,
   flex-direction: column;
 }
 .main-area {
+  background-color: $main-bg-color;
   flex: 1;
 }
 main {

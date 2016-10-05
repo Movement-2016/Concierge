@@ -6,8 +6,9 @@
 .donation-plan {
   margin: 50px 0;
   padding: 48px 36px;
-  background-color: $almost-white;
-//  border: 1px solid $light-border;
+  background-color: $form-bg-color;
+//  border: 1px solid $light-border; 
+  @include z-depth-1;
 }
 .planning-section {
   .plan-state {
@@ -32,9 +33,9 @@
   .nonprofit-tags {
     text-align: left;
     span {
-      line-height: 24px;
-      padding: 0 12px;
-      font-size: 12.5px;
+      line-height: 22px;
+      padding: 0 10px;
+      font-size: 12px;
     }
   }
   .amount-col {
@@ -50,7 +51,7 @@
     input {
       font-size: 1rem;
       background-color: $white;
-      border: 1px solid $light-border;
+      border: 1px solid $med-border;
       padding: 0 8px;
       margin-bottom: 3px;
       width: 100%;
