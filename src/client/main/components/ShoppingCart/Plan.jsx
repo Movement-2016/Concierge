@@ -87,7 +87,7 @@ class Plan extends ContextMixin(React.Component) {
     }
 
     return(
-        <div className="donation-plan">
+        <div className="planning-section">
           {Object.keys(orgs).map( state =>  <StateOrgs name={state} 
                                                        key={state} 
                                                        orgs={orgs[state]} 

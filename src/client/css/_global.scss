@@ -26,14 +26,14 @@ body {
 ul {
   margin: 0;
 }
-@media #{$large-and-up} {
-  .container {
-    width: 80%;
-    max-width: 1000px;
+.container {
+  @media #{$large-and-up} {
+    width: 78%;
   }
 }
 .small-container {
   margin: 0 auto;
+  max-width: 1000px;
   @media #{$medium-and-up} {
     width: 75%;
   }

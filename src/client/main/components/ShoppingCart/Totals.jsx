@@ -20,8 +20,9 @@ class Totals extends ContextMixin(React.Component) {
     const { planTotal } = this.state;
 
     return(
-        <div className="plan-totals">
-            Your total contribution amount: ${commaize(planTotal)}
+        <div className="plan-total">
+          <span className="label">Total</span>
+          <span className="total">${commaize(planTotal)}</span>
         </div>
       );
   }

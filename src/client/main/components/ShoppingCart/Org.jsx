@@ -84,10 +84,13 @@ class Org extends React.Component {
             <div className="nonprofit-tags">
               {this.tags.map( t => <span key={t}>{t} </span> )}
             </div>
-            <a className="" href="#" onClick={this.onRemoveOrg}><span><i className="material-icons">delete</i> Remove from plan</span></a>
+            
           </div>
-          <div className="col s4 m3">
-            <div className="amount"><input placeholder="$" {...inProps}/></div>
+          <div className="col s4 m3 amount-col">
+            <div className="amount-wrapper">
+              <div className="amount"><input placeholder="$" {...inProps}/></div>
+              <a className="remove-group" onClick={this.onRemoveOrg}><i className="material-icons">close</i>Remove</a>
+            </div>
           </div>
         </div>
       </div>

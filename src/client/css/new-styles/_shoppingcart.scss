@@ -1,21 +1,32 @@
+.shopping-cart .page-description {
+  margin: 0 36px;
+  font-size: 1.33rem;
+  color: $med-text;
+}
 .donation-plan {
-  @include z-depth-1;
-  margin: 45px 0;
+  margin: 50px 0;
+  padding: 48px 36px;
+  background-color: $almost-white;
+//  border: 1px solid $light-border;
+}
+.planning-section {
   .plan-state {
-    border-bottom: 1px solid $light-border;
-    padding: 10px 30px;
     h3 {
-      font-size: 1.1rem;
+      font-size: 1rem;
       text-transform: uppercase;
       color: $lighter-text;
-      margin: 1rem 0 1.33rem;
+      margin: 0 0 1rem;
     }
   }
+  .plan-state+.plan-state {
+    border-top: 1px solid $light-border;
+    margin-top: 1.8rem;
+    padding-top: 1.8rem;
+  }
   .group {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
   }
   .group-title {
-    font-size: 1.15rem;
     margin-bottom: 4px;
   }
   .nonprofit-tags {
@@ -26,57 +37,79 @@
       font-size: 12.5px;
     }
   }
-  .amount {
+  .amount-col {
     text-align: right;
+  }
+  .amount-wrapper {
+    width: 100%;
+    max-width: 110px;
+    text-align: left;
+    display: inline-block;
+  }
+  .amount {
     input {
-      font-size: 1.15rem;
-      border: 1px solid rgba(0, 0, 0, 0.24);
-      padding: 0 10px;
+      font-size: 1rem;
+      background-color: $white;
+      border: 1px solid $light-border;
+      padding: 0 8px;
+      margin-bottom: 3px;
       width: 100%;
-      max-width: 120px;
       box-sizing: border-box;
-      height: 2.5rem;
-      margin-top: 0.2rem;
-      font-size: inherit;
+      height: 2.2rem;
       &:focus {
         border: 1px solid $primary-color;
         box-shadow: none;
       }
     }
   }
-}
-.info-area {
-  padding: 30px;
-  @include z-depth-1;
-  margin: 30px 0 60px;
-  input {
-    margin-right: 2%;
+  .remove-group {
+    font-size: 12px;
+    margin-left: 6px;
+    color: $lighter-text;
+    cursor:pointer;
+    i {
+      vertical-align: middle;
+      font-size: 15px;
+      padding-bottom: 2px;
+    }
+    &:hover, &:focus {
+      color: $secondary-color-light;
+    }
   }
 }
-.action-area {
+.complete-section {
+  margin-left: 48px;
+  .plan-total {
+    @include clearfix;
+    text-transform: uppercase;
+    font-size: 1.35rem;
+//    color: $med-text;
+    .label {
+      float:left;
+    }
+    .total {
+      float: right;
+    }
+  }
+  .complete-button {
+    width: 100%;
+    line-height: 40px;
+    height: 40px;
+    letter-spacing: 1px;
+    margin: 1rem 0 ;
+  }
+}
+.back-to-groups {
+  text-transform: uppercase;
   text-align: center;
-  margin-top: 20px;
-  .btn {
-    margin: 0 20px;
-    white-space: nowrap;
+  display: block;
+  font-size: 13px;
+  margin: 1rem 0 1rem -12px;
+  i {
+    vertical-align: middle;
+    padding-bottom: 4px;
   }
 }
-/*.plan-summary {
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  background: $almost-white;
-  @include z-depth-2;
-  border-top: 1px solid $light-border;
-  padding: 30px 0;
-  button {
-    display: inline-block;
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-}
-*/
 .shopping-cart-tray {
   display: block;
   position: fixed;
@@ -88,7 +121,6 @@
   z-index: 100;
   color: white;
   text-shadow: 2px 2px black;
-
   .info {
     font-size: 110%;
     display: inline-block;

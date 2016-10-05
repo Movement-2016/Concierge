@@ -7,10 +7,16 @@ import Totals      from './Totals.jsx';
 
 import { ContextMixin } from '../ContextMixins';
 
-const GroupsLinkButton = () => {
+const BackToGroups = () => {
   return (
-    <Link className="btn-floating groups-link" to="/groups" title="Go back to groups"><i className="material-icons">list</i></Link>
+    <Link className="back-to-groups" to="/groups" title="Continue Browsing Groups"><i className="material-icons">chevron_left</i>Continue browsing groups</Link>
     );
+};
+
+const PageDescription = () => {
+  return (
+    <p className="page-description">Enter a planned donation for each group. Once you complete your donation plan, we will email you a copy with simple instructions on how to donate directly to your chosen groups.</p> 
+  );
 };
 
 class SummaryLink extends ContextMixin(React.Component) {
@@ -26,11 +32,7 @@ class SummaryLink extends ContextMixin(React.Component) {
     const url = isUserKnown ? '/plan/summary' : '/plan/profile';
 
     return (
-        <div className="summary-link-section">
-          <p>Complete this plan so we can email a copy to you. You will also have the option to
-              request a consultation with a donation advisor who can answer any of your questions.</p>
-          <Link className="btn" to={url}>Complete Plan</Link>
-        </div>
+        <Link className="complete-button btn waves-effect waves-light" to={url}>Complete Plan</Link>
       );
   }
 }
@@ -40,20 +42,20 @@ class Cart extends React.Component {
 
   render() {
     return (
-      <ContentPage.Shell title="Plan Your Contribution" name="shopping-cart">
-        <GroupsLinkButton />
-        <div className="shopping-cart">
-            <p>Use this worksheet to help plan how to most effectively make your donations to grassroots movement groups.</p> 
-            <div className="donor-area container"> 
-              <div className="row">
-                <div className="col s12 m8">
-                  <Plan />
-                </div>
-                <div className="col s12 m4">
-                  <Totals />
-                  <SummaryLink />
-                </div>
+      <ContentPage.Shell title="My Donation Plan" name="shopping-cart" big="false">
+        <PageDescription />
+        <div className="donation-plan"> 
+          <div className="row">
+            <div className="col s12 m8">
+              <Plan />
+            </div>
+            <div className="col s12 m4 complete-col">
+              <div className="complete-section">
+                <Totals />
+                <SummaryLink />
+                <BackToGroups />
               </div>
+            </div>
           </div>
         </div>
       </ContentPage.Shell>
