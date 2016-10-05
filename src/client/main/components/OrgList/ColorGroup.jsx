@@ -2,10 +2,16 @@ import React from 'react';
 
 import State from './State.jsx';
 
-class ColorGroup extends React.Component {
+import CollapseMixin from '../CollapseMixin';
+
+class ColorGroup extends CollapseMixin(React.Component) {
 
   static contextTypes = {
     store: React.PropTypes.object.isRequired
+  }
+
+  get collapsibleSelector() {
+    return '#' + this.props.name + '-states-list';
   }
 
   render() {
@@ -15,13 +21,21 @@ class ColorGroup extends React.Component {
       states
     } = this.props;
 
-    const allStates = this.context.store.getState().service.groupings.terms;
+    const {
+      expanded
+    } = this.state;
+
+    const allStates = expanded && this.context.store.getState().service.groupings.terms;
+
+    const id = name + '-states';
+
+    const cls = expanded ? 'open' : 'closed';
 
     return (
-      <div className="grouping scrollspy" id={`${name}-states`}>
-        <div className={`grouping-title ${name}-states-title`}>{label}</div>
-        <div className="section-groups collapse in" id={this.grpsId}>
-          {Object.keys(states).map( s => <State key={s} {...allStates[s]} items={states[s]} />)}
+      <div className="grouping scrollspy" id={id}>
+        <div onClick={this.onToggleCollapse} className={`expand-trigger grouping-title ${cls} ${id}-title`}>{this.expandIcon} {label}</div>
+        <div className="section-groups collapse" id={id + '-list'}>
+          {expanded && Object.keys(states).map( s => <State key={s} {...allStates[s]} items={states[s]} />)}
         </div>
       </div>
       );

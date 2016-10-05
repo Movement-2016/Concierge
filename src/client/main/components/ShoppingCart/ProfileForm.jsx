@@ -17,11 +17,23 @@ class ProfileForm extends React.Component {
     return (
         <form className="plan-form profile-form" onSubmit={this.onSubmit}>
           <div className="info-area">
-            <h3>Your Information</h3> 
-            <ProfileInput name="fname" placeholder="First Name" /> 
-            <ProfileInput name="lname" placeholder="Last Name"  /> 
-            <ProfileInput name="email" placeholder="Email *" required /> 
-            <ProfileInput name="phone" placeholder="Phone *" required />
+            <h3>Your Information</h3>
+            <div className="row">
+              <div className="col s12 m6">
+                <ProfileInput name="fname" placeholder="First Name" /> 
+              </div>
+              <div className="col s12 m6">
+                <ProfileInput name="lname" placeholder="Last Name"  /> 
+              </div>
+            </div>
+            <div className="row">
+              <div className="col s12 m6">
+                <ProfileInput name="email" placeholder="Email *" required />
+              </div>
+              <div className="col s12 m6">
+                <ProfileInput name="phone" placeholder="Phone *" required /> 
+              </div>
+            </div>
           </div>
           <div className="action-area"> 
             <button id="profile-form-submit" className="waves-effect waves-light btn" type="submit">Complete Plan</button>

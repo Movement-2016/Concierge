@@ -44,7 +44,7 @@ class Cart extends React.Component {
     return (
       <ContentPage.Shell title="Your Donation Plan" name="custom-planning cart-page" big="false">
         <PageDescription />
-        <div className="donation-plan"> 
+        <div className="plan-form donation-form"> 
           <div className="row">
             <div className="col s12 m8">
               <Plan />
