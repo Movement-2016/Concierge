@@ -1,5 +1,6 @@
 .filter-area {
   position: fixed;
+  padding-right: 30px;
   top: 140px;
   left: $header-padding;
   width: 200px;
@@ -78,7 +79,9 @@
   }
 }
 .groups-nav {
+  border-top: 1px solid $light-border;
   margin-top: 1rem;
+  padding-top: 1.66rem;
   a {
     color: $lighter-text;
     display: block;
