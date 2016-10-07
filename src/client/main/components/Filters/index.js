@@ -15,7 +15,7 @@ class Filters extends ServiceContext(React.Component) {
   componentDidMount() {
     const { mobile } = this.props;
     /* globals $ */
-    !mobile && $('.filter-col .collapsible'). collapsible();
+    !mobile && $('.filter-area .collapsible'). collapsible();
   }
 
   render() {

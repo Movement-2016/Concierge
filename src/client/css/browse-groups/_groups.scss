@@ -1,13 +1,7 @@
 .group-area {
-	background-color: $group-area-bg-color;
-	border-top: 1px solid $light-border;
-	@media #{$medium-and-up} {
-		padding: 0 1.5rem 60px;
-	}
-	@media #{$large-and-up} {
-		padding: 0 5% 60px;
-	}
+  margin-left: 250px;
 }
+
 .grouping-title {
 	text-align: center;
 	text-transform: uppercase;

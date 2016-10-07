@@ -63,7 +63,7 @@ class Filter extends React.Component {
       terms,
     } = this.props;
 
-    const cls = 'filter-checkbox ' + (seeAll ? 'filled-in' : '');
+    const cls = 'filter-checkbox filled-in';
     const id  = `checkbox-${name}-see-all`;
 
     return (

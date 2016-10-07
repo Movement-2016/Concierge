@@ -20,17 +20,19 @@ class OrgsListMobile extends React.Component {
     } = storeState.service;
 
     return (
-      <ul className="mobile-group state-list">
-        {Object.keys(states).map( name => 
-          <li key={name} >
-            <Link to={'/state/' + name}>
-              {states[name].label} <span className="count">{ `(${states[name].count}) group${states[name].count > 1 ? 's' : ''}`}</span>
-              <i className="right material-icons">play_arrow</i>
-              <div  style={{clear:'both'}} />
-            </Link> 
-          </li>
-        )}
-      </ul>
+      <div className="group-area">
+        <ul className="mobile-group state-list">
+          {Object.keys(states).map( name => 
+            <li key={name} >
+              <Link to={'/state/' + name}>
+                {states[name].label} <span className="count">{ `(${states[name].count}) group${states[name].count > 1 ? 's' : ''}`}</span>
+                <i className="right material-icons">play_arrow</i>
+                <div  style={{clear:'both'}} />
+              </Link> 
+            </li>
+          )}
+        </ul>
+      </div>
     );
   
   }

@@ -96,28 +96,23 @@ class CustomDonatePage extends ContextMixin(React.Component) {
     };
 
     const title     = mobile ? 'Browse Groups' : 'Custom Donation Plan';
-    const filterCls = mobile ? '' : 'filter-col pinned';
     
     return (
-      <div className={`custom-donate-area ${mobile}`}>
-        <h1>{title}</h1>
-        <div className="group-area">
-          <div className="row">
-            <div className="group-col col s12 m9">
-              {showOrgs 
-                ? <OrgList mobile={mobile} orgs={orgs} />
-                : <Loading />
-              }
+      <main className={`browse-groups-page ${mobile}`}>
+        <div className="container">
+          <h1 className="page-title">{title}</h1>
+          <section className="browse-section">
+            <div className="filter-area">
+              <Filters {...fprops} />
             </div>
-            <div className="col s12 m3">
-              <div className={filterCls} >
-                <Filters {...fprops} />
-              </div>
-            </div>            
-          </div>
+            {showOrgs 
+              ? <OrgList mobile={mobile} orgs={orgs} />
+              : <Loading />
+            }
+          </section>
         </div>
         <Tray />
-      </div>
+      </main>
     );
   }
 }

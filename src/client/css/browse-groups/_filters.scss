@@ -1,0 +1,117 @@
+.filter-area {
+  position: fixed;
+  top: 140px;
+  left: $header-padding;
+  width: 200px;
+  font-size: 14px;
+  .collapsible,
+  .collapsible-header,
+  .collapsible-body {
+    border: none;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+.filter-menu {
+  color: $lighter-text;
+  padding: 0px 8px;
+}
+.filters-title,
+.groups-nav-title {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5;
+  padding-bottom: 1rem;
+}
+.filters {
+  .filter-group {
+    padding: 4px 0 16px;
+  }
+  .collapsible-header {
+    min-height: 0px;
+    line-height: initial;
+    &.active {
+      font-weight: 700;
+      span.toggle:before {
+        content: '\2013';
+      }
+    }
+    span.toggle:before {
+      content: '+';
+      font-weight: 700;
+      color: $primary-color;
+      padding-right: 8px;
+    }
+  }
+  .filter {
+    font-size: 13px;
+    padding: 10px 8px 0 16px;
+  }
+  .filter.disabled {
+    opacity: 0.4;
+  }
+  [type="checkbox"] {
+    & + label {
+      height: 16px;
+      line-height: 16px;
+      padding-left: 24px;
+      font-size: inherit;
+    }
+    &:not(:checked) + label:after {
+      border: 2px solid rgba(0, 0, 0, 0.4);
+      height: 16px;
+      width: 16px;
+    }
+    &:checked + label:after {
+      border: 2px solid $primary-color-light;
+      background-color: $primary-color-light;
+      width: 16px;
+      height: 16px;
+    }
+    &:checked + label:before {
+      width: 6px;
+      height: 12px;
+      top: -1px;
+    }
+  }
+}
+.groups-nav {
+  margin-top: 1rem;
+  a {
+    color: $lighter-text;
+    display: block;
+    margin-left: 4px;
+    padding-left: 10px;
+    line-height: 2rem;
+    border-left: 2px solid transparent;
+    &:hover {
+      color: $primary-color-light;
+      border-left: 2px solid $primary-color-light;
+    }
+    &.active {
+      border-left: 2px solid $primary-color-light;
+      font-weight: bold;
+    }
+  }
+  select {
+    height: 2.25rem;
+    margin: 4px 0 0 8px;
+    max-width: 140px;
+  }
+}
+.feedback-link {
+  max-width: 240px;
+  font-size: 13px;
+  padding-top: 30px;
+  a {
+    color: $lightest-text;
+    &:hover {
+      color: $primary-color-light;
+    }
+    span {
+      text-decoration: underline;
+    }
+  }
+}

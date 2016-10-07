@@ -27,3 +27,12 @@ p+h5 {
 .side-nav a {
   font-size: 1.2rem;
 }
+
+.page-title {
+  text-align: center;
+  text-transform: capitalize;
+  padding: 30px 0 20px;
+  @media #{$medium-and-up} {
+    padding: 40px 0;
+  }
+}
