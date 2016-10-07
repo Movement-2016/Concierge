@@ -6,6 +6,8 @@
       text-transform: uppercase;
       color: $lighter-text;
       margin: 0 0 1rem;
+      &:before {
+      }
     }
   }
   .plan-state+.plan-state {
@@ -68,12 +70,14 @@
   }
 }
 .complete-section {
-  margin-left: 64px;
+  float: right;
+  padding-left: 58px;
+  width: 100%;
+  max-width: 300px;
   .plan-total {
     @include clearfix;
     text-transform: uppercase;
     font-size: 1.35rem;
-//    color: $med-text;
     .label {
       float:left;
     }

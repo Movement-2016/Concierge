@@ -6,10 +6,10 @@
   @media #{$medium-only} {
     text-align: center;
   }
+  padding: 0 $header-padding;
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 0 35px;
   background: color("indigo", "darken-1");
   color: $white;
   font-size: 12px;
@@ -17,6 +17,8 @@
   height: $donate-header-height;
   line-height: $donate-header-height;
   .wrapper {
+    max-width: $site-max-width;
+    margin: 0 auto;
     opacity: 0.95;
     &:hover {
       opacity: 1;

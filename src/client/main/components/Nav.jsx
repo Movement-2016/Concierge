@@ -3,7 +3,7 @@ import { Link, IndexLink } from 'react-router';
 
 const _MenuItem = ({href,linkto,text} ) => {
   if( href ) {
-    return <li><a href={href}>{text}</a></li>;
+    return <li className="top-level"><a href={href}>{text}</a></li>;
   }
 
   return <li><Link to={linkto}>{text}</Link></li>;
