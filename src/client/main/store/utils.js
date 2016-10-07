@@ -1,5 +1,56 @@
 import path from 'jspath';
 
+import 'whatwg-fetch';
+const ADVISOR_EMAIL = 'advisor@movement2016.org';
+
+
+const emailPlan = ({ storeState, onError, onDone, forceConsult = false }) => {
+    
+    onDone(''); // clear error messages
+    onError('');
+
+    const sstate = storeState;
+
+    let {
+      groups:{
+        plan: items,
+        planTotal        
+      },
+      user
+    } = sstate;
+
+    forceConsult && (user = { ...user, wantsConsult: true });
+    
+    const payload = {
+      ...user,
+      advisorEmail: ADVISOR_EMAIL,
+      items,
+      planTotal
+    };
+
+    const opts = {
+      method: 'post',
+      headers: {
+        accept: 'application/json',
+        'content-type': 'application/json',
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify (payload),
+    };
+
+    fetch (`${location.origin}/api/plan/send`, opts)
+      .then( resp => resp.json() )
+      .then( resp => {
+        // this is a gmail api thing
+        if( resp.labelIds && resp.labelIds.includes('SENT') ) {
+          onDone('Mail was sent!');  
+        } else {
+          onError('could not send mail, sorry about that');
+        }      
+      }).catch( () => onError('wups, something went wrong') );
+
+};
+
 const fastArrCmp = (a,b) => {
   for( var n = 0; n < b.length; n++ ) {
     if( a.includes(b[n]) ) {
@@ -105,5 +156,6 @@ module.exports = {
   organizeOrgsByState,
   organizeByOrgs,
   planFromOrg,
-  filterTagsByTypes
+  filterTagsByTypes,
+  emailPlan
 };

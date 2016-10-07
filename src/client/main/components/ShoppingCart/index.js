@@ -15,7 +15,7 @@ const BackToGroups = () => {
 
 const PageDescription = () => {
   return (
-    <p className="page-description">Enter a planned donation for each group. Once you complete your donation plan, we will email you a copy with simple instructions on how to donate directly to your chosen groups. You will also be able to let us know if you want to discuss your plan with a donor advisor.</p> 
+    <p className="page-description">Enter a planned donation for each group. Once you complete your donation plan, we will email you a copy with simple instructions on how to donate directly to your chosen groups.</p> 
   );
 };
 
@@ -37,6 +37,17 @@ class SummaryLink extends ContextMixin(React.Component) {
   }
 }
 
+const ConsultLink = () => {
+
+  const url = '/plan/consult';
+
+  return (
+    <p className="consult-link">
+      <i className="material-icons">contact_phone</i> If you prefer, you can talk directly to one of our donation advisors. 
+      <Link className="complete-button btn waves-effect waves-light" to={url}>Request Consult</Link>
+    </p>
+    );
+};
 
 class Cart extends React.Component {
 
@@ -53,6 +64,7 @@ class Cart extends React.Component {
               <div className="complete-section">
                 <Totals />
                 <SummaryLink />
+                <ConsultLink />
                 <BackToGroups />
               </div>
             </div>

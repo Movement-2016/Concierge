@@ -14,6 +14,8 @@ class ProfileForm extends React.Component {
   }
 
   render() {
+    const { submitText = 'Complete Plan' } = this.props;
+
     return (
         <form className="plan-form profile-form" onSubmit={this.onSubmit}>
           <div className="info-area">
@@ -36,7 +38,7 @@ class ProfileForm extends React.Component {
             </div>
           </div>
           <div className="action-area"> 
-            <button id="profile-form-submit" className="waves-effect waves-light btn" type="submit">Complete Plan</button>
+            <button id="profile-form-submit" className="waves-effect waves-light btn" type="submit">{submitText}</button>
           </div>
         </form>
       );

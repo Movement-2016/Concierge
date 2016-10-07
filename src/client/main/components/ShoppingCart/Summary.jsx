@@ -8,9 +8,11 @@ import EmailPlanButton from './EmailPlanButton.jsx';
 
 import { ContextMixin } from '../ContextMixins';
 
+import StateOrgs from './StateOrgs.jsx';
+
 import { 
   getSelectedOrgs,
-  organizeByOrgs
+  organizeOrgsByState
 } from '../../store/utils';
 
 import RequestConsult from './RequestConsultOption.jsx';
@@ -29,7 +31,7 @@ class SummaryOrg extends React.Component {
       <li>
         <span className="name" dangerouslySetInnerHTML={{__html:name}} /> <span className="state">({label})</span> <span className="amount">${commaize(amount)}</span>
         {urlGive && <a className="group-link" href={urlGive} target="_blank"><i className="material-icons">star_border</i>Contribute</a>}
-        {urlWeb  && <a className="group-link" href={urlWeb}  target="_blank"><i className="material-icons">link</i>Website</a>}
+        {!urlGive && urlWeb && <a className="group-link" href={urlWeb}  target="_blank"><i className="material-icons">link</i>Website</a>}
       </li>
       );
   }
@@ -76,7 +78,21 @@ class Summary extends ContextMixin(React.Component) {
 
   constructor() {
     super(...arguments);
-    this.state = { loading: true };
+    this.state = { 
+      loading: true,
+      msg: '',
+      error: '',
+    };
+    this.onDone = this.onDone.bind(this);
+    this.onError = this.onError.bind(this);
+  }
+
+  onDone(msg) {
+    this.setState({ msg });
+  }
+
+  onError(error) {
+    this.setState({ error });
   }
 
   stateFromStore(storeState) {
@@ -101,7 +117,7 @@ class Summary extends ContextMixin(React.Component) {
       this.setState({ 
         states, 
         plan,
-        orgs: organizeByOrgs(getSelectedOrgs(selected,orgs)),
+        orgs: organizeOrgsByState(getSelectedOrgs(selected,orgs)),
         loading: false
       });      
     });    
@@ -124,13 +140,19 @@ class Summary extends ContextMixin(React.Component) {
       <div className="plan-summary">
         <Totals />
         <ul className="plan-summary-lines">
-          {plan.map( ({id,amount}) => <SummaryOrg key={id}  {...orgs[id]} state={states[orgs[id].state]} amount={amount} /> )}
+          {Object.keys(orgs).map( state =>  <StateOrgs name={state} 
+                                                       key={state} 
+                                                       orgs={orgs[state]} 
+                                                       plan={plan}
+                                                       OrgComponent={SummaryOrg}
+                                                       state={states[state]}
+                                            /> )} 
         </ul>
         <div className="action-area">   
           <Link className="btn" to="/plan">Make Changes</Link>      
           <SummaryUser />
           <RequestConsult />
-          <EmailPlanButton>Email me this plan</EmailPlanButton>
+          <EmailPlanButton onError={this.onError} onDone={this.onDone}>Email me this plan</EmailPlanButton>
         </div>
       </div>
     );

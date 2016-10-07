@@ -4,41 +4,11 @@ import Loading          from '../Loading.jsx';
 
 import { 
   getSelectedOrgs,
-  organizeOrgsByState,
-  planFromOrg 
+  organizeOrgsByState
 } from '../../store/utils';
 
-import Org from './Org.jsx';
-
-class StateOrgs extends React.Component {
-  render() {
-    
-    const { 
-      name, 
-      orgs, 
-      filters, 
-      plan,
-      state 
-    } = this.props;
-    
-    const { 
-      label, 
-      group 
-    } = state;
-
-    const amountFromOrg = org => {
-      const { amount = 0 } = planFromOrg(plan,org.id) || {};
-      return amount;
-    };
-
-    return (
-        <div className="plan-state" id={name}>
-        <h3 className={`${group}-state`}>{label}</h3>
-          {orgs.map( org => <Org key={org.id} filters={filters} amount={amountFromOrg(org)} {...org} />)}
-        </div>    
-      );
-  }
-}
+import Org       from './Org.jsx';
+import StateOrgs from './StateOrgs.jsx';
 
 class Plan extends ContextMixin(React.Component) {
 
@@ -93,6 +63,7 @@ class Plan extends ContextMixin(React.Component) {
                                                        orgs={orgs[state]} 
                                                        plan={plan}
                                                        filters={filters} 
+                                                       OrgComponent={Org}
                                                        state={states[state]}
                                             /> )} 
         </div>

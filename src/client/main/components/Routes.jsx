@@ -24,6 +24,7 @@ import AdvisorsPage     from './AdvisorPage.jsx';
 import ShoppingCart     from './ShoppingCart';
 import PlanSummaryPage  from './ShoppingCart/SummaryPage.jsx';
 import PlanProfilePage  from './ShoppingCart/ProfilePage.jsx';
+import ConsultPage      from './ShoppingCart/ConsultPage.jsx';
 
 const MeetTheTeamPage = () => <ContentPage page="meetTheTeam" />;
 const AboutUsPage     = () => <ContentPage page="aboutUs" />;
@@ -44,9 +45,10 @@ class Routes extends React.Component
             <Route path='/groups(/:mobile)'     component={CustomDonatePage}  />
             <Route path='/state/:name'          component={StatePage} />
             
-            <Route path='/plan'            component={ShoppingCart} />
-            <Route path='/plan/summary'    component={PlanSummaryPage} />
-            <Route path='/plan/profile'    component={PlanProfilePage} />
+            <Route path='/plan'          component={ShoppingCart} />
+            <Route path='/plan/summary'  component={PlanSummaryPage} />
+            <Route path='/plan/profile'  component={PlanProfilePage} />
+            <Route path='/plan/consult'  component={ConsultPage} />
 
             <Route path='/about'      component={AboutUsPage} />
             <Route path='/advisors'   component={AdvisorsPage} />
