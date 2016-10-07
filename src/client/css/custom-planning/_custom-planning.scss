@@ -11,5 +11,30 @@
   @include z-depth-1;
 }
 
+.plan-form {
+
+  .consult-link {
+    border: 1px solid #22b4f6;
+    padding: 6px;
+    border-radius: 6px;
+    margin-top: 12px;
+    margin-bottom: 10px;
+    color: #22b4f6;
+
+    .contact-image {
+      color: #22b4f6;
+      float: right;
+
+      div {
+        font-size: 30px;
+      }
+    }
+
+    .complete-button {
+      white-space: nowrap;
+    }
+
+  }
+}
 @import 'custom-planning/cart-page';
 @import 'custom-planning/profile-page';

@@ -43,7 +43,8 @@ const ConsultLink = () => {
 
   return (
     <p className="consult-link">
-      <i className="material-icons">contact_phone</i> If you prefer, you can talk directly to one of our donation advisors. 
+      <div className="valign-wrapper contact-image"><div className="valign material-icons">contact_phone</div></div>
+      If you prefer, you can talk directly to one of our donation advisors. 
       <Link className="complete-button btn waves-effect waves-light" to={url}>Request Consult</Link>
     </p>
     );
