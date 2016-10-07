@@ -7,7 +7,6 @@ import {
   organizeOrgsByState
 } from '../../store/utils';
 
-import Org       from './Org.jsx';
 import StateOrgs from './StateOrgs.jsx';
 
 class Plan extends ContextMixin(React.Component) {
@@ -17,6 +16,10 @@ class Plan extends ContextMixin(React.Component) {
     this.state = { loading: true };
   }
 
+  get readonly() {
+    return false;
+  }
+  
   stateFromStore(storeState) {
 
     storeState.service.orgs.then( orgs => {
@@ -63,7 +66,7 @@ class Plan extends ContextMixin(React.Component) {
                                                        orgs={orgs[state]} 
                                                        plan={plan}
                                                        filters={filters} 
-                                                       OrgComponent={Org}
+                                                       readonly={this.readonly}
                                                        state={states[state]}
                                             /> )} 
         </div>

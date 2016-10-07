@@ -1,5 +1,9 @@
 import React     from 'react';
 
+import commaize from 'commaize';
+
+import ContributeButton from './ContributeButton.jsx';
+
 import { 
   addPlanItem,
   toggleItem 
@@ -61,7 +65,9 @@ class Org extends React.Component {
   render() {
 
     const {
-      name
+      name,
+      urlGive,
+      readonly
     } = this.props;    
 
     const {
@@ -76,8 +82,10 @@ class Org extends React.Component {
       onKeyDown: this.onKeyDown
     };
 
+    const cls = 'group' + (readonly ? ' readonly' : '');
+
     return(
-      <div className="group">
+      <div className={cls}>
         <div className="row">
           <div className="col s8 m9">
             <div className="group-title" dangerouslySetInnerHTML={{__html:name}} />
@@ -88,8 +96,16 @@ class Org extends React.Component {
           </div>
           <div className="col s4 m3 amount-col">
             <div className="amount-wrapper">
-              <div className="amount"><input placeholder="$" {...inProps}/></div>
-              <a className="remove-group" onClick={this.onRemoveOrg}><i className="material-icons">close</i>Remove</a>
+              <div className="amount">
+                {readonly
+                  ? '$' + commaize(value)
+                  : <input placeholder="$" {...inProps}/>
+                }
+              </div>
+              {readonly
+                ? <ContributeButton urlGive={urlGive} amount={value} />
+                : <a className="remove-group" onClick={this.onRemoveOrg}><i className="material-icons">close</i>Remove</a>
+              }
             </div>
           </div>
         </div>

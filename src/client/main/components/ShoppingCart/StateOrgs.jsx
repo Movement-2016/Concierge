@@ -4,6 +4,8 @@ import {
   planFromOrg 
 } from '../../store/utils';
 
+import Org from './Org.jsx';
+
 class StateOrgs extends React.Component {
   render() {
     
@@ -13,7 +15,7 @@ class StateOrgs extends React.Component {
       filters, 
       plan,
       state,
-      OrgComponent
+      readonly
     } = this.props;
     
     const { 
@@ -29,7 +31,7 @@ class StateOrgs extends React.Component {
     return (
         <div className="plan-state" id={name}>
         <h3 className={`${group}-state`}>{label}</h3>
-          {orgs.map( org => <OrgComponent key={org.id} filters={filters} amount={amountFromOrg(org)} {...org} />)}
+          {orgs.map( org => <Org readonly={readonly} key={org.id} filters={filters} amount={amountFromOrg(org)} {...org} />)}
         </div>    
       );
   }
