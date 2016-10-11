@@ -7,6 +7,7 @@
   }
   nav {
     background-color: $navbar-color;
+    @include z-depth-2;
     ul a {
       font-size: 1.1rem;
       color: rgba(0, 0, 0, 0.83);

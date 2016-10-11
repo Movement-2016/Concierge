@@ -43,9 +43,8 @@ class ConsultPage extends React.Component {
   render() {
     return (
       <Shell title="Request a Consultation" name="custom-planning profile-page">
-        <p className="page-description">Please make sure your information is correct and an adivsor will be in touch soon!</p>
-        <ProfileForm onSubmit={this.onSubmit} submitText="Request Consultation"/>
-        <div className="back-to-plan"><Link to="/plan"><i className="material-icons">chevron_left</i> Go back to plan</Link></div>
+        <p className="page-description">Please make sure your information is correct and an advisor will be in touch soon!</p>
+        <ProfileForm onSubmit={this.onSubmit} submitText="Request Consultation" />
       </Shell>
     );
   }

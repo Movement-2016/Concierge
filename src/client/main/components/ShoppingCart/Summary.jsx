@@ -4,7 +4,7 @@ import { Link }  from 'react-router';
 import Totals           from './Totals.jsx';
 import EmailPlanButton  from './EmailPlanButton.jsx';
 import Plan             from './Plan.jsx';
-import RequestConsult   from './RequestConsultOption.jsx';
+import RequestConsult   from './RequestConsult.jsx';
 import SummaryUser      from './SummaryUser.jsx';
 
 class SummaryListing extends Plan {
@@ -52,10 +52,11 @@ class Summary extends React.Component {
               <Totals />
               <SummaryUser />
               <EmailPlanButton onError={this.onError} onDone={this.onDone}>Email me this plan</EmailPlanButton>
-              <EditPlan />
+              <RequestConsult />
             </div>
           </div>
         </div>
+        <EditPlan />
       </div>
     );
   }

@@ -4,7 +4,7 @@ import { ContextMixin } from '../ContextMixins';
 
 import { setProfile } from '../../../account/store/actions';
 
-class RequestConsult extends ContextMixin(React.Component) {
+class RequestConsultOption extends ContextMixin(React.Component) {
 
   constructor() {
     super(...arguments);
@@ -33,6 +33,6 @@ class RequestConsult extends ContextMixin(React.Component) {
       );
   }
 }
-module.exports = RequestConsult;
+module.exports = RequestConsultOption;
 
 
