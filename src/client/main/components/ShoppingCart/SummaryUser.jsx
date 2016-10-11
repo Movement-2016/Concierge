@@ -31,10 +31,11 @@ class SummaryUser extends ContextMixin(React.Component) {
     } = this.state.user;
 
     return (
-        <div className="user">
-          <span className="fname">{fname}</span> <span className="lname">{lname}</span>
-          <span className="email">{email}</span> <span className="phone">{phone}</span>
-          <Link className="btn" to="/plan/profile">Edit Profile</Link>
+        <div className="user-info">
+          <div className="user-name">{fname} {lname}</div>
+          <div className="user-email">{email}</div>
+          <div className="user-phone">{phone}</div>
+          <Link className="edit-user-info" to="/plan/profile">Edit Contact Info</Link>
         </div>
       );
   }

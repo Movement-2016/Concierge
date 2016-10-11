@@ -1,0 +1,23 @@
+.summary-form {
+  .group-link {
+    font-weight: 400;
+    font-size: 12px;
+    text-transform: uppercase;
+    i {
+      font-size: 18px;
+      margin-left: 2px;
+    }
+  }
+  .user-info {
+    margin: 2rem 0;
+    .edit-user-info {
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
+      @include light-link;
+    }
+  }
+  .back-link {
+    margin-top: 0.5rem;
+  }
+}

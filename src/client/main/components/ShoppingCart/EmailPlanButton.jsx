@@ -23,7 +23,7 @@ class EmailPlanButton extends React.Component {
 
   render() {
     const { text, children } = this.props;
-    return <button onClick={this.onEmail} className="btn btn-success">{text}{children}</button>;
+    return <button onClick={this.onEmail} className="complete-button btn waves-effect waves-light">{text}{children}</button>;
   }
 }
 

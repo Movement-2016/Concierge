@@ -9,7 +9,7 @@ import { ContextMixin } from '../ContextMixins';
 
 const BackToGroups = () => {
   return (
-    <Link className="back-to-groups" to="/groups" title="Continue Browsing Groups"><i className="material-icons">chevron_left</i>Continue browsing groups</Link>
+    <Link className="back-link" to="/groups" title="Continue Browsing Groups"><i className="material-icons">chevron_left</i>Continue browsing groups</Link>
     );
 };
 
@@ -61,8 +61,8 @@ class Cart extends React.Component {
             <div className="col s12 m8">
               <Plan />
             </div>
-            <div className="col s12 m4 complete-col">
-              <div className="complete-section">
+            <div className="col s12 m4">
+              <div className="total-section">
                 <Totals />
                 <SummaryLink />
                 <ConsultLink />

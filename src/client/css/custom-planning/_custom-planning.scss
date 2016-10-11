@@ -3,16 +3,88 @@
   color: $med-text;
   margin: 0 36px;
 }
-.donation-plan, .plan-form {
+.donation-plan,
+.plan-form {
   margin: 50px 0;
   padding: 48px 36px;
   background-color: $form-bg-color;
   //  border: 1px solid $light-border; 
   @include z-depth-1;
 }
-
-.plan-form {
-
+.planning-section {
+  .plan-state {
+    h3 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      color: $lighter-text;
+      margin: 0 0 1rem;
+      &:before {}
+    }
+  }
+  .plan-state+.plan-state {
+    border-top: 1px solid $light-border;
+    margin-top: 1.8rem;
+    padding-top: 1.8rem;
+  }
+  .group+.group {
+    margin-top: 1rem;
+  }
+  .group-title {
+    margin-bottom: 4px;
+  }
+  .nonprofit-tags {
+    text-align: left;
+    span {
+      line-height: 22px;
+      padding: 0 10px;
+      font-size: 12px;
+    }
+  }
+  .amount-col {
+    text-align: right;
+  }
+  .amount-wrapper {
+    width: 100%;
+    max-width: 110px;
+    display: inline-block;
+  }
+}
+.total-section {
+  float: right;
+  padding-left: 58px;
+  width: 100%;
+  max-width: 300px;
+  .plan-total {
+    @include clearfix;
+    text-transform: uppercase;
+    font-size: 1.35rem;
+    .label {
+      float: left;
+    }
+    .total {
+      float: right;
+    }
+  }
+  .complete-button {
+    width: 100%;
+    line-height: 40px;
+    height: 40px;
+    letter-spacing: 1px;
+    margin: 1rem 0;
+    padding: 0 1rem;
+  }
+  .back-link {
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    font-size: 13px;
+    margin: 1rem 0 1rem -16px;
+    i {
+      vertical-align: middle;
+      padding-bottom: 4px;
+      margin-right: -3px;
+    }
+  }
   .consult-link {
     border: 1px solid #22b4f6;
     padding: 6px;
@@ -20,21 +92,18 @@
     margin-top: 12px;
     margin-bottom: 10px;
     color: #22b4f6;
-
     .contact-image {
       color: #22b4f6;
       float: right;
-
       div {
         font-size: 30px;
       }
     }
-
     .complete-button {
       white-space: nowrap;
     }
-
   }
 }
 @import 'custom-planning/cart-page';
 @import 'custom-planning/profile-page';
+@import 'custom-planning/summary-page';

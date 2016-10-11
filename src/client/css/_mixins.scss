@@ -15,6 +15,14 @@
   vertical-align: middle;
   margin-bottom: 3px;
 }
+@mixin light-link {
+  color: $lightest-text;
+  text-transform: uppercase;
+  &:hover, &:focus {
+    color: $primary-color-light;
+  }
+}
+
 @keyframes pushRight {
   from {
     width: 5%;

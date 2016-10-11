@@ -14,6 +14,12 @@ class SummaryListing extends Plan {
   }
 }
 
+const EditPlan = () => {
+  return (
+    <Link className="back-link" to="/plan" title="Edit my plan"><i className="material-icons">chevron_left</i>Edit plan</Link>
+  );
+};
+
 class Summary extends React.Component {
   constructor() {
     super(...arguments);
@@ -36,14 +42,19 @@ class Summary extends React.Component {
   render() {
 
     return(
-      <div className="plan-summary">
-        <Totals />
-        <SummaryListing />
-        <div className="action-area">   
-          <Link className="btn" to="/plan">Make Changes</Link>      
-          <SummaryUser />
-          <RequestConsult />
-          <EmailPlanButton onError={this.onError} onDone={this.onDone}>Email me this plan</EmailPlanButton>
+      <div className="plan-form summary-form">
+        <div className="row">
+          <div className="col s12 m8">
+            <SummaryListing />
+          </div>
+          <div className="col s12 m4">
+            <div className="total-section">
+              <Totals />
+              <SummaryUser />
+              <EmailPlanButton onError={this.onError} onDone={this.onDone}>Email me this plan</EmailPlanButton>
+              <EditPlan />
+            </div>
+          </div>
         </div>
       </div>
     );

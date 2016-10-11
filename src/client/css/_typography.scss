@@ -36,3 +36,9 @@ p+h5 {
     padding: 40px 0;
   }
 }
+
+a {
+  &:hover, &:focus {
+    color: $primary-color-light;
+  }
+}
