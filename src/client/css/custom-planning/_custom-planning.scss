@@ -11,7 +11,7 @@
   @include z-depth-2;
 }
 .planning-section {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   .plan-state {
     h3 {
       font-size: 1rem;
@@ -22,8 +22,8 @@
   }
   .plan-state+.plan-state {
     border-top: 1px solid $light-border;
-    margin-top: 1.8rem;
-    padding-top: 1.8rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
   }
   .group+.group {
     margin-top: 1rem;

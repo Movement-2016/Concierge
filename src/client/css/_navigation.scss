@@ -17,7 +17,7 @@
       }
     }
     .brand-logo {
-      color: color('blue', 'lighten-1');
+      color: $primary-color;
       @include site-logo;
       @media #{$large-and-up} {
         padding-left: $menu-padding;
