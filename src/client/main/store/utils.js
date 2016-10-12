@@ -97,7 +97,7 @@ const getVisibleOrgs = (orgs,filters) => {
   
   return _iterateOrgs( orgs, org => {
     for( var n = 0; n < tags.length; n++ ) {
-      if( !fastArrCmp(org.tags,tags[n]) ) {
+      if( tags[n].length && !fastArrCmp(org.tags,tags[n]) ) {
         return false;
       }
     }
@@ -141,7 +141,9 @@ const filterTagsByTypes = ({tags,filters}) => {
   const pred  = tags.map( t => `.name=="${t}"` ).join('||');
   const result = types.reduce( (result,type) => { 
     result[type] = {
-      tags: path(`."${type}".terms..{${pred}}.label`,filters),
+      tags: pred 
+              ? path(`."${type}".terms..{${pred}}.label`,filters)
+              : [],
       label: filters[type].label
     };
     return result;

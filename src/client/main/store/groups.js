@@ -62,9 +62,9 @@ export default function groups (state = initialState, action) {
     }
 
     case INIT_FILTERS: {
-      const { filters } = action;
       const visibility = {};
-      Object.keys(filters).forEach( f => { visibility[f] = path('.terms..name',filters[f]); } );
+      const { filters } = action;
+      Object.keys(filters).forEach( f => { visibility[f] = []; /*path('.terms..name',filters[f]); */ } );
       return { ...state, visibility };
     }
 

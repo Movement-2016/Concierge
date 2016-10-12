@@ -20,7 +20,7 @@ class OrgsListMobile extends React.Component {
     } = storeState.service;
 
     return (
-      <div className="group-area">
+      <div className="mobile-group-area">
         <ul className="mobile-group state-list">
           {Object.keys(states).map( name => 
             <li key={name} >

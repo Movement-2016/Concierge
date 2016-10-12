@@ -65,7 +65,9 @@ class CustomDonatePage extends ContextMixin(React.Component) {
   }
 
   onTermsChecked(cat, terms, toggle) {
-    const tags = TagString.fromArray( this.state.selectedTerms[cat] ).toggle(terms,toggle).toArray();
+    const tags = terms && terms.length 
+                  ? TagString.fromArray( this.state.selectedTerms[cat] ).toggle(terms,toggle).toArray()
+                  : [];
     this.context.store.dispatch( setVisibility( cat, tags ) );
   }
 

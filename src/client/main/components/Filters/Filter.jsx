@@ -1,6 +1,6 @@
 import React from 'react';
 
-import path  from 'jspath';
+//import path  from 'jspath';
 
 
 const FilterCheckbox = ({ label, name, cat, onTermsChecked, selected, disabled }) => {
@@ -22,66 +22,33 @@ const FilterCheckbox = ({ label, name, cat, onTermsChecked, selected, disabled }
   );
 };
 
-class FilterMode extends React.Component {
-
-  render() {
-
-    const { 
-      name,
-      id,
-      checked,
-      onChange,
-      text
-    } = this.props;
-
-    const cls       = 'filter-checkbox filled-in';
-    const domid     = `checkbox-${name}-${id}`;
-
-    return( 
-      <div>
-        <input type="checkbox" className={cls} id={domid} checked={checked} onChange={onChange} />
-        <label htmlFor={domid}>{text}</label>
-      </div>
-      );
-  }
-}
-
 class Filter extends React.Component {
 
   constructor() {  
     super(...arguments);
-
-    const { 
-      terms
-    } = this.props;
-
-    this._allFilter = path('..name', terms ).join(',');
-
-    this.state = { 
-      filterValue: this._allFilter
-    };
-
+    this.state = { seeAll: true };
     this.onToggleAll    = this.onToggleAll.bind(this);
     this.onFilterChange = this.onFilterChange.bind(this);
+    this._sendSelected  = this._sendSelected.bind(this);
   }
 
-  onFilterChange(e) {
-    const filterValue = e.target.value;
-    this.setState({ filterValue },this._sendSelected());
+  onToggleAll(e) {
+    e.preventDefault();
+    this.setState({ seeAll: true }, setTimeout( this._sendSelected, 200 ));
   }
 
-  _sendSelected(seeAll) {
+  onFilterChange() {
+    this.setState({ seeAll: false });
+  }
+
+  _sendSelected() {
+
     const { 
       name,
       onTermsChecked 
     } = this.props;
 
-    const {
-      filterValue
-    } = this.state;
-
-    const names = filterValue.split(/,/);
-    onTermsChecked( name, names, seeAll );
+    onTermsChecked( name, [], false );    
   }
 
 
@@ -100,11 +67,9 @@ class Filter extends React.Component {
       <li className={`filter-group ${name}-filters`}>
           <div className="collapsible-header"><span className="toggle"/>{label}</div>
           <div className="collapsible-body" style={{display:'none'}}>
-            <div className="filter" key="all">
-              <FilterMode name={name} checked={seeAll}  onChange={this.onToggleAll} id='all'  text="See All" />
-            </div>
+            {!seeAll && <a href='#' onClick={this.onToggleAll}>[x] clear filters</a>}
             <div onChange={this.onFilterChange} >
-              {Object.keys(terms).map( t => <FilterCheckbox {...this.props} {...terms[t]} key={t} cat={name} disabled={seeAll} /> )}
+              {Object.keys(terms).map( t => <FilterCheckbox {...this.props} {...terms[t]} key={t} cat={name} /> )}
             </div>
           </div>
       </li>
