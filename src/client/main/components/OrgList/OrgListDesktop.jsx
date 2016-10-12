@@ -24,6 +24,12 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
     }
   }
 
+  // for debugging breakpoint
+  stateFromStore(storeState) {
+    const { service } = storeState;
+    this.setState({ service });
+  }
+
   getVisibleColorGroups() {
 
     const {

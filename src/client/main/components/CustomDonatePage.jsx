@@ -95,7 +95,7 @@ class CustomDonatePage extends ContextMixin(React.Component) {
       mobile
     };
 
-    const title     = mobile ? 'Browse Groups' : 'Custom Donation Plan';
+    const title = mobile ? 'Browse Groups' : 'Custom Donation Plan';
     
     return (
       <main className={`browse-groups-page ${mobile}`}>
