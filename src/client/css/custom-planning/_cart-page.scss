@@ -30,20 +30,3 @@
     }
   }
 }
-.shopping-cart-tray {
-  display: block;
-  position: fixed;
-  bottom: 0;
-  border-top: 3px solid black;
-  padding: 20px 5%;
-  background-color: #673ab7;
-  width: 100%;
-  z-index: 100;
-  color: white;
-  text-shadow: 2px 2px black;
-  .info {
-    font-size: 110%;
-    display: inline-block;
-    margin-right: 30px;
-  }
-}

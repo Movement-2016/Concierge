@@ -2,7 +2,7 @@ html,
 body,
 #app,
 .site-wrapper {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   background-color: $white;
 }
@@ -10,7 +10,7 @@ body,
   display: flex;
   flex-direction: column;
 }
-.main-area {
+main {
   background-color: $main-bg-color;
   flex: 1;
   margin-top: $navbar-height-mobile;
@@ -18,10 +18,14 @@ body,
     margin-top: $navbar-height + $donate-header-height;
   }
 }
+.site-footer {
+  flex: 0;
+}
 body {
   background-color: $white;
   overflow-wrap: break-word;
 }
+
 ul {
   margin: 0;
 }
@@ -29,7 +33,7 @@ ul {
   @media #{$large-and-up} {
     width: 85%;
     max-width: $site-max-width;
-    min-width: $medium-screen-up - (2 * $header-padding);
+    min-width: $medium-screen-up - (2 * $site-padding);
   }
 }
 .small-container {
@@ -53,4 +57,14 @@ textarea {
   background: color('grey', 'lighten-5');
   padding: 6px;
   max-width: 100%;
+}
+
+.btn {
+  @include z-depth-1;
+  &:hover, &:focus {
+    @include z-depth-2;
+  }
+}
+.btn-flat:hover {
+  background-color: rgba(0, 0, 0, 0.03);
 }

@@ -1,15 +1,16 @@
-import React    from 'react';
-import { Link } from 'react-router';
+import React            from 'react';
+import { Link }         from 'react-router';
 
-import Plan        from './Plan.jsx';
-import ContentPage from '../ContentPage.jsx';
-import Totals      from './Totals.jsx';
+import Plan             from './Plan.jsx';
+import ContentPage      from '../ContentPage.jsx';
+import Totals           from './Totals.jsx';
+import RequestConsult   from './RequestConsult.jsx';
 
 import { ContextMixin } from '../ContextMixins';
 
 const BackToGroups = () => {
   return (
-    <Link className="back-link" to="/groups" title="Continue Browsing Groups"><i className="material-icons">chevron_left</i>Continue browsing groups</Link>
+    <Link className="back-link" to="/groups" title="Continue Browsing Groups"><i className="material-icons">chevron_left</i>Back to browse groups</Link>
     );
 };
 
@@ -32,23 +33,10 @@ class SummaryLink extends ContextMixin(React.Component) {
     const url = isUserKnown ? '/plan/summary' : '/plan/profile';
 
     return (
-        <Link className="complete-button btn waves-effect waves-light" to={url}>Complete Plan</Link>
-      );
+      <Link className="complete-button btn waves-effect waves-light" to={url}>Complete Plan</Link>
+    );
   }
 }
-
-const ConsultLink = () => {
-
-  const url = '/plan/consult';
-
-  return (
-    <p className="consult-link">
-      <div className="valign-wrapper contact-image"><div className="valign material-icons">contact_phone</div></div>
-      If you prefer, you can talk directly to one of our donation advisors. 
-      <Link className="complete-button btn waves-effect waves-light" to={url}>Request Consult</Link>
-    </p>
-    );
-};
 
 class Cart extends React.Component {
 
@@ -65,11 +53,11 @@ class Cart extends React.Component {
               <div className="total-section">
                 <Totals />
                 <SummaryLink />
-                <ConsultLink />
-                <BackToGroups />
+                <RequestConsult />
               </div>
             </div>
           </div>
+          <BackToGroups />
         </div>
       </ContentPage.Shell>
     );

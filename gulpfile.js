@@ -10,8 +10,9 @@ const browserify = require ('browserify');
 const watchify = require ('watchify');
 const uglify = require ('gulp-uglify');
 const gzip = require ('gulp-gzip');
-const concat = require('gulp-concat');
 const sourcemaps = require ('gulp-sourcemaps');
+const autoprefixer = require('gulp-autoprefixer');
+const concat = require('gulp-concat');
 
 const browserifyConfig =  {
   entries: 'src/client/main/components/App.jsx',
@@ -44,18 +45,15 @@ const dependencies = [
 
 const fonts = [
   'src/client/fonts/**/*',
-//  'node_modules/bootstrap/dist/fonts/*'
 ];
 
 const vendorStyles = [
   'src/client/vendor.css',
-//  'node_modules/bootstrap/dist/css/bootstrap.min.css',
 //  'node_modules/materialize-css/dist/css/materialize.min.css'
 ];
 
 const vendorClientJS = [
   'node_modules/jquery/dist/jquery.min.js',
-//  'node_modules/bootstrap/dist/js/bootstrap.min.js',
   'node_modules/materialize-css/dist/js/materialize.min.js'
 ];
 
@@ -131,10 +129,10 @@ gulp.task ('vendor', function () {
 
 gulp.task ('styles', function () {
   return gulp.src ('src/client/css/main.scss')
-    .pipe(sourcemaps.init())
-    .pipe (sass ().on ('error', sass.logError))
-    .pipe(sourcemaps.write())
-//    .pipe (cssmin ())
+    .pipe (sourcemaps.init())
+    .pipe (sass().on ('error', sass.logError))
+    .pipe (autoprefixer())
+    .pipe (sourcemaps.write())
     .pipe (gulp.dest (`${base}/public/css`));
 });
 

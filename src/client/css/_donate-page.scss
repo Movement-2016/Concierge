@@ -6,9 +6,9 @@
   margin: 0 auto 30px;
   background-color: $form-bg-color;
   color: $dark-text;
-  @include z-depth-1;
+  @include z-depth-2;
   &:hover, &:focus {
-    @include z-depth-2;
+    @include z-depth-3;
   }
   .wrapper {
     position: absolute;

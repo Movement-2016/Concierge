@@ -5,7 +5,7 @@ import Summary   from './Summary.jsx';
 
 const PlanSummaryPage = () => {
   return (
-    <Shell title="Plan Summary" name="plan-summary-page" big="false">
+    <Shell title="Plan Results" name="plan-summary-page" big="false">
       <Summary />
     </Shell>
   );

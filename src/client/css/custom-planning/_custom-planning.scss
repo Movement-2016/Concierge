@@ -1,30 +1,29 @@
 .custom-planning .page-description {
   font-size: 1.33rem;
   color: $med-text;
-  margin: 0 36px;
+  margin: 0 2rem;
 }
 .donation-plan,
 .plan-form {
-  margin: 50px 0;
-  padding: 48px 36px;
+  margin: 3rem 0 4rem;
+  padding: 3rem 2rem 2rem;
   background-color: $form-bg-color;
-  //  border: 1px solid $light-border; 
-  @include z-depth-1;
+  @include z-depth-2;
 }
 .planning-section {
+  margin-bottom: 3rem;
   .plan-state {
     h3 {
       font-size: 1rem;
       text-transform: uppercase;
       color: $lighter-text;
       margin: 0 0 1rem;
-      &:before {}
     }
   }
   .plan-state+.plan-state {
     border-top: 1px solid $light-border;
-    margin-top: 1.8rem;
-    padding-top: 1.8rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
   }
   .group+.group {
     margin-top: 1rem;
@@ -47,6 +46,17 @@
     width: 100%;
     max-width: 110px;
     display: inline-block;
+  }
+}
+.back-link {
+  text-transform: uppercase;
+  display: block;
+  font-size: 13px;
+  i {
+    vertical-align: middle;
+    padding-bottom: 4px;
+    margin-left: -8px;
+    margin-right: -2px;
   }
 }
 .total-section {
@@ -73,37 +83,31 @@
     margin: 1rem 0;
     padding: 0 1rem;
   }
-  .back-link {
-    text-transform: uppercase;
-    text-align: center;
-    display: block;
-    font-size: 13px;
-    margin: 1rem 0 1rem -16px;
-    i {
-      vertical-align: middle;
-      padding-bottom: 4px;
-      margin-right: -3px;
-    }
+}
+.consult-area {
+  @include z-depth-1;
+  border-radius: 2px;
+  margin: 3rem 0;
+  .consult-desc {
+    padding: 1rem 12px;
+    color: $lighter-text;
   }
-  .consult-link {
-    border: 1px solid #22b4f6;
-    padding: 6px;
-    border-radius: 6px;
-    margin-top: 12px;
-    margin-bottom: 10px;
-    color: #22b4f6;
-    .contact-image {
-      color: #22b4f6;
-      float: right;
-      div {
-        font-size: 30px;
-      }
+  .consult-button {
+    width: 100%;
+    padding: 0 12px;
+    border-top: 1px solid $light-border;
+    color: $primary-color-light;
+    height: 48px;
+    line-height: 48px;
+    i {
+      @include button-icon;
     }
-    .complete-button {
-      white-space: nowrap;
+    .consult-button-text {
+      @include button-icon-text;
     }
   }
 }
+
 @import 'custom-planning/cart-page';
 @import 'custom-planning/profile-page';
 @import 'custom-planning/summary-page';

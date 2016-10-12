@@ -24,9 +24,15 @@ class Tray extends ContextMixin(React.Component) {
     const s = length !== 1 ? 's' : '';
 
     return(
-        <div className="shopping-cart-tray  hide-on-small-and-down">
-          <div className="info">{`You have selected ${length} organization${s} for your donation plan.`}</div>
-          {length ? <Link to="/plan" className="btn">Go to plan</Link> : ''}
+        <div className="donation-plan-tray">
+          <div className="title">Your Donation Plan</div>
+          <div className="info">{`${length} Group${s}`}</div>
+          <div className="button-area">
+            {length 
+            ? <Link to="/plan" className="btn-flat waves-effect waves-light"><i className="material-icons">check</i><span className="button-text">Go to plan</span></Link>
+              : ''
+            }
+          </div>
         </div>
       );
   }

@@ -7,16 +7,17 @@
   }
   nav {
     background-color: $navbar-color;
+    @include z-depth-2;
     ul a {
       font-size: 1.1rem;
-      color: rgba(0, 0, 0, 0.83);
+      color: $med-text;
       padding: 0 $menu-padding;
       &:hover {
         background-color: color('grey', 'lighten-3');
       }
     }
     .brand-logo {
-      color: color('blue', 'lighten-1');
+      color: $primary-color;
       @include site-logo;
       @media #{$large-and-up} {
         padding-left: $menu-padding;
@@ -44,7 +45,7 @@
       }
     }
     @media #{$large-and-up} {
-      padding: 0 ($header-padding - $menu-padding);
+      padding: 0 ($site-padding - $menu-padding);
       .nav-wrapper {
         max-width: $site-max-width + (2 * $menu-padding);
         margin: 0 auto;
