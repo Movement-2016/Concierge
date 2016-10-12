@@ -3,11 +3,19 @@
   font-weight: 700;
   font-style: italic;
 }
-
 @mixin clearfix {
+  //  &:after {
+  //    content: '';
+  //    display: block;
+  //    clear: both;
+  //  }
+  //  
+  &:before,
   &:after {
-    content: '';
-    display: block;
+    content: " ";
+    display: table;
+  }
+  &:after {
     clear: both;
   }
 }
@@ -15,14 +23,25 @@
   vertical-align: middle;
   margin-bottom: 3px;
 }
+@mixin button-icon {
+  display: inline-block;
+  width: 30px;
+  @include reg-icon;
+}
+@mixin button-icon-text {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  margin-left: -30px;
+}
 @mixin light-link {
   color: $lightest-text;
   text-transform: uppercase;
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: $primary-color-light;
   }
 }
-
 @keyframes pushRight {
   from {
     width: 5%;
@@ -38,19 +57,18 @@
   animation-duration: 0.8s;
   animation-delay: 0.3s;
 }
-
 @mixin z-depth-1 {
-  box-shadow: 0 0 1px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.16);
+  box-shadow: 0 0 1px rgba(0, 0, 0, .08), 0 1px 2px rgba(0, 0, 0, .16);
 }
 @mixin z-depth-2 {
- box-shadow: 0 0 2px rgba(0,0,0,.10), 0 2px 4px rgba(0,0,0,.18);
+  box-shadow: 0 0 2px rgba(0, 0, 0, .10), 0 2px 4px rgba(0, 0, 0, .18);
 }
 @mixin z-depth-3 {
-  box-shadow: 0 0 4px rgba(0,0,0,.12),0 4px 8px rgba(0,0,0,.22);
+  box-shadow: 0 0 4px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .22);
 }
 @mixin z-depth-4 {
-  box-shadow: 0 0 6px rgba(0,0,0,.14),0 6px 12px rgba(0,0,0,.28);
+  box-shadow: 0 0 6px rgba(0, 0, 0, .14), 0 6px 12px rgba(0, 0, 0, .28);
 }
 @mixin z-depth-2-top-line {
-  box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0,0,0,.10), 0 2px 4px rgba(0,0,0,.18);
+  box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, .10), 0 2px 4px rgba(0, 0, 0, .18);
 }

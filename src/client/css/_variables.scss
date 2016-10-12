@@ -1,6 +1,6 @@
 // Heights & widths
 $site-max-width: 1400px;
-$header-padding: 35px;
+$site-padding: 24px;
 $menu-padding: 17px;
 $donate-header-height: 46px;
 $navbar-height: 64px;
@@ -60,8 +60,9 @@ $thermometer-color: $primary-color;
 
 // Groups
 $group-area-bg-color: $white;
-$group-tag-color: color('grey', 'lighten-3');
+$group-tag-color: color('grey', 'lighten-4');
 $title-bg-color: $primary-color-light;
+$group-padding: 1.5rem;
 
 // Navbar
 $navbar-font-color: $lighter-text;

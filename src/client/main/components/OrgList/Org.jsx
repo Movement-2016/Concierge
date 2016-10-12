@@ -16,7 +16,7 @@ class TagBlock extends React.Component {
           const { label, tags } = tagTypes[t];
           return (
               <div className="tagblock" key={i} >
-                <div className="tagblock-title">{label}</div>
+                <div className="tagblock-title">{label}:</div>
                 <div className="tagblock-tags">{tags.map( (g,i) => <span key={i}>{g}</span>)}</div>
               </div>
             );
@@ -89,7 +89,7 @@ class Org extends ContextMixin(React.Component) {
 
     return(
         <div className={`group ${cls}`}>
-          <h5 className="group-title" data-id={id}><a href={`/groups#${id}`} dangerouslySetInnerHTML={{__html:name}} /></h5>        
+          <div className="group-title" data-id={id}><a href={`/groups#${id}`} dangerouslySetInnerHTML={{__html:name}} /></div>        
           <div className="row">
             <div className="links-col col s12 m8">
               {urlWeb  && <a className="group-link" href={urlWeb}  target="_blank"><i className="material-icons">link</i>Website</a>}

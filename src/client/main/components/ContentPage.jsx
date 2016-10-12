@@ -45,7 +45,7 @@ class ContentPage extends PageContext(React.Component) {
 
     return (
       <ContentPageShell name={this.page} title={title}>
-        <div className="content" dangerouslySetInnerHTML={{__html:content}} />;
+        <div className="content" dangerouslySetInnerHTML={{__html:content}} />
       </ContentPageShell>
       );
   }

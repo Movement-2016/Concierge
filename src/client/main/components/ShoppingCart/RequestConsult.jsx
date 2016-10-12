@@ -8,9 +8,7 @@ const RequestConsult = () => {
     <div className="consult-area">
       <div className="consult-desc">You can also talk with one of our donation advisors about your plan.</div> 
       <Link className="consult-button btn-flat waves-effect waves-light" to={url}>
-        <span className="consult-button-icon">
-          <i className="material-icons">people</i>
-        </span>
+        <i className="material-icons">people</i>
         <span className="consult-button-text">Request A Consult</span>
       </Link>
     </div>

@@ -96,9 +96,7 @@ class App extends React.Component {
         <div className="site-wrapper">
           <DonateHeader goal={goal} pledged={pledged} />
           <Nav siteTitle={SITE_TITLE} />
-          <div className='main-area'>
-            {this.props.children}
-          </div>
+          {this.props.children}
           <Footer />
         </div>
       </Provider>

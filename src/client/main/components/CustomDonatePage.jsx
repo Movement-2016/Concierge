@@ -95,13 +95,13 @@ class CustomDonatePage extends ContextMixin(React.Component) {
       mobile
     };
 
-    const title     = mobile ? 'Browse Groups' : 'Custom Donation Plan';
+    const title = 'Browse Groups';
     
     return (
       <main className={`browse-groups-page ${mobile}`}>
         <div className="container">
           <h1 className="page-title">{title}</h1>
-          <section className="browse-section">
+          <div className="browse-section">
             <div className="filter-area">
               <Filters {...fprops} />
             </div>
@@ -109,9 +109,9 @@ class CustomDonatePage extends ContextMixin(React.Component) {
               ? <OrgList mobile={mobile} orgs={orgs} />
               : <Loading />
             }
-          </section>
+            <Tray />
+          </div>
         </div>
-        <Tray />
       </main>
     );
   }

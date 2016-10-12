@@ -86,6 +86,7 @@
 }
 .consult-area {
   @include z-depth-1;
+  border-radius: 2px;
   margin: 3rem 0;
   .consult-desc {
     padding: 1rem 12px;
@@ -98,18 +99,11 @@
     color: $primary-color-light;
     height: 48px;
     line-height: 48px;
-    .consult-button-icon {
-      display: inline-block;
-      width: 30px;
-      i {
-        @include reg-icon;
-      }
+    i {
+      @include button-icon;
     }
     .consult-button-text {
-      display: inline-block;
-      text-align: center;
-      width: 100%;
-      margin-left: -30px;
+      @include button-icon-text;
     }
   }
 }
