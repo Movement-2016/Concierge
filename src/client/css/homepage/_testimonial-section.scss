@@ -2,6 +2,19 @@
   padding: 30px 0 60px;
   border-top: 1px solid $light-border;
   text-align: center;
+  background-color: #DDD;
+
+  .carousel-item > div {
+    padding: 0px 25px;
+  }
+
+  .carousel .indicators .indicator-item {
+    background-color: #2196f3;
+  }
+
+  .carousel .indicators .indicator-item.active {
+    background-color: #fff;
+  }  
 }
 
 .testimonial {
@@ -18,3 +31,4 @@
 .testimonial-author {
   color: $primary-color-light;
 }
+

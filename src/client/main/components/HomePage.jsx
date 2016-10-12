@@ -10,15 +10,19 @@ import SocialButtons from './Social.jsx';
 import Loading from './Loading.jsx';
 
 class Testimonials extends React.Component {
+  componentDidMount() {
+    /* globals $ */
+    $('.testimonial-section .carousel').carousel({full_width: true});
+  }
+
   render() {
     const { testimonials } = this.props;
 
     return (
         <section className="testimonial-section">
-          <div className="container">
-            <div className="row">
+            <div className="carousel carousel-slider center" data-indicators="true">
               {testimonials.map( (t,i) => (
-                <div key={i} className="col s12 m6 l3">
+                <div key={i} className="carousel-item">
                   <div className="testimonial">
                     <div className="testimonial-content" dangerouslySetInnerHTML={{__html: '"' + t.quote + '"'}} />
                     <div className="testimonial-author"  dangerouslySetInnerHTML={{__html:t.testifier}} />
@@ -26,7 +30,6 @@ class Testimonials extends React.Component {
                 </div>            
               ))}
             </div>
-          </div>
         </section>
       );
   }
