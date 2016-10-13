@@ -77,6 +77,8 @@ class Org extends ContextMixin(React.Component) {
       selected
     } = this.state;
 
+    const icon = selected ? 'close' : 'playlist_add';
+    const iconCls = selected ? 'remove' : 'add';
     const text = selected ? 'Remove from plan' : 'Add to plan';
     const cls  = selected ? 'selected' : '';
 
@@ -93,7 +95,7 @@ class Org extends ContextMixin(React.Component) {
           <div className="row">
             <div className="links-col col s12 m8">
               {urlWeb  && <a className="group-link" href={urlWeb}  target="_blank"><i className="material-icons">link</i>Website</a>}
-              <a className="group-link hide-on-small-and-down" href="#" onClick={this.onOrgClick}><span><i className="material-icons">toc</i> {text}</span></a>
+              <a className="group-link hide-on-small-and-down" href="#" onClick={this.onOrgClick}><span><i className={`material-icons ${iconCls}`}>{icon}</i>{text}</span></a>
             </div>
             <div className="nonprofit-tags col s12 m4">
               {nonProfitType.tags.map( t => <span key={t}>{t}</span> )}

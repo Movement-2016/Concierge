@@ -1,5 +1,7 @@
 .group-area {
-  margin: 0 210px;
+  @media #{$large-and-up} {
+    margin: 0 210px;
+  }
 }
 .grouping-title {
   text-align: center;
@@ -80,10 +82,15 @@
   text-decoration: none;
   display: inline-block;
   text-transform: uppercase;
-  font-size: 12.5px;
+  letter-spacing: 0.5px;
+  font-size: 13px;
   i {
     @include reg-icon;
     margin-right: 4px;
+    font-size: 20px;
+  }
+  i.add {
+    font-size: 22px;
   }
   &:hover {
     color: $primary-color-light;
@@ -155,15 +162,15 @@
 .tagblock-title {
   display: inline-block;
   font-size: 12px;
-  text-transform: uppercase; 
+  text-transform: uppercase;
   width: 120px;
-  vertical-align: top;
   line-height: 1.5rem;
+  vertical-align: top;
 }
 .tagblock-tags {
   display: inline-block;
   font-size: 13px;
-  line-height:1.5rem;
+  line-height: 1.5rem;
   span+span:before {
     content: ", ";
   }
@@ -171,7 +178,6 @@
     max-width: calc(100% - 120px);
   }
 }
-
 .tagblock + .tagblock {
   margin-top: 4px;
 }

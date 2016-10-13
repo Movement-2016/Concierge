@@ -31,7 +31,7 @@ $twitter-blue: rgb(0, 172, 237);
 // Color theme
 $primary-color: color("blue", "base");
 $primary-color-light: color("blue", "lighten-1");
-$secondary-color: lighten(color("red", "lighten-1"), 5%);
+$secondary-color: lighten(color("red", "base"), 5%);
 $secondary-color-light: lighten(color("red", "lighten-1"), 7%);
 
 // Element colors

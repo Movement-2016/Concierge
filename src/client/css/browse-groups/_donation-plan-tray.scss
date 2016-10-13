@@ -1,41 +1,41 @@
 .donation-plan-tray {
-  position: fixed;
-  $tray-padding: 12px;
-  padding-top: $tray-padding;
-  text-align: center;
-  background-color: $white;
-  @include z-depth-1;
-  top: 110;
-  width: 180px;
-  margin-left: 30px; 
-  right: $site-padding;
-  margin-top: 30px;
-  border-radius: 2px;
-  .title {
-    font-size: 13px;
-    text-transform: uppercase;
-    color: $lighter-text;
-    letter-spacing: 0.5px;
-    padding: 0 $tray-padding;
-  }
-  .info {
-    margin: 6px 0 12px;
-    font-size: 18px;
-    padding: 0 $tray-padding;
-  }
-  .btn-flat {
-    height: 48px;
-    line-height: 48px;
-    color: $primary-color;
-    padding: 0 $tray-padding;
-    border-top: 1px solid $light-border;
-    width: 100%;
-    i {
-      @include button-icon;
-      margin-bottom: 4px;
+  display: none;
+  @media #{$large-and-up} {
+    display: block;
+    position: fixed;
+    $tray-padding: 16px;
+    padding-top: $tray-padding;
+    background-color: $white;
+    @include z-depth-1;
+    top: 110;
+    width: 180px;
+    margin-left: 30px;
+    right: $site-padding;
+    margin-top: 30px;
+    border-radius: 2px;
+    .title {
+      font-size: 16px;
+      color: $lighter-text;
+      padding: 0 $tray-padding;
     }
-    .button-text {
-      @include button-icon-text;
+    .info {
+      margin: 8px 0 16px;
+      font-size: 20px;
+      padding: 0 $tray-padding;
+    }
+    .btn-flat {
+      height: 48px;
+      line-height: 48px;
+      color: $primary-color;
+      padding: 0 $tray-padding;
+      border-top: 1px solid $light-border;
+      width: 100%;
+      letter-spacing: 0.5px;
+      i {
+        @include reg-icon;
+        font-size: 26px;
+        margin-right: 8px;
+      }
     }
   }
 }
