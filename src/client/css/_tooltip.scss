@@ -6,35 +6,40 @@
     position: absolute;
     z-index: 1070;
     display: block;
-    font-size: 13px;
-    line-height: 1.42857143;
+    text-align: left;
+    line-height: 1.4;
     opacity: 0;
-    line-break: auto;
-
-    b {
-      display: block;
-      padding: 3px;
-      background: black;
-      color: white;
-      border-radius: 4px;
+   
+    .tooltip-header, .race-data {
+      padding: 6px 10px;
+    }
+    .tooltip-header {
+      border-bottom: 1px solid $light-border;
+      font-size: 14px;
+    }
+    .state-name {
+      text-transform: capitalize;
+      font-weight: 700;
+    }
+    .race-data {
+      font-size: 13px;
+      line-break: auto;
     }
   }
   .tooltip.in {
-    filter: alpha(opacity=9.5);
-    opacity: .95;
+    filter: alpha(opacity=9.8);
+    opacity: .98;
   }
   .tooltip.top {
     padding: 5px 0;
     margin-top: -3px;
   }
   .tooltip-inner {
-    max-width: 200px;
-    padding: 5px 10px;
+    max-width: 220px;
     color: $med-text;
-    text-align: center;
     background-color: $white;
     border-radius: 2px;
-    @include z-depth-1;
+    @include z-depth-2;
   }
   .tooltip-arrow {
     position: absolute;

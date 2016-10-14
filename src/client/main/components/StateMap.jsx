@@ -14,8 +14,8 @@ window.slink = function(e,a) {
 };
 
 const formatRace = race => {
-  return ['category', 'hotraces', 'notes'].reduce( (str,k) => { 
-    race[k] && (str += `<br />${race[k]}`);
+  return ['category', 'hotraces', 'notes'].reduce( (str,k) => {
+    race[k] && (str += '<div class="datum">' + race[k].replace(/(?:\r\n|\r|\n)/g, '<br />') + '</div>');
     return str;
   } , '' );
 };
@@ -74,27 +74,27 @@ class StateMap extends React.Component {
             const $e = $(a);
             
             const stateName = $e.attr('xlink:href').match(/[a-z\-]+$/)[0];
+            const formattedName = stateName.replace('-', ' ');
             
             const state = states[stateName] || null;
-
+            
             $e.attr('data-toggle', 'tooltip');
 
             let link, title, cls;
-
+            title = `<div class="tooltip-header"><span class="state-name">${formattedName}</span> - `;
             if( state ) {
               const { label, group, count } = state;
               link  = '/groups#' + stateName;
-              title = count === 1
-                        ? `<b>There is 1 group in ${label}</b>`
-                        : `<b>There are ${count} groups in ${label}</b>`;
               cls   = 'map-' + group;
+              const s = (count === 1 ? '' : 's');
+              title += `${count} group${s}</div>`;
             } else {
               link  = '/groups#no-groups';
-              title = 'no groups in ' + stateName + '!';
+              title += '0 groups</div>';
               cls   = 'map-no-groups';
             }
 
-            raceData[stateName] && (title += formatRace(raceData[stateName]));
+            raceData[stateName] && (title += '<div class="race-data">' + formatRace(raceData[stateName]) + '</div>');
 
             $e.attr('onclick', 'window.slink(event,"'+link+'")');
             $e.attr('xlink:href', '#');
