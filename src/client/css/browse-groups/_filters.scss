@@ -53,15 +53,27 @@
     .filter {
       padding: 12px 0 0 16px;
     }
-    .filter.disabled {
-      opacity: 0.4;
+    .clear-filters {
+      display: block;
+      padding: 10px 0 0 16px;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: lighten($primary-color, 15%);
+      i {
+        font-size: 14px;
+        vertical-align: middle;
+        margin-right: 6px;
+        padding-bottom: 2px;
+      }
     }
     [type="checkbox"] {
       & + label {
+        color: inherit;
         line-height: 14px;
         height: inherit;
         padding-left: 20px;
-        font-size: inherit;
+        font-size: 13px;
       }
       &:not(:checked) + label:after {
         border: 2px solid rgba(0, 0, 0, 0.4);
@@ -93,7 +105,8 @@
       padding-left: 10px;
       line-height: 28px;
       border-left: 2px solid transparent;
-      &:hover, &.active {
+      &:hover,
+      &.active {
         color: $primary-color;
         border-left: 2px solid $primary-color;
       }

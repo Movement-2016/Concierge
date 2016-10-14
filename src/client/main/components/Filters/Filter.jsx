@@ -67,9 +67,9 @@ class Filter extends React.Component {
       <li className={`filter-group ${name}-filters`}>
           <div className="collapsible-header"><span className="toggle"/>{label}</div>
           <div className="collapsible-body" style={{display:'none'}}>
-            {!seeAll && <a href='#' onClick={this.onToggleAll}>[x] clear filters</a>}
             <div onChange={this.onFilterChange} >
               {Object.keys(terms).map( t => <FilterCheckbox {...this.props} {...terms[t]} key={t} cat={name} /> )}
+              {!seeAll && <a href='#' className="clear-filters" onClick={this.onToggleAll}><i className="material-icons">close</i>clear filters</a>}
             </div>
           </div>
       </li>

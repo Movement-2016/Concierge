@@ -57,9 +57,13 @@
 }
 .state-title {
   @include clearfix;
-  padding: 6px $group-padding 4px;
+  padding: 0 $group-padding;
   font-size: 2rem;
   color: $med-text;
+  h4 {
+    margin: 1.5rem 0;
+    line-height: 1;
+  }
   .color-icon {
     float: right;
     line-height: inherit;

@@ -1,5 +1,8 @@
-.content-page .content {
-  margin-bottom: 60px;
+.content-page {
+  padding: 3rem 0;
+  @media #{$medium-and-up} {
+    padding: 4rem 0;
+  }
   p,
   li {
     margin: 1em 0;
