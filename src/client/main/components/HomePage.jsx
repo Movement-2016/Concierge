@@ -9,10 +9,13 @@ import commaize         from 'commaize';
 import SocialButtons from './Social.jsx';
 import Loading from './Loading.jsx';
 
+import '../../lib/carousel';
+
 class Testimonials extends React.Component {
   componentDidMount() {
     /* globals $ */
-    $('.testimonial-section .carousel').carousel({full_width: true});
+    setTimeout( () => $('.testimonial-section .carousel').carouselX({full_width: true}),
+                200 );
   }
 
   render() {

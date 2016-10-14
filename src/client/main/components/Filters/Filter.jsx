@@ -34,7 +34,7 @@ class Filter extends React.Component {
 
   onToggleAll(e) {
     e.preventDefault();
-    this.setState({ seeAll: true }, setTimeout( this._sendSelected, 200 ));
+    this.setState({ seeAll: true }, () => setTimeout( this._sendSelected, 200 ));
   }
 
   onFilterChange() {

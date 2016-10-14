@@ -8,13 +8,20 @@
     padding: 0px 25px;
   }
 
-  .carousel .indicators .indicator-item {
-    background-color: #2196f3;
-  }
-
-  .carousel .indicators .indicator-item.active {
-    background-color: #fff;
-  }  
+  .carousel {
+    .indicators {
+      .indicator-item {
+        background-color: #2196f3;
+      }
+      .indicator-item.active {
+        background-color: #fff;
+      }  
+    }
+    .carousel-item {
+      img {
+        width: initial;
+      }
+    }
 }
 
 .testimonial {
