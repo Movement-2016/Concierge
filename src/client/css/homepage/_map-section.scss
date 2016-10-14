@@ -18,33 +18,34 @@
     }
   }
   .q0-7 {
-    fill: $map-dark-red;
+    fill: desaturate($state-dark-red, 20%);
     &:hover {
-      fill: darken($map-dark-red, 8%);
+      fill: $state-dark-red;
     }
   }
   .q2-7 {
-    fill: $map-light-red;
+    fill: desaturate($state-light-red, 20%);
     &:hover {
-      fill: darken($map-light-red, 8%);
+      fill: $state-light-red;
     }
   }
   .q3-7 {
-    fill: $map-purple;
+    fill: desaturate($state-purple, 20%);
     &:hover {
-      fill: darken($map-purple, 8%);
+      fill: $state-purple;
     }
   }
   .q4-7 {
-    fill: $map-light-blue;
+    fill: desaturate($state-light-blue, 20%);
+
     &:hover {
-      fill: darken($map-light-blue, 8%);
+      fill: $state-light-blue;
     }
   }
   .q5-7 {
-    fill: $map-dark-blue;
+    fill: desaturate($state-dark-blue, 20%);
     &:hover {
-      fill: darken($map-dark-blue, 8%);
+      fill: $state-dark-blue;
     }
   }
 }

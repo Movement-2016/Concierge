@@ -1,28 +1,6 @@
 /* global $ */
 import React from 'react';
 
-/*
-.expand-trigger {
-  cursor: pointer;
-}
-
-.expand-icon.closed i {
-}
-
-.expand-icon.open i {
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
-}
-
-div.closed { 
-  padding-top: 2px;
-  padding-bottom: 2px;
-}
-*/
-
 const ENABLE_COLLAPSE = false;
 
 const CollapseMixin = base => class extends base {

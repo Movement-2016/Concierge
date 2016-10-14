@@ -10,6 +10,7 @@ $navbar-height-mobile: 56px;
 $h1-fontsize: 2.28rem;
 $h2-fontsize: 2.28rem;
 $h3-fontsize: 1.68rem;
+$h4-fontsize: 2rem;
 $h5-fontsize: 1.4rem;
 
 // Media query variables
@@ -38,7 +39,7 @@ $secondary-color-light: lighten(color("red", "lighten-1"), 7%);
 $navbar-color: $trans-white;
 $main-bg-color: $lightest-grey;
 $form-bg-color: $white;
-$link-color: $secondary-color;
+$link-color: $primary-color;
 
 // Text shades
 $dark-text: rgba(0, 0, 0, 0.87);
@@ -68,9 +69,9 @@ $group-padding: 1.5rem;
 $navbar-font-color: $lighter-text;
 $navbar-brand-font-size: 1.7rem;
 
-// Map colors
-$map-purple: #b46ec9;
-$map-dark-red: #B5473C;
-$map-light-red: #D4867F;
-$map-dark-blue: #1F81BB;
-$map-light-blue: #79A6D2;
+// State colors
+$state-purple: color("purple", "lighten-1");
+$state-dark-red: color("red", "darken-3");
+$state-light-red: color("red", "lighten-1");
+$state-dark-blue: color("blue", "darken-3");
+$state-light-blue: color("blue", "lighten-2");

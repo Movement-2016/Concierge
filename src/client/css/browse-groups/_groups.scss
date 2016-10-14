@@ -1,24 +1,30 @@
-.group-area {
-  @media #{$large-and-up} {
-    margin: 0 210px;
+@media #{$large-and-up} {
+  .browse-groups-page .page-title {
+    display: none;
   }
+  .group-area {
+    margin: 60px 210px 0;
+  }
+}
+.grouping {
+  margin-bottom: 80px;
 }
 .grouping-title {
   text-align: center;
   text-transform: uppercase;
   color: $lighter-text;
-  padding: 60px 0 15px;
+  margin-bottom: 15px;
   font-size: 28px;
   &:before {
     content: '';
     display: block;
     width: 40px;
     height: 2px;
-    background: $secondary-color;
     margin: 4px auto;
+    opacity: 0.7;
   }
   @media #{$large-and-up} {
-    padding: 64px 0 24px;
+    margin-bottom: 24px;
     font-size: 38px;
     &:before {
       width: 60px;
@@ -26,25 +32,20 @@
     }
   }
 }
-.state-title.purple,
 .purple-states-title:before {
-  background: $map-purple;
+  background-color: $state-purple;
 }
-.state-title.light-blue,
 .light-blue-states-title:before {
-  background: $map-light-blue;
+  background-color: $state-light-blue;
 }
-.state-title.dark-blue,
 .dark-blue-states-title:before {
-  background: $map-dark-blue;
+  background-color: $state-dark-blue;
 }
-.state-title.light-red,
 .light-red-states-title:before {
-  background: $map-light-red;
+  background-color: $state-light-red;
 }
-.state-title.dark-red,
 .dark-red-states-title:before {
-  background: $map-dark-red;
+  background-color: $state-dark-red;
 }
 .state {
   @include z-depth-1;
@@ -55,11 +56,30 @@
   margin-top: 40px;
 }
 .state-title {
-  background-color: $title-bg-color;
-  padding: 2px $group-padding;
-  h4 {
-    color: $white;
+  @include clearfix;
+  padding: 6px $group-padding 4px;
+  font-size: 2rem;
+  color: $med-text;
+  .color-icon {
+    float: right;
+    line-height: inherit;
+    font-size: 30px;
   }
+}
+.purple-state h4 i {
+  color: $state-purple;
+}
+.light-blue-state h4 i {
+  color: $state-light-blue;
+}
+.dark-blue-state h4 i {
+  color: $state-dark-blue;
+}
+.light-red-state h4 i {
+  color: $state-light-red;
+}
+.dark-red-state h4 i {
+  color: $state-dark-red;
 }
 .state .group {
   border-top: 1px solid $light-border;
