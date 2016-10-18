@@ -3,11 +3,9 @@
   border-top: 1px solid $light-border;
   text-align: center;
   background-color: #DDD;
-
   .carousel-item > div {
     padding: 0px 25px;
   }
-
   .carousel {
     .indicators {
       .indicator-item {
@@ -15,21 +13,20 @@
       }
       .indicator-item.active {
         background-color: #fff;
-      }  
+      }
     }
     .carousel-item {
       img {
         width: initial;
       }
     }
+  }
 }
-
 .testimonial {
   margin-top: 30px;
   @media #{$medium-only} {
     padding: 0 24px;
   }
-
 }
 .testimonial-content {
   color: $lighter-text;
@@ -38,4 +35,3 @@
 .testimonial-author {
   color: $primary-color-light;
 }
-
