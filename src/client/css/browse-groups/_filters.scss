@@ -7,8 +7,7 @@
     position: fixed;
     top: 140px;
     left: $site-padding;
-    width: 210px;
-    padding-right: $site-padding;
+    width: $side-col-width - $site-padding;
     font-size: 14px;
     background-color: rgba($main-bg-color, 0.8);
     .collapsible,

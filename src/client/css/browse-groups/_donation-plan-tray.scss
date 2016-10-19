@@ -8,8 +8,7 @@
     background-color: $white;
     @include z-depth-1;
     top: 110;
-    width: 180px;
-    margin-left: 30px;
+    width: $side-col-width - $site-padding;
     right: $site-padding;
     margin-top: 30px;
     border-radius: 2px;
