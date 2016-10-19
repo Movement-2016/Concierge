@@ -1,9 +1,8 @@
 .form-block {
   width: 95%;
-  max-width: 250px;
   display: block;
   position: relative;
-  margin: 0 auto 2rem;
+  margin: 0 auto 1rem;
   background-color: $form-bg-color;
   color: $dark-text;
   @include z-depth-2;
@@ -11,26 +10,29 @@
     @include z-depth-3;
   }
   .wrapper {
-    position: absolute;
-    left:0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    padding: 30px 20px;
-  }
-  &:after {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
+    padding: 15px;
+    min-height: 150px;
   }
   .form-title {
     text-align: center;
     margin: 0 0 20px;
     color: $secondary-color-light;
   }
-  .form-btn {
-    position: absolute;
-    width: 100%;
-    bottom: 1.875rem;
+  @media #{$medium-and-up} {
+    max-width: 280px;
+    margin-bottom: 2rem;
+    .wrapper {
+      position: absolute;
+      left:0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      padding: 30px 20px;
+    }
+    &:after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
   }
 }

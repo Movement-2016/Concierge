@@ -14,12 +14,15 @@ $h4-fontsize: 2rem;
 $h5-fontsize: 1.4rem;
 
 // Media query variables
+$xs-screen-up: 361px;
 $small-screen-up: 761px;
 $medium-screen-up: 993px;
 $large-screen-up: 1201px;
+$xs-screen: 360px;
 $small-screen: 760px;
 $medium-screen: 992px;
 $large-screen: 1200px;
+$small-and-up: "only screen and (min-width: #{$xs-screen-up})";
 $xl-and-up: "only screen and (min-width : #{$large-screen-up})";
 
 // Base colors
