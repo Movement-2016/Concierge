@@ -88,13 +88,13 @@ class HomePage extends ServiceContext(React.Component) {
                 <div className="pledge-col col s12 m4">
                   <div className="pledge">
                     <Link className="pledge-button btn waves-effect waves-light" to="/donate">Easy Donate</Link>
-                    <div className="pledge-desc">Split your contribution evenly between all Movement 2016 groups in purple states.</div>
+                    <div className="pledge-desc">Give to Movement 2016 groups quickly using a donation template, or create your own plan.</div>
                   </div>
                 </div>
                 <div className="pledge-col col s12 m4">
                   <div className="pledge hide-on-small-and-down">
                     <Link className="pledge-button btn waves-effect waves-light" to="/groups">Browse Groups</Link>
-                    <div className="pledge-desc">Custom plan your giving. Filter groups by state, issue area, or nonprofit tax status.</div>
+                    <div className="pledge-desc">Browse all Movement 2016 groups. Filter groups by state, issue area, or nonprofit tax status.</div>
                   </div>
                   <div className="pledge hide-on-med-and-up">
                     <Link className="pledge-button btn waves-effect waves-light" to="/groups/mobile">Browse Groups</Link>
