@@ -8,8 +8,9 @@
     top: 140px;
     left: $site-padding;
     width: 210px;
-    padding-right: 30px;
+    padding-right: $site-padding;
     font-size: 14px;
+    background-color: rgba($main-bg-color, 0.8);
     .collapsible,
     .collapsible-header,
     .collapsible-body {
