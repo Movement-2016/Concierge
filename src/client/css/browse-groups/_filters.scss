@@ -7,8 +7,7 @@
     position: fixed;
     top: 140px;
     left: $site-padding;
-    width: 210px;
-    padding-right: 30px;
+    width: $side-col-width - $site-padding;
     font-size: 14px;
     .collapsible,
     .collapsible-header,

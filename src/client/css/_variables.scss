@@ -14,12 +14,15 @@ $h4-fontsize: 2rem;
 $h5-fontsize: 1.4rem;
 
 // Media query variables
+$xs-screen-up: 361px;
 $small-screen-up: 761px;
 $medium-screen-up: 993px;
 $large-screen-up: 1201px;
+$xs-screen: 360px;
 $small-screen: 760px;
 $medium-screen: 992px;
 $large-screen: 1200px;
+$small-and-up: "only screen and (min-width: #{$xs-screen-up})";
 $xl-and-up: "only screen and (min-width : #{$large-screen-up})";
 
 // Base colors
@@ -64,6 +67,7 @@ $group-area-bg-color: $white;
 $group-tag-color: color('grey', 'lighten-4');
 $title-bg-color: $primary-color-light;
 $group-padding: 1.5rem;
+$side-col-width: 210px;
 
 // Navbar
 $navbar-font-color: $lighter-text;
