@@ -15,9 +15,11 @@
         background-color: #607D8B;
       }
     }
-    .carousel-item {
-      img {
-        width: initial;
+    @media #{$medium-and-up} {
+      .carousel-item {
+        img {
+          width: initial;
+        }
       }
     }
   }

@@ -47,7 +47,7 @@
             });
           } else {
           */
-            imageHeight = 660; // view.find('.carousel-item').first().height() || '660';
+            imageHeight = Math.max(view.find('.carousel-item').first().height(),660);
             view.css('height', imageHeight);
           /*
           }
