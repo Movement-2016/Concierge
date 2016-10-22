@@ -47,7 +47,7 @@
             });
           } else {
           */
-            imageHeight = view.find('.carousel-item').first().height();
+            imageHeight = 660; // view.find('.carousel-item').first().height() || '660';
             view.css('height', imageHeight);
           /*
           }
@@ -267,8 +267,9 @@
             e.stopPropagation();
             return false;
 
-          } else if (!options.full_width) {
+          } else { // if (!options.full_width) {
             var clickedIndex = $(e.target).closest('.carousel-item').index();
+            options.full_width && ++clickedIndex;
             var diff = (center % count) - clickedIndex;
 
             // Disable clicks if carousel was shifted by click
