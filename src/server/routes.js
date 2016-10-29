@@ -24,6 +24,7 @@ function init (app) {
   */
   app.post( '/api/plan/send', listenerMail.mailPlan );
   app.post( '/api/houseparty', listenerMail.houseParty );
+  app.post( '/api/contact', listenerMail.emailContact );
 
 }
 

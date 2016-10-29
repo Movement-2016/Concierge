@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router';
 
 import { Shell } from '../ContentPage.jsx';
-import ProfileForm from './ProfileForm.jsx';
+import ProfileForm from '../Profile/Form.jsx';
 import { emailPlan } from '../../store/utils';
 
 class ConsultPage extends React.Component {

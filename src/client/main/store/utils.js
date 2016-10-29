@@ -4,29 +4,10 @@ import 'whatwg-fetch';
 const ADVISOR_EMAIL = 'advisor@movement2016.org';
 
 
-const emailPlan = ({ storeState, onError, onDone, forceConsult = false }) => {
-    
+const _do_email = ({payload,url,onDone,onError}) => {
+
     onDone(''); // clear error messages
     onError('');
-
-    const sstate = storeState;
-
-    let {
-      groups:{
-        plan: items,
-        planTotal        
-      },
-      user
-    } = sstate;
-
-    forceConsult && (user = { ...user, wantsConsult: true });
-    
-    const payload = {
-      ...user,
-      advisorEmail: ADVISOR_EMAIL,
-      items,
-      planTotal
-    };
 
     const opts = {
       method: 'post',
@@ -38,7 +19,7 @@ const emailPlan = ({ storeState, onError, onDone, forceConsult = false }) => {
       body: JSON.stringify (payload),
     };
 
-    fetch (`${location.origin}/api/plan/send`, opts)
+    fetch (`${location.origin}/${url}`, opts)
       .then( resp => resp.json() )
       .then( resp => {
         // this is a gmail api thing
@@ -49,6 +30,40 @@ const emailPlan = ({ storeState, onError, onDone, forceConsult = false }) => {
         }      
       }).catch( () => onError('wups, something went wrong') );
 
+};
+
+const emailContact = ({ storeState, onError, onDone, message }) => {
+    
+    const payload = {
+      ...storeState.user,
+      advisorEmail: ADVISOR_EMAIL,
+      message
+    };
+
+    _do_email({onError,onDone,payload,url:'api/contact'});
+
+};
+
+const emailPlan = ({ storeState, onError, onDone, forceConsult = false }) => {
+    
+    let {
+      groups:{
+        plan: items,
+        planTotal        
+      },
+      user
+    } = storeState;
+
+    forceConsult && (user = { ...user, wantsConsult: true });
+    
+    const payload = {
+      ...user,
+      advisorEmail: ADVISOR_EMAIL,
+      items,
+      planTotal
+    };
+
+    _do_email({payload,url:'api/plan/send',onError,onDone});
 };
 
 const fastArrCmp = (a,b) => {
@@ -159,5 +174,6 @@ module.exports = {
   organizeByOrgs,
   planFromOrg,
   filterTagsByTypes,
-  emailPlan
+  emailPlan,
+  emailContact
 };

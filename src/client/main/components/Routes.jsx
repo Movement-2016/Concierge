@@ -23,8 +23,8 @@ import AdvisorsPage     from './AdvisorPage.jsx';
 
 import ShoppingCart     from './ShoppingCart';
 import PlanSummaryPage  from './ShoppingCart/SummaryPage.jsx';
-import PlanProfilePage  from './ShoppingCart/ProfilePage.jsx';
 import ConsultPage      from './ShoppingCart/ConsultPage.jsx';
+import PlanProfilePage  from './Profile/Page.jsx';
 
 const MeetTheTeamPage = () => <ContentPage page="meetTheTeam" />;
 const AboutUsPage     = () => <ContentPage page="aboutUs" />;

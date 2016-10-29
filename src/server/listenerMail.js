@@ -32,7 +32,7 @@ ${name} - $${amount} ${urlWeb && `\nWebsite: ${urlWeb}`} ${urlGive && `\nDonatio
 const planMailHeader = ({fname,lname,email,phone,wantsConsult}) => `
 Hi ${fname}!
 
-Here is your giving plan that you created at movement2016.org and requested be mailed to you.
+Here is your giving plan that you created at movement2018.org and requested be mailed to you.
 
 Your info:
 ${fname} ${lname}
@@ -52,11 +52,18 @@ Your total contribution amount: $${commaize(total)}
 
 Thank you so much for your generosity!
 
-Movement 2016
+Movement 2018
 
 `;
 
+const contactFormat = ({fname,lname,email,phone,message}) => `
+Email contact request from:
+${fname} ${lname}
+${email}
+${phone}
 
+${message}
+`;
 
 const partyFormat = ({
         houseParty,
@@ -101,7 +108,34 @@ function houseParty (req, res) {
 
   const payload = {
     to: 'advisor@movement2016.org',
-    subject: '[Movement 2016] Request for House Party',
+    subject: '[Movement 2018] Request for House Party',
+    message: entities.decode(mail)
+  };
+
+  mailer.send( payload )
+    .then( result => { console.log(email,result); res.status( 200 ).json(result); } )
+    .catch( err => { console.log('error', err ); res.status( 500 ).json( err ); } );
+
+}
+
+function contactEmail (req, res) {
+  
+  console.log( req.body );
+
+  const {
+      email, 
+      advisorEmail
+    } = req.body;
+  
+  if( !email ) {
+    res.status( 500 ).json({});
+  }
+
+  const mail = contactFormat(req.body);
+
+  const payload = {
+    to: advisorEmail,
+    subject: '[Movement 2018] Request for House Party',
     message: entities.decode(mail)
   };
 
@@ -156,5 +190,6 @@ function mailPlan (req, res) {
 module.exports = {
   mailPlan,
   houseParty,
+  contactEmail,
   init
 };
