@@ -12,20 +12,16 @@ import Loading from './Loading.jsx';
 import '../../lib/carousel';
 
 class Testimonials extends React.Component {
-  componentDidMount() {
-    /* globals $ */
-    setTimeout( () => $('.testimonial-section .carousel').carouselX({full_width: true}),
-                200 );
-  }
+
 
   render() {
     const { testimonials } = this.props;
 
     return (
-        <section className="testimonial-section">
-            <div className="carousel carousel-slider center" data-indicators="true">
+        <section className="testimonial-section container">
+            <div className="row">
               {testimonials.map( (t,i) => (
-                <div key={i} className="carousel-item">
+                <div key={i} className="col m4">
                   <div className="testimonial">
                     <div className="testimonial-content" dangerouslySetInnerHTML={{__html: '"' + t.quote + '"'}} />
                     <div className="testimonial-author"  dangerouslySetInnerHTML={{__html:t.testifier}} />
