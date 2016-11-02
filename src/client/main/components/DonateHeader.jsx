@@ -11,7 +11,10 @@ class Thermometer extends React.Component {
 
   constructor() {
     super(...arguments);
-    const { goal, pledged } = this.props;
+    const { 
+      goal, 
+      pledged 
+    } = this.props;
 
     this.id = '_merc_' + (++nextID);
 
@@ -19,12 +22,19 @@ class Thermometer extends React.Component {
   }
 
   componentDidMount() {
+    const { 
+      goal
+    } = this.props;
     /* globals $ */
-    setTimeout( () => $('#' + this.id).animate( {maxWidth:this.percent + '%'}, 'slow' ), ANIMATE_DELAY );
+    goal && setTimeout( () => $('#' + this.id).animate( {maxWidth:this.percent + '%'}, 'slow' ), ANIMATE_DELAY );
   }
 
   render() {
-    return(
+    const { 
+      goal
+    } = this.props;
+
+    return goal && (
         <div className="thermometer">
           <div id={this.id} className="mercury" />
         </div>
@@ -36,9 +46,13 @@ class DonateHeader extends React.Component {
 
   render() {
     
-    let { pledged, goal } = this.props;
+    let { 
+      pledged, 
+      goal,
+      disabled = false
+    } = this.props;
 
-    goal    = '$' + commaize(goal);
+    goal    = !disabled && ('$' + commaize(goal));
     pledged = '$' + commaize(pledged);
 
     return (

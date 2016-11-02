@@ -94,6 +94,11 @@ The port number for the server can be passed on the command (-p/--port) or using
 the PORT environment variable. For hosted environments, the PORT environment
 variable provided by the hosting service is used.
 
+On AWS we redirect port 80 requests to the default 3000
+````
+sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 3000
+````
+
 The application also uses the following environment variables,
 
 - SESSION_SECRET
