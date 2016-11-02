@@ -34,6 +34,31 @@ class Testimonials extends React.Component {
   }
 }
 
+class ThermometerSection extends React.Component {
+
+  render() {
+    const { 
+      donateStats,
+      donateStats: {
+        goal,
+        pledged
+      } = {},
+    } = this.props;
+
+    return Number(goal) 
+      ? (
+          <div className="thermometer-area">
+            <Thermometer {...donateStats} />
+            <div className="thermometer-numbers">
+              <div className="thermometer-current">{'$' + commaize(pledged) + ' Pledged'}</div>
+              <div className="thermometer-goal">{'$' + commaize(goal) + ' Goal'}</div>
+            </div>
+          </div>    
+        )
+      : null;
+  }
+}
+
 class HomePage extends ServiceContext(React.Component) {
 
   stateFromStore( storeState ) {
@@ -53,10 +78,6 @@ class HomePage extends ServiceContext(React.Component) {
   render() {
     const { 
       donateStats,
-      donateStats: {
-        goal,
-        pledged
-      } = {},
       testimonials,
       loading
     } = this.state;
@@ -73,13 +94,7 @@ class HomePage extends ServiceContext(React.Component) {
             <h1 className="intro-text">Support the best Community-Based Vote&nbsp;Groups&nbsp;in&nbsp;the&nbsp;Country</h1>
             <div className="pledge-box">
               <div className="pledge-box-title">Choose A Way To Give</div>
-              <div className="thermometer-area">
-                <Thermometer {...donateStats} />
-                <div className="thermometer-numbers">
-                  <div className="thermometer-current">{'$' + commaize(pledged) + ' Pledged'}</div>
-                  <div className="thermometer-goal">{'$' + commaize(goal) + ' Goal'}</div>
-                </div>
-              </div>
+              <ThermometerSection donateStats={donateStats}/>
               <div className="pledge-area row">
                 <div className="pledge-col col s12 m4">
                   <div className="pledge">

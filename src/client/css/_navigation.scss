@@ -1,9 +1,14 @@
-.navbar-fixed {
+section.donate-header ~ .navbar-fixed {
   @media #{$medium-and-up} {
-    height: 0;
     nav {
       top: $donate-header-height;
     }
+  }
+}
+
+.navbar-fixed {
+  @media #{$medium-and-up} {
+    height: 0;
   }
   nav {
     background-color: $navbar-color;

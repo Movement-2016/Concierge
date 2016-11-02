@@ -26,7 +26,7 @@ class Thermometer extends React.Component {
       goal
     } = this.props;
     /* globals $ */
-    goal && setTimeout( () => $('#' + this.id).animate( {maxWidth:this.percent + '%'}, 'slow' ), ANIMATE_DELAY );
+    Number(goal) && setTimeout( () => $('#' + this.id).animate( {maxWidth:this.percent + '%'}, 'slow' ), ANIMATE_DELAY );
   }
 
   render() {
@@ -34,11 +34,11 @@ class Thermometer extends React.Component {
       goal
     } = this.props;
 
-    return goal && (
-        <div className="thermometer">
+    return Number(goal) 
+      ? (<div className="thermometer">
           <div id={this.id} className="mercury" />
-        </div>
-    );
+         </div>)
+      : null;
   }
 }
 
@@ -52,8 +52,13 @@ class DonateHeader extends React.Component {
       disabled = false
     } = this.props;
 
+    disabled = disabled || !Number(goal);
     goal    = !disabled && ('$' + commaize(goal));
     pledged = '$' + commaize(pledged);
+
+    if( disabled ) {
+      return null;
+    }
 
     return (
       <section className="donate-header">

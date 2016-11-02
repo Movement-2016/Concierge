@@ -10,13 +10,21 @@ body,
   display: flex;
   flex-direction: column;
 }
+
 main {
   background-color: $main-bg-color;
   flex: 1;
   @media #{$medium-and-up} {
-    margin-top: $navbar-height + $donate-header-height;
-  }
+    margin-top: $navbar-height;
+  }  
 }
+
+.donate-stats ~ main {
+  @media #{$medium-and-up} {
+    margin-top: $navbar-height + $donate-header-height;
+  }  
+}
+
 .site-footer {
   flex: 0;
 }
