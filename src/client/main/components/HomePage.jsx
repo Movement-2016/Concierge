@@ -59,18 +59,57 @@ class ThermometerSection extends React.Component {
   }
 }
 
+class TileBox extends React.Component {
+  render() {
+    const {
+      content,
+      title,
+      url
+    } = this.props;
+    return (
+        <div className="pledge-col col s12 m4">
+          <div className="pledge">
+            <Link className="pledge-button btn waves-effect waves-light" to={url}>{title}</Link>
+            <div className="pledge-desc" dangerouslySetInnerHTML={{__html:content}} />
+          </div>
+        </div>
+      );
+  }
+}
+
+class TileBoxes extends React.Component {
+  render() {
+    const { tiles } = this.props;
+
+    return (
+        <div className="pledge-area row">
+          {tiles.map( (box,i) => <TileBox key={i} {...box} />)}
+        </div>
+      );
+  }
+}
+
 class HomePage extends ServiceContext(React.Component) {
 
   stateFromStore( storeState ) {
 
     const {
       donateStats,
-      testimonials
+      testimonials,
+      homeContent
     } = storeState.service;
 
     Promise
-      .all( [ donateStats, testimonials ] )
-      .then( ([ donateStats, testimonials ]) => this.setState( { donateStats, testimonials, loading: false } ));
+      .all( [ 
+        donateStats, 
+        testimonials,
+        homeContent ] )
+      .then( ([ donateStats, testimonials, homeContent ]) => this.setState( { 
+        donateStats, 
+        testimonials, 
+        homeContent,
+        loading: false 
+      } ));
 
     this.setState({ loading: true });
   }
@@ -79,7 +118,15 @@ class HomePage extends ServiceContext(React.Component) {
     const { 
       donateStats,
       testimonials,
-      loading
+      loading,
+      homeContent: {
+        fields: {
+          tag_line,
+          give_box_title,
+          box
+        } = {}
+      } = {}
+
     } = this.state;
 
     if( loading ) {
@@ -91,34 +138,11 @@ class HomePage extends ServiceContext(React.Component) {
       <main className="home">
         <section className="donate-section">
           <div className="container">
-            <h1 className="intro-text">Support the best Community-Based Vote&nbsp;Groups&nbsp;in&nbsp;the&nbsp;Country</h1>
+            <h1 className="intro-text" dangerouslySetInnerHTML={{__html:tag_line}}  />
             <div className="pledge-box">
-              <div className="pledge-box-title">Choose A Way To Give</div>
+              <div className="pledge-box-title">{give_box_title}</div>
               <ThermometerSection donateStats={donateStats}/>
-              <div className="pledge-area row">
-                <div className="pledge-col col s12 m4">
-                  <div className="pledge">
-                    <Link className="pledge-button btn waves-effect waves-light" to="/donate">Easy Donate</Link>
-                    <div className="pledge-desc">Give to Movement 2016 groups quickly using a donation template, or create your own plan.</div>
-                  </div>
-                </div>
-                <div className="pledge-col col s12 m4">
-                  <div className="pledge hide-on-small-and-down">
-                    <Link className="pledge-button btn waves-effect waves-light" to="/groups">Browse Groups</Link>
-                    <div className="pledge-desc">Browse all Movement 2016 groups. Filter groups by state, issue area, or nonprofit tax status.</div>
-                  </div>
-                  <div className="pledge hide-on-med-and-up">
-                    <Link className="pledge-button btn waves-effect waves-light" to="/groups/mobile">Browse Groups</Link>
-                    <div className="pledge-desc">Customize your giving. Filter groups by state.</div>
-                  </div>
-                </div>
-                <div className="pledge-col col s12 m4">
-                  <div className="pledge">
-                    <Link className="pledge-button btn waves-effect waves-light" to="/getintouch">Talk To A Human</Link>
-                    <div className="pledge-desc">Our team provides free research on states and organizations based on your priorities. Awesome!</div>
-                  </div>
-                </div>
-              </div>
+              <TileBoxes tiles={box} />
             </div>
             <SocialButtons />
           </div>

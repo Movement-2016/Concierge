@@ -35,6 +35,7 @@ class M2016Service {
     this._orgs = null;
     this._taxonomy = null;
     this._pages = {};
+    this._homeContent = null;
   }
 
   _fetch(part) {
@@ -48,17 +49,30 @@ class M2016Service {
       return Promise.resolve(this);
     }
     return Promise.all( [ this._fetch( 'tags' ),
-                          this._fetch( 'content' ),
+                          this.content,
                           this.orgs, 
                           this.donateStats,                          
                           this.testimonials ] )
-        .then ( ([ tags, content ])  => {
+        .then ( ([ tags ])  => {
           this._taxonomy = tags;
-          this._content = content;
           return this;
         });    
   }
 
+  get content() {
+    return this._content
+      ? Promise.resolve(this._content)
+      : this._fetch( 'content' ).then( p => this._content = p );
+  }
+
+  get homeContent() {
+    return this._homeContent
+      ? Promise.resolve(this._homeContent)
+      : this.content
+          .then( () => this._fetch( 'page/' + this._content.pages.home.pageId ))
+          .then( p => this._homeContent = p );
+  }
+  
   getPage(id) {
     return this.pages[id]
       ? Promise.resolve(this.pages[id])
@@ -137,10 +151,6 @@ class M2016Service {
 
   get groupSections() {
     return this._content.groupSections;
-  }
-
-  get content() {
-    return this._content;
   }
 
   get pages() {
