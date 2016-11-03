@@ -28,15 +28,47 @@ const MenuItem = ({href,linkto,menu,text}) => {
       : <_MenuItem href={href} linkto={linkto} text={text} />;
 };
 
-const MenuAnonymous = ({store,className,id}) => {
-  const { content: { mainMenu = [] } = {} } = store.getState().service;
+class MenuAnonymous extends React.Component {
 
-  return (
-      <ul className={className} id={id}>
-        {mainMenu.map( (m,i) => <MenuItem key={i} {...m} />)}
-      </ul> 
-    );
-};
+  constructor() {
+    super(...arguments);
+    this.state = { 
+      loading: true 
+    };
+  }
+
+  componentWillMount() {
+    const {store} = this.props;
+
+    const state = store.getState();
+
+    state.service.content.then( content => this.setState({content,loading: false}) );
+  }
+
+  render() {
+    const {
+      loading,
+      content: {
+        mainMenu = []
+      } = {}
+    } = this.state;
+
+    if( loading) {
+      return null;
+    }
+
+    const {
+      className,
+      id
+    } = this.props;
+
+    return (
+        <ul className={className} id={id}>
+          {mainMenu.map( (m,i) => <MenuItem key={i} {...m} />)}
+        </ul> 
+      );
+  }
+}
 
 class Nav extends React.Component {
 
