@@ -1,13 +1,12 @@
-import React      from 'react';
+import React    from 'react';
 import { Link } from 'react-router';
 import StateMap from './StateMap.jsx';
 
 import { ServiceContext }  from './ContextMixins.js';
-import { Thermometer }  from './DonateHeader.jsx';
-import commaize         from 'commaize';
-
-import SocialButtons from './Social.jsx';
-import Loading from './Loading.jsx';
+import { Thermometer }     from './DonateHeader.jsx';
+import commaize            from 'commaize';
+import SocialButtons       from './Social.jsx';
+import Loading             from './Loading.jsx';
 
 import '../../lib/carousel';
 
@@ -24,7 +23,6 @@ class Testimonials extends React.Component {
                 <div key={i} className="col m4">
                   <div className="testimonial">
                     <div className="testimonial-content" dangerouslySetInnerHTML={{__html: '"' + t.quote + '"'}} />
-                    <div className="testimonial-author"  dangerouslySetInnerHTML={{__html:t.testifier}} />
                   </div>
                 </div>            
               ))}
@@ -64,11 +62,12 @@ class TileBox extends React.Component {
     const {
       content,
       title,
-      url
+      url,
+      display
     } = this.props;
     return (
-        <div className="pledge-col col s12 m4">
-          <div className="pledge">
+        <div className={'pledge-col col s12 m4 ' + display}>
+          <div className='pledged'>
             <Link className="pledge-button btn waves-effect waves-light" to={url}>{title}</Link>
             <div className="pledge-desc" dangerouslySetInnerHTML={{__html:content}} />
           </div>
@@ -78,6 +77,7 @@ class TileBox extends React.Component {
 }
 
 class TileBoxes extends React.Component {
+
   render() {
     const { tiles } = this.props;
 
