@@ -26,8 +26,9 @@ import PlanSummaryPage  from './ShoppingCart/SummaryPage.jsx';
 import ConsultPage      from './ShoppingCart/ConsultPage.jsx';
 import PlanProfilePage  from './Profile/Page.jsx';
 
-const MeetTheTeamPage = () => <ContentPage page="meetTheTeam" />;
-const AboutUsPage     = () => <ContentPage page="aboutUs" />;
+const MeetTheTeamPage  = () => <ContentPage page="meetTheTeam" />;
+const AboutUsPage      = () => <ContentPage page="aboutUs" />;
+const TestimonialsPage = () => <ContentPage page="testimonials" />;
 
 class Routes extends React.Component
 {
@@ -53,6 +54,9 @@ class Routes extends React.Component
             <Route path='/team'       component={MeetTheTeamPage} />
             <Route path='/getintouch' component={ContactPage} />
             <Route path='/houseparty' component={HouseParty} />
+
+            <Route path='/testimonials' component={TestimonialsPage} />
+
             <Route path='*'           component={NotFoundPage} />
           </Route>
         </Router>
