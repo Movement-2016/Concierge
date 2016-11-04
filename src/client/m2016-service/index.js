@@ -79,15 +79,15 @@ class M2016Service {
       : this._fetch( 'page/' + id ).then( p => this.pages[id] = p.content );
   }
   
-  get stateRaces() {
+  getStateRaces(key) {
     if( this._stateStats ) {
       return Promise.resolve(this._stateStats);
     }
-    const public_spreadsheet_url = '1YXEv6GslFf_ZnBWgOM0JYQyuBL0mZMycxZZoHuJHNbs';
+    //const public_spreadsheet_url = dataSource; // '1YXEv6GslFf_ZnBWgOM0JYQyuBL0mZMycxZZoHuJHNbs';
     return new Promise( (resolve, reject) => {
       try {
         Tabletop.init({
-            key: public_spreadsheet_url,
+            key,
             parseNumbers: true,
             callback: (data, tabletop) => {
               this._stateStats = {};

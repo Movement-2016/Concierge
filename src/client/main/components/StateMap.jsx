@@ -36,14 +36,18 @@ class StateMap extends React.Component {
 
   componentWillMount() {
     const storeState = this.context.store.getState();
+    const { service } = storeState;
     const { 
       groupings:{ 
         terms:states 
       },
-      stateRaces 
-    } = storeState.service;
+    } = service;
 
-    stateRaces.then( races => this.populateMapData(races,states) );
+    const {
+      dataSource
+    } = this.props;
+
+    service.getStateRaces(dataSource).then( races => this.populateMapData(races,states) );
   }
 
   componentDidUpdate() {

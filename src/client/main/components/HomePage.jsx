@@ -123,7 +123,8 @@ class HomePage extends ServiceContext(React.Component) {
         fields: {
           tag_line,
           give_box_title,
-          box
+          box,
+          states_spreadsheet
         } = {}
       } = {}
 
@@ -151,7 +152,7 @@ class HomePage extends ServiceContext(React.Component) {
         <section className="volunteer-section" />
         <section className="map-section hide-on-small-and-down">
           <div className="container">             
-            <StateMap />
+            <StateMap dataSource={states_spreadsheet} />
           </div>
         </section>
       </main>
