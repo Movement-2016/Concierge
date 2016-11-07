@@ -18,7 +18,8 @@ const SocialButtons = () =>
   <div className="social-buttons">
     <FacebookShareButton
       url="https://movement2018.org"
-      title="Movement 2016"
+      title="Movement 2018"
+      description="Support the best community-based vote groups in the country!"
       className="share-button fb-share-button"
     >
       <FacebookIcon size={40}  />
