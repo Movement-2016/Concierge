@@ -67,7 +67,7 @@ class TileBox extends React.Component {
     } = this.props;
     return (
         <div className={'pledge-col col s12 m4 ' + display}>
-          <div className='pledged'>
+          <div className='pledge'>
             <Link className="pledge-button btn waves-effect waves-light" to={url}>{title}</Link>
             <div className="pledge-desc" dangerouslySetInnerHTML={{__html:content}} />
           </div>

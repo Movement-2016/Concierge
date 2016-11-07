@@ -35,7 +35,7 @@ class ContactPage extends React.Component {
     } = this.state;
 
     return (
-      <Shell title="contact" name="Get In Touch">
+      <Shell title="Get In Touch" name="contact">
         <div className="content">
           {error && <p className="error">{error}</p>}
           <p>{done ? done : 'Questions? Suggestions? Feedback? Let us know!'}</p>

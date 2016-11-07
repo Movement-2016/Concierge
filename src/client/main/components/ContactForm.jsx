@@ -39,7 +39,9 @@ class ContactForm extends React.Component {
               </div>
             </div>
             <div className="row">
-              <textarea ref="message" name="message" placeholder="your message here" />
+              <div className="col s12">
+                <textarea ref="message" name="message" placeholder="Your Message" />
+              </div>
             </div>
             <div className="action-area"> 
               <button id="profile-form-submit" className="waves-effect waves-light btn" type="submit">{submitText}</button>
