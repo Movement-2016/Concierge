@@ -78,7 +78,12 @@ class Nav extends React.Component {
 
   componentDidMount() {
     /* global $ */
-    $('.button-collapse').sideNav();    
+    $('.brand-logo').addClass('test-class-succeeds');
+    $('.side-nav').addClass('test-class-fails');
+    $('.button-collapse').sideNav({
+      closeOnClick: true,
+      draggable: true
+    });
   }
 
   render() {
@@ -93,9 +98,9 @@ class Nav extends React.Component {
         <nav>
           <div className="nav-wrapper">
             <IndexLink to="/" className="brand-logo">{siteTitle}</IndexLink>
-            <a href="#" data-activates="mobile-menu" className="button-collapse"><i className="material-icons">menu</i></a>
             <MenuAnonymous className="right hide-on-med-and-down" store={store}/>
             <MenuAnonymous className="side-nav" id="mobile-menu" store={store} />
+            <a href="#" data-activates="mobile-menu" className="button-collapse"><i className="material-icons">menu</i></a>
           </div>
         </nav>
       </div>
