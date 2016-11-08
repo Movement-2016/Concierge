@@ -2,6 +2,21 @@
   padding: 3rem 0;
   @media #{$medium-and-up} {
     padding: 4rem 0;
+    img.alignleft {
+      float: left;
+      margin-right: 20px;
+    }
+  }
+
+  img.alignleft {
+    margin-bottom: 1em;
+  }
+
+  .content {
+    hr {
+      margin: 1em;
+      clear: both;
+    }
   }
   p,
   li {
