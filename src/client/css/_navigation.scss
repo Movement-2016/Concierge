@@ -23,8 +23,10 @@ section.donate-header ~ .navbar-fixed {
     }
     .brand-logo {
       color: $primary-color;
+      font-size: 22px;
       @include site-logo;
       @media #{$large-and-up} {
+        font-size: 24px;
         padding-left: $menu-padding;
       }
     }

@@ -20,7 +20,7 @@ class Testimonials extends React.Component {
         <section className="testimonial-section container">
             <div className="row">
               {testimonials.map( (t,i) => (
-                <div key={i} className="col m4">
+                <div key={i} className="col s12 m4">
                   <div className="testimonial">
                     <div className="testimonial-content" dangerouslySetInnerHTML={{__html: t.quote }} />
                   </div>
@@ -112,16 +112,6 @@ class HomePage extends ServiceContext(React.Component) {
       } ));
 
     this.setState({ loading: true });
-  }
-  
-  componentDidMount() {
-    /* global $ */
-    $('.brand-logo').addClass('test-class-succeeds-2');
-    $('.donate-section').addClass('test-class-fails-2');
-    $('.button-collapse').sideNav({
-      closeOnClick: true,
-      draggable: true
-    });
   }
 
   render() {
