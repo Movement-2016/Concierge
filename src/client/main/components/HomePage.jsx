@@ -113,6 +113,16 @@ class HomePage extends ServiceContext(React.Component) {
 
     this.setState({ loading: true });
   }
+  
+  componentDidMount() {
+    /* global $ */
+    $('.brand-logo').addClass('test-class-succeeds-2');
+    $('.donate-section').addClass('test-class-fails-2');
+    $('.button-collapse').sideNav({
+      closeOnClick: true,
+      draggable: true
+    });
+  }
 
   render() {
     const { 
