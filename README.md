@@ -1,8 +1,8 @@
 
-# Movement 2016 Concierge
+# Movement 2018 Concierge
 
 Web application for donor interaction with the groups supported by Movement
-2016.
+2018.
 
 ## Development setup
 
@@ -14,59 +14,26 @@ cd concierge
 npm install
 ```
 
-The database supported is *MongoDB*. For local build, a local database
-instance can be used. The database name for the application in production is
-*concierge*. The database name used by the test runner is *conciergeTest*.
+You will need some global tools
+
+```
+npm i gulp -g
+npm i pm2 -g
+```
+
+Running the server requires running MongoDB. For localhost it is recommended to run it in a 'nix screen.
 
 ### Build
 
-In a terminal, build can be activated with
-
 ```
-npm run [build | build-stage]
+npm run build
 ```
 
-The build uses *gulp* to run the set of tasks defined in *gulpfile.js*. The
-build options are,
-
-- build: regular build
-- build-stage: build application ready to be deployed to Heroku or similar.
-The build output will be the directory concierge-stage, located in the same
-parent directory as the concierge directory.
+The build uses *gulp* to run the set of tasks defined in *gulpfile.js*. 
 
 *build* is a continuous build option - the gulp build will
 set up watches and rerun build elements as file changes are saved.
 *build-stage* is a one time build option, run again to build a new stage output.
-
-## Testing
-
-Testing can be done for all components,
-
-```
-npm test
-```
-
-Or components individually,
-
-```
-npm run test-db
-npm run test-server
-```
-
-### Coverage
-
-Coverage reports are generated using,
-
-```
-npm run coverage
-```
-
-Multiple coverage runs are performed, and then a final coverage run combines
-the separate results. The final report is available in
-*coverage/lcov-report/index.html*
-
-Results for the individual runs are available in the subdirectories under the
-*coverage* directory.
 
 ### Server
 
@@ -86,24 +53,25 @@ application at http://localhost:3000
 
 ## Deployment
 
-The build process creates the *dist* directory containing all the deployment
-files (in the project directory or in the staging directory).
+The live site is deployed to AWS on every git push on the main branch.
 
-The entry point for the server is *main.js*.
-The port number for the server can be passed on the command (-p/--port) or using
-the PORT environment variable. For hosted environments, the PORT environment
-variable provided by the hosting service is used.
+Yes. That's correct. Push to the main branch and update the live site.
 
-On AWS we redirect port 80 requests to the default 3000
+The hooks are in git settings for this repo. Under 'Intergration and Services'
+
+Look for 'AWS CodeDepoly' and 'GitHub Auto-Deployment'
+
+Once the repo is pushed to AWS, the file `./appspec.yml' is read to determine how to build and deploy the app.
+
+Following that breadcrumb trail will help you understand that process. (Hint: see ./stage/after-install.sh)
+
+For instructions on how to install/deploy Mongo see ./stage/ManualDeployMongoOnEC2.pdf
+
+By default the server will run on HTTP port 3000, in order to point port 80 AWS requires the following:
+
 ````
 sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 3000
 ````
-
-The application also uses the following environment variables,
-
-- SESSION_SECRET
-
-HTTP Session secret (any text string).
 
 ## License
 
