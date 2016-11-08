@@ -78,12 +78,13 @@ class Nav extends React.Component {
 
   componentDidMount() {
     /* global $ */
-    $('.brand-logo').addClass('test-class-succeeds');
-    $('.side-nav').addClass('test-class-fails');
-    $('.button-collapse').sideNav({
-      closeOnClick: true,
-      draggable: true
-    });
+    var timeoutID = window.setTimeout(slowTest, 5000);
+    function slowTest() {
+      $('.button-collapse').sideNav({
+        closeOnClick: true,
+        draggable: true
+      });
+    }
   }
 
   render() {
