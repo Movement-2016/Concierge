@@ -78,7 +78,7 @@ class Nav extends React.Component {
 
   componentDidMount() {
     /* global $ */
-    var timeoutID = window.setTimeout(slowTest, 5000);
+    var timeoutID = window.setTimeout(slowTest, 10);
     function slowTest() {
       $('.button-collapse').sideNav({
         closeOnClick: true,
