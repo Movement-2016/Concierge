@@ -22,7 +22,7 @@ class Testimonials extends React.Component {
               {testimonials.map( (t,i) => (
                 <div key={i} className="col m4">
                   <div className="testimonial">
-                    <div className="testimonial-content" dangerouslySetInnerHTML={{__html: '"' + t.quote + '"'}} />
+                    <div className="testimonial-content" dangerouslySetInnerHTML={{__html: t.quote }} />
                   </div>
                 </div>            
               ))}
