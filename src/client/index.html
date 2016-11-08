@@ -26,6 +26,8 @@
 <body>
 
   <div id="app" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
   <script src="/js/vendor.browser.js"></script>
   <script src="/js/vendor.bundle.js"></script>
   <script src="/js/bundle.js"></script>
@@ -40,7 +42,14 @@
       ga('send', 'pageview');
 
   </script>
+  
+  <script>
+    $('.button-collapse').sideNav({
+      closeOnClick: true,
+      draggable: true
+    });
   </script>
+  
   <script async src='//www.google-analytics.com/analytics.js'></script>
 
 </body>
