@@ -82,7 +82,6 @@ class Nav extends React.Component {
     function slowTest() {
       $('.button-collapse').sideNav({
         closeOnClick: true,
-        draggable: true
       });
     }
   }
@@ -98,7 +97,8 @@ class Nav extends React.Component {
         {this.dropdowns}
         <nav>
           <div className="nav-wrapper">
-            <IndexLink to="/" className="brand-logo">{siteTitle}</IndexLink>
+
+            <IndexLink to="/" className="brand-logo"><img src="/images/movement-logo.png" /></IndexLink>
             <MenuAnonymous className="right hide-on-med-and-down" store={store}/>
             <MenuAnonymous className="side-nav" id="mobile-menu" store={store} />
             <a href="#" data-activates="mobile-menu" className="button-collapse"><i className="material-icons">menu</i></a>

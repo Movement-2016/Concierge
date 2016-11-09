@@ -30,20 +30,12 @@ ul.mobile-group.state-list >  {
   h1 {
     display: none;
   }
-
   .back-to-group-link {
-    font-size: 18px;
-    margin: 12px 0;
+    margin: 0 0 30px 15px;
     display: block;
-    color: black;
-
+    text-transform: uppercase;
     i {
-      margin-right: 0px;
-      -webkit-transform:rotateY(180deg);
-      -moz-transform:rotateY(180deg);
-      -o-transform:rotateY(180deg);
-      -ms-transform:rotateY(180deg);
-      direction:rtl;      
+      @include reg-icon;
     }
   }
 }

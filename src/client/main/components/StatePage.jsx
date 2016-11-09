@@ -35,7 +35,7 @@ class StatePage extends ServiceContext(React.Component) {
 
     return (
       <Shell name={'state-page ' + name} title={''}>
-        <Link className="valign-wrapper back-to-group-link" to="/groups/mobile"><i className="valign left material-icons">play_arrow</i> Back to groups</Link>
+        <Link className="back-to-group-link" to="/groups/mobile"><i className="material-icons">chevron_left</i> Back to groups</Link>
         <State {...state} items={orgs[color][name]} />
       </Shell>
       );

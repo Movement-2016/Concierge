@@ -1,6 +1,8 @@
 .browse-groups-page .container {
   width: 100%;
-  padding: 0 $site-padding;
+  @media #{$medium-and-up} {
+    padding: 0 $site-padding;
+}
 }
 
 @import 'browse-groups/filters';
