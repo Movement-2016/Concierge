@@ -24,7 +24,7 @@ import Loading      from './Loading.jsx';
 
 const store = configureStore ();
 
-const SITE_TITLE = 'Movement 2018';
+const SITE_TITLE = 'Movement 2017';
 
 const ErrorPage = ({ error, err }) => {
     const msg = error.toString();

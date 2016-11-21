@@ -16,6 +16,7 @@ class Testimonials extends React.Component {
   render() {
     const { testimonials } = this.props;
 
+    /* Hard coding for now, until homepage updated
     return (
         <section className="testimonial-section container">
             <div className="row">
@@ -24,18 +25,33 @@ class Testimonials extends React.Component {
                   <div className="testimonial">
                     <div className="testimonial-content" dangerouslySetInnerHTML={{__html: t.quote }} />
                   </div>
-                </div>            
+                </div>
               ))}
             </div>
         </section>
       );
+      */
+
+      return (
+          <section className="testimonial-section container">
+              <div className="row">
+                {testimonials.map( (t,i) => (
+                  <div key={i} className="col s12 m4">
+                    <div className="testimonial">
+                      <div className="testimonial-content" dangerouslySetInnerHTML={{__html: t.quote }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+          </section>
+        );
   }
 }
 
 class ThermometerSection extends React.Component {
 
   render() {
-    const { 
+    const {
       donateStats,
       donateStats: {
         goal,
@@ -43,7 +59,7 @@ class ThermometerSection extends React.Component {
       } = {},
     } = this.props;
 
-    return Number(goal) 
+    return Number(goal)
       ? (
           <div className="thermometer-area">
             <Thermometer {...donateStats} />
@@ -51,7 +67,7 @@ class ThermometerSection extends React.Component {
               <div className="thermometer-current">{'$' + commaize(pledged) + ' Pledged'}</div>
               <div className="thermometer-goal">{'$' + commaize(goal) + ' Goal'}</div>
             </div>
-          </div>    
+          </div>
         )
       : null;
   }
@@ -100,22 +116,22 @@ class HomePage extends ServiceContext(React.Component) {
     } = storeState.service;
 
     Promise
-      .all( [ 
-        donateStats, 
+      .all( [
+        donateStats,
         testimonials,
         homeContent ] )
-      .then( ([ donateStats, testimonials, homeContent ]) => this.setState( { 
-        donateStats, 
-        testimonials, 
+      .then( ([ donateStats, testimonials, homeContent ]) => this.setState( {
+        donateStats,
+        testimonials,
         homeContent,
-        loading: false 
+        loading: false
       } ));
 
     this.setState({ loading: true });
   }
 
   render() {
-    const { 
+    const {
       donateStats,
       testimonials,
       loading,
@@ -135,7 +151,7 @@ class HomePage extends ServiceContext(React.Component) {
     }
 
     return(
-      
+
       <main className="home">
         <section className="donate-section">
           <div className="container">
@@ -151,7 +167,7 @@ class HomePage extends ServiceContext(React.Component) {
         <Testimonials testimonials={testimonials} />
         <section className="volunteer-section" />
         <section className="map-section hide-on-small-and-down">
-          <div className="container">             
+          <div className="container">
             <StateMap dataSource={states_spreadsheet} />
           </div>
         </section>

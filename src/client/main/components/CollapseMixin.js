@@ -4,17 +4,17 @@ import React from 'react';
 const ENABLE_COLLAPSE = false;
 
 const CollapseMixin = base => class extends base {
-  
+
   constructor() {
     super(...arguments);
 
     const { expanded = !ENABLE_COLLAPSE } = this.props;
-    
-    this.state = this.state 
+
+    this.state = this.state
                   ? {...this.state,expanded}
                   : {expanded};
 
-    this.onToggleCollapse = this.onToggleCollapse.bind(this);                  
+    this.onToggleCollapse = this.onToggleCollapse.bind(this);
   }
 
   onToggleCollapse(e) {

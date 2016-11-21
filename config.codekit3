@@ -1,0 +1,4838 @@
+{
+"AAInfo": "This is a CodeKit 3 project config file. MODIFYING THE CONTENTS OF THIS FILE IS A POOR LIFE DECISION. Doing so will cause CodeKit to crash and\/or corrupt your project. I know it looks like JSON, but it is *not*. Many numbers in this file are 64-bit long long bitFlags, which JSON does not support. These numbers *cannot* be treated as discrete values and if you attempt to parse this file as standard JSON with any public JSON parser, these values will be corrupted. This file is not backwards-compatible with CodeKit 1 or 2. For more information, see https:\/\/codekitapp.com\/",
+"buildSteps": [
+	{
+		"name": "Process All Remaining Files and Folders",
+		"stepType": 1,
+		"uuidString": "5596A117-4E4A-47C2-8559-CAF79406F967"
+		}
+	],
+"creatorBuild": "25444",
+"files": {
+	"\/.babelrc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/.babelrc",
+		"oF": 0
+		},
+	"\/.eslintrc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/.eslintrc",
+		"oF": 0
+		},
+	"\/.eslintrc-org": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/.eslintrc-org",
+		"oF": 0
+		},
+	"\/.gitignore": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/.gitignore",
+		"oF": 0
+		},
+	"\/.npmignore": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/.npmignore",
+		"oF": 0
+		},
+	"\/.sass-lint.yml": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/.sass-lint.yml",
+		"oF": 0
+		},
+	"\/appspec.yml": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/appspec.yml",
+		"oF": 0
+		},
+	"\/bin\/gmail-auth.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/bin\/min\/gmail-auth-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/data\/_mdb_catalog.wt": {
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "\/data\/_mdb_catalog.wt",
+		"oF": 0
+		},
+	"\/data\/collection-0-8684575426267103033.wt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/collection-0-8684575426267103033.wt",
+		"oF": 0
+		},
+	"\/data\/collection-2-8684575426267103033.wt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/collection-2-8684575426267103033.wt",
+		"oF": 0
+		},
+	"\/data\/diagnostic.data\/metrics.2016-09-14T00-31-29Z-00000": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/diagnostic.data\/metrics.2016-09-14T00-31-29Z-00000",
+		"oF": 0
+		},
+	"\/data\/diagnostic.data\/metrics.2016-09-16T19-51-12Z-00000": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/diagnostic.data\/metrics.2016-09-16T19-51-12Z-00000",
+		"oF": 0
+		},
+	"\/data\/diagnostic.data\/metrics.2016-09-16T19-59-25Z-00000": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/diagnostic.data\/metrics.2016-09-16T19-59-25Z-00000",
+		"oF": 0
+		},
+	"\/data\/diagnostic.data\/metrics.2016-10-15T08-00-41Z-00000": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/diagnostic.data\/metrics.2016-10-15T08-00-41Z-00000",
+		"oF": 0
+		},
+	"\/data\/diagnostic.data\/metrics.2016-11-08T00-01-11Z-00000": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/diagnostic.data\/metrics.2016-11-08T00-01-11Z-00000",
+		"oF": 0
+		},
+	"\/data\/index-1-8684575426267103033.wt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/index-1-8684575426267103033.wt",
+		"oF": 0
+		},
+	"\/data\/index-3-8684575426267103033.wt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/index-3-8684575426267103033.wt",
+		"oF": 0
+		},
+	"\/data\/index-4-8684575426267103033.wt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/index-4-8684575426267103033.wt",
+		"oF": 0
+		},
+	"\/data\/journal\/WiredTigerLog.0000000004": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/journal\/WiredTigerLog.0000000004",
+		"oF": 0
+		},
+	"\/data\/journal\/WiredTigerPreplog.0000000001": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/journal\/WiredTigerPreplog.0000000001",
+		"oF": 0
+		},
+	"\/data\/journal\/WiredTigerPreplog.0000000002": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/journal\/WiredTigerPreplog.0000000002",
+		"oF": 0
+		},
+	"\/data\/mongod.lock": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/mongod.lock",
+		"oF": 0
+		},
+	"\/data\/sizeStorer.wt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/sizeStorer.wt",
+		"oF": 0
+		},
+	"\/data\/storage.bson": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/storage.bson",
+		"oF": 0
+		},
+	"\/data\/WiredTiger": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/WiredTiger",
+		"oF": 0
+		},
+	"\/data\/WiredTiger.lock": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/WiredTiger.lock",
+		"oF": 0
+		},
+	"\/data\/WiredTiger.turtle": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/WiredTiger.turtle",
+		"oF": 0
+		},
+	"\/data\/WiredTiger.wt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/WiredTiger.wt",
+		"oF": 0
+		},
+	"\/data\/WiredTigerLAS.wt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/data\/WiredTigerLAS.wt",
+		"oF": 0
+		},
+	"\/dist\/auth.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/dist\/min\/auth-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/dist\/cmd.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/dist\/min\/cmd-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/dist\/db.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/dist\/min\/db-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/dist\/gmail.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/dist\/min\/gmail-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/dist\/hash.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/dist\/min\/hash-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/dist\/listenerApp.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/dist\/min\/listenerApp-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/dist\/listenerMail.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/dist\/min\/listenerMail-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/dist\/listenerUser.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/dist\/min\/listenerUser-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/dist\/m2016-service\/index.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/dist\/m2016-service\/min\/index-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/dist\/main.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/dist\/min\/main-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/dist\/public\/css\/main.css": {
+		"aP": 0,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/dist\/public\/css\/main-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/dist\/public\/css\/vendor.css": {
+		"aP": 0,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/dist\/public\/css\/vendor-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/dist\/public\/favicon.ico": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/favicon.ico",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Arvo-700italic\/Arvo-700italic.eot": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Arvo-700italic\/Arvo-700italic.eot",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Arvo-700italic\/Arvo-700italic.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Arvo-700italic\/Arvo-700italic.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/dist\/public\/fonts\/Arvo-700italic\/Arvo-700italic.ttf": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Arvo-700italic\/Arvo-700italic.ttf",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Arvo-700italic\/Arvo-700italic.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Arvo-700italic\/Arvo-700italic.woff",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Arvo-700italic\/Arvo-700italic.woff2": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Arvo-700italic\/Arvo-700italic.woff2",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Arvo-700italic\/LICENSE.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Arvo-700italic\/LICENSE.txt",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-700\/Lato-700.eot": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-700\/Lato-700.eot",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-700\/Lato-700.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-700\/Lato-700.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/dist\/public\/fonts\/Lato-700\/Lato-700.ttf": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-700\/Lato-700.ttf",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-700\/Lato-700.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-700\/Lato-700.woff",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-700\/Lato-700.woff2": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-700\/Lato-700.woff2",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-700\/LICENSE.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-700\/LICENSE.txt",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-900\/Lato-900.eot": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-900\/Lato-900.eot",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-900\/Lato-900.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-900\/Lato-900.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/dist\/public\/fonts\/Lato-900\/Lato-900.ttf": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-900\/Lato-900.ttf",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-900\/Lato-900.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-900\/Lato-900.woff",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-900\/Lato-900.woff2": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-900\/Lato-900.woff2",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-900\/LICENSE.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-900\/LICENSE.txt",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-italic\/Lato-italic.eot": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-italic\/Lato-italic.eot",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-italic\/Lato-italic.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-italic\/Lato-italic.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/dist\/public\/fonts\/Lato-italic\/Lato-italic.ttf": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-italic\/Lato-italic.ttf",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-italic\/Lato-italic.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-italic\/Lato-italic.woff",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-italic\/Lato-italic.woff2": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-italic\/Lato-italic.woff2",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-italic\/LICENSE.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-italic\/LICENSE.txt",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-regular\/Lato-regular.eot": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-regular\/Lato-regular.eot",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-regular\/Lato-regular.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-regular\/Lato-regular.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/dist\/public\/fonts\/Lato-regular\/Lato-regular.ttf": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-regular\/Lato-regular.ttf",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-regular\/Lato-regular.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-regular\/Lato-regular.woff",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-regular\/Lato-regular.woff2": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-regular\/Lato-regular.woff2",
+		"oF": 0
+		},
+	"\/dist\/public\/fonts\/Lato-regular\/LICENSE.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/fonts\/Lato-regular\/LICENSE.txt",
+		"oF": 0
+		},
+	"\/dist\/public\/images\/hands.jpg": {
+		"ft": 16384,
+		"iS": 146466,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/hands.jpg",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/Movement-2018-logo-blue.png": {
+		"ft": 32768,
+		"iS": 30550,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/Movement-2018-logo-blue.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/Movement-2018-logo.png": {
+		"ft": 32768,
+		"iS": 28959,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/Movement-2018-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/movement-logo.png": {
+		"ft": 32768,
+		"iS": 8622,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/movement-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/Movement2018-share.png": {
+		"ft": 32768,
+		"iS": 214951,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/Movement2018-share.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/bus-federation-logo.png": {
+		"ft": 32768,
+		"iS": 4492,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/bus-federation-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/bus-federation-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 2727,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/bus-federation-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/bus-federation-logo@2x.png": {
+		"ft": 32768,
+		"iS": 9117,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/bus-federation-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/ccca-logo.png": {
+		"ft": 32768,
+		"iS": 12003,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/ccca-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/ccca-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 5229,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/ccca-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/ccca-logo@2x.png": {
+		"ft": 32768,
+		"iS": 36171,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/ccca-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/courage-logo.png": {
+		"ft": 32768,
+		"iS": 7490,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/courage-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/courage-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 4128,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/courage-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/courage-logo@2x.png": {
+		"ft": 32768,
+		"iS": 14353,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/courage-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/cpd-logo.png": {
+		"ft": 32768,
+		"iS": 4127,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/cpd-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/cpd-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 2428,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/cpd-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/cpd-logo@2x.png": {
+		"ft": 32768,
+		"iS": 7605,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/cpd-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/dailykos-logo.png": {
+		"ft": 32768,
+		"iS": 16943,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/dailykos-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/dailykos-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 5759,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/dailykos-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/dailykos-logo@2x.png": {
+		"ft": 32768,
+		"iS": 52882,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/dailykos-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/dfa-logo.png": {
+		"ft": 32768,
+		"iS": 10918,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/dfa-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/dfa-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 4904,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/dfa-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/dfa-logo@2x.png": {
+		"ft": 32768,
+		"iS": 29219,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/dfa-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/lacafe.png": {
+		"ft": 32768,
+		"iS": 4743,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/lacafe.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/lacafe@0,5x.png": {
+		"ft": 32768,
+		"iS": 2849,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/lacafe@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/lacafe@2x.png": {
+		"ft": 32768,
+		"iS": 9352,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/lacafe@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/paf-logo.png": {
+		"ft": 32768,
+		"iS": 7028,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/paf-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/paf-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 4338,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/paf-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/paf-logo@2x.png": {
+		"ft": 32768,
+		"iS": 27359,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/paf-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/peoples-action-logo.png": {
+		"ft": 32768,
+		"iS": 7395,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/peoples-action-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/peoples-action-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 4282,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/peoples-action-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/peoples-action-logo@2x.png": {
+		"ft": 32768,
+		"iS": 14489,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/peoples-action-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/powerpac.png": {
+		"ft": 32768,
+		"iS": 21910,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/powerpac.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/powerpac@0,5x.png": {
+		"ft": 32768,
+		"iS": 7543,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/powerpac@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/powerpac@2x.png": {
+		"ft": 32768,
+		"iS": 67862,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/powerpac@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/student-power-logo.png": {
+		"ft": 32768,
+		"iS": 6301,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/student-power-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/student-power-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 3740,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/student-power-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/student-power-logo@2x.png": {
+		"ft": 32768,
+		"iS": 15842,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/student-power-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/working-families-logo.png": {
+		"ft": 32768,
+		"iS": 3286,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/working-families-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/working-families-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 2063,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/working-families-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/partner-logos\/working-families-logo@2x.png": {
+		"ft": 32768,
+		"iS": 5853,
+		"oA": 0,
+		"oAP": "\/dist\/public\/images\/partner-logos\/working-families-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/dist\/public\/images\/state-map-data.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/dist\/public\/images\/state-map-data.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/dist\/public\/index.html": {
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/dist\/public\/index.html",
+		"oF": 0
+		},
+	"\/dist\/public\/js\/bundle.js.gz": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/js\/bundle.js.gz",
+		"oF": 0
+		},
+	"\/dist\/public\/js\/bundle.js.gz.map": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/js\/bundle.js.gz.map",
+		"oF": 0
+		},
+	"\/dist\/public\/js\/vendor.browser.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/dist\/public\/js\/min\/vendor.browser-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/dist\/public\/js\/vendor.bundle.js.gz": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/dist\/public\/js\/vendor.bundle.js.gz",
+		"oF": 0
+		},
+	"\/dist\/routes.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/dist\/min\/routes-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/dist\/server.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/dist\/min\/server-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/gulpfile.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/min\/gulpfile-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/LICENSE.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/LICENSE.txt",
+		"oF": 0
+		},
+	"\/node_modules": {
+		"ft": 65536,
+		"oA": 2,
+		"oAP": "\/build\/node_modules",
+		"oF": 0
+		},
+	"\/package.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/package-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/README.md": {
+		"cS": 0,
+		"eF": 1,
+		"eL": 1,
+		"eLB": 0,
+		"ema": 1,
+		"eSQ": 1,
+		"ft": 4096,
+		"oA": 0,
+		"oAP": "\/README.html",
+		"oF": 0,
+		"oFM": 0,
+		"oS": 0,
+		"pHT": 0,
+		"pME": 1,
+		"rFN": 0,
+		"uCM": 0
+		},
+	"\/src\/client\/account\/components\/Login.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/account\/components\/min\/Login-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/account\/components\/LoginPage.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/account\/components\/min\/LoginPage-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/account\/components\/Register.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/account\/components\/min\/Register-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/account\/store\/actions.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/account\/store\/min\/actions-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/account\/store\/constants.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/account\/store\/min\/constants-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/account\/store\/user.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/account\/store\/min\/user-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/css\/_advisors-page.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/_advisors-page.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/_contact-page.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/_contact-page.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/_content-page.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/_content-page.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/_donate-header.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/_donate-header.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/_donate-page.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/_donate-page.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/_fonts.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/_fonts.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/_footer.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/_footer.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/_global.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/_global.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/_mixins.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/_mixins.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/_navigation.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/_navigation.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/_partner-logos.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/_partner-logos.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/_single-post.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/_single-post.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/_tooltip.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/_tooltip.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/_typography.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/_typography.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/_variables.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/_variables.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/browse-groups\/_browse-groups-page.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/css\/_browse-groups-page.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/browse-groups\/_donation-plan-tray.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/css\/_donation-plan-tray.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/browse-groups\/_filters.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/css\/_filters.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/browse-groups\/_groups.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/css\/_groups.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/browse-groups\/_mobile-filters.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/css\/_mobile-filters.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/browse-groups\/_mobile-groups.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/css\/_mobile-groups.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/custom-planning\/_cart-page.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/css\/_cart-page.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/custom-planning\/_custom-planning.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/css\/_custom-planning.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/custom-planning\/_profile-page.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/css\/_profile-page.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/custom-planning\/_summary-page.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/css\/_summary-page.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/homepage\/_donate-section.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/css\/_donate-section.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/homepage\/_homepage.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/css\/_homepage.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/homepage\/_map-section.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/css\/_map-section.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/homepage\/_testimonial-section.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/css\/_testimonial-section.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/css\/main.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/src\/client\/css\/main.css",
+		"oF": 1,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/src\/client\/favicon.ico": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/favicon.ico",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Arvo-700italic\/Arvo-700italic.eot": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Arvo-700italic\/Arvo-700italic.eot",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Arvo-700italic\/Arvo-700italic.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Arvo-700italic\/Arvo-700italic.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/src\/client\/fonts\/Arvo-700italic\/Arvo-700italic.ttf": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Arvo-700italic\/Arvo-700italic.ttf",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Arvo-700italic\/Arvo-700italic.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Arvo-700italic\/Arvo-700italic.woff",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Arvo-700italic\/Arvo-700italic.woff2": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Arvo-700italic\/Arvo-700italic.woff2",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Arvo-700italic\/LICENSE.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Arvo-700italic\/LICENSE.txt",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-700\/Lato-700.eot": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-700\/Lato-700.eot",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-700\/Lato-700.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-700\/Lato-700.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/src\/client\/fonts\/Lato-700\/Lato-700.ttf": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-700\/Lato-700.ttf",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-700\/Lato-700.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-700\/Lato-700.woff",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-700\/Lato-700.woff2": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-700\/Lato-700.woff2",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-700\/LICENSE.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-700\/LICENSE.txt",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-900\/Lato-900.eot": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-900\/Lato-900.eot",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-900\/Lato-900.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-900\/Lato-900.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/src\/client\/fonts\/Lato-900\/Lato-900.ttf": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-900\/Lato-900.ttf",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-900\/Lato-900.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-900\/Lato-900.woff",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-900\/Lato-900.woff2": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-900\/Lato-900.woff2",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-900\/LICENSE.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-900\/LICENSE.txt",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-italic\/Lato-italic.eot": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-italic\/Lato-italic.eot",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-italic\/Lato-italic.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-italic\/Lato-italic.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/src\/client\/fonts\/Lato-italic\/Lato-italic.ttf": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-italic\/Lato-italic.ttf",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-italic\/Lato-italic.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-italic\/Lato-italic.woff",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-italic\/Lato-italic.woff2": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-italic\/Lato-italic.woff2",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-italic\/LICENSE.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-italic\/LICENSE.txt",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-regular\/Lato-regular.eot": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-regular\/Lato-regular.eot",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-regular\/Lato-regular.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-regular\/Lato-regular.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/src\/client\/fonts\/Lato-regular\/Lato-regular.ttf": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-regular\/Lato-regular.ttf",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-regular\/Lato-regular.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-regular\/Lato-regular.woff",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-regular\/Lato-regular.woff2": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-regular\/Lato-regular.woff2",
+		"oF": 0
+		},
+	"\/src\/client\/fonts\/Lato-regular\/LICENSE.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/src\/client\/fonts\/Lato-regular\/LICENSE.txt",
+		"oF": 0
+		},
+	"\/src\/client\/images\/hands.jpg": {
+		"ft": 16384,
+		"iS": 146466,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/hands.jpg",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/Movement-2018-logo-blue.png": {
+		"ft": 32768,
+		"iS": 30550,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/Movement-2018-logo-blue.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/Movement-2018-logo.png": {
+		"ft": 32768,
+		"iS": 28959,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/Movement-2018-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/movement-logo.png": {
+		"ft": 32768,
+		"iS": 8622,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/movement-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/Movement2018-share.png": {
+		"ft": 32768,
+		"iS": 214951,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/Movement2018-share.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/bus-federation-logo.png": {
+		"ft": 32768,
+		"iS": 4492,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/bus-federation-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/bus-federation-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 2727,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/bus-federation-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/bus-federation-logo@2x.png": {
+		"ft": 32768,
+		"iS": 9117,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/bus-federation-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/ccca-logo.png": {
+		"ft": 32768,
+		"iS": 12003,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/ccca-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/ccca-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 5229,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/ccca-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/ccca-logo@2x.png": {
+		"ft": 32768,
+		"iS": 36171,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/ccca-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/courage-logo.png": {
+		"ft": 32768,
+		"iS": 7490,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/courage-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/courage-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 4128,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/courage-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/courage-logo@2x.png": {
+		"ft": 32768,
+		"iS": 14353,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/courage-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/cpd-logo.png": {
+		"ft": 32768,
+		"iS": 4127,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/cpd-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/cpd-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 2428,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/cpd-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/cpd-logo@2x.png": {
+		"ft": 32768,
+		"iS": 7605,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/cpd-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/dailykos-logo.png": {
+		"ft": 32768,
+		"iS": 16943,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/dailykos-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/dailykos-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 5759,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/dailykos-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/dailykos-logo@2x.png": {
+		"ft": 32768,
+		"iS": 52882,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/dailykos-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/dfa-logo.png": {
+		"ft": 32768,
+		"iS": 10918,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/dfa-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/dfa-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 4904,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/dfa-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/dfa-logo@2x.png": {
+		"ft": 32768,
+		"iS": 29219,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/dfa-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/lacafe.png": {
+		"ft": 32768,
+		"iS": 4743,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/lacafe.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/lacafe@0,5x.png": {
+		"ft": 32768,
+		"iS": 2849,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/lacafe@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/lacafe@2x.png": {
+		"ft": 32768,
+		"iS": 9352,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/lacafe@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/paf-logo.png": {
+		"ft": 32768,
+		"iS": 7028,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/paf-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/paf-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 4338,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/paf-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/paf-logo@2x.png": {
+		"ft": 32768,
+		"iS": 27359,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/paf-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/peoples-action-logo.png": {
+		"ft": 32768,
+		"iS": 7395,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/peoples-action-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/peoples-action-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 4282,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/peoples-action-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/peoples-action-logo@2x.png": {
+		"ft": 32768,
+		"iS": 14489,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/peoples-action-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/powerpac.png": {
+		"ft": 32768,
+		"iS": 21910,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/powerpac.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/powerpac@0,5x.png": {
+		"ft": 32768,
+		"iS": 7543,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/powerpac@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/powerpac@2x.png": {
+		"ft": 32768,
+		"iS": 67862,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/powerpac@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/student-power-logo.png": {
+		"ft": 32768,
+		"iS": 6301,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/student-power-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/student-power-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 3740,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/student-power-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/student-power-logo@2x.png": {
+		"ft": 32768,
+		"iS": 15842,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/student-power-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/working-families-logo.png": {
+		"ft": 32768,
+		"iS": 3286,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/working-families-logo.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/working-families-logo@0,5x.png": {
+		"ft": 32768,
+		"iS": 2063,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/working-families-logo@0,5x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/partner-logos\/working-families-logo@2x.png": {
+		"ft": 32768,
+		"iS": 5853,
+		"oA": 0,
+		"oAP": "\/src\/client\/images\/partner-logos\/working-families-logo@2x.png",
+		"oF": 0,
+		"opt": 0
+		},
+	"\/src\/client\/images\/state-map-data.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/src\/client\/images\/state-map-data.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/src\/client\/index.html": {
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/src\/client\/index.html",
+		"oF": 0
+		},
+	"\/src\/client\/lib\/analytics.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/lib\/min\/analytics-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/lib\/carousel.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/lib\/min\/carousel-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/lib\/collapsible.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/lib\/min\/collapsible-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/lib\/polyfills.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/lib\/min\/polyfills-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/lib\/scrollToElement.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/lib\/min\/scrollToElement-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/lib\/tooltip.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/lib\/min\/tooltip-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/m2016-service\/actions.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/m2016-service\/min\/actions-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/m2016-service\/constants.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/m2016-service\/min\/constants-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/m2016-service\/index.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/m2016-service\/min\/index-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/m2016-service\/service.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/m2016-service\/min\/service-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/AdvisorPage.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/AdvisorPage-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/App.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/App-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/CollapseMixin.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/CollapseMixin-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/ContactForm.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/ContactForm-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/ContactPage.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/ContactPage-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/ContentPage.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/ContentPage-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/ContextMixins.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/ContextMixins-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/CustomDonatePage.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/CustomDonatePage-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/DonateHeader.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/DonateHeader-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/DonatePage.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/DonatePage-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/Filters\/Filter.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/Filters\/min\/Filter-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/Filters\/index.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/Filters\/min\/index-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/Filters\/ScrollLinks.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/Filters\/min\/ScrollLinks-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/Filters\/StatePicker.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/Filters\/min\/StatePicker-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/Footer.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/Footer-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/HomePage.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/HomePage-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/HouseParty.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/HouseParty-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/Loading.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/Loading-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/Nav.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/Nav-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/NotFoundPage.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/NotFoundPage-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/OrgList\/ColorGroup.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/OrgList\/min\/ColorGroup-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/OrgList\/index.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/OrgList\/min\/index-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/OrgList\/Org.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/OrgList\/min\/Org-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/OrgList\/OrgListDesktop.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/OrgList\/min\/OrgListDesktop-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/OrgList\/OrgListMobile.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/OrgList\/min\/OrgListMobile-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/OrgList\/State.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/OrgList\/min\/State-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/Profile\/Form.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/Profile\/min\/Form-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/Profile\/Input.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/Profile\/min\/Input-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/Profile\/Page.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/Profile\/min\/Page-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/Routes.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/Routes-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/ShoppingCart\/ConsultPage.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/ShoppingCart\/min\/ConsultPage-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/ShoppingCart\/ContributeButton.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/ShoppingCart\/min\/ContributeButton-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/ShoppingCart\/EmailPlanButton.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/ShoppingCart\/min\/EmailPlanButton-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/ShoppingCart\/index.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/ShoppingCart\/min\/index-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/ShoppingCart\/Org.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/ShoppingCart\/min\/Org-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/ShoppingCart\/Plan.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/ShoppingCart\/min\/Plan-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/ShoppingCart\/RequestConsult.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/ShoppingCart\/min\/RequestConsult-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/ShoppingCart\/RequestConsultOption.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/ShoppingCart\/min\/RequestConsultOption-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/ShoppingCart\/StateOrgs.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/ShoppingCart\/min\/StateOrgs-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/ShoppingCart\/Summary.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/ShoppingCart\/min\/Summary-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/ShoppingCart\/SummaryPage.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/ShoppingCart\/min\/SummaryPage-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/ShoppingCart\/SummaryUser.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/ShoppingCart\/min\/SummaryUser-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/ShoppingCart\/Totals.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/ShoppingCart\/min\/Totals-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/ShoppingCart\/Tray.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/ShoppingCart\/min\/Tray-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/Social.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/Social-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/StateMap.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/StateMap-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/StatePage.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/StatePage-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/Tiles.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/Tiles-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/components\/TilesPage.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/components\/min\/TilesPage-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/store\/actions.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/store\/min\/actions-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/store\/constants.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/store\/min\/constants-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/store\/groups.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/store\/min\/groups-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/main\/store\/utils.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/main\/store\/min\/utils-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/store\/configureStore.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/store\/min\/configureStore-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/store\/rootReducer.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/store\/min\/rootReducer-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/ui\/Alert.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/ui\/min\/Alert-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/ui\/Checkbox.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/ui\/min\/Checkbox-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/ui\/FilteredInput.jsx": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/ui\/min\/FilteredInput-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/ui\/util.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/client\/ui\/min\/util-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/client\/vendor.css": {
+		"aP": 0,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/src\/client\/vendor-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/src\/server\/auth.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/server\/min\/auth-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/server\/cmd.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/server\/min\/cmd-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/server\/db.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/server\/min\/db-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/server\/gmail.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/server\/min\/gmail-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/server\/hash.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/server\/min\/hash-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/server\/listenerApp.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/server\/min\/listenerApp-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/server\/listenerMail.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/server\/min\/listenerMail-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/server\/listenerUser.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/server\/min\/listenerUser-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/server\/main.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/server\/min\/main-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/server\/public\/js\/data.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/server\/public\/js\/min\/data-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/server\/routes.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/server\/min\/routes-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/src\/server\/server.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/src\/server\/min\/server-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/stage\/.gitignore": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/stage\/.gitignore",
+		"oF": 0
+		},
+	"\/stage\/after-install.sh": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/stage\/after-install.sh",
+		"oF": 0
+		},
+	"\/stage\/app-start.sh": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/stage\/app-start.sh",
+		"oF": 0
+		},
+	"\/stage\/app-stop.sh": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/stage\/app-stop.sh",
+		"oF": 0
+		},
+	"\/stage\/ManualDeployMongoOnEC2.pdf": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/stage\/ManualDeployMongoOnEC2.pdf",
+		"oF": 0
+		},
+	"\/stage\/package.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/stage\/package-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/stage\/pm2.process.yml": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/stage\/pm2.process.yml",
+		"oF": 0
+		},
+	"\/stage\/Procfile": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/stage\/Procfile",
+		"oF": 0
+		},
+	"\/test\/server\/test-cmd.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/test\/server\/min\/test-cmd-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/test\/server\/test-main.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/test\/server\/min\/test-main-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/test\/server\/test-page.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/test\/server\/min\/test-page-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/test\/server\/test-user.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/test\/server\/min\/test-user-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		}
+	},
+"hooks": [
+	],
+"manualImportLinks": {
+	},
+"projectAttributes": {
+	"creationDate": 500947457,
+	"displayValue": "concierge",
+	"displayValueWasSetByUser": 0,
+	"iconImageName": "brackets_magenta"
+	},
+"projectSettings": {
+	"abortBuildOnError": 1,
+	"alwaysUseExternalServer": 1,
+	"animateCSSInjections": 1,
+	"autoBuildNewItems": 1,
+	"autoprefixerBrowserString": "> 1%, last 2 versions, Firefox ESR, Opera 12.1",
+	"babelAuxiliaryCommentAfter": "",
+	"babelAuxiliaryCommentBefore": "",
+	"babelConfigFileHandlingType": 0,
+	"babelCustomPluginsList": "",
+	"babelCustomPresetsList": "",
+	"babelInsertModuleIDs": 0,
+	"babelModuleID": "",
+	"babelNoComments": 0,
+	"babelPlugins": {
+		"async-generator-functions": {
+			"active": 0
+			},
+		"async-to-generator": {
+			"active": 0
+			},
+		"async-to-module-method": {
+			"active": 0
+			},
+		"class-properties": {
+			"active": 0
+			},
+		"decorators": {
+			"active": 0
+			},
+		"decorators-legacy": {
+			"active": 0
+			},
+		"do-expressions": {
+			"active": 0
+			},
+		"es2015-arrow-functions": {
+			"active": 0
+			},
+		"es2015-block-scoped-functions": {
+			"active": 0
+			},
+		"es2015-block-scoping": {
+			"active": 0
+			},
+		"es2015-classes": {
+			"active": 0
+			},
+		"es2015-computed-properties": {
+			"active": 0
+			},
+		"es2015-constants": {
+			"active": 0
+			},
+		"es2015-destructuring": {
+			"active": 0
+			},
+		"es2015-duplicate-keys": {
+			"active": 0
+			},
+		"es2015-for-of": {
+			"active": 0
+			},
+		"es2015-function-name": {
+			"active": 0
+			},
+		"es2015-literals": {
+			"active": 0
+			},
+		"es2015-modules-amd": {
+			"active": 0
+			},
+		"es2015-modules-commonjs": {
+			"active": 0
+			},
+		"es2015-modules-systemjs": {
+			"active": 0
+			},
+		"es2015-modules-umd": {
+			"active": 0
+			},
+		"es2015-object-super": {
+			"active": 0
+			},
+		"es2015-parameters": {
+			"active": 0
+			},
+		"es2015-shorthand-properties": {
+			"active": 0
+			},
+		"es2015-spread": {
+			"active": 0
+			},
+		"es2015-sticky-regex": {
+			"active": 0
+			},
+		"es2015-template-literals": {
+			"active": 0
+			},
+		"es2015-typeof-symbol": {
+			"active": 0
+			},
+		"es2015-unicode-regex": {
+			"active": 0
+			},
+		"es3-member-expression-literals": {
+			"active": 0
+			},
+		"es3-property-literals": {
+			"active": 0
+			},
+		"es5-property-mutators": {
+			"active": 0
+			},
+		"eval": {
+			"active": 0
+			},
+		"exponentiation-operator": {
+			"active": 0
+			},
+		"export-extensions": {
+			"active": 0
+			},
+		"external-helpers": {
+			"active": 0
+			},
+		"flow-comments": {
+			"active": 0
+			},
+		"flow-strip-types": {
+			"active": 0
+			},
+		"function-bind": {
+			"active": 0
+			},
+		"inline-environment-variables": {
+			"active": 0
+			},
+		"jscript": {
+			"active": 0
+			},
+		"member-expression-literals": {
+			"active": 0
+			},
+		"merge-sibling-variables": {
+			"active": 0
+			},
+		"minify-booleans": {
+			"active": 0
+			},
+		"node-env-inline": {
+			"active": 0
+			},
+		"object-assign": {
+			"active": 0
+			},
+		"object-rest-spread": {
+			"active": 0
+			},
+		"object-set-prototype-of-to-assign": {
+			"active": 0
+			},
+		"property-literals": {
+			"active": 0
+			},
+		"proto-to-assign": {
+			"active": 0
+			},
+		"react-constant-elements": {
+			"active": 0
+			},
+		"react-display-name": {
+			"active": 0
+			},
+		"react-inline-elements": {
+			"active": 0
+			},
+		"react-jsx": {
+			"active": 0
+			},
+		"react-jsx-compat": {
+			"active": 0
+			},
+		"react-jsx-self": {
+			"active": 0
+			},
+		"react-jsx-source": {
+			"active": 0
+			},
+		"regenerator": {
+			"active": 0
+			},
+		"remove-console": {
+			"active": 0
+			},
+		"remove-debugger": {
+			"active": 0
+			},
+		"runtime": {
+			"active": 0
+			},
+		"simplify-comparison-operators": {
+			"active": 0
+			},
+		"strict-mode": {
+			"active": 0
+			},
+		"syntax-async-generators": {
+			"active": 0
+			},
+		"syntax-class-properties": {
+			"active": 0
+			},
+		"syntax-decorators": {
+			"active": 0
+			},
+		"syntax-do-expressions": {
+			"active": 0
+			},
+		"syntax-export-extensions": {
+			"active": 0
+			},
+		"syntax-flow": {
+			"active": 0
+			},
+		"syntax-function-bind": {
+			"active": 0
+			},
+		"syntax-function-sent": {
+			"active": 0
+			},
+		"syntax-jsx": {
+			"active": 0
+			},
+		"syntax-object-rest-spread": {
+			"active": 0
+			},
+		"undeclared-variables-check": {
+			"active": 0
+			},
+		"undefined-to-void": {
+			"active": 0
+			}
+		},
+	"babelPresetType": 193,
+	"babelRetainLines": 0,
+	"bowerAbbreviatedPath": "bower_components",
+	"bowerAutoCreateInfoFile": 1,
+	"bowerInstallDevDependencies": 0,
+	"bowerSaveDependencies": 1,
+	"bowerSaveDevDependencies": 0,
+	"bowerUseExactVersion": 0,
+	"browserRefreshDelay": 0,
+	"buildFolderActive": 0,
+	"buildFolderName": "build",
+	"cleanBuild": 1,
+	"coffeeLintFlags2": {
+		"arrow_spacing": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"camel_case_classes": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"colon_assignment_spacing": {
+			"active": 0,
+			"flagValue": 1
+			},
+		"cyclomatic_complexity": {
+			"active": 0,
+			"flagValue": 10
+			},
+		"duplicate_key": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"empty_constructor_needs_parens": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"ensure_comprehensions": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"indentation": {
+			"active": 1,
+			"flagValue": 2
+			},
+		"line_endings": {
+			"active": 0,
+			"flagValue": 0
+			},
+		"max_line_length": {
+			"active": 0,
+			"flagValue": 150
+			},
+		"missing_fat_arrows": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"newlines_after_classes": {
+			"active": 0,
+			"flagValue": 3
+			},
+		"no_backticks": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"no_debugger": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"no_empty_functions": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"no_empty_param_list": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"no_implicit_braces": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"no_implicit_parens": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"no_interpolation_in_single_quotes": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"no_nested_string_interpolation": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"no_plusplus": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"no_private_function_fat_arrows": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"no_stand_alone_at": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"no_tabs": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"no_this": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"no_throwing_strings": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"no_trailing_semicolons": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"no_trailing_whitespace": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"no_unnecessary_double_quotes": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"no_unnecessary_fat_arrows": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"non_empty_constructor_needs_parens": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"prefer_english_operator": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"space_operators": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"spacing_after_comma": {
+			"active": 1,
+			"flagValue": -1
+			}
+		},
+	"esLintConfigFileHandlingType": 0,
+	"esLintECMAVersion": 7,
+	"esLintEnvironmentsMask": 1,
+	"esLintRules": {
+		"accessor-pairs": {
+			"active": 0,
+			"optionString": "{'setWithoutGet': true, 'getWithoutSet': false}"
+			},
+		"array-bracket-spacing": {
+			"active": 0,
+			"optionString": "'never', {'singleValue': false, 'objectsInArrays': false, 'arraysInArrays': false}"
+			},
+		"array-callback-return": {
+			"active": 0,
+			"optionString": ""
+			},
+		"arrow-body-style": {
+			"active": 0,
+			"optionString": "'as-needed', {'requireReturnForObjectLiteral': false}"
+			},
+		"arrow-parens": {
+			"active": 0,
+			"optionString": "'always'"
+			},
+		"arrow-spacing": {
+			"active": 0,
+			"optionString": "{'before': true, 'after': true}"
+			},
+		"block-scoped-var": {
+			"active": 0,
+			"optionString": ""
+			},
+		"block-spacing": {
+			"active": 0,
+			"optionString": "'always'"
+			},
+		"brace-style": {
+			"active": 0,
+			"optionString": "'1tbs', {'allowSingleLine': true}"
+			},
+		"callback-return": {
+			"active": 0,
+			"optionString": "['callback', 'cb', 'next']"
+			},
+		"camelcase": {
+			"active": 0,
+			"optionString": "{'properties': 'always'}"
+			},
+		"class-methods-use-this": {
+			"active": 0,
+			"optionString": "{'exceptMethods': []}"
+			},
+		"comma-dangle": {
+			"active": 1,
+			"optionString": "'never'"
+			},
+		"comma-spacing": {
+			"active": 0,
+			"optionString": "{'before': false, 'after': true}"
+			},
+		"comma-style": {
+			"active": 0,
+			"optionString": "'last'"
+			},
+		"complexity": {
+			"active": 0,
+			"optionString": "20"
+			},
+		"computed-property-spacing": {
+			"active": 0,
+			"optionString": "'never'"
+			},
+		"consistent-return": {
+			"active": 0,
+			"optionString": "{'treatUndefinedAsUnspecified': false}"
+			},
+		"consistent-this": {
+			"active": 0,
+			"optionString": "'that'"
+			},
+		"constructor-super": {
+			"active": 1,
+			"optionString": ""
+			},
+		"curly": {
+			"active": 0,
+			"optionString": "'all'"
+			},
+		"default-case": {
+			"active": 0,
+			"optionString": ""
+			},
+		"dot-location": {
+			"active": 0,
+			"optionString": "'object'"
+			},
+		"dot-notation": {
+			"active": 0,
+			"optionString": "{'allowKeywords': false}"
+			},
+		"eol-last": {
+			"active": 0,
+			"optionString": "'always'"
+			},
+		"eqeqeq": {
+			"active": 0,
+			"optionString": "'always', {'null': 'always'}"
+			},
+		"func-call-spacing": {
+			"active": 0,
+			"optionString": "'never'"
+			},
+		"func-name-matching": {
+			"active": 0,
+			"optionString": "'always', {'includeCommonJSModuleExports': false}"
+			},
+		"func-names": {
+			"active": 0,
+			"optionString": "'always'"
+			},
+		"func-style": {
+			"active": 0,
+			"optionString": "'expression'"
+			},
+		"generator-star-spacing": {
+			"active": 0,
+			"optionString": "{'before': true, 'after': false}"
+			},
+		"global-require": {
+			"active": 0,
+			"optionString": ""
+			},
+		"guard-for-in": {
+			"active": 0,
+			"optionString": ""
+			},
+		"handle-callback-err": {
+			"active": 0,
+			"optionString": "'err'"
+			},
+		"id-blacklist": {
+			"active": 0,
+			"optionString": "'data', 'err', 'e', 'cb', 'callback'"
+			},
+		"id-length": {
+			"active": 0,
+			"optionString": "{'min': 2, 'max': 1000, 'properties': 'always', 'exceptions': ['x', 'i', 'y']}"
+			},
+		"id-match": {
+			"active": 0,
+			"optionString": "'^[a-z]+([A-Z][a-z]+)*$', {'properties': false, 'onlyDeclarations': true}"
+			},
+		"indent": {
+			"active": 0,
+			"optionString": "4, {'SwitchCase': 0, 'VariableDeclarator': 1, 'outerIIFEBody': 1, }"
+			},
+		"init-declarations": {
+			"active": 0,
+			"optionString": "'always',  {'ignoreForLoopInit': true}"
+			},
+		"jsx-quotes": {
+			"active": 0,
+			"optionString": "'prefer-double'"
+			},
+		"key-spacing": {
+			"active": 0,
+			"optionString": "{'singleLine': {'beforeColon': false, 'afterColon': true, 'mode':'strict'}, 'multiLine': {'beforeColon': false, 'afterColon': true, 'align': 'value', 'mode':'minimum'}}"
+			},
+		"keyword-spacing": {
+			"active": 0,
+			"optionString": "{'before': true, 'after': true, 'overrides': {}}"
+			},
+		"line-comment-position": {
+			"active": 0,
+			"optionString": "{'position': 'above'}"
+			},
+		"linebreak-style": {
+			"active": 0,
+			"optionString": "'unix'"
+			},
+		"lines-around-comment": {
+			"active": 0,
+			"optionString": "{'beforeBlockComment': true}"
+			},
+		"lines-around-directive": {
+			"active": 0,
+			"optionString": "{'before': 'always', 'after': 'always'}"
+			},
+		"max-depth": {
+			"active": 0,
+			"optionString": "{'max': 4}"
+			},
+		"max-len": {
+			"active": 0,
+			"optionString": "{'code': 80, 'comments': 80, 'tabWidth': 4, 'ignoreUrls': true, 'ignoreStrings': true, 'ignoreTemplateLiterals': true, 'ignoreRegExpLiterals': true}"
+			},
+		"max-lines": {
+			"active": 0,
+			"optionString": "{'max': 300, 'skipBlankLines': true, 'skipComments': true}"
+			},
+		"max-nested-callbacks": {
+			"active": 0,
+			"optionString": "{'max': 10}"
+			},
+		"max-params": {
+			"active": 0,
+			"optionString": "{'max': 4}"
+			},
+		"max-statements": {
+			"active": 0,
+			"optionString": "{'max': 10}, {'ignoreTopLevelFunctions': true}"
+			},
+		"multiline-ternary": {
+			"active": 0,
+			"optionString": "'always'"
+			},
+		"new-cap": {
+			"active": 0,
+			"optionString": "{'newIsCap': true, 'capIsNew': true, 'newIsCapExceptions': [], 'capIsNewExceptions': ['Array', 'Boolean', 'Date', 'Error', 'Function', 'Number', 'Object', 'RegExp', 'String', 'Symbol'], 'properties': true}"
+			},
+		"new-parens": {
+			"active": 0,
+			"optionString": ""
+			},
+		"newline-after-var": {
+			"active": 0,
+			"optionString": "'always'"
+			},
+		"newline-before-return": {
+			"active": 0,
+			"optionString": ""
+			},
+		"newline-per-chained-call": {
+			"active": 0,
+			"optionString": "{'ignoreChainWithDepth': 2}"
+			},
+		"no-alert": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-array-constructor": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-bitwise": {
+			"active": 0,
+			"optionString": "{'allow': ['~'], 'int32Hint': true}"
+			},
+		"no-caller": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-case-declarations": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-catch-shadow": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-class-assign": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-cond-assign": {
+			"active": 1,
+			"optionString": "'except-parens'"
+			},
+		"no-confusing-arrow": {
+			"active": 0,
+			"optionString": "{'allowParens': false}"
+			},
+		"no-console": {
+			"active": 1,
+			"optionString": "{'allow': ['warn', 'error']}"
+			},
+		"no-const-assign": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-constant-condition": {
+			"active": 1,
+			"optionString": "{'checkLoops': true}"
+			},
+		"no-continue": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-control-regex": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-debugger": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-delete-var": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-div-regex": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-dupe-args": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-dupe-class-members": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-dupe-keys": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-duplicate-imports": {
+			"active": 0,
+			"optionString": "{'includeExports': false}"
+			},
+		"no-else-return": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-empty": {
+			"active": 1,
+			"optionString": "{'allowEmptyCatch': false}"
+			},
+		"no-empty-character-class": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-empty-function": {
+			"active": 0,
+			"optionString": "{'allow': []}"
+			},
+		"no-empty-pattern": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-eq-null": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-eval": {
+			"active": 0,
+			"optionString": "{'allowIndirect': false}"
+			},
+		"no-ex-assign": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-extend-native": {
+			"active": 0,
+			"optionString": "{'exceptions': []}"
+			},
+		"no-extra-bind": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-extra-boolean-cast": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-extra-labels": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-extra-parens": {
+			"active": 1,
+			"optionString": "'all', {'conditionalAssign': false, 'returnAssign': false, 'nestedBinaryExpressions': false}"
+			},
+		"no-extra-semi": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-fallthrough": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-floating-decimal": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-func-assign": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-global-assign": {
+			"active": 0,
+			"optionString": "{'exceptions': []}"
+			},
+		"no-implicit-coercion": {
+			"active": 0,
+			"optionString": "{'boolean': true, 'number': true, 'string': true, 'allow': []}"
+			},
+		"no-implicit-globals": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-implied-eval": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-inline-comments": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-inner-declarations": {
+			"active": 1,
+			"optionString": "'functions'"
+			},
+		"no-invalid-regexp": {
+			"active": 1,
+			"optionString": "{'allowConstructorFlags': ['u', 'y']}"
+			},
+		"no-invalid-this": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-irregular-whitespace": {
+			"active": 1,
+			"optionString": "{'skipStrings': true, 'skipComments': false, 'skipRegExps': true, 'skipTemplates': true}"
+			},
+		"no-iterator": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-label-var": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-labels": {
+			"active": 0,
+			"optionString": "{'allowLoop': false, 'allowSwitch': false}"
+			},
+		"no-lone-blocks": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-lonely-if": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-loop-func": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-magic-numbers": {
+			"active": 0,
+			"optionString": "{'ignore': [], 'ignoreArrayIndexes': true, 'enforceConst': false, 'detectObjects': false}"
+			},
+		"no-mixed-operators": {
+			"active": 0,
+			"optionString": "{'groups': [['+', '-', '*', '\/', '%', '**'], ['&', '|', '^', '~', '<<', '>>', '>>>'], ['==', '!=', '===', '!==', '>', '>=', '<', '<='], ['&&', '||'], ['in', 'instanceof']], 'allowSamePrecedence': true}"
+			},
+		"no-mixed-requires": {
+			"active": 0,
+			"optionString": "{'grouping': false, 'allowCall': false }"
+			},
+		"no-mixed-spaces-and-tabs": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-multi-spaces": {
+			"active": 0,
+			"optionString": "{'exceptions': {'Property': true, 'BinaryExpression': false, 'VariableDeclarator': false, 'ImportDeclaration': false}}"
+			},
+		"no-multi-str": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-multiple-empty-lines": {
+			"active": 0,
+			"optionString": "{'max': 2, 'maxBOF': 2, 'maxEOF': 2}"
+			},
+		"no-negated-condition": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-nested-ternary": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-new": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-new-func": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-new-object": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-new-require": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-new-symbol": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-new-wrappers": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-obj-calls": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-octal": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-octal-escape": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-param-reassign": {
+			"active": 0,
+			"optionString": "{'props': false}"
+			},
+		"no-path-concat": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-plusplus": {
+			"active": 0,
+			"optionString": "{'allowForLoopAfterthoughts': false}"
+			},
+		"no-process-env": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-process-exit": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-proto": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-redeclare": {
+			"active": 1,
+			"optionString": "{'builtinGlobals': false}"
+			},
+		"no-regex-spaces": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-restricted-globals": {
+			"active": 0,
+			"optionString": "'event', 'fdescribe'"
+			},
+		"no-restricted-imports": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-restricted-modules": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-restricted-properties": {
+			"active": 0,
+			"optionString": "[{'object': 'disallowedObjectName', 'property': 'disallowedPropertyName'}, {'object': 'disallowedObjectName', 'property': 'anotherDisallowedPropertyName', 'message': 'Please use allowedObjectName.allowedPropertyName.'}]"
+			},
+		"no-restricted-syntax": {
+			"active": 0,
+			"optionString": "'FunctionExpression', 'WithStatement'"
+			},
+		"no-return-assign": {
+			"active": 0,
+			"optionString": "'except-parens'"
+			},
+		"no-script-url": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-self-assign": {
+			"active": 1,
+			"optionString": "{'props': false}"
+			},
+		"no-self-compare": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-sequences": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-shadow": {
+			"active": 0,
+			"optionString": "{'builtinGlobals': false, 'hoist': 'functions', 'allow': []}"
+			},
+		"no-shadow-restricted-names": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-sparse-arrays": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-sync": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-tabs": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-template-curly-in-string": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-ternary": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-this-before-super": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-throw-literal": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-trailing-spaces": {
+			"active": 0,
+			"optionString": "{'skipBlankLines': false}"
+			},
+		"no-undef": {
+			"active": 1,
+			"optionString": "{'typeof': false}"
+			},
+		"no-undef-init": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-undefined": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-underscore-dangle": {
+			"active": 0,
+			"optionString": "{'allow': [], 'allowAfterThis': false, 'allowAfterSuper': false}"
+			},
+		"no-unexpected-multiline": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-unmodified-loop-condition": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-unneeded-ternary": {
+			"active": 0,
+			"optionString": "{'defaultAssignment': true}"
+			},
+		"no-unreachable": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-unsafe-finally": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-unsafe-negation": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-unused-expressions": {
+			"active": 0,
+			"optionString": "{'allowShortCircuit': false, 'allowTernary': false}"
+			},
+		"no-unused-labels": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-unused-vars": {
+			"active": 1,
+			"optionString": "{'vars': 'all', 'args': 'after-used', 'caughtErrors': 'none'}"
+			},
+		"no-use-before-define": {
+			"active": 0,
+			"optionString": "{'functions': true, 'classes': true}"
+			},
+		"no-useless-call": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-useless-computed-key": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-useless-concat": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-useless-constructor": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-useless-escape": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-useless-rename": {
+			"active": 0,
+			"optionString": "{'ignoreDestructuring': false, 'ignoreImport': false, 'ignoreExport': false}"
+			},
+		"no-useless-return": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-var": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-void": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-warning-comments": {
+			"active": 0,
+			"optionString": "{'terms': ['todo', 'fixme', 'xxx'], 'location': 'start'}"
+			},
+		"no-whitespace-before-property": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-with": {
+			"active": 0,
+			"optionString": ""
+			},
+		"object-curly-newline": {
+			"active": 0,
+			"optionString": "{'ObjectExpression': {'multiline': true}, 'ObjectPattern': {'multiline': true}}"
+			},
+		"object-curly-spacing": {
+			"active": 0,
+			"optionString": "'never'"
+			},
+		"object-property-newline": {
+			"active": 0,
+			"optionString": "{'allowMultiplePropertiesPerLine': true}"
+			},
+		"object-shorthand": {
+			"active": 0,
+			"optionString": "'always', {'avoidQuotes': false, 'ignoreConstructors': false}"
+			},
+		"one-var": {
+			"active": 0,
+			"optionString": "'always'"
+			},
+		"one-var-declaration-per-line": {
+			"active": 0,
+			"optionString": "'always'"
+			},
+		"operator-assignment": {
+			"active": 0,
+			"optionString": "'always'"
+			},
+		"operator-linebreak": {
+			"active": 0,
+			"optionString": "'after', {'overrides': {'?': 'after', '+=': 'none'}}"
+			},
+		"padded-blocks": {
+			"active": 0,
+			"optionString": "{'blocks': 'always', 'switches': 'always', 'classes': 'always'}"
+			},
+		"prefer-arrow-callback": {
+			"active": 0,
+			"optionString": ""
+			},
+		"prefer-const": {
+			"active": 0,
+			"optionString": "{'destructuring': 'any', 'ignoreReadBeforeAssign': false}"
+			},
+		"prefer-numeric-literals": {
+			"active": 0,
+			"optionString": ""
+			},
+		"prefer-rest-params": {
+			"active": 0,
+			"optionString": ""
+			},
+		"prefer-spread": {
+			"active": 0,
+			"optionString": ""
+			},
+		"prefer-template": {
+			"active": 0,
+			"optionString": ""
+			},
+		"quote-props": {
+			"active": 0,
+			"optionString": "'always'"
+			},
+		"quotes": {
+			"active": 0,
+			"optionString": "'double', 'avoid-escape'"
+			},
+		"radix": {
+			"active": 0,
+			"optionString": "'always'"
+			},
+		"require-jsdoc": {
+			"active": 0,
+			"optionString": "{'require': {'FunctionDeclaration': true, 'MethodDefinition': false, 'ClassDeclaration': false}}"
+			},
+		"require-yield": {
+			"active": 0,
+			"optionString": ""
+			},
+		"rest-spread-spacing": {
+			"active": 0,
+			"optionString": "'never'"
+			},
+		"semi": {
+			"active": 0,
+			"optionString": "'always', {'omitLastInOneLineBlock': false}"
+			},
+		"semi-spacing": {
+			"active": 0,
+			"optionString": "{'before': false, 'after': true}"
+			},
+		"sort-imports": {
+			"active": 0,
+			"optionString": "{'ignoreCase': false, 'ignoreMemberSort': true, 'memberSyntaxSortOrder': ['none', 'all', 'multiple', 'single']}"
+			},
+		"sort-keys": {
+			"active": 0,
+			"optionString": "'asc', {'caseSensitive': true, 'natural': false}"
+			},
+		"sort-vars": {
+			"active": 0,
+			"optionString": "{'ignoreCase': false}"
+			},
+		"space-before-blocks": {
+			"active": 0,
+			"optionString": "{'functions': 'always', 'keywords': 'always', 'classes': 'always'}"
+			},
+		"space-before-function-paren": {
+			"active": 0,
+			"optionString": "{'anonymous': 'always', 'named': 'never'}"
+			},
+		"space-in-parens": {
+			"active": 0,
+			"optionString": "'never', {'exceptions': []}"
+			},
+		"space-infix-ops": {
+			"active": 0,
+			"optionString": "{'int32Hint': false}"
+			},
+		"space-unary-ops": {
+			"active": 0,
+			"optionString": "{'words': true, 'nonwords': false, 'overrides': {}}"
+			},
+		"spaced-comment": {
+			"active": 0,
+			"optionString": "'always', {'line': {'markers': ['\/'], 'exceptions': ['-', '+']}, 'block': {'markers': ['!'], 'exceptions': ['*'], 'balanced': false}}"
+			},
+		"strict": {
+			"active": 0,
+			"optionString": "'safe'"
+			},
+		"symbol-description": {
+			"active": 0,
+			"optionString": ""
+			},
+		"template-curly-spacing": {
+			"active": 0,
+			"optionString": "'never'"
+			},
+		"unicode-bom": {
+			"active": 0,
+			"optionString": "'never'"
+			},
+		"use-isnan": {
+			"active": 1,
+			"optionString": ""
+			},
+		"valid-jsdoc": {
+			"active": 0,
+			"optionString": "{'prefer': {'return': 'returns'}, 'requireReturn': true, 'requireReturnDescription': true, 'requireReturnType': true, 'requireParamDescription': true}"
+			},
+		"valid-typeof": {
+			"active": 1,
+			"optionString": "{'requireStringLiterals': true}"
+			},
+		"vars-on-top": {
+			"active": 0,
+			"optionString": ""
+			},
+		"wrap-iife": {
+			"active": 0,
+			"optionString": "'outside'"
+			},
+		"wrap-regex": {
+			"active": 0,
+			"optionString": ""
+			},
+		"yield-star-spacing": {
+			"active": 0,
+			"optionString": "{'before': false, 'after': true}"
+			},
+		"yoda": {
+			"active": 0,
+			"optionString": "'never', {'exceptRange': false, 'onlyEquality': false}"
+			}
+		},
+	"esLintSourceType": 0,
+	"externalServerAddress": "http:\/\/localhost:3000",
+	"gitIgnoreBuildFolder": 1,
+	"hideConfigFile": 0,
+	"jsCheckerReservedNamesString": "",
+	"jsHintFlags2": {
+		"asi": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"bitwise": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"boss": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"browser": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"browserify": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"camelcase": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"couch": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"curly": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"debug": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"devel": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"dojo": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"elision": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"eqeqeq": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"eqnull": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"es3": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"esnext": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"evil": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"expr": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"forin": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"freeze": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"funcscope": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"futurehostile": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"globalstrict": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"immed": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"indent": {
+			"active": 0,
+			"flagValue": 4
+			},
+		"iterator": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"jasmine": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"jquery": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"lastsemic": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"latedef": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"laxbreak": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"laxcomma": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"loopfunc": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"maxcomplexity": {
+			"active": 0,
+			"flagValue": 10
+			},
+		"maxdepth": {
+			"active": 0,
+			"flagValue": 3
+			},
+		"maxlen": {
+			"active": 0,
+			"flagValue": 150
+			},
+		"maxparams": {
+			"active": 0,
+			"flagValue": 3
+			},
+		"maxstatements": {
+			"active": 0,
+			"flagValue": 4
+			},
+		"mocha": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"mootools": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"moz": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"multistr": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"newcap": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"noarg": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"nocomma": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"node": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"noempty": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"nonbsp": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"nonew": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"nonstandard": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"notypeof": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"noyield": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"onecase": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"phantom": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"plusplus": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"proto": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"prototypejs": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"qunit": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"regexp": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"rhino": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"scripturl": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"shadow": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"shelljs": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"singleGroups": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"strict": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"sub": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"supernew": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"typed": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"undef": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"unused": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"varstmt": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"withstmt": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"worker": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"wsh": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"yui": {
+			"active": 0,
+			"flagValue": -1
+			}
+		},
+	"jsLintFlags2": {
+		"bitwise": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"browser": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"couch": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"devel": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"es6": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"eval": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"for": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"maxlen": {
+			"active": 0,
+			"flagValue": 150
+			},
+		"node": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"this": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"white": {
+			"active": 0,
+			"flagValue": -1
+			}
+		},
+	"languageDefaultsCOFFEE": {
+		"autoOutputAction": 0,
+		"autoOutputPathFilenamePattern": "*.js",
+		"autoOutputPathRelativePath": "",
+		"autoOutputPathReplace1": "",
+		"autoOutputPathReplace2": "",
+		"autoOutputPathStyle": 0,
+		"createSourceMap": 0,
+		"minifyOutput": 1,
+		"outputStyle": 0,
+		"syntaxCheckerStyle": 1
+		},
+	"languageDefaultsCSS": {
+		"autoOutputAction": 2,
+		"autoOutputPathFilenamePattern": "*-min.css",
+		"autoOutputPathRelativePath": "",
+		"autoOutputPathReplace1": "",
+		"autoOutputPathReplace2": "",
+		"autoOutputPathStyle": 0,
+		"createSourceMap": 0,
+		"outputStyle": 3,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0
+		},
+	"languageDefaultsGIF": {
+		"autoOutputAction": 0,
+		"autoOutputPathFilenamePattern": "*.gif",
+		"autoOutputPathRelativePath": "",
+		"autoOutputPathReplace1": "",
+		"autoOutputPathReplace2": "",
+		"autoOutputPathStyle": 0
+		},
+	"languageDefaultsHAML": {
+		"autoOutputAction": 0,
+		"autoOutputPathFilenamePattern": "*.html",
+		"autoOutputPathRelativePath": "",
+		"autoOutputPathReplace1": "",
+		"autoOutputPathReplace2": "",
+		"autoOutputPathStyle": 0,
+		"escapeHTMLCharacters": 0,
+		"noEscapeInAttributes": 0,
+		"outputFormat": 2,
+		"outputStyle": 0,
+		"useCDATA": 0,
+		"useDoubleQuotes": 0,
+		"useUnixNewlines": 0
+		},
+	"languageDefaultsJPG": {
+		"autoOutputAction": 0,
+		"autoOutputPathFilenamePattern": "*.jpg",
+		"autoOutputPathRelativePath": "",
+		"autoOutputPathReplace1": "",
+		"autoOutputPathReplace2": "",
+		"autoOutputPathStyle": 0
+		},
+	"languageDefaultsJS": {
+		"autoOutputAction": 1,
+		"autoOutputPathFilenamePattern": "*-min.js",
+		"autoOutputPathRelativePath": "\/min",
+		"autoOutputPathReplace1": "",
+		"autoOutputPathReplace2": "",
+		"autoOutputPathStyle": 2,
+		"createSourceMap": 0,
+		"minifyOutput": 1,
+		"syntaxCheckerStyle": 0,
+		"transpilerStyle": 0
+		},
+	"languageDefaultsJSON": {
+		"autoOutputAction": 1,
+		"autoOutputPathFilenamePattern": "*-min.json",
+		"autoOutputPathRelativePath": "",
+		"autoOutputPathReplace1": "",
+		"autoOutputPathReplace2": "",
+		"autoOutputPathStyle": 0,
+		"orderOutput": 0,
+		"outputStyle": 1
+		},
+	"languageDefaultsJSX": {
+		"autoOutputAction": 0,
+		"autoOutputPathFilenamePattern": "*.js",
+		"autoOutputPathRelativePath": "",
+		"autoOutputPathReplace1": "jsx",
+		"autoOutputPathReplace2": "js",
+		"autoOutputPathStyle": 0
+		},
+	"languageDefaultsKIT": {
+		"autoOutputAction": 0,
+		"autoOutputPathFilenamePattern": "*.html",
+		"autoOutputPathRelativePath": "",
+		"autoOutputPathReplace1": "",
+		"autoOutputPathReplace2": "",
+		"autoOutputPathStyle": 0
+		},
+	"languageDefaultsLESS": {
+		"allowInsecureImports": 0,
+		"autoOutputAction": 0,
+		"autoOutputPathFilenamePattern": "*.css",
+		"autoOutputPathRelativePath": "..\/css",
+		"autoOutputPathReplace1": "less",
+		"autoOutputPathReplace2": "css",
+		"autoOutputPathStyle": 2,
+		"createSourceMap": 0,
+		"disableJavascript": 0,
+		"ieCompatibility": 1,
+		"outputStyle": 0,
+		"relativeURLS": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"strictImports": 0,
+		"strictMath": 0,
+		"strictUnits": 0
+		},
+	"languageDefaultsMARKDOWN": {
+		"autoOutputAction": 0,
+		"autoOutputPathFilenamePattern": "*.html",
+		"autoOutputPathRelativePath": "",
+		"autoOutputPathReplace1": "",
+		"autoOutputPathReplace2": "",
+		"autoOutputPathStyle": 0,
+		"criticStyle": 0,
+		"enableFootnotes": 1,
+		"enableLabels": 1,
+		"enableSmartQuotes": 1,
+		"escapeLineBreaks": 0,
+		"maskEmailAddresses": 1,
+		"outputFormat": 0,
+		"outputStyle": 0,
+		"parseMetadata": 1,
+		"processHTML": 0,
+		"randomFootnoteNumbers": 0,
+		"useCompatibilityMode": 0
+		},
+	"languageDefaultsOTHER": {
+		"autoOutputAction": 2,
+		"autoOutputPathFilenamePattern": "*.*",
+		"autoOutputPathRelativePath": "",
+		"autoOutputPathReplace1": "",
+		"autoOutputPathReplace2": "",
+		"autoOutputPathStyle": 0
+		},
+	"languageDefaultsPNG": {
+		"autoOutputAction": 0,
+		"autoOutputPathFilenamePattern": "*.png",
+		"autoOutputPathRelativePath": "",
+		"autoOutputPathReplace1": "",
+		"autoOutputPathReplace2": "",
+		"autoOutputPathStyle": 0
+		},
+	"languageDefaultsPUG": {
+		"autoOutputAction": 0,
+		"autoOutputPathFilenamePattern": "*.html",
+		"autoOutputPathRelativePath": "",
+		"autoOutputPathReplace1": "",
+		"autoOutputPathReplace2": "",
+		"autoOutputPathStyle": 0,
+		"compileDebug": 1,
+		"outputStyle": 0
+		},
+	"languageDefaultsSASS": {
+		"autoOutputAction": 0,
+		"autoOutputPathFilenamePattern": "*.css",
+		"autoOutputPathRelativePath": "..\/css",
+		"autoOutputPathReplace1": "sass",
+		"autoOutputPathReplace2": "css",
+		"autoOutputPathStyle": 2,
+		"createSourceMap": 0,
+		"debugStyle": 0,
+		"decimalPrecision": 10,
+		"outputStyle": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"useLibsass": 1
+		},
+	"languageDefaultsSLIM": {
+		"autoOutputAction": 0,
+		"autoOutputPathFilenamePattern": "*.html",
+		"autoOutputPathRelativePath": "",
+		"autoOutputPathReplace1": "",
+		"autoOutputPathReplace2": "",
+		"autoOutputPathStyle": 0,
+		"compileOnly": 0,
+		"logicless": 0,
+		"outputFormat": 0,
+		"outputStyle": 1,
+		"railsCompatible": 0
+		},
+	"languageDefaultsSTYLUS": {
+		"autoOutputAction": 0,
+		"autoOutputPathFilenamePattern": "*.css",
+		"autoOutputPathRelativePath": "..\/css",
+		"autoOutputPathReplace1": "stylus",
+		"autoOutputPathReplace2": "css",
+		"autoOutputPathStyle": 2,
+		"createSourceMap": 0,
+		"debugStyle": 0,
+		"importCSS": 0,
+		"outputStyle": 0,
+		"resolveRelativeURLS": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0
+		},
+	"languageDefaultsSVG": {
+		"autoOutputAction": 2,
+		"autoOutputPathFilenamePattern": "*.svg",
+		"autoOutputPathRelativePath": "",
+		"autoOutputPathReplace1": "",
+		"autoOutputPathReplace2": "",
+		"autoOutputPathStyle": 0,
+		"pluginMask": 3758088159
+		},
+	"languageDefaultsTS": {
+		"autoOutputAction": 0,
+		"autoOutputPathFilenamePattern": "*.js",
+		"autoOutputPathRelativePath": "\/js",
+		"autoOutputPathReplace1": "",
+		"autoOutputPathReplace2": "",
+		"autoOutputPathStyle": 2,
+		"createDeclarationFile": 0,
+		"createSourceMap": 0,
+		"jsxMode": 0,
+		"minifyOutput": 0,
+		"moduleResolutionType": 0,
+		"moduleType": 2,
+		"noImplicitAny": 0,
+		"preserveConstEnums": 0,
+		"removeComments": 0,
+		"suppressImplicitAnyIndexErrors": 0,
+		"targetECMAVersion": 0
+		},
+	"languageDefaultsUserDefined": [
+		],
+	"previewPathAddition": "",
+	"skippedFoldersString": "log, _logs, logs, _cache, cache, \/storage\/framework\/sessions, node_modules",
+	"sourceFolderName": "source",
+	"uglifyDefinesString": "",
+	"uglifyFlags2": {
+		"ascii-only": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"bare-returns": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"booleans": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"bracketize": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"cascade": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"comments": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"comparisons": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"compress": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"conditionals": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"dead_code": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"drop_console": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"drop_debugger": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"eval": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"evaluate": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"hoist_funs": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"hoist_vars": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"if_return": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"indent-level": {
+			"active": 0,
+			"flagValue": 4
+			},
+		"indent-start": {
+			"active": 0,
+			"flagValue": 0
+			},
+		"inline-script": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"join_vars": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"keep_fargs": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"keep_fnames": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"loops": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"mangle": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"max-line-len": {
+			"active": 1,
+			"flagValue": 32000
+			},
+		"negate_iife": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"properties": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"pure_getters": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"quote-keys": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"screw-ie8": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"semicolons": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"sequences": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"sort": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"space-colon": {
+			"active": 1,
+			"flagValue": -1
+			},
+		"toplevel": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"unsafe": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"unused": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"warnings": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"width": {
+			"active": 1,
+			"flagValue": 80
+			}
+		},
+	"uglifyReservedNamesString": "$",
+	"websiteRelativeRoot": ""
+	},
+"settingsFileVersion": "3"
+}

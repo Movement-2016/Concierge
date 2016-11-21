@@ -1,41 +1,33 @@
-@import "../../../node_modules/materialize-css/sass/components/color";
-@import "variables";
-@import "../../../node_modules/materialize-css/sass/materialize";
-@import "mixins";
-@import "global";
-@import "typography";
+@import '../../../node_modules/materialize-css/sass/components/color';
+@import 'variables';
+@import '../../../node_modules/materialize-css/sass/materialize';
+@import 'mixins';
+@import 'global';
+@import 'typography';
 @import 'fonts';
 @import 'donate-header';
-@import "navigation";
-@import "content-page";
-@import "contact-page";
-@import "donate-page";
-@import "advisors-page";
-@import "homepage/homepage";
-@import "browse-groups/browse-groups-page";
+@import 'navigation';
+@import 'content-page';
+@import 'contact-page';
+@import 'donate-page';
+@import 'advisors-page';
+@import 'homepage/homepage';
+@import 'browse-groups/browse-groups-page';
 @import 'custom-planning/custom-planning';
-@import "partner-logos";
-@import "footer";
-@import "single-post";
-@import "alert";
-@import "tooltip";
+@import 'partner-logos';
+@import 'footer';
+@import 'single-post';
+@import 'tooltip';
 
 .expand-trigger {
   cursor: pointer;
 }
 
-.expand-icon.closed i {
-}
-
 .expand-icon.open i {
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 
-div.closed { 
+.closed {
   padding-top: 2px;
   padding-bottom: 2px;
 }

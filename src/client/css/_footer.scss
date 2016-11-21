@@ -1,37 +1,41 @@
 .site-footer {
   @include z-depth-2;
-  z-index: 200;
   background-color: $white;
   border-top: 1px solid $light-border;
-  text-align: center;
   padding: 30px;
+  text-align: center;
+  z-index: 200;
   @media #{$medium-and-up} {
     padding-top: 50px;
   }
+
   .partners-title {
-    text-transform: uppercase;
     color: lighten($primary-color-light, 25%);
+    text-transform: uppercase;
     @media #{$small-and-down} {
       padding-bottom: 16px;
     }
-  } 
+  }
+
   a {
     color: $lightest-text;
+
     &:hover {
       color: $lighter-text;
     }
   }
+
   .links-section {
     margin-top: 40px;
+
     li {
+      display: inline-block;
       font-size: 14px;
       padding: 0 8px;
-      display: inline-block;
       @media #{$medium-and-up} {
-        padding: 0 16px;
         font-size: 1rem;
+        padding: 0 16px;
       }
     }
   }
 }
-
