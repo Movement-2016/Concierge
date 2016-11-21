@@ -3,9 +3,10 @@ var Tabletop = require('tabletop');
 
 let _fetch = null;
 if( typeof window !== 'undefined') {
+
   /* global $ */
   _fetch = (url) => {
-    return new Promise( (success,error) => $.ajax({url,success,error,xhrFields: {withCredentials:true}} ) );
+    return new Promise( (success,error) => $.ajax({url,success,error}) ); //  ,xhrFields: {withCredentials:false}} ) );
   };
 } else {
   _fetch = require('node-fetch'.trim()); // prevent browserify bundling
@@ -39,7 +40,7 @@ class M2016Service {
   }
 
   _fetch(part) {
-    return _fetch( this._base + part )
+    return _fetch( this._base + part, { mode: 'no-cors' } )
             .then( checkStatus )
             .then( parseJSON );
   }
