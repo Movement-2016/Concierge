@@ -52,7 +52,7 @@ Your total contribution amount: $${commaize(total)}
 
 Thank you so much for your generosity!
 
-Movement 2017
+Movement 2018
 
 `;
 
@@ -108,7 +108,7 @@ function houseParty (req, res) {
 
   const payload = {
     to: 'advisor@movement2016.org',
-    subject: '[Movement 2017] Request for House Party',
+    subject: '[Movement 2018] Request for House Party',
     message: entities.decode(mail)
   };
 
@@ -135,7 +135,7 @@ function contactEmail (req, res) {
 
   const payload = {
     to: advisorEmail,
-    subject: '[Movement 2017] Request for House Party',
+    subject: '[Movement 2018] Request for House Party',
     message: entities.decode(mail)
   };
 
