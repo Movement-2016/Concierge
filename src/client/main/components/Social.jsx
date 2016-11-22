@@ -17,7 +17,7 @@ const SocialButtons = () =>
 (            
   <div className="social-buttons">
     <FacebookShareButton
-      url="https://movement2018.org"
+      url="https://movement2017.org"
       title="Movement 2017"
       description="Support the best community-based vote groups in the country!"
       className="share-button fb-share-button"
@@ -26,7 +26,7 @@ const SocialButtons = () =>
       <span>Share on Facebook</span>
     </FacebookShareButton>
     <TwitterShareButton
-      url="https://movement2018.org"
+      url="https://movement2017.org"
       title="Support the best community-based vote groups in the country!"
       className="share-button twitter-share-button"
     >

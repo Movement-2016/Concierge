@@ -8,7 +8,7 @@ const port = 3999;
 const url = `http://localhost:${port}/`;
 exports.url = url;
 
-const dbURI = 'mongodb://localhost:27017/movement2016Test';
+const dbURI = 'mongodb://localhost:27017/movement2017Test';
 
 before (function (done) {
   Promise.resolve ().then (() => {

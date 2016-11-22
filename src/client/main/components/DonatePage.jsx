@@ -11,7 +11,7 @@ const CustomForm = () => {
       <div className="wrapper">
         <h3 className="form-title">Customized</h3>
         <div className="form-content">
-          <p>Browse Movement 2016 groups to create your own customized donation plan</p>
+          <p>Browse Movement 2017 groups to create your own customized donation plan</p>
         </div>
       </div>
     </Link>

@@ -1,6 +1,6 @@
 /* eslint no-console:"off" */
 var GMail = require('./gmail');
-var M2016 = require('./m2016-service'); 
+var M2016 = require('./m2016-service');
 var path = require('jspath');
 var Entities = require('html-entities').AllHtmlEntities;
 var commaize = require('commaize');
@@ -32,7 +32,7 @@ ${name} - $${amount} ${urlWeb && `\nWebsite: ${urlWeb}`} ${urlGive && `\nDonatio
 const planMailHeader = ({fname,lname,email,phone,wantsConsult}) => `
 Hi ${fname}!
 
-Here is your giving plan that you created at movement2018.org and requested be mailed to you.
+Here is your giving plan that you created at movementvote.org and requested be mailed to you.
 
 Your info:
 ${fname} ${lname}
@@ -40,8 +40,8 @@ ${email}
 ${phone}
 Created ${new Date() + ''}
 
-${wantsConsult 
-  ? 'We noticed that you requested a consultation with a donation advisor. One will be in touch with you shortly!' 
+${wantsConsult
+  ? 'We noticed that you requested a consultation with a donation advisor. One will be in touch with you shortly!'
   : 'We noticed that you declined a consultation with a donation advisor. If you have any questions please reply to this email and will get in touch shortly!'}
 
 `;
@@ -92,14 +92,14 @@ ${message ? firstName + 'says: "' + message + '"' : ''}
 `;
 
 function houseParty (req, res) {
-  
+
   console.log( req.body );
 
   const {
         email,
         phone,
       } = req.body;
-  
+
   if( !email || !phone ) {
     res.status( 500 ).json({});
   }
@@ -119,14 +119,14 @@ function houseParty (req, res) {
 }
 
 function contactEmail (req, res) {
-  
+
   console.log( req.body );
 
   const {
-      email, 
+      email,
       advisorEmail
     } = req.body;
-  
+
   if( !email ) {
     res.status( 500 ).json({});
   }
@@ -146,17 +146,17 @@ function contactEmail (req, res) {
 }
 
 function mailPlan (req, res) {
-  
-  const { 
-    fname, 
-    lname, 
-    phone, 
-    email, 
+
+  const {
+    fname,
+    lname,
+    phone,
+    email,
     advisorEmail,
     wantsConsult,
-    items 
+    items
   } = req.body;
-  
+
   if( !items || !email ) {
     res.status( 500 ).json({});
   }
@@ -173,13 +173,13 @@ function mailPlan (req, res) {
 
   const payload = {
     to: advisorEmail,
-    subject: '[Movement 2016] Your Giving Plan',
+    subject: '[Movement 2017] Your Giving Plan',
     message: entities.decode(mail)
   };
 
   mailer.send( payload )
     .then( result => {
-      console.log(email,result); 
+      console.log(email,result);
       const userPayload = Object.assign({},payload,{to:email});
       return mailer.send( userPayload );
     })

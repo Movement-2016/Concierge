@@ -9,7 +9,7 @@ describe ('page loading', function () {
       request.get (url, (err, res, body) => {
         if (err) { return done (err); }
         if (res.statusCode === 200) {
-          if (body.indexOf ('<title>Movement 2016</title>') !== -1) {
+          if (body.indexOf ('<title>Movement 2017</title>') !== -1) {
             return done ();
           } else {
             return (done (new Error ('Invalid body', body)));
@@ -25,7 +25,7 @@ describe ('page loading', function () {
       request.get (`${url}dummy`, (err, res, body) => {
         if (err) { return done (err); }
         if (res.statusCode === 200) {
-          if (body.indexOf ('<title>Movement 2016</title>') !== -1) {
+          if (body.indexOf ('<title>Movement 2017</title>') !== -1) {
             return done ();
           } else {
             return (done (new Error ('Invalid body', body)));

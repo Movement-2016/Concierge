@@ -8,6 +8,7 @@ node_modules/
 dist/
 vendor/
 
-config.codekit
+*.codekit
+*.codekit3
 .sass-cache/
 *.scssc
