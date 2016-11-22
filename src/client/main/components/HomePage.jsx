@@ -81,10 +81,14 @@ class TileBox extends React.Component {
       url,
       display
     } = this.props;
+    var isRemote = /^http/.test(url);
     return (
         <div className={'pledge-col col s12 m4 ' + display}>
           <div className='pledge'>
-            <Link className="pledge-button btn waves-effect waves-light" to={url}>{title}</Link>
+            {isRemote
+              ? <a className="pledge-button btn waves-effect waves-light" href={url}>{title}</a>
+              : <Link className="pledge-button btn waves-effect waves-light" to={url}>{title}</Link>
+            }            
             <div className="pledge-desc" dangerouslySetInnerHTML={{__html:content}} />
           </div>
         </div>

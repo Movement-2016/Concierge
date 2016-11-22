@@ -91,7 +91,7 @@ class Org extends ContextMixin(React.Component) {
 
     return(
         <div className={`group ${cls}`}>
-          <div className="group-title" data-id={id}><a href={`/groups#${id}`} dangerouslySetInnerHTML={{__html:name}} /></div>        
+          <div className="group-title" data-id={id}><span data-href={`/groups#${id}`} dangerouslySetInnerHTML={{__html:name}} /></div>        
           <div className="row">
             <div className="links-col col s12 m8">
               {urlWeb  && <a className="group-link" href={urlWeb}  target="_blank"><i className="material-icons">link</i>Website</a>}
