@@ -67,6 +67,7 @@ class Org extends React.Component {
     const {
       name,
       urlGive,
+      urlWeb,
       readonly
     } = this.props;    
 
@@ -103,7 +104,7 @@ class Org extends React.Component {
                 }
               </div>
               {readonly
-                ? <ContributeButton urlGive={urlGive} amount={value} />
+                ? <ContributeButton urlGive={urlGive || urlWeb} amount={value} />
                 : <a className="remove-group" onClick={this.onRemoveOrg}><i className="material-icons">close</i>Remove</a>
               }
             </div>
