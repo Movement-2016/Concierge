@@ -26,8 +26,6 @@ class TagBlock extends React.Component {
   }
 }
 
-// {urlGive && <a className="group-link" href={urlGive} target="_blank"><i className="material-icons">star_border</i>Contribute</a>}
-
 class Org extends ContextMixin(React.Component) {
 
   constructor() {
@@ -67,7 +65,7 @@ class Org extends ContextMixin(React.Component) {
     const {
       name,
       urlWeb,
-      //urlGive,
+      urlGive,
       description,
       tags,
       id
@@ -94,6 +92,7 @@ class Org extends ContextMixin(React.Component) {
           <div className="group-title" data-id={id}><span data-href={`/groups#${id}`} dangerouslySetInnerHTML={{__html:name}} /></div>        
           <div className="row">
             <div className="links-col col s12 m8">
+              {urlGive && <a className="group-link" href={urlGive} target="_blank"><i className="material-icons">star_border</i>Donate Now</a>}
               {urlWeb  && <a className="group-link" href={urlWeb}  target="_blank"><i className="material-icons">link</i>Website</a>}
               <a className="group-link hide-on-small-and-down" href="#" onClick={this.onOrgClick}><span><i className={`material-icons ${iconCls}`}>{icon}</i>{text}</span></a>
             </div>
