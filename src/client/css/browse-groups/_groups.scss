@@ -201,13 +201,14 @@
   .group-tag {
     margin-right: 4px;
     padding: 4px 6px;
+    line-height: 1;
   }
 }
 
 .tagblock-title {
   font-size: 12px;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .tagblock + .tagblock {
