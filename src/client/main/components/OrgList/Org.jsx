@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { 
-  ContextMixin 
+import {
+  ContextMixin
 } from '../ContextMixins';
 
 import { toggleItem }        from '../../store/actions';
@@ -10,16 +10,20 @@ import { filterTagsByTypes } from '../../store/utils';
 class TagBlock extends React.Component {
   render() {
     const { tagTypes } = this.props;
-    return (
+     return (
         <div>
         {Object.keys(tagTypes).map( (t,i) => {
           const { label, tags } = tagTypes[t];
-          return (
-              <div className="tagblock" key={i} >
-                <div className="tagblock-title">{label}:</div>
-                <div className="tagblock-tags">{tags.map( (g,i) => <span key={i}>{g}</span>)}</div>
-              </div>
-            );
+          if (tags.length === 0) {
+            return;
+          } else {
+            return (
+                <div className="tagblock" key={i} >
+                  <div className="tagblock-title">{label}:</div>
+                  <div className="tagblock-tags">{tags.map( (g,i) => <span className="group-tag" key={i}>{g}</span>)}</div>
+                </div>
+              );
+            }
         })}
         </div>
       );
@@ -30,11 +34,11 @@ class Org extends ContextMixin(React.Component) {
 
   constructor() {
     super(...arguments);
-    
+
     this.state = {
       selected: false
     };
-    
+
     this.onOrgClick = this.onOrgClick.bind(this);
 
     this.filters = this.context.store.getState().service.filters;
@@ -44,7 +48,7 @@ class Org extends ContextMixin(React.Component) {
   shouldComponentUpdate() {
     return this.state.selected !== this._isSelected();
   }
-  
+
   onOrgClick(e) {
     e.preventDefault();
     this.context.store.dispatch( toggleItem(this.props.id) );
@@ -52,8 +56,8 @@ class Org extends ContextMixin(React.Component) {
 
   stateFromStore(storeState) {
     if( this.state.selected !== this._isSelected(storeState) ) {
-      this.setState( { selected: !this.state.selected });  
-    }    
+      this.setState( { selected: !this.state.selected });
+    }
   }
 
   _isSelected( storeState ) {
@@ -85,19 +89,19 @@ class Org extends ContextMixin(React.Component) {
       constituency,
       'issue-area': issueArea
     } = filterTagsByTypes({tags,filters:this.filters});
-    
+
 
     return(
         <div className={`group ${cls}`}>
-          <div className="group-title" data-id={id}><span data-href={`/groups#${id}`} dangerouslySetInnerHTML={{__html:name}} /></div>        
-          <div className="row">
-            <div className="links-col col s12 m8">
-              {urlGive && <a className="group-link" href={urlGive} target="_blank"><i className="material-icons">star_border</i>Donate Now</a>}
+          <div className="group-title" data-id={id}><span data-href={`/groups#${id}`} dangerouslySetInnerHTML={{__html:name}} /></div>
+          <div className="group-links-row row">
+            <div className="col s6 m8">
               {urlWeb  && <a className="group-link" href={urlWeb}  target="_blank"><i className="material-icons">link</i>Website</a>}
+              {urlGive && <a className="group-link" href={urlGive} target="_blank"><i className="material-icons">star_border</i>Donate Now</a>}
               <a className="group-link hide-on-small-and-down" href="#" onClick={this.onOrgClick}><span><i className={`material-icons ${iconCls}`}>{icon}</i>{text}</span></a>
             </div>
-            <div className="nonprofit-tags col s12 m4">
-              {nonProfitType.tags.map( t => <span key={t}>{t}</span> )}
+            <div className="nonprofit-tags col s6 m4">
+              {nonProfitType.tags.map( t => <span className="group-tag" key={t}>{t}</span> )}
             </div>
           </div>
           <div className="group-content"><p dangerouslySetInnerHTML={{__html:description}} /></div>

@@ -1,10 +1,12 @@
-.browse-groups-page .container {
-  width: 100%;
-  @media #{$medium-and-up} {
-    padding: 0 $site-padding;
+.browse-groups-page,
+.state-page {
+  .container {
+    width: 100%;
+    @media #{$medium-and-up} {
+      padding: 0 $site-padding;
+    }
+  }
 }
-}
-
 @import 'browse-groups/filters';
 @import 'browse-groups/mobile-filters';
 @import 'browse-groups/groups';

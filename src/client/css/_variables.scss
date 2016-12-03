@@ -47,12 +47,12 @@ $link-color: $primary-color;
 // Text shades
 $dark-text: rgba(0, 0, 0, 0.87);
 $med-text: rgba(0, 0, 0, 0.70);
-$lighter-text: rgba(0,0,0,0.54);
-$lightest-text: rgba(0,0,0,0.38);
+$lighter-text: rgba(0, 0, 0, 0.54);
+$lightest-text: rgba(0, 0, 0, 0.38);
 
 // Borders
-$light-border: rgba(0,0,0,0.08);
-$med-border: rgba(0,0,0,0.16);
+$light-border: rgba(0, 0, 0, 0.08);
+$med-border: rgba(0, 0, 0, 0.16);
 
 // Input
 $input-border-color: $lighter-text;
@@ -64,7 +64,8 @@ $thermometer-color: $primary-color;
 
 // Groups
 $group-area-bg-color: $white;
-$group-tag-color: color('grey', 'lighten-4');
+$tag-color: #f7fafd;
+$tag-border-color: #ededed;
 $title-bg-color: $primary-color-light;
 $group-padding: 1.5rem;
 $side-col-width: 210px;

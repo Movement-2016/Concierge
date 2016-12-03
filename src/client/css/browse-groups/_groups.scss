@@ -2,21 +2,25 @@
   .browse-groups-page .page-title {
     display: none;
   }
+
   .group-area {
     margin: 60px $side-col-width 0;
     min-height: 600px;
   }
 }
+
 .grouping {
   margin-bottom: 80px;
 }
+
 .grouping-title {
   text-align: center;
   text-transform: uppercase;
   color: $lighter-text;
   margin-bottom: 15px;
   font-size: 28px;
-  &:before {
+
+  &::before {
     content: '';
     display: block;
     width: 40px;
@@ -27,186 +31,185 @@
   @media #{$large-and-up} {
     margin-bottom: 24px;
     font-size: 38px;
-    &:before {
+
+    &::before {
       width: 60px;
       height: 3px;
     }
   }
 }
-.purple-states-title:before {
+
+.purple-states-title::before {
   background-color: $state-purple;
 }
-.light-blue-states-title:before {
+
+.light-blue-states-title::before {
   background-color: $state-light-blue;
 }
-.dark-blue-states-title:before {
+
+.dark-blue-states-title::before {
   background-color: $state-dark-blue;
 }
-.light-red-states-title:before {
+
+.light-red-states-title::before {
   background-color: $state-light-red;
 }
-.dark-red-states-title:before {
+
+.dark-red-states-title::before {
   background-color: $state-dark-red;
 }
+
 .state {
   @include z-depth-1;
   background-color: $white;
   padding: 0;
 }
+
 .state + .state {
   margin-top: 40px;
 }
+
 .state-title {
   @include clearfix;
   padding: 0 $group-padding;
   font-size: 2rem;
   color: $med-text;
+
   h4 {
     margin: 1.5rem 0;
     line-height: 1;
     font-weight: 700;
   }
+
   .color-icon {
     float: right;
     line-height: inherit;
     font-size: 30px;
   }
 }
+
 .purple-state h4 i {
   color: $state-purple;
 }
+
 .light-blue-state h4 i {
   color: $state-light-blue;
 }
+
 .dark-blue-state h4 i {
   color: $state-dark-blue;
 }
+
 .light-red-state h4 i {
   color: $state-light-red;
 }
+
 .dark-red-state h4 i {
   color: $state-dark-red;
 }
+
 .state .group {
   border-top: 1px solid $light-border;
   padding: 2rem $group-padding;
 }
+
 .group-title {
-  margin: 0 0 0.75rem;
+  margin: 0 0 16px;
   font-size: 20px;
   line-height: 1.25;
-  font-weight: 400;
+  font-weight: 700;
+
   a {
     color: inherit;
+
     &:hover {
       color: $primary-color-light;
     }
   }
 }
+
+.group-links-row {
+  margin-bottom: 8px;
+}
+
 .group-link {
-  line-height: 24px;
+  line-height: 23px;
+  height: 23px;
   text-decoration: none;
   display: inline-block;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-size: 13px;
+  margin-bottom: 6px;
+
   i {
     @include reg-icon;
     margin-right: 4px;
     font-size: 20px;
   }
+
   i.add {
     font-size: 22px;
   }
+
   &:hover {
     color: $primary-color-light;
   }
 }
-.group-link + .group-link {
-  margin-left: 40px;
+@media #{$medium-and-up} {
+  .group-link + .group-link {
+    margin-left: 40px;
+  }
 }
+
+.group-tag {
+  background: $tag-color;
+  display: inline-block;
+  border: 1px solid $tag-border-color;
+  color: $lighter-text;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
 .nonprofit-tags {
-  line-height: 24px;
-  @media #{$medium-and-up} {
-    text-align: right;
-  }
-  span {
-    background: $group-tag-color;
-    display: inline-block;
-    padding: 0 12px;
-    margin-bottom: 8px;
-    border-radius: 16px;
-    color: $lighter-text;
-    font-size: 13px;
-  }
-  span + span {
-    margin-left: 6px;
-  }
-}
-.group-tags {
+  text-align: right;
   .group-tag {
-    background: $group-tag-color;
-    display: inline-block;
-    line-height: 24px;
-    padding: 0 12px;
-    margin-bottom: 8px;
-    border-radius: 16px;
-    color: $lighter-text;
-    @media #{$medium-and-up} {
-      line-height: 28px;
-      padding: 0 15px;
-    }
+    border-radius: 15px;
+    padding: 0 10px;
+    line-height: 21px;
+    height: 23px;
   }
   .group-tag + .group-tag {
-    margin-left: 6px;
-  }
-}
-.group-content {
-  line-height: 1.6;
-  margin: 0.5rem 0 1rem;
-  p+p {
-    margin-top: 0.5rem;
-  }
-}
-.group-comments {
-  margin-top: 1rem;
-  font-weight: 700;
-  a {
-    color: lighten($link-color, 20%);
-    &:hover {
-      color: $link-color;
+    margin-left: 4px;
+    @media #{$medium-and-up} {
+      margin-left: 6px;
     }
   }
-  i {
-    @include reg-icon;
-    margin-right: 4px;
+}
+
+.group-content {
+  line-height: 1.6;
+  margin: 0 0 1em;
+
+  p {
+    margin-bottom: 0.5em;
   }
 }
+
 .tagblock {
   color: $lighter-text;
+  .group-tag {
+    margin-right: 4px;
+    padding: 4px 6px;
+  }
 }
+
 .tagblock-title {
-  display: inline-block;
   font-size: 12px;
   text-transform: uppercase;
-  width: 120px;
-  line-height: 1.5rem;
-  vertical-align: top;
+  margin-bottom: 8px;
 }
-.tagblock-tags {
-  display: inline-block;
-  font-size: 13px;
-  line-height: 1.5rem;
-  span+span:before {
-    content: ", ";
-  }
-  @media #{$medium-and-up} {
-    max-width: calc(100% - 120px);
-  }
-}
+
 .tagblock + .tagblock {
-  margin-top: 4px;
-}
-.post-edit-link {
-  float: right;
+  margin-top: 12px;
 }

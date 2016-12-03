@@ -13,7 +13,7 @@ rules:
 
   # Line Spacing
   one-declaration-per-line: 1
-  empty-line-between-blocks: 1
+  empty-line-between-blocks: 0
   single-line-per-selector: 1
 
   # Disallows
@@ -33,9 +33,9 @@ rules:
   no-invalid-hex: 1
   no-mergeable-selectors: 1
   no-misspelled-properties: 1
-  no-qualifying-elements: 1
+  no-qualifying-elements: 0
   no-trailing-whitespace: 1
-  no-trailing-zero: 1
+  no-trailing-zero: 0
   no-transition-all: 1
   no-universal-selectors: 0
   no-url-domains: 1
@@ -48,7 +48,7 @@ rules:
   declarations-before-nesting: 1
   force-attribute-nesting: 1
   force-element-nesting: 0
-  force-pseudo-nesting: 1
+  force-pseudo-nesting: 0
 
   # Name Formats
   class-name-format: 1
@@ -68,7 +68,7 @@ rules:
   hex-length: 1
   hex-notation: 1
   indentation: 1
-  leading-zero: 1
+  leading-zero: 0
   max-line-length: 0
   max-file-line-count: 0
   nesting-depth: 1
@@ -76,7 +76,7 @@ rules:
 #    - 1
 #    - order: 'recess'
   pseudo-element: 1
-  quotes: 1
+  quotes: 0
   shorthand-values: 1
   url-quotes: 1
   variable-for-property: 1
