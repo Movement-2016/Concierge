@@ -8,43 +8,104 @@ import commaize            from 'commaize';
 import SocialButtons       from './Social.jsx';
 import Loading             from './Loading.jsx';
 
-import '../../lib/carousel';
-
-class Testimonials extends React.Component {
+class NewsArticle extends React.Component {
 
 
   render() {
-    const { testimonials } = this.props;
+    const { 
+      title,
+      content,
+      excerpt,
+      date,
+     } = this.props;
 
-    /* Hard coding for now, until homepage updated
+      return (
+        <div className="col s12 m4">
+          <div className="testimonial">
+            <div className="testimonial-content" dangerouslySetInnerHTML={{__html: content }} />
+          </div>
+        </div>
+      );
+  }
+}
+
+class News extends ServiceContext(React.Component) {
+
+  stateFromStore( storeState ) {
+
+    storeState.service.news.then( news => this.setState( { news, loading: false  }));
+
+    this.setState({ loading: true });
+  }
+
+  render() {
+    const { 
+      news,
+      loading 
+    } = this.state;
+
+    if( loading ) {
+      return null;      
+    }
+
     return (
         <section className="testimonial-section container">
             <div className="row">
-              {testimonials.map( (t,i) => (
-                <div key={i} className="col s12 m4">
-                  <div className="testimonial">
-                    <div className="testimonial-content" dangerouslySetInnerHTML={{__html: t.quote }} />
-                  </div>
-                </div>
-              ))}
+              {news.map( (article,i) => <NewsArticle key={i} {...article} /> )};
             </div>
         </section>
       );
-      */
+  }
+}
+
+class Testimonial extends React.Component {
+
+
+  render() {
+    const { 
+      title,
+      content,
+      image, // <= this is URL
+      authorTitle      
+     } = this.props;
 
       return (
-          <section className="testimonial-section container">
-              <div className="row">
-                {testimonials.map( (t,i) => (
-                  <div key={i} className="col s12 m4">
-                    <div className="testimonial">
-                      <div className="testimonial-content" dangerouslySetInnerHTML={{__html: t.quote }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-          </section>
-        );
+        <div className="col s12 m4">
+          <div className="testimonial">
+            <div className="testimonial-content" dangerouslySetInnerHTML={{__html: content }} />
+          </div>
+        </div>
+      );
+  }
+}
+
+
+class Testimonials extends ServiceContext(React.Component) {
+
+  stateFromStore( storeState ) {
+
+    storeState.service.testimonials.then( testimonials => this.setState( { testimonials, loading: false  }));
+
+    this.setState({ loading: true });
+  }
+
+  render() {
+    const { 
+      testimonials,
+      loading 
+    } = this.state;
+
+    if( loading ) {
+      return null;      
+    }
+
+    return (
+        <section className="testimonial-section container">
+            <div className="row">
+              {testimonials.map( (t,i) => <Testimonial key={i} {...t} /> )};
+            </div>
+        </section>
+      );
   }
 }
 
@@ -79,6 +140,7 @@ class TileBox extends React.Component {
       content,
       title,
       url,
+      image, // << this is an URL
       display
     } = this.props;
     var isRemote = /^http/.test(url);
@@ -96,10 +158,24 @@ class TileBox extends React.Component {
   }
 }
 
-class TileBoxes extends React.Component {
+class TileBoxes extends ServiceContext(React.Component) {
+
+  stateFromStore( storeState ) {
+
+    storeState.service.donateTiles.then( tiles => this.setState( { tiles, loading: false  }));
+
+    this.setState({ loading: true });
+  }
 
   render() {
-    const { tiles } = this.props;
+    const { 
+      tiles,
+      loading 
+    } = this.state;
+
+    if( loading ) {
+      return null;      
+    }
 
     return (
         <div className="pledge-area row">
@@ -115,21 +191,12 @@ class HomePage extends ServiceContext(React.Component) {
 
     const {
       donateStats,
-      testimonials,
       homeContent
     } = storeState.service;
 
     Promise
-      .all( [
-        donateStats,
-        testimonials,
-        homeContent ] )
-      .then( ([ donateStats, testimonials, homeContent ]) => this.setState( {
-        donateStats,
-        testimonials,
-        homeContent,
-        loading: false
-      } ));
+      .all(   [ donateStats, homeContent ])
+      .then( ([ donateStats, homeContent ]) => this.setState( { donateStats, homeContent, loading: false } ));
 
     this.setState({ loading: true });
   }
@@ -137,13 +204,11 @@ class HomePage extends ServiceContext(React.Component) {
   render() {
     const {
       donateStats,
-      testimonials,
       loading,
       homeContent: {
         fields: {
           tag_line,
           give_box_title,
-          box,
           states_spreadsheet
         } = {}
       } = {}
@@ -163,12 +228,12 @@ class HomePage extends ServiceContext(React.Component) {
             <div className="pledge-box">
               <div className="pledge-box-title">{give_box_title}</div>
               <ThermometerSection donateStats={donateStats}/>
-              <TileBoxes tiles={box} />
+              <TileBoxes />
             </div>
             <SocialButtons />
           </div>
         </section>
-        <Testimonials testimonials={testimonials} />
+        <Testimonials />
         <section className="volunteer-section" />
         <section className="map-section hide-on-small-and-down">
           <div className="container">

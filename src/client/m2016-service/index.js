@@ -56,6 +56,11 @@ class M2016Service {
                           this.testimonials ] )
         .then ( ([ tags ])  => {
           this._taxonomy = tags;
+
+          // migrate to more uniform data access
+          // testimonials
+          // donate tiles
+          // 
           return this;
         });
   }
@@ -64,6 +69,18 @@ class M2016Service {
     return this._content
       ? Promise.resolve(this._content)
       : this._fetch( 'content' ).then( p => this._content = p );
+  }
+
+  get news() {
+    return this._news
+      ? Promise.resolve(this._news)
+      : this._fetch( 'news' ).then( news => this._news = news );
+  }
+
+  get donateTiles() {
+    return this._donateTiles
+      ? Promise.resolve(this._donateTiles)
+      : this._fetch( 'donatetiles' ).then( donateTiles => this._donateTiles = donateTiles.donatetiles );
   }
 
   get homeContent() {
@@ -127,9 +144,7 @@ class M2016Service {
   }
 
   get tandemForms() {
-    return this._tandemforms
-      ? Promise.resolve(this._tandemforms)
-      : this._fetch( 'tandemforms' ).then( a => this._tandemforms = a.tandemforms );
+    return this.donateTiles;
   }
 
   get filters() {
