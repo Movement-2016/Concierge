@@ -21,8 +21,8 @@ class NewsArticle extends React.Component {
 
       return (
         <div className="col s12 m4">
-          <div className="testimonial">
-            <div className="testimonial-content" dangerouslySetInnerHTML={{__html: content }} />
+          <div className="news-article">
+            <div className="news-article-content" dangerouslySetInnerHTML={{__html: content }} />
           </div>
         </div>
       );
@@ -49,7 +49,7 @@ class News extends ServiceContext(React.Component) {
     }
 
     return (
-        <section className="testimonial-section container">
+        <section className="news-section container">
             <div className="row">
               {news.map( (article,i) => <NewsArticle key={i} {...article} /> )};
             </div>
@@ -109,31 +109,6 @@ class Testimonials extends ServiceContext(React.Component) {
   }
 }
 
-class ThermometerSection extends React.Component {
-
-  render() {
-    const {
-      donateStats,
-      donateStats: {
-        goal,
-        pledged
-      } = {},
-    } = this.props;
-
-    return Number(goal)
-      ? (
-          <div className="thermometer-area">
-            <Thermometer {...donateStats} />
-            <div className="thermometer-numbers">
-              <div className="thermometer-current">{'$' + commaize(pledged) + ' Pledged'}</div>
-              <div className="thermometer-goal">{'$' + commaize(goal) + ' Goal'}</div>
-            </div>
-          </div>
-        )
-      : null;
-  }
-}
-
 class TileBox extends React.Component {
   render() {
     const {
@@ -182,6 +157,31 @@ class TileBoxes extends ServiceContext(React.Component) {
           {tiles.map( (box,i) => <TileBox key={i} {...box} />)}
         </div>
       );
+  }
+}
+
+class ThermometerSection extends React.Component {
+
+  render() {
+    const {
+      donateStats,
+      donateStats: {
+        goal,
+        pledged
+      } = {},
+    } = this.props;
+
+    return Number(goal)
+      ? (
+          <div className="thermometer-area">
+            <Thermometer {...donateStats} />
+            <div className="thermometer-numbers">
+              <div className="thermometer-current">{'$' + commaize(pledged) + ' Pledged'}</div>
+              <div className="thermometer-goal">{'$' + commaize(goal) + ' Goal'}</div>
+            </div>
+          </div>
+        )
+      : null;
   }
 }
 
