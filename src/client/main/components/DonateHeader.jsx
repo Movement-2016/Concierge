@@ -11,9 +11,9 @@ class Thermometer extends React.Component {
 
   constructor() {
     super(...arguments);
-    const { 
-      goal, 
-      pledged 
+    const {
+      goal,
+      pledged
     } = this.props;
 
     this.id = '_merc_' + (++nextID);
@@ -22,7 +22,7 @@ class Thermometer extends React.Component {
   }
 
   componentDidMount() {
-    const { 
+    const {
       goal
     } = this.props;
     /* globals $ */
@@ -30,11 +30,11 @@ class Thermometer extends React.Component {
   }
 
   render() {
-    const { 
+    const {
       goal
     } = this.props;
 
-    return Number(goal) 
+    return Number(goal)
       ? (<div className="thermometer">
           <div id={this.id} className="mercury" />
          </div>)
@@ -45,11 +45,11 @@ class Thermometer extends React.Component {
 class DonateHeader extends React.Component {
 
   render() {
-    
-    let { 
-      pledged, 
+
+    let {
+      pledged,
       goal,
-      disabled = false
+      disabled = true
     } = this.props;
 
     disabled = disabled || !Number(goal);
