@@ -1,6 +1,11 @@
 // Heights & widths
 $site-max-width: 1400px;
+
+$site-padding-xs: 20px;
+$site-padding-sm: 20px;
+$site-padding-lg: 24px;
 $site-padding: 24px;
+
 $menu-padding: 17px;
 $donate-header-height: 46px;
 $navbar-height: 64px;
@@ -12,6 +17,10 @@ $h2-fontsize: 2.75rem;
 $h3-fontsize: 1.68rem;
 $h4-fontsize: 2rem;
 $h5-fontsize: 1.4rem;
+
+// Typefaces
+$font-1: 'Lato', 'Helvetica Neue', 'Helvetica', sans-serif;
+$font-2: 'Roboto', 'Helvetica Neue', 'Helvetica', sans-serif;
 
 // Media query variables
 $xs-screen-up: 361px;
@@ -59,7 +68,6 @@ $input-border-color: $lighter-text;
 $input-focus-color: $primary-color;
 
 // Intro
-$pledge-box-bg-color: rgba(255, 255, 255, 0.8);
 $thermometer-color: $primary-color;
 
 // Groups

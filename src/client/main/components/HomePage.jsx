@@ -3,79 +3,39 @@ import { Link } from 'react-router';
 import StateMap from './StateMap.jsx';
 
 import { ServiceContext }  from './ContextMixins.js';
-import { Thermometer }     from './DonateHeader.jsx';
-import commaize            from 'commaize';
+import Thermometer         from './Thermometer.jsx';
 import SocialButtons       from './Social.jsx';
+import Tile                from './Tile.jsx';
+import commaize            from 'commaize';
 import Loading             from './Loading.jsx';
 
-class NewsArticle extends React.Component {
 
-
-  render() {
-    const { 
-      title,
-      content,
-      excerpt,
-      date,
-     } = this.props;
-
-      return (
-        <div className="col s12 m4">
-          <div className="news-article">
-            <div className="news-article-content" dangerouslySetInnerHTML={{__html: content }} />
-          </div>
-        </div>
-      );
-  }
-}
-
-class News extends ServiceContext(React.Component) {
-
-  stateFromStore( storeState ) {
-
-    storeState.service.news.then( news => this.setState( { news, loading: false  }));
-
-    this.setState({ loading: true });
-  }
-
-  render() {
-    const { 
-      news,
-      loading 
-    } = this.state;
-
-    if( loading ) {
-      return null;      
-    }
-
-    return (
-        <section className="news-section container">
-            <div className="row">
-              {news.map( (article,i) => <NewsArticle key={i} {...article} /> )};
-            </div>
-        </section>
-      );
-  }
-}
 
 class Testimonial extends React.Component {
-
-
   render() {
-    const { 
+    const {
       title,
       content,
       image, // <= this is URL
-      authorTitle      
-     } = this.props;
+      authorTitle
+    } = this.props;
 
-      return (
-        <div className="col s12 m4">
-          <div className="testimonial">
-            <div className="testimonial-content" dangerouslySetInnerHTML={{__html: content }} />
+    const authorPicStyle = image
+      ? { background: 'url("' + image + '")' }
+      : {}
+
+    return (
+      <div className="testimonial">
+        <div className="testimonial-content">{content}</div>
+        <div className="author-area">
+          <div className="author-pic" style={authorPicStyle} />
+          <div className="author-info">
+            <div className="author-name">{title}</div>
+            <div className="author-title">{authorTitle}</div>
           </div>
         </div>
-      );
+      </div>
+    );
   }
 }
 
@@ -90,50 +50,26 @@ class Testimonials extends ServiceContext(React.Component) {
   }
 
   render() {
-    const { 
+    const {
       testimonials,
-      loading 
+      loading
     } = this.state;
 
     if( loading ) {
-      return null;      
+      return null;
     }
 
     return (
-        <section className="testimonial-section container">
-            <div className="row">
-              {testimonials.map( (t,i) => <Testimonial key={i} {...t} /> )};
-            </div>
-        </section>
-      );
+      <div className="testimonials">
+        {testimonials.map( (t,i) => <Testimonial key={i} {...t} /> )}
+      </div>
+    );
   }
 }
 
-class TileBox extends React.Component {
-  render() {
-    const {
-      content,
-      title,
-      url,
-      image, // << this is an URL
-      display
-    } = this.props;
-    var isRemote = /^http/.test(url);
-    return (
-        <div className={'pledge-col col s12 m4 ' + display}>
-          <div className='pledge'>
-            {isRemote
-              ? <a className="pledge-button btn waves-effect waves-light" href={url}>{title}</a>
-              : <Link className="pledge-button btn waves-effect waves-light" to={url}>{title}</Link>
-            }            
-            <div className="pledge-desc" dangerouslySetInnerHTML={{__html:content}} />
-          </div>
-        </div>
-      );
-  }
-}
 
-class TileBoxes extends ServiceContext(React.Component) {
+
+class DonateTiles extends ServiceContext(React.Component) {
 
   stateFromStore( storeState ) {
 
@@ -143,45 +79,47 @@ class TileBoxes extends ServiceContext(React.Component) {
   }
 
   render() {
-    const { 
+    const {
       tiles,
-      loading 
+      loading
     } = this.state;
 
     if( loading ) {
-      return null;      
+      return null;
     }
 
     return (
-        <div className="pledge-area row">
-          {tiles.map( (box,i) => <TileBox key={i} {...box} />)}
+        <div className="donate-tiles">
+          {tiles.map( (d, i) => <Tile key={i} {...d} />)}
         </div>
       );
   }
 }
 
-class ThermometerSection extends React.Component {
+class NewsTiles extends ServiceContext(React.Component) {
+
+  stateFromStore( storeState ) {
+    storeState.service.news.then( news => this.setState( { news, loading: false  }));
+    this.setState({ loading: true });
+  }
 
   render() {
     const {
-      donateStats,
-      donateStats: {
-        goal,
-        pledged
-      } = {},
-    } = this.props;
+      news,
+      loading
+    } = this.state;
 
-    return Number(goal)
-      ? (
-          <div className="thermometer-area">
-            <Thermometer {...donateStats} />
-            <div className="thermometer-numbers">
-              <div className="thermometer-current">{'$' + commaize(pledged) + ' Pledged'}</div>
-              <div className="thermometer-goal">{'$' + commaize(goal) + ' Goal'}</div>
+    if( loading ) {
+      return null;
+    }
+
+    return (
+        <section className="news-section container">
+            <div className="row">
+              {news.map( (n, i) => <Tile key={i} {...n} /> )};
             </div>
-          </div>
-        )
-      : null;
+        </section>
+      );
   }
 }
 
@@ -222,22 +160,34 @@ class HomePage extends ServiceContext(React.Component) {
     return(
 
       <main className="home">
-        <section className="donate-section">
+        <section className="intro-section">
           <div className="container">
             <h1 className="intro-text" dangerouslySetInnerHTML={{__html:tag_line}}  />
-            <div className="pledge-box">
-              <div className="pledge-box-title">{give_box_title}</div>
-              <ThermometerSection donateStats={donateStats}/>
-              <TileBoxes />
-            </div>
+            <Thermometer {...donateStats} />
             <SocialButtons />
           </div>
         </section>
-        <Testimonials />
-        <section className="volunteer-section" />
+        <section className="donate-section">
+          <div className="container">
+            <h2 className="section-title">Ways to Donate</h2>
+            <DonateTiles />
+          </div>
+        </section>
         <section className="map-section hide-on-small-and-down">
           <div className="container">
+            <h2 className="map-title">Find a Group</h2>
+            <div className="map-desc">Click the map to browse the groups in each state.</div>
             <StateMap dataSource={states_spreadsheet} />
+          </div>
+        </section>
+        <section className="testimonial-section">
+          <div className="container">
+            <Testimonials />
+          </div>
+        </section>
+        <section className="news-section">
+          <div className="container">
+            <NewsTiles />
           </div>
         </section>
       </main>

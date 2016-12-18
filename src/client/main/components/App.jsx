@@ -11,14 +11,13 @@ import { initFilters }       from '../store/actions';
 
 import service               from '../../m2016-service';
 
-import {  
+import {
   unsubscribeFromStore,
   subscribeToStore
 } from '../../lib/analytics';
 
 import Routes       from './Routes.jsx';
 import Nav          from './Nav.jsx';
-import DonateHeader from './DonateHeader.jsx';
 import Footer       from './Footer.jsx';
 import Loading      from './Loading.jsx';
 
@@ -40,7 +39,7 @@ const ErrorPage = ({ error, err }) => {
 class App extends React.Component {
   constructor (props) {
     super (props);
-    this.state = {      
+    this.state = {
       loading: true,
       error: '',
       err: ''
@@ -52,14 +51,14 @@ class App extends React.Component {
 
       // ORDER DEPENDENT!!
       store.dispatch( initService(service) );
-      store.dispatch( initFilters(service.filters) );      
+      store.dispatch( initFilters(service.filters) );
       subscribeToStore(store);
 
       service.donateStats.then( donateStats => this.setState({ loading: false, donateStats }));
 
     }).catch( err => {
         this.setState({ error: err.message || err.statusText || err + '', err, loading: false });
-      });    
+      });
   }
 
   // before unmount, remove store listener
@@ -73,7 +72,7 @@ class App extends React.Component {
       return <Loading />;
     }
 
-    const { 
+    const {
       donateStats: {
         goal,
         pledged
@@ -89,7 +88,6 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <div className="site-wrapper">
-          <DonateHeader goal={goal} pledged={pledged} />
           <Nav siteTitle={SITE_TITLE} />
           {this.props.children}
           <Footer />

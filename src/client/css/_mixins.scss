@@ -1,24 +1,27 @@
-@mixin site-logo {
-  font-family: 'Arvo';
-  font-weight: 700;
-  font-style: italic;
-}
 @mixin clearfix {
-  //  &:after {
-  //    content: '';
-  //    display: block;
-  //    clear: both;
-  //  }
-  //  
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: " ";
     display: table;
   }
-  &:after {
+  &::after {
     clear: both;
   }
 }
+
+@mixin site-padding {
+  padding-left: $site-padding-xs;
+  padding-right: $site-padding-xs;
+  @media #{$small-and-up} {
+    padding-left: $site-padding-sm;
+    padding-right: $site-padding-sm;
+  }
+  @media #{$large-and-up} {
+    padding-left: $site-padding-lg;
+    padding-right: $site-padding-lg;
+  }
+}
+
 @mixin reg-icon {
   vertical-align: middle;
   margin-bottom: 4px;

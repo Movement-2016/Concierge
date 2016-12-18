@@ -1,5 +1,4 @@
-import React      from 'react';
-
+import React from 'react';
 import {
   ShareButtons,
   generateShareIcon,
@@ -10,30 +9,26 @@ const {
   TwitterShareButton,
 } = ShareButtons;
 
-const FacebookIcon = generateShareIcon('facebook');
-const TwitterIcon = generateShareIcon('twitter');
-
-const SocialButtons = () =>
-(
-  <div className="social-buttons">
-    <FacebookShareButton
-      url="https://movementvote.org"
-      title="Movement 2017"
-      description="Support the best community-based vote groups in the country!"
-      className="share-button fb-share-button"
-    >
-      <FacebookIcon size={40}  />
-      <span>Share on Facebook</span>
-    </FacebookShareButton>
-    <TwitterShareButton
-      url="https://movementvote.org"
-      title="Support the best community-based vote groups in the country!"
-      className="share-button twitter-share-button"
-    >
-      <TwitterIcon size={40}  />
-      <span>Share on Twitter</span>
-    </TwitterShareButton>
-  </div>
-);
+function SocialButtons() {
+  return (
+    <div className="social-buttons">
+      <FacebookShareButton
+        url="http://movementvote.org"
+        title="Movement 2017"
+        description="Support the best community-based vote groups in the country!"
+        className="share-button fb-share-button"
+      >
+        <img src="/images/facebook-icon.svg" />
+      </FacebookShareButton>
+      <TwitterShareButton
+        url="http://movementvote.org"
+        title="Support the best community-based vote groups in the country!"
+        className="share-button twitter-share-button"
+      >
+        <img src="/images/twitter-icon.svg" />
+      </TwitterShareButton>
+    </div>
+  );
+}
 
 module.exports = SocialButtons;

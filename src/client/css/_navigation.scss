@@ -1,56 +1,46 @@
-section.donate-header ~ .navbar-fixed {
-  @media #{$medium-and-up} {
-    nav {
-      top: $donate-header-height;
-    }
-  }
-}
-
 .navbar-fixed {
-  @media #{$medium-and-up} {
-    height: 0;
-  }
   nav {
     background-color: $navbar-color;
     @include z-depth-2;
+
     ul a {
       font-size: 1.1rem;
       color: $med-text;
       padding: 0 $menu-padding;
+
       &:hover {
         background-color: color('grey', 'lighten-3');
       }
     }
+
     .brand-logo {
       color: $primary-color;
       font-size: 20px;
-      @include site-logo;
-      /* height: 36px;
-      margin-top: 11px;
-      img {
-        height: 100%;
-      } */
+      font-family: 'Arvo';
+      font-weight: 700;
+      font-style: italic;
+
       @media #{$large-and-up} {
         font-size: 22px;
-        // margin-top: 14px;
         padding-left: $menu-padding;
       }
     }
+
     .button-collapse i {
-      padding-left: 8px;
-      font-size: 2rem;
+      font-size: 28px;
       color: color('grey', 'lighten-1');
-      @media #{$medium-only} {
-        padding-left: 33px;
-      }
+      padding-left: 20px;
     }
     @media #{$medium-and-down} {
+
       .side-nav > li > a {
         font-weight: 700;
       }
+
       .drop-down-btn i {
         display: none;
       }
+
       .drop-down a {
         padding: 0 32px;
         line-height: 36px;
@@ -59,14 +49,17 @@ section.donate-header ~ .navbar-fixed {
     }
     @media #{$large-and-up} {
       padding: 0 ($site-padding - $menu-padding);
+
       .nav-wrapper {
         max-width: $site-max-width + (2 * $menu-padding);
         margin: 0 auto;
       }
+
       .drop-down-btn {
-        &>a {
+        & > a {
           height: 64px;
         }
+
         i {
           font-size: 1.5rem;
           height: inherit;
@@ -74,23 +67,28 @@ section.donate-header ~ .navbar-fixed {
           display: inline-block;
           vertical-align: middle;
         }
+
         &:hover .drop-down {
           display: block;
         }
       }
+
       .drop-down {
         display: none;
         line-height: 48px;
         position: absolute;
         min-width: 160px;
         @include z-depth-1;
+
         li {
           float: none;
         }
+
         a {
           display: block;
           color: $lighter-text;
           background-color: $navbar-color;
+
           &:hover {
             background-color: color('grey', 'lighten-3');
           }

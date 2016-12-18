@@ -37,9 +37,9 @@ class StateMap extends React.Component {
   componentWillMount() {
     const storeState = this.context.store.getState();
     const { service } = storeState;
-    const { 
-      groupings:{ 
-        terms:states 
+    const {
+      groupings:{
+        terms:states
       },
     } = service;
 
@@ -55,8 +55,8 @@ class StateMap extends React.Component {
       const $e     = $(findDOMNode(this));
       const $links = $('[data-toggle="tooltip"]',$e);
 
-      $links.tooltipX({ container:'#map', html: true }); 
-      this.gotTT = true;      
+      $links.tooltipX({ container:'#map', html: true });
+      this.gotTT = true;
     }
   }
 
@@ -76,12 +76,12 @@ class StateMap extends React.Component {
           div.innerHTML = mapData;
           $('a',div).each( (i,a) => {
             const $e = $(a);
-            
+
             const stateName = $e.attr('xlink:href').match(/[a-z\-]+$/)[0];
             const formattedName = stateName.replace('-', ' ');
-            
+
             const state = states[stateName] || null;
-            
+
             $e.attr('data-toggle', 'tooltip');
 
             let link, title, cls;
@@ -120,12 +120,10 @@ class StateMap extends React.Component {
 
     return (
       <div className="map-area">
-        <h2 className="map-title">Find A Group</h2>
-        <div className="map-desc">Click the map to browse the groups in each state.</div>
-          {mapData
-            ? <div id="map" dangerouslySetInnerHTML={{__html:mapData}} />
-            : <Loading />
-          }
+        {mapData
+          ? <div id="map" dangerouslySetInnerHTML={{__html:mapData}} />
+          : <Loading />
+        }
       </div>
     );
   }

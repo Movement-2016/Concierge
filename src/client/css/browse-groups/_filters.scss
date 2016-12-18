@@ -6,8 +6,8 @@
     display: block;
     position: fixed;
     top: 140px;
-    left: $site-padding;
-    width: $side-col-width - $site-padding;
+    left: $site-padding-lg;
+    width: $side-col-width - $site-padding-lg;
     font-size: 14px;
     .collapsible,
     .collapsible-header,

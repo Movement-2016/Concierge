@@ -3,7 +3,7 @@
   .container {
     width: 100%;
     @media #{$medium-and-up} {
-      padding: 0 $site-padding;
+      padding: 0 $site-padding-lg;
     }
   }
 }
