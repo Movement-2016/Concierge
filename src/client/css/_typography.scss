@@ -10,26 +10,15 @@ body {
 p {
   margin: 0;
 }
+
 h1,
-h2 {
-  font-weight: 700;
-  color: $primary-color;
-}
+h2,
+h3,
+h4,
 h5 {
-  font-weight: 700;
-  color: $lighter-text;
+  font-family: $font-2;
 }
-p+h5 {
-  margin-top: 2.4rem;
-}
-@media #{$small-and-down} {
-  h4 {
-    font-size: 27px;
-  }
-  h5 {
-    font-size: 1.4rem;
-  }
-}
+
 .side-nav a {
   font-size: 1.2rem;
 }

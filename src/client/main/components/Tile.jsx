@@ -5,20 +5,20 @@ class TileBody extends React.Component {
   render() {
     const {
       image,
-      tag,
+      category,
       title,
       content,
       readMore,
     } = this.props;
 
     const tileHeaderStyle = image
-      ? { background: 'url("' + image + '")' }
+      ? { backgroundImage: 'url("' + image + '")' }
       : {}
 
     return (
       <div className="tile-body">
         <div className="tile-header" style={tileHeaderStyle}>
-          {tag && <div className="tile-tag">{tag}</div>}
+          {category && <div className="tile-tag">{category}</div>}
         </div>
         <div className="tile-text">
           <h3 className="tile-title">{title}</h3>
@@ -39,12 +39,17 @@ class Tile extends React.Component {
     } = this.props;
 
     const isRemote = /^http/.test(url);
+    let tileClass = 'tile';
+    display && (tileClass += ' ' + display);
 
     return (
-      <div className={'tile ' + display}>
-        {isRemote
-          ?  <a href={url}><TileBody {...this.props} /></a>
-          :  <Link to={url}><TileBody {...this.props} /></Link>
+      <div className={tileClass}>
+        {url
+          ? (isRemote
+            ?  <a href={url} target="_blank"><TileBody {...this.props} /></a>
+            :  <Link to={url}><TileBody {...this.props} /></Link>
+          )
+          : <TileBody {...this.props} />
         }
       </div>
     );

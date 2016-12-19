@@ -1,3 +1,55 @@
+main.home {
+
+  .section-title {
+    margin: $section-padding 0;
+    color: $lightest-text;
+    font-weight: 500;
+    font-size: 17px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .tile {
+    @include z-depth-2;
+    margin-bottom: $section-padding;
+    background: $white;
+    border-radius: 2px;
+
+    .tile-header {
+      height: 110px;
+      width: 100%;
+      border-radius: 2px 2px 0 0;
+      position: relative;
+      @include full-bg;
+    }
+    .tile-tag {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 5px 15px;
+      background: rgba(0, 0, 0, 0.60);
+      color: $white;
+      font-size: 13.5px;
+      font-family: $font-2;
+      text-transform: uppercase;
+    }
+
+    .tile-text {
+      padding: 18px 15px;
+    }
+
+    .tile-title {
+      font-weight: 500;
+      margin: 0 0 8px;
+    }
+
+    .tile-content {
+      color: $med-text;
+    }
+  }
+}
 @import "homepage/intro-section";
-@import "homepage/testimonial-section";
+@import "homepage/donate-section";
 @import "homepage/map-section";
+@import "homepage/testimonial-section";
+@import "homepage/news-section";

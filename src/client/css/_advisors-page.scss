@@ -1,6 +1,14 @@
 .advisors .content {
   text-align: center;
 
+  h5 {
+    font-weight: 700;
+    color: $lighter-text;
+  }
+  p+h5 {
+    margin-top: 2.4rem;
+  }
+
   li {
     margin: 0;
     line-height: 2.5;

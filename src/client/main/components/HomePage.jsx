@@ -1,14 +1,13 @@
-import React    from 'react';
-import { Link } from 'react-router';
-import StateMap from './StateMap.jsx';
+import React               from 'react';
+import { Link }            from 'react-router';
+import commaize            from 'commaize';
 
 import { ServiceContext }  from './ContextMixins.js';
+import StateMap            from './StateMap.jsx';
 import Thermometer         from './Thermometer.jsx';
 import SocialButtons       from './Social.jsx';
 import Tile                from './Tile.jsx';
-import commaize            from 'commaize';
 import Loading             from './Loading.jsx';
-
 
 
 class Testimonial extends React.Component {
@@ -21,7 +20,7 @@ class Testimonial extends React.Component {
     } = this.props;
 
     const authorPicStyle = image
-      ? { background: 'url("' + image + '")' }
+      ? { backgroundImage: 'url("' + image + '")' }
       : {}
 
     return (
@@ -89,10 +88,10 @@ class DonateTiles extends ServiceContext(React.Component) {
     }
 
     return (
-        <div className="donate-tiles">
-          {tiles.map( (d, i) => <Tile key={i} {...d} />)}
-        </div>
-      );
+      <div className="donate-tiles">
+        {tiles.map( (d, i) => <Tile key={i} {...d} />)}
+      </div>
+    );
   }
 }
 
@@ -114,12 +113,10 @@ class NewsTiles extends ServiceContext(React.Component) {
     }
 
     return (
-        <section className="news-section container">
-            <div className="row">
-              {news.map( (n, i) => <Tile key={i} {...n} /> )};
-            </div>
-        </section>
-      );
+      <div className="news-tiles">
+        {news.map( (n, i) => <Tile key={i} {...n} /> )}
+      </div>
+    );
   }
 }
 

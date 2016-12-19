@@ -9,16 +9,24 @@
   }
 }
 
-@mixin site-padding {
-  padding-left: $site-padding-xs;
-  padding-right: $site-padding-xs;
-  @media #{$small-and-up} {
-    padding-left: $site-padding-sm;
-    padding-right: $site-padding-sm;
-  }
-  @media #{$large-and-up} {
-    padding-left: $site-padding-lg;
-    padding-right: $site-padding-lg;
+@mixin full-bg {
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+
+@mixin bg-overlay($ov-color, $ov-opacity, $ov-border-radius) {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    border-radius: $ov-border-radius;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: $ov-color;
+    opacity: $ov-opacity;
   }
 }
 

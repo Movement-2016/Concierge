@@ -10,7 +10,8 @@
   }
 
   .partners-title {
-    color: lighten($primary-color-light, 25%);
+    font-family: $font-2;
+    color: $lightest-text;
     text-transform: uppercase;
     @media #{$small-and-down} {
       padding-bottom: 16px;

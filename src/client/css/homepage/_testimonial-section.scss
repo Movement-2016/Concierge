@@ -1,40 +1,59 @@
 .testimonial-section {
-  display: none;
-  padding: 30px 0 60px;
-  border-top: 1px solid $light-border;
-  text-align: center;
-  background-color: $white;
-  .carousel-item > div {
-    padding: 0px 25px;
-  }
-  .carousel {
-    .indicators {
-      .indicator-item {
-        background-color: #2196f3;
-      }
-      .indicator-item.active {
-        background-color: #607D8B;
-      }
-    }
-    @media #{$medium-and-up} {
-      .carousel-item {
-        img {
-          width: initial;
-        }
-      }
-    }
-  }
+  background-color: $primary-color-light-2;
+  padding: $section-padding 0;
 }
+
+$testimonial-pic-size: 52px;
 .testimonial {
-  margin-top: 30px;
-  @media #{$medium-only} {
-    padding: 0 24px;
+  margin: ($section-padding * 1.5) 0;
+
+  .testimonial-content {
+    background-color: $white;
+    border-radius: 4px;
+    padding: 8px 15px;
+    font-size: 18px;
+    font-style: italic;
+    color: $lighter-text;
+    position: relative;
+    line-height: 1.4;
+    &::after { //this makes the quote arrow
+      position: absolute;
+      border: 8px solid transparent;
+      border-top: 9px solid $white;
+      border-bottom: 0;
+      top: 100%;
+      left: $testimonial-pic-size / 2 - 8px;
+      content: " ";
+      height: 0;
+      width: 0;
+    }
   }
-}
-.testimonial-content {
-  color: $lighter-text;
-  margin-bottom: 4px;
-}
-.testimonial-author {
-  color: $primary-color-light;
+  .author-area {
+    margin-top: 17px;
+  }
+  .author-pic,
+  .author-info {
+    height: $testimonial-pic-size;
+    display: inline-block;
+  }
+  .author-pic {
+    width: $testimonial-pic-size;
+    border-radius: 40px;
+    @include full-bg;
+    @include bg-overlay(color("yellow", "base"), 0.08, 40px);
+  }
+  .author-info {
+    vertical-align: top;
+    margin-left: 8px;
+    line-height: 20px;
+    padding: (($testimonial-pic-size - 20px * 2) / 2) 0;
+    font-family: $font-2;
+  }
+  .author-name {
+    color: $white;
+  }
+  .author-title {
+    font-size: 15px;
+    color: $lighter-text;
+  }
 }

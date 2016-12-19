@@ -7,9 +7,10 @@ $site-padding-lg: 24px;
 $site-padding: 24px;
 
 $menu-padding: 17px;
-$donate-header-height: 46px;
 $navbar-height: 64px;
 $navbar-height-mobile: 56px;
+
+$section-padding: 20px;
 
 // Base font sizes
 $h1-fontsize: 2.75rem;
@@ -36,7 +37,6 @@ $xl-and-up: "only screen and (min-width : #{$large-screen-up})";
 
 // Base colors
 $white: #fff;
-$lightest-grey: #fbfbfb;
 $trans-white: rgba(255, 255, 255, 0.96);
 $facebook-blue: rgb(59, 89, 152);
 $twitter-blue: rgb(0, 172, 237);
@@ -44,12 +44,13 @@ $twitter-blue: rgb(0, 172, 237);
 // Color theme
 $primary-color: color("blue", "base");
 $primary-color-light: color("blue", "lighten-1");
-$secondary-color: lighten(color("red", "base"), 5%);
-$secondary-color-light: lighten(color("red", "lighten-1"), 7%);
+$primary-color-light-2: color("blue", "lighten-2");
+$secondary-color: color("red", "lighten-1");
+$secondary-color-light: color("red", "accent-1");
 
 // Element colors
 $navbar-color: $trans-white;
-$main-bg-color: $lightest-grey;
+$main-bg-color: color("grey", "lighten-5");
 $form-bg-color: $white;
 $link-color: $primary-color;
 
@@ -66,9 +67,6 @@ $med-border: rgba(0, 0, 0, 0.16);
 // Input
 $input-border-color: $lighter-text;
 $input-focus-color: $primary-color;
-
-// Intro
-$thermometer-color: $primary-color;
 
 // Groups
 $group-area-bg-color: $white;

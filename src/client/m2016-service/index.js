@@ -12,7 +12,7 @@ if( typeof window !== 'undefined') {
   _fetch = require('node-fetch'.trim()); // prevent browserify bundling
 }
 
-const WP_API_HOST =   'movement2018.wpengine.com'; 
+const WP_API_HOST =   'movement2018.wpengine.com';
 
 const WP_API_BASE = 'https://' + WP_API_HOST + '/wp-json/movement-2.1/';
 
@@ -60,7 +60,7 @@ class M2016Service {
           // migrate to more uniform data access
           // testimonials
           // donate tiles
-          // 
+          //
           return this;
         });
   }
@@ -74,8 +74,7 @@ class M2016Service {
   get news() {
     return this._news
       ? Promise.resolve(this._news)
-      : this._fetch( 'news' ).then( news => this._news = news );
-  }
+      : this._fetch( 'news' ).then( news => this._news = news.news );  }
 
   get donateTiles() {
     return this._donateTiles
