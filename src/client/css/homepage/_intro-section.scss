@@ -1,11 +1,10 @@
 .intro-section {
   background:
-    linear-gradient(
-      rgba(71, 55, 47, 0.30),
-      rgba(71, 55, 47, 0.30)
-      ),
+    linear-gradient(rgba(71, 55, 47, 0.30),
+                    rgba(71, 55, 47, 0.30)),
     url('/images/hands.jpg');
   @include full-bg;
+  position: relative;
   padding: $section-padding 0;
 
   .intro-text {
@@ -19,66 +18,114 @@
     max-width: 360px;
     margin: 20px auto 40px;
     text-shadow: 0 2px 6px $dark-text;
-    @media #{$medium-and-up} {
-      font-size: 26px;
+    @include bp-md {
+      margin-top: 50px;
       max-width: 590px;
+      font-size: 26px;
     }
-    @media #{$large-and-up} {
-      text-shadow: 0 1px 12px rgba(0, 0, 0, 0.8);
-      font-size: 38px;
-      font-weight: 900;
+    @include bp-lg {
+      margin-top: 80px;
+      font-size: 36px;
     }
   }
 
   .thermometer-area {
-    margin: 20px 0;
-  }
-  .thermometer {
-    background-color: $white;
-    height: 12px;
-    border-radius: 12px;
-    @media #{$large-and-up} {
-      height: 24px;
+    margin: 20px auto;
+    @include bp-md {
+      width: 440px;
+      margin-bottom: 30px;
+    }
+    @include bp-lg {
+      width: 530px;
+      margin-bottom: 80px;
     }
   }
+
+  .thermometer {
+     background-color: $white;
+    height: 12px;
+    border-radius: 12px;
+    @include bp-lg {
+      height: 16px;
+    }
+  }
+
   .mercury {
     height: 100%;
     background: $primary-color-light;
     border-radius: 12px 0 0 12px;
     max-width: 0;
   }
+
   .thermometer-numbers {
     @include clearfix;
+    font-weight: 500;
     margin-top: 8px;
     line-height: 1.2;
     color: $white;
     font-size: 14px;
     font-family: $font-2;
     text-shadow: 0 1px 2px $dark-text;
+    @include bp-md {
+      font-size: 18px;
+    }
+    @include bp-lg {
+      font-size: 18px;
+    }
   }
+
   .thermometer-current {
     float: left;
   }
+
   .thermometer-goal {
     float: right;
   }
-
+  .social-buttons {
+    @include bp-md {
+      margin-bottom: 10px;
+    }
+    @include bp-lg {
+      position: absolute;
+      right: $site-padding-lg;
+      top: $site-padding-lg;
+    }
+  }
   .share-button {
     display: inline-block;
     text-align: center;
+    cursor: pointer;
     width: 48px;
     height: 26px;
     border-radius: 2px;
     @include z-depth-1;
+    &:hover,
+    &:focus {
+      @include z-depth-3;
+    }
+    @include bp-lg {
+      width: 68px;
+      height: 38px;
+    }
     img {
       height: 18px;
       margin: 4px auto;
+      @include bp-lg {
+        height: 24px;
+        margin: 7px auto;
+      }
     }
   }
+
   .fb-share-button {
-    background: $facebook-blue;
     margin-right: 8px;
+    background: $facebook-blue;
+
+    @include bp-lg {
+      margin-right: 20px;
+    }
   }
+
   .twitter-share-button {
     background: $twitter-blue;
   }

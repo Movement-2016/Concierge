@@ -2,8 +2,8 @@
 .state-page {
   .container {
     width: 100%;
-    @media #{$medium-and-up} {
-      padding: 0 $site-padding-lg;
+    @include bp-md {
+      padding: 0 site-padding-lg;
     }
   }
 }

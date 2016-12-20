@@ -5,7 +5,7 @@
   padding: 30px;
   text-align: center;
   z-index: 200;
-  @media #{$medium-and-up} {
+  @include bp-md {
     padding-top: 50px;
   }
 
@@ -28,12 +28,13 @@
 
   .links-section {
     margin-top: 40px;
+    font-family: $font-2;
 
     li {
       display: inline-block;
       font-size: 14px;
       padding: 0 8px;
-      @media #{$medium-and-up} {
+      @include bp-md {
         font-size: 1rem;
         padding: 0 16px;
       }

@@ -1,6 +1,6 @@
 .donation-plan-tray {
   display: none;
-  @media #{$large-and-up} {
+  @include bp-lg {
     display: block;
     position: fixed;
     $tray-padding: 16px;
@@ -8,8 +8,8 @@
     background-color: $white;
     @include z-depth-1;
     top: 110;
-    width: $side-col-width - $site-padding-lg;
-    right: $site-padding-lg;
+    width: $side-col-width - site-padding-lg;
+    right: site-padding-lg;
     margin-top: 30px;
     border-radius: 2px;
     .title {

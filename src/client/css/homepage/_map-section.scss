@@ -1,51 +1,68 @@
 .map-section {
-  border-top: 1px solid $light-border;
-  padding: 30px 0;
-  @media #{$medium-and-up} {
-    padding: 60px 0;
-  }
-}
-.map-area {
-  margin: 0 auto;
-  text-align: center;
-  color: $lighter-text;
-  .map-title {
-    margin-top: 0px;
-  }
-  .map-desc {
-    @media #{$small-and-down} {
-      margin-bottom: 1rem;
-    }
-  }
-  .q0-7 {
-    fill: desaturate($state-dark-red, 20%);
-    &:hover {
-      fill: $state-dark-red;
-    }
-  }
-  .q2-7 {
-    fill: desaturate($state-light-red, 20%);
-    &:hover {
-      fill: $state-light-red;
-    }
-  }
-  .q3-7 {
-    fill: desaturate($state-purple, 20%);
-    &:hover {
-      fill: $state-purple;
-    }
-  }
-  .q4-7 {
-    fill: desaturate($state-light-blue, 20%);
+  display: none;
 
-    &:hover {
-      fill: $state-light-blue;
+  @include bp-lg {
+    display: block;
+    border-top: 1px solid $light-border;
+    background-color: $white;
+    padding: 30px 0;
+    text-align: center;
+
+    .section-title {
+      margin-bottom: 6px;
+      color: $secondary-color-light;
     }
   }
-  .q5-7 {
-    fill: desaturate($state-dark-blue, 20%);
-    &:hover {
-      fill: $state-dark-blue;
+
+  .map-area {
+    max-width: 1000px;
+    margin: 0 auto 30px;
+    color: $lighter-text;
+
+    .map-desc {
+      @media #{$small-and-down} {
+        margin-bottom: 1rem;
+      }
+    }
+
+    .q0-7 {
+      fill: desaturate($state-dark-red, 20%);
+
+      &:hover {
+        fill: $state-dark-red;
+      }
+    }
+
+    .q2-7 {
+      fill: desaturate($state-light-red, 20%);
+
+      &:hover {
+        fill: $state-light-red;
+      }
+    }
+
+    .q3-7 {
+      fill: desaturate($state-purple, 20%);
+
+      &:hover {
+        fill: $state-purple;
+      }
+    }
+
+    .q4-7 {
+      fill: desaturate($state-light-blue, 20%);
+
+      &:hover {
+        fill: $state-light-blue;
+      }
+    }
+
+    .q5-7 {
+      fill: desaturate($state-dark-blue, 20%);
+
+      &:hover {
+        fill: $state-dark-blue;
+      }
     }
   }
 }

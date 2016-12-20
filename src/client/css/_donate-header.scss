@@ -1,11 +1,11 @@
 .donate-header {
-  @media #{$medium-and-up} {
+  @include bp-md {
     display: block;
   }
-  @media #{$medium-only} {
+  @include bp-md-only {
     text-align: center;
   }
-  padding: 0 $site-padding-lg;
+  padding: 0 site-padding-lg;
   position: fixed;
   top: 0;
   width: 100%;
@@ -43,7 +43,7 @@
   }
   .thermometer-area {
     display: none;
-    @media #{$large-and-up} {
+    @include bp-lg {
       display: block;
       float: right;
     }

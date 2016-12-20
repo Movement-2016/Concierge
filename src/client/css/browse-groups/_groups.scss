@@ -1,4 +1,4 @@
-@media #{$large-and-up} {
+@include bp-lg {
   .browse-groups-page .page-title {
     display: none;
   }
@@ -28,7 +28,7 @@
     margin: 4px auto;
     opacity: 0.7;
   }
-  @media #{$large-and-up} {
+  @include bp-lg {
     margin-bottom: 24px;
     font-size: 38px;
 
@@ -156,7 +156,7 @@
     color: $primary-color-light;
   }
 }
-@media #{$medium-and-up} {
+@include bp-md {
   .group-link + .group-link {
     margin-left: 40px;
   }
@@ -181,7 +181,7 @@
   }
   .group-tag + .group-tag {
     margin-left: 4px;
-    @media #{$medium-and-up} {
+    @include bp-md {
       margin-left: 6px;
     }
   }

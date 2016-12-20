@@ -1,12 +1,19 @@
 .navbar-fixed {
+  @include bp-lg {
+    height: $navbar-height-lg;
+  }
   nav {
     background-color: $navbar-color;
     @include z-depth-2;
+    @include bp-lg {
+      height: $navbar-height-lg;
+      line-height: $navbar-height-lg;
+    }
 
     ul a {
       font-size: 1.1rem;
       color: $med-text;
-      padding: 0 $menu-padding;
+      padding: 0 $menu-padding-lg;
 
       &:hover {
         background-color: color('grey', 'lighten-3');
@@ -20,15 +27,21 @@
       font-weight: 700;
       font-style: italic;
 
-      @media #{$large-and-up} {
+      @include bp-lg {
         font-size: 22px;
-        padding-left: $menu-padding;
+        padding-left: $menu-padding-lg;
       }
     }
 
-    .button-collapse i {
-      font-size: 28px;
-      color: color('grey', 'lighten-1');
+    .button-collapse {
+      margin: 0 5%;
+      @include bp-md-only {
+        margin: 0 2.5%;
+      }
+      i {
+        font-size: 28px;
+        color: color('grey', 'lighten-1');
+      }
     }
     @media #{$medium-and-down} {
 
@@ -46,17 +59,17 @@
         height: 36px;
       }
     }
-    @media #{$large-and-up} {
-      padding: 0 ($site-padding - $menu-padding);
+    @include bp-lg {
+      padding: 0 ($site-padding-lg - $menu-padding-lg);
 
       .nav-wrapper {
-        max-width: $site-max-width + (2 * $menu-padding);
+        max-width: $site-max-width + (2 * $menu-padding-lg);
         margin: 0 auto;
       }
 
       .drop-down-btn {
         & > a {
-          height: 64px;
+          height: $navbar-height-lg;
         }
 
         i {

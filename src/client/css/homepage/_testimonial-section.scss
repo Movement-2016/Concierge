@@ -1,12 +1,22 @@
 .testimonial-section {
   background-color: $primary-color-light-2;
-  padding: $section-padding 0;
+  padding: 30px 0;
+  @include bp-lg {
+    padding: 40px 0 30px;
+  }
 }
 
 $testimonial-pic-size: 52px;
+.testimonials {
+  @extend %flex-container;
+}
 .testimonial {
-  margin: ($section-padding * 1.5) 0;
-
+  @extend %flex-item;
+  margin: 30px 0;
+  @include bp-md {
+    display: flex;
+    flex-direction: column;
+  }
   .testimonial-content {
     background-color: $white;
     border-radius: 4px;
@@ -16,6 +26,10 @@ $testimonial-pic-size: 52px;
     color: $lighter-text;
     position: relative;
     line-height: 1.4;
+    flex: 1;
+    @include bp-md-only {
+      font-size: 16px;
+    }
     &::after { //this makes the quote arrow
       position: absolute;
       border: 8px solid transparent;
@@ -35,6 +49,7 @@ $testimonial-pic-size: 52px;
   .author-info {
     height: $testimonial-pic-size;
     display: inline-block;
+    max-width: calc(100% - 60px);
   }
   .author-pic {
     width: $testimonial-pic-size;
@@ -48,12 +63,21 @@ $testimonial-pic-size: 52px;
     line-height: 20px;
     padding: (($testimonial-pic-size - 20px * 2) / 2) 0;
     font-family: $font-2;
+    font-weight: 500;
   }
   .author-name {
     color: $white;
+    @include bp-md-only {
+      font-size: 15px;
+    }
   }
   .author-title {
     font-size: 15px;
-    color: $lighter-text;
+    color: $lightest-text;
+    @include bp-md-only {
+      margin-top: 3px;
+      line-height: 1.1;
+      font-size: 14px;
+    }
   }
 }

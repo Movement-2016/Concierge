@@ -24,7 +24,7 @@ class Testimonial extends React.Component {
       : {}
 
     return (
-      <div className="testimonial">
+      <div className="testimonial flex-item">
         <div className="testimonial-content">{content}</div>
         <div className="author-area">
           <div className="author-pic" style={authorPicStyle} />
@@ -59,7 +59,7 @@ class Testimonials extends ServiceContext(React.Component) {
     }
 
     return (
-      <div className="testimonials">
+      <div className="testimonials flex-container">
         {testimonials.map( (t,i) => <Testimonial key={i} {...t} /> )}
       </div>
     );
@@ -170,9 +170,9 @@ class HomePage extends ServiceContext(React.Component) {
             <DonateTiles />
           </div>
         </section>
-        <section className="map-section hide-on-small-and-down">
+        <section className="map-section">
           <div className="container">
-            <h2 className="map-title">Find a Group</h2>
+            <h2 className="section-title">Find a Group</h2>
             <div className="map-desc">Click the map to browse the groups in each state.</div>
             <StateMap dataSource={states_spreadsheet} />
           </div>

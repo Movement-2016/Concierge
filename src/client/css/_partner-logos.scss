@@ -20,17 +20,17 @@
     height: 100%;
     vertical-align: top;
   }
-  @media #{$medium-and-up} {
+  @include bp-md {
     margin: 12px;
   }
-  @media #{$large-and-up} {
+  @include bp-lg {
     height: 56px;
     margin: 15px;
   }
 }
 .dfa-logo {
   padding: 4px 0;
-  @media #{$medium-and-up} {
+  @include bp-md {
     padding: 7px 0;
   }
 }
@@ -39,13 +39,13 @@
 .ccca-logo,
 .courage-logo {
   padding: 6px 0;
-  @media #{$large-and-up} {
+  @include bp-lg {
     padding: 10px 0;
   }
 }
 .lacafe-logo {
   padding: 8px 0;
-  @media #{$large-and-up} {
+  @include bp-lg {
     padding: 12px 0;
   }
 }
@@ -53,7 +53,7 @@
 .dailykos-logo,
 .paf-logo {
   padding: 11px 0;
-  @media #{$large-and-up} {
+  @include bp-lg {
     padding: 17px 0;
   }
 }

@@ -1,13 +1,13 @@
 .filter-area {
   display: none;
 }
-@media #{$large-and-up} {
+@include bp-lg {
   .filter-area {
     display: block;
     position: fixed;
     top: 140px;
-    left: $site-padding-lg;
-    width: $side-col-width - $site-padding-lg;
+    left: site-padding-lg;
+    width: $side-col-width - site-padding-lg;
     font-size: 14px;
     .collapsible,
     .collapsible-header,

@@ -1,0 +1,36 @@
+.news-section {
+  padding: 40px 0;
+
+  .tile {
+    margin-top: 20px;
+    @include bp-md {
+      width: 66.667%;
+      margin: 20px auto 40px;
+    }
+    @include bp-lg {
+      width: 50%;
+    }
+  }
+
+  .tile-header {
+    @include bg-overlay(color("orange", "lighten-2"), 0.10, 2px);
+    @include bp-md {
+      height: 140px;
+    }
+  }
+
+  .tile-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: $secondary-color;
+    @include bp-lg {
+      font-size: 20px;
+    }
+  }
+  .tile-content {
+    font-size: 15px;
+    @include bp-lg {
+      font-size: inherit;
+    }
+  }
+}

@@ -1,11 +1,11 @@
-html,
+.site-wrapper,
 body,
-#app,
-.site-wrapper {
+html {
   min-height: 100%;
   width: 100%;
   background-color: $white;
 }
+
 .site-wrapper {
   display: flex;
   flex-direction: column;
@@ -14,9 +14,6 @@ body,
 main {
   background-color: $main-bg-color;
   flex: 1;
-  @media #{$medium-and-up} {
-    margin-top: $navbar-height;
-  }
 }
 
 .site-footer {
@@ -28,28 +25,35 @@ ul {
 }
 
 .container {
-  @media #{$large-and-up} {
-    width: 85%;
+  @include bp-md-only {
+    width: 95%;
+  }
+  @include bp-lg {
+    width: 90%;
     max-width: $site-max-width;
-    min-width: $medium-screen-up - (2 * $site-padding);
+    min-width: $medium-screen-up - (2 * $site-padding-lg);
   }
 }
+
 .small-container {
   margin: 0 auto;
   max-width: 1000px;
-  @media #{$medium-and-up} {
+  @include bp-md {
     width: 75%;
   }
-  @media #{$large-and-up} {
+  @include bp-lg {
     width: 66%;
   }
 }
+
 .row {
   margin-bottom: 0;
 }
+
 .hidden {
   display: none;
 }
+
 textarea {
   border-color: $light-border;
   background: color('grey', 'lighten-5');
@@ -59,10 +63,13 @@ textarea {
 
 .btn {
   @include z-depth-1;
-  &:hover, &:focus {
+
+  &:focus,
+  &:hover {
     @include z-depth-2;
   }
 }
+
 .btn-flat:hover {
   background-color: rgba(0, 0, 0, 0.03);
 }

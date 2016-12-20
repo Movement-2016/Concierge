@@ -1,14 +1,11 @@
 // Heights & widths
 $site-max-width: 1400px;
+$site-padding-lg: 30px;
+$menu-padding-lg: 20px;
 
-$site-padding-xs: 20px;
-$site-padding-sm: 20px;
-$site-padding-lg: 24px;
-$site-padding: 24px;
-
-$menu-padding: 17px;
-$navbar-height: 64px;
-$navbar-height-mobile: 56px;
+$navbar-height: 56px;
+$navbar-height-mobile: $navbar-height;
+$navbar-height-lg: 64px;
 
 $section-padding: 20px;
 

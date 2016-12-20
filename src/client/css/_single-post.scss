@@ -1,14 +1,14 @@
 .single {
     .group {
         padding-top:30px;
-        @media #{$medium-and-up} {
+        @include bp-md {
             margin: 3rem 0;
         }
     }
     .group-title {
         font-size: 24px;
         margin-bottom: 1em;
-        @media #{$medium-and-up} {
+        @include bp-md {
             font-size: 34px;
         }
     }
@@ -20,7 +20,7 @@
 #comments {
     background-color: $white;
     padding: 20px;
-    @media #{$medium-and-up} {
+    @include bp-md {
         padding: 30px 45px;
     }
     margin: 3rem 0;
@@ -30,7 +30,7 @@
         font-size: 20px;
         text-transform: uppercase;
         text-align: center;
-        @media #{$medium-and-up} {
+        @include bp-md {
             font-size: 26px;
         }
     }
@@ -66,10 +66,10 @@
     
     .comment-respond {
         padding: 0.5rem 0 1rem;
-        @media #{$medium-only} {
+        @include bp-md-only {
             padding: 0.5rem 1rem 1rem;
         }
-        @media #{$large-and-up} {
+        @include bp-lg {
             padding: 0.5rem 2rem 1rem;
         }
     }
@@ -88,7 +88,7 @@
     #reply-title {
         font-size: 20px;
         font-weight: 600;
-        @media #{$medium-and-up} {
+        @include bp-md {
             font-size: 26px;
         }
     }

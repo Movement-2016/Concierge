@@ -1,51 +1,90 @@
-main.home {
+.section-title {
+  margin: $section-padding 0;
+  color: $lightest-text;
+  font-weight: 500;
+  font-size: 17px;
+  text-transform: uppercase;
+  text-align: center;
+  @include bp-lg {
+    font-size: 22px;
+  }
+}
 
-  .section-title {
-    margin: $section-padding 0;
-    color: $lightest-text;
-    font-weight: 500;
-    font-size: 17px;
-    text-transform: uppercase;
-    text-align: center;
+%flex-container {
+  @include bp-md {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    & > div {
+      margin-left: 18px;
+      @include bp-lg {
+        margin-left: 36px;
+      }
+    }
+    & > :first-child {
+      margin-left: 0;
+    }
+    & > :nth-child(4n+1) {
+      margin-left: 0;
+    }
+  }
+}
+
+%flex-item {
+  @include bp-md {
+    width: calc(33.3333% - 12px);
+    display: inline-block;
+
+    // & + %flex-item {
+    //   margin-left: 18px;
+    // }
+  }
+  @include bp-lg {
+    width: calc(33.3333% - 24px);
+
+    // & + %flex-item {
+    //   margin-left: 36px;
+    // }
+  }
+}
+
+.tile {
+  @include z-depth-2;
+  margin-bottom: $section-padding;
+  background: $white;
+  border-radius: 2px;
+
+  .tile-header {
+    height: 110px;
+    width: 100%;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    @include full-bg;
   }
 
-  .tile {
-    @include z-depth-2;
-    margin-bottom: $section-padding;
-    background: $white;
-    border-radius: 2px;
+  .tile-tag {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 5px 15px;
+    background: rgba(0, 0, 0, 0.45);
+    color: $white;
+    font-size: 13.5px;
+    font-family: $font-2;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
 
-    .tile-header {
-      height: 110px;
-      width: 100%;
-      border-radius: 2px 2px 0 0;
-      position: relative;
-      @include full-bg;
-    }
-    .tile-tag {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      padding: 5px 15px;
-      background: rgba(0, 0, 0, 0.60);
-      color: $white;
-      font-size: 13.5px;
-      font-family: $font-2;
-      text-transform: uppercase;
-    }
+  .tile-text {
+    padding: 18px 15px;
+  }
 
-    .tile-text {
-      padding: 18px 15px;
-    }
+  .tile-title {
+    margin: 0 0 8px;
+  }
 
-    .tile-title {
-      font-weight: 500;
-      margin: 0 0 8px;
-    }
-
-    .tile-content {
-      color: $med-text;
-    }
+  .tile-content {
+    color: $med-text;
   }
 }
 @import "homepage/intro-section";

@@ -9,6 +9,22 @@
   }
 }
 
+@mixin bp-md {
+  @media #{$medium-and-up} {
+    @content;
+  }
+}
+@mixin bp-lg {
+  @media #{$large-and-up} {
+    @content;
+  }
+}
+@mixin bp-md-only {
+  @media #{$medium-only} {
+    @content;
+  }
+}
+
 @mixin full-bg {
   background-size: cover;
   background-position: top center;

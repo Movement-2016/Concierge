@@ -1,6 +1,6 @@
 .content-page {
   padding: 3rem 0;
-  @media #{$medium-and-up} {
+  @include bp-md {
     padding: 4rem 0;
     img.alignleft {
       float: left;
