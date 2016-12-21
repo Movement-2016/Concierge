@@ -8,7 +8,7 @@ import Thermometer         from './Thermometer.jsx';
 import SocialButtons       from './Social.jsx';
 import Tile                from './Tile.jsx';
 import Loading             from './Loading.jsx';
-
+import DonateTiles         from './DonateTiles.jsx';
 
 class Testimonial extends React.Component {
   render() {
@@ -61,35 +61,6 @@ class Testimonials extends ServiceContext(React.Component) {
     return (
       <div className="testimonials flex-container">
         {testimonials.map( (t,i) => <Testimonial key={i} {...t} /> )}
-      </div>
-    );
-  }
-}
-
-
-
-class DonateTiles extends ServiceContext(React.Component) {
-
-  stateFromStore( storeState ) {
-
-    storeState.service.donateTiles.then( tiles => this.setState( { tiles, loading: false  }));
-
-    this.setState({ loading: true });
-  }
-
-  render() {
-    const {
-      tiles,
-      loading
-    } = this.state;
-
-    if( loading ) {
-      return null;
-    }
-
-    return (
-      <div className="donate-tiles">
-        {tiles.map( (d, i) => <Tile key={i} {...d} />)}
       </div>
     );
   }
