@@ -2,16 +2,8 @@ import React from 'react';
 import 'whatwg-fetch';
 import { findDOMNode } from 'react-dom';
 import Loading from './Loading.jsx';
-import { browserHistory } from 'react-router';
-import '../../lib/tooltip';
 
-window.slink = function(e,a) {
-  e.stopPropagation();
-  e.preventDefault();
-  if( !/no-groups$/.test(a) ) {
-    browserHistory.push(a);
-  }
-};
+import '../../lib/tooltip';
 
 const formatRace = race => {
   return ['category', 'hotraces', 'notes'].reduce( (str,k) => {
@@ -100,8 +92,7 @@ class StateMap extends React.Component {
 
             raceData[stateName] && (title += '<div class="race-data">' + formatRace(raceData[stateName]) + '</div>');
 
-            $e.attr('onclick', 'window.slink(event,"'+link+'")');
-            $e.attr('xlink:href', '#');
+            $e.attr('xlink:href', link);
             $e.attr('title', title);
             $('path',a).addClass( cls );
 

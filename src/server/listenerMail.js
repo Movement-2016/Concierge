@@ -135,7 +135,7 @@ function contactEmail (req, res) {
 
   const payload = {
     to: advisorEmail,
-    subject: '[Movement 2017] Request for House Party',
+    subject: '[Movement 2017] Request for Contact',
     message: entities.decode(mail)
   };
 
