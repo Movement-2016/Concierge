@@ -135,7 +135,7 @@ class HomePage extends ServiceContext(React.Component) {
             <SocialButtons />
           </div>
         </section>
-        <section className="donate-section">
+        <section className="donate-section" id="donate">
           <div className="container">
             <h2 className="section-title">Ways to Donate</h2>
             <DonateTiles />
