@@ -97,8 +97,8 @@ class Org extends ContextMixin(React.Component) {
           <div className="group-links-row row">
             <div className="col s6 m9">
               {urlWeb  && <a className="group-link" href={urlWeb}  target="_blank"><i className="material-icons">link</i>Website</a>}
-              {urlGive && <a className="group-link" href={urlGive} target="_blank"><i className="material-icons">star_border</i>Donate Now</a>}
               <a className="group-link hide-on-small-and-down" href="#" onClick={this.onOrgClick}><span><i className={`material-icons ${iconCls}`}>{icon}</i>{text}</span></a>
+              {urlGive && <a className="group-link" href={urlGive} target="_blank"><i className="material-icons">star_border</i>Donate Now</a>}
             </div>
             <div className="nonprofit-tags col s6 m3">
               {nonProfitType.tags.map( t => <span className="group-tag" key={t}>{t}</span> )}
