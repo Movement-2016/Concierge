@@ -73,6 +73,12 @@ By default the server will run on HTTP port 3000, in order to point port 80 AWS 
 sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 3000
 ````
 
+The HTTPS server will run on HTTP port 4000, in order to point port 443 AWS requires the following:
+
+````
+sudo iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-ports 4000
+````
+
 ## License
 
 MIT
