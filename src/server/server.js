@@ -15,7 +15,7 @@ var http = require('http');
 
 var sslPath = '/etc/letsencrypt/live/movementvote.org/';
 
-var SSL_PORT = 443;
+var SSL_PORT = 4000;
 
 // the secret for the session, should be set in an environment variable
 // some random text used as a placeholder for dev
@@ -122,7 +122,7 @@ function start (port, dbLocation) {
               key: fs.readFileSync(sslPath + 'privkey.pem'),
               cert: fs.readFileSync(sslPath + 'fullchain.pem')
           };
-          //https.createServer(options, app).listen(SSL_PORT,listening(SSL_PORT));
+          https.createServer(options, app).listen(SSL_PORT,listening(SSL_PORT));
         }
       } catch(err) {
         console.log( 'wups catch: ' + err );
