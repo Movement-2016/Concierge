@@ -1,3 +1,7 @@
+/*
+
+FILE IS DEPREICATED
+
 const mongoClient = require ('mongodb').MongoClient;
 const ObjectId = require ('mongodb').ObjectId;
 const hash = require ('./hash');
@@ -150,3 +154,4 @@ exports.getPlan = getPlan;
 exports.insertPlan = insertPlan;
 exports.updatePlan = updatePlan;
 exports.getData = getData;
+*/

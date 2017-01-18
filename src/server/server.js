@@ -7,7 +7,7 @@ const fs = require ('fs');
 const path = require ('path');
 const passport = require ('passport');
 const auth = require ('./auth');
-const db = require ('./db');
+//const db = require ('./db');
 const routes = require ('./routes');
 
 var https = require('https');
@@ -31,12 +31,10 @@ const httpsOnly = (req, res, next) => {
   }
 };
 
-function start (port, dbLocation) {
+function start (port) {
   return new Promise ((resolve, reject) => {
     console.log ('Starting server');
-    Promise.resolve ().then (() => {
-      return db.init (dbLocation);
-    }).then (() => {
+    try {
       const app = express ();
 
       // if production deployment, only allow https connections
@@ -130,9 +128,9 @@ function start (port, dbLocation) {
 
       http.createServer(app).listen(port,listening(port));
 
-    }).catch (err => {
+    } catch (err)  {
       reject (err);
-    });
+    }
   });
 }
 
