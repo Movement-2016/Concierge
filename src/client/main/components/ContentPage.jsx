@@ -26,22 +26,29 @@ class ContentPageShell extends React.Component {
 
 class ContentPage extends PageContext(React.Component) {
 
+  constructor() {
+    super(...arguments);
+    this.state = {};
+  }
+
   get page() {
     return this.props.page;
   }
 
   render() {
 
-    const { 
-      content, 
-      page:{
-        title
-      } = {} 
-    } = this.state;
-
-    if( !content ) {
-      return <Loading />;
+    if( !this.state.page ) {
+      return <Loading />;      
     }
+
+    const { 
+      page:{
+        fields:{
+          html: content
+        },
+        post_title: title
+      }
+    } = this.state;
 
     return (
       <ContentPageShell name={this.page} title={title}>

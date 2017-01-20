@@ -11,8 +11,9 @@ class AdvisorPage extends ServiceContext(React.Component) {
   }
 
   stateFromStore(storeState) {
-    storeState.service.advisors.then( ({advisors}) => {
-      const sorted = [ ...advisors].sort( (a,b) => a.match(/[a-z-]+$/i)[0].localeCompare(b.match(/[a-z-]+$/i)[0]) );
+    storeState.service.advisors.then( advisors => {
+      advisors = advisors.map( a => a.post_title );
+      const sorted = advisors.sort( (a,b) => a.match(/[a-z-]+$/i)[0].localeCompare(b.match(/[a-z-]+$/i)[0]) );
       this.setState({ advisors: sorted, loading: false });
     });
   }

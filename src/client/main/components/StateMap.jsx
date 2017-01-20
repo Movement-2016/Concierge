@@ -14,10 +14,6 @@ const formatRace = race => {
 
 class StateMap extends React.Component {
 
-  static contextTypes = {
-    store: React.PropTypes.object.isRequired
-  }
-
   constructor() {
     super(...arguments);
     this.state = {
@@ -26,7 +22,12 @@ class StateMap extends React.Component {
     this.unMounted = false;
   }
 
-  componentWillMount() {
+/*
+  static contextTypes = {
+    store: React.PropTypes.object.isRequired
+  }
+
+  xxxcomponentWillMount() {    
     const storeState = this.context.store.getState();
     const { service } = storeState;
     const {
@@ -40,6 +41,14 @@ class StateMap extends React.Component {
     } = this.props;
 
     service.getStateRaces(dataSource).then( races => this.populateMapData(races,states) );
+  }
+*/
+  componentWillMount() {
+    const states = {};
+    this.props.dataSource.forEach( s => states[s.slug] = s );
+    const colors = {};
+    this.props.colors.forEach( c => colors[c.term_id] = c );
+    this.populateMapData(states,colors);
   }
 
   componentDidUpdate() {
@@ -56,7 +65,7 @@ class StateMap extends React.Component {
     this.unMounted = true;
   }
 
-  populateMapData(raceData,states) {
+  populateMapData(states,colors) {
     /* globals $ */
     fetch( location.origin + '/images/state-map-data.svg')
       .then( response => response.text() )
@@ -79,25 +88,25 @@ class StateMap extends React.Component {
             let link, title, cls;
             title = `<div class="tooltip-header"><span class="state-name">${formattedName}</span> - `;
             if( state ) {
-              const { label, group, count } = state;
+              const { parent, count } = state;
               link  = '/groups#' + stateName;
-              cls   = 'map-' + group;
+              cls   = 'map-' + colors[parent].slug.replace(/-states/,'');
               const s = (count === 1 ? '' : 's');
               title += `${count} group${s}</div>`;
+              if( state.description ) {
+                title += '<div class="race-data">' + state.description + '</div>';
+              }
             } else {
               link  = '/groups#no-groups';
               title += '0 groups</div>';
               cls   = 'map-no-groups';
             }
 
-            raceData[stateName] && (title += '<div class="race-data">' + formatRace(raceData[stateName]) + '</div>');
-
             $e.attr('xlink:href', link);
             $e.attr('title', title);
             $('path',a).addClass( cls );
 
           });
-
 
           mapData = div.innerHTML;
           this.setState({ mapData });
@@ -107,6 +116,7 @@ class StateMap extends React.Component {
   }
 
   render() {
+
     const { mapData } = this.state;
 
     return (

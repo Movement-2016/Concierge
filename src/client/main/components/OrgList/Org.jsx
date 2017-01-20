@@ -4,29 +4,37 @@ import {
   ContextMixin
 } from '../ContextMixins';
 
-import { toggleItem }        from '../../store/actions';
-import { filterTagsByTypes } from '../../store/utils';
+import { toggleItem } from '../../store/actions';
 
 class TagBlock extends React.Component {
   render() {
-    const { tagTypes } = this.props;
-     return (
-        <div>
-        {Object.keys(tagTypes).map( (t,i) => {
-          const { label, tags } = tagTypes[t];
-          if (tags.length === 0) {
-            return;
-          } else {
-            return (
-                <div className="tagblock" key={i} >
-                  <div className="tagblock-title">{label}:</div>
-                  <div className="tagblock-tags">{tags.map( (g,i) => <span className="group-tag" key={i}>{g}</span>)}</div>
-                </div>
-              );
-            }
-        })}
-        </div>
-      );
+    const { 
+      fields,
+      filters
+    } = this.props;
+
+    const block = {};
+
+    ['issue-area','constituency'].forEach( taxonomySlug => {
+          if( fields[taxonomySlug] && fields[taxonomySlug].length ) {
+            const taxonomy = filters[taxonomySlug];
+            const terms     = taxonomy.terms;
+            block[taxonomy.label] = fields[taxonomySlug].map( slug => terms[slug].name );
+          }
+      });
+
+    return (
+      <div>
+      {Object.keys(block).map( label => { 
+          return (
+              <div className="tagblock" key={label} >
+                <div className="tagblock-title">{label}:</div>
+                <div className="tagblock-tags">{block[label].map( (g,i) => <span className="group-tag" key={i}>{g}</span>)}</div>
+              </div>
+            );
+      })}
+      </div>
+    );
   }
 }
 
@@ -41,8 +49,8 @@ class Org extends ContextMixin(React.Component) {
 
     this.onOrgClick = this.onOrgClick.bind(this);
 
-    this.filters = this.context.store.getState().service.filters;
-
+    const service = this.context.store.getState().service; 
+    this.filters = service.filtersSync;
   }
 
   shouldComponentUpdate() {
@@ -67,30 +75,31 @@ class Org extends ContextMixin(React.Component) {
 
   render() {
     const {
-      name,
-      urlWeb,
-      urlGive,
-      description,
-      tags,
-      id
+      post_title: name,
+      fields,
+      fields: {
+        website: urlWeb,
+        c4_donate_link: urlC4,
+        c3_donate_link: urlC3,
+        html: description,
+        'nonprofit-type': npTags = []
+      },      
+      ID: id
     } = this.props;
 
     const {
       selected
     } = this.state;
 
-    const icon = selected ? 'close' : 'playlist_add';
+    const icon    = selected ? 'close' : 'playlist_add';
     const iconCls = selected ? 'remove' : 'add';
-    const text = selected ? 'Remove from plan' : 'Add to plan';
-    const cls  = selected ? 'selected' : '';
+    const text    = selected ? 'Remove from plan' : 'Add to plan';
+    const cls     = selected ? 'selected' : '';
 
-    const {
-      'nonprofit-type': nonProfitType,
-      constituency,
-      'issue-area': issueArea
-    } = filterTagsByTypes({tags,filters:this.filters});
+    const npTerms = this.filters['nonprofit-type'].terms;
 
-
+    const urlGive = urlC3 || urlC4;
+    
     return(
         <div className={`group ${cls}`}>
           <div className="group-title" data-id={id}><span data-href={`/groups#${id}`} dangerouslySetInnerHTML={{__html:name}} /></div>
@@ -101,11 +110,11 @@ class Org extends ContextMixin(React.Component) {
               {urlGive && <a className="group-link" href={urlGive} target="_blank"><i className="material-icons">star_border</i>Donate Now</a>}
             </div>
             <div className="nonprofit-tags col s6 m3">
-              {nonProfitType.tags.map( t => <span className="group-tag" key={t}>{t}</span> )}
+              {npTags.map( t => <span className="group-tag" key={t}>{npTerms[t].name}</span> )}
             </div>
           </div>
           <div className="group-content"><p dangerouslySetInnerHTML={{__html:description}} /></div>
-          <TagBlock tagTypes={{constituency,issueArea}} />
+          <TagBlock fields={fields} filters={this.filters} />
         </div>
       );
   }

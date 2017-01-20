@@ -1,16 +1,20 @@
 import React               from 'react';
 import { Link, IndexLink } from 'react-router';
 
-const _MenuItem = ({href,linkto,text} ) => {
-  if( href ) {
-    return <li className="top-level"><a href={href}>{text}</a></li>;
-  }
+const _MenuItem = ({url,title} ) => {
+  var text       = title;
+  var isExternal = !!url.match(/^http/);
+  var href       = isExternal && url;
+  var linkto     = !isExternal && url;
 
-  return <li><Link to={linkto}>{text}</Link></li>;
+  return href
+    ? <li className="top-level"><a href={href}>{text}</a></li>
+    : <li><Link to={linkto}>{text}</Link></li>;
 };
 
-const MenuDropDown = ({menu,text}) => {
-  const href1 = menu[0].href;
+const MenuDropDown = ({menu,title}) => {
+  const text = title;
+  const href1 = menu[0].url;
   return (
     <li className="drop-down-btn" >
       <a href={href1}>{text}<i className="material-icons">arrow_drop_down</i></a>
@@ -18,14 +22,14 @@ const MenuDropDown = ({menu,text}) => {
           {menu.map( (m,i) => <_MenuItem key={i} {...m} />)}
         </ul>
       </li>
-      );
+    );
 };
 
-const MenuItem = ({href,linkto,menu,text}) => {
+const MenuItem = ({url,children,title}) => {
 
-  return menu
-      ? <MenuDropDown text={text} menu={menu} />
-      : <_MenuItem href={href} linkto={linkto} text={text} />;
+  return children.length
+      ? <MenuDropDown title={title} menu={children} />
+      : <_MenuItem url={url} title={title} />;
 };
 
 class MenuAnonymous extends React.Component {
@@ -42,15 +46,13 @@ class MenuAnonymous extends React.Component {
 
     const state = store.getState();
 
-    state.service.content.then( content => this.setState({content,loading: false}) );
+    state.service.menu.then( menu => this.setState({menu,loading: false}) );
   }
 
   render() {
     const {
       loading,
-      content: {
-        mainMenu = []
-      } = {}
+      menu
     } = this.state;
 
     if( loading) {
@@ -64,7 +66,7 @@ class MenuAnonymous extends React.Component {
 
     return (
         <ul className={className} id={id}>
-          {mainMenu.map( (m,i) => <MenuItem key={i} {...m} />)}
+          {menu.map( (m,i) => <MenuItem key={i} {...m} />)}
         </ul>
       );
   }

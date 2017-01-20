@@ -10,7 +10,7 @@ class StatePage extends ServiceContext(React.Component) {
 
   stateFromStore(storeState) {
     storeState.service.orgs.then( orgs => {
-      const allStates = storeState.service.groupings.terms;
+      const allStates = storeState.service.groupings;
       this.setState({ allStates, orgs, loading: false });
     });
     this.setState({ loading: true });

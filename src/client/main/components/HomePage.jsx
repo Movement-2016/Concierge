@@ -13,15 +13,17 @@ import DonateTiles         from './DonateTiles.jsx';
 class Testimonial extends React.Component {
   render() {
     const {
-      title,
-      content,
-      image, // <= this is URL
-      authorTitle
+      post_title: title,
+      post_content: content,
+      fields: {
+        image,
+        author_title: authorTitle
+      }
     } = this.props;
 
     const authorPicStyle = image
       ? { backgroundImage: 'url("' + image + '")' }
-      : {}
+      : {};
 
     return (
       <div className="testimonial flex-item">
@@ -95,27 +97,27 @@ class HomePage extends ServiceContext(React.Component) {
 
   stateFromStore( storeState ) {
 
-    const {
-      donateStats,
-      homeContent
-    } = storeState.service;
+    var home   = storeState.service.getPage('home');
+    var states = storeState.service.states;
+    var colors = storeState.service.stateColors;
 
     Promise
-      .all(   [ donateStats, homeContent ])
-      .then( ([ donateStats, homeContent ]) => this.setState( { donateStats, homeContent, loading: false } ));
+      .all(   [ states, home, colors  ])
+      .then( ([ states, home, colors ]) => this.setState( { states, home, colors, loading: false }));
 
     this.setState({ loading: true });
   }
 
   render() {
     const {
-      donateStats,
       loading,
-      homeContent: {
+      states,
+      colors,
+      home: {
         fields: {
           tag_line,
-          give_box_title,
-          states_spreadsheet
+          goal,
+          current
         } = {}
       } = {}
 
@@ -131,7 +133,7 @@ class HomePage extends ServiceContext(React.Component) {
         <section className="intro-section">
           <div className="container">
             <h1 className="intro-text" dangerouslySetInnerHTML={{__html:tag_line}}  />
-            <Thermometer {...donateStats} />
+            <Thermometer goal={goal} current={current} />
             <SocialButtons />
           </div>
         </section>
@@ -145,7 +147,7 @@ class HomePage extends ServiceContext(React.Component) {
           <div className="container">
             <h2 className="section-title">Find a Group</h2>
             <div className="map-desc">Click the map to browse the groups in each state.</div>
-            <StateMap dataSource={states_spreadsheet} />
+            <StateMap dataSource={states} colors={colors} />
           </div>
         </section>
         <section className="testimonial-section">
@@ -165,3 +167,4 @@ class HomePage extends ServiceContext(React.Component) {
 }
 
 module.exports = HomePage;
+

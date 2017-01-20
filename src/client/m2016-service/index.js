@@ -1,7 +1,7 @@
 var path     = require('jspath');
-var Tabletop = require('tabletop');
 
 let _fetch = null;
+
 if( typeof window !== 'undefined') {
 
   /* global $ */
@@ -12,9 +12,11 @@ if( typeof window !== 'undefined') {
   _fetch = require('node-fetch'.trim()); // prevent browserify bundling
 }
 
-const WP_API_HOST =   'movement2018.wpengine.com';
+const WP_DEV = true;
 
-const WP_API_BASE = 'https://' + WP_API_HOST + '/wp-json/movement-2.1/';
+const WP_API_HOST =   WP_DEV ? 'http://localhost:8080/wordpress' : 'https://movement2018.wpengine.com';
+
+const WP_API_BASE = WP_API_HOST + '/wp-json/movement-2018/';
 
 function checkStatus(response) {
   if (!response.status || (response.status >= 200 && response.status < 300)) {
@@ -33,10 +35,8 @@ function parseJSON(response) {
 class M2016Service {
   constructor() {
     this._base = WP_API_BASE;
-    this._orgs = null;
-    this._taxonomy = null;
     this._pages = {};
-    this._homeContent = null;
+    this._promises = {};
   }
 
   _fetch(part) {
@@ -45,132 +45,201 @@ class M2016Service {
             .then( parseJSON );
   }
 
-  init() {
-    if( this._orgs ) {
-      return Promise.resolve(this);
-    }
-    return Promise.all( [ this._fetch( 'tags' ),
-                          this.content,
-                          this.orgs,
-                          this.donateStats,
-                          this.testimonials ] )
-        .then ( ([ tags ])  => {
-          this._taxonomy = tags;
-
-          // migrate to more uniform data access
-          // testimonials
-          // donate tiles
-          //
-          return this;
-        });
+  init( ) {
+    return this;
   }
 
   get content() {
+    if( this._promises['content'] ) {
+      return this._promises['content'];
+    }
     return this._content
       ? Promise.resolve(this._content)
-      : this._fetch( 'content' ).then( p => this._content = p );
+      : (this._promises['content'] = this._fetch( 'content' )).then( p => {this._promises['content'] = null; return this._content = p;} );
   }
 
   get news() {
     return this._news
       ? Promise.resolve(this._news)
-      : this._fetch( 'news' ).then( news => this._news = news.news );  }
+      : this.content.then( () => this._news = this._content.posts.news );
+  }
 
   get donateTiles() {
     return this._donateTiles
       ? Promise.resolve(this._donateTiles)
-      : this._fetch( 'donatetiles' ).then( donateTiles => this._donateTiles = donateTiles.donatetiles );
-  }
-
-  get homeContent() {
-    return this._homeContent
-      ? Promise.resolve(this._homeContent)
-      : this.content
-          .then( () => this._fetch( 'page/' + this._content.pages.home.pageId ))
-          .then( p => this._homeContent = p );
-  }
-
-  getPage(id) {
-    return this.pages[id]
-      ? Promise.resolve(this.pages[id])
-      : this._fetch( 'page/' + id ).then( p => this.pages[id] = p.content );
-  }
-
-  getStateRaces(key) {
-    if( this._stateStats ) {
-      return Promise.resolve(this._stateStats);
-    }
-    //const public_spreadsheet_url = dataSource; // '1YXEv6GslFf_ZnBWgOM0JYQyuBL0mZMycxZZoHuJHNbs';
-    return new Promise( (resolve, reject) => {
-      try {
-        Tabletop.init({
-            key,
-            parseNumbers: true,
-            callback: (data, tabletop) => {
-              this._stateStats = {};
-              tabletop.sheets('statecategories').all().reduce( (obj,race) => (obj[race.statelink] = race, obj), this._stateStats );
-              resolve(this._stateStats);
-            },
-        });
-      } catch( e ) {
-        reject(e);
-      }
-    });
-  }
-
-  get donateStats() {
-    return this._donationstats
-      ? Promise.resolve(this._donationstats)
-      : this._fetch( 'donationstats' ).then( d => this._donationstats = d );
+      : this.content.then( () => this._donateTiles = this._content.posts.donatetiles );
   }
 
   get testimonials() {
     return this._testimonials
       ? Promise.resolve(this._testimonials)
-      : this._fetch( 'testimonials' ).then( t => this._testimonials = t.testimonials );
-  }
-
-  get orgs() {
-    return this._orgs
-      ? Promise.resolve(this._orgs)
-      : this._fetch( 'orgs' ).then( o => this._orgs = o );
+      : this.content.then( () => this._testimonials = this._content.posts.testimonial );
   }
 
   get advisors() {
     return this._advisors
       ? Promise.resolve(this._advisors)
-      : this._fetch( 'advisors' ).then( a => this._advisors = a );
+      : this.content.then( () => this._advisors = this._content.posts.advisor );
   }
 
-  get tandemForms() {
-    return this.donateTiles;
+  get groups() {
+    return this._groups
+      ? Promise.resolve(this._groups)
+      : this.content.then( () => this._groups = this._content.posts.group );
+  }
+
+  // 'orgs' returns the groups in a structure based on color -> state -> org
+  // and also normalizes the 'fields' structure replacing term_ids with the 
+  get orgs() {
+    if( this._orgs ) {
+      return Promise.resolve(this._orgs);
+    }
+    return this.content.then( () => {
+      const orgs = {};
+      const colors = this.groupSections;
+      colors.forEach( color => {
+        orgs[color.slug] = {};
+        const states = this.statesForColorSync(color);
+        states.forEach( state => {
+          const foundOrgs =  path('.posts.group{.fields.state=="'+state.slug+'"}', this._content);
+          foundOrgs.length && (orgs[color.slug][state.slug] = foundOrgs);
+        });
+      });
+      return this._orgs = orgs;
+    });
+  }
+
+  get menu() {
+    return this._menu
+      ? Promise.resolve(this._menu)
+      : this.content.then( () => {
+            var menu = {};
+            this._content.menu.items.forEach( item => {
+              const parent = parseInt(item.menu_item_parent);
+              var id = item.ID;
+              if( parent === 0 ) {
+                if( !menu[id] ) {
+                  menu[id] = item;
+                  menu[id].children = [];
+                }
+              } else {
+                if( !menu[parent] ) {
+                  var parentItem = path('.menu.items{.ID=='+parent+'}',this._content)[0];
+                  menu[parent] = parentItem;
+                  menu[parent].children = [];
+                }
+                menu[parent].children.push(item);
+              }
+            });
+
+            this._menu = Object.keys(menu).map( k => menu[k]);
+
+            return this._menu;
+        });
+  }
+
+
+  getPage(slug) {
+    return this._pages[slug]
+      ? Promise.resolve(this._pages[slug])
+      : this._fetch( 'page/' + slug ).then( p => this._pages[slug] = p );
+  }
+
+
+  get donateStats() {
+    return this.getPage('home').then( page => page.fields );
+  }
+
+  get states() {
+    return this.content.then( () => this.groupings );
+  }
+
+  get stateColors() {
+    return this._statesForColor(0);
+  }
+
+  statesForColor(color) {
+    return this._stateForColor(color);
+  }
+
+  _statesForColor(color) {
+    return this.content.then( () => this.statesForColorSync(color) );
   }
 
   get filters() {
-    return this._taxonomy.filters;
+    return this.content.then( () => this.filtersSync );
   }
 
   /* NON PROMISE */
 
+  // a somewhat unfortunate historically named property for
+  // returning a list of states
+  get groupings() {
+    return path('.taxonomies.state.terms.*{.parent!=0}',this._content);
+  }
+
+  // an even more unfortunate historically named property for
+  // returning a list of state colors
+  get groupSections() {
+    var colors = this.statesForColorSync(0);    
+    var orderMap = {};
+    this._content.colorOrder.forEach( (c,i) => orderMap[c] = i );
+    return colors.sort( (a,b) => orderMap[a.slug] > orderMap[b.slug] );
+  }
+
+  get groupSectionsDict() {
+    if( !this._groupSectionsDict ) {
+      const dict = {};
+      this.groupSections.forEach( gs => dict[gs.slug] = gs );
+      this._groupSectionsDict = dict;
+    }
+    return this._groupSectionsDict;
+  }
+
+  get sectionOrder() {
+    return this._content.colorOrder;
+  }
+
+  // return a list of states given a 'color'
+  statesForColorSync(color) {
+    var id = (color && color['term_id']) || 0;
+    return path('.taxonomies.state.terms.*{.parent=='+id+'}',this._content);
+  }
+
+  get filtersSync() {
+    if( !this._filterSync ) {
+      const filters = {};
+      // remove 'state' from taxonomies
+      const tax = this._content.taxonomies;
+      Object.keys( tax ).filter( k => k !== 'state').forEach( k => {
+          filters[k] = tax[k];
+          filters[k].tags = Object.keys(filters[k].terms);
+        });
+      this._filterSync = filters;      
+    }
+    return this._filterSync;
+  }
+
+  get groupDict() {
+    if( !this._groupDict ) {
+      const groupings = {};
+      this.groupings.forEach( g => groupings[g.slug] = g );
+      this._groupDict = groupings;
+    }
+    return this._groupDict;
+  }
+
   get filterDict() {
     if( !this._filterDict ) {
       this._filterDict = {};
-      path('...terms.*', this.filters ).forEach( f => this._filterDict[f.name] = f.label );
+      path('...terms.*', this.filtersSync ).forEach( f => this._filterDict[f.name] = f.label );
     }
     return this._filterDict;
   }
 
-  get groupings() {
-    return this._taxonomy.groupings.state;
-  }
-
-  get groupSections() {
-    return this._content.groupSections;
-  }
-
-  get pages() {
-    return this._content.pages;
-  }
+  // get pages() {
+  //   return this._content.pages;
+  // }
 }
 
 module.exports = new M2016Service();

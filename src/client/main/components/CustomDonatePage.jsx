@@ -119,4 +119,7 @@ class CustomDonatePage extends ContextMixin(React.Component) {
   }
 }
 
+/*
+
+*/
 module.exports = CustomDonatePage;

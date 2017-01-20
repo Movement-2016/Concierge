@@ -13,10 +13,10 @@ class State extends CollapseMixin(React.Component) {
   render() {
 
     const {
-      name,
-      label,
+      slug: name,
+      name: label,
       items,
-      group:color
+      color
     } = this.props;
 
     const {
@@ -34,7 +34,7 @@ class State extends CollapseMixin(React.Component) {
             </h4>
           </div>
           <div id={name + '-list'} className="collapse">
-            {expanded && items.map( o => <Org key={o.id} {...o} />)}
+            {expanded && items.map( o => <Org key={o.ID} {...o} />)}
           </div>
         </div>
       );

@@ -4,16 +4,17 @@ import { Link } from 'react-router';
 class TileBody extends React.Component {
   render() {
     const {
-      image,
-      category,
-      title,
-      content,
-      readMore,
+      post_title: title,
+      post_content: content,
+      fields: {
+        category,
+        image
+      }
     } = this.props;
 
     const tileHeaderStyle = image
       ? { backgroundImage: 'url("' + image + '")' }
-      : {}
+      : {};
 
     return (
       <div className="tile-body">
@@ -23,7 +24,6 @@ class TileBody extends React.Component {
         <div className="tile-text">
           <h3 className="tile-title">{title}</h3>
           <div className="tile-content">{content}</div>
-          {readMore && <div className="read-more">Read More<i className="material-icons">chevron_right</i></div>}
         </div>
       </div>
     );
@@ -34,8 +34,10 @@ class Tile extends React.Component {
 
   render() {
     const {
-      url,
-      display,
+      fields: {
+        display,
+        url
+      }
     } = this.props;
 
     const isRemote = /^http/.test(url);
