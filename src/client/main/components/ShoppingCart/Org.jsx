@@ -29,9 +29,6 @@ class Org extends React.Component {
 
   constructor() {
     super(...arguments);
-    const { filters, tags } = this.props;
-    const types = filterTagsByTypes({filters,tags});
-    this.tags = types['nonprofit-type'].tags;
 
     this.state = { value: this.props.amount || '' };
 
@@ -43,7 +40,7 @@ class Org extends React.Component {
   onChange(e) {
     let { target:{value} } = e;
     value = value.replace(/[^0-9]/g,'');
-    const { id } = this.props;
+    const { ID:id } = this.props;
     this.context.store.dispatch( addPlanItem(id,value || 0) );
     this.setState({ value });
   }
@@ -59,17 +56,24 @@ class Org extends React.Component {
 
   onRemoveOrg(e) {
     e.preventDefault();
-    this.context.store.dispatch( toggleItem(this.props.id) );
+    this.context.store.dispatch( toggleItem(this.props.ID) );
   }
 
   render() {
 
     const {
-      name,
-      urlGive,
-      urlWeb,
+      post_title: name,
+      fields: {
+        c3_donate_link,
+        c4_donate_link,
+        website: urlWeb,
+        'nonprofit-type': nonProfitTypes = []
+      },
+      filters,
       readonly
     } = this.props;    
+
+    const urlGive = c3_donate_link || c4_donate_link || urlWeb;
 
     const {
       value
@@ -85,13 +89,16 @@ class Org extends React.Component {
 
     const cls = 'group' + (readonly ? ' readonly' : '');
 
+    const npTerms = filters['nonprofit-type'].terms;
+    const tags    = nonProfitTypes.map( slug => npTerms[slug].name );
+
     return(
       <div className={cls}>
         <div className="row">
           <div className="col s8 m9">
             <div className="group-title" dangerouslySetInnerHTML={{__html:name}} />
             <div className="nonprofit-tags">
-              {this.tags.map( t => <span key={t}>{t} </span> )}
+              {tags.map( t => <span key={t}>{t} </span> )}
             </div>
             
           </div>
@@ -104,7 +111,7 @@ class Org extends React.Component {
                 }
               </div>
               {readonly
-                ? <ContributeButton urlGive={urlGive || urlWeb} amount={value} />
+                ? <ContributeButton urlGive={urlGive} amount={value} />
                 : <a className="remove-group" onClick={this.onRemoveOrg}><i className="material-icons">close</i>Remove</a>
               }
             </div>

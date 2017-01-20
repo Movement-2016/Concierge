@@ -165,7 +165,7 @@ function mailPlan (req, res) {
   let total = 0;
   items.forEach( item => {
     const { id, amount } = item;
-    const group = path(`..{.id==${id}}`,orgs)[0];
+    const group = path(`..{.ID==${id}}`,orgs)[0];
     total += Number(amount);
     mail += planFormatter(Object.assign({},group,{amount}));
   });

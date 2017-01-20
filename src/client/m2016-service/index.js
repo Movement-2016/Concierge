@@ -174,18 +174,33 @@ class M2016Service {
 
   // a somewhat unfortunate historically named property for
   // returning a list of states
+
   get groupings() {
     return path('.taxonomies.state.terms.*{.parent!=0}',this._content);
   }
 
   // an even more unfortunate historically named property for
   // returning a list of state colors
+
   get groupSections() {
     var colors = this.statesForColorSync(0);    
     var orderMap = {};
     this._content.colorOrder.forEach( (c,i) => orderMap[c] = i );
     return colors.sort( (a,b) => orderMap[a.slug] > orderMap[b.slug] );
   }
+
+  // yea, I know it says 'group' but really this returns 
+  // a dictionary of states. 
+
+  get groupDict() {
+    if( !this._groupDict ) {
+      const groupings = {};
+      this.groupings.forEach( g => groupings[g.slug] = g );
+      this._groupDict = groupings;
+    }
+    return this._groupDict;
+  }
+
 
   get groupSectionsDict() {
     if( !this._groupSectionsDict ) {
@@ -196,11 +211,16 @@ class M2016Service {
     return this._groupSectionsDict;
   }
 
+  get groupSectionsIDDict() {
+    return this._groupSectionsIDDict || (this._groupSectionsIDDict = this.statesForColorSync(0).reduce( (dict,color) => (dict[color.term_id] = color, dict), {} ));
+  }
+
   get sectionOrder() {
     return this._content.colorOrder;
   }
 
   // return a list of states given a 'color'
+
   statesForColorSync(color) {
     var id = (color && color['term_id']) || 0;
     return path('.taxonomies.state.terms.*{.parent=='+id+'}',this._content);
@@ -218,15 +238,6 @@ class M2016Service {
       this._filterSync = filters;      
     }
     return this._filterSync;
-  }
-
-  get groupDict() {
-    if( !this._groupDict ) {
-      const groupings = {};
-      this.groupings.forEach( g => groupings[g.slug] = g );
-      this._groupDict = groupings;
-    }
-    return this._groupDict;
   }
 
   get filterDict() {

@@ -59,7 +59,7 @@ class Org extends ContextMixin(React.Component) {
 
   onOrgClick(e) {
     e.preventDefault();
-    this.context.store.dispatch( toggleItem(this.props.id) );
+    this.context.store.dispatch( toggleItem(this.props.ID) );
   }
 
   stateFromStore(storeState) {
@@ -70,7 +70,7 @@ class Org extends ContextMixin(React.Component) {
 
   _isSelected( storeState ) {
     const { groups } = storeState || this.context.store.getState();
-    return groups.selected.includes(this.props.id);
+    return groups.selected.includes(this.props.ID);
   }
 
   render() {
