@@ -10,8 +10,12 @@ class StatePage extends ServiceContext(React.Component) {
 
   stateFromStore(storeState) {
     storeState.service.orgs.then( orgs => {
-      const allStates = storeState.service.groupings;
-      this.setState({ allStates, orgs, loading: false });
+      const {
+        groupDict: allStates,
+        groupSectionsIDDict: colors
+      } = storeState.service;
+
+      this.setState({ allStates, colors, orgs, loading: false });
     });
     this.setState({ loading: true });
   }
@@ -21,6 +25,7 @@ class StatePage extends ServiceContext(React.Component) {
     const {
       allStates,
       orgs,
+      colors,
       loading
     } = this.state;
 
@@ -31,7 +36,7 @@ class StatePage extends ServiceContext(React.Component) {
     const name = this.props.params.name;
 
     const state  = allStates[name];
-    const color  = state.group;
+    const color  = colors[state.parent].slug;
 
     return (
       <Shell name={'state-page ' + name} title={''}>
