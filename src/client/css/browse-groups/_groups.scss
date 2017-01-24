@@ -39,6 +39,10 @@
   }
 }
 
+.all-states-title {
+  display: none;
+}
+
 .purple-states-title::before {
   background-color: $state-purple;
 }
@@ -88,23 +92,23 @@
   }
 }
 
-.purple-state h4 i {
+.purple-states h4 i {
   color: $state-purple;
 }
 
-.light-blue-state h4 i {
+.light-blue-states h4 i {
   color: $state-light-blue;
 }
 
-.dark-blue-state h4 i {
+.dark-blue-states h4 i {
   color: $state-dark-blue;
 }
 
-.light-red-state h4 i {
+.light-red-states h4 i {
   color: $state-light-red;
 }
 
-.dark-red-state h4 i {
+.dark-red-states h4 i {
   color: $state-dark-red;
 }
 
