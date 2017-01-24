@@ -3,21 +3,21 @@ import React from 'react';
 //import path  from 'jspath';
 
 
-const FilterCheckbox = ({ label, name, cat, onTermsChecked, selected, disabled }) => {
+const FilterCheckbox = ({ name, slug, cat, onTermsChecked, selected, disabled }) => {
 
-  const checked = selected[cat].includes(name);
+  const checked = selected[cat].includes(slug);
 
   const cProps = {
     type:      'checkbox',
     className: `filter-checkbox ${selected ? 'filled-in' : ''}`,
-    id:        'checkbox-' + name,
-    onChange:   () => onTermsChecked (cat, [name], !checked),
+    id:        'checkbox-' + slug,
+    onChange:   () => onTermsChecked (cat, [slug], !checked),
     checked:    !disabled && checked,
   };
 
   return (
     <div className="filter">
-      <input {...cProps} /> <label htmlFor={cProps.id}>{label}</label>
+      <input {...cProps} /> <label htmlFor={cProps.id}>{name}</label>
     </div>
   );
 };

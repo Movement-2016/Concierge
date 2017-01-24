@@ -33,15 +33,22 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
   getVisibleColorGroups() {
 
     const {
-      groupSections:colorGroups,
+      groupSections,
+      sectionOrder: colorOrder
     } = this.state.service;
 
     const {
       orgs
     } = this.props;
 
+    const order = {};
+    colorOrder.forEach( (c,i) => order[c] = i );
+
+    const colorGroups = {};
+    groupSections.forEach( color => colorGroups[color.slug] = color );
+    
     const sections = getVisibleColorGroups(colorGroups,orgs);
-    const colors = Object.keys(sections);
+    const colors = Object.keys(sections).sort( (a,b) => order[a] > order[b] );
 
     return { sections, colors, orgs, colorGroups };
   }

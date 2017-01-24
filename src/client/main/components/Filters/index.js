@@ -20,9 +20,9 @@ class Filters extends ServiceContext(React.Component) {
 
   render() {
     const { 
-      filters, 
-      groupings:{terms},
-      groupSections 
+      filtersSync:filters, 
+      groupings:terms,
+      groupSectionsDict 
     } = this.state.service;
 
     const { 
@@ -47,7 +47,7 @@ class Filters extends ServiceContext(React.Component) {
           </ul>
           {hasSections && <div className="groups-nav">
             <div className="groups-nav-title">Go To:</div>
-            <ScrollLinks links={groupSections} onShowSection={onShowSection} visible={visibleSections} />
+            <ScrollLinks links={groupSectionsDict} onShowSection={onShowSection} visible={visibleSections} />
             <StatePicker terms={terms} onShowState={onShowState} visible={visibleStates} />
           </div>}
         </div>

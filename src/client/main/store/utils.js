@@ -108,10 +108,14 @@ const _iterateOrgs = (orgs,callback) => {
 */
 const getVisibleOrgs = (orgs,filters) => {
 
-  var tags = Object.keys(filters).map( k => filters[k] ); 
+  var keys = Object.keys(filters);
+  var tags = keys.map( k => filters[k] ); 
   
   return _iterateOrgs( orgs, org => {
     for( var n = 0; n < tags.length; n++ ) {
+      if( !org.tags ) {
+        org.tags = keys.reduce( (acc, key) => acc.concat( org.fields[key] || []), [] );
+      }
       if( tags[n].length && !fastArrCmp(org.tags,tags[n]) ) {
         return false;
       }
@@ -130,13 +134,13 @@ const planFromOrg = (plan,id) => path( `..{.id==${id}}`,plan )[0];
 
 const getSelectedOrgs = (ids =[],orgs) => {
   if( !ids.length ) { return []; }
-  var p = '..{' + ids.map( id => '.id == ' + id ).join('||') + '}';
+  var p = '..{' + ids.map( id => '.ID == ' + id ).join('||') + '}';
   return path( p, orgs );
 };
 
 const organizeOrgsByState = orgs => {
   return orgs.reduce( (states,org) => {
-    const { state } = org;
+    const state  = org.fields.state[0];
     !states[state] && (states[state] = []);
     states[state].push( org );
     return states;
@@ -144,7 +148,7 @@ const organizeOrgsByState = orgs => {
 };
 
 const organizeByOrgs = orgs => {
-  return orgs.reduce( (orgObj,org) => (orgObj[org.id] = org, orgObj), {} );
+  return orgs.reduce( (orgObj,org) => (orgObj[org.ID] = org, orgObj), {} );
 };
 
 /*

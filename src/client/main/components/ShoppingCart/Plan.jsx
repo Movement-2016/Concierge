@@ -29,10 +29,9 @@ class Plan extends ContextMixin(React.Component) {
           plan 
         },
         service: {
-          filters,
-          groupings: {
-            terms:states
-          }
+          filtersSync: filters,
+          groupDict: states,
+          groupSectionsIDDict: colorDict
         }
       } = storeState;
 
@@ -40,6 +39,7 @@ class Plan extends ContextMixin(React.Component) {
         states, 
         filters, 
         plan,
+        colorDict,
         orgs: organizeOrgsByState(getSelectedOrgs(selected,orgs)),
         loading: false
       });
@@ -47,17 +47,18 @@ class Plan extends ContextMixin(React.Component) {
   }
 
   render() {
+
+    if( this.state.loading ) {
+      return <Loading />;
+    }
+
     const { 
       orgs, 
       filters, 
       states,
       plan,
-      loading 
+      colorDict
     } = this.state;
-
-    if( loading ) {
-      return <Loading />;
-    }
 
     return(
         <div className="planning-section">
@@ -66,6 +67,7 @@ class Plan extends ContextMixin(React.Component) {
                                                        orgs={orgs[state]} 
                                                        plan={plan}
                                                        filters={filters} 
+                                                       colors={colorDict}
                                                        readonly={this.readonly}
                                                        state={states[state]}
                                             /> )} 

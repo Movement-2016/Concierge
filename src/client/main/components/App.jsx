@@ -47,23 +47,19 @@ class App extends React.Component {
   }
 
   componentWillMount () {
-    service.init().then( service => {
+    store.dispatch( initService(service) );
 
-      // ORDER DEPENDENT!!
-      store.dispatch( initService(service) );
-      store.dispatch( initFilters(service.filters) );
+    service.filters.then( filters => {
+
+      store.dispatch( initFilters(filters) );
       subscribeToStore(store);
+      this.setState({ loading: false});
 
-      service.donateStats.then( donateStats => this.setState({ loading: false, donateStats }));
-
-    }).catch( err => {
-        this.setState({ error: err.message || err.statusText || err + '', err, loading: false });
-      });
+    }).catch( err => this.setState({ error: err.message || err.statusText || err + '', err, loading: false }) );
   }
 
   // before unmount, remove store listener
   componentWillUnmount () {
-    this.unsubscribe ();
     unsubscribeFromStore();
   }
 
@@ -73,10 +69,6 @@ class App extends React.Component {
     }
 
     const {
-      donateStats: {
-        goal,
-        pledged
-      } = {},
       err,
       error
     } = this.state;

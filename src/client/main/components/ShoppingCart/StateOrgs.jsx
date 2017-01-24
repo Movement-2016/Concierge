@@ -12,26 +12,27 @@ class StateOrgs extends React.Component {
     const { 
       name, 
       orgs, 
-      filters, 
+      filters,
+      colors, 
       plan,
       state,
       readonly
     } = this.props;
     
     const { 
-      label, 
-      group 
+      name:label, 
+      parent: colorID 
     } = state;
 
     const amountFromOrg = org => {
-      const { amount = 0 } = planFromOrg(plan,org.id) || {};
+      const { amount = 0 } = planFromOrg(plan,org.ID) || {};
       return amount;
     };
 
     return (
         <div className="plan-state" id={name}>
-        <h3 className={`${group}-state`}>{label}</h3>
-          {orgs.map( org => <Org readonly={readonly} key={org.id} filters={filters} amount={amountFromOrg(org)} {...org} />)}
+        <h3 className={colors[colorID].slug}>{label}</h3>
+          {orgs.map( org => <Org readonly={readonly} key={org.ID} filters={filters} amount={amountFromOrg(org)} {...org} />)}
         </div>    
       );
   }

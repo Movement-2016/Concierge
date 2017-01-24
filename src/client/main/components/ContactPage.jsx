@@ -1,7 +1,26 @@
-import React from 'react';
-import { Shell } from './ContentPage.jsx';
-import Form from './ContactForm.jsx';
+import React            from 'react';
+import { Shell }        from './ContentPage.jsx';
+import Form             from './ContactForm.jsx';
 import { emailContact } from '../store/utils';
+import { PageContext }  from './ContextMixins';
+
+
+class ContactText extends PageContext(React.Component) {
+  
+  get page() {
+    return 'contact';
+  }
+
+  render() {
+   if( !this.state || !this.state.page ) {
+      return null;      
+    }
+
+    const content = this.state.page.fields.html;
+
+    return <p className="content" dangerouslySetInnerHTML={{__html:content}} />;
+  }
+}
 
 class ContactPage extends React.Component {
 
@@ -39,6 +58,7 @@ class ContactPage extends React.Component {
         <div className="content">
           {error && <p className="error">{error}</p>}
           <p>{done ? done : 'Questions? Suggestions? Feedback? Let us know!'}</p>
+          <ContactText />
           {!done && <Form onSubmit={this.onSubmit} />}
         </div>
       </Shell>

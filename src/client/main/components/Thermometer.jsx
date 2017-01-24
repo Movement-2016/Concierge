@@ -1,7 +1,9 @@
+/* globals $ */
 import React    from 'react';
-import { Link } from 'react-router';
 
 const ANIMATE_DELAY = 1500;
+const ONE_HUNDRED = 100;
+const ONE_MILLION = 1000000;
 
 class Thermometer extends React.Component {
 
@@ -10,17 +12,29 @@ class Thermometer extends React.Component {
     const {
       pledged,
       goal,
-    } = this.props;
-    this.percent = (pledged / goal) * 100;
+    } = this._getProps();
+    this.percent = pledged / goal * ONE_HUNDRED;
   }
 
   componentDidMount() {
     setTimeout( () => $('.mercury').animate( {maxWidth:this.percent + '%'}, 'slow' ), ANIMATE_DELAY );
   }
 
+  _getProps() {
+    const {
+      current,
+      goal,
+    } = this.props;
+    return { pledged: parseInt(current), goal: parseInt(goal) };    
+  }
+
   render() {
-    const pledgedFormatted = '$' + (this.props.pledged / 1000000).toFixed(2) + ' million';
-    const goalFormatted = '$' + (this.props.goal / 1000000).toFixed(0) + ' million';
+    const {
+      pledged,
+      goal,
+    } = this._getProps();
+    const pledgedFormatted = '$' + (pledged / ONE_MILLION).toFixed(2) + ' million';
+    const goalFormatted = '$' + (goal / ONE_MILLION).toFixed(0) + ' million';
 
     return (
       <div className="thermometer-area">

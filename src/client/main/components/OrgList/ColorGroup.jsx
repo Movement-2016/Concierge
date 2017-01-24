@@ -16,8 +16,8 @@ class ColorGroup extends CollapseMixin(React.Component) {
 
   render() {
     const {
-      name,
-      label,
+      slug:name,
+      name:label,
       states
     } = this.props;
 
@@ -25,9 +25,9 @@ class ColorGroup extends CollapseMixin(React.Component) {
       expanded
     } = this.state;
 
-    const allStates = expanded && this.context.store.getState().service.groupings.terms;
+    const allStates = expanded && this.context.store.getState().service.groupDict;
 
-    const id = name + '-states';
+    const id = name;
 
     const cls = expanded ? 'open' : 'closed';
 
@@ -35,7 +35,7 @@ class ColorGroup extends CollapseMixin(React.Component) {
       <div className="grouping scrollspy" id={id}>
         <div onClick={this.onToggleCollapse} className={`expand-trigger grouping-title ${cls} ${id}-title`}>{this.expandIcon} {label}</div>
         <div className="section-groups collapse" id={id + '-list'}>
-          {expanded && Object.keys(states).map( s => <State key={s} {...allStates[s]} items={states[s]} />)}
+          {expanded && Object.keys(states).map( s => <State key={s} {...allStates[s]} color={name} items={states[s]} />)}
         </div>
       </div>
       );

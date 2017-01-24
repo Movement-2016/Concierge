@@ -13,10 +13,10 @@ class State extends CollapseMixin(React.Component) {
   render() {
 
     const {
-      name,
-      label,
+      slug: name,
+      name: label,
       items,
-      group:color
+      color
     } = this.props;
 
     const {
@@ -27,14 +27,14 @@ class State extends CollapseMixin(React.Component) {
 
     return (
         <div className="state" id={name}>
-          <div onClick={this.onToggleCollapse} className={`expand-trigger state-title ${cls} ${color}-state`}>
+          <div onClick={this.onToggleCollapse} className={`expand-trigger state-title ${cls} ${color}`}>
             <h4>
               <span className="state-name">{this.expandIcon} {label}</span>
               <i className="material-icons color-icon">turned_in</i>
             </h4>
           </div>
           <div id={name + '-list'} className="collapse">
-            {expanded && items.map( o => <Org key={o.id} {...o} />)}
+            {expanded && items.map( o => <Org key={o.ID} {...o} />)}
           </div>
         </div>
       );
