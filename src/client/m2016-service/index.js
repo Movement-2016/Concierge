@@ -12,7 +12,7 @@ if( typeof window !== 'undefined') {
   _fetch = require('node-fetch'.trim()); // prevent browserify bundling
 }
 
-const WP_DEV = false;
+const WP_DEV = true;
 
 const WP_API_HOST =   WP_DEV ? 'http://localhost:8080/wordpress' : 'https://movement2018.wpengine.com';
 
@@ -67,7 +67,7 @@ class M2016Service {
   get donateTiles() {
     return this._donateTiles
       ? Promise.resolve(this._donateTiles)
-      : this.content.then( () => this._donateTiles = this._content.posts.donatetiles );
+      : this.content.then( () => this._donateTiles = this._content.posts.donatetile );
   }
 
   get testimonials() {
