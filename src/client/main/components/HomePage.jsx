@@ -1,6 +1,4 @@
 import React               from 'react';
-import { Link }            from 'react-router';
-import commaize            from 'commaize';
 
 import { ServiceContext }  from './ContextMixins.js';
 import StateMap            from './StateMap.jsx';
@@ -9,6 +7,8 @@ import SocialButtons       from './Social.jsx';
 import Tile                from './Tile.jsx';
 import Loading             from './Loading.jsx';
 import DonateTiles         from './DonateTiles.jsx';
+
+import scrollToElement from '../../lib/scrollToElement';
 
 class Testimonial extends React.Component {
   render() {
@@ -95,6 +95,16 @@ class NewsTiles extends ServiceContext(React.Component) {
 
 class HomePage extends ServiceContext(React.Component) {
 
+  componentDidMount() {    
+    if( location.hash ) {
+      setTimeout( () => {
+        const elemName = location.hash.replace('#','');
+        const elem = document.getElementById(elemName);
+        elem && setTimeout( () => scrollToElement('#' + elemName), 100 );
+      }, 200);
+    }
+  }
+
   stateFromStore( storeState ) {
 
     var home   = storeState.service.getPage('home');
@@ -137,6 +147,7 @@ class HomePage extends ServiceContext(React.Component) {
             <SocialButtons />
           </div>
         </section>
+        <a name="donate" />
         <section className="donate-section" id="donate">
           <div className="container">
             <h2 className="section-title">Three Ways to Donate</h2>

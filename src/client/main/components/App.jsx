@@ -1,6 +1,6 @@
-import React        from 'react';
-import { render }   from 'react-dom';
-import { Provider } from 'react-redux';
+import React              from 'react';
+import { render }         from 'react-dom';
+import { Provider }       from 'react-redux';
 
 import '../../lib/polyfills';
 
@@ -61,6 +61,11 @@ class App extends React.Component {
   // before unmount, remove store listener
   componentWillUnmount () {
     unsubscribeFromStore();
+  }
+
+  onShowHash() {
+
+
   }
 
   render () {

@@ -1,5 +1,6 @@
 import React               from 'react';
 import { Link, IndexLink } from 'react-router';
+import scrollToElement from '../../lib/scrollToElement';
 
 const _MenuItem = ({url,title} ) => {
   var text       = title;
@@ -84,6 +85,10 @@ class Nav extends React.Component {
     function slowTest() {
       $('.button-collapse').sideNav({
         closeOnClick: true,
+      });
+      $('nav a[href*="#"]').click( function() {
+        var hash = $(this).attr('href').match(/#.*/)[0];
+        scrollToElement(hash);
       });
     }
   }
