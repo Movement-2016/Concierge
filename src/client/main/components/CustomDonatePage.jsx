@@ -60,7 +60,7 @@ class CustomDonatePage extends ContextMixin(React.Component) {
       browserHistory.push( '/state/' + state );
     } else {
       browserHistory.push('/groups#' + state);
-      scrollToElement('#' + state);      
+      scrollToElement('#' + state,100);      
     }
   }
 
