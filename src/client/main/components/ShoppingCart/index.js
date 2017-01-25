@@ -42,7 +42,7 @@ class Cart extends React.Component {
 
   render() {
     return (
-      <ContentPage.Shell title="Your Donation Plan" name="custom-planning cart-page" big="false">
+      <ContentPage.Shell title="My Donation Plan" name="custom-planning cart-page" big="false">
         <PageDescription />
         <div className="plan-form donation-form"> 
           <div className="row">

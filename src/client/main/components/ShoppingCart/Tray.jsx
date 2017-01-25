@@ -25,7 +25,7 @@ class Tray extends ContextMixin(React.Component) {
 
     return(
         <div className="donation-plan-tray">
-          <div className="title">Your Donation Plan</div>
+          <div className="title">My Donation Plan</div>
           <div className="info">{`${length} Group${s}`}</div>
           <div className="button-area">
             {length 
