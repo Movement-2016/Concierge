@@ -5,6 +5,8 @@ var path = require('jspath');
 var Entities = require('html-entities').AllHtmlEntities;
 var commaize = require('commaize');
 
+const SUBJECT_HEAD = '[Movement Vote]';
+
 const entities = new Entities();
 
 const mailer = new GMail();
@@ -52,7 +54,7 @@ Your total contribution amount: $${commaize(total)}
 
 Thank you so much for your generosity!
 
-Movement 2017
+Movement Vote
 
 `;
 
@@ -107,8 +109,8 @@ function houseParty (req, res) {
   const mail = partyFormat(req.body);
 
   const payload = {
-    to: 'advisor@movement2016.org',
-    subject: '[Movement 2017] Request for House Party',
+    to: 'advisor@movementvote.org',
+    subject: SUBJECT_HEAD + ' Request for House Party',
     message: entities.decode(mail)
   };
 
@@ -135,7 +137,7 @@ function contactEmail (req, res) {
 
   const payload = {
     to: advisorEmail,
-    subject: '[Movement 2017] Request for Contact',
+    subject: SUBJECT_HEAD + ' Request for Contact',
     message: entities.decode(mail)
   };
 
@@ -166,14 +168,24 @@ function mailPlan (req, res) {
   items.forEach( item => {
     const { id, amount } = item;
     const group = path(`..{.ID==${id}}`,orgs)[0];
+    console.log(item);
     total += Number(amount);
-    mail += planFormatter(Object.assign({},group,{amount}));
+    const {
+      post_title: name,
+      fields: {
+        website: urlWeb,
+        c4_donate_link: urlC4,
+        c3_donate_link: urlC3
+      }
+    } = group;
+    const urlGive = urlC3 || urlC4;
+    mail += planFormatter({name,urlWeb,urlGive,amount});
   });
   mail += planMailFooter(total);
 
   const payload = {
     to: advisorEmail,
-    subject: '[Movement 2017] Your Giving Plan',
+    subject: SUBJECT_HEAD + ' Your Giving Plan',
     message: entities.decode(mail)
   };
 
