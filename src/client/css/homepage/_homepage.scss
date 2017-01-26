@@ -64,12 +64,8 @@
 
   .tile-tag {
     position: absolute;
-    bottom: 0;
-    left: 0;
     padding: 5px 15px;
-    background: rgba(0, 0, 0, 0.45);
     color: $white;
-    font-size: 13.5px;
     font-family: $font-2;
     text-transform: uppercase;
     font-weight: 500;
@@ -81,6 +77,10 @@
 
   .tile-title {
     margin: 0 0 8px;
+    i {
+      @include reg-icon;
+      font-size: 1.25em;
+    }
   }
 
   .tile-content {

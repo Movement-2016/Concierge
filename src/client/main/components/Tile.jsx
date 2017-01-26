@@ -8,7 +8,9 @@ class TileBody extends React.Component {
       post_content: content,
       fields: {
         category,
-        image
+        label,
+        image,
+        url
       }
     } = this.props;
 
@@ -20,9 +22,10 @@ class TileBody extends React.Component {
       <div className="tile-body">
         <div className="tile-header" style={tileHeaderStyle}>
           {category && <div className="tile-tag">{category}</div>}
+          {label && <div className="tile-tag">{label}</div>}
         </div>
         <div className="tile-text">
-          <h3 className="tile-title">{title}</h3>
+          <h3 className="tile-title">{title}{url && <i className="material-icons">chevron_right</i>}</h3>
           <div className="tile-content">{content}</div>
         </div>
       </div>

@@ -28,11 +28,24 @@
 
   .tile {
     @extend %flex-item;
+
+    .tile-tag {
+      top: 0;
+      left: 0;
+      background: rgba($secondary-color, 0.9);
+      font-size: 14px;
+      z-index: 100;
+    }
+
     &:hover,
     &:focus {
       @include z-depth-3;
       .tile-header::after {
         opacity: 0;
+      }
+      .tile-tag {
+        background: rgba($secondary-color, 0.96);
+
       }
       .tile-title {
         color: darken($primary-color, 5%);
