@@ -30,8 +30,6 @@
     @extend %flex-item;
 
     .tile-tag {
-      top: 0;
-      left: 0;
       background: rgba($secondary-color, 0.9);
       font-size: 14px;
       z-index: 100;

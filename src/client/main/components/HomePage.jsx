@@ -95,7 +95,7 @@ class NewsTiles extends ServiceContext(React.Component) {
 
 class HomePage extends ServiceContext(React.Component) {
 
-  componentDidMount() {    
+  componentDidMount() {
     if( location.hash ) {
       setTimeout( () => {
         const elemName = location.hash.replace('#','');
@@ -150,7 +150,7 @@ class HomePage extends ServiceContext(React.Component) {
         <a name="donate" />
         <section className="donate-section" id="donate">
           <div className="container">
-            <h2 className="section-title">Three Ways to Donate</h2>
+            <h2 className="section-title">Choose a Way to Give</h2>
             <DonateTiles />
           </div>
         </section>
@@ -178,4 +178,3 @@ class HomePage extends ServiceContext(React.Component) {
 }
 
 module.exports = HomePage;
-
