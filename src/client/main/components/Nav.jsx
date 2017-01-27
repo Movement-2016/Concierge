@@ -102,7 +102,7 @@ class Nav extends React.Component {
     return (
       <div className="navbar-fixed">
         {this.dropdowns}
-        <nav>
+        <nav id="main-nav">
           <IndexLink to="/" className="brand-logo">{siteTitle}</IndexLink>
           {/* <IndexLink to="/" className="brand-logo"><img src="/images/movement-logo.png" /></IndexLink> */}
           <MenuAnonymous className="right hide-on-med-and-down" store={store}/>
