@@ -1,0 +1,15 @@
+.houseparty-form {
+  .input-city {
+    width: 66%;
+    margin-right: 10px;
+  }
+  .input-state {
+    width: calc(34% - 10px);
+  }
+  .checkbox-group {
+    margin: 10px 0 30px;
+  }
+  .checkbox {
+    margin-bottom: 10px;
+  }
+}

@@ -1,0 +1,37 @@
+.padded-form {
+  padding: 2rem 1rem;
+  background-color: $form-bg-color;
+  @include z-depth-2;
+
+  @include bp-md {
+    margin: 3rem 0 4rem;
+    padding: 3rem 2rem 2rem;
+  }
+
+  h3 {
+    margin: 0 0 1em;
+    font-size: 1.33rem;
+    text-transform: uppercase;
+    color: $lighter-text;
+  }
+
+  [type="checkbox"] + label {
+    height: inherit;
+    line-height: 20px;
+    &::after {
+      color: $lighter-text;
+    }
+  }
+
+  textarea {
+    border-color: $light-border;
+    background: color('grey', 'lighten-5');
+    padding: 6px;
+    max-width: 100%;
+    min-height: 100px;
+  }
+
+  button {
+    margin-top: 30px;
+  }
+}
