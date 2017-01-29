@@ -3,13 +3,6 @@
   color: $med-text;
   margin: 0 2rem;
 }
-.donation-plan,
-.plan-form {
-  margin: 3rem 0 4rem;
-  padding: 3rem 2rem 2rem;
-  background-color: $form-bg-color;
-  @include z-depth-2;
-}
 .planning-section {
   margin-bottom: 3rem;
   .plan-state {

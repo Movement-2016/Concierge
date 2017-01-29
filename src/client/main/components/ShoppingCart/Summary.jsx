@@ -23,7 +23,7 @@ const EditPlan = () => {
 class Summary extends React.Component {
   constructor() {
     super(...arguments);
-    this.state = { 
+    this.state = {
       msg: '',
       error: '',
     };
@@ -42,7 +42,7 @@ class Summary extends React.Component {
   render() {
 
     return(
-      <div className="plan-form summary-form">
+      <div className="padded-form summary-form">
         <div className="row">
           <div className="col s12 m8">
             <SummaryListing />
@@ -63,5 +63,3 @@ class Summary extends React.Component {
 }
 
 module.exports = Summary;
-
-

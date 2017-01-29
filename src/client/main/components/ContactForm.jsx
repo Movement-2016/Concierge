@@ -14,20 +14,20 @@ class ContactForm extends React.Component {
     e.preventDefault();
     this.props.onSubmit(this.refs.message.value);
   }
-  
+
   render() {
     const { submitText = 'Submit' } = this.props;
 
     return (
-        <div className="plan-form profile-form">
+        <div className="padded-form">
           <h3>Send a Message</h3>
           <form className="user-info" onSubmit={this.onSubmit}>
             <div className="row">
               <div className="col s12 m6">
-                <ProfileInput name="fname" placeholder="First Name" /> 
+                <ProfileInput name="fname" placeholder="First Name" />
               </div>
               <div className="col s12 m6">
-                <ProfileInput name="lname" placeholder="Last Name"  /> 
+                <ProfileInput name="lname" placeholder="Last Name"  />
               </div>
             </div>
             <div className="row">
@@ -35,7 +35,7 @@ class ContactForm extends React.Component {
                 <ProfileInput name="email" placeholder="Email *" required />
               </div>
               <div className="col s12 m6">
-                <ProfileInput name="phone" placeholder="Phone" /> 
+                <ProfileInput name="phone" placeholder="Phone" />
               </div>
             </div>
             <div className="row">
@@ -43,9 +43,7 @@ class ContactForm extends React.Component {
                 <textarea ref="message" name="message" placeholder="Your Message" />
               </div>
             </div>
-            <div className="action-area"> 
-              <button id="profile-form-submit" className="waves-effect waves-light btn" type="submit">{submitText}</button>
-            </div>
+            <button id="profile-form-submit" className="waves-effect waves-light btn" type="submit"><i className="material-icons right">send</i>{submitText}</button>
           </form>
         </div>
       );
@@ -53,4 +51,3 @@ class ContactForm extends React.Component {
 }
 
 module.exports=ContactForm;
-
