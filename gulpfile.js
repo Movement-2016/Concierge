@@ -19,14 +19,14 @@ const browserifyConfig =  {
   debug: true,
 };
 
-const babelifyOpts = { 
+const babelifyOpts = {
   presets: [
-    'es2015', 
+    'es2015',
     'react'],
   plugins: [
     'transform-class-properties',
     'transform-object-rest-spread'
-    ]    
+    ]
 };
 
 const dependencies = [
@@ -130,7 +130,7 @@ gulp.task ('vendor', function () {
 gulp.task ('styles', function () {
   return gulp.src ('src/client/css/main.scss')
     .pipe (sourcemaps.init())
-    .pipe (sass().on ('error', sass.logError))
+    .pipe (sass({outputStyle: 'compressed'}).on ('error', sass.logError))
     .pipe (autoprefixer())
     .pipe (sourcemaps.write())
     .pipe (gulp.dest (`${base}/public/css`));
@@ -139,13 +139,13 @@ gulp.task ('styles', function () {
 gulp.task ('vendor-styles', function () {
  return gulp.src( vendorStyles )
             .pipe(concat('vendor.css'))
-            .pipe(gulp.dest(`${base}/public/css`));  
+            .pipe(gulp.dest(`${base}/public/css`));
 });
 
 gulp.task ('vendor-client-js', function () {
  return gulp.src( vendorClientJS )
             .pipe(concat('vendor.browser.js'))
-            .pipe(gulp.dest(`${base}/public/js`));  
+            .pipe(gulp.dest(`${base}/public/js`));
 });
 
 const _rebundle = (bundler,start = Date.now()) => bundler.bundle ()
