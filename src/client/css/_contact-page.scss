@@ -1,4 +1,5 @@
 .content-page.contact p {
-  font-size: 1.33rem;
-  text-align: center;
+  @include bp-md {
+    font-size: 18px;
+  }
 }
