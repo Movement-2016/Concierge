@@ -12,7 +12,7 @@ if( typeof window !== 'undefined') {
   _fetch = require('node-fetch'.trim()); // prevent browserify bundling
 }
 
-const WP_DEV = true;
+const WP_DEV = false;
 
 const WP_API_HOST =   WP_DEV ? 'http://localhost:8080/wordpress' : 'https://movement2018.wpengine.com';
 
