@@ -1,6 +1,7 @@
 import React from 'react';
 import Alert from '../../ui/Alert.jsx';
 import ContentPage from './ContentPage.jsx';
+import ProfileInput  from './Profile/Input.jsx';
 
 class PartyForm extends React.Component {
 
@@ -59,18 +60,18 @@ class PartyForm extends React.Component {
             <form className="user-info" onSubmit={this.onSubmit}>
               <div className="row">
                 <div className="col s12 m6">
-                  <input type="text" name="firstName" placeholder="First Name *" required />
+                  <ProfileInput name="fname" placeholder="First Name *" required />
                 </div>
                 <div className="col s12 m6">
-                  <input type="text" name="lastName" placeholder="Last Name *" required />
+                  <ProfileInput name="lname" placeholder="Last Name *" required />
                 </div>
               </div>
               <div className="row">
                 <div className="col s12 m6">
-                  <input type="email" name="email" placeholder="Email *" required />
+                  <ProfileInput name="email" placeholder="Email *" required />
                 </div>
                 <div className="col s12 m6">
-                  <input type="text" name="phone" placeholder="Phone *" required />
+                  <ProfileInput name="phone" placeholder="Phone *" required />
                 </div>
               </div>
               <div className="row">

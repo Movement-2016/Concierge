@@ -2,7 +2,6 @@ import React         from 'react';
 
 import ProfileInput  from './Profile/Input.jsx';
 
-
 class ContactForm extends React.Component {
 
   constructor() {
@@ -43,7 +42,7 @@ class ContactForm extends React.Component {
             </div>
             <div className="row">
               <div className="col s12">
-                <textarea ref="message" name="message" placeholder="Your Message" />
+                <textarea ref="message" name="message" placeholder="Your Message" required />
               </div>
             </div>
             <button id="profile-form-submit" className="waves-effect waves-light btn" type="submit"><i className="material-icons right">send</i>{submitText}</button>
