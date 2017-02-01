@@ -1,8 +1,5 @@
 .content-page.contact p {
-  font-size: 1.33rem;
-  text-align: center;
-}
-
-.plan-form textarea {
-  min-height: 120px;
+  @include bp-md {
+    font-size: 18px;
+  }
 }

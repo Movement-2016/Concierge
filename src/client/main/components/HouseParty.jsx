@@ -34,10 +34,10 @@ class PartyForm extends React.Component {
             url: '/api/houseparty',
             type: 'post',
             dataType: 'json',
-            data: $('form#houseparty-form').serialize(),
+            data: $('.user-info').serialize(),
             success: (/*data*/) => this.setState({ sent: true, error: '' }),
             error: () => this.setState({ sent: false, error: 'wups, there was a problem'})
-        });    
+        });
   }
 
   render() {
@@ -53,45 +53,43 @@ class PartyForm extends React.Component {
 
       return (
         <ContentPage.Shell name="hostaparty" title="Host A Party">
-          <div className="infobox">
-            <div className="infobox-title">
-              <h5>Your Information</h5>
-            </div>
+          <div className="houseparty-form padded-form">
+            <h3>Your Information</h3>
             {error && <Alert msg={error} type={Alert.DANGER} />}
-            <form id="houseparty-form" className="container infobox-form" onSubmit={this.onSubmit}>
-              <div className="row checkbox-group">
-                <div className="col-md-6">
-                  <input type="checkbox" name="hostParty" id="hostParty" />
-                  <label htmlFor="hostParty">Yes! I would like to host a house party!</label>
-                </div>
-                <div className="col-md-6">
-                  <input type="checkbox" name="learnMore" id="learnMore" />
-                  <label htmlFor="learnMore">I am interested in hosting a house party, but would like to learn more.</label>
-                </div>
-              </div>
+            <form className="user-info" onSubmit={this.onSubmit}>
               <div className="row">
-                <div className="col-md-6">
+                <div className="col s12 m6">
                   <input type="text" name="firstName" placeholder="First Name *" required />
                 </div>
-                <div className="col-md-6">
+                <div className="col s12 m6">
                   <input type="text" name="lastName" placeholder="Last Name *" required />
                 </div>
               </div>
               <div className="row">
-                <div className="col-md-6">
+                <div className="col s12 m6">
                   <input type="email" name="email" placeholder="Email *" required />
                 </div>
-                <div className="col-md-6">
+                <div className="col s12 m6">
                   <input type="text" name="phone" placeholder="Phone *" required />
                 </div>
               </div>
               <div className="row">
-                <div className="col-md-6">
+                <div className="col s12 m6">
                   <input type="text" className="input-city" name="city" placeholder="City *" required />
                   <input type="text" className="input-state" name="state" placeholder="State *" required />
                 </div>
-                <div className="col-md-6">
+                <div className="col s12 m6">
                   <input type="text" name="affiliation" placeholder="Business or Affiliation" />
+                </div>
+              </div>
+              <div className="checkbox-group">
+                <div className="checkbox">
+                  <input type="checkbox" className="filled-in" name="hostParty" id="hostParty" />
+                  <label htmlFor="hostParty">Yes! I would like to host a house party!</label>
+                </div>
+                <div className="checkbox">
+                  <input type="checkbox" className="filled-in" name="learnMore" id="learnMore" />
+                  <label htmlFor="learnMore">I am interested in hosting a house party, but would like to learn more.</label>
                 </div>
               </div>
               <textarea name="message" placeholder="Anything else you'd like to tell us?" />

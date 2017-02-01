@@ -1,26 +1,7 @@
 import React            from 'react';
-import { Shell }        from './ContentPage.jsx';
-import Form             from './ContactForm.jsx';
+import ContentPage      from './ContentPage.jsx';
+import ContactForm      from './ContactForm.jsx';
 import { emailContact } from '../store/utils';
-import { PageContext }  from './ContextMixins';
-
-
-class ContactText extends PageContext(React.Component) {
-  
-  get page() {
-    return 'contact';
-  }
-
-  render() {
-   if( !this.state || !this.state.page ) {
-      return null;      
-    }
-
-    const content = this.state.page.fields.html;
-
-    return <p className="content" dangerouslySetInnerHTML={{__html:content}} />;
-  }
-}
 
 class ContactPage extends React.Component {
 
@@ -30,7 +11,7 @@ class ContactPage extends React.Component {
 
   constructor() {
     super(...arguments);
-    this.state = { 
+    this.state = {
       error: '',
       done: ''
     };
@@ -48,20 +29,18 @@ class ContactPage extends React.Component {
 
   render() {
 
-    const { 
+    const {
       done,
-      error 
+      error
     } = this.state;
 
     return (
-      <Shell title="Get In Touch" name="contact">
-        <div className="content">
-          {error && <p className="error">{error}</p>}
-          <p>{done ? done : 'Questions? Suggestions? Feedback? Let us know!'}</p>
-          <ContactText />
-          {!done && <Form onSubmit={this.onSubmit} />}
-        </div>
-      </Shell>
+      <ContentPage page="contact">
+        <ContactForm onSubmit={this.onSubmit}>
+          {done && <div className="submit-message submit-success">{done}</div>}
+          {error && <div className="submit-message submit-error">{error}</div>}
+        </ContactForm>
+      </ContentPage>
     );
   }
 }

@@ -20,7 +20,8 @@ main {
   flex: 0;
 }
 
-ul {
+ul,
+form {
   margin: 0;
 }
 
@@ -39,7 +40,7 @@ ul {
   margin: 0 auto;
   max-width: 1000px;
   @include bp-md {
-    width: 75%;
+    width: 90%;
   }
   @include bp-lg {
     width: 66%;
@@ -52,13 +53,6 @@ ul {
 
 .hidden {
   display: none;
-}
-
-textarea {
-  border-color: $light-border;
-  background: color('grey', 'lighten-5');
-  padding: 6px;
-  max-width: 100%;
 }
 
 .btn {

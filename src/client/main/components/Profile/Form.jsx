@@ -18,25 +18,25 @@ class ProfileForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    this.props.onSubmit();    
+    this.props.onSubmit();
   }
-  
- 
+
+
 
   render() {
     const { submitText = 'Complete Plan' } = this.props;
 
     return (
-        <div className="plan-form profile-form">
+        <div className="profile-form padded-form">
           <BackToPlan />
           <h3>Your Information</h3>
           <form className="user-info" onSubmit={this.onSubmit}>
             <div className="row">
               <div className="col s12 m6">
-                <ProfileInput name="fname" placeholder="First Name" /> 
+                <ProfileInput name="fname" placeholder="First Name" />
               </div>
               <div className="col s12 m6">
-                <ProfileInput name="lname" placeholder="Last Name"  /> 
+                <ProfileInput name="lname" placeholder="Last Name"  />
               </div>
             </div>
             <div className="row">
@@ -44,10 +44,10 @@ class ProfileForm extends React.Component {
                 <ProfileInput name="email" placeholder="Email *" required />
               </div>
               <div className="col s12 m6">
-                <ProfileInput name="phone" placeholder="Phone *" required /> 
+                <ProfileInput name="phone" placeholder="Phone *" required />
               </div>
             </div>
-            <div className="action-area"> 
+            <div className="action-area">
               <button id="profile-form-submit" className="waves-effect waves-light btn" type="submit">{submitText}</button>
             </div>
           </form>
@@ -57,4 +57,3 @@ class ProfileForm extends React.Component {
 }
 
 module.exports=ProfileForm;
-

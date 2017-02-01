@@ -1,7 +1,7 @@
 import path from 'jspath';
 
 import 'whatwg-fetch';
-const ADVISOR_EMAIL = 'advisor@movement2016.org';
+const ADVISOR_EMAIL = 'melmanalex@gmail.com';
 
 
 const _do_email = ({payload,url,onDone,onError}) => {
@@ -24,16 +24,16 @@ const _do_email = ({payload,url,onDone,onError}) => {
       .then( resp => {
         // this is a gmail api thing
         if( resp.labelIds && resp.labelIds.includes('SENT') ) {
-          onDone('Mail was sent!');  
+          onDone('Thank you! Your message has been sent successfuly.');
         } else {
-          onError('could not send mail, sorry about that');
-        }      
-      }).catch( () => onError('wups, something went wrong') );
+          onError('Error: We were unable to send your message at this time. Please try again later or email advisor@movementvote.org directly.');
+        }
+      }).catch( () => onError('Error: We were unable to send your message at this time. Please try again later or email advisor@movementvote.org directly. Thank you!') );
 
 };
 
 const emailContact = ({ storeState, onError, onDone, message }) => {
-    
+
     const payload = {
       ...storeState.user,
       advisorEmail: ADVISOR_EMAIL,
@@ -45,17 +45,17 @@ const emailContact = ({ storeState, onError, onDone, message }) => {
 };
 
 const emailPlan = ({ storeState, onError, onDone, forceConsult = false }) => {
-    
+
     let {
       groups:{
         plan: items,
-        planTotal        
+        planTotal
       },
       user
     } = storeState;
 
     forceConsult && (user = { ...user, wantsConsult: true });
-    
+
     const payload = {
       ...user,
       advisorEmail: ADVISOR_EMAIL,
@@ -94,13 +94,13 @@ const _iterateOrgs = (orgs,callback) => {
       }
     }
   }
-  
+
   return visible;
 
 };
 
 /*
-  A filter is an array of tags. The fiters are grouped by 
+  A filter is an array of tags. The fiters are grouped by
   a key. (type of org, constituency, etc.)
 
   If any one of the keyed groups of tags doesn't match
@@ -109,8 +109,8 @@ const _iterateOrgs = (orgs,callback) => {
 const getVisibleOrgs = (orgs,filters) => {
 
   var keys = Object.keys(filters);
-  var tags = keys.map( k => filters[k] ); 
-  
+  var tags = keys.map( k => filters[k] );
+
   return _iterateOrgs( orgs, org => {
     for( var n = 0; n < tags.length; n++ ) {
       if( !org.tags ) {
@@ -158,9 +158,9 @@ const organizeByOrgs = orgs => {
 const filterTagsByTypes = ({tags,filters}) => {
   const types = Object.keys(filters);
   const pred  = tags.map( t => `.name=="${t}"` ).join('||');
-  const result = types.reduce( (result,type) => { 
+  const result = types.reduce( (result,type) => {
     result[type] = {
-      tags: pred 
+      tags: pred
               ? path(`."${type}".terms..{${pred}}.label`,filters)
               : [],
       label: filters[type].label
