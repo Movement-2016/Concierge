@@ -12,10 +12,11 @@ class StatePage extends ServiceContext(React.Component) {
     storeState.service.orgs.then( orgs => {
       const {
         groupDict: allStates,
-        groupSectionsIDDict: colors
+        groupSectionsIDDict: colors,
+        filtersSync: filters
       } = storeState.service;
 
-      this.setState({ allStates, colors, orgs, loading: false });
+      this.setState({ allStates, filters, colors, orgs, loading: false });
     });
     this.setState({ loading: true });
   }
@@ -26,7 +27,8 @@ class StatePage extends ServiceContext(React.Component) {
       allStates,
       orgs,
       colors,
-      loading
+      loading,
+      filters
     } = this.state;
 
     if( loading ) {
@@ -41,7 +43,12 @@ class StatePage extends ServiceContext(React.Component) {
     return (
       <Shell name={'state-page ' + name} title={''}>
         <Link className="back-to-group-link" to="/groups/mobile"><i className="material-icons">chevron_left</i> Back to groups</Link>
-        <State {...state} items={orgs[color][name]} />
+        <State {...state} 
+              items={orgs[color][name]} 
+              store={this.context.store} 
+              filters={filters}
+              selected={[]}
+        />
       </Shell>
       );
   }
