@@ -1,9 +1,5 @@
 import React from 'react';
 
-import {
-  ContextMixin
-} from '../ContextMixins';
-
 import { toggleItem } from '../../store/actions';
 
 class TagBlock extends React.Component {
@@ -38,39 +34,31 @@ class TagBlock extends React.Component {
   }
 }
 
-class Org extends ContextMixin(React.Component) {
+class Org extends React.Component {
 
   constructor() {
     super(...arguments);
 
     this.state = {
-      selected: false
+      selected: this.props.selected
     };
 
     this.onOrgClick = this.onOrgClick.bind(this);
-
-    const service = this.context.store.getState().service; 
-    this.filters = service.filtersSync;
   }
 
-  shouldComponentUpdate() {
-    return this.state.selected !== this._isSelected();
+  componentWillReceiveProps(nextProps) {
+    if( this.state.selected !== nextProps.selected ) {
+      this.setState( {selected: nextProps.selected} );
+    }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return this.state.selected !== nextProps.selected;
   }
 
   onOrgClick(e) {
     e.preventDefault();
-    this.context.store.dispatch( toggleItem(this.props.ID) );
-  }
-
-  stateFromStore(storeState) {
-    if( this.state.selected !== this._isSelected(storeState) ) {
-      this.setState( { selected: !this.state.selected });
-    }
-  }
-
-  _isSelected( storeState ) {
-    const { groups } = storeState || this.context.store.getState();
-    return groups.selected.includes(this.props.ID);
+    this.props.store.dispatch( toggleItem(this.props.ID) );
   }
 
   render() {
@@ -84,7 +72,8 @@ class Org extends ContextMixin(React.Component) {
         html: description,
         'nonprofit-type': npTags = []
       },      
-      ID: id
+      ID: id,
+      filters
     } = this.props;
 
     const {
@@ -96,7 +85,7 @@ class Org extends ContextMixin(React.Component) {
     const text    = selected ? 'Remove from plan' : 'Add to plan';
     const cls     = selected ? 'selected' : '';
 
-    const npTerms = this.filters['nonprofit-type'].terms;
+    const npTerms = filters['nonprofit-type'].terms;
 
     const urlGive = urlC3 || urlC4;
     
@@ -114,7 +103,7 @@ class Org extends ContextMixin(React.Component) {
             </div>
           </div>
           <div className="group-content"><p dangerouslySetInnerHTML={{__html:description}} /></div>
-          <TagBlock fields={fields} filters={this.filters} />
+          <TagBlock fields={fields} filters={filters} />
         </div>
       );
   }

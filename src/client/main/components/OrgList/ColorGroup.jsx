@@ -6,10 +6,6 @@ import CollapseMixin from '../CollapseMixin';
 
 class ColorGroup extends CollapseMixin(React.Component) {
 
-  static contextTypes = {
-    store: React.PropTypes.object.isRequired
-  }
-
   get collapsibleSelector() {
     return '#' + this.props.name + '-states-list';
   }
@@ -18,24 +14,36 @@ class ColorGroup extends CollapseMixin(React.Component) {
     const {
       slug:name,
       name:label,
-      states
+      states,
+      selected,
+      store,
+      groupDict,
+      filters
     } = this.props;
 
     const {
       expanded
     } = this.state;
 
-    const allStates = expanded && this.context.store.getState().service.groupDict;
+    const allStates = expanded && groupDict;
 
     const id = name;
 
     const cls = expanded ? 'open' : 'closed';
+    const sel = `expand-trigger grouping-title ${cls} ${id}-title`;
 
     return (
       <div className="grouping scrollspy" id={id}>
-        <div onClick={this.onToggleCollapse} className={`expand-trigger grouping-title ${cls} ${id}-title`}>{this.expandIcon} {label}</div>
+        <div onClick={this.onToggleCollapse} className={sel}>{this.expandIcon} {label}</div>
         <div className="section-groups collapse" id={id + '-list'}>
-          {expanded && Object.keys(states).map( s => <State key={s} {...allStates[s]} color={name} items={states[s]} />)}
+          {expanded && Object.keys(states).map( s => <State key={s} 
+                                                            {...allStates[s]} 
+                                                            selected={selected} 
+                                                            store={store}
+                                                            color={name} 
+                                                            filters={filters}
+                                                            items={states[s]} 
+                                                     />)}
         </div>
       </div>
       );

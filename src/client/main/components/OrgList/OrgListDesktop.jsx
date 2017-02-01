@@ -24,18 +24,26 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
     }
   }
 
-  // for debugging breakpoint
+  // shouldComponentUpdate() {
+  //   return this.state.selected !== this._isSelected();
+  // }
+
   stateFromStore(storeState) {
-    const { service } = storeState;
-    this.setState({ service });
+    const { service, groups } = storeState;
+    this.setState({ service, groups });
   }
 
   getVisibleColorGroups() {
 
     const {
-      groupSections,
-      sectionOrder: colorOrder
-    } = this.state.service;
+      groups,
+      service: {
+        groupSections,
+        filtersSync: filters,
+        sectionOrder: colorOrder,
+        groupDict
+      }
+    } = this.state;
 
     const {
       orgs
@@ -50,16 +58,33 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
     const sections = getVisibleColorGroups(colorGroups,orgs);
     const colors = Object.keys(sections).sort( (a,b) => order[a] > order[b] );
 
-    return { sections, colors, orgs, colorGroups };
+    return { groups, filters, groupDict, sections, colors, orgs, colorGroups };
   }
 
   render() {
 
-    const { colors, orgs, colorGroups } = this.getVisibleColorGroups();
+    const { 
+      colors, 
+      orgs, 
+      colorGroups,
+      groups: {
+        selected
+      },
+      filters,
+      groupDict
+    } = this.getVisibleColorGroups();
 
     return (
         <div className="group-area">
-          {colors.map( color => <ColorGroup key={color} {...colorGroups[color]} states={orgs[color]} />)}
+          {colors.map( color => <ColorGroup 
+                                  key={color} 
+                                  {...colorGroups[color]} 
+                                  selected={selected} 
+                                  states={orgs[color]} 
+                                  filters={filters}
+                                  store={this.context.store}
+                                  groupDict={groupDict}
+                                />)}
         </div>
       );
   }
