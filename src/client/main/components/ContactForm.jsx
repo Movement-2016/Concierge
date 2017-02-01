@@ -16,7 +16,10 @@ class ContactForm extends React.Component {
   }
 
   render() {
-    const { submitText = 'Submit' } = this.props;
+    const {
+      submitText = 'Submit',
+      children
+    } = this.props;
 
     return (
         <div className="padded-form">
@@ -45,6 +48,7 @@ class ContactForm extends React.Component {
             </div>
             <button id="profile-form-submit" className="waves-effect waves-light btn" type="submit"><i className="material-icons right">send</i>{submitText}</button>
           </form>
+          {children}
         </div>
       );
   }

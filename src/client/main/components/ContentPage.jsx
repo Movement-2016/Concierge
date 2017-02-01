@@ -4,11 +4,11 @@ import Loading from './Loading.jsx';
 
 class ContentPageShell extends React.Component {
   render() {
-    const { 
-      name, 
-      title, 
+    const {
+      name,
+      title,
       children,
-      big 
+      big
     } = this.props;
 
     const cls = 'container ' + (big ? '' : 'small-container');
@@ -38,10 +38,10 @@ class ContentPage extends PageContext(React.Component) {
   render() {
 
     if( !this.state.page ) {
-      return <Loading />;      
+      return <Loading />;
     }
 
-    const { 
+    const {
       page:{
         fields:{
           html: content
@@ -50,9 +50,12 @@ class ContentPage extends PageContext(React.Component) {
       }
     } = this.state;
 
+    const { children } = this.props;
+
     return (
       <ContentPageShell name={this.page} title={title}>
         <div className="content" dangerouslySetInnerHTML={{__html:content}} />
+        {children}
       </ContentPageShell>
       );
   }

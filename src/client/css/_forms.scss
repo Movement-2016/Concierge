@@ -33,5 +33,25 @@
 
   button {
     margin-top: 30px;
+    font-family: $font-2;
+    font-weight: 500;
   }
+}
+
+.submit-message {
+  margin-top: 20px;
+  padding: 6px;
+  color: $med-text;
+  font-family: $font-2;
+  font-size: 14px;
+}
+
+.submit-error {
+  background-color: color("red", "lighten-5");
+  border: 1px solid color("red", "lighten-4");
+}
+
+.submit-success {
+  background-color: color("blue", "lighten-5");
+  border: 1px solid color("blue", "lighten-4");
 }
