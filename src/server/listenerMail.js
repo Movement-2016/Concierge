@@ -72,8 +72,8 @@ Message: "${message}"
 const partyFormat = ({
         hostParty,
         learnMore,
-        fName,
-        lName,
+        fname,
+        lname,
         email,
         phone,
         city,
