@@ -44,6 +44,17 @@ const emailContact = ({ storeState, onError, onDone, message }) => {
 
 };
 
+const emailHouseParty = ({ storeState, onError, onDone, message }) => {
+
+  const payload = {
+    ...storeState.user,
+    
+    advisorEmail: ADVISOR_EMAIL,
+    message
+  }
+
+}
+
 const emailPlan = ({ storeState, onError, onDone, forceConsult = false }) => {
 
     let {

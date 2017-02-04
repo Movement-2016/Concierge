@@ -8,8 +8,8 @@ class ProfileInput extends ContextMixin(React.Component) {
 
   constructor() {
     super(...arguments);
-    this.onChange = this.onChange.bind(this);
     this.state = { value: '' };
+    this.onChange = this.onChange.bind(this);
   }
 
   stateFromStore(storeState) {
@@ -27,21 +27,15 @@ class ProfileInput extends ContextMixin(React.Component) {
   }
 
   render() {
-    const { 
-      name, 
-      placeholder,
-      required 
-    } = this.props;
+
 
     const { value } = this.state;
 
+
     const eProps = {
-      name,
       onChange: this.onChange,
-      placeholder,
       value,
-      required,
-      type: 'text'
+      ...this.props
     };
 
     return <input {...eProps} />;
@@ -49,5 +43,8 @@ class ProfileInput extends ContextMixin(React.Component) {
   }
 }
 
-module.exports = ProfileInput;
+ProfileInput.defaultProps = {
+  type: 'text'
+};
 
+module.exports = ProfileInput;

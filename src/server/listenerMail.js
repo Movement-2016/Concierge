@@ -109,7 +109,7 @@ function houseParty (req, res) {
   const mail = partyFormat(req.body);
 
   const payload = {
-    to: 'advisor@movementvote.org',
+    to: 'melmanalex@gmail.com',
     subject: SUBJECT_HEAD + ' Request for House Party',
     message: entities.decode(mail)
   };
