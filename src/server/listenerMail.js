@@ -59,16 +59,16 @@ Movement Vote
 `;
 
 const contactFormat = ({fname,lname,email,phone,message}) => `
-Email contact request from:
-${fname} ${lname}
-${email}
-${phone}
+First Name: ${fname}
+Last Name: ${lname}
+Email: ${email}
+Phone: ${phone}
 
-${message}
+Message: "${message}"
 `;
 
 const partyFormat = ({
-        houseParty,
+        hostParty,
         learnMore,
         firstName,
         lastName,
@@ -79,18 +79,18 @@ const partyFormat = ({
         affiliation,
         message
       }) => `
-
-${firstName} ${lastName}
-${city} ${state ? ',' + state : ''}
+First Name: ${fname}
+Last Name: ${lname}
+City: ${city} ${state ? ',' + state : ''}
+Email: ${email}
+Phone: ${phone}
 ${affiliation ? 'Affiliation: ' + affiliation : ''}
-${email}
-${phone}
 
-Can host party: ${houseParty ? 'YES' : 'NO'}
-Want's to learn more: ${learnMore ? 'YES' : 'NO'}
+Checkboxes:
+Can host party: ${hostParty ? 'YES' : 'NO'}
+Wants to learn more: ${learnMore ? 'YES' : 'NO'}
 
-${message ? firstName + 'says: "' + message + '"' : ''}
-
+${message ? 'Message: "' + message + '"' : ''}
 `;
 
 function houseParty (req, res) {
@@ -110,7 +110,7 @@ function houseParty (req, res) {
 
   const payload = {
     to: 'melmanalex@gmail.com',
-    subject: SUBJECT_HEAD + ' Request for House Party',
+    subject: SUBJECT_HEAD + ' House party form submission',
     message: entities.decode(mail)
   };
 
@@ -137,7 +137,7 @@ function contactEmail (req, res) {
 
   const payload = {
     to: advisorEmail,
-    subject: SUBJECT_HEAD + ' Request for Contact',
+    subject: SUBJECT_HEAD + ' Contact form submission',
     message: entities.decode(mail)
   };
 
