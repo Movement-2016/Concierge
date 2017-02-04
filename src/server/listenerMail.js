@@ -84,7 +84,7 @@ const partyFormat = ({
 
 First Name: ${fname}
 Last Name: ${lname}
-City: ${city} ${state ? ',' + state : ''}
+City: ${city + (state ? ', ' + state : '')}
 Email: ${email}
 Phone: ${phone}
 ${affiliation ? 'Affiliation: ' + affiliation : ''}

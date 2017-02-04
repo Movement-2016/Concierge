@@ -30,6 +30,7 @@ class PartyForm extends React.Component {
   onSubmit(e) {
 
     e.preventDefault();
+    this.setState( {done: false, error: false} );
     /* global $ */
     $.ajax({
             url: '/api/houseparty',
