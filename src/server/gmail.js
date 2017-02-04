@@ -11,11 +11,12 @@ const readJSON = path => new Promise( (resolve,reject) => {
   });
 });
 
-const createMessage = ({to, from, subject, message}) => {
+const createMessage = ({to, bcc, from, subject, message}) => {
     var str = ["Content-Type: text/plain; charset=\"UTF-8\"\n",
         "MIME-Version: 1.0\n",
         "Content-Transfer-Encoding: 7bit\n",
         "to: ", to, "\n",
+        (bcc ? "bcc: " + bcc : ''),
         "from: ", from, "\n",
         "subject: ", subject, "\n\n",
         message
@@ -42,14 +43,14 @@ class GMail {
     return new Promise( resolve => {
 
       //if( !this._oauth2Client ) {
-        const { 
-          client_secret, 
+        const {
+          client_secret,
           client_id,
-          redirect_uris 
+          redirect_uris
         } = (credentials.installed || credentials.web);
 
         var auth = new googleAuth();
-        this._oauth2Client = new auth.OAuth2(client_id, client_secret, redirect_uris[0] );        
+        this._oauth2Client = new auth.OAuth2(client_id, client_secret, redirect_uris[0] );
       //}
 
       readJSON( GMail.TOKEN_PATH )
@@ -66,13 +67,13 @@ class GMail {
   }
 
   send(mail) {
-    return this.authorize().then( auth => 
+    return this.authorize().then( auth =>
       this.profile.then( profile => new Promise( (resolve,reject) => {
         const head = Object.assign( {}, mail, profile );
         const payload = {
           auth: auth,
           userId: 'me',
-          resource: { 
+          resource: {
             raw: createMessage( head )
           }
         };
@@ -100,4 +101,3 @@ GMail.TOKEN_PATH   = GMail.TOKEN_DIR + 'gmail-auth.json';        // <-- written 
 GMail.readJSON = readJSON;
 
 module.exports = GMail;
-
