@@ -59,12 +59,14 @@ Movement Vote
 `;
 
 const contactFormat = ({fname,lname,email,phone,message}) => `
+
 First Name: ${fname}
 Last Name: ${lname}
 Email: ${email}
 Phone: ${phone}
 
 Message: "${message}"
+
 `;
 
 const partyFormat = ({
@@ -79,6 +81,7 @@ const partyFormat = ({
         affiliation,
         message
       }) => `
+
 First Name: ${fname}
 Last Name: ${lname}
 City: ${city} ${state ? ',' + state : ''}
@@ -91,6 +94,7 @@ Can host party: ${hostParty ? 'YES' : 'NO'}
 Wants to learn more: ${learnMore ? 'YES' : 'NO'}
 
 ${message ? 'Message: "' + message + '"' : ''}
+
 `;
 
 function houseParty (req, res) {
@@ -110,7 +114,7 @@ function houseParty (req, res) {
 
   const payload = {
     to: 'melmanalex@gmail.com',
-    subject: SUBJECT_HEAD + ' House party form submission',
+    subject: SUBJECT_HEAD + ' New house party form submission from ' + email,
     message: entities.decode(mail)
   };
 
@@ -137,7 +141,7 @@ function contactEmail (req, res) {
 
   const payload = {
     to: advisorEmail,
-    subject: SUBJECT_HEAD + ' Contact form submission',
+    subject: SUBJECT_HEAD + ' New contact form submission from ' + email,
     message: entities.decode(mail)
   };
 
