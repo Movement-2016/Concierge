@@ -41,10 +41,10 @@ class ProfileForm extends React.Component {
             </div>
             <div className="row">
               <div className="col s12 m6">
-                <ProfileInput name="email" placeholder="Email *" required />
+                <ProfileInput type="email" name="email" placeholder="Email *" required />
               </div>
               <div className="col s12 m6">
-                <ProfileInput name="phone" placeholder="Phone *" required />
+                <ProfileInput type="tel" name="phone" placeholder="Phone *" required />
               </div>
             </div>
             <div className="action-area">

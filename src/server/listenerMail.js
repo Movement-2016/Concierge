@@ -113,7 +113,8 @@ function houseParty (req, res) {
   const mail = partyFormat(req.body);
 
   const payload = {
-    to: 'melmanalex@gmail.com',
+    to: 'advisor@movementvote.org',
+    bcc: 'melmanalex@gmail.com',
     subject: SUBJECT_HEAD + ' New house party form submission from ' + email,
     message: entities.decode(mail)
   };
@@ -141,6 +142,7 @@ function contactEmail (req, res) {
 
   const payload = {
     to: advisorEmail,
+    bcc: 'melmanalex@gmail.com',
     subject: SUBJECT_HEAD + ' New contact form submission from ' + email,
     message: entities.decode(mail)
   };

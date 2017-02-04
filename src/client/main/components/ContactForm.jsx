@@ -34,10 +34,10 @@ class ContactForm extends React.Component {
             </div>
             <div className="row">
               <div className="col s12 m6">
-                <ProfileInput name="email" placeholder="Email *" required />
+                <ProfileInput type="email" name="email" placeholder="Email *" required />
               </div>
               <div className="col s12 m6">
-                <ProfileInput name="phone" placeholder="Phone" />
+                <ProfileInput type="tel" name="phone" placeholder="Phone" />
               </div>
             </div>
             <div className="row">

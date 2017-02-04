@@ -1,7 +1,7 @@
 import path from 'jspath';
 
 import 'whatwg-fetch';
-const ADVISOR_EMAIL = 'melmanalex@gmail.com';
+const ADVISOR_EMAIL = 'advisor@movementvote.org';
 
 
 const _do_email = ({payload,url,onDone,onError}) => {
@@ -48,7 +48,7 @@ const emailHouseParty = ({ storeState, onError, onDone, message }) => {
 
   const payload = {
     ...storeState.user,
-    
+
     advisorEmail: ADVISOR_EMAIL,
     message
   }
