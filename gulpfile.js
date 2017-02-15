@@ -15,6 +15,7 @@ const sourcemaps = require ('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 const concat = require('gulp-concat');
 const ext = require('gulp-ext');
+const rm = require('gulp-rm');
 
 const browserifyConfig =  {
   entries: 'src/client/main/components/App.jsx',
@@ -81,6 +82,7 @@ gulp.task ('watch', function () {
   gulp.watch ('src/client/index.html', ['html']);
   gulp.watch ('src/client/images/**/*', ['images']);
   gulp.watch ('src/server/*.js', ['server']);
+  gulp.watch ('src/shared/*', ['shared']);
   gulp.watch (dependencies, ['vendor']);
   gulp.watch('src/client/css/**/*.scss', ['styles']);
   gulp.watch('src/client/fonts/**/*', ['fonts']);
@@ -258,3 +260,9 @@ gulp.task ('browserify-stage', function () {
       .pipe (gulp.dest (`${BASE}/public/js`));
   }
 });
+
+gulp.task( 'clean', function() {
+  return gulp.src( `${BASE}/**/*`, { read: false })
+    .pipe( rm({ async: false }) );
+});
+
