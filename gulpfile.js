@@ -6,6 +6,7 @@ const sass = require ('gulp-sass');
 const buffer = require ('vinyl-buffer');
 const source = require ('vinyl-source-stream');
 const babelify = require ('babelify');
+const babel = require('gulp-babel');
 const browserify = require ('browserify');
 const watchify = require ('watchify');
 const uglify = require ('gulp-uglify');
@@ -13,6 +14,7 @@ const gzip = require ('gulp-gzip');
 const sourcemaps = require ('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 const concat = require('gulp-concat');
+const ext = require('gulp-ext');
 
 const browserifyConfig =  {
   entries: 'src/client/main/components/App.jsx',
@@ -59,7 +61,7 @@ const vendorClientJS = [
 
 const stageDir = '../concierge-stage';
 
-let base = 'dist';
+let BASE = 'dist';
 
 var stdTasks = ['html', 'images', 'server', 'styles', 'fonts', 'vendor-styles', 'vendor-client-js' ];
 
@@ -69,7 +71,7 @@ gulp.task ('stage',     ['set-stage', ...stdTasks, 'vendor-stage', 'browserify-s
 
 // set the destination for staging output and copy stage root files
 gulp.task ('set-stage', function () {
-  base = `${stageDir}/dist`;
+  BASE = `${stageDir}/dist`;
   return gulp.src (['stage/*', 'stage/.*'])
     .pipe (gulp.dest (stageDir));
 });
@@ -87,32 +89,64 @@ gulp.task ('watch', function () {
 // copy index.html and favicon.ico
 gulp.task ('html', function () {
   return gulp.src (['src/client/index.html', 'src/client/favicon.ico'])
-    .pipe (gulp.dest (`${base}/public`));
+    .pipe (gulp.dest (`${BASE}/public`));
 });
 
 // copy images
 gulp.task ('images', function () {
   return gulp.src ('src/client/images/**/*')
-    .pipe (gulp.dest (`${base}/public/images`));
+    .pipe (gulp.dest (`${BASE}/public/images`));
 });
 
 // copy fonts
 gulp.task ('fonts', function () {
   return gulp.src (fonts)
-    .pipe (gulp.dest (`${base}/public/fonts`));
+    .pipe (gulp.dest (`${BASE}/public/fonts`));
 });
 
-// copy server
-gulp.task( 'server', ['_service','_server']);
+// SERVER 
+gulp.task( 'server', ['shared','shared-components','_server']);
 
-gulp.task ('_service', function () {
-  return gulp.src ( 'src/client/m2016-service/index.js')
-    .pipe (gulp.dest (base + '/m2016-service'));
+gulp.task('shared', () => {
+  return gulp.src ( 'src/shared/**/*.js')
+            .pipe (babel())
+            .pipe (gulp.dest (BASE + '/shared'));
+});
+
+const sharedDeps = [
+  'shared-components-jsx',
+  'shared-components-store',
+  'shared-lib',
+];
+
+gulp.task('shared-components', sharedDeps, () => {
+  return gulp.src ( 'src/client/main/components/**/*.js')
+            .pipe (babel())
+            .pipe (gulp.dest (BASE + '/shared/components'));
+});
+
+gulp.task('shared-components-jsx',  () => {
+  return gulp.src ( 'src/client/main/components/**/*.jsx')
+            .pipe (babel())
+            .pipe ( ext.replace( 'jsx' ) )
+            .pipe (gulp.dest (BASE + '/shared/components'));
+});
+
+gulp.task('shared-components-store',  () => {
+  return gulp.src ( 'src/client/main/store/**/*' )
+            .pipe (babel())
+            .pipe (gulp.dest (BASE + '/shared/store'));
+});
+
+gulp.task('shared-lib',  () => {
+  return gulp.src ( 'src/client/lib/**/*' )
+            .pipe (babel())
+            .pipe (gulp.dest (BASE + '/lib'));
 });
 
 gulp.task ('_server', function () {
   return gulp.src ( 'src/server/*.js')
-    .pipe (gulp.dest (base));
+    .pipe (gulp.dest (BASE));
 });
 
 // compile third-party dependencies
@@ -124,7 +158,7 @@ gulp.task ('vendor', function () {
     .pipe (buffer ())
 //    .pipe (uglify ({ mangle: false }))
     .pipe (gzip ({ append: true }))
-    .pipe (gulp.dest (`${base}/public/js`));
+    .pipe (gulp.dest (`${BASE}/public/js`));
 });
 
 gulp.task ('styles', function () {
@@ -133,19 +167,19 @@ gulp.task ('styles', function () {
     .pipe (sass({outputStyle: 'compressed'}).on ('error', sass.logError))
     .pipe (autoprefixer())
     .pipe (sourcemaps.write())
-    .pipe (gulp.dest (`${base}/public/css`));
+    .pipe (gulp.dest (`${BASE}/public/css`));
 });
 
 gulp.task ('vendor-styles', function () {
  return gulp.src( vendorStyles )
             .pipe(concat('vendor.css'))
-            .pipe(gulp.dest(`${base}/public/css`));
+            .pipe(gulp.dest(`${BASE}/public/css`));
 });
 
 gulp.task ('vendor-client-js', function () {
  return gulp.src( vendorClientJS )
             .pipe(concat('vendor.browser.js'))
-            .pipe(gulp.dest(`${base}/public/js`));
+            .pipe(gulp.dest(`${BASE}/public/js`));
 });
 
 const _rebundle = (bundler,start = Date.now()) => bundler.bundle ()
@@ -160,12 +194,12 @@ const _rebundle = (bundler,start = Date.now()) => bundler.bundle ()
       .pipe (gzip ({ append: true }))
       .pipe (sourcemaps.init ({ loadMaps: true }))
       .pipe (sourcemaps.write ('.'))
-      .pipe (gulp.dest (`${base}/public/js/`));
+      .pipe (gulp.dest (`${BASE}/public/js/`));
 
 gulp.task ('browserify-watch', function () {
   const bundler = watchify (browserify (browserifyConfig, watchify.args));
   bundler.external (dependencies);
-  bundler.transform (babelify, babelifyOpts);
+  bundler.transform (babelify, babelifyOpts); 
   bundler.on ('update', rebundle);
 
   function rebundle() {
@@ -196,7 +230,7 @@ gulp.task ('vendor-stage', function () {
     .pipe (buffer ())
     .pipe (uglify ({ mangle: false }))
     .pipe (gzip ({ append: true }))
-    .pipe (gulp.dest (`${base}/public/js`));
+    .pipe (gulp.dest (`${BASE}/public/js`));
 });
 
 gulp.task ('browserify-stage', function () {
@@ -221,6 +255,6 @@ gulp.task ('browserify-stage', function () {
       .pipe (buffer ())
       .pipe (uglify ({ mangle: false }))
       .pipe (gzip ({ append: true }))
-      .pipe (gulp.dest (`${base}/public/js`));
+      .pipe (gulp.dest (`${BASE}/public/js`));
   }
 });

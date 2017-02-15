@@ -2,15 +2,9 @@ import React from 'react';
 import 'whatwg-fetch';
 import { findDOMNode } from 'react-dom';
 import Loading from './Loading.jsx';
+import { browserHistory } from 'react-router';
 
 import '../../lib/tooltip';
-
-const formatRace = race => {
-  return ['category', 'hotraces', 'notes'].reduce( (str,k) => {
-    race[k] && (str += '<div class="datum">' + race[k].replace(/(?:\r\n|\r|\n)/g, '<br />') + '</div>');
-    return str;
-  } , '' );
-};
 
 class StateMap extends React.Component {
 
@@ -22,28 +16,7 @@ class StateMap extends React.Component {
     this.unMounted = false;
   }
 
-/*
-  static contextTypes = {
-    store: React.PropTypes.object.isRequired
-  }
-
-  xxxcomponentWillMount() {    
-    const storeState = this.context.store.getState();
-    const { service } = storeState;
-    const {
-      groupings:{
-        terms:states
-      },
-    } = service;
-
-    const {
-      dataSource
-    } = this.props;
-
-    service.getStateRaces(dataSource).then( races => this.populateMapData(races,states) );
-  }
-*/
-  componentWillMount() {
+  componentDidMount() {
     const states = {};
     this.props.dataSource.forEach( s => states[s.slug] = s );
     const colors = {};
@@ -57,6 +30,12 @@ class StateMap extends React.Component {
       const $links = $('[data-toggle="tooltip"]',$e);
 
       $links.tooltipX({ container:'#map', html: true });
+      $links.click( function(e) {
+        e.preventDefault();
+        var $this = $(this);
+        var href = $this.attr('xlink:href');
+        browserHistory.push( href );
+      });
       this.gotTT = true;
     }
   }
@@ -105,7 +84,6 @@ class StateMap extends React.Component {
             $e.attr('xlink:href', link);
             $e.attr('title', title);
             $('path',a).addClass( cls );
-
           });
 
           mapData = div.innerHTML;

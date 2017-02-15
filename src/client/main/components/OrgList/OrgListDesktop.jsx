@@ -10,7 +10,7 @@ import scrollToElement from '../../../lib/scrollToElement';
 
 const getVisibleColorGroups = (allColorGroups,orgs) => {
   const visible = {};
-  Object.keys(orgs).forEach( colorGroup => visible[colorGroup] = allColorGroups[colorGroup] );
+  Object.keys(orgs || {}).forEach( colorGroup => visible[colorGroup] = allColorGroups[colorGroup] );
   return visible;
 };
 
@@ -49,6 +49,8 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
       orgs
     } = this.props;
 
+    // console.log("getVisibleColorGroups: ", orgs);
+
     const order = {};
     colorOrder.forEach( (c,i) => order[c] = i );
 
@@ -63,6 +65,8 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
 
   render() {
 
+    const vcg = this.getVisibleColorGroups();
+
     const { 
       colors, 
       orgs, 
@@ -72,7 +76,7 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
       },
       filters,
       groupDict
-    } = this.getVisibleColorGroups();
+    } = vcg;
 
     return (
         <div className="group-area">

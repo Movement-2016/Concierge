@@ -1,10 +1,11 @@
-var path     = require('jspath');
+/* global $ */
+
+var actions = require('./actions');
+var path    = require('jspath');
 
 let _fetch = null;
 
 if( typeof window !== 'undefined') {
-
-  /* global $ */
   _fetch = (url) => {
     return new Promise( (success,error) => $.ajax({url,success,error}) ); //  ,xhrFields: {withCredentials:false}} ) );
   };
@@ -12,10 +13,8 @@ if( typeof window !== 'undefined') {
   _fetch = require('node-fetch'.trim()); // prevent browserify bundling
 }
 
-const WP_DEV = false;
-
-const WP_API_HOST =   WP_DEV ? 'http://localhost:8080/wordpress' : 'https://movement2018.wpengine.com';
-
+const WP_DEV      = false;
+const WP_API_HOST = WP_DEV ? 'http://localhost:8080/wordpress' : 'https://movement2018.wpengine.com';
 const WP_API_BASE = WP_API_HOST + '/wp-json/movement-2018/';
 
 function checkStatus(response) {
@@ -32,7 +31,7 @@ function parseJSON(response) {
   return response.json ? response.json() : response;
 }
 
-class M2016Service {
+class MovementVoteService {
   constructor() {
     this._base = WP_API_BASE;
     this._pages = {};
@@ -247,9 +246,10 @@ class M2016Service {
     return this._filterDict;
   }
 
-  // get pages() {
-  //   return this._content.pages;
-  // }
 }
 
-module.exports = new M2016Service();
+var service = new MovementVoteService();
+
+service.actions = actions;
+
+module.exports = service;

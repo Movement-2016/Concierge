@@ -35,32 +35,9 @@ const MenuItem = ({url,children,title}) => {
 
 class MenuAnonymous extends React.Component {
 
-  constructor() {
-    super(...arguments);
-    this.state = {
-      loading: true
-    };
-  }
-
-  componentWillMount() {
-    const {store} = this.props;
-
-    const state = store.getState();
-
-    state.service.menu.then( menu => this.setState({menu,loading: false}) );
-  }
-
   render() {
     const {
-      loading,
-      menu
-    } = this.state;
-
-    if( loading) {
-      return null;
-    }
-
-    const {
+      menu,
       className,
       id
     } = this.props;
@@ -75,13 +52,10 @@ class MenuAnonymous extends React.Component {
 
 class Nav extends React.Component {
 
-  static contextTypes = {
-    store: React.PropTypes.object.isRequired,
-  };
-
   componentDidMount() {
     /* global $ */
-    var timeoutID = window.setTimeout(slowTest, 10);
+    const MENU_DELAY = 100;
+    /* var timeoutID = */ window.setTimeout(slowTest, MENU_DELAY);
     function slowTest() {
       $('.button-collapse').sideNav({
         closeOnClick: true,
@@ -95,18 +69,18 @@ class Nav extends React.Component {
 
   render() {
 
-    const { siteTitle } = this.props;
-
-    const { store } = this.context;
+    const { 
+      siteTitle, 
+      menu 
+    } = this.props;
 
     return (
       <div className="navbar-fixed">
         {this.dropdowns}
         <nav id="main-nav">
           <IndexLink to="/" className="brand-logo">{siteTitle}</IndexLink>
-          {/* <IndexLink to="/" className="brand-logo"><img src="/images/movement-logo.png" /></IndexLink> */}
-          <MenuAnonymous className="right hide-on-med-and-down" store={store}/>
-          <MenuAnonymous className="side-nav" id="mobile-menu" store={store} />
+          <MenuAnonymous className="right hide-on-med-and-down" menu={menu}/>
+          <MenuAnonymous className="side-nav" id="mobile-menu" menu={menu} />
           <a href="#" data-activates="mobile-menu" className="button-collapse"><i className="material-icons">menu</i></a>
         </nav>
       </div>

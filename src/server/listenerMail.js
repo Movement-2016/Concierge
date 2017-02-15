@@ -1,6 +1,7 @@
 /* eslint no-console:"off" */
 var GMail = require('./gmail');
-var M2016 = require('./m2016-service');
+var service  = require('./shared/m-service');
+
 var path = require('jspath');
 var Entities = require('html-entities').AllHtmlEntities;
 var commaize = require('commaize');
@@ -14,16 +15,15 @@ const mailer = new GMail();
 let orgs = null;
 
 function init () {
-  console.log( 'starting mail init');
+
   process.nextTick( () => {
-    M2016.orgs.then( o => {
+    service.orgs.then( o => {
       orgs = o;
-      console.log('mail init done');
+      console.log('Ready to use email');
     }).catch( err => {
       console.log( err );
     });
   });
-  console.log( 'starting mail init (2)');
 }
 
 const planFormatter = ({name,urlWeb,urlGive,amount}) => `

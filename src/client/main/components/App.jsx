@@ -4,12 +4,11 @@ import { Provider }       from 'react-redux';
 
 import '../../lib/polyfills';
 
-import configureStore        from '../../store/configureStore';
-
-import { initService }       from '../../m2016-service/actions';
 import { initFilters }       from '../store/actions';
 
-import service               from '../../m2016-service';
+import configureStore        from '../../store/configureStore';
+
+import service               from '../../../shared/m-service';
 
 import {
   unsubscribeFromStore,
@@ -47,25 +46,32 @@ class App extends React.Component {
   }
 
   componentWillMount () {
+
+    const { initService } = service.actions;
+
     store.dispatch( initService(service) );
 
     service.filters.then( filters => {
 
       store.dispatch( initFilters(filters) );
       subscribeToStore(store);
-      this.setState({ loading: false});
 
-    }).catch( err => this.setState({ error: err.message || err.statusText || err + '', err, loading: false }) );
+      return service.menu;
+    }).then( menu => {
+      try {
+        this.setState({ menu, loading: false });   
+      } catch(e) {
+        //
+      }        
+    }).catch( error => {
+      var err = err.message || err.statusText || err + '';      
+      this.setState( { error, err } );
+    });
   }
 
   // before unmount, remove store listener
   componentWillUnmount () {
     unsubscribeFromStore();
-  }
-
-  onShowHash() {
-
-
   }
 
   render () {
@@ -75,7 +81,8 @@ class App extends React.Component {
 
     const {
       err,
-      error
+      error,
+      menu
     } = this.state;
 
     if( error ) {
@@ -85,7 +92,7 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <div className="site-wrapper">
-          <Nav siteTitle={SITE_TITLE} />
+          <Nav menu={menu} siteTitle={SITE_TITLE} />
           {this.props.children}
           <Footer />
         </div>

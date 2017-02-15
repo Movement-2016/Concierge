@@ -5,9 +5,7 @@ const cookieParser = require ('cookie-parser');
 const expressSession = require ('express-session');
 const fs = require ('fs');
 const path = require ('path');
-//const passport = require ('passport');
-//const auth = require ('./auth');
-//const db = require ('./db');
+
 const routes = require ('./routes');
 
 var https = require('https');
@@ -52,12 +50,6 @@ function start (port) {
         resave: true,
       }));
 
-      // set up passport authentication, attach to express session manager
-      // auth.init ();
-      // app.use (passport.initialize ());
-      // app.use (passport.session ());
-
-      // create server with HTML and REST routes
       routes.init (app);
 
       console.log ('back from routes');
