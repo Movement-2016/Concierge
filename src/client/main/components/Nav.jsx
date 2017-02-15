@@ -4,7 +4,7 @@ import scrollToElement from '../../lib/scrollToElement';
 
 const _MenuItem = ({url,title} ) => {
   var text       = title;
-  var isExternal = !!url.match(/^http/);
+  var isExternal = global.IS_SERVER_REQUEST || !!url.match(/^http/);
   var href       = isExternal && url;
   var linkto     = !isExternal && url;
 

@@ -82,7 +82,7 @@ gulp.task ('watch', function () {
   gulp.watch ('src/client/index.html', ['html']);
   gulp.watch ('src/client/images/**/*', ['images']);
   gulp.watch ('src/server/*.js', ['server']);
-  gulp.watch ('src/shared/*', ['shared']);
+  gulp.watch ('src/shared/**/*', ['shared']);
   gulp.watch (dependencies, ['vendor']);
   gulp.watch('src/client/css/**/*.scss', ['styles']);
   gulp.watch('src/client/fonts/**/*', ['fonts']);

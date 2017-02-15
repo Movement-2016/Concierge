@@ -5,16 +5,13 @@ import Tile                from './Tile.jsx';
 
 class DonateTiles extends ServiceContext(React.Component) {
 
-  stateFromStore( storeState ) {
-
-    storeState.service.donateTiles.then( tiles => this.setState( { tiles, loading: false  }));
-
-    this.setState({ loading: true });
+  get contextPropName() {
+    return 'donateTiles';
   }
 
   render() {
     const {
-      tiles,
+      donateTiles,
       loading
     } = this.state;
 
@@ -24,7 +21,7 @@ class DonateTiles extends ServiceContext(React.Component) {
 
     return (
       <div className="donate-tiles">
-        {tiles.map( (d, i) => <Tile key={i} {...d} />)}
+        {donateTiles.map( (d, i) => <Tile key={i} {...d} />)}
       </div>
     );
   }

@@ -1,3 +1,6 @@
+global.IS_SERVER_REQUEST = true;
+global.jQuery = function(a) { return a; };
+
 const processCommand = require ('./cmd').processCommand;
 const server = require ('./server');
 

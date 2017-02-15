@@ -503,17 +503,19 @@
     })
   }
 
-  var old = $.fn.tooltip
+  var fn = $.fn || {tooltip:{}};
 
-  $.fn.tooltipX             = Plugin
-  $.fn.tooltipX.Constructor = Tooltip
+  var old = fn.tooltip
+
+  fn.tooltipX             = Plugin
+  fn.tooltipX.Constructor = Tooltip
 
 
   // TOOLTIP NO CONFLICT
   // ===================
 
-  $.fn.tooltip.noConflict = function () {
-    $.fn.tooltip = old
+  fn.tooltip.noConflict = function () {
+    fn.tooltip = old
     return this
   }
 

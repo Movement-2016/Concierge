@@ -1,4 +1,4 @@
-/* eslist no-console:off */
+/* eslint no-console:off */
 var fs             = require('fs');
 var React          = require('react');
 var reactServer    = require('react-dom/server');
@@ -6,6 +6,8 @@ var reactRedux     = require('react-redux');
 
 var groupsPage         = require('./shared/pages/groups');
 var contentPage        = require('./shared/pages/page');
+var advisorPage        = require('./shared/pages/advisors');
+var homePage           = require('./shared/pages/home');
 
 var Nav                = require('./shared/components/Nav.jsx');
 var Footer             = require('./shared/components/Footer.jsx');
@@ -31,6 +33,7 @@ var reduxStore = configReduxStore();
 var indexPageText  = null;
 var orgs           = null;
 var menu           = null;
+var advisors       = null;
 var factories      = {};
 
 var wrap = (component,props) => class AppServer extends React.Component {
@@ -41,7 +44,7 @@ var wrap = (component,props) => class AppServer extends React.Component {
       { store: reduxStore },
       React.createElement(
           'div',
-          {className:'site-wrapper'},
+          {className:'site-wrapper hidden'},
           React.createElement(Nav,{menu, siteTitle:'MovementServerRender'}),
           React.createElement(component,props),
           React.createElement(Footer,null)
@@ -66,42 +69,58 @@ function render(ReactElement,props) {
 function fetchAndRender(pageName) {
   return (req,res) => {
     service.getPage(pageName).then( content => {
+      contentPage.title = pageName;
       render(contentPage,() => {return {content:content.fields.html};})(req,res);
     });
   };
 }
 
+function fetchAndRenderHome() {
+  return (req,res) => 
+    Promise.all( [
+      service.donateTiles,
+      service.testimonials,
+      service.news,
+      service.getPage('home')
+      ]).then( ([ donateTiles, testimonials, news, home ]) => {
+        render(homePage,() => {return{ donateTiles, testimonials, news, home };})(req,res);
+      });
+}
+
 function pagesRoutes(app) {
 
-  global.IS_SERVER_REQUEST = true;
+  Promise.all( [ 
+    service.orgs, 
+    service.menu, 
+    service.advisors,
+    service.filters 
 
-  service.orgs.then( _orgs => {
+    ] ).then( ([_orgs,_menu,_advisors,filters]) => {
 
-    orgs = _orgs;
-
-    return service.menu;
-  }).then( _menu => {
-
-    menu = _menu;
+    orgs     = _orgs;
+    menu     = _menu;
+    advisors = _advisors;
 
     indexPageText = fs.readFileSync('./dist/public/index.html').toString();
 
     const { initService } = service.actions;
 
     reduxStore.dispatch( initService(service) );
+    reduxStore.dispatch( initFilters(filters) );
 
-    service.filters.then( filters => {
-      reduxStore.dispatch( initFilters(filters) );
-
-      console.log( 'Ready to render');
-    });
+    console.log( 'Ready to render');
 
   }).catch(err => {
     console.log( 'ERROR GETTING CONTENT: ', err );
   });
 
-  app.use( '/groups', render(groupsPage,() => {return { orgs };} ) );
+  app.use( '/groups',   render(groupsPage,()  => {return { orgs     };} ) );
+  app.use( '/advisors', render(advisorPage,() => {return { advisors };} ) );
+
   app.use( '/about',  fetchAndRender('about') );
+  app.use( '/team',  fetchAndRender('team') );
+
+  app.get( '/', fetchAndRenderHome() ); // fetchAndRender('home') );
 
 }
 

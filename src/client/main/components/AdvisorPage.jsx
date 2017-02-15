@@ -7,15 +7,22 @@ class AdvisorPage extends ServiceContext(React.Component) {
 
   constructor() {
     super(...arguments);
-    this.state = { advisors: '', loading: true };
+    var advisors = this.processAdvisors(this.props.advisors);
+    this.state = { advisors, loading: !advisors };
   }
 
   stateFromStore(storeState) {
-    storeState.service.advisors.then( advisors => {
-      advisors = advisors.map( a => a.post_title );
-      const sorted = advisors.sort( (a,b) => a.match(/[a-z-]+$/i)[0].localeCompare(b.match(/[a-z-]+$/i)[0]) );
-      this.setState({ advisors: sorted, loading: false });
-    });
+    if( !this.state.advisors ) {
+      storeState.service.advisors.then( advisors => {
+        advisors = this.processAdvisors(advisors);
+        this.setState({ advisors, loading: false });
+      });
+    }
+  }
+
+  processAdvisors(advisors) {
+    return advisors && advisors.map( a => a.post_title )
+                               .sort( (a,b) => a.match(/[a-z-]+$/i)[0].localeCompare(b.match(/[a-z-]+$/i)[0]) );
   }
 
   sliceAdvisors(advisors) {

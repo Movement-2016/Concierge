@@ -43,11 +43,8 @@ class Testimonial extends React.Component {
 
 class Testimonials extends ServiceContext(React.Component) {
 
-  stateFromStore( storeState ) {
-
-    storeState.service.testimonials.then( testimonials => this.setState( { testimonials, loading: false  }));
-
-    this.setState({ loading: true });
+  get contextPropName() {
+    return 'testimonials';
   }
 
   render() {
@@ -70,9 +67,8 @@ class Testimonials extends ServiceContext(React.Component) {
 
 class NewsTiles extends ServiceContext(React.Component) {
 
-  stateFromStore( storeState ) {
-    storeState.service.news.then( news => this.setState( { news, loading: false  }));
-    this.setState({ loading: true });
+  get contextPropName() {
+    return 'news';
   }
 
   render() {
@@ -95,17 +91,34 @@ class NewsTiles extends ServiceContext(React.Component) {
 
 class HomePage extends ServiceContext(React.Component) {
 
+  constructor() {
+    super(...arguments);
+    const {
+      home,
+      news,
+      testimonials,
+      donateTiles
+    } = this.props;
+
+    this.state = home ? { home, news, testimonials, donateTiles } : {};
+  }
+
   componentDidMount() {
     if( location.hash ) {
       setTimeout( () => {
         const elemName = location.hash.replace('#','');
         const elem = document.getElementById(elemName);
-        elem && setTimeout( () => scrollToElement('#' + elemName), 100 );
+        const SCROLL_DELAY = 100;
+        elem && setTimeout( () => scrollToElement('#' + elemName), SCROLL_DELAY );
       }, 200);
     }
   }
 
   stateFromStore( storeState ) {
+
+    if( this.state.home ) {
+      return;
+    }
 
     var home   = storeState.service.getPage('home');
     var states = storeState.service.states;
@@ -123,6 +136,9 @@ class HomePage extends ServiceContext(React.Component) {
       loading,
       states,
       colors,
+      news,
+      testimonials,
+      donateTiles,
       home: {
         fields: {
           tag_line,
@@ -151,7 +167,7 @@ class HomePage extends ServiceContext(React.Component) {
         <section className="donate-section" id="donate">
           <div className="container">
             <h2 className="section-title">Choose a Way to Give</h2>
-            <DonateTiles />
+            <DonateTiles donateTiles={donateTiles} />
           </div>
         </section>
         <section className="map-section">
@@ -163,12 +179,12 @@ class HomePage extends ServiceContext(React.Component) {
         </section>
         <section className="testimonial-section">
           <div className="container">
-            <Testimonials />
+            <Testimonials testimonials={testimonials} />
           </div>
         </section>
         <section className="news-section">
           <div className="container">
-            <NewsTiles />
+            <NewsTiles news={news} />
           </div>
         </section>
       </main>

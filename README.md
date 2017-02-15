@@ -21,8 +21,6 @@ npm i gulp -g
 npm i pm2 -g
 ```
 
-Running the server requires running MongoDB. For localhost it is recommended to run it in a 'nix screen.
-
 ### Build
 
 ```
@@ -64,8 +62,6 @@ Look for 'AWS CodeDepoly' and 'GitHub Auto-Deployment'
 Once the repo is pushed to AWS, the file `./appspec.yml' is read to determine how to build and deploy the app.
 
 Following that breadcrumb trail will help you understand that process. (Hint: see ./stage/after-install.sh)
-
-For instructions on how to install/deploy Mongo see ./stage/ManualDeployMongoOnEC2.pdf
 
 By default the server will run on HTTP port 3000, in order to point port 80 AWS requires the following:
 
