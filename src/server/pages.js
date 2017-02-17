@@ -1,3 +1,20 @@
+/*
+  The current scheme for server rendering is a temp scheme to get 
+  things up and running and prove that server rendering is workable.
+  In the real world we'd be using a single routing mechanism for
+  both client/server, prefetch all the data based on page's requirements
+  BEFORE invoking the page component, not in the componentWillMount
+  callback and we could isolate the browser-only code (jquery) all
+  along the way. 
+
+  As of this writing none of that happening. Instead, we share the 
+  inner display mechanism between server and browser rendering, those
+  are wrapped in different but similar mechanism depending on server
+  vs client, the server is contanimated with browser only javascript
+  and there is a completely different routing mechanism used between
+  server and browser.
+
+*/
 /* eslint no-console:off */
 var fs             = require('fs');
 var React          = require('react');
@@ -24,7 +41,7 @@ var {
 } = reactRedux;
 
 var { 
-  renderToString
+  renderToStaticMarkup
 } = reactServer;
 
 
@@ -60,7 +77,7 @@ function render(ReactElement,props) {
       var element = wrap(ReactElement,props());
       factories[ReactElement.title] = React.createFactory(element);
     }
-    var body = renderToString(factories[ReactElement.title]());
+    var body = renderToStaticMarkup(factories[ReactElement.title]());
     var text = indexPageText.replace('<!-- RENDER CONTENT -->',body);
     res.status(200).send(text);
   };
@@ -120,7 +137,7 @@ function pagesRoutes(app) {
   app.use( '/about',  fetchAndRender('about') );
   app.use( '/team',  fetchAndRender('team') );
 
-  app.get( '/', fetchAndRenderHome() ); // fetchAndRender('home') );
+  app.get( '/', fetchAndRenderHome() ); 
 
 }
 
