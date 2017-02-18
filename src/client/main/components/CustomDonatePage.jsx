@@ -104,19 +104,21 @@ class CustomDonatePage extends ContextMixin(React.Component) {
       <main className={`browse-groups-page ${mobile}`}>
         <div className="container">
           <h1 className="page-title">{title}</h1>
-          <div className="browse-section">
-            <div className="filter-area">
-              <Filters {...fprops} />
-            </div>
-            {showOrgs
-              ? <OrgList mobile={mobile} orgs={orgs} />
-              : <Loading />
-            }
-            <div className="plan-sidebar">
-              <Tray />
-              <EasyDonateTiles />
-            </div>
-          </div>
+          {showOrgs
+            ?
+              <div className="browse-section">
+                <div className="filter-area">
+                  <Filters {...fprops} />
+                </div>
+                <OrgList mobile={mobile} orgs={orgs} />
+
+                <div className="plan-sidebar">
+                  <Tray />
+                  <EasyDonateTiles />
+                </div>
+              </div>
+            : <Loading />
+          }
         </div>
       </main>
     );
