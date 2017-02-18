@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router';
 import OrgList  from './OrgList';
 import Filters  from './Filters';
 import Tray     from './ShoppingCart/Tray.jsx';
+import EasyDonateTiles    from './EasyDonateTiles.jsx';
 import Loading  from './Loading.jsx';
 
 import { ContextMixin } from './ContextMixins';
@@ -37,13 +38,13 @@ class CustomDonatePage extends ContextMixin(React.Component) {
 
   stateFromStore(storeState) {
     storeState.service.orgs.then( orgs => {
-      const { 
+      const {
         groups: {
           visibility
         }
       } = storeState;
 
-      this.setState( { 
+      this.setState( {
         selectedTerms: visibility,
         orgs: getVisibleOrgs( orgs, visibility ),
         loading: false
@@ -52,7 +53,7 @@ class CustomDonatePage extends ContextMixin(React.Component) {
   }
 
   onShowState(state) {
-    const { 
+    const {
       params:{ mobile = ''} = {}
     } = this.props;
 
@@ -60,12 +61,12 @@ class CustomDonatePage extends ContextMixin(React.Component) {
       browserHistory.push( '/state/' + state );
     } else {
       browserHistory.push('/groups#' + state);
-      scrollToElement('#' + state,100);      
+      scrollToElement('#' + state,100);
     }
   }
 
   onTermsChecked(cat, terms, toggle) {
-    const tags = terms && terms.length 
+    const tags = terms && terms.length
                   ? TagString.fromArray( this.state.selectedTerms[cat] ).toggle(terms,toggle).toArray()
                   : [];
     this.context.store.dispatch( setVisibility( cat, tags ) );
@@ -78,12 +79,12 @@ class CustomDonatePage extends ContextMixin(React.Component) {
       loading,
       showOrgs
     } = this.state;
-    
+
     if( loading ) {
       return <Loading />;
     }
 
-    const { 
+    const {
       params:{ mobile = ''} = {}
     } = this.props;
 
@@ -98,7 +99,7 @@ class CustomDonatePage extends ContextMixin(React.Component) {
     };
 
     const title = 'Browse Groups';
-    
+
     return (
       <main className={`browse-groups-page ${mobile}`}>
         <div className="container">
@@ -107,11 +108,14 @@ class CustomDonatePage extends ContextMixin(React.Component) {
             <div className="filter-area">
               <Filters {...fprops} />
             </div>
-            {showOrgs 
+            {showOrgs
               ? <OrgList mobile={mobile} orgs={orgs} />
               : <Loading />
             }
-            <Tray />
+            <div className="plan-sidebar">
+              <Tray />
+              <EasyDonateTiles />
+            </div>
           </div>
         </div>
       </main>

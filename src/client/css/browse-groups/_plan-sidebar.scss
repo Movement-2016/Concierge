@@ -1,0 +1,91 @@
+$tray-padding: 12px;
+
+.plan-sidebar {
+  display: none;
+  @include bp-lg {
+    display: block;
+    position: fixed;
+    top: 124;
+    width: $side-col-width - $site-padding-lg;
+    right: $site-padding-lg;
+
+    .donation-plan-tray {
+      padding-top: $tray-padding;
+      background-color: $white;
+      @include z-depth-1;
+
+      .title {
+        font-size: 16px;
+        color: $lighter-text;
+        padding: 0 $tray-padding;
+      }
+
+      .info {
+        padding: 8px $tray-padding $tray-padding;
+        font-size: 20px;
+      }
+
+      .btn-flat {
+        height: 48px;
+        line-height: 48px;
+        color: $primary-color;
+        padding: 0 $tray-padding;
+        border-top: 1px solid $light-border;
+        width: 100%;
+        letter-spacing: 0.5px;
+
+        i {
+          @include reg-icon;
+          font-size: 26px;
+          margin-right: 8px;
+        }
+      }
+    }
+    .donate-tiles {
+      margin-top: 30px;
+      .title {
+        color: $lighter-text;
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+    }
+    .donate-tile {
+      padding: $tray-padding;
+      background-color: $white;
+      border: 1px solid lighten($secondary-color-light, 15%);
+      @include z-depth-1;
+      margin-bottom: 12px;
+      .tile-title {
+        font-family: $font-2;
+        color: $lighter-text;
+        font-size: 16px;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+      .tile-content {
+        margin: 2px 0 8px;
+        font-size: 12px;
+        color: $lighter-text;
+      }
+      .tile-button {
+        background: $secondary-color-light;
+        color: $white;
+        text-align: center;
+        font-family: $font-2;
+        font-weight: 500;
+        height: 27px;
+        line-height: 27px;
+        padding: 0;
+        width: 100%;
+        border-radius: 20px;
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-height: 660px) {
+  .donate-tiles {
+    display: none;
+  }
+}
