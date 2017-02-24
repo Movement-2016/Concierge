@@ -26,7 +26,7 @@ class TileBody extends React.Component {
         </div>
         <div className="tile-text">
           <h3 className="tile-title">{title}{url && <i className="material-icons">chevron_right</i>}</h3>
-          <div className="tile-content">{content}</div>
+          <div className="tile-content" dangerouslySetInnerHTML={{__html:content}} />
         </div>
       </div>
     );
