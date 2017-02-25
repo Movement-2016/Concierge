@@ -22,11 +22,11 @@ $font-1: 'Lato', 'Helvetica Neue', 'Helvetica', sans-serif;
 $font-2: 'Roboto', 'Helvetica Neue', 'Helvetica', sans-serif;
 
 // Media query variables
-$xs-screen-up: 361px;
+$xs-screen-up: 375px;
 $small-screen-up: 761px;
 $medium-screen-up: 993px;
 $large-screen-up: 1201px;
-$xs-screen: 360px;
+$xs-screen: 374px;
 $small-screen: 760px;
 $medium-screen: 992px;
 $large-screen: 1200px;
@@ -36,6 +36,7 @@ $xl-and-up: "only screen and (min-width : #{$large-screen-up})";
 // Base colors
 $white: #fff;
 $trans-white: rgba(255, 255, 255, 0.96);
+$trans-blue: rgba(20, 123, 204, 0.64);
 $facebook-blue: rgb(59, 89, 152);
 $twitter-blue: rgb(0, 172, 237);
 
@@ -53,17 +54,17 @@ $form-bg-color: $white;
 $link-color: $primary-color;
 
 // Text shades
-$dark-text: rgba(0, 0, 0, 0.87);
-$med-text: rgba(0, 0, 0, 0.70);
-$lighter-text: rgba(0, 0, 0, 0.54);
-$lightest-text: rgba(0, 0, 0, 0.38);
+$dark-trans: rgba(0, 0, 0, 0.87);
+$med-trans: rgba(0, 0, 0, 0.70);
+$lighter-trans: rgba(0, 0, 0, 0.54);
+$lightest-trans: rgba(0, 0, 0, 0.38);
 
 // Borders
 $light-border: rgba(0, 0, 0, 0.08);
 $med-border: rgba(0, 0, 0, 0.16);
 
 // Input
-$input-border-color: $lighter-text;
+$input-border-color: $lighter-trans;
 $input-focus-color: $primary-color;
 
 // Groups
@@ -75,7 +76,7 @@ $group-padding: 1.5rem;
 $side-col-width: 210px;
 
 // Navbar
-$navbar-font-color: $lighter-text;
+$navbar-font-color: $lighter-trans;
 $navbar-brand-font-size: 1.7rem;
 
 // State colors

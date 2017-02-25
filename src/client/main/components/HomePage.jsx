@@ -142,6 +142,8 @@ class HomePage extends ServiceContext(React.Component) {
       home: {
         fields: {
           tag_line,
+          homepage_description: description,
+          number_groups_donated: groupNumber,
           goal,
           current
         } = {}
@@ -158,9 +160,14 @@ class HomePage extends ServiceContext(React.Component) {
       <main className="home">
         <section className="intro-section">
           <div className="container">
-            <h1 className="intro-text" dangerouslySetInnerHTML={{__html:tag_line}}  />
-            <Thermometer goal={goal} current={current} />
             <SocialButtons />
+            <h1 className="intro-tagline">{tag_line}</h1>
+            <Thermometer goal={goal} current={current} groupNumber={groupNumber} />
+          </div>
+          <div className="intro-description">
+            <div className="container">
+              <p>{description}</p>
+            </div>
           </div>
         </section>
         <a name="donate" />

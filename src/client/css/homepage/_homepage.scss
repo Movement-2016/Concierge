@@ -1,6 +1,6 @@
 .section-title {
   margin: $section-padding 0;
-  color: $lightest-text;
+  color: $lightest-trans;
   font-weight: 500;
   font-size: 17px;
   text-transform: uppercase;
@@ -85,7 +85,7 @@
   }
 
   .tile-content {
-    color: $med-text;
+    color: $med-trans;
   }
 }
 @import "homepage/intro-section";

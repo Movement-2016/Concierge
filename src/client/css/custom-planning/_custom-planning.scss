@@ -1,6 +1,6 @@
 .custom-planning .page-description {
   font-size: 1.33rem;
-  color: $med-text;
+  color: $med-trans;
   margin: 0 2rem;
 }
 .planning-section {
@@ -9,7 +9,7 @@
     h3 {
       font-size: 1rem;
       text-transform: uppercase;
-      color: $lighter-text;
+      color: $lighter-trans;
       margin: 0 0 1rem;
     }
   }
@@ -84,7 +84,7 @@
   margin: 3rem 0;
   .consult-desc {
     padding: 1rem 12px;
-    color: $lighter-text;
+    color: $lighter-trans;
   }
   .consult-button {
     width: 100%;

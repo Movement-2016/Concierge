@@ -16,7 +16,7 @@ $tray-padding: 12px;
 
       .title {
         font-size: 16px;
-        color: $lighter-text;
+        color: $lighter-trans;
         padding: 0 $tray-padding;
       }
 
@@ -44,7 +44,7 @@ $tray-padding: 12px;
     .donate-tiles {
       margin-top: 30px;
       .title {
-        color: $lighter-text;
+        color: $lighter-trans;
         font-size: 14px;
         margin-bottom: 6px;
       }
@@ -57,7 +57,7 @@ $tray-padding: 12px;
       margin-bottom: 12px;
       .tile-title {
         font-family: $font-2;
-        color: $lighter-text;
+        color: $lighter-trans;
         font-size: 16px;
         font-weight: 500;
         text-transform: uppercase;
@@ -65,7 +65,7 @@ $tray-padding: 12px;
       .tile-content {
         margin: 2px 0 8px;
         font-size: 12px;
-        color: $lighter-text;
+        color: $lighter-trans;
       }
       .tile-button {
         background: $secondary-color-light;
@@ -84,7 +84,7 @@ $tray-padding: 12px;
   }
 }
 
-@media only screen and (max-height: 660px) {
+@media only screen and (max-height: 650px) {
   .plan-sidebar .donate-tiles {
     display: none;
   }

@@ -17,7 +17,7 @@
   .map-area {
     max-width: 1000px;
     margin: 0 auto 30px;
-    color: $lighter-text;
+    color: $lighter-trans;
 
     .map-desc {
       @media #{$small-and-down} {

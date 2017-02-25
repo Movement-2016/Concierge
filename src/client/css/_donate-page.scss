@@ -4,7 +4,7 @@
   position: relative;
   margin: 0 auto 1rem;
   background-color: $form-bg-color;
-  color: $dark-text;
+  color: $dark-trans;
   @include z-depth-2;
   &:hover, &:focus {
     @include z-depth-3;

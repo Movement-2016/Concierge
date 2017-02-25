@@ -20,7 +20,7 @@
     }
   }
   .filter-menu {
-    color: $med-text;
+    color: $med-trans;
     padding: 0px;
   }
   .filters-title,
@@ -98,7 +98,7 @@
     margin-top: 16px;
     padding-top: 20px;
     a {
-      color: $med-text;
+      color: $med-trans;
       display: block;
       margin-left: 4px;
       padding-left: 10px;
@@ -121,7 +121,7 @@
     font-size: 13px;
     padding-top: 30px;
     a {
-      color: $lightest-text;
+      color: $lightest-trans;
       &:hover {
         color: $primary-color-light;
       }

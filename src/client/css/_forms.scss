@@ -12,14 +12,14 @@
     margin: 0 0 1em;
     font-size: 1.33rem;
     text-transform: uppercase;
-    color: $lighter-text;
+    color: $lighter-trans;
   }
 
   [type="checkbox"] + label {
     height: inherit;
     line-height: 20px;
     &::after {
-      color: $lighter-text;
+      color: $lighter-trans;
     }
   }
 
@@ -41,7 +41,7 @@
 .submit-message {
   margin-top: 20px;
   padding: 6px;
-  color: $med-text;
+  color: $med-trans;
   font-family: $font-2;
   font-size: 14px;
 }

@@ -9,6 +9,12 @@
   }
 }
 
+@mixin bp-sm {
+  @media #{$small-and-up} {
+    @content;
+  }
+}
+
 @mixin bp-md {
   @media #{$medium-and-up} {
     @content;
@@ -63,7 +69,7 @@
   margin-left: -40px;
 }
 @mixin light-link {
-  color: $lightest-text;
+  color: $lightest-trans;
   text-transform: uppercase;
   &:hover,
   &:focus {
