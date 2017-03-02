@@ -4,7 +4,7 @@ import { toggleItem } from '../../store/actions';
 
 class TagBlock extends React.Component {
   render() {
-    const { 
+    const {
       fields,
       filters
     } = this.props;
@@ -21,7 +21,7 @@ class TagBlock extends React.Component {
 
     return (
       <div>
-      {Object.keys(block).map( label => { 
+      {Object.keys(block).map( label => {
           return (
               <div className="tagblock" key={label} >
                 <div className="tagblock-title">{label}:</div>
@@ -64,14 +64,14 @@ class Org extends React.Component {
   render() {
     const {
       post_title: name,
+      post_content: description,
       fields,
       fields: {
         website: urlWeb,
         c4_donate_link: urlC4,
         c3_donate_link: urlC3,
-        html: description,
         'nonprofit-type': npTags = []
-      },      
+      },
       ID: id,
       filters
     } = this.props;
@@ -88,10 +88,10 @@ class Org extends React.Component {
     const npTerms = filters['nonprofit-type'].terms;
 
     const urlGive = urlC3 || urlC4;
-    
+
     return(
         <div className={`group ${cls}`}>
-          <div className="group-title" data-id={id}><span data-href={`/groups#${id}`} dangerouslySetInnerHTML={{__html:name}} /></div>
+          <div className="group-title" data-id={id}><span data-href={`/groups#${id}`}>{name}</span></div>
           <div className="group-links-row row">
             <div className="col s6 m9">
               {urlWeb  && <a className="group-link" href={urlWeb}  target="_blank"><i className="material-icons">link</i>Website</a>}
@@ -102,7 +102,7 @@ class Org extends React.Component {
               {npTags.map( t => <span className="group-tag" key={t}>{npTerms[t].name}</span> )}
             </div>
           </div>
-          <div className="group-content"><p dangerouslySetInnerHTML={{__html:description}} /></div>
+          <div className="group-content"><p>{description}</p></div>
           <TagBlock fields={fields} filters={filters} />
         </div>
       );

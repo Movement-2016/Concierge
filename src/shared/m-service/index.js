@@ -13,7 +13,7 @@ if( typeof window !== 'undefined') {
   _fetch = require('node-fetch'.trim()); // prevent browserify bundling
 }
 
-const WP_DEV      = false;
+const WP_DEV      = true;
 const WP_API_HOST = WP_DEV ? 'http://localhost:8080/wordpress' : 'https://movement2018.wpengine.com';
 const WP_API_BASE = WP_API_HOST + '/wp-json/movement-2018/';
 
@@ -87,18 +87,17 @@ class MovementVoteService {
       : this.content.then( () => this._groups = this._content.posts.group );
   }
 
-  // 'orgs' returns the groups in a structure based on color -> state -> org
-  // and also normalizes the 'fields' structure replacing term_ids with the 
+  /* Returns a structured array of groups with structure orgs[color][state][org] */
   get orgs() {
     if( this._orgs ) {
       return Promise.resolve(this._orgs);
     }
     return this.content.then( () => {
       const orgs = {};
-      const colors = this.groupSections;
+      const colors = this.colorSections;
       colors.forEach( color => {
         orgs[color.slug] = {};
-        const states = this.statesForColorSync(color);
+        const states = this.statesInColor(color);
         states.forEach( state => {
           const foundOrgs =  path('.posts.group{.fields.state=="'+state.slug+'"}', this._content);
           foundOrgs.length && (orgs[color.slug][state.slug] = foundOrgs);
@@ -108,12 +107,13 @@ class MovementVoteService {
     });
   }
 
+  /* Returns a structured object of menu items with structure menu.parentItem.childItem */
   get menu() {
     return this._menu
       ? Promise.resolve(this._menu)
       : this.content.then( () => {
             var menu = {};
-            this._content.menu.items.forEach( item => {
+            this._content.menu.forEach( item => {
               const parent = parseInt(item.menu_item_parent);
               var id = item.ID;
               if( parent === 0 ) {
@@ -123,16 +123,14 @@ class MovementVoteService {
                 }
               } else {
                 if( !menu[parent] ) {
-                  var parentItem = path('.menu.items{.ID=='+parent+'}',this._content)[0];
+                  var parentItem = path('.menu{.ID=='+parent+'}',this._content)[0];
                   menu[parent] = parentItem;
                   menu[parent].children = [];
                 }
                 menu[parent].children.push(item);
               }
             });
-
             this._menu = Object.keys(menu).map( k => menu[k]);
-
             return this._menu;
         });
   }
@@ -144,29 +142,18 @@ class MovementVoteService {
       : this._fetch( 'page/' + slug ).then( p => this._pages[slug] = p );
   }
 
-
-  get donateStats() {
-    return this.getPage('home').then( page => page.fields );
-  }
-
+  /* Returns an unsorted list of states */
   get states() {
-    return this.content.then( () => this.groupings );
+    return this.content.then( () => this.stateList );
   }
 
+  /* Returns an unsorted list of state color categories */
   get stateColors() {
-    return this._statesForColor(0);
-  }
-
-  statesForColor(color) {
-    return this._stateForColor(color);
-  }
-
-  _statesForColor(color) {
-    return this.content.then( () => this.statesForColorSync(color) );
+    return this.content.then( () => this.statesInColor(0) );
   }
 
   get filters() {
-    return this.content.then( () => this.filtersSync );
+    return this.content.then( () => this.groupFilters );
   }
 
   /* NON PROMISE */
@@ -174,58 +161,58 @@ class MovementVoteService {
   // a somewhat unfortunate historically named property for
   // returning a list of states
 
-  get groupings() {
+  get stateList() {
     return path('.taxonomies.state.terms.*{.parent!=0}',this._content);
   }
 
-  // an even more unfortunate historically named property for
-  // returning a list of state colors
-
-  get groupSections() {
-    var colors = this.statesForColorSync(0);    
+  /* Returns a list of state color categories sorted in correct display order */
+  get colorSections() {
+    var colors = this.statesInColor(0);
     var orderMap = {};
-    this._content.colorOrder.forEach( (c,i) => orderMap[c] = i );
+    this.colorOrder.forEach( (c,i) => orderMap[c] = i );
     return colors.sort( (a,b) => orderMap[a.slug] > orderMap[b.slug] );
   }
 
-  // yea, I know it says 'group' but really this returns 
-  // a dictionary of states. 
+  // yea, I know it says 'group' but really this returns
+  // a dictionary of states.
 
   get groupDict() {
     if( !this._groupDict ) {
-      const groupings = {};
-      this.groupings.forEach( g => groupings[g.slug] = g );
-      this._groupDict = groupings;
+      const stateList = {};
+      this.stateList.forEach( g => stateList[g.slug] = g );
+      this._groupDict = stateList;
     }
     return this._groupDict;
   }
 
-  get groupSectionsDict() {
-    if( !this._groupSectionsDict ) {
+  get colorSectionsDict() {
+    if( !this._colorSectionsDict ) {
       const dict = {};
-      this.groupSections.forEach( gs => dict[gs.slug] = gs );
-      this._groupSectionsDict = dict;
+      this.colorSections.forEach( gs => dict[gs.slug] = gs );
+      this._colorSectionsDict = dict;
     }
-    return this._groupSectionsDict;
+    return this._colorSectionsDict;
   }
 
-  get groupSectionsIDDict() {
-    return this._groupSectionsIDDict || (this._groupSectionsIDDict = this.statesForColorSync(0).reduce( (dict,color) => (dict[color.term_id] = color, dict), {} ));
+  get colorSectionsIDDict() {
+    return this._colorSectionsIDDict || (this._colorSectionsIDDict = this.statesInColor(0).reduce( (dict,color) => (dict[color.term_id] = color, dict), {} ));
   }
 
-  get sectionOrder() {
+  get colorOrder() {
     return this._content.colorOrder;
   }
 
-  // return a list of states given a 'color'
-
-  statesForColorSync(color) {
+  /*
+    Returns a list of states given a color category.
+    If no color category is given, returns an unsorted list of color categories.
+   */
+  statesInColor(color) {
     var id = (color && color['term_id']) || 0;
     return path('.taxonomies.state.terms.*{.parent=='+id+'}',this._content);
   }
 
-  get filtersSync() {
-    if( !this._filterSync ) {
+  get groupFilters() {
+    if( !this._groupFilters ) {
       const filters = {};
       // remove 'state' from taxonomies
       const tax = this._content.taxonomies;
@@ -233,15 +220,15 @@ class MovementVoteService {
           filters[k] = tax[k];
           filters[k].tags = Object.keys(filters[k].terms);
         });
-      this._filterSync = filters;      
+      this._groupFilters = filters;
     }
-    return this._filterSync;
+    return this._groupFilters;
   }
 
   get filterDict() {
     if( !this._filterDict ) {
       this._filterDict = {};
-      path('...terms.*', this.filtersSync ).forEach( f => this._filterDict[f.name] = f.label );
+      path('...terms.*', this.groupFilters ).forEach( f => this._filterDict[f.name] = f.label );
     }
     return this._filterDict;
   }

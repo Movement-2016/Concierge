@@ -29,9 +29,9 @@ class Plan extends ContextMixin(React.Component) {
           plan 
         },
         service: {
-          filtersSync: filters,
+          groupFilters: filters,
           groupDict: states,
-          groupSectionsIDDict: colorDict
+          colorSectionsIDDict: colorDict
         }
       } = storeState;
 

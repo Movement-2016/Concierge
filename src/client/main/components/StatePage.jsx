@@ -12,8 +12,8 @@ class StatePage extends ServiceContext(React.Component) {
     storeState.service.orgs.then( orgs => {
       const {
         groupDict: allStates,
-        groupSectionsIDDict: colors,
-        filtersSync: filters
+        colorSectionsIDDict: colors,
+        groupFilters: filters
       } = storeState.service;
 
       this.setState({ allStates, filters, colors, orgs, loading: false });

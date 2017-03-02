@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { 
+import {
   ServiceContext
 } from '../ContextMixins';
 
@@ -38,9 +38,9 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
     const {
       groups,
       service: {
-        groupSections,
-        filtersSync: filters,
-        sectionOrder: colorOrder,
+        colorSections,
+        groupFilters: filters,
+        colorOrder,
         groupDict
       }
     } = this.state;
@@ -49,15 +49,15 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
       orgs
     } = this.props;
 
-    // console.log("getVisibleColorGroups: ", orgs);
 
     const order = {};
     colorOrder.forEach( (c,i) => order[c] = i );
 
     const colorGroups = {};
-    groupSections.forEach( color => colorGroups[color.slug] = color );
-    
+    colorSections.forEach( color => colorGroups[color.slug] = color );
+
     const sections = getVisibleColorGroups(colorGroups,orgs);
+
     const colors = Object.keys(sections).sort( (a,b) => order[a] > order[b] );
 
     return { groups, filters, groupDict, sections, colors, orgs, colorGroups };
@@ -67,9 +67,9 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
 
     const vcg = this.getVisibleColorGroups();
 
-    const { 
-      colors, 
-      orgs, 
+    const {
+      colors,
+      orgs,
       colorGroups,
       groups: {
         selected
@@ -80,11 +80,11 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
 
     return (
         <div className="group-area">
-          {colors.map( color => <ColorGroup 
-                                  key={color} 
-                                  {...colorGroups[color]} 
-                                  selected={selected} 
-                                  states={orgs[color]} 
+          {colors.map( color => <ColorGroup
+                                  key={color}
+                                  {...colorGroups[color]}
+                                  selected={selected}
+                                  states={orgs[color]}
                                   filters={filters}
                                   store={this.context.store}
                                   groupDict={groupDict}
