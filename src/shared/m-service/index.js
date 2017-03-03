@@ -114,7 +114,7 @@ class MovementVoteService {
       : this.content.then( () => {
             var menu = {};
             this._content.menu.forEach( item => {
-              const parent = parseInt(item.menu_item_parent);
+              const parent = parseInt(item.parent);
               var id = item.ID;
               if( parent === 0 ) {
                 if( !menu[id] ) {

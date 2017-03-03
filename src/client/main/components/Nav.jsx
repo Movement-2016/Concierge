@@ -2,35 +2,29 @@ import React               from 'react';
 import { Link, IndexLink } from 'react-router';
 import scrollToElement from '../../lib/scrollToElement';
 
-const _MenuItem = ({url,title} ) => {
-  var text       = title;
+const _MenuItem = ( {url,label} ) => {
   var isExternal = global.IS_SERVER_REQUEST || !!url.match(/^http/);
-  var href       = isExternal && url;
-  var linkto     = !isExternal && url;
-
-  return href
-    ? <li className="top-level"><a href={href}>{text}</a></li>
-    : <li><Link to={linkto}>{text}</Link></li>;
+  return isExternal
+    ? <li className="top-level"><a href={url}>{label}</a></li>
+    : <li><Link to={url}>{label}</Link></li>;
 };
 
-const MenuDropDown = ({menu,title}) => {
-  const text = title;
-  const href1 = menu[0].url;
+const MenuDropDown = ({url, children, label}) => {
   return (
     <li className="drop-down-btn" >
-      <a href={href1}>{text}<i className="material-icons">arrow_drop_down</i></a>
-        <ul className="drop-down">
-          {menu.map( (m,i) => <_MenuItem key={i} {...m} />)}
-        </ul>
-      </li>
+      <a href={url}>{label}<i className="material-icons">arrow_drop_down</i></a>
+      <ul className="drop-down">
+        {children.map( (m,i) => <_MenuItem key={i} {...m} />)}
+      </ul>
+    </li>
     );
 };
 
-const MenuItem = ({url,children,title}) => {
+const MenuItem = ({url, children, label}) => {
 
   return children.length
-      ? <MenuDropDown title={title} menu={children} />
-      : <_MenuItem url={url} title={title} />;
+      ? <MenuDropDown url={url} label={label} children={children} />
+      : <_MenuItem url={url} label={label} />;
 };
 
 class MenuAnonymous extends React.Component {
@@ -69,16 +63,15 @@ class Nav extends React.Component {
 
   render() {
 
-    const { 
-      siteTitle, 
-      menu 
+    const {
+      sitelabel,
+      menu
     } = this.props;
 
     return (
       <div className="navbar-fixed">
-        {this.dropdowns}
         <nav id="main-nav">
-          <IndexLink to="/" className="brand-logo">{siteTitle}</IndexLink>
+          <IndexLink to="/" className="brand-logo">{sitelabel}</IndexLink>
           <MenuAnonymous className="right hide-on-med-and-down" menu={menu}/>
           <MenuAnonymous className="side-nav" id="mobile-menu" menu={menu} />
           <a href="#" data-activates="mobile-menu" className="button-collapse"><i className="material-icons">menu</i></a>
