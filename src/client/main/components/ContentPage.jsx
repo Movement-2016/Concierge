@@ -43,10 +43,8 @@ class ContentPage extends PageContext(React.Component) {
 
     const {
       page:{
-        fields:{
-          html: content
-        },
-        post_title: title
+        post_title: title,
+        post_content: content
       }
     } = this.state;
 

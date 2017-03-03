@@ -12,7 +12,7 @@ const _MenuItem = ( {url,label} ) => {
 const MenuDropDown = ({url, children, label}) => {
   return (
     <li className="drop-down-btn" >
-      <a href={url}>{label}<i className="material-icons">arrow_drop_down</i></a>
+      <Link to={url}>{label}<i className="material-icons">arrow_drop_down</i></Link>
       <ul className="drop-down">
         {children.map( (m,i) => <_MenuItem key={i} {...m} />)}
       </ul>
