@@ -64,14 +64,14 @@ class Nav extends React.Component {
   render() {
 
     const {
-      sitelabel,
+      siteTitle,
       menu
     } = this.props;
 
     return (
       <div className="navbar-fixed">
         <nav id="main-nav">
-          <IndexLink to="/" className="brand-logo">{sitelabel}</IndexLink>
+          <IndexLink to="/" className="brand-logo">{siteTitle}</IndexLink>
           <MenuAnonymous className="right hide-on-med-and-down" menu={menu}/>
           <MenuAnonymous className="side-nav" id="mobile-menu" menu={menu} />
           <a href="#" data-activates="mobile-menu" className="button-collapse"><i className="material-icons">menu</i></a>
