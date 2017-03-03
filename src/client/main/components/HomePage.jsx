@@ -27,7 +27,7 @@ class Testimonial extends React.Component {
 
     return (
       <div className="testimonial flex-item">
-        <div className="testimonial-content">{content}</div>
+        <div className="testimonial-content" dangerouslySetInnerHTML={{__html:content}} />
         <div className="author-area">
           <div className="author-pic" style={authorPicStyle} />
           <div className="author-info">

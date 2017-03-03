@@ -102,7 +102,7 @@ class Org extends React.Component {
               {npTags.map( t => <span className="group-tag" key={t}>{npTerms[t].name}</span> )}
             </div>
           </div>
-          <div className="group-content"><p>{description}</p></div>
+          <div className="group-content"><p dangerouslySetInnerHTML={{__html:description}} /></div>
           <TagBlock fields={fields} filters={filters} />
         </div>
       );
