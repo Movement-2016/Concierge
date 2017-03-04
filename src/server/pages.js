@@ -79,6 +79,7 @@ function render(ReactElement,props) {
     }
     var body = renderToStaticMarkup(factories[ReactElement.title]());
     var text = indexPageText.replace('<!-- RENDER CONTENT -->',body);
+
     // meta tags replacement goes here -----
     //
     // text = text.replace('<!-- META TAG CONENT -->', props.metaTags)
@@ -91,7 +92,7 @@ function fetchAndRender(pageName) {
   return (req,res) => {
     service.getPage(pageName).then( content => {
       contentPage.title = pageName;
-      render(contentPage,() => {return {content:content.fields.html};})(req,res);
+      render(contentPage,() => {return {content:content.post_content};})(req,res);
     });
   };
 }
