@@ -12,7 +12,7 @@
 
     ul a {
       font-size: 16px;
-      color: $med-trans;
+      color: $lighter-trans;
       padding: 0 $menu-padding-lg;
 
       &:hover {
@@ -23,8 +23,8 @@
     .brand-logo {
       color: $primary-color;
       font-size: 20px;
-      font-family: 'Arvo';
-      font-weight: 700;
+      font-family: "museo-slab", "Roboto", sans-serif;
+      font-weight: 900;
       font-style: italic;
 
       @include bp-lg {

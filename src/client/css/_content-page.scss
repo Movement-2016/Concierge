@@ -2,6 +2,7 @@
   padding: 3rem 0;
   @include bp-md {
     padding: 4rem 0;
+
     img.alignleft {
       float: left;
       margin-right: 20px;
@@ -13,15 +14,19 @@
   }
 
   .content {
+    font-weight: 300;
+
     hr {
       margin: 1em;
       clear: both;
     }
   }
-  p,
-  li {
+
+  li,
+  p {
     margin: 1em 0;
   }
+
   li {
     margin-left: 1rem;
   }

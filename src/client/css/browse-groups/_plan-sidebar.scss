@@ -23,6 +23,8 @@ $tray-padding: 12px;
       .info {
         padding: 8px $tray-padding $tray-padding;
         font-size: 20px;
+        font-weight: 700;
+        color: $med-trans;
       }
 
       .btn-flat {
@@ -32,6 +34,7 @@ $tray-padding: 12px;
         padding: 0 $tray-padding;
         border-top: 1px solid $light-border;
         width: 100%;
+        font-weight: 700;
         letter-spacing: 0.5px;
 
         i {
@@ -44,7 +47,7 @@ $tray-padding: 12px;
     .donate-tiles {
       margin-top: 30px;
       .title {
-        color: $lighter-trans;
+        color: $lightest-trans;
         font-size: 14px;
         margin-bottom: 6px;
       }
@@ -52,33 +55,36 @@ $tray-padding: 12px;
     .donate-tile {
       padding: $tray-padding;
       background-color: $white;
-      border: 1px solid lighten($secondary-color-light, 15%);
+      border: 1px solid lighten($secondary-color-light, 14%);
       @include z-depth-1;
       margin-bottom: 12px;
       .tile-title {
-        font-family: $font-2;
         color: $lighter-trans;
         font-size: 16px;
-        font-weight: 500;
+        font-weight: 700;
         text-transform: uppercase;
       }
       .tile-content {
         margin: 2px 0 8px;
-        font-size: 12px;
+        font-size: 13px;
+        font-weight: 300;
         color: $lighter-trans;
       }
       .tile-button {
         background: $secondary-color-light;
         color: $white;
         text-align: center;
-        font-family: $font-2;
-        font-weight: 500;
+        font-weight: 700;
         height: 27px;
         line-height: 27px;
         padding: 0;
         width: 100%;
         border-radius: 20px;
-        font-size: 13px;
+        font-size: 12.5px;
+        letter-spacing: 0.5px;
+        &:hover {
+          background: $secondary-color;
+        }
       }
     }
   }

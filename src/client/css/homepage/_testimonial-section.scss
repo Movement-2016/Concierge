@@ -22,13 +22,14 @@ $testimonial-pic-size: 52px;
     border-radius: 4px;
     padding: 8px 15px;
     font-size: 18px;
+    font-weight: 300;
     font-style: italic;
     color: $lighter-trans;
     position: relative;
     line-height: 1.4;
     flex: 1;
     @include bp-md-only {
-      font-size: 16px;
+      font-size: 15px;
     }
     &::after { //this makes the quote arrow
       position: absolute;
@@ -62,11 +63,10 @@ $testimonial-pic-size: 52px;
     margin-left: 8px;
     line-height: 20px;
     padding: (($testimonial-pic-size - 20px * 2) / 2) 0;
-    font-family: $font-2;
-    font-weight: 500;
   }
   .author-name {
     color: $white;
+    font-weight: 700;
     @include bp-md-only {
       font-size: 15px;
     }

@@ -12,18 +12,15 @@
       margin-bottom: 6px;
       color: $secondary-color-light;
     }
+    .map-desc {
+      color: $med-trans;
+    }
   }
 
   .map-area {
     max-width: 1000px;
     margin: 0 auto 30px;
     color: $lighter-trans;
-
-    .map-desc {
-      @media #{$small-and-down} {
-        margin-bottom: 1rem;
-      }
-    }
 
     .q0-7 {
       fill: desaturate($state-dark-red, 20%);

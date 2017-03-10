@@ -10,7 +10,6 @@
   }
 
   .partners-title {
-    font-family: $font-2;
     color: $lightest-trans;
     text-transform: uppercase;
     @media #{$small-and-down} {
@@ -28,8 +27,6 @@
 
   .links-section {
     margin-top: 40px;
-    font-family: $font-2;
-
     li {
       display: inline-block;
       font-size: 14px;

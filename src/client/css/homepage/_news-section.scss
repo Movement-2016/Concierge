@@ -11,9 +11,12 @@
       width: 50%;
     }
     .tile-tag {
-      font-size: 13.5px;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.45);
+      background: $lighter-trans;
+      &::after {
+        border-bottom: 29px solid $lighter-trans;
+        border-right-width: 15px;
+      }
     }
   }
 
@@ -34,6 +37,7 @@
   }
   .tile-content {
     font-size: 15px;
+    font-weight: 300;
     @include bp-lg {
       font-size: inherit;
     }
