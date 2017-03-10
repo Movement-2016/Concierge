@@ -29,14 +29,13 @@
 
   .tile-title {
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 700;
     color: $secondary-color;
     @include bp-lg {
       font-size: 20px;
     }
   }
   .tile-content {
-    font-size: 15px;
     font-weight: 300;
     @include bp-lg {
       font-size: inherit;

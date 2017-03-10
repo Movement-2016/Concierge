@@ -3,7 +3,7 @@
 }
 @include bp-lg {
   .tooltip {
-    
+
     position: absolute;
     z-index: 1070;
     display: block;
@@ -21,7 +21,7 @@
     }
     .state-name {
       text-transform: capitalize;
-      font-weight: 500;
+      font-weight: 700;
     }
     .race-data {
       font-size: 13px;

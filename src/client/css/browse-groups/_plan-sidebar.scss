@@ -15,14 +15,13 @@ $tray-padding: 12px;
       @include z-depth-1;
 
       .title {
-        font-size: 16px;
         color: $lighter-trans;
         padding: 0 $tray-padding;
       }
 
       .info {
         padding: 8px $tray-padding $tray-padding;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 700;
         color: $med-trans;
       }

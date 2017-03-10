@@ -67,12 +67,8 @@ $testimonial-pic-size: 52px;
   .author-name {
     color: $white;
     font-weight: 700;
-    @include bp-md-only {
-      font-size: 15px;
-    }
   }
   .author-title {
-    font-size: 15px;
     color: $lightest-trans;
     @include bp-md-only {
       margin-top: 3px;
