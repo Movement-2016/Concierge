@@ -1,6 +1,9 @@
 html {
   -webkit-font-smoothing: antialiased;
   font-size: 15px;
+  @include bp-lg {
+    font-size: 16px;
+  }
 }
 
 body {
