@@ -52,7 +52,6 @@ const fonts = [
 
 const vendorStyles = [
   'src/client/vendor.css',
-//  'node_modules/materialize-css/dist/css/materialize.min.css'
 ];
 
 const vendorClientJS = [
@@ -60,21 +59,18 @@ const vendorClientJS = [
   'node_modules/materialize-css/dist/js/materialize.min.js'
 ];
 
-const stageDir = '../concierge-stage';
+global.isProduction = false;
 
 let BASE = 'dist';
 
 var stdTasks = ['html', 'images', 'server', 'styles', 'fonts', 'vendor-styles', 'vendor-client-js' ];
 
-gulp.task ('default',   [             ...stdTasks, 'vendor',       'browserify-watch', 'watch']);
-gulp.task ('no-watch',  [             ...stdTasks, 'vendor',       'browserify' ]);
-gulp.task ('stage',     ['set-stage', ...stdTasks, 'vendor-stage', 'browserify-stage' ]);
+gulp.task ('default',   [               ...stdTasks, 'vendor',       'browserify-watch', 'watch']);
+gulp.task ('no-watch',  [ 'production', ...stdTasks, 'vendor',       'browserify' ]);
 
-// set the destination for staging output and copy stage root files
-gulp.task ('set-stage', function () {
-  BASE = `${stageDir}/dist`;
-  return gulp.src (['stage/*', 'stage/.*'])
-    .pipe (gulp.dest (stageDir));
+gulp.task( 'production', function() {
+  global.isProduction = true;
+  process.env.NODE_ENV = 'production';
 });
 
 // set watch tasks for continous build
@@ -158,7 +154,7 @@ gulp.task ('vendor', function () {
     .bundle ()
     .pipe (source ('vendor.bundle.js'))
     .pipe (buffer ())
-//    .pipe (uglify ({ mangle: false }))
+    .pipe( global.isProduction ? uglify({ mangle: true }) : gutil.noop() )
     .pipe (gzip ({ append: true }))
     .pipe (gulp.dest (`${BASE}/public/js`));
 });
@@ -181,6 +177,7 @@ gulp.task ('vendor-styles', function () {
 gulp.task ('vendor-client-js', function () {
  return gulp.src( vendorClientJS )
             .pipe(concat('vendor.browser.js'))
+            .pipe(gzip({ append:true }))
             .pipe(gulp.dest(`${BASE}/public/js`));
 });
 
@@ -193,6 +190,7 @@ const _rebundle = (bundler,start = Date.now()) => bundler.bundle ()
       })
       .pipe (source ('bundle.js'))
       .pipe (buffer ())
+      .pipe( global.isProduction ? uglify({ mangle: true }) : gutil.noop() )
       .pipe (gzip ({ append: true }))
       .pipe (sourcemaps.init ({ loadMaps: true }))
       .pipe (sourcemaps.write ('.'))
@@ -220,46 +218,45 @@ gulp.task ('browserify', function () {
   return _rebundle (bundler);
 });
 
-// Tasks to prepare staging version of application
+// Here for reference:
 
-// Compile third-party dependencies
-gulp.task ('vendor-stage', function () {
-  process.env.NODE_ENV = 'production';
-  return browserify ()
-    .require (dependencies)
-    .bundle ()
-    .pipe (source ('vendor.bundle.js'))
-    .pipe (buffer ())
-    .pipe (uglify ({ mangle: false }))
-    .pipe (gzip ({ append: true }))
-    .pipe (gulp.dest (`${BASE}/public/js`));
-});
+// gulp.task ('vendor-stage', function () {
+//   process.env.NODE_ENV = 'production';
+//   return browserify ()
+//     .require (dependencies)
+//     .bundle ()
+//     .pipe (source ('vendor.bundle.js'))
+//     .pipe (buffer ())
+//     .pipe (uglify ({ mangle: false }))
+//     .pipe (gzip ({ append: true }))
+//     .pipe (gulp.dest (`${BASE}/public/js`));
+// });
 
-gulp.task ('browserify-stage', function () {
-  process.env.NODE_ENV = 'production';
-  // browserifyConfig.debug = false;
-  const bundler = browserify (browserifyConfig);
-  bundler.external (dependencies);
-  bundler.transform (babelify, babelifyOpts);
-  bundler.on ('update', rebundle);
-  return rebundle ();
+// gulp.task ('browserify-stage', function () {
+//   process.env.NODE_ENV = 'production';
+//   // browserifyConfig.debug = false;
+//   const bundler = browserify (browserifyConfig);
+//   bundler.external (dependencies);
+//   bundler.transform (babelify, babelifyOpts);
+//   bundler.on ('update', rebundle);
+//   return rebundle ();
 
-  function rebundle () {
-    const start = Date.now ();
-    return bundler.bundle ()
-      .on ('error', function (err) {
-        gutil.log (gutil.colors.red (err.toString ()));
-      })
-      .on ('end', function () {
-        gutil.log (gutil.colors.green ('Finished rebundling in', (Date.now () - start), 'ms.'));
-      })
-      .pipe (source ('bundle.js'))
-      .pipe (buffer ())
-      .pipe (uglify ({ mangle: false }))
-      .pipe (gzip ({ append: true }))
-      .pipe (gulp.dest (`${BASE}/public/js`));
-  }
-});
+//   function rebundle () {
+//     const start = Date.now ();
+//     return bundler.bundle ()
+//       .on ('error', function (err) {
+//         gutil.log (gutil.colors.red (err.toString ()));
+//       })
+//       .on ('end', function () {
+//         gutil.log (gutil.colors.green ('Finished rebundling in', (Date.now () - start), 'ms.'));
+//       })
+//       .pipe (source ('bundle.js'))
+//       .pipe (buffer ())
+//       .pipe (uglify ({ mangle: false }))
+//       .pipe (gzip ({ append: true }))
+//       .pipe (gulp.dest (`${BASE}/public/js`));
+//   }
+// });
 
 gulp.task( 'clean', function() {
   return gulp.src( `${BASE}/**/*`, { read: false })
