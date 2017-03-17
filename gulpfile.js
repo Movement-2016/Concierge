@@ -2,7 +2,6 @@
 /* eslint- import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 const gulp = require ('gulp');
 const gutil = require ('gulp-util');
-const sass = require ('gulp-sass');
 const buffer = require ('vinyl-buffer');
 const source = require ('vinyl-source-stream');
 const babelify = require ('babelify');
@@ -11,8 +10,11 @@ const browserify = require ('browserify');
 const watchify = require ('watchify');
 const uglify = require ('gulp-uglify');
 const gzip = require ('gulp-gzip');
+const sass = require ('gulp-sass');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 const sourcemaps = require ('gulp-sourcemaps');
-const autoprefixer = require('gulp-autoprefixer');
 const concat = require('gulp-concat');
 const ext = require('gulp-ext');
 const rm = require('gulp-rm');
@@ -102,7 +104,7 @@ gulp.task ('fonts', function () {
     .pipe (gulp.dest (`${BASE}/public/fonts`));
 });
 
-// SERVER 
+// SERVER
 gulp.task( 'server', ['shared','shared-components','_server']);
 
 gulp.task('shared', () => {
@@ -160,10 +162,14 @@ gulp.task ('vendor', function () {
 });
 
 gulp.task ('styles', function () {
+  var processors = [
+    autoprefixer,
+    cssnano
+  ];
   return gulp.src ('src/client/css/main.scss')
     .pipe (sourcemaps.init())
-    .pipe (sass({outputStyle: 'compressed'}).on ('error', sass.logError))
-    .pipe (autoprefixer())
+    .pipe (sass().on ('error', sass.logError))
+    .pipe (postcss(processors))
     .pipe (sourcemaps.write())
     .pipe (gulp.dest (`${BASE}/public/css`));
 });
@@ -199,7 +205,7 @@ const _rebundle = (bundler,start = Date.now()) => bundler.bundle ()
 gulp.task ('browserify-watch', function () {
   const bundler = watchify (browserify (browserifyConfig, watchify.args));
   bundler.external (dependencies);
-  bundler.transform (babelify, babelifyOpts); 
+  bundler.transform (babelify, babelifyOpts);
   bundler.on ('update', rebundle);
 
   function rebundle() {
@@ -262,4 +268,3 @@ gulp.task( 'clean', function() {
   return gulp.src( `${BASE}/**/*`, { read: false })
     .pipe( rm({ async: false }) );
 });
-
