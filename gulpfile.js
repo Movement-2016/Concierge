@@ -170,7 +170,7 @@ gulp.task ('styles', function () {
     .pipe (sourcemaps.init())
     .pipe (sass().on ('error', sass.logError))
     .pipe (postcss(processors))
-    .pipe (sourcemaps.write())
+    .pipe (sourcemaps.write('maps'))
     .pipe (gulp.dest (`${BASE}/public/css`));
 });
 
