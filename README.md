@@ -1,5 +1,5 @@
 
-# Movement 2017 Concierge
+# Movement Vote Concierge
 
 Web application for donor interaction with the groups supported by Movement
 2018.
@@ -63,6 +63,10 @@ Once the repo is pushed to AWS, the file `./appspec.yml' is read to determine ho
 
 Following that breadcrumb trail will help you understand that process. (Hint: see ./stage/after-install.sh)
 
+### Maintenance
+
+#### HTTP Ports
+
 By default the server will run on HTTP port 3000, in order to point port 80 AWS requires the following:
 
 ````
@@ -74,6 +78,20 @@ The HTTPS server will run on HTTP port 4000, in order to point port 443 AWS requ
 ````
 sudo iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-ports 4000
 ````
+
+#### letsencrypt Cert Expires
+
+Before doing anything else, disable any cloudflair redirections.
+
+`ssh` into the AWS server, change to certbot directory, look for an appropriate script to run the renew task.
+
+If the cert is fully expired you may not be able to `ssh` into the AWS instance. In this case reboot the instance. 
+
+If rebooting does not get you in, then stop/start the instance but *NOTE* if you stop/start the instance you will be assigned a new IP address. 
+
+#### If the IP Changes
+
+The IP of the AWS server can change when you stop/(re)start the instance. In that case you will have to rerun the HTTP ports commands above before starting the web server(s).
 
 ## License
 
