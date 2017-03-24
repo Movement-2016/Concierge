@@ -24,7 +24,7 @@ const FilterCheckbox = ({ name, slug, cat, onTermsChecked, selected, disabled })
 
 class Filter extends React.Component {
 
-  constructor() {  
+  constructor() {
     super(...arguments);
     this.state = { seeAll: true };
     this.onToggleAll    = this.onToggleAll.bind(this);
@@ -43,36 +43,36 @@ class Filter extends React.Component {
 
   _sendSelected() {
 
-    const { 
+    const {
       name,
-      onTermsChecked 
+      onTermsChecked
     } = this.props;
 
-    onTermsChecked( name, [], false );    
+    onTermsChecked( name, [], false );
   }
 
 
   render() {
-    const { 
+    const {
       seeAll,
     } = this.state;
 
-    const {      
+    const {
       label,
       name,
       terms,
     } = this.props;
 
     return (
-      <li className={`filter-group ${name}-filters`}>
-          <div className="collapsible-header"><span className="toggle"/>{label}</div>
-          <div className="collapsible-body" style={{display:'none'}}>
-            <div onChange={this.onFilterChange} >
-              {Object.keys(terms).map( t => <FilterCheckbox {...this.props} {...terms[t]} key={t} cat={name} /> )}
-              {!seeAll && <a href='#' className="clear-filters" onClick={this.onToggleAll}><i className="material-icons">close</i>clear filters</a>}
-            </div>
-          </div>
-      </li>
+      <div className={`filter-group ${name}-filters`}>
+        <div className="filter-group-label">
+          {label}
+          {!seeAll && <a href='' className="clear-filters" onClick={this.onToggleAll}>clear</a>}
+        </div>
+        <div onChange={this.onFilterChange} >
+          {Object.keys(terms).map( t => <FilterCheckbox {...this.props} {...terms[t]} key={t} cat={name} /> )}
+        </div>
+      </div>
     );
   }
 }

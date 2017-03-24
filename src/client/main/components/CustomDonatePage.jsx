@@ -1,6 +1,7 @@
 import React     from 'react';
 import TagString from 'tag-string';
 import { browserHistory } from 'react-router';
+import Sticky from 'react-stickynode';
 
 import OrgList  from './OrgList';
 import Filters  from './Filters';
@@ -28,12 +29,12 @@ class CustomDonatePage extends ContextMixin(React.Component) {
       loading: true,
       showOrgs: false
     };
-    this.onShowState    = this.onShowState.bind(this);
+    this.onShowElement    = this.onShowElement.bind(this);
     this.onTermsChecked = this.onTermsChecked.bind(this);
   }
 
   componentDidMount() {
-    setTimeout( () => this.setState({ showOrgs: true }), 300);
+    setTimeout( () => this.setState({ showOrgs: true }), 10);
   }
 
   stateFromStore(storeState) {
@@ -52,16 +53,16 @@ class CustomDonatePage extends ContextMixin(React.Component) {
     });
   }
 
-  onShowState(state) {
+  onShowElement(element) {
     const {
       params:{ mobile = ''} = {}
     } = this.props;
 
     if( mobile ) {
-      browserHistory.push( '/state/' + state );
+      browserHistory.push( '/state/' + element );
     } else {
-      browserHistory.push('/groups#' + state);
-      scrollToElement('#' + state,100);
+      browserHistory.push('/groups#' + element);
+      scrollToElement('#' + element, 100);
     }
   }
 
@@ -89,8 +90,7 @@ class CustomDonatePage extends ContextMixin(React.Component) {
     } = this.props;
 
     const fprops = {
-      onShowState:     this.onShowState,
-      onShowSection:   this.onShowState,
+      onShowElement:   this.onShowElement,
       onTermsChecked:  this.onTermsChecked,
       selected:        selectedTerms,
       visibleSections: Object.keys(orgs),
@@ -102,19 +102,25 @@ class CustomDonatePage extends ContextMixin(React.Component) {
 
     return (
       <main className={`browse-groups-page ${mobile}`}>
-        <div className="container">
+        <div className="container browse-groups-container">
           <h1 className="page-title">{title}</h1>
           {showOrgs
             ?
               <div className="browse-section">
-                <div className="filter-area">
-                  <Filters {...fprops} />
+                <div className="filter-area-wrapper">
+                  <Sticky top={104} bottomBoundary=".browse-groups-container">
+                    <Filters {...fprops} />
+                  </Sticky>
                 </div>
                 <OrgList mobile={mobile} orgs={orgs} />
 
-                <div className="plan-sidebar">
-                  <Tray />
-                  <EasyDonateTiles />
+                <div className="plan-sidebar-wrapper">
+                  <Sticky top={104} bottomBoundary=".browse-groups-container">
+                    <div className="plan-sidebar">
+                      <Tray />
+                      <EasyDonateTiles />
+                    </div>
+                  </Sticky>
                 </div>
               </div>
             : <Loading />

@@ -1,133 +1,84 @@
-.filter-area {
-  display: none;
-}
 @include bp-lg {
   .filter-area {
-    display: block;
-    position: fixed;
-    top: 140px;
-    left: $site-padding-lg;
-    width: $side-col-width - $site-padding-lg;
+    overflow: hidden;
     font-size: 14px;
-    .collapsible,
-    .collapsible-header,
-    .collapsible-body {
-      border: none;
-      background: none;
-      box-shadow: none;
-      padding: 0;
-      margin: 0;
-    }
-  }
-  .filter-menu {
-    color: $med-trans;
-    padding: 0px;
+    padding-bottom: 20px;
+    color: $lighter-trans;
   }
   .filters-title,
   .groups-nav-title {
-    text-transform: uppercase;
-    letter-spacing: 0.5;
-    padding-bottom: 8px;
-  }
-  .filters {
-    .filter-group {
-      padding: 6px 0 8px;
-    }
-    .collapsible-header {
-      min-height: 0px;
-      line-height: initial;
-      &.active {
-        font-weight: 700;
-        span.toggle:before {
-          content: '\2013';
-        }
-      }
-      span.toggle:before {
-        content: '+';
-        font-weight: 700;
-        color: $primary-color;
-        padding-right: 8px;
-      }
-    }
-    .filter {
-      padding: 12px 0 0 16px;
-    }
-    .clear-filters {
-      display: block;
-      padding: 10px 0 0 16px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      color: lighten($primary-color, 15%);
-      i {
-        font-size: 14px;
-        vertical-align: middle;
-        margin-right: 6px;
-        padding-bottom: 2px;
-      }
-    }
-    [type="checkbox"] {
-      & + label {
-        color: inherit;
-        line-height: 14px;
-        height: inherit;
-        padding-left: 20px;
-        font-size: 13px;
-      }
-      &:not(:checked) + label:after {
-        border: 2px solid rgba(0, 0, 0, 0.4);
-        height: 14px;
-        width: 14px;
-      }
-      &:checked + label:after {
-        border: 2px solid $primary-color-light;
-        background-color: $primary-color-light;
-        width: 14px;
-        height: 14px;
-      }
-      &:checked + label:before {
-        width: 6px;
-        height: 12px;
-        top: -2px;
-        left: 0;
-      }
-    }
+    font-size: 16px;
   }
   .groups-nav {
-    border-top: 1px solid $light-border;
-    margin-top: 16px;
-    padding-top: 20px;
+    margin-bottom: 16px;
     a {
-      color: $med-trans;
       display: block;
-      margin-left: 4px;
-      padding-left: 10px;
       line-height: 28px;
-      border-left: 2px solid transparent;
+      color: inherit;
       &:hover,
       &.active {
         color: $primary-color;
-        border-left: 2px solid $primary-color;
       }
     }
     select {
-      height: 2.25rem;
-      margin: 4px 0 0 8px;
-      max-width: 140px;
+      margin-top: 6px;
+      height: 2.5em;
+      border-radius: 2px;
+      border: 1px solid #ececec;
+      option[value="national"] {
+        display: none;
+      }
     }
   }
-  .feedback-link {
-    max-width: 240px;
-    font-size: 13px;
-    padding-top: 30px;
-    a {
-      color: $lightest-trans;
-      &:hover {
-        color: $primary-color-light;
+  .filter-group {
+    margin-top: 8px;
+    padding: 12px 0;
+    border-top: 1px solid $light-border;
+  }
+  .filter-group-label {
+    font-weight: 700;
+  }
+  .filter {
+    padding-top: 10px;
+  }
+  .clear-filters {
+    float: right;
+    line-height: 23px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: lighten($primary-color, 15%);
+  }
+  .nonprofit-type-filters {
+    display: none;
+  }
+  .filters {
+    [type="checkbox"] {
+      & + label {
+        color: inherit;
+        height: inherit;
+        font-size: inherit;
+        line-height: 16px;
+        padding-left: 22px;
+        padding-top: 1px;
       }
-      span {
-        text-decoration: underline;
+      &:not(:checked) + label::after {
+        border: 2px solid rgba(0, 0, 0, 0.36);
+        height: 16px;
+        width: 16px;
+      }
+      &:checked + label::after {
+        border: 2px solid $primary-color-light;
+        background-color: $primary-color-light;
+        width: 16px;
+        height: 16px;
+      }
+      &:checked + label::before {
+        width: 7px;
+        height: 13px;
+        top: -2px;
+        left: 0;
       }
     }
   }

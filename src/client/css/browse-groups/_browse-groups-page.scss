@@ -2,11 +2,43 @@
 .state-page {
   .container {
     width: 100%;
+    max-width: 1600px;
+    float: left;
     @include bp-md {
-      padding: 0 $site-padding-lg;
+      padding: 40px $site-padding-lg 0;
     }
   }
 }
+
+$side-col-width: 190px;
+
+.filter-area-wrapper,
+.plan-sidebar-wrapper {
+  display: none;
+}
+@include bp-lg {
+  .filter-area-wrapper {
+    display: block;
+    width: $side-col-width;
+    float: left;
+  }
+  .group-area {
+    width: calc(100% - (#{$side-col-width} * 2));
+    padding: 0 40px;
+    float: left;
+  }
+  .plan-sidebar-wrapper {
+    display: block;
+    width: $side-col-width;
+    float: right;
+  }
+  .browse-groups-page .page-title {
+    display: none;
+  }
+}
+
+
+
 @import 'browse-groups/filters';
 @import 'browse-groups/mobile-filters';
 @import 'browse-groups/groups';
