@@ -3,6 +3,7 @@
 @import 'materialize/materialize';
 @import 'mixins';
 @import 'global';
+@import 'loading';
 @import 'typography';
 @import 'forms';
 @import 'navigation';
@@ -16,9 +17,9 @@
 @import 'custom-planning/custom-planning';
 @import 'partner-logos';
 @import 'footer';
+@import 'tooltip';
 // @import 'donate-header';
 // @import 'single-post';
-@import 'tooltip';
 
 .expand-trigger {
   cursor: pointer;
