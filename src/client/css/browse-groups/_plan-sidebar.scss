@@ -1,4 +1,4 @@
-$tray-padding: 12px;
+$tray-padding: 16px;
 @include bp-lg {
   .plan-sidebar {
     padding-bottom: 20px;
@@ -38,7 +38,6 @@ $tray-padding: 12px;
       border-top: 1px solid $light-border;
       width: 100%;
       font-weight: 700;
-      letter-spacing: 0.5px;
 
       i {
         @include reg-icon;
@@ -49,7 +48,7 @@ $tray-padding: 12px;
   }
 
   .donate-tiles {
-    margin-top: 30px;
+    margin-top: 40px;
 
     .title {
       color: $lightest-trans;
@@ -61,7 +60,7 @@ $tray-padding: 12px;
   .donate-tile {
     padding: $tray-padding;
     background-color: $white;
-    border: 1px solid lighten($secondary-color-light, 14%);
+    border: 1px solid $light-border;
     margin-bottom: 12px;
 
     .tile-title {
@@ -90,7 +89,6 @@ $tray-padding: 12px;
       width: 100%;
       border-radius: 20px;
       font-size: 12.5px;
-      letter-spacing: 0.5px;
 
       &:hover {
         background: $secondary-color;

@@ -57,13 +57,18 @@ form {
 
 .btn {
   @include z-depth-1;
-
+  font-weight: 700;
+  border-radius: 100px;
   &:focus,
   &:hover {
     @include z-depth-2;
   }
 }
 
-.btn-flat:hover {
-  background-color: rgba(0, 0, 0, 0.03);
+.btn-flat {
+  font-weight: 700;
+  border-radius: 0;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
 }

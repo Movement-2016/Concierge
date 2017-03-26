@@ -2,32 +2,28 @@
   padding: 3rem 0;
   @include bp-md {
     padding: 4rem 0;
+  }
 
-    img.alignleft {
+  img.alignleft {
+    margin-bottom: 1em;
+    @include bp-md {
       float: left;
       margin-right: 20px;
     }
   }
 
-  img.alignleft {
-    margin-bottom: 1em;
-  }
-
   .content {
     font-weight: 300;
-
-    hr {
-      margin: 1em;
-      clear: both;
+    @include bp-md {
+      font-size: 18px;
     }
   }
 
-  li,
   p {
     margin: 1em 0;
   }
 
   li {
-    margin-left: 1rem;
+    margin: 1em 0 0.5em 1em;
   }
 }

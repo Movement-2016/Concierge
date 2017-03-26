@@ -4,9 +4,9 @@ import commaize from 'commaize';
 
 import ContributeButton from './ContributeButton.jsx';
 
-import { 
+import {
   addPlanItem,
-  toggleItem 
+  toggleItem
 } from '../../store/actions';
 
 import { filterTagsByTypes } from '../../store/utils';
@@ -17,8 +17,8 @@ import {
   selectNextElement
 } from '../../../ui/util';
 
-const KEY_ARROW_UP = 38;
-const KEY_ARROW_DOWN = 40;
+const KEY_ARROW_UP = 40;
+const KEY_ARROW_DOWN = 38;
 
 
 class Org extends React.Component {
@@ -71,7 +71,7 @@ class Org extends React.Component {
       },
       filters,
       readonly
-    } = this.props;    
+    } = this.props;
 
     const urlGive = c3_donate_link || c4_donate_link || urlWeb;
 
@@ -96,11 +96,11 @@ class Org extends React.Component {
       <div className={cls}>
         <div className="row">
           <div className="col s8 m9">
-            <div className="group-title" dangerouslySetInnerHTML={{__html:name}} />
+            <div className="group-title">{name}</div>
             <div className="nonprofit-tags">
-              {tags.map( t => <span key={t}>{t} </span> )}
+              {tags.join(', ')}
             </div>
-            
+
           </div>
           <div className="col s4 m3 amount-col">
             <div className="amount-wrapper">
@@ -125,4 +125,3 @@ class Org extends React.Component {
 Org.INPUT_SELECTOR = 'item-amount';
 
 module.exports = Org;
-
