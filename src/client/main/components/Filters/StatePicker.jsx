@@ -1,17 +1,41 @@
 import React from 'react';
 
-const StatePicker = ({ visible, terms, onShowElement }) => {
-  if( !visible.length ) {
-    return <span />;
+class StatePicker extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 'select-state'
+    };
+
+    this.handleChange = this.handleChange.bind(this);
   }
-  const map = {};
-  terms.forEach( t => map[t.slug] = t );
-  return (
-      <select className="browser-default" id="jump-state" onChange={e => onShowElement(e.target.value)}>
-        <option value="" selected>Select State...</option>
-        {visible.map( k => <option key={k} value={map[k].slug}>{map[k].name}</option>)}
+
+  handleChange(event) {
+    const newValue = event.target.value;
+    if (newValue != 'select-state') {
+      this.props.onShowElement(newValue);
+    }
+    this.setState({value: newValue});
+  }
+
+  render() {
+    const {visible, terms} = this.props;
+
+    if (!visible.length) {
+      return <span/>;
+    }
+    const map = {};
+
+    terms.forEach(t => map[t.slug] = t);
+
+    return (
+      <select className="jump-state browser-default" value={this.state.value} onChange={this.handleChange}>
+        <option value="select-state">Select State...</option>
+        {visible.map(k => <option key={k} value={map[k].slug}>{map[k].name}</option>)}
       </select>
     );
-};
+  }
+
+}
 
 module.exports = StatePicker;
