@@ -1,8 +1,5 @@
 $tray-padding: 16px;
 @include bp-lg {
-  .plan-sidebar {
-    padding-bottom: 20px;
-  }
   .donation-plan-tray {
     padding-top: $tray-padding;
     background-color: $white;

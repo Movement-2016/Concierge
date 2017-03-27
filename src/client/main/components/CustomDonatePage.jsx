@@ -126,6 +126,7 @@ class CustomDonatePage extends ContextMixin(React.Component) {
             : <Loading />
           }
         </div>
+        <div className="bottom-spacer" />
       </main>
     );
   }

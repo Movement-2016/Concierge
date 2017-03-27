@@ -2,8 +2,7 @@
   .filter-area {
     overflow: hidden;
     font-size: 14px;
-    padding-bottom: 20px;
-    color: $lighter-trans;
+    color: $med-trans;
   }
   .filters-title,
   .groups-nav-title {
@@ -63,7 +62,7 @@
         padding-top: 1px;
       }
       &:not(:checked) + label::after {
-        border: 2px solid rgba(0, 0, 0, 0.36);
+        border: 2px solid rgba(0, 0, 0, 0.5);
         height: 16px;
         width: 16px;
       }
