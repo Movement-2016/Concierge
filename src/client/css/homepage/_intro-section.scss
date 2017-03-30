@@ -74,7 +74,7 @@
     @include intro-width;
     @include bp-sm {
       font-size: 29px;
-      margin-top: 35px;
+      margin-top: 50px;
     }
     @include bp-md {
       font-size: 42px;
@@ -90,7 +90,7 @@
     margin: 0 auto 30px;
     @include intro-width;
     @include bp-sm {
-      margin-bottom: 45px;
+      margin-bottom: 60px;
     }
     @include bp-md {
       margin-bottom: 80px;

@@ -5,7 +5,7 @@ const fixedHeader = true;
 function scrollToElement(e, offset) {
 
   const defaultOffset = fixedHeader
-    ? document.getElementById('main-nav').offsetHeight
+    ? document.querySelector('.main-nav').offsetHeight
     : 0;
   var $e = $(e);
   if( $e[0] ) {

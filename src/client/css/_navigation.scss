@@ -2,114 +2,128 @@
   @include bp-lg {
     height: $navbar-height-lg;
   }
-  nav {
-    background-color: $navbar-color;
-    @include z-depth-2;
-    @include bp-lg {
-      height: $navbar-height-lg;
-      line-height: $navbar-height-lg;
-    }
+}
 
+.main-nav {
+  background-color: $navbar-color;
+  @include z-depth-2;
+  @include bp-lg {
+    height: $navbar-height-lg;
+    line-height: $navbar-height-lg;
+    padding: 0 $site-padding-lg 0 ($site-padding-lg - $menu-padding-lg);
+  }
+
+  .button-collapse {
+    margin: 0 5%;
+    @include bp-md {
+      margin: 0 2.5%;
+    }
+    i {
+      margin-left: -3px;
+      font-size: 28px;
+      color: color('grey', 'lighten-1');
+    }
+  }
+  .brand-logo {
+    color: $primary-color;
+    font-size: 20px;
+    font-family: 'museo-slab', 'Roboto', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    @include bp-lg {
+      font-size: 22px;
+    }
+  }
+}
+
+.header-menu {
+  display: none;
+  @include bp-lg {
+    display: block;
+    float: right;
     ul a {
       font-size: 16px;
       color: $lighter-trans;
       padding: 0 $menu-padding-lg;
-
       &:hover {
         background-color: color('grey', 'lighten-3');
-      }
-    }
-
-    .brand-logo {
-      color: $primary-color;
-      font-size: 20px;
-      font-family: "museo-slab", "Roboto", sans-serif;
-      font-weight: 900;
-      font-style: italic;
-
-      @include bp-lg {
-        font-size: 22px;
-        padding-left: $menu-padding-lg;
-      }
-    }
-
-    .button-collapse {
-      margin: 0 5%;
-      @include bp-md-only {
-        margin: 0 2.5%;
-      }
-      i {
-        font-size: 28px;
-        color: color('grey', 'lighten-1');
-      }
-    }
-    @media #{$medium-and-down} {
-
-      .side-nav > li > a {
-        font-weight: 700;
-      }
-
-      .drop-down-btn i {
-        display: none;
-      }
-
-      .drop-down a {
-        padding: 0 32px;
-        line-height: 36px;
-        height: 36px;
-      }
-    }
-    @include bp-lg {
-      padding: 0 ($site-padding-lg - $menu-padding-lg);
-
-      .nav-wrapper {
-        max-width: $site-max-width + (2 * $menu-padding-lg);
-        margin: 0 auto;
-      }
-
-      .drop-down-btn {
-        & > a {
-          height: $navbar-height-lg;
-        }
-
-        i {
-          font-size: 1.5rem;
-          height: inherit;
-          line-height: inherit;
-          display: inline-block;
-          vertical-align: middle;
-        }
-
-        &:hover .drop-down {
-          display: block;
-        }
-      }
-
-      .drop-down {
-        display: none;
-        line-height: 48px;
-        position: absolute;
-        min-width: 160px;
-        @include z-depth-1;
-
-        li {
-          float: none;
-        }
-
-        a {
-          display: block;
-          color: $lighter-trans;
-          background-color: $navbar-color;
-
-          &:hover {
-            background-color: color('grey', 'lighten-3');
-          }
-        }
       }
     }
   }
 }
 
-#sidenav-overlay {
-  z-index: 995;
+.side-nav {
+  .top-bar {
+    text-align: right;
+    border-bottom: 1px solid $light-border;
+    margin-bottom: 12px;
+  }
+  .close-button {
+    padding-right: 24px;
+    i {
+      line-height: 56px;
+      color: $lighter-trans;
+    }
+  }
+  li {
+    line-height: 56px;
+  }
+  a {
+    height: 56px;
+    line-height: 56px;
+    padding: 0 30px;
+    font-size: 18px;
+  }
+}
+
+.nav-menu {
+  .menu-parent {
+    i {
+      display: none;
+    }
+    @include bp-lg {
+      & > a {
+        height: $navbar-height-lg;
+      }
+
+      i {
+        font-size: 1.5rem;
+        height: inherit;
+        line-height: inherit;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      &:hover .drop-down {
+        display: block;
+      }
+    }
+  }
+
+  .menu-children {
+    a {
+      padding-left: 40px;
+      line-height: 48px;
+      height: 48px;
+      color: $med-trans;
+    }
+    @include bp-lg {
+      display: none;
+      line-height: 48px;
+      position: absolute;
+      min-width: 160px;
+      @include z-depth-1;
+
+      li {
+        float: none;
+      }
+
+      a {
+        display: block;
+        background-color: $navbar-color;
+        &:hover {
+          background-color: color('grey', 'lighten-3');
+        }
+      }
+    }
+  }
 }
