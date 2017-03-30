@@ -11,7 +11,7 @@ const _MenuItem = ( {url,label} ) => {
 
 const SubMenu = ({url, children, label}) => {
   return (
-    <li className="menu-parent" >
+    <li className="menu-parent">
       <Link to={url}>{label}<i className="material-icons">arrow_drop_down</i></Link>
       <ul className="menu-children">
         {children.map( (m,i) => <_MenuItem key={i} {...m} />)}
