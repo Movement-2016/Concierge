@@ -166,7 +166,7 @@ class HomePage extends ServiceContext(React.Component) {
           </div>
           <div className="intro-description">
             <div className="container">
-              <p>{description}</p>
+              <p dangerouslySetInnerHTML={{__html:description}} />
             </div>
           </div>
         </section>

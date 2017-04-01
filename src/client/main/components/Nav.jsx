@@ -3,17 +3,17 @@ import { Link, IndexLink } from 'react-router';
 import scrollToElement from '../../lib/scrollToElement';
 
 const _MenuItem = ( {url,label} ) => {
-  var isExternal = global.IS_SERVER_REQUEST || !!url.match(/^http/);
+  var isExternal = global.IS_SERVER_REQUEST || url.includes('http');
   return isExternal
-    ? <li className="top-level"><a href={url}>{label}</a></li>
-    : <li><Link to={url}>{label}</Link></li>;
+    ? <li className="menu-item"><a href={url}>{label}</a></li>
+    : <li className="menu-item"><Link to={url}>{label}</Link></li>;
 };
 
-const MenuDropDown = ({url, children, label}) => {
+const SubMenu = ({url, children, label}) => {
   return (
-    <li className="drop-down-btn" >
+    <li className="menu-parent">
       <Link to={url}>{label}<i className="material-icons">arrow_drop_down</i></Link>
-      <ul className="drop-down">
+      <ul className="menu-children">
         {children.map( (m,i) => <_MenuItem key={i} {...m} />)}
       </ul>
     </li>
@@ -23,11 +23,11 @@ const MenuDropDown = ({url, children, label}) => {
 const MenuItem = ({url, children, label}) => {
 
   return children.length
-      ? <MenuDropDown url={url} label={label} children={children} />
+      ? <SubMenu url={url} label={label} children={children} />
       : <_MenuItem url={url} label={label} />;
 };
 
-class MenuAnonymous extends React.Component {
+class Menu extends React.Component {
 
   render() {
     const {
@@ -38,6 +38,10 @@ class MenuAnonymous extends React.Component {
 
     return (
         <ul className={className} id={id}>
+          {id=='mobile-menu' &&
+            <div className="top-bar"><a className="close-button"><i className="material-icons">close</i></a></div>
+          }
+
           {menu.map( (m,i) => <MenuItem key={i} {...m} />)}
         </ul>
       );
@@ -54,8 +58,9 @@ class Nav extends React.Component {
       $('.button-collapse').sideNav({
         closeOnClick: true,
       });
-      $('nav a[href*="#"]').click( function() {
-        var hash = $(this).attr('href').match(/#.*/)[0];
+      $('.nav-menu a[href*="/#"]').click( function(e) {
+        // e.preventDefault();
+        var hash = $(this).attr('href').substr(1);
         scrollToElement(hash);
       });
     }
@@ -69,15 +74,17 @@ class Nav extends React.Component {
     } = this.props;
 
     return (
-      <div className="navbar-fixed">
-        <nav id="main-nav">
-          <IndexLink to="/" className="brand-logo">{siteTitle}</IndexLink>
-          <MenuAnonymous className="right hide-on-med-and-down" menu={menu}/>
-          <MenuAnonymous className="side-nav" id="mobile-menu" menu={menu} />
-          <a href="#" data-activates="mobile-menu" className="button-collapse"><i className="material-icons">menu</i></a>
-        </nav>
+      <div>
+        <div className="navbar-fixed">
+          <nav className="main-nav">
+            <IndexLink to="/" className="brand-logo">{siteTitle}</IndexLink>
+            <Menu className="header-menu nav-menu" menu={menu}/>
+            <a data-activates="mobile-menu" className="button-collapse"><i className="material-icons">menu</i></a>
+          </nav>
+        </div>
+        <Menu className="side-nav nav-menu" id="mobile-menu" menu={menu} />
       </div>
-      );
+    );
   }
 }
 
