@@ -1,7 +1,5 @@
-import React               from 'react';
-import { ServiceContext }  from './ContextMixins.js';
-import Tile                from './Tile.jsx';
-
+import React       from 'react';
+import DonateTiles from './DonateTiles.jsx';
 
 class EasyDonateTile extends React.Component {
   render() {
@@ -9,10 +7,10 @@ class EasyDonateTile extends React.Component {
       post_title: title,
       post_content: content,
       fields: {
-        display,
         url
       }
     } = this.props;
+
     const isRemote = /^http/.test(url);
 
     if (!isRemote) {
@@ -29,30 +27,11 @@ class EasyDonateTile extends React.Component {
   }
 }
 
-class EasyDonateTiles extends ServiceContext(React.Component) {
-
-  get contextPropName() {
-    return 'donateTiles';
-  }
+class EasyDonateTiles extends React.Component {
 
   render() {
-    const {
-      donateTiles,
-      loading
-    } = this.state;
-
-    if( loading ) {
-      return null;
-    }
-
-    return (
-      <div className="donate-tiles">
-        <div className="title">Easy Donate Options</div>
-        {donateTiles.map( (d, i) => <EasyDonateTile key={i} {...d} />)}
-      </div>
-    );
+    return <DonateTiles title="Easy Donate Options" TileComp={EasyDonateTile} />;
   }
 }
-
 
 module.exports = EasyDonateTiles;

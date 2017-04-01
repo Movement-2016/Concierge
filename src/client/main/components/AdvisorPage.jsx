@@ -1,28 +1,18 @@
-import React from 'react';
-import { Shell } from './ContentPage.jsx';
+import React              from 'react';
+import { Shell }          from './ContentPage.jsx';
 import { ServiceContext } from './ContextMixins';
-import Loading from './Loading.jsx';
+import Loading            from './Loading.jsx';
+
+const nameRegex = /[a-z-]+$/i;
+
+const processAdvisors = advisors => 
+        advisors && advisors.map( a => a.post_title )
+                            .sort( (a,b) => a.match(nameRegex)[0].localeCompare(b.match(nameRegex)[0]) );
 
 class AdvisorPage extends ServiceContext(React.Component) {
 
-  constructor() {
-    super(...arguments);
-    var advisors = this.processAdvisors(this.props.advisors);
-    this.state = { advisors, loading: !advisors };
-  }
-
-  stateFromStore(storeState) {
-    if( !this.state.advisors ) {
-      storeState.service.advisors.then( advisors => {
-        advisors = this.processAdvisors(advisors);
-        this.setState({ advisors, loading: false });
-      });
-    }
-  }
-
-  processAdvisors(advisors) {
-    return advisors && advisors.map( a => a.post_title )
-                               .sort( (a,b) => a.match(/[a-z-]+$/i)[0].localeCompare(b.match(/[a-z-]+$/i)[0]) );
+  get contextPropName() {
+    return 'advisors';
   }
 
   sliceAdvisors(advisors) {
@@ -47,7 +37,9 @@ class AdvisorPage extends ServiceContext(React.Component) {
   }
 
   render() {
-    const { loading, advisors } = this.state;
+    let { loading, advisors } = this.state;
+
+    advisors = processAdvisors(advisors);
 
     return (
       <Shell title="Advisory Board" name="advisors">
@@ -65,5 +57,6 @@ class AdvisorPage extends ServiceContext(React.Component) {
   }
 }
 
+AdvisorPage.preload = storeState => storeState.service.advisors;
 
 module.exports = AdvisorPage;

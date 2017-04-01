@@ -12,3 +12,7 @@ vendor/
 *.codekit3
 .sass-cache/
 *.scssc
+
+src/client/main/components/index.js
+
+

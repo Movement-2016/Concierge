@@ -18,6 +18,7 @@ const sourcemaps = require ('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const ext = require('gulp-ext');
 const rm = require('gulp-rm');
+const indexJS = require('index-js');
 
 const browserifyConfig =  {
   entries: 'src/client/main/components/App.jsx',
@@ -65,10 +66,10 @@ global.isProduction = false;
 
 let BASE = 'dist';
 
-var stdTasks = ['html', 'images', 'server', 'styles', 'fonts', 'vendor-styles', 'vendor-client-js' ];
+var stdTasks = [ 'indecies', 'html', 'images', 'server', 'styles', 'fonts', 'vendor-styles', 'vendor-client-js' ];
 
-gulp.task ('default',   [               ...stdTasks, 'vendor',       'browserify-watch', 'watch']);
-gulp.task ('no-watch',  [ 'production', ...stdTasks, 'vendor',       'browserify' ]);
+gulp.task ('default',   [               ...stdTasks, 'vendor', 'browserify-watch', 'watch']);
+gulp.task ('no-watch',  [ 'production', ...stdTasks, 'vendor', 'browserify' ]);
 
 gulp.task( 'production', function() {
   global.isProduction = true;
@@ -224,45 +225,19 @@ gulp.task ('browserify', function () {
   return _rebundle (bundler);
 });
 
-// Here for reference:
 
-// gulp.task ('vendor-stage', function () {
-//   process.env.NODE_ENV = 'production';
-//   return browserify ()
-//     .require (dependencies)
-//     .bundle ()
-//     .pipe (source ('vendor.bundle.js'))
-//     .pipe (buffer ())
-//     .pipe (uglify ({ mangle: false }))
-//     .pipe (gzip ({ append: true }))
-//     .pipe (gulp.dest (`${BASE}/public/js`));
-// });
+gulp.task('indecies', () => {
 
-// gulp.task ('browserify-stage', function () {
-//   process.env.NODE_ENV = 'production';
-//   // browserifyConfig.debug = false;
-//   const bundler = browserify (browserifyConfig);
-//   bundler.external (dependencies);
-//   bundler.transform (babelify, babelifyOpts);
-//   bundler.on ('update', rebundle);
-//   return rebundle ();
+  var dirs = [ 
+      'src/client/main/components'
+    ];
 
-//   function rebundle () {
-//     const start = Date.now ();
-//     return bundler.bundle ()
-//       .on ('error', function (err) {
-//         gutil.log (gutil.colors.red (err.toString ()));
-//       })
-//       .on ('end', function () {
-//         gutil.log (gutil.colors.green ('Finished rebundling in', (Date.now () - start), 'ms.'));
-//       })
-//       .pipe (source ('bundle.js'))
-//       .pipe (buffer ())
-//       .pipe (uglify ({ mangle: false }))
-//       .pipe (gzip ({ append: true }))
-//       .pipe (gulp.dest (`${BASE}/public/js`));
-//   }
-// });
+  return gulp.src(dirs, { base: './' })
+          .pipe(indexJS())
+          .pipe (gulp.dest ('.'));
+});
+
+
 
 gulp.task( 'clean', function() {
   return gulp.src( `${BASE}/**/*`, { read: false })

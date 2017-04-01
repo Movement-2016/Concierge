@@ -135,7 +135,6 @@ class MovementVoteService {
         });
   }
 
-
   getPage(slug) {
     return this._pages[slug]
       ? Promise.resolve(this._pages[slug])
@@ -157,6 +156,17 @@ class MovementVoteService {
   }
 
   /* NON PROMISE */
+
+  cachedValue(key) {
+    let prop = '_' + key;
+    return this[prop] || null;
+  }
+  
+  cachedPage(slug) {
+    return this._pages[slug] || null;
+  }
+
+
 
   // a somewhat unfortunate historically named property for
   // returning a list of states

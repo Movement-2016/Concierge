@@ -1,8 +1,8 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 
-import { Shell } from '../ContentPage.jsx';
-import ProfileForm from './Form.jsx';
+import { Shell } from './ContentPage.jsx';
+import ProfileForm from './Profile/Form.jsx';
 
 class PlanProfilePage extends React.Component {
   constructor() {

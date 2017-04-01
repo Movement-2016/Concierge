@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Shell } from '../ContentPage.jsx';
-import ProfileForm from '../Profile/Form.jsx';
-import { emailPlan } from '../../store/utils';
+import { Shell } from './ContentPage.jsx';
+import ProfileForm from './Profile/Form.jsx';
+import { emailPlan } from '../store/utils';
 
 class ConsultPage extends React.Component {
 

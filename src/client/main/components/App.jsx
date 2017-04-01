@@ -15,7 +15,7 @@ import {
   subscribeToStore
 } from '../../lib/analytics';
 
-import Routes       from './Routes.jsx';
+import Router       from './Routes.jsx';
 import Nav          from './Nav.jsx';
 import Footer       from './Footer.jsx';
 import Loading      from './Loading.jsx';
@@ -106,6 +106,6 @@ App.propTypes = {
   children: React.PropTypes.node,
 };
 
-render( <Routes App={App} store={store} />, document.getElementById('app') );
+render( <Router App={App} store={store} />, document.getElementById('app') );
 
 module.exports = App;

@@ -5,64 +5,29 @@ import {
   Route, 
   IndexRoute, 
   applyRouterMiddleware, 
-  browserHistory 
+  browserHistory,
 } from 'react-router';
+
+import HomePage from './HomePage.jsx';
 
 import useScroll from 'react-router-scroll/lib/useScroll';
 
-import ContentPage      from './ContentPage.jsx';
+import RouteMap from '../../../shared/route-map';
 
-import CustomDonatePage from './CustomDonatePage.jsx';
-import HouseParty       from './HouseParty.jsx';
-import ContactPage      from './ContactPage.jsx';
-import NotFoundPage     from './NotFoundPage.jsx';
-import HomePage         from './HomePage.jsx';
-import DonatePage       from './DonatePage.jsx';
-import StatePage        from './StatePage.jsx';
-import AdvisorsPage     from './AdvisorPage.jsx';
+const BrowserRouter = props => {
 
-import ShoppingCart     from './ShoppingCart';
-import PlanSummaryPage  from './ShoppingCart/SummaryPage.jsx';
-import ConsultPage      from './ShoppingCart/ConsultPage.jsx';
-import PlanProfilePage  from './Profile/Page.jsx';
-
-const MeetTheTeamPage  = () => <ContentPage page="team" />;
-const AboutUsPage      = () => <ContentPage page="about" />;
-const TestimonialsPage = () => <ContentPage page="testimonials" />;
-
-class Routes extends React.Component
-{
-  render() {
-      return (
-        <Router
-          history={browserHistory}
-          render={applyRouterMiddleware (useScroll (scrolling))}
-        >
-          <Route path='/' component={this.props.App}>
-            <IndexRoute component={HomePage} />
-            <Route path='/donate'               component={DonatePage} />
-            <Route path='/groups(/:mobile)'     component={CustomDonatePage}  />
-            <Route path='/state/:name'          component={StatePage} />
-            
-            <Route path='/plan'          component={ShoppingCart} />
-            <Route path='/plan/summary'  component={PlanSummaryPage} />
-            <Route path='/plan/profile'  component={PlanProfilePage} />
-            <Route path='/plan/consult'  component={ConsultPage} />
-
-            <Route path='/about'      component={AboutUsPage} />
-            <Route path='/advisors'   component={AdvisorsPage} />
-            <Route path='/team'       component={MeetTheTeamPage} />
-            <Route path='/getintouch' component={ContactPage} />
-            <Route path='/houseparty' component={HouseParty} />
-
-            <Route path='/testimonials' component={TestimonialsPage} />
-
-            <Route path='*'           component={NotFoundPage} />
-          </Route>
-        </Router>
-      );
-  }
-}
+  return (
+    <Router
+      history={browserHistory}
+      render={applyRouterMiddleware (useScroll (scrolling))}
+    >
+      <Route path= '/' component={props.App}>
+        <IndexRoute component={HomePage} />
+          { RouteMap.map( (r,i) => <Route key={i} {...r} /> ) }
+      </Route>
+    </Router>
+  );
+};
 
 
 // Manage scroll position when changing pages
@@ -80,4 +45,4 @@ function scrolling (prev, current) {
   }
 }
 
-module.exports = Routes;
+module.exports = BrowserRouter;

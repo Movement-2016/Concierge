@@ -27,14 +27,16 @@ const ServiceContext = baseClass => class extends ContextMixin(baseClass) {
 
   stateFromStore(storeState) {
     const { service } = storeState;
-    var state = {service};
-    const propName = this.contextPropName;
+    const state       = { service };
+    const propName    = this.contextPropName;
+
     if( propName ) {
-      if( this.props[propName] ) {
-        state[propName] = this.props[propName];
+      const value = this.props[propName] || service.cachedValue(propName);
+      if( value ) {
+        state[propName] = value;
       } else {
-        storeState.service[propName].then( propValue => this.setState( { service, [propName]:propValue, loading: false  }));
-        state.loading = true;
+        service[propName].then( propValue => this.setState( { service, [propName]:propValue, loading: false } ));
+        state.loading = true;          
       }
     }
     this.setState(state);

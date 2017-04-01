@@ -1,5 +1,5 @@
 import React               from 'react';
-import { ServiceContext }  from './ContextMixins.js';
+import { ServiceContext }  from './ContextMixins';
 import Tile                from './Tile.jsx';
 
 
@@ -19,9 +19,15 @@ class DonateTiles extends ServiceContext(React.Component) {
       return null;
     }
 
+    const {
+      TileComp = Tile,
+      title = ''
+    } = this.props;
+
     return (
       <div className="donate-tiles">
-        {donateTiles.map( (d, i) => <Tile key={i} {...d} />)}
+        {title && (<div className="title">{title}</div>)}
+        {donateTiles.map( (d, i) => <TileComp key={i} {...d} />)}
       </div>
     );
   }
