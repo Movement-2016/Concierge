@@ -21,7 +21,7 @@ var menu = null;
 routeMap.push( { path: '/', component: HomePage } );
 
 routeMap = routeMap.map( r => {
-  r.match = p2regex(r.path.replace('(','').replace(')','?'));
+  r.match = p2regex(r.path);
   return r;
 });
 
@@ -40,7 +40,7 @@ function _render(elem,res) {
 
 function renderPage(req, res, next) {
 
-  const route = routeMap.find( r => r.match.test(req.path) );
+  const route = routeMap.find( r => r.path === req.path ); // r.match.test(req.path) );
 
   const { preloadPage } = route.component;
 
