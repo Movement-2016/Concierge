@@ -1,6 +1,10 @@
 import React               from 'react';
 
-import { ServiceContext }  from './ContextMixins.js';
+import { 
+  ServiceContext,
+  PageContext 
+}                          from './ContextMixins.js';
+
 import StateMap            from './StateMap.jsx';
 import Thermometer         from './Thermometer.jsx';
 import SocialButtons       from './Social.jsx';
@@ -89,18 +93,49 @@ class NewsTiles extends ServiceContext(React.Component) {
   }
 }
 
-class HomePage extends ServiceContext(React.Component) {
+class StateMapBound extends ServiceContext(React.Component) {
 
-  constructor() {
-    super(...arguments);
-    const {
-      home,
-      news,
-      testimonials,
-      donateTiles
-    } = this.props;
+  get contextPropName() {
+    return 'stateProps';
+  }
 
-    this.state = home ? { home, news, testimonials, donateTiles } : {};
+  stateFromStore() {
+    !global.IS_SERVER_REQUEST && super.stateFromStore(...arguments);
+  }
+
+  render() {
+    if( !this.state || global.IS_SERVER_REQUEST ) {
+      return <span />;
+    }
+
+    let {
+      stateProps: {
+        states,
+        stateColors
+      } = {},
+      loading
+    } = this.state;
+
+    if( loading ) {
+      return <Loading />;
+    }
+
+    return (
+        <div className="container">
+          <h2 className="section-title">Find a Group</h2>
+          <div className="map-desc">Click the map to browse the groups in each state.</div>
+          <StateMap dataSource={states} colors={stateColors} />;
+        </div>
+      );
+
+  }
+}
+
+
+class HomePage extends PageContext(React.Component) {
+
+  get page() {
+    return 'home';
   }
 
   componentDidMount() {
@@ -114,32 +149,10 @@ class HomePage extends ServiceContext(React.Component) {
     }
   }
 
-  stateFromStore( storeState ) {
-
-    if( this.state.home ) {
-      return;
-    }
-
-    var home   = storeState.service.getPage('home');
-    var states = storeState.service.states;
-    var colors = storeState.service.stateColors;
-
-    Promise
-      .all(   [ states, home, colors  ])
-      .then( ([ states, home, colors ]) => this.setState( { states, home, colors, loading: false }));
-
-    this.setState({ loading: true });
-  }
-
   render() {
     const {
       loading,
-      states,
-      colors,
-      news,
-      testimonials,
-      donateTiles,
-      home: {
+      page: {
         fields: {
           tag_line,
           homepage_description: description,
@@ -174,24 +187,20 @@ class HomePage extends ServiceContext(React.Component) {
         <section className="donate-section" id="donate">
           <div className="container">
             <h2 className="section-title">Choose a Way to Give</h2>
-            <DonateTiles donateTiles={donateTiles} />
+            <DonateTiles />
           </div>
         </section>
         <section className="map-section">
-          <div className="container">
-            <h2 className="section-title">Find a Group</h2>
-            <div className="map-desc">Click the map to browse the groups in each state.</div>
-            <StateMap dataSource={states} colors={colors} />
-          </div>
+          <StateMapBound />
         </section>
         <section className="testimonial-section">
           <div className="container">
-            <Testimonials testimonials={testimonials} />
+            <Testimonials />
           </div>
         </section>
         <section className="news-section">
           <div className="container">
-            <NewsTiles news={news} />
+            <NewsTiles />
           </div>
         </section>
       </main>
@@ -199,5 +208,7 @@ class HomePage extends ServiceContext(React.Component) {
     );
   }
 }
+
+HomePage.preloadPage = 'home';
 
 module.exports = HomePage;

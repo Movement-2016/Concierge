@@ -1,19 +1,20 @@
 /* eslint no-console:off */
-const express = require ('express');
-const bodyParser = require ('body-parser');
-const cookieParser = require ('cookie-parser');
+const express        = require ('express');
+const bodyParser     = require ('body-parser');
+const cookieParser   = require ('cookie-parser');
 const expressSession = require ('express-session');
-const fs = require ('fs');
-const path = require ('path');
+const fs             = require ('fs');
+const path           = require ('path');
+const https          = require('https');
+const http           = require('http');
 
 const routes = require ('./routes');
 
-var https = require('https');
-var http = require('http');
 
-var sslPath = '/etc/letsencrypt/live/movementvote.org/';
+const sslPath    = '/etc/letsencrypt/live/movementvote.org/';
+const SSL_PORT   = 4000;
+const PUBLIC_DIR = path.join(__dirname, '../public');
 
-var SSL_PORT = 4000;
 
 // the secret for the session, should be set in an environment variable
 // some random text used as a placeholder for dev
@@ -21,8 +22,7 @@ const sessionSecret = process.env.SESSION_SECRET || 'randomtext_yueierp';
 
 // ensure HTTPS is used for all interactions
 const httpsOnly = (req, res, next) => {
-  if (req.headers['x-forwarded-proto'] &&
-    req.headers['x-forwarded-proto'] !== 'https') {
+  if (req.headers['x-forwarded-proto'] && req.headers['x-forwarded-proto'] !== 'https') {
     return res.redirect (['https://', req.hostname, req.url].join (''));
   } else {
     return next ();
@@ -30,12 +30,16 @@ const httpsOnly = (req, res, next) => {
 };
 
 function start (port) {
+
   return new Promise ((resolve, reject) => {
+
     console.log ('Starting server');
+
     try {
       const app = express ();
 
       // if production deployment, only allow https connections
+      // ===> N.B. I don't this ever executes
       if (process.env.NODE_ENV === 'production') {
         app.use (httpsOnly);
       }
@@ -45,18 +49,18 @@ function start (port) {
       app.use (bodyParser.json ());
       app.use (bodyParser.urlencoded ({ extended: true }));
       app.use (expressSession ({
-        secret: sessionSecret,
-        saveUninitialized: true,
-        resave: true,
-      }));
+                    secret: sessionSecret,
+                    saveUninitialized: true,
+                    resave: true,
+                  }));
 
       routes.init (app);
 
-      console.log ('back from routes');
+      console.log ('Ready to route');
 
       // handle zipped javascript content
       app.get ('*.js', (req, res) => {
-        const file = path.join (__dirname, `public${req.path}.gz`);
+        const file = `${PUBLIC_DIR}${req.path}.gz`;
         if (fs.existsSync (file)) {
           res.set ({
             'content-type': 'text/javascript',
@@ -67,16 +71,16 @@ function start (port) {
           res.set ({
             'content-type': 'text/javascript',
           });
-          res.sendFile (path.join (__dirname, `public${req.path}`));
+          res.sendFile (`${PUBLIC_DIR}${req.path}`);
         }
       });
 
       // static file handling
-      app.use (express.static (path.join (__dirname, 'public')));
+      app.use (express.static (PUBLIC_DIR));
 
       // for not explicitly handled HTML routes, return root document
       app.use ('*', (req, res) => {
-        res.sendFile (path.join (__dirname, 'public/index.html'));
+        res.sendFile (`${PUBLIC_DIR}/index.html`);
       });
 
       var listening = (port) => {

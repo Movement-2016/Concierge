@@ -16,29 +16,43 @@ import {
 
 import ShoppingCart from '../client/main/components/ShoppingCart';
 
-const MeetTheTeamPage  = () => <ContentPage page="team" />;
-const AboutUsPage      = () => <ContentPage page="about" />;
-const TestimonialsPage = () => <ContentPage page="testimonials" />;
+const contentPage = pageName => {
+  const pageWrapper = props => <ContentPage page={props.page} pageName={pageName} />;
+  pageWrapper.preloadPage = pageName;
+  return pageWrapper;
+};
+
+const MeetTheTeamPage  = contentPage('team');
+const AboutUsPage      = contentPage('about');
+const TestimonialsPage = contentPage('testimonials');
+
+var browserOnly = true;
 
 const RouteMap = [
   {  path: '/donate',                component: DonatePage },
-  {  path: '/groups(/:mobile)'     , component: CustomDonatePage },
-  {  path: '/state/:name'          , component: StatePage }, 
-  
-  {  path: '/plan'          , component: ShoppingCart }, 
-  {  path: '/plan/summary'  , component: SummaryPage }, 
-  {  path: '/plan/profile'  , component: ProfilePage }, 
-  {  path: '/plan/consult'  , component: ConsultPage }, 
+
+  // note: in react-router 4 we'll be able call matchPath to be smart about
+  // parameter. For now we split it into 2 entries
+
+  {  path: '/groups(/:mobile)'        , component: CustomDonatePage },
+
+  {  path: '/plan'          , component: ShoppingCart, browserOnly }, 
+  {  path: '/plan/summary'  , component: SummaryPage,  browserOnly }, 
+  {  path: '/plan/profile'  , component: ProfilePage,  browserOnly }, 
+  {  path: '/plan/consult'  , component: ConsultPage,  browserOnly }, 
 
   {  path: '/about'      , component: AboutUsPage }, 
   {  path: '/advisors'   , component: AdvisorPage }, 
   {  path: '/team'       , component: MeetTheTeamPage }, 
-  {  path: '/getintouch' , component: ContactPage }, 
-  {  path: '/houseparty' , component: HouseParty }, 
 
+  {  path: '/getintouch' , component: ContactPage, browserOnly }, 
+  {  path: '/houseparty' , component: HouseParty, browserOnly }, 
+
+  // I think these are deprecated (not linked anywhere)
+  {  path: '/state/:name'  , component: StatePage, browserOnly },   
   {  path: '/testimonials' , component: TestimonialsPage }, 
 
-  {  path: '*' ,             component: NotFoundPage }, 
+  {  path: '*' ,             component: NotFoundPage, browserOnly }, 
 ];
 
 module.exports = RouteMap;

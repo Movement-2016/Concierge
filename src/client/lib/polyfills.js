@@ -1,7 +1,7 @@
 
 import PromisePolyfill from 'es6-promise-polyfill';
 
-if( typeof window.Promise === 'undefined' ) {
+if( !global.IS_SERVER_REQUEST && typeof window.Promise === 'undefined' ) {
   window.Promise = PromisePolyfill.Promise || PromisePolyfill;
 }
 

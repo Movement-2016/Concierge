@@ -1,9 +1,10 @@
 const listenerMail = require('./listenerMail');
-const pages = require('./pages');
+const pages        = require('./pages');
 
 function init (app) {
 
   listenerMail.init();
+
   pages(app);
 
   app.post( '/api/plan/send', listenerMail.mailPlan );

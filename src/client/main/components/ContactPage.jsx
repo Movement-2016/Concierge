@@ -35,7 +35,7 @@ class ContactPage extends React.Component {
     } = this.state;
 
     return (
-      <ContentPage page="contact">
+      <ContentPage pageName="contact">
         <ContactForm onSubmit={this.onSubmit}>
           {done && <div className="submit-message submit-success">{done}</div>}
           {error && <div className="submit-message submit-error">{error}</div>}

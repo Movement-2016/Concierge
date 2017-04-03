@@ -1,6 +1,6 @@
 /* eslint no-console:"off" */
 var GMail = require('./gmail');
-var service  = require('./shared/m-service');
+var service  = require('../shared/m-service');
 
 var path = require('jspath');
 var Entities = require('html-entities').AllHtmlEntities;

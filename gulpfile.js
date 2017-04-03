@@ -116,38 +116,26 @@ gulp.task('shared', () => {
 
 const sharedDeps = [
   'shared-components-jsx',
-  'shared-components-store',
-  'shared-lib',
+  // 'shared-components-store',
+  // 'shared-lib',
 ];
 
 gulp.task('shared-components', sharedDeps, () => {
-  return gulp.src ( 'src/client/main/components/**/*.js')
+  return gulp.src ( 'src/client/**/*.js')
             .pipe (babel())
-            .pipe (gulp.dest (BASE + '/shared/components'));
+            .pipe (gulp.dest (BASE + '/client'));
 });
 
 gulp.task('shared-components-jsx',  () => {
-  return gulp.src ( 'src/client/main/components/**/*.jsx')
+  return gulp.src ( 'src/client/**/*.jsx')
             .pipe (babel())
             .pipe ( ext.replace( 'jsx' ) )
-            .pipe (gulp.dest (BASE + '/shared/components'));
-});
-
-gulp.task('shared-components-store',  () => {
-  return gulp.src ( 'src/client/main/store/**/*' )
-            .pipe (babel())
-            .pipe (gulp.dest (BASE + '/shared/store'));
-});
-
-gulp.task('shared-lib',  () => {
-  return gulp.src ( 'src/client/lib/**/*' )
-            .pipe (babel())
-            .pipe (gulp.dest (BASE + '/lib'));
+            .pipe (gulp.dest (BASE + '/client'));
 });
 
 gulp.task ('_server', function () {
   return gulp.src ( 'src/server/*.js')
-    .pipe (gulp.dest (BASE));
+    .pipe (gulp.dest (BASE + '/server'));
 });
 
 // compile third-party dependencies

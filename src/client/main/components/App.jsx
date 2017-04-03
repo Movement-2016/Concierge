@@ -39,7 +39,8 @@ class App extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
-      loading: true,
+      menu: props.menu,
+      loading: !global.IS_SERVER_REQUEST,
       error: '',
       err: ''
     };
@@ -50,7 +51,10 @@ class App extends React.Component {
     const { initService } = service.actions;
 
     store.dispatch( initService(service) );
-
+    if( !this.state.loading ) {
+      return;
+    }
+    
     service.filters.then( filters => {
 
       store.dispatch( initFilters(filters) );
@@ -58,11 +62,11 @@ class App extends React.Component {
 
       return service.menu;
     }).then( menu => {
-      try {
-        this.setState({ menu, loading: false });   
-      } catch(e) {
-        //
-      }        
+
+      const TIMING_DELAY = 250;
+
+      setTimeout( () => this.setState({ menu, loading: false }), TIMING_DELAY );
+
     }).catch( error => {
       var err = err.message || err.statusText || err + '';      
       this.setState( { error, err } );
@@ -106,6 +110,8 @@ App.propTypes = {
   children: React.PropTypes.node,
 };
 
-render( <Router App={App} store={store} />, document.getElementById('app') );
+if( !global.IS_SERVER_REQUEST ) {
+  render( <Router App={App} store={store} />, document.getElementById('app') );  
+}
 
 module.exports = App;

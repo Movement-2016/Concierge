@@ -143,12 +143,19 @@ class MovementVoteService {
 
   /* Returns an unsorted list of states */
   get states() {
-    return this.content.then( () => this.stateList );
+    return this.content.then( () => this._states = this.stateList );
   }
 
   /* Returns an unsorted list of state color categories */
   get stateColors() {
-    return this.content.then( () => this.statesInColor(0) );
+    return this.content.then( () => this._stateColors = this.statesInColor(0) );
+  }
+
+  get stateProps() {
+    return this._stateProps 
+      ? Promise.resolve(this._stateProps)
+      : Promise.all( [ this.states, this.stateColors ] )
+               .then( ([states,stateColors]) => this._stateProps = { stateColors, states } ) ;
   }
 
   get filters() {

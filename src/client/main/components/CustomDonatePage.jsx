@@ -29,16 +29,18 @@ class CustomDonatePage extends ContextMixin(React.Component) {
       loading: true,
       showOrgs: false
     };
-    this.onShowElement    = this.onShowElement.bind(this);
+    this.onShowElement  = this.onShowElement.bind(this);
     this.onTermsChecked = this.onTermsChecked.bind(this);
   }
 
   componentDidMount() {
-    setTimeout( () => this.setState({ showOrgs: true }), 10);
+    const SHOW_ORGS_DELAY = 10;
+
+    setTimeout( () => this.setState({ showOrgs: true }), SHOW_ORGS_DELAY);
   }
 
   stateFromStore(storeState) {
-    storeState.service.orgs.then( orgs => {
+    const _handleOrgs = orgs => {
       const {
         groups: {
           visibility
@@ -50,7 +52,15 @@ class CustomDonatePage extends ContextMixin(React.Component) {
         orgs: getVisibleOrgs( orgs, visibility ),
         loading: false
       });
-    });
+    };
+
+    const value = storeState.service.cachedValue('orgs');
+
+    if( value ) {
+      _handleOrgs(value);
+    } else {
+      storeState.service.orgs.then( _handleOrgs );
+    }
   }
 
   onShowElement(element) {
@@ -62,7 +72,8 @@ class CustomDonatePage extends ContextMixin(React.Component) {
       browserHistory.push( '/state/' + element );
     } else {
       browserHistory.push('/groups#' + element);
-      scrollToElement('#' + element, 100);
+      const SCROLL_DELAY = 100;
+      scrollToElement('#' + element, SCROLL_DELAY);
     }
   }
 

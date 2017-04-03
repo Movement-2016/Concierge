@@ -8,16 +8,12 @@ import StatePicker   from './StatePicker.jsx';
 
 class Filters extends ServiceContext(React.Component) {
 
-  constructor() {
-    super(...arguments);
-  }
-
   render() {
     const {
       groupFilters:filters,
       stateList:terms,
       colorSectionsDict
-    } = this.state.service;
+    } = this.service;
 
     const {
       onShowElement,

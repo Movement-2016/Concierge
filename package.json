@@ -1,7 +1,7 @@
 {
   "name": "Movement2017",
-  "author": "Joe McIntyre (j_h_mcintyre@yahoo.com)",
-  "description": "Movement 2017 Concierge",
+  "author": "Victor Stone",
+  "description": "Movement Vote Concierge",
   "version": "0.1.0",
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "jspath": "^0.3.3",
     "materialize-css": "^0.98.0",
     "node-fetch": "^1.6.1",
+    "path-to-regexp": "^1.7.0",
     "react": "15.3.0",
     "react-dom": "15.3.0",
     "react-headroom": "^2.1.4",
@@ -40,12 +41,11 @@
     "whatwg-fetch": "1.0.0"
   },
   "scripts": {
-    "test": "npm run test-server",
-    "test-server": "mocha test/server/test-main.js",
-    "start": "nodemon dist/main.js --port=3000",
+    "test": "",
+    "start": "nodemon dist/server/main.js --port=3000",
     "build": "gulp",
     "build-stage": "gulp stage",
-    "lint": "eslint src/** && eslint test/**"
+    "lint": "eslint src/**"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",

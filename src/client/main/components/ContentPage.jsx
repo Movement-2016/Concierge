@@ -26,13 +26,8 @@ class ContentPageShell extends React.Component {
 
 class ContentPage extends PageContext(React.Component) {
 
-  constructor() {
-    super(...arguments);
-    this.state = {};
-  }
-
   get page() {
-    return this.props.page;
+    return this.props.pageName;
   }
 
   render() {

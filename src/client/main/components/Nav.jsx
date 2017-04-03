@@ -38,7 +38,7 @@ class Menu extends React.Component {
 
     return (
         <ul className={className} id={id}>
-          {id=='mobile-menu' &&
+          {id === 'mobile-menu' &&
             <div className="top-bar"><a className="close-button"><i className="material-icons">close</i></a></div>
           }
 
