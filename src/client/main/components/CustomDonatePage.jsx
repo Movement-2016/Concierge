@@ -9,7 +9,7 @@ import Tray     from './ShoppingCart/Tray.jsx';
 import EasyDonateTiles    from './EasyDonateTiles.jsx';
 import Loading  from './Loading.jsx';
 
-import { ContextMixin } from './ContextMixins';
+import { ServiceContext } from './ContextMixins';
 
 import { setVisibility } from '../store/actions';
 import scrollToElement from '../../lib/scrollToElement';
@@ -19,16 +19,10 @@ import {
   getVisibleStates
 } from '../store/utils';
 
-class CustomDonatePage extends ContextMixin(React.Component) {
+class CustomDonatePage extends ServiceContext(React.Component) {
 
   constructor() {
     super(...arguments);
-    const storeState = this.context.store.getState();
-    this.state = {
-      selectedTerms: storeState.groups.visibility,
-      loading: true,
-      showOrgs: false
-    };
     this.onShowElement  = this.onShowElement.bind(this);
     this.onTermsChecked = this.onTermsChecked.bind(this);
   }
@@ -39,28 +33,8 @@ class CustomDonatePage extends ContextMixin(React.Component) {
     setTimeout( () => this.setState({ showOrgs: true }), SHOW_ORGS_DELAY);
   }
 
-  stateFromStore(storeState) {
-    const _handleOrgs = orgs => {
-      const {
-        groups: {
-          visibility
-        }
-      } = storeState;
-
-      this.setState( {
-        selectedTerms: visibility,
-        orgs: getVisibleOrgs( orgs, visibility ),
-        loading: false
-      });
-    };
-
-    const value = storeState.service.cachedValue('orgs');
-
-    if( value ) {
-      _handleOrgs(value);
-    } else {
-      storeState.service.orgs.then( _handleOrgs );
-    }
+  get contextPropName() {
+    return 'orgs';
   }
 
   onShowElement(element) {
@@ -78,15 +52,15 @@ class CustomDonatePage extends ContextMixin(React.Component) {
   }
 
   onTermsChecked(cat, terms, toggle) {
+    const selectedTerms = this.storeState.groups.visibility;
     const tags = terms && terms.length
-                  ? TagString.fromArray( this.state.selectedTerms[cat] ).toggle(terms,toggle).toArray()
+                  ? TagString.fromArray( selectedTerms[cat] ).toggle(terms,toggle).toArray()
                   : [];
     this.context.store.dispatch( setVisibility( cat, tags ) );
   }
 
   render() {
-    const {
-      selectedTerms,
+    let {
       orgs,
       loading,
       showOrgs
@@ -97,13 +71,21 @@ class CustomDonatePage extends ContextMixin(React.Component) {
     }
 
     const {
+      groups: {
+        visibility
+      }
+    } = this.storeState;
+
+    orgs = getVisibleOrgs( orgs, visibility );
+
+    const {
       params:{ mobile = ''} = {}
     } = this.props;
 
     const fprops = {
       onShowElement:   this.onShowElement,
       onTermsChecked:  this.onTermsChecked,
-      selected:        selectedTerms,
+      selected:        visibility,
       visibleSections: Object.keys(orgs),
       visibleStates:   getVisibleStates(orgs),
       mobile
@@ -115,7 +97,7 @@ class CustomDonatePage extends ContextMixin(React.Component) {
       <main className={`browse-groups-page ${mobile}`}>
         <div className="container browse-groups-container">
           <h1 className="page-title">{title}</h1>
-          {showOrgs
+          {showOrgs || global.IS_SERVER_REQUEST
             ?
               <div className="browse-section">
                 <div className="filter-area-wrapper">

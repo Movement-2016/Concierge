@@ -7,9 +7,12 @@ const ServiceMixin = baseClass => class extends baseClass {
     store: React.PropTypes.object.isRequired
   }
 
+  get storeState() {
+    return this.context.store.getState();
+  }
+  
   get service() {
-    const st = this.context.store.getState();
-    return st.service;
+    return this.storeState.service;
   }
 
 };

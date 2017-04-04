@@ -24,7 +24,7 @@ class Filters extends ServiceContext(React.Component) {
 
     const hasSections = visibleSections.length + visibleStates.length > 0;
 
-    if( mobile ) {
+    if( mobile || global.IS_SERVER_REQUEST ) {
       return <span />;
     }
 

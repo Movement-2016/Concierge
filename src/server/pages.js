@@ -18,12 +18,14 @@ var CE = React.createElement;
 var indexPageText  = null;
 var menu = null;
 
-routeMap.push( { path: '/', component: HomePage } );
 
-routeMap = routeMap.map( r => {
-  r.match = p2regex(r.path);
+routeMap = routeMap.filter( r => !r.browserOnly ).map( r => {
+  const fixedPath = r.path.replace('(','').replace(')','?');
+  r.match = p2regex(fixedPath);
   return r;
 });
+
+routeMap.push( { path: '/', component: HomePage, match: /^\/$/ } );
 
 function _render(elem,res) {
     var body = renderToStaticMarkup(elem);
@@ -40,7 +42,12 @@ function _render(elem,res) {
 
 function renderPage(req, res, next) {
 
-  const route = routeMap.find( r => r.path === req.path ); // r.match.test(req.path) );
+  const route = routeMap.find( r => r.match.test(req.path) );
+  
+  if( !route ) {
+    next();
+    return;
+  }
 
   const { preloadPage } = route.component;
 
@@ -86,11 +93,13 @@ function pagesRoutes(app) {
     console.log( 'ERROR GETTING CONTENT: ', err );
   });
 
-  routeMap.forEach( route => {
-    if( !route.browserOnly ) {
-      app.route( route.path ).get( renderPage );
-    }
-  });
+  app.route('/*').get( renderPage );
+
+  // routeMap.forEach( route => {
+  //   if( !route.browserOnly ) {
+  //     app.route( route.path ).get( renderPage );
+  //   }
+  // });
 }
 
 
