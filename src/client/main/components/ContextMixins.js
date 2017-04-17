@@ -21,12 +21,13 @@ const ContextMixin = baseClass => class extends ServiceMixin(baseClass) {
 
   constructor() {
     super(...arguments);
-    this.stateFromStore = this.stateFromStore.bind(this);
+    !global.IS_SERVER_REQUEST && (this.stateFromStore = this.stateFromStore.bind(this));
   }
 
   componentWillMount () {
     const { store } = this.context;
-    this.unsubscribe = store.subscribe( () => this.stateFromStore(store.getState()) );
+    const stateSetter = () => this.stateFromStore(store.getState());
+    !global.IS_SERVER_REQUEST && (this.unsubscribe = store.subscribe( stateSetter ));
     this.stateFromStore(store.getState());
   }
 
@@ -49,6 +50,9 @@ const ServiceContext = baseClass => class extends ContextMixin(baseClass) {
       if( value ) {
         state[propName] = value;
       } else {
+        if( global.IS_SERVER_REQUEST ) {
+          console.log( "WARNING: MAKING PROMISE REQUEST FROM SREVICE: ", propName);
+        }
         service[propName].then( propValue => this.setState( { [propName]:propValue, loading: false } ));
         state.loading = true;          
       }

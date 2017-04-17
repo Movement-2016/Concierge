@@ -9,7 +9,7 @@ import {
   toggleItem
 } from '../../store/actions';
 
-import { filterTagsByTypes } from '../../store/utils';
+// import { filterTagsByTypes } from '../../store/utils';
 
 
 import {
@@ -34,7 +34,7 @@ class Org extends React.Component {
 
     this.onChange = this.onChange.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
-    this.onRemoveOrg = this.onRemoveOrg.bind(this);
+    this.onRemoveOrg = this.onRemoveOrg.bind(this);      
   }
 
   onChange(e) {

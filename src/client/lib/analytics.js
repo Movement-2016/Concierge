@@ -24,7 +24,12 @@ import path from 'jspath';
 
   const subscribeToStore = store => {
 
-    const state      = store.getState();
+    if( global.IS_SERVER_REQUEST ) {
+      return;
+    }
+
+    const state = store.getState();
+
     allVisible = path('...*', state.groups.visibility);
 
     unsub = store.subscribe( () => {

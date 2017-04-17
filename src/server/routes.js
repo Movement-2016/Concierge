@@ -1,17 +1,10 @@
-const listenerMail = require('./listenerMail');
-const pages        = require('./pages');
+/* eslint no-console:off */
+const api    = require('./api');
+const pages  = require('./pages');
 
-function init (app) {
-
-  listenerMail.init();
-
-  pages(app);
-
-  app.post( '/api/plan/send', listenerMail.mailPlan );
-  app.post( '/api/houseparty', listenerMail.houseParty );
-  app.post( '/api/contact', listenerMail.contactEmail );
-
-
-}
-
-exports.init = init;
+module.exports = app => Promise.all(
+      [
+        api(app),
+        pages(app)
+      ]
+    ).then( () => console.log ('Ready to route') );

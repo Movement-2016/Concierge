@@ -68,8 +68,8 @@ class App extends React.Component {
       setTimeout( () => this.setState({ menu, loading: false }), TIMING_DELAY );
 
     }).catch( error => {
-      var err = err.message || err.statusText || err + '';      
-      this.setState( { error, err } );
+      var err = error.message || error.statusText || error + '';      
+      this.setState( { error, err, loading: false } );
     });
   }
 
