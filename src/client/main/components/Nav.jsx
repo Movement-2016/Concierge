@@ -1,6 +1,8 @@
 import React               from 'react';
 import { Link, IndexLink } from 'react-router';
 import scrollToElement from '../../lib/scrollToElement';
+import MediaQuery from 'react-responsive';
+import Headroom from 'react-headroom';
 
 const _MenuItem = ( {url,label} ) => {
   var isExternal = global.IS_SERVER_REQUEST || url.includes('http');
@@ -48,6 +50,14 @@ class Menu extends React.Component {
   }
 }
 
+function Header(props) {
+  if (props.hidingHeader) {
+    return <Headroom style={{zIndex: '900'}}>{props.children}</Headroom>
+  } else {
+    return props.children;
+  }
+}
+
 class Nav extends React.Component {
 
   componentDidMount() {
@@ -75,13 +85,21 @@ class Nav extends React.Component {
 
     return (
       <div>
-        <div className="navbar-fixed">
-          <nav className="main-nav">
-            <IndexLink to="/" className="brand-logo">{siteTitle}</IndexLink>
-            <Menu className="header-menu nav-menu" menu={menu}/>
-            <a data-activates="mobile-menu" className="button-collapse"><i className="material-icons">menu</i></a>
-          </nav>
-        </div>
+        <MediaQuery minWidth={993}>
+          {(matches) => {
+            return (
+              <Headroom disable={matches} disableInlineStyles>
+                <div className="navbar-fixed">
+                  <nav className="main-nav">
+                    <IndexLink to="/" className="brand-logo">{siteTitle}</IndexLink>
+                    <Menu className="header-menu nav-menu" menu={menu}/>
+                    <a data-activates="mobile-menu" className="button-collapse"><i className="material-icons">menu</i></a>
+                  </nav>
+                </div>
+              </Headroom>
+            );
+          }}
+        </MediaQuery>
         <Menu className="side-nav nav-menu" id="mobile-menu" menu={menu} />
       </div>
     );

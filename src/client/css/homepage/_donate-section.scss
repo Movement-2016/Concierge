@@ -30,7 +30,7 @@
 
     .tile-tag {
       background: rgba($secondary-color, 0.9);
-      z-index: 100;
+      z-index: 20;
       top: 0;
       &::after {
         border-top: 29px solid rgba($secondary-color, 0.9);
