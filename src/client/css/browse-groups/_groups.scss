@@ -1,142 +1,86 @@
-.grouping {
-  margin-bottom: 80px;
-}
-
-.grouping-title {
-  text-align: center;
-  text-transform: uppercase;
-  color: $lighter-trans;
-  margin-bottom: 15px;
-  font-size: 28px;
-
-  &::before {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 2px;
-    margin: 4px auto;
-    opacity: 0.7;
-  }
-  @include bp-lg {
-    margin-bottom: 24px;
-    font-size: 38px;
-
-    &::before {
-      width: 60px;
-      height: 3px;
-    }
-  }
-}
-
-.national-groups-title {
-  display: none;
-}
-
-.purple-states-title::before {
-  background-color: $state-purple;
-}
-
-.light-blue-states-title::before {
-  background-color: $state-light-blue;
-}
-
-.dark-blue-states-title::before {
-  background-color: $state-dark-blue;
-}
-
-.light-red-states-title::before {
-  background-color: $state-light-red;
-}
-
-.dark-red-states-title::before {
-  background-color: $state-dark-red;
-}
-
-.state {
-  @include z-depth-1;
-  background-color: $white;
-  padding: 0;
-}
-
-.state + .state {
-  margin-top: 40px;
-}
-
-.state-title {
-  @include clearfix;
-  padding: 0 $group-padding;
-  color: $lighter-trans;
-
-  h4 {
-    font-size: 30px;
-    margin: 1.5rem 0;
-    line-height: 1;
-  }
-
-  .color-icon {
-    float: right;
-    line-height: inherit;
-    font-size: 30px;
-  }
-}
-
-.purple-states h4 i {
-  color: $state-purple;
-}
-
-.light-blue-states h4 i {
-  color: $state-light-blue;
-}
-
-.dark-blue-states h4 i {
-  color: $state-dark-blue;
-}
-
-.light-red-states h4 i {
-  color: $state-light-red;
-}
-
-.dark-red-states h4 i {
-  color: $state-dark-red;
-}
-
 .state .group {
   border-top: 1px solid $light-border;
   padding: 2rem $group-padding;
 }
 
+.image-col {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.content-col {
+  display: inline-block;
+  vertical-align: top;
+  width: calc(100% - 128px - #{$group-padding});
+}
+
 .group-title {
-  margin: 0 0 16px;
-  font-size: 22px;
-  line-height: 1.25;
+  margin-bottom: 4px;
+  font-size: 20px;
+  line-height: 1.2;
   font-weight: 700;
+}
 
-  a {
-    color: inherit;
+.nonprofit-tags {
+  min-height: 2px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 13px;
+  color: $lighter-trans;
+}
 
-    &:hover {
-      color: $primary-color-light;
-    }
+.group-thumb {
+  display: inline-block;
+  width: 92px;
+  height: 92px;
+  margin-right: 16px;
+  margin-bottom: 16px;
+  border: 1px solid $light-border;
+  @include bp-lg {
+    display: block;
+    width: 127px;
+    height: 127px;
+    margin-right: $group-padding;
   }
 }
 
-.group-links-row {
-  margin-bottom: 8px;
+.group-placeholder {
+  text-align: center;
+  line-height: 92px;
+  color: rgba(0, 0, 0, 0.2);
+  font-family: 'museo-slab', 'Roboto', sans-serif;
+  font-style: italic;
+  font-size: 46px;
+  font-weight: 700;
+  text-transform: uppercase;
+  @include bp-lg {
+    line-height: 127px;
+    font-size: 50px;
+  }
+}
+
+.group-links {
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 4px;
+  @include bp-lg {
+    display: block;
+    padding-top: 0;
+    margin-top: 10px;
+    margin-left: 2px;
+  }
 }
 
 .group-link {
-  line-height: 23px;
-  height: 23px;
-  text-decoration: none;
-  display: inline-block;
+  display: block;
+  margin-bottom: 9px;
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
-  margin-bottom: 6px;
 
   i {
     @include reg-icon;
-    margin-right: 4px;
+    margin-right: 8px;
     font-size: 20px;
   }
 
@@ -148,40 +92,10 @@
     color: $primary-color-light;
   }
 }
-@include bp-md {
-  .group-link + .group-link {
-    margin-left: 40px;
-  }
-}
-
-.group-tag {
-  background: $tag-color;
-  display: inline-block;
-  border: 1px solid $tag-border-color;
-  color: $lighter-trans;
-  font-size: 13px;
-  margin-bottom: 6px;
-}
-
-.nonprofit-tags {
-  text-align: right;
-  .group-tag {
-    border-radius: 15px;
-    padding: 0 10px;
-    line-height: 21px;
-    height: 23px;
-  }
-  .group-tag + .group-tag {
-    margin-left: 4px;
-    @include bp-md {
-      margin-left: 6px;
-    }
-  }
-}
 
 .group-content {
   line-height: 1.6;
-  margin: 0 0 1em;
+  margin-bottom: 1em;
   font-weight: 300;
   p {
     margin-bottom: 0.5em;
@@ -189,20 +103,17 @@
 }
 
 .tagblock {
-  color: $lighter-trans;
-  .group-tag {
-    margin-right: 4px;
-    padding: 4px 6px;
-    line-height: 1;
-  }
+  font-size: 13px;
+  color: $lightest-trans;
+  font-weight: 700;
 }
 
 .tagblock-title {
-  font-size: 12px;
+  margin-right: 2px;
   text-transform: uppercase;
-  margin-bottom: 4px;
+  font-size: 12.5px;
 }
 
 .tagblock + .tagblock {
-  margin-top: 12px;
+  margin-top: 8px;
 }

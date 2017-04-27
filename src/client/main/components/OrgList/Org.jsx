@@ -1,37 +1,83 @@
 import React from 'react';
+import MediaQuery from 'react-responsive';
 
-import { toggleItem } from '../../store/actions';
+import {toggleItem} from '../../store/actions';
 
-class TagBlock extends React.Component {
-  render() {
-    const {
-      fields,
-      filters
-    } = this.props;
+function OrgHeader(props) {
+  const labels = props.tags.map(tag => props.terms[tag].name);
 
-    const block = {};
-
-    ['issue-area','constituency'].forEach( taxonomySlug => {
-          if( fields[taxonomySlug] && fields[taxonomySlug].length ) {
-            const taxonomy = filters[taxonomySlug];
-            const terms     = taxonomy.terms;
-            block[taxonomy.label] = fields[taxonomySlug].map( slug => terms[slug].name );
-          }
-      });
-
-    return (
-      <div>
-      {Object.keys(block).map( label => {
-          return (
-              <div className="tagblock" key={label} >
-                <div className="tagblock-title">{label}:</div>
-                <div className="tagblock-tags">{block[label].map( (g,i) => <span className="group-tag" key={i}>{g}</span>)}</div>
-              </div>
-            );
-      })}
+  return (
+    <div className="group-header">
+      <div className="group-title" data-id={props.id} data-href={`/groups#${props.id}`}>
+        {props.name}
       </div>
+      <div className="nonprofit-tags">
+        {labels.join(', ')}
+      </div>
+    </div>
+  );
+}
+
+function OrgImage(props) {
+  if (props.url) {
+    return (
+      <img className="group-thumb group-image" src={props.url} />
+    );
+  } else {
+    const i = props.name.search('[A-Za-z]');
+    const letter = props.name[i];
+    return (
+      <div className="group-thumb group-placeholder">{letter}</div>
     );
   }
+}
+
+function OrgLinks (props) {
+  return (
+    <div className="group-links">
+      <a className="group-link" href="#" onClick={props.onOrgClick}>
+        <i className="material-icons">{props.planIcon}</i>{props.planText}</a>
+      {props.urlGive && <a className="group-link" href={props.urlGive} target="_blank">
+        <i className="material-icons">star_border</i>Donate Now</a>}
+      {props.urlWeb && <a className="group-link" href={props.urlWeb} target="_blank">
+        <i className="material-icons">link</i>Website</a>}
+    </div>
+  );
+}
+
+function OrgContent(props) {
+  return (
+    <div className="group-content">
+      <p dangerouslySetInnerHTML={{__html: props.description}}/>
+    </div>
+  );
+}
+
+function TagBlock(props) {
+  const {fields, filters} = props;
+
+  const block = {};
+
+  ['issue-area', 'constituency'].forEach(taxonomySlug => {
+    if (fields[taxonomySlug] && fields[taxonomySlug].length) {
+      const taxonomy = filters[taxonomySlug];
+      const terms = taxonomy.terms;
+      block[taxonomy.label] = fields[taxonomySlug].map(slug => terms[slug].name);
+    }
+  });
+
+  return (
+    <div className="tagblocks">
+      {Object.keys(block).map(label => {
+        return (
+          <div className="tagblock" key={label}>
+            <span className="tagblock-title">{label}: </span>
+            <span className="tagblock-tags">{block[label].join(', ')}</span>
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 class Org extends React.Component {
@@ -47,8 +93,8 @@ class Org extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if( this.state.selected !== nextProps.selected ) {
-      this.setState( {selected: nextProps.selected} );
+    if (this.state.selected !== nextProps.selected) {
+      this.setState({selected: nextProps.selected});
     }
   }
 
@@ -58,7 +104,7 @@ class Org extends React.Component {
 
   onOrgClick(e) {
     e.preventDefault();
-    this.props.store.dispatch( toggleItem(this.props.ID) );
+    this.props.store.dispatch(toggleItem(this.props.ID));
   }
 
   render() {
@@ -70,42 +116,60 @@ class Org extends React.Component {
         website: urlWeb,
         c4_donate_link: urlC4,
         c3_donate_link: urlC3,
-        'nonprofit-type': npTags = []
+        'nonprofit-type': npTags = [],
+        image
       },
       ID: id,
       filters
     } = this.props;
 
-    const {
-      selected
-    } = this.state;
+    const {selected} = this.state;
 
-    const icon    = selected ? 'close' : 'playlist_add';
-    const iconCls = selected ? 'remove' : 'add';
-    const text    = selected ? 'Remove from plan' : 'Add to plan';
-    const cls     = selected ? 'selected' : '';
+    const planIcon = selected
+      ? 'close'
+      : 'playlist_add';
+    const planText = selected
+      ? 'Remove from plan'
+      : 'Add to plan';
+    const cls = selected
+      ? 'selected'
+      : '';
 
     const npTerms = filters['nonprofit-type'].terms;
 
     const urlGive = urlC3 || urlC4;
 
-    return(
-        <div className={`group ${cls}`}>
-          <div className="group-title" data-id={id}><span data-href={`/groups#${id}`}>{name}</span></div>
-          <div className="group-links-row row">
-            <div className="col s6 m9">
-              {urlWeb  && <a className="group-link" href={urlWeb}  target="_blank"><i className="material-icons">link</i>Website</a>}
-              <a className="group-link hide-on-small-and-down" href="#" onClick={this.onOrgClick}><span><i className={`material-icons ${iconCls}`}>{icon}</i>{text}</span></a>
-              {urlGive && <a className="group-link" href={urlGive} target="_blank"><i className="material-icons">star_border</i>Donate Now</a>}
-            </div>
-            <div className="nonprofit-tags col s6 m3">
-              {npTags.map( t => <span className="group-tag" key={t}>{npTerms[t].name}</span> )}
-            </div>
-          </div>
-          <div className="group-content"><p dangerouslySetInnerHTML={{__html:description}} /></div>
-          <TagBlock fields={fields} filters={filters} />
-        </div>
-      );
+    return (
+      <MediaQuery minWidth={993}>
+        {(matches) => {
+          if (matches) {
+            return (
+              <div className={`group ${cls}`}>
+                <div className="image-col">
+                  <OrgImage url={image} name={name} />
+                  <OrgLinks {...{urlGive, urlWeb, planIcon, planText}} onOrgClick={this.onOrgClick} />
+                </div>
+                <div className="content-col">
+                  <OrgHeader id={id} name={name} tags={npTags} terms={npTerms}/>
+                  <OrgContent description={description} />
+                  <TagBlock fields={fields} filters={filters} />
+                </div>
+              </div>
+            );
+          } else {
+            return (
+              <div className={`group ${cls}`}>
+                <OrgHeader id={id} name={name} tags={npTags} terms={npTerms}/>
+                <OrgImage url={image} name={name} />
+                <OrgLinks {...{urlGive, urlWeb, planIcon, planText}} onOrgClick={this.onOrgClick} />
+                <OrgContent description={description} />
+                <TagBlock fields={fields} filters={filters} />
+              </div>
+            );
+          }
+        }}
+      </MediaQuery>
+    );
   }
 }
 

@@ -50,14 +50,6 @@ class Menu extends React.Component {
   }
 }
 
-function Header(props) {
-  if (props.hidingHeader) {
-    return <Headroom style={{zIndex: '900'}}>{props.children}</Headroom>
-  } else {
-    return props.children;
-  }
-}
-
 class Nav extends React.Component {
 
   componentDidMount() {
