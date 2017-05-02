@@ -10,7 +10,7 @@ const ServiceMixin = baseClass => class extends baseClass {
   get storeState() {
     return this.context.store.getState();
   }
-  
+
   get service() {
     return this.storeState.service;
   }
@@ -51,10 +51,10 @@ const ServiceContext = baseClass => class extends ContextMixin(baseClass) {
         state[propName] = value;
       } else {
         if( global.IS_SERVER_REQUEST ) {
-          console.log( "WARNING: MAKING PROMISE REQUEST FROM SREVICE: ", propName);
+          console.log( "WARNING: MAKING PROMISE REQUEST FROM SERVICE: ", propName);
         }
         service[propName].then( propValue => this.setState( { [propName]:propValue, loading: false } ));
-        state.loading = true;          
+        state.loading = true;
       }
     }
     this.setState(state);
@@ -72,7 +72,7 @@ const PageContext = baseClass => class extends ServiceMixin(baseClass) {
       this.state = { loading: true };
     }
   }
-  
+
 };
 
 module.exports = {

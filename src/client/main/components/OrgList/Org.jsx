@@ -129,7 +129,7 @@ class Org extends React.Component {
       ? 'close'
       : 'playlist_add';
     const planText = selected
-      ? 'Remove from plan'
+      ? 'Remove'
       : 'Add to plan';
     const cls = selected
       ? 'selected'

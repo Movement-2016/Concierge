@@ -143,7 +143,7 @@ class MovementVoteService {
 
   /* Returns an unsorted list of states */
   get states() {
-    return this.content.then( () => this._states = this.stateList );
+    return this.content.then( () => this._states = this.statesList );
   }
 
   /* Returns an unsorted list of state color categories */
@@ -152,7 +152,7 @@ class MovementVoteService {
   }
 
   get stateProps() {
-    return this._stateProps 
+    return this._stateProps
       ? Promise.resolve(this._stateProps)
       : Promise.all( [ this.states, this.stateColors ] )
                .then( ([states,stateColors]) => this._stateProps = { stateColors, states } ) ;
@@ -162,24 +162,30 @@ class MovementVoteService {
     return this.content.then( () => this.groupFilters );
   }
 
-  /* NON PROMISE */
+
+/* NON PROMISE */
 
   cachedValue(key) {
     let prop = '_' + key;
     return this[prop] || null;
   }
-  
+
   cachedPage(slug) {
     return this._pages[slug] || null;
   }
 
 
+  /* Returns a list of states */
+  get statesList() {
+    return path('.taxonomies.state.terms.*{.parent!=0}', this._content);
+  }
 
-  // a somewhat unfortunate historically named property for
-  // returning a list of states
-
-  get stateList() {
-    return path('.taxonomies.state.terms.*{.parent!=0}',this._content);
+  /* Returns total group number */
+  get numGroups() {
+    if ( !this._numGroups ) {
+      this._numGroups = Object.keys(this._content.posts.group).length;
+    }
+    return this._numGroups;
   }
 
   /* Returns a list of state color categories sorted in correct display order */
@@ -190,22 +196,24 @@ class MovementVoteService {
     return colors.sort( (a,b) => orderMap[a.slug] > orderMap[b.slug] );
   }
 
-  // yea, I know it says 'group' but really this returns
-  // a dictionary of states.
-
-  get groupDict() {
-    if( !this._groupDict ) {
-      const stateList = {};
-      this.stateList.forEach( g => stateList[g.slug] = g );
-      this._groupDict = stateList;
+  /* Returns a dictionary of states */
+  get statesDict() {
+    if( !this._statesDict ) {
+      const statesList = {};
+      this.statesList.forEach( g => statesList[g.slug] = g );
+      this._statesDict = statesList;
     }
-    return this._groupDict;
+    return this._statesDict;
   }
 
+  /* Returns a dictionary of color sections */
   get colorSectionsDict() {
     if( !this._colorSectionsDict ) {
       const dict = {};
-      this.colorSections.forEach( gs => dict[gs.slug] = gs );
+      this.colorSections.forEach( c => {
+        dict[c.slug] = c;
+        dict[c.slug].count = this.numGroupsInColor(c);
+      });
       this._colorSectionsDict = dict;
     }
     return this._colorSectionsDict;
@@ -219,13 +227,19 @@ class MovementVoteService {
     return this._content.colorOrder;
   }
 
-  /*
-    Returns a list of states given a color category.
-    If no color category is given, returns an unsorted list of color categories.
-   */
+  /* Returns a list of states when passed a color category object.
+     If no color category is passed, returns an unsorted list of color categories. */
   statesInColor(color) {
     var id = (color && color['term_id']) || 0;
     return path('.taxonomies.state.terms.*{.parent=='+id+'}',this._content);
+  }
+
+  /* Returns number of groups in the passed color category */
+  numGroupsInColor(color) {
+    var total = 0;
+    const states = this.statesInColor(color);
+    states.forEach( s => total += s.count );
+    return total;
   }
 
   get groupFilters() {

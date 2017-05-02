@@ -7,7 +7,7 @@ class DonatePage extends React.Component {
   render() {
     return(
         <ContentPage.Shell name="donate" title="Select a Donation Plan" big="false">
-        <DonateTiles />
+          <DonateTiles />
         </ContentPage.Shell>
       );
   }

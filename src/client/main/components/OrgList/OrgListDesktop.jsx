@@ -41,7 +41,7 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
         colorSections,
         groupFilters: filters,
         colorOrder,
-        groupDict
+        statesDict
       }
     } = this.state;
 
@@ -60,7 +60,7 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
 
     const colors = Object.keys(sections).sort( (a,b) => order[a] > order[b] );
 
-    return { groups, filters, groupDict, sections, colors, orgs, colorGroups };
+    return { groups, filters, statesDict, sections, colors, orgs, colorGroups };
   }
 
   render() {
@@ -75,7 +75,7 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
         selected
       },
       filters,
-      groupDict
+      statesDict
     } = vcg;
 
     return (
@@ -87,7 +87,7 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
                                   states={orgs[color]}
                                   filters={filters}
                                   store={this.context.store}
-                                  groupDict={groupDict}
+                                  statesDict={statesDict}
                                 />)}
         </div>
       );

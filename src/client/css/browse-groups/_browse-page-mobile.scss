@@ -1,0 +1,23 @@
+.browse-page-mobile {
+  @include page-padding;
+
+  .page-title {
+    color: $lighter-trans;
+    margin-bottom: 1rem;
+  }
+
+  .browse-link-section {
+    margin-bottom: 24px;
+    border-bottom: 1px solid $light-border;
+  }
+
+  .browse-link {
+    display: block;
+    color: inherit;
+    height: 46px;
+    line-height: 46px;
+    font-size: 16px;
+    border-top: 1px solid $light-border;
+    background-color: $white;
+  }
+}

@@ -11,7 +11,7 @@ class Filters extends ServiceContext(React.Component) {
   render() {
     const {
       groupFilters:filters,
-      stateList:terms,
+      statesDict:statesDict,
       colorSectionsDict
     } = this.service;
 
@@ -34,7 +34,7 @@ class Filters extends ServiceContext(React.Component) {
           <div className="groups-nav-title">Navigate</div>
           <div className="filter-group">
             <ScrollLinks links={colorSectionsDict} onShowElement={onShowElement} visible={visibleSections} />
-            <StatePicker terms={terms} onShowElement={onShowElement} visible={visibleStates} />
+            <StatePicker terms={statesDict} onShowElement={onShowElement} visible={visibleStates} />
           </div>
         </div>}
         <div className="filters">

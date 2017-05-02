@@ -19,19 +19,19 @@ class StatePicker extends React.Component {
   }
 
   render() {
-    const {visible, terms} = this.props;
+    const {
+      visible,
+      terms
+    } = this.props;
 
     if (!visible.length) {
       return <span/>;
     }
-    const map = {};
-
-    terms.forEach(t => map[t.slug] = t);
 
     return (
       <select className="jump-state browser-default" value={this.state.value} onChange={this.handleChange}>
         <option value="select-state">Select State...</option>
-        {visible.map(k => <option key={k} value={map[k].slug}>{map[k].name}</option>)}
+        {visible.map(k => <option key={k} value={k}>{terms[k].name}</option>)}
       </select>
     );
   }

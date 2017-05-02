@@ -1,8 +1,5 @@
 .content-page {
-  padding: 3rem 0;
-  @include bp-md {
-    padding: 4rem 0;
-  }
+  @include page-padding;
 
   img.alignleft {
     margin-bottom: 1em;

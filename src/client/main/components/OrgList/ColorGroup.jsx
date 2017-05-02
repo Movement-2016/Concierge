@@ -17,7 +17,7 @@ class ColorGroup extends CollapseMixin(React.Component) {
       states,
       selected,
       store,
-      groupDict,
+      statesDict,
       filters
     } = this.props;
 
@@ -25,7 +25,7 @@ class ColorGroup extends CollapseMixin(React.Component) {
       expanded
     } = this.state;
 
-    const allStates = expanded && groupDict;
+    const allStates = expanded && statesDict;
 
     const id = name;
 

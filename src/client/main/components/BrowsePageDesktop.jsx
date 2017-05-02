@@ -19,7 +19,7 @@ import {
   getVisibleStates
 } from '../store/utils';
 
-class CustomDonatePage extends ServiceContext(React.Component) {
+class BrowsePageDesktop extends ServiceContext(React.Component) {
 
   constructor() {
     super(...arguments);
@@ -128,4 +128,4 @@ class CustomDonatePage extends ServiceContext(React.Component) {
 /*
 
 */
-module.exports = CustomDonatePage;
+module.exports = BrowsePageDesktop;

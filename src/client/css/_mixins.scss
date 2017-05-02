@@ -9,6 +9,13 @@
   }
 }
 
+@mixin page-padding {
+  padding: 3rem 0;
+  @include bp-md {
+    padding: 4rem 0;
+  }
+}
+
 @mixin bp-sm {
   @media #{$small-and-up} {
     @content;

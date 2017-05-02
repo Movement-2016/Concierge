@@ -2,6 +2,7 @@ import React            from 'react';
 import ContentPage      from './ContentPage.jsx';
 import ContactForm      from './ContactForm.jsx';
 import { emailContact } from '../store/utils';
+import OrgListMobile from './OrgList/OrgListMobile.jsx';
 
 class ContactPage extends React.Component {
 
@@ -36,6 +37,7 @@ class ContactPage extends React.Component {
 
     return (
       <ContentPage pageName="contact">
+        <OrgListMobile />
         <ContactForm onSubmit={this.onSubmit}>
           {done && <div className="submit-message submit-success">{done}</div>}
           {error && <div className="submit-message submit-error">{error}</div>}

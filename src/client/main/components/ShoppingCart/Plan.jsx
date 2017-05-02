@@ -30,7 +30,7 @@ class Plan extends ContextMixin(React.Component) {
         },
         service: {
           groupFilters: filters,
-          groupDict: states,
+          statesDict: states,
           colorSectionsIDDict: colorDict
         }
       } = storeState;

@@ -26,7 +26,7 @@
   margin-bottom: 10px;
   font-weight: 700;
   font-size: 13px;
-  color: $lighter-trans;
+  color: $lightest-trans;
 }
 
 .group-thumb {
@@ -47,15 +47,15 @@
 .group-placeholder {
   text-align: center;
   line-height: 92px;
-  color: rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.15);
   font-family: 'museo-slab', 'Roboto', sans-serif;
   font-style: italic;
-  font-size: 46px;
+  font-size: 48px;
   font-weight: 700;
   text-transform: uppercase;
   @include bp-lg {
     line-height: 127px;
-    font-size: 50px;
+    font-size: 61px;
   }
 }
 
