@@ -1,3 +1,3 @@
-source /home/ec2-user/.bash_profile
-cd /home/ec2-user/concierge
-pm2 start stage/pm2.process.yml 
+source $HOME/.bash_profile
+cd $HOME/concierge
+pm2 start $HOME/concierge/dist/server/main.js
