@@ -64,12 +64,14 @@ function renderPage(req, res, next) {
 
   const route = routeMap.find( r => r.match.test(name) );
   
-  if( !route ) {
+   if( !route ) {
     next();
     return;
   }
 
-  const { 
+console.log( 'returning ',name,' - memory: ', process.memoryUsage().heapUsed );
+  
+ const { 
     component,
     component: {
       preloadPage
