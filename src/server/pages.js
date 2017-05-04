@@ -69,9 +69,9 @@ function renderPage(req, res, next) {
     return;
   }
 
-console.log( 'returning ',name,' - memory: ', process.memoryUsage().heapUsed );
+  // console.log( 'returning ',name,' - memory: ', process.memoryUsage().heapUsed );
   
- const { 
+  const { 
     component,
     component: {
       preloadPage
