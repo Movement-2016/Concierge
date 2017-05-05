@@ -66,10 +66,10 @@ global.isProduction = false;
 
 let BASE = 'dist';
 
-var stdTasks = [ 'indecies', 'html', 'images', 'server', 'styles', 'fonts', 'vendor-styles', 'vendor-client-js' ];
+var stdTasks = [ 'indecies', 'html', 'images', 'server', 'styles', 'fonts', 'vendor-styles', 'vendor-client-js', 'vendor' ];
 
-gulp.task ('default',   [               ...stdTasks, 'vendor', 'browserify-watch', 'watch']);
-gulp.task ('no-watch',  [ 'production', ...stdTasks, 'vendor', 'browserify' ]);
+gulp.task ('default',   [               ...stdTasks, 'browserify-watch', 'watch']);
+gulp.task ('no-watch',  [ 'production', ...stdTasks, 'browserify' ]);
 
 gulp.task( 'production', function() {
   global.isProduction = true;

@@ -24,12 +24,11 @@
     "materialize-css": "^0.98.0",
     "node-fetch": "^1.6.1",
     "path-to-regexp": "^1.7.0",
-    "react": "^15.3.0",
-    "react-dom": "^15.3.0",
+    "react": "15.3.0",
+    "react-dom": "15.3.0",
     "react-headroom": "^2.1.4",
     "react-masonry-component": "4.2.1",
     "react-redux": "4.4.5",
-    "react-responsive": "^1.2.10",
     "react-router": "2.6.1",
     "react-router-scroll": "0.3.0",
     "react-share": "^1.10.0",
@@ -43,7 +42,7 @@
   },
   "scripts": {
     "test": "",
-    "start": "nodemon dist/server/main.js --port=3000",
+    "start": "nodemon --expose-gc dist/server/main.js --port=3000",
     "build": "gulp",
     "build-stage": "gulp stage",
     "lint": "eslint src/**"
