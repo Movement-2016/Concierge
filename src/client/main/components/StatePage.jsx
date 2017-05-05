@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import { Shell }          from './ContentPage.jsx';
-import State              from './OrgList/State.jsx';
+import State              from './Orgs/State.jsx';
 import { ServiceContext } from './ContextMixins';
 import Loading            from './Loading.jsx';
 
@@ -34,7 +34,7 @@ class StatePage extends ServiceContext(React.Component) {
     if( loading ) {
       return <Loading />;
     }
-    
+
     const name = this.props.params.name;
 
     const state  = allStates[name];
@@ -43,9 +43,9 @@ class StatePage extends ServiceContext(React.Component) {
     return (
       <Shell name={'state-page ' + name} title={''}>
         <Link className="back-to-group-link" to="/groups/mobile"><i className="material-icons">chevron_left</i> Back to groups</Link>
-        <State {...state} 
-              items={orgs[color][name]} 
-              store={this.context.store} 
+        <State {...state}
+              items={orgs[color][name]}
+              store={this.context.store}
               filters={filters}
               selected={[]}
         />

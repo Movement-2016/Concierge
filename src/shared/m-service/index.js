@@ -13,7 +13,7 @@ if( typeof window !== 'undefined') {
   _fetch = require('node-fetch'.trim()); // prevent browserify bundling
 }
 
-const WP_DEV      = false;
+const WP_DEV      = true;
 const WP_API_HOST = WP_DEV ? 'http://localhost:8080/wordpress' : 'https://wp.movementvote.org';
 const WP_API_BASE = WP_API_HOST + '/wp-json/movement-2018/';
 
@@ -246,11 +246,18 @@ class MovementVoteService {
     if( !this._groupFilters ) {
       const filters = {};
       // remove 'state' from taxonomies
-      const tax = this._content.taxonomies;
-      Object.keys( tax ).filter( k => k !== 'state').forEach( k => {
-          filters[k] = tax[k];
-          filters[k].tags = Object.keys(filters[k].terms);
-        });
+      const taxonomies = this._content.taxonomies;
+
+      for (var t in taxonomies) {
+        if ( !( t === 'state' /*|| t === 'nonprofit-type'*/ ) ) {
+          filters[t] = taxonomies[t];
+          filters[t].tags = Object.keys(filters[t].terms);
+        }
+      }
+      // Object.keys( taxonomies ).filter( t => !(t === 'state' || t !== 'nonprofit-type') ).map( k => {
+      //   filters[k] = tax[k];
+      //   filters[k].tags = Object.keys(filters[k].terms);
+      // });
       this._groupFilters = filters;
     }
     return this._groupFilters;
@@ -259,7 +266,7 @@ class MovementVoteService {
   get filterDict() {
     if( !this._filterDict ) {
       this._filterDict = {};
-      path('...terms.*', this.groupFilters ).forEach( f => this._filterDict[f.name] = f.label );
+      path('...terms.*', this.groupFilters ).map( f => this._filterDict[f.name] = f.label );
     }
     return this._filterDict;
   }

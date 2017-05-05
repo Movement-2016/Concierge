@@ -1,20 +1,25 @@
 import React from 'react';
 
 import {
-  ContentPage      ,
-  HouseParty       ,
-  ContactPage      ,
-  NotFoundPage     ,
-  DonatePage       ,
-  StatePage        ,
-  AdvisorPage      ,
-  SummaryPage      ,
-  ConsultPage      ,
-  ProfilePage      ,
-  BrowsePage
+  ContentPage,
+  HouseParty,
+  ContactPage,
+  NotFoundPage,
+  DonatePage,
+  StatePage,
+  AdvisorPage,
+  SummaryPage,
+  ConsultPage,
+  ProfilePage
 } from '../client/main/components';
 
-import ShoppingCart from '../client/main/components/ShoppingCart';
+import {
+  OrgsMenuPage,
+  OrgsPageMobile,
+  OrgsPageDesktop
+} from '../client/main/components/Orgs';
+
+import PlanPage from '../client/main/components/DonationPlan';
 
 const contentPage = pageName => {
   const pageWrapper = props => <ContentPage page={props.page} pageName={pageName} />;
@@ -29,23 +34,21 @@ const TestimonialsPage = contentPage('testimonials');
 var browserOnly = true;
 
 const RouteMap = [
-  {  path: '/groups',              component: BrowsePage},
+  {  path: '/groups',               component: OrgsPageDesktop },
+  {  path: '/groups/mobile',        component: OrgsMenuPage },
+  {  path: '/groups/mobile/:slug',  component: OrgsPageMobile },
 
-  {  path: '/plan',                component: ShoppingCart, browserOnly },
-  {  path: '/plan/summary',        component: SummaryPage,  browserOnly },
-  {  path: '/plan/profile',        component: ProfilePage,  browserOnly },
-  {  path: '/plan/consult',        component: ConsultPage,  browserOnly },
+  {  path: '/plan',                 component: PlanPage, browserOnly },
+  {  path: '/plan/summary',         component: SummaryPage,  browserOnly },
+  {  path: '/plan/profile',         component: ProfilePage,  browserOnly },
+  {  path: '/plan/consult',         component: ConsultPage,  browserOnly },
 
-  {  path: '/about'      , component: AboutUsPage },
-  {  path: '/advisors'   , component: AdvisorPage },
-  {  path: '/team'       , component: MeetTheTeamPage },
+  {  path: '/about',                component: AboutUsPage },
+  {  path: '/advisors',             component: AdvisorPage },
+  {  path: '/team',                 component: MeetTheTeamPage },
 
-  {  path: '/getintouch' , component: ContactPage, browserOnly },
-  {  path: '/houseparty' , component: HouseParty, browserOnly },
-
-  // I think these are deprecated (not linked anywhere)
-  {  path: '/state/:name'  , component: StatePage, browserOnly },
-  {  path: '/testimonials' , component: TestimonialsPage },
+  {  path: '/getintouch',           component: ContactPage, browserOnly },
+  {  path: '/houseparty',           component: HouseParty, browserOnly },
 
   {  path: '*' ,             component: NotFoundPage, browserOnly },
 ];

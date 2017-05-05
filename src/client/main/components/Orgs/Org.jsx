@@ -1,5 +1,4 @@
 import React from 'react';
-import MediaQuery from 'react-responsive';
 
 import {toggleItem} from '../../store/actions';
 
@@ -120,7 +119,8 @@ class Org extends React.Component {
         image
       },
       ID: id,
-      filters
+      filters,
+      mobile
     } = this.props;
 
     const {selected} = this.state;
@@ -139,36 +139,30 @@ class Org extends React.Component {
 
     const urlGive = urlC3 || urlC4;
 
+    if (mobile) {
+      return (
+        <div className={`group ${cls}`}>
+          <OrgHeader id={id} name={name} tags={npTags} terms={npTerms}/>
+          <OrgImage url={image} name={name} />
+          <OrgLinks {...{urlGive, urlWeb, planIcon, planText}} onOrgClick={this.onOrgClick} />
+          <OrgContent description={description} />
+          <TagBlock fields={fields} filters={filters} />
+        </div>
+      );
+    }
+
     return (
-      <MediaQuery minWidth={993}>
-        {(matches) => {
-          if (matches) {
-            return (
-              <div className={`group ${cls}`}>
-                <div className="image-col">
-                  <OrgImage url={image} name={name} />
-                  <OrgLinks {...{urlGive, urlWeb, planIcon, planText}} onOrgClick={this.onOrgClick} />
-                </div>
-                <div className="content-col">
-                  <OrgHeader id={id} name={name} tags={npTags} terms={npTerms}/>
-                  <OrgContent description={description} />
-                  <TagBlock fields={fields} filters={filters} />
-                </div>
-              </div>
-            );
-          } else {
-            return (
-              <div className={`group ${cls}`}>
-                <OrgHeader id={id} name={name} tags={npTags} terms={npTerms}/>
-                <OrgImage url={image} name={name} />
-                <OrgLinks {...{urlGive, urlWeb, planIcon, planText}} onOrgClick={this.onOrgClick} />
-                <OrgContent description={description} />
-                <TagBlock fields={fields} filters={filters} />
-              </div>
-            );
-          }
-        }}
-      </MediaQuery>
+      <div className={`group ${cls}`}>
+        <div className="image-col">
+          <OrgImage url={image} name={name} />
+          <OrgLinks {...{urlGive, urlWeb, planIcon, planText}} onOrgClick={this.onOrgClick} />
+        </div>
+        <div className="content-col">
+          <OrgHeader id={id} name={name} tags={npTags} terms={npTerms}/>
+          <OrgContent description={description} />
+          <TagBlock fields={fields} filters={filters} />
+        </div>
+      </div>
     );
   }
 }

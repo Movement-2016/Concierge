@@ -14,7 +14,7 @@ function BrowseLink(props) {
   );
 }
 
-class BrowsePageMobile extends React.Component {
+class OrgsMenuPage extends React.Component {
 
   static contextTypes = {
     store: React.PropTypes.object.isRequired
@@ -23,8 +23,13 @@ class BrowsePageMobile extends React.Component {
   render() {
 
     const storeState = this.context.store.getState();
-    const {statesDict, colorSectionsDict, numGroups, menu } = storeState.service;
-    console.log(colorSectionsDict);
+    const {colorSectionsDict, numGroups, menu } = storeState.service;
+
+    var {statesDict} = storeState.service;
+    delete statesDict['national'];
+
+    const colorKeys = Object.keys(colorSectionsDict);
+    const statesKeys = Object.keys(statesDict);
 
     const title = 'Browse Groups';
 
@@ -35,12 +40,12 @@ class BrowsePageMobile extends React.Component {
           <BrowseLink title="See All Groups" slug="all-groups" count={numGroups}/>
         </div>
         <div className="browse-link-section">
-          { Object.keys(colorSectionsDict).map( c => {
+          { colorKeys.map( c => {
             return <BrowseLink title={colorSectionsDict[c].name} key={c} slug={c} count={colorSectionsDict[c].count} />
           })}
         </div>
         <div className="browse-link-section">
-          { Object.keys(statesDict).map( s => {
+          { statesKeys.map( s => {
             return <BrowseLink title={statesDict[s].name} key={s} slug={s} count={statesDict[s].count} />
           })}
         </div>
@@ -49,4 +54,4 @@ class BrowsePageMobile extends React.Component {
   }
 }
 
-module.exports = BrowsePageMobile;
+module.exports = OrgsMenuPage;

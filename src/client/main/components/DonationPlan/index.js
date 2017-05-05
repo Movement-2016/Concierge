@@ -38,7 +38,7 @@ class SummaryLink extends ContextMixin(React.Component) {
   }
 }
 
-class Cart extends React.Component {
+class PlanPage extends React.Component {
 
   render() {
     return (
@@ -64,4 +64,4 @@ class Cart extends React.Component {
   }
 }
 
-module.exports = Cart;
+module.exports = PlanPage;

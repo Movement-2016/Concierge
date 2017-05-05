@@ -3,7 +3,7 @@
 
   .page-title {
     color: $lighter-trans;
-    margin-bottom: 1rem;
+    margin-bottom: 24px;
   }
 
   .browse-link-section {
@@ -19,5 +19,19 @@
     font-size: 16px;
     border-top: 1px solid $light-border;
     background-color: $white;
+
+    .link-count {
+      float: right;
+      background-color: #f3f3f3;
+      color: $lighter-trans;
+      height: 24px;
+      line-height: 25px;
+      border-radius: 35px;
+      vertical-align: middle;
+      margin: 11px 0;
+      width: 47px;
+      text-align: center;
+      font-size: 13px;
+    }
   }
 }

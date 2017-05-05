@@ -3,7 +3,7 @@ import { Link }  from 'react-router';
 
 import { ContextMixin } from '../ContextMixins';
 
-class Tray extends ContextMixin(React.Component) {
+class PlanTray extends ContextMixin(React.Component) {
 
   constructor() {
     super(...arguments);
@@ -35,4 +35,4 @@ class Tray extends ContextMixin(React.Component) {
   }
 }
 
-module.exports = Tray;
+module.exports = PlanTray;

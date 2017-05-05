@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Shell } from './ContentPage.jsx';
-import Summary   from './ShoppingCart/Summary.jsx';
+import Summary   from './DonationPlan/Summary.jsx';
 
 const PlanSummaryPage = () => {
   return (

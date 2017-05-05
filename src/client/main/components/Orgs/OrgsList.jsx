@@ -8,13 +8,13 @@ import ColorGroup from './ColorGroup.jsx';
 
 import scrollToElement from '../../../lib/scrollToElement';
 
-const getVisibleColorGroups = (allColorGroups,orgs) => {
+const getVisibleColorSections = (allColorSections,orgs) => {
   const visible = {};
-  Object.keys(orgs || {}).forEach( colorGroup => visible[colorGroup] = allColorGroups[colorGroup] );
+  Object.keys(orgs || {}).forEach( colorGroup => visible[colorGroup] = allColorSections[colorGroup] );
   return visible;
 };
 
-class OrgsListDesktop extends ServiceContext(React.Component) {
+class OrgsList extends ServiceContext(React.Component) {
 
   componentDidMount() {
     if( location.hash ) {
@@ -33,7 +33,7 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
     this.setState({ service, groups });
   }
 
-  getVisibleColorGroups() {
+  getVisibleColorSections() {
 
     const {
       groups,
@@ -56,7 +56,7 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
     const colorGroups = {};
     colorSections.forEach( color => colorGroups[color.slug] = color );
 
-    const sections = getVisibleColorGroups(colorGroups,orgs);
+    const sections = getVisibleColorSections(colorGroups,orgs);
 
     const colors = Object.keys(sections).sort( (a,b) => order[a] > order[b] );
 
@@ -65,7 +65,7 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
 
   render() {
 
-    const vcg = this.getVisibleColorGroups();
+    const vcg = this.getVisibleColorSections();
 
     const {
       colors,
@@ -79,19 +79,21 @@ class OrgsListDesktop extends ServiceContext(React.Component) {
     } = vcg;
 
     return (
-        <div className="group-area">
-          {colors.map( color => <ColorGroup
-                                  key={color}
-                                  {...colorGroups[color]}
-                                  selected={selected}
-                                  states={orgs[color]}
-                                  filters={filters}
-                                  store={this.context.store}
-                                  statesDict={statesDict}
-                                />)}
-        </div>
-      );
+      <div className="group-area">
+        {colors.map( color => <ColorGroup
+                                key={color}
+                                {...colorGroups[color]}
+                                selected={selected}
+                                states={orgs[color]}
+                                filters={filters}
+                                store={this.context.store}
+                                statesDict={statesDict}
+                                mobile={this.props.mobile}
+                              />
+        )}
+      </div>
+    );
   }
 }
 
-module.exports = OrgsListDesktop;
+module.exports = OrgsList;

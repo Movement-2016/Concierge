@@ -1,6 +1,6 @@
 import path from 'jspath';
 
-import { 
+import {
   INIT_FILTERS,
   TOGGLE_ITEM,
   SET_VISIBILITY,
@@ -18,25 +18,25 @@ const updateTotal = st => {
   st.planTotal = path('..amount',st.plan).reduce( (total,amount) => total + Number(amount), 0 );
 };
 
-export default function groups (state = initialState, action) {
+export default function groups(state = initialState, action) {
   switch (action.type) {
-    case TOGGLE_ITEM: {      
-      
+    case TOGGLE_ITEM: {
+
       let { selected, plan } = state;
       const { id } = action;
 
       const isRemoving = selected.includes(id);
 
-      const st = { 
-        ...state, 
+      const st = {
+        ...state,
 
-        plan:     isRemoving 
+        plan:     isRemoving
                     ? path(`..{.id!=${id}}`, plan)
                     : plan,
 
         selected: isRemoving
                     ? selected.filter( _id => _id !== id )
-                    : [ ...selected, id ] 
+                    : [ ...selected, id ]
       };
 
       updateTotal(st);
@@ -57,14 +57,13 @@ export default function groups (state = initialState, action) {
     }
 
     case SET_VISIBILITY: {
-      const visibility = { ...state.visibility, [action.cat]: [...action.tags] };
-      return { ...state, visibility };
+      return { ...state, newVisibility };
     }
 
     case INIT_FILTERS: {
       const visibility = {};
       const { filters } = action;
-      Object.keys(filters).forEach( f => { visibility[f] = []; /*path('.terms..name',filters[f]); */ } );
+      Object.keys(filters).forEach( f => { visibility[f] = [] } );
       return { ...state, visibility };
     }
 

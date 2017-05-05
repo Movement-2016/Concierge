@@ -1,5 +1,4 @@
-.browse-groups-page,
-.state-page {
+.browse-page-desktop {
   .container {
     width: 100%;
     max-width: 1600px;
@@ -37,16 +36,7 @@ $side-col-width: 190px;
     width: $side-col-width;
     float: right;
   }
-  .browse-groups-page .page-title {
+  .browse-page-desktop .page-title {
     display: none;
   }
 }
-
-
-
-@import 'browse-groups/filters';
-@import 'browse-groups/mobile-filters';
-@import 'browse-groups/states';
-@import 'browse-groups/groups';
-@import 'browse-groups/mobile-groups';
-@import 'browse-groups/plan-sidebar';
