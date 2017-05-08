@@ -93,6 +93,10 @@ If rebooting does not get you in, then stop/start the instance but *NOTE* if you
 
 The IP of the AWS server can change when you stop/(re)start the instance. In that case you will have to rerun the HTTP ports commands above before starting the web server(s).
 
+#### GMail Authorization
+
+If there are errors sending email or the contact email or the domain changes you'll need to re-run the GMail auhorization script. Please see bin/gmail-auth.js for details.
+
 ## License
 
 MIT
