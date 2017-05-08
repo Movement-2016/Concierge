@@ -162,16 +162,9 @@ class HomePage extends PageContext(React.Component) {
   }
 
   render() {
-    const {
-      location: {
-        query: {
-          code = ''
-        }
-      }
-    } = this.props;
 
-    if( code ) {
-      return <AuthCode code={code} />;
+    if( this.props.location && this.props.location.query && this.props.location.query.code ) {
+      return <AuthCode code={this.props.location.query.code} />;
     }
 
     const {
