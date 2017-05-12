@@ -15,14 +15,16 @@ import scrollToElement from '../../../lib/scrollToElement';
 function FilterBar(props) {
   return (
     <div className="filter-bar">
-      <Link className="navigate-button" to="/groups/mobile">
-        <i className="material-icons">chevron_left</i>
-        {'Navigate'}
-      </Link>
-      <a className="filter-button" onClick={props.onShowFilters}>
-        <i className="material-icons">filter_list</i>
-        {'Filter'}
-      </a>
+      <div className="container">
+        <Link className="navigate-button" to="/groups/mobile">
+          <i className="material-icons">chevron_left</i>
+          {'Navigate'}
+        </Link>
+        <a className="filter-button" onClick={props.onShowFilters}>
+          <i className="material-icons">filter_list</i>
+          {'Filter'}
+        </a>
+      </div>
     </div>
   );
 }
@@ -33,23 +35,23 @@ class OrgsPageMobile extends OrgsPage {
   constructor(props) {
     super(props);
     this.state = {
-      showOrgs: true
+      showOrgsList: true
     };
   }
 
-  showOrgs = () => {
-    this.setState({ showOrgs: true });
+  onShowOrgsList = () => {
+    this.setState({ showOrgsList: true });
   }
 
-  showFilters = () => {
-    this.setState({ showOrgs: false });
+  onShowFilters = () => {
+    this.setState({ showOrgsList: false });
   }
 
   render() {
     let {
       orgs,
       loading,
-      showOrgs
+      showOrgsList
     } = this.state;
 
 
@@ -59,6 +61,7 @@ class OrgsPageMobile extends OrgsPage {
       }
     } = this.storeState;
 
+
     if( loading ) {
       return <Loading />;
     }
@@ -67,10 +70,10 @@ class OrgsPageMobile extends OrgsPage {
 
     const title = 'Browse Groups';
 
-    if (showOrgs) {
+    if (showOrgsList) {
       return (
         <main className="orgs-page">
-          <FilterBar onShowFilters={this.showFilters} />
+          <FilterBar onShowFilters={this.onShowFilters} />
           <OrgsList orgs={orgs} mobile={true} />
           <PlanTray mobile={true} />
         </main>
@@ -81,7 +84,7 @@ class OrgsPageMobile extends OrgsPage {
       <FilterPage
         selected={visibility}
         handleFilterToggle={this.handleFilterToggle}
-        onClose={this.showOrgs}
+        onClose={this.onShowOrgsList}
       />
     );
   }

@@ -1,7 +1,6 @@
 import React               from 'react';
 import { Link, IndexLink } from 'react-router';
 import scrollToElement from '../../lib/scrollToElement';
-import MediaQuery from 'react-responsive';
 import Headroom from 'react-headroom';
 
 const _MenuItem = ( {url,label} ) => {
@@ -72,26 +71,21 @@ class Nav extends React.Component {
 
     const {
       siteTitle,
-      menu
+      menu,
+      mobile
     } = this.props;
 
     return (
       <div>
-        <MediaQuery minWidth={993}>
-          {(matches) => {
-            return (
-              <Headroom disable={matches} disableInlineStyles>
-                <div className="navbar-fixed">
-                  <nav className="main-nav">
-                    <IndexLink to="/" className="brand-logo">{siteTitle}</IndexLink>
-                    <Menu className="header-menu nav-menu" menu={menu}/>
-                    <a data-activates="mobile-menu" className="button-collapse"><i className="material-icons">menu</i></a>
-                  </nav>
-                </div>
-              </Headroom>
-            );
-          }}
-        </MediaQuery>
+        <Headroom disable={!mobile} disableInlineStyles>
+          <div className="navbar-fixed">
+            <nav className="main-nav">
+              <IndexLink to="/" className="brand-logo">{siteTitle}</IndexLink>
+              <Menu className="header-menu nav-menu" menu={menu}/>
+              <a data-activates="mobile-menu" className="button-collapse"><i className="material-icons">menu</i></a>
+            </nav>
+          </div>
+        </Headroom>
         <Menu className="side-nav nav-menu" id="mobile-menu" menu={menu} />
       </div>
     );

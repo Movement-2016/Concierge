@@ -57,7 +57,8 @@ export default function groups(state = initialState, action) {
     }
 
     case SET_VISIBILITY: {
-      return { ...state, newVisibility };
+      const { newVisibility } = action;
+      return { ...state, visibility: newVisibility };
     }
 
     case INIT_FILTERS: {

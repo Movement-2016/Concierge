@@ -5,14 +5,18 @@ import FilterGroup from './FilterGroup.jsx';
 
 function Header(props) {
   return (
-    <div className="filter-page-header">
-      <a className="close-button" onClick={props.onClose}>
-        <i className="material-icons">close</i>
-      </a>
-      <a className="clearall-button" onClick={props.onClearAll}>
-        {'Clear All'}
-      </a>
-    </div>
+    <Headroom disableInlineStyles>
+      <div className="filter-page-header">
+        <div className="container">
+          <a className="close-button" onClick={props.onClose}>
+            <i className="material-icons">close</i>
+          </a>
+          <a className="clearall-button" onClick={props.onClearAll}>
+            {'Clear All'}
+          </a>
+        </div>
+      </div>
+    </Headroom>
   );
 }
 
@@ -31,31 +35,30 @@ class FilterPage extends ServiceContext(React.Component) {
   constructor(props) {
     super(props);
 
-    const { selected } = this.props;
+    // deep clone props.selected to avoid mutating object
+    const initialSelected = JSON.parse( JSON.stringify( this.props.selected ) );
 
     this.state = {
-      selected: selected
+      selected: initialSelected
     };
-
-    this.cleared = {};
-    for (var cat in selected) {
-      this.cleared[cat] = [];
-    }
 
     this.filterNames = Object.keys(this.props.selected);
   }
 
   onClearAll = () => {
-    this.setState({ selected: this.cleared });
+    var cleared = {};
+    this.filterNames.map(f => cleared[f] = []);
+    this.setState({ selected: cleared });
   }
 
   onSubmit = () => {
     this.props.handleFilterToggle( this.state.selected );
+    this.props.onClose();
   }
 
   onFilterChange = (category, term, addFilter) => {
-    var selected = this.state.selected;
-    console.log('selected 1:', selected );
+
+    const selected = this.state.selected;
 
     if ( selected[category] ) {
       const index = selected[category].indexOf(term);
@@ -63,9 +66,8 @@ class FilterPage extends ServiceContext(React.Component) {
         ? (index === -1) && selected[category].push(term)
         : (index > -1) && selected[category].splice(index, 1);
     }
-    console.log('selected 2:', selected );
 
-    this.setState({ selected });
+    this.setState({ selected: selected });
   }
 
   render() {

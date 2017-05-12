@@ -14,7 +14,7 @@ function Filter(props) {
     type:      'checkbox',
     className: 'filter-checkbox filled-in',
     id:        'checkbox-' + slug,
-    onClick:   () => onChange(category, slug, !checked),
+    onChange:   () => onChange(category, slug, !checked),
     checked
   };
 

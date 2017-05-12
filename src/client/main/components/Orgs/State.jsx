@@ -28,7 +28,8 @@ function State(props) {
           selected: selectedOrgs.includes(o.ID),
           store,
           filters,
-          mobile
+          mobile,
+          ...o
         };
         return <Org key={o.ID} {...orgProps} />
       })}

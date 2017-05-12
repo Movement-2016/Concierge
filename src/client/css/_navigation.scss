@@ -19,7 +19,7 @@
       margin: 0 2.5%;
     }
     i {
-      margin-left: -3px;
+      margin-left: -1px;
       font-size: 28px;
       color: color('grey', 'lighten-1');
     }
@@ -146,7 +146,7 @@
 }
 .headroom--unpinned {
   position: fixed;
-  transform: translateY(-100%);
+  transform: translateY(-$navbar-height-mobile);
 }
 .headroom--pinned {
   position: fixed;

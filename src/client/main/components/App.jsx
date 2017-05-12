@@ -1,6 +1,8 @@
 import React              from 'react';
 import { render }         from 'react-dom';
 import { Provider }       from 'react-redux';
+import MediaQuery         from 'react-responsive';
+
 
 import '../../lib/polyfills';
 
@@ -54,7 +56,7 @@ class App extends React.Component {
     if( !this.state.loading ) {
       return;
     }
-    
+
     service.filters.then( filters => {
 
       store.dispatch( initFilters(filters) );
@@ -68,7 +70,7 @@ class App extends React.Component {
       setTimeout( () => this.setState({ menu, loading: false }), TIMING_DELAY );
 
     }).catch( error => {
-      var err = error.message || error.statusText || error + '';      
+      var err = error.message || error.statusText || error + '';
       this.setState( { error, err, loading: false } );
     });
   }
@@ -95,11 +97,17 @@ class App extends React.Component {
 
     return (
       <Provider store={store}>
-        <div className="site-wrapper">
-          <Nav menu={menu} siteTitle={SITE_TITLE} />
-          {this.props.children}
-          <Footer />
-        </div>
+        <MediaQuery maxWidth={992}>
+          {(matches) => {
+            return (
+              <div className="site-wrapper">
+                <Nav menu={menu} siteTitle={SITE_TITLE} mobile={matches} />
+                {this.props.children}
+                <Footer />
+              </div>
+            );
+          }}
+        </MediaQuery>
       </Provider>
     );
   }
@@ -111,7 +119,7 @@ App.propTypes = {
 };
 
 if( !global.IS_SERVER_REQUEST ) {
-  render( <Router App={App} store={store} />, document.getElementById('app') );  
+  render( <Router App={App} store={store} />, document.getElementById('app') );
 }
 
 module.exports = App;

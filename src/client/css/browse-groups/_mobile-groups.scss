@@ -1,41 +1,35 @@
-.custom-donate-area.mobile {
-  
-  h1 {
-    text-align: center;
-  }
+.orgs-page .filter-bar {
+  width: 100%;
+  margin-top: $navbar-height-mobile;
+  height: 48px;
+  line-height: 48px;
+  z-index: 100;
+  background-color: $white;
+  border-top: 1px solid $light-border;
+  @include z-depth-2;
+  @include clearfix;
+  text-transform: uppercase;
+  font-weight: 700;
 
-}
+  .navigate-button {
+    float: left;
+    color: $secondary-color;
 
-ul.mobile-group.state-list >  {
-
-  font-size: 150%;
-
-  li {
-    margin-bottom: 7px;
-
-    a {
-      margin-left: 13px;
-      color: black;
-
-      .count {
-        font-size: smaller;
-        opacity: 0.5;
-      }
-    }
-  }
-
-}
-
-.state-page {
-  h1 {
-    display: none;
-  }
-  .back-to-group-link {
-    margin: 0 0 30px 15px;
-    display: block;
-    text-transform: uppercase;
     i {
+      font-size: 25px;
+      margin-left: -4px;
+      margin-right: 1px;
       @include reg-icon;
     }
   }
+  .filter-button {
+    float: right;
+    color: $secondary-color;
+    i {
+      font-size: 20px;
+      margin-right: 5px;
+      @include reg-icon;
+    }
+  }
+
 }
