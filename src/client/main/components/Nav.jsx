@@ -76,7 +76,7 @@ class Nav extends React.Component {
     } = this.props;
 
     return (
-      <div>
+      <div className="nav-wrapper">
         <Headroom disable={!mobile} disableInlineStyles>
           <div className="navbar-fixed">
             <nav className="main-nav">

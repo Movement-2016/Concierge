@@ -1,3 +1,58 @@
+$tray-height: 64px;
+
+.donation-plan-tray {
+  @include bp-md-down {
+    position: fixed;
+    bottom: 0;
+    height: $tray-height;
+    transform: translateY(100%);
+    transition: transform 200ms ease-in-out;
+    width: 100%;
+    background-color: $navbar-color;
+    box-shadow: 0 0 4px rgba(0,0,0,.12), 0 0 8px rgba(0,0,0,.26);
+
+    &.has-groups {
+      transform: translateY(0);
+    }
+
+    .info-area {
+      float: left;
+      padding: 9px 5%;
+      height: $tray-height;
+      line-height: ($tray-height / 2) - 9px;
+    }
+
+    .title {
+      color: $lighter-trans;
+    }
+
+    .info {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .button-area {
+      float: right;
+      text-align: right;
+      width: 50%;
+    }
+
+    .plan-btn {
+      padding: 0 10%;
+      height: $tray-height;
+      line-height: $tray-height;
+      border-left: 1px solid $light-border;
+      color: $secondary-color;
+      i {
+        vertical-align: middle;
+        margin-bottom: 3px;
+        margin-right: 6px;
+        font-size: 23px;
+      }
+    }
+  }
+}
+
 $tray-padding: 16px;
 @include bp-lg {
   .donation-plan-tray {
@@ -27,7 +82,7 @@ $tray-padding: 16px;
       }
     }
 
-    .btn-flat {
+    .plan-btn {
       height: 48px;
       line-height: 48px;
       color: $primary-color;

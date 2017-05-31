@@ -1,8 +1,8 @@
 import React               from 'react';
 
-import { 
-  ServiceContext,
-  PageContext 
+import {
+  ContextFromService,
+  PageContext
 }                          from './ContextMixins.js';
 
 import StateMap            from './StateMap.jsx';
@@ -45,10 +45,10 @@ class Testimonial extends React.Component {
 }
 
 
-class Testimonials extends ServiceContext(React.Component) {
+class Testimonials extends ContextFromService(React.Component) {
 
-  get contextPropName() {
-    return 'testimonials';
+  get servicePropNames() {
+    return ['testimonials'];
   }
 
   render() {
@@ -69,10 +69,10 @@ class Testimonials extends ServiceContext(React.Component) {
   }
 }
 
-class NewsTiles extends ServiceContext(React.Component) {
+class NewsTiles extends ContextFromService(React.Component) {
 
-  get contextPropName() {
-    return 'news';
+  get servicePropNames() {
+    return ['news'];
   }
 
   render() {
@@ -93,26 +93,20 @@ class NewsTiles extends ServiceContext(React.Component) {
   }
 }
 
-class StateMapBound extends ServiceContext(React.Component) {
+class StateMapBound extends ContextFromService(React.Component) {
 
-  get contextPropName() {
-    return 'stateProps';
-  }
-
-  stateFromStore() {
-    !global.IS_SERVER_REQUEST && super.stateFromStore(...arguments);
+  get servicePropNames() {
+    return ['states', 'colorSections'];
   }
 
   render() {
-    if( !this.state || global.IS_SERVER_REQUEST ) {
+    if( global.IS_SERVER_REQUEST ) {
       return <span />;
     }
 
     let {
-      stateProps: {
-        states,
-        stateColors
-      } = {},
+      states,
+      colorSections,
       loading
     } = this.state;
 
@@ -124,7 +118,7 @@ class StateMapBound extends ServiceContext(React.Component) {
         <div className="container">
           <h2 className="section-title">Find a Group</h2>
           <div className="map-desc">Click the map to browse the groups in each state.</div>
-          <StateMap dataSource={states} colors={stateColors} />;
+          <StateMap dataSource={states} colors={colorSections} />;
         </div>
       );
 

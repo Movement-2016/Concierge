@@ -1,19 +1,30 @@
 import React from 'react';
 import TagString from 'tag-string';
 
-import { ServiceContext } from '../ContextMixins';
+import { ContextFromService } from '../ContextMixins';
 import { setVisibility } from '../../store/actions';
 
-class OrgsPage extends ServiceContext(React.Component) {
+class OrgsPage extends ContextFromService(React.Component) {
 
-  get contextPropName() {
-    return 'orgs';
+  get servicePropNames() {
+    return ['orgs'];
+  }
+
+  stateFromStore(storeState) {
+    const {
+      groups: {
+        visibility,
+        selected: selectedGroups
+      }
+    } = storeState;
+    this.setState( {visibility, selectedGroups} );
   }
 
   // changes visibility of orgs based on filters checked
   handleFilterToggle = (visibility) => {
     this.context.store.dispatch( setVisibility( visibility ) );
   }
+
 
 }
 

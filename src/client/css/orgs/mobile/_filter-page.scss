@@ -1,0 +1,71 @@
+.filter-page {
+  transition: transform 200ms ease-in-out;
+  transform: translateX(100%);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: $main-bg-color;
+  z-index: 990;
+
+  &.visible {
+    transform: translateX(0);
+  }
+
+  .filter-page-bar {
+    position: fixed;
+    width: 100%;
+    z-index: 20;
+    background-color: $white;
+    @include z-depth-2;
+  }
+  .filter-page-header {
+    top: 0;
+    height: $navbar-height-mobile;
+    line-height: $navbar-height-mobile;
+    @include clearfix;
+    a {
+      color: $lighter-trans;
+    }
+    .close-button {
+      float: left;
+      i {
+        line-height: inherit;
+        @include reg-icon;
+      }
+    }
+    .clearall-button {
+      float: right;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+  }
+
+  .filters {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+    width: 100%;
+    margin-top: $navbar-height-mobile + 6px;
+    margin-bottom: 72px;
+    padding: 24px 0;
+  }
+
+  .filter-submit-bar {
+    bottom: 0;
+    padding: 15px 0;
+    text-align: center;
+    .filter-submit-button {
+      background-color: $secondary-color;
+      color: $white;
+      border-radius: 20px;
+      height: 36px;
+      line-height: 36px;
+      padding: 0 2.5rem;
+      &:hover {
+        background: $secondary-color-light;
+      }
+    }
+  }
+}

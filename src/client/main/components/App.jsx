@@ -22,7 +22,7 @@ import Nav          from './Nav.jsx';
 import Footer       from './Footer.jsx';
 import Loading      from './Loading.jsx';
 
-const store = configureStore ();
+const store = configureStore();
 
 const SITE_TITLE = 'Movement 2017';
 
@@ -57,16 +57,12 @@ class App extends React.Component {
       return;
     }
 
-    service.filters.then( filters => {
-
-      store.dispatch( initFilters(filters) );
+    service.content.then( () => {
+      store.dispatch( initFilters(service.groupFilters) );
       subscribeToStore(store);
 
-      return service.menu;
-    }).then( menu => {
-
+      const menu = service.menu;
       const TIMING_DELAY = 250;
-
       setTimeout( () => this.setState({ menu, loading: false }), TIMING_DELAY );
 
     }).catch( error => {
@@ -97,12 +93,14 @@ class App extends React.Component {
 
     return (
       <Provider store={store}>
-        <MediaQuery maxWidth={992}>
+        <MediaQuery maxWidth={992} values={{width: 1400}}>
           {(matches) => {
+            // add additional mobile prop to child element
+            const child = React.cloneElement( React.Children.only(this.props.children), {mobile: matches} );
             return (
               <div className="site-wrapper">
                 <Nav menu={menu} siteTitle={SITE_TITLE} mobile={matches} />
-                {this.props.children}
+                {child}
                 <Footer />
               </div>
             );

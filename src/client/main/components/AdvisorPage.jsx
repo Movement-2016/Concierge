@@ -1,18 +1,18 @@
 import React              from 'react';
 import { Shell }          from './ContentPage.jsx';
-import { ServiceContext } from './ContextMixins';
+import { ContextFromService } from './ContextMixins';
 import Loading            from './Loading.jsx';
 
 const nameRegex = /[a-z-]+$/i;
 
-const processAdvisors = advisors => 
+const processAdvisors = advisors =>
         advisors && advisors.map( a => a.post_title )
-                            .sort( (a,b) => a.match(nameRegex)[0].localeCompare(b.match(nameRegex)[0]) );
+                                .sort( (a,b) => a.match(nameRegex)[0].localeCompare(b.match(nameRegex)[0]) );
 
-class AdvisorPage extends ServiceContext(React.Component) {
+class AdvisorPage extends ContextFromService(React.Component) {
 
-  get contextPropName() {
-    return 'advisors';
+  get servicePropNames() {
+    return ['advisors'];
   }
 
   sliceAdvisors(advisors) {
@@ -57,6 +57,6 @@ class AdvisorPage extends ServiceContext(React.Component) {
   }
 }
 
-AdvisorPage.preload = storeState => storeState.service.advisors;
+AdvisorPage.preload = storeState => storeState.service.content.then( () => storeState.service.advisors);
 
 module.exports = AdvisorPage;

@@ -19,7 +19,7 @@
       margin: 0 2.5%;
     }
     i {
-      margin-left: -1px;
+      margin-left: -3px;
       font-size: 28px;
       color: color('grey', 'lighten-1');
     }
@@ -127,28 +127,4 @@
       }
     }
   }
-}
-
-.headroom {
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 900;
-}
-.headroom--unfixed {
-  transform: translateY(0);
-  @include bp-lg {
-    transform: none;
-  }
-}
-.headroom--scrolled {
-  transition: transform 200ms ease-in-out;
-}
-.headroom--unpinned {
-  position: fixed;
-  transform: translateY(-$navbar-height-mobile);
-}
-.headroom--pinned {
-  position: fixed;
-  transform: translateY(0%);
 }

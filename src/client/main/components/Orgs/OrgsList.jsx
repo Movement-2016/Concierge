@@ -1,7 +1,8 @@
 import React from 'react';
+import Loading from '../Loading.jsx';
 
 import {
-  ServiceContext
+  ContextFromService
 } from '../ContextMixins';
 
 import ColorGroup from './ColorGroup.jsx';
@@ -14,41 +15,37 @@ const getVisibleColorSections = (allColorSections,orgs) => {
   return visible;
 };
 
-class OrgsList extends ServiceContext(React.Component) {
+class OrgsList extends ContextFromService(React.Component) {
+
+  get servicePropNames() {
+    return ['colorSections', 'colorOrder', 'statesDict', 'groupFilters']
+  }
 
   componentDidMount() {
+    // Scrolls to correct state if hash is found in url
     if( location.hash ) {
-      const state = location.hash.replace('#','');
-      const groups = document.getElementById(state);
-      groups && setTimeout( () => scrollToElement('#' + state), 200 );
+      const elementName = location.hash.replace('#','');
+      const element = document.getElementById(elementName);
+      element && setTimeout( () => scrollToElement('#' + elementName), 200 );
     }
   }
 
-  // shouldComponentUpdate() {
-  //   return this.state.selected !== this._isSelected();
-  // }
-
   stateFromStore(storeState) {
-    const { service, groups } = storeState;
-    this.setState({ service, groups });
+    const { groups } = storeState;
+    this.setState( {groups} );
   }
 
   getVisibleColorSections() {
 
     const {
-      groups,
-      service: {
-        colorSections,
-        groupFilters: filters,
-        colorOrder,
-        statesDict
-      }
+      groupFilters: filters,
+      colorSections,
+      colorOrder,
+      statesDict,
+      groups
     } = this.state;
 
-    const {
-      orgs
-    } = this.props;
-
+    const { orgs } = this.props;
 
     const order = {};
     colorOrder.forEach( (c,i) => order[c] = i );
@@ -65,18 +62,22 @@ class OrgsList extends ServiceContext(React.Component) {
 
   render() {
 
-    const vcg = this.getVisibleColorSections();
+    if (this.state.loading) {
+      return <Loading />;
+    }
+
+    const vcs = this.getVisibleColorSections();
 
     const {
-      colors,
-      orgs,
-      colorGroups,
       groups: {
         selected
       },
+      colors,
+      orgs,
+      colorGroups,
       filters,
       statesDict
-    } = vcg;
+    } = this.getVisibleColorSections();
 
     return (
       <div className="group-area">

@@ -38,6 +38,12 @@
   }
 }
 
+@mixin bp-md-down {
+  @media #{$medium-and-down} {
+    @content;
+  }
+}
+
 @mixin full-bg {
   background-size: cover;
   background-position: top center;

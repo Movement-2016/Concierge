@@ -6,7 +6,6 @@ import {
   ContactPage,
   NotFoundPage,
   DonatePage,
-  StatePage,
   AdvisorPage,
   SummaryPage,
   ConsultPage,
@@ -14,9 +13,8 @@ import {
 } from '../client/main/components';
 
 import {
-  OrgsMenuPage,
-  OrgsPageMobile,
-  OrgsPageDesktop
+  OrgsEntryPage,
+  OrgsPageMobile
 } from '../client/main/components/Orgs';
 
 import PlanPage from '../client/main/components/DonationPlan';
@@ -34,9 +32,8 @@ const TestimonialsPage = contentPage('testimonials');
 var browserOnly = true;
 
 const RouteMap = [
-  {  path: '/groups',               component: OrgsPageDesktop },
-  {  path: '/groups/mobile',        component: OrgsMenuPage },
-  {  path: '/groups/mobile/:slug',  component: OrgsPageMobile },
+  {  path: '/groups',               component: OrgsEntryPage },
+  {  path: '/groups/:slug',         component: OrgsPageMobile },
 
   {  path: '/plan',                 component: PlanPage, browserOnly },
   {  path: '/plan/summary',         component: SummaryPage,  browserOnly },

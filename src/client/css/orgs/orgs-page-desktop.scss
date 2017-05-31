@@ -1,0 +1,44 @@
+$side-col-width: 190px;
+
+.group-area {
+  margin-top: 36px;
+  @include bp-lg {
+    margin-top: 0;
+    width: calc(100% - (#{$side-col-width} * 2));
+    padding: 0 3.5%;
+    float: left;
+  }
+}
+
+.orgs-page {
+  .page-title {
+    display: none;
+  }
+}
+
+@include bp-lg {
+  .orgs-page-desktop {
+    .container {
+      width: 100%;
+      max-width: 1600px;
+      float: left;
+      padding: 40px $site-padding-lg 0;
+    }
+  }
+  .filter-area-wrapper {
+    display: block;
+    width: $side-col-width;
+    float: left;
+  }
+
+  .plan-sidebar-wrapper {
+    display: block;
+    width: $side-col-width;
+    float: right;
+  }
+  .bottom-spacer {
+    margin-top: 40px;
+    float: left;
+    width: 100%;
+  }
+}

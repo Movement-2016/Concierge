@@ -1,26 +1,50 @@
 import React from 'react';
 
-import { ServiceContext } from '../ContextMixins';
+import { ContextFromService } from '../ContextMixins';
 
 import FilterGroup from './FilterGroup.jsx';
 import ScrollLinks from './ScrollLinks.jsx';
 import StatePicker from './StatePicker.jsx';
 
-class FilterArea extends ServiceContext(React.Component) {
+class FilterArea extends ContextFromService(React.Component) {
+
+  get servicePropNames() {
+    return ['groupFilters', 'colorSectionsDict', 'statesDict'];
+  }
+
+  onFilterChange = (category, term, addFilter) => {
+    const {
+      selectedFilters,
+      handleFilterToggle
+    } = this.props;
+
+    if ( selectedFilters[category] ) {
+      const index = selectedFilters[category].indexOf(term);
+      addFilter
+        ? (index === -1) && selectedFilters[category].push(term)
+        : (index > -1) && selectedFilters[category].splice(index, 1);
+    }
+
+    handleFilterToggle( selectedFilters );
+  }
 
   render() {
     const {
       groupFilters: filters,
+      colorSectionsDict,
       statesDict,
-      colorSectionsDict
-    } = this.service;
+      loading
+    } = this.state;
+
+    if (loading) {
+      return <div />;
+    }
 
     const {
       scrollToElement,
       visibleColorSections,
       visibleStates,
-      onFilterChange,
-      selected
+      selectedFilters
     } = this.props;
 
     const showOrgsNav = visibleColorSections.length + visibleStates.length > 0;
@@ -38,8 +62,8 @@ class FilterArea extends ServiceContext(React.Component) {
           <div className="filters-title">Filter</div>
           {Object.keys(filters).map( f => {
             const filterGroupProps = {
-                onFilterChange,
-                selected,
+                onFilterChange: this.onFilterChange,
+                selectedFilters,
                 name: f,
                 label: filters[f].label,
                 terms: filters[f].terms
@@ -54,9 +78,9 @@ class FilterArea extends ServiceContext(React.Component) {
 }
 
 FilterArea.propTypes = {
-  selected:         React.PropTypes.object.isRequired,
-  onFilterChange:   React.PropTypes.func.isRequired,
-  scrollToElement:  React.PropTypes.func.isRequired,
+  selectedFilters:      React.PropTypes.object.isRequired,
+  handleFilterToggle:   React.PropTypes.func.isRequired,
+  scrollToElement:      React.PropTypes.func.isRequired,
 };
 
 

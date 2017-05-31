@@ -1,12 +1,12 @@
 import React               from 'react';
-import { ServiceContext }  from './ContextMixins';
+import { ContextFromService }  from './ContextMixins';
 import Tile                from './Tile.jsx';
 
 
-class DonateTiles extends ServiceContext(React.Component) {
+class DonateTiles extends ContextFromService(React.Component) {
 
-  get contextPropName() {
-    return 'donateTiles';
+  get servicePropNames() {
+    return ['donateTiles'];
   }
 
   render() {

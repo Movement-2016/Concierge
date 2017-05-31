@@ -136,6 +136,24 @@ const getVisibleOrgs = (orgs,filters) => {
 
 };
 
+const trimOrgs = (orgs, pageSlug) => {
+  var trimmedOrgs = {};
+
+  if (typeof(orgs[pageSlug]) !== 'undefined') {
+    trimmedOrgs[pageSlug] = orgs[pageSlug];
+    return trimmedOrgs;
+  } else {
+    for (var colorSection in orgs) {
+      if (typeof(orgs[colorSection][pageSlug]) !== 'undefined') {
+        trimmedOrgs[colorSection] = {};
+        trimmedOrgs[colorSection][pageSlug] = orgs[colorSection][pageSlug];
+        return trimmedOrgs;
+      }
+    }
+  }
+  return orgs;
+}
+
 const getVisibleStates = orgs => {
   return path('..state',orgs).reduce( (a,e) => { a.indexOf(e) < 0 && a.push(e); return a; }, [] ).sort();
 };
@@ -182,6 +200,7 @@ const filterTagsByTypes = ({tags,filters}) => {
 };
 
 module.exports = {
+  trimOrgs,
   getVisibleStates,
   getVisibleOrgs,
   getSelectedOrgs,

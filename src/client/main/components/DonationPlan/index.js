@@ -6,7 +6,7 @@ import ContentPage      from '../ContentPage.jsx';
 import Totals           from './Totals.jsx';
 import RequestConsult   from './RequestConsult.jsx';
 
-import { ContextMixin } from '../ContextMixins';
+import { ContextFromService } from '../ContextMixins';
 
 const BackToGroups = () => {
   return (
@@ -20,15 +20,11 @@ const PageDescription = () => {
   );
 };
 
-class SummaryLink extends ContextMixin(React.Component) {
-
-  stateFromStore(storeState) {
-    const { user:{email,phone} } = storeState;
-    this.setState({ isUserKnown: email && phone });
-  }
+class SummaryLink extends ContextFromService(React.Component) {
 
   render() {
-    const { isUserKnown } = this.state;
+    const { user: {email, phone} } = this.storeState;
+    const isUserKnown = email && phone;
 
     const url = isUserKnown ? '/plan/summary' : '/plan/profile';
 

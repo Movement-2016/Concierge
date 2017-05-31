@@ -1,7 +1,15 @@
-.custom-planning .page-description {
-  font-size: 18px;
-  color: $med-trans;
-  margin: 0 2rem;
+.custom-planning {
+  .page-title {
+    margin-bottom: 24px;
+  }
+  .page-description {
+    color: $med-trans;
+    font-size: 16px;
+    @include bp-lg {
+      font-size: 18px;
+      margin: 0 30px;
+    }
+  }
 }
 .planning-section {
   margin-bottom: 3rem;

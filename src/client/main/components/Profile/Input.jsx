@@ -1,10 +1,10 @@
 import React     from 'react';
 
-import { ContextMixin } from '../ContextMixins';
+import { ContextFromStore } from '../ContextMixins';
 
 import { setProfile } from '../../../account/store/actions';
 
-class ProfileInput extends ContextMixin(React.Component) {
+class ProfileInput extends ContextFromStore(React.Component) {
 
   constructor() {
     super(...arguments);
@@ -19,7 +19,7 @@ class ProfileInput extends ContextMixin(React.Component) {
       this.setState({ value: user[name] });
     }
   }
-  
+
   onChange(e) {
     const { value } = e.target;
     const { name } = this.props;

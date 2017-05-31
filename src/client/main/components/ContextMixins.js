@@ -1,7 +1,6 @@
 import React from 'react';
 
-
-const ServiceMixin = baseClass => class extends baseClass {
+const ContextMixin = baseClass => class extends baseClass {
 
   static contextTypes = {
     store: React.PropTypes.object.isRequired
@@ -17,51 +16,63 @@ const ServiceMixin = baseClass => class extends baseClass {
 
 };
 
-const ContextMixin = baseClass => class extends ServiceMixin(baseClass) {
+const ContextFromStore = baseClass => class extends ContextMixin(baseClass) {
 
   constructor() {
     super(...arguments);
+
     !global.IS_SERVER_REQUEST && (this.stateFromStore = this.stateFromStore.bind(this));
   }
 
   componentWillMount () {
     const { store } = this.context;
-    const stateSetter = () => this.stateFromStore(store.getState());
+    const stateSetter = () => {
+      console.log('stateSetter called.')
+      this.stateFromStore(this.storeState);
+    }
     !global.IS_SERVER_REQUEST && (this.unsubscribe = store.subscribe( stateSetter ));
-    this.stateFromStore(store.getState());
+    this.stateFromStore(this.storeState);
   }
 
   componentWillUnmount () {
-    this.unsubscribe ();
+    this.unsubscribe();
+  }
+
+  stateFromStore() {
+    return;
   }
 
 };
 
-const ServiceContext = baseClass => class extends ContextMixin(baseClass) {
+const ContextFromService = baseClass => class extends ContextFromStore(baseClass) {
 
-  stateFromStore( /* storeState */ ) {
+  componentWillMount () {
+    super.componentWillMount();
+    this.initialStateFromService();
+  }
 
-    const state       = {};
-    const propName    = this.contextPropName;
-    const service     = this.service;
-
-    if( propName ) {
-      const value = this.props[propName] || service.cachedValue(propName);
-      if( value ) {
-        state[propName] = value;
-      } else {
-        if( global.IS_SERVER_REQUEST ) {
-          console.log( "WARNING: MAKING PROMISE REQUEST FROM SERVICE: ", propName);
-        }
-        service[propName].then( propValue => this.setState( { [propName]:propValue, loading: false } ));
-        state.loading = true;
+  // Checks if servicePropNames has been set, then retrieves named props from service object and adds to element's state
+  initialStateFromService() {
+    const state = {};
+    const propNames = this.servicePropNames;
+    const service = this.service;
+    if (propNames) {
+      state.loading = true;
+      if( global.IS_SERVER_REQUEST ) {
+        console.log( "WARNING: MAKING PROMISE REQUEST FROM SERVICE: ", propNames);
       }
+      service.content.then( () => {
+        propNames.forEach( propName => state[propName] = service[propName] );
+        state.loading = false;
+        this.setState( state );
+      });
+      this.setState( state );
     }
-    this.setState(state);
   }
+
 };
 
-const PageContext = baseClass => class extends ServiceMixin(baseClass) {
+const PageContext = baseClass => class extends ContextMixin(baseClass) {
 
   constructor() {
     super(...arguments);
@@ -76,7 +87,7 @@ const PageContext = baseClass => class extends ServiceMixin(baseClass) {
 };
 
 module.exports = {
-  ContextMixin,
-  PageContext,
-  ServiceContext
+  ContextFromStore,
+  ContextFromService,
+  PageContext
 };

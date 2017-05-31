@@ -1,9 +1,9 @@
 import React     from 'react';
 import commaize  from 'commaize';
 
-import { ContextMixin } from '../ContextMixins';
+import { ContextFromStore } from '../ContextMixins';
 
-class Totals extends ContextMixin(React.Component) {
+class Totals extends ContextFromStore(React.Component) {
 
   stateFromStore(storeState) {
     const {
@@ -30,5 +30,3 @@ class Totals extends ContextMixin(React.Component) {
 
 
 module.exports = Totals;
-
-

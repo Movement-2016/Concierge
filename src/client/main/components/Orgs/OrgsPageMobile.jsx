@@ -1,34 +1,37 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
+import Headroom from 'react-headroom';
+import path from 'jspath';
 
 import OrgsPage from './OrgsPage.jsx';
 import OrgsList from './OrgsList.jsx';
 import FilterPage from '../Filters/FilterPage.jsx';
-
-import PlanTray from '../DonationPlan/PlanTray.jsx';
+import PlanTray from './PlanTray.jsx';
 import Loading from '../Loading.jsx';
 
-import { getVisibleOrgs } from '../../store/utils';
-
+import { trimOrgs, getVisibleOrgs } from '../../store/utils';
 import scrollToElement from '../../../lib/scrollToElement';
 
 function FilterBar(props) {
   return (
-    <div className="filter-bar">
-      <div className="container">
-        <Link className="navigate-button" to="/groups/mobile">
-          <i className="material-icons">chevron_left</i>
-          {'Navigate'}
-        </Link>
-        <a className="filter-button" onClick={props.onShowFilters}>
-          <i className="material-icons">filter_list</i>
-          {'Filter'}
-        </a>
-      </div>
+    <div className="filter-bar-wrapper">
+      <Headroom disableInlineStyles>
+        <div className="filter-bar">
+          <div className="container">
+            <Link className="navigate-button" to="/groups">
+              <i className="material-icons">chevron_left</i>
+              {'Navigate'}
+            </Link>
+            <a className="filter-button" onClick={props.onShowFilters}>
+              <i className="material-icons">filter_list</i>
+              {'Filter'}
+            </a>
+          </div>
+        </div>
+      </Headroom>
     </div>
   );
 }
-
 
 class OrgsPageMobile extends OrgsPage {
 
@@ -51,41 +54,33 @@ class OrgsPageMobile extends OrgsPage {
     let {
       orgs,
       loading,
-      showOrgsList
+      showOrgsList,
+      visibility,
+      selectedGroups
     } = this.state;
-
-
-    const {
-      groups: {
-        visibility
-      }
-    } = this.storeState;
-
 
     if( loading ) {
       return <Loading />;
     }
 
-    orgs = getVisibleOrgs( orgs, visibility );
+    const pageSlug = this.props.params
+      ? this.props.params.slug
+      : 'all-groups';
 
-    const title = 'Browse Groups';
-
-    if (showOrgsList) {
-      return (
-        <main className="orgs-page">
-          <FilterBar onShowFilters={this.onShowFilters} />
-          <OrgsList orgs={orgs} mobile={true} />
-          <PlanTray mobile={true} />
-        </main>
-      );
-    }
+    orgs = getVisibleOrgs( trimOrgs(orgs, pageSlug), visibility );
 
     return (
-      <FilterPage
-        selected={visibility}
-        handleFilterToggle={this.handleFilterToggle}
-        onClose={this.onShowOrgsList}
-      />
+      <main className="orgs-page orgs-page-mobile">
+        <FilterBar onShowFilters={this.onShowFilters} />
+        <OrgsList orgs={orgs} mobile={true} />
+        <PlanTray numGroups={selectedGroups.length}/>
+        <FilterPage
+          showFilters={!showOrgsList}
+          selectedFilters={visibility}
+          handleFilterToggle={this.handleFilterToggle}
+          onClose={this.onShowOrgsList}
+        />
+      </main>
     );
   }
 }

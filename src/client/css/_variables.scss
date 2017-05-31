@@ -27,7 +27,7 @@ $small-screen: 760px;
 $medium-screen: 992px;
 $large-screen: 1200px;
 $small-and-up: "only screen and (min-width: #{$xs-screen-up})";
-$xl-and-up: "only screen and (min-width : #{$large-screen-up})";
+$xl-and-up: "only screen and (min-width: #{$large-screen-up})";
 
 // Base colors
 $white: #fff;
@@ -44,7 +44,7 @@ $secondary-color: #f56b62;
 $secondary-color-light: color("red", "accent-1");
 
 // Element colors
-$navbar-color: $trans-white;
+$navbar-color: $white;
 $main-bg-color: color("grey", "lighten-5");
 $form-bg-color: $white;
 $link-color: $primary-color;
@@ -64,9 +64,7 @@ $input-border-color: $lighter-trans;
 $input-focus-color: $primary-color;
 
 // Groups
-$tag-color: #f7fafd;
-$tag-border-color: #ededed;
-$group-padding: 1.5rem;
+$group-padding: 5%;
 
 // Navbar
 $navbar-font-color: $lighter-trans;

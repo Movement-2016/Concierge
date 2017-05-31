@@ -1,3 +1,37 @@
+.filter-group-label {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.filter-group {
+  & + .filter-group {
+    border-top: 1px solid $light-border;
+    padding-top: 18px;
+    margin-top: 20px;
+  }
+}
+
+.filter {
+  [type="checkbox"] {
+    & + label {
+      color: inherit;
+      height: 20px;
+      line-height: 20px;
+      font-size: 18px;
+      padding-left: 32px;
+      margin: 9px 0;
+    }
+    &:not(:checked) + label::after {
+      border: 2px solid $med-trans;
+    }
+    &:checked + label::after {
+      border: 2px solid $primary-color-light;
+      background-color: $primary-color-light;
+    }
+  }
+}
+
 @include bp-lg {
   .filter-area {
     overflow: hidden;
@@ -35,12 +69,6 @@
     padding: 12px 0;
     border-top: 1px solid $light-border;
   }
-  .filter-group-label {
-    font-weight: 700;
-  }
-  .filter {
-    padding-top: 10px;
-  }
   .clear-filters {
     float: right;
     line-height: 23px;
@@ -52,15 +80,14 @@
   .nonprofit-type-filters {
     display: none;
   }
+  
   .filters {
     [type="checkbox"] {
       & + label {
-        color: inherit;
         height: inherit;
         font-size: inherit;
         line-height: 16px;
         padding-left: 22px;
-        padding-top: 1px;
       }
       &:not(:checked) + label::after {
         border: 2px solid rgba(0, 0, 0, 0.5);
@@ -68,8 +95,6 @@
         width: 16px;
       }
       &:checked + label::after {
-        border: 2px solid $primary-color-light;
-        background-color: $primary-color-light;
         width: 16px;
         height: 16px;
       }

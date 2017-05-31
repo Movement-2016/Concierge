@@ -1,23 +1,19 @@
 .orgs-page .filter-bar {
   width: 100%;
-  margin-top: $navbar-height-mobile;
   height: 48px;
   line-height: 48px;
-  z-index: 100;
-  background-color: $white;
+  background-color: $navbar-color;
   border-top: 1px solid $light-border;
-  @include z-depth-2;
+  box-shadow: 0 4px 7px rgba(0, 0, 0, .18);
   @include clearfix;
   text-transform: uppercase;
   font-weight: 700;
-
   .navigate-button {
     float: left;
     color: $secondary-color;
-
     i {
       font-size: 25px;
-      margin-left: -4px;
+      margin-left: -8px;
       margin-right: 1px;
       @include reg-icon;
     }
@@ -31,5 +27,4 @@
       @include reg-icon;
     }
   }
-
 }

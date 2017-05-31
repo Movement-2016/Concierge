@@ -7,7 +7,7 @@
   text-transform: uppercase;
   color: $lighter-trans;
   margin-bottom: 15px;
-  font-size: 28px;
+  font-size: 20px;
 
   &::before {
     content: '';
@@ -56,10 +56,9 @@
   @include z-depth-1;
   background-color: $white;
   padding: 0;
-}
-
-.state + .state {
-  margin-top: 40px;
+  & + .state {
+    margin-top: 50px;
+  }
 }
 
 .state-title {
@@ -68,15 +67,23 @@
   color: $lighter-trans;
 
   h4 {
-    font-size: 30px;
-    margin: 1.5rem 0;
-    line-height: 1;
+    font-size: 24px;
+    margin: 0;
+    line-height: 66px;
+    @include bp-lg {
+      font-size: 30px;
+      line-height: 90px;
+    }
   }
 
   .color-icon {
     float: right;
     line-height: inherit;
-    font-size: 30px;
+    font-size: 26px;
+    margin-right: -4px;
+    @include bp-lg {
+      font-size: 30px;
+    }
   }
 }
 

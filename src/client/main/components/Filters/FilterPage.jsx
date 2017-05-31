@@ -1,28 +1,31 @@
 import React from 'react';
 
-import { ServiceContext } from '../ContextMixins';
+import { ContextFromService } from '../ContextMixins';
 import FilterGroup from './FilterGroup.jsx';
+
+function clone(object) {
+  return JSON.parse( JSON.stringify(object) );
+}
+
 
 function Header(props) {
   return (
-    <Headroom disableInlineStyles>
-      <div className="filter-page-header">
-        <div className="container">
-          <a className="close-button" onClick={props.onClose}>
-            <i className="material-icons">close</i>
-          </a>
-          <a className="clearall-button" onClick={props.onClearAll}>
-            {'Clear All'}
-          </a>
-        </div>
+    <div className="filter-page-bar filter-page-header">
+      <div className="container">
+        <a className="close-button" onClick={props.onClose}>
+          <i className="material-icons">close</i>
+        </a>
+        <a className="clearall-button" onClick={props.onClearAll}>
+          {'Clear All'}
+        </a>
       </div>
-    </Headroom>
+    </div>
   );
 }
 
 function SubmitBar(props) {
   return (
-    <div className="submit-bar">
+    <div className="filter-page-bar filter-submit-bar">
       <a className="filter-submit-button btn-flat waves-effect waves-light" onClick={props.onClick}>
         {'View Groups'}
       </a>
@@ -30,25 +33,34 @@ function SubmitBar(props) {
   );
 }
 
-class FilterPage extends ServiceContext(React.Component) {
+class FilterPage extends ContextFromService(React.Component) {
+
+  get servicePropNames() {
+    return ['groupFilters'];
+  }
 
   constructor(props) {
     super(props);
 
-    // deep clone props.selected to avoid mutating object
-    const initialSelected = JSON.parse( JSON.stringify( this.props.selected ) );
+    this.cleared = {};
+    this.filterNames = Object.keys(this.props.selectedFilters);
+    this.filterNames.map(f => this.cleared[f] = []);
 
     this.state = {
-      selected: initialSelected
+      selected: clone(this.cleared)
     };
+  }
 
-    this.filterNames = Object.keys(this.props.selected);
+  componentDidMount() {
+    this.props.handleFilterToggle( this.state.selected );
+  }
+
+  cleared = () => {
+    this.filterNames.map(f => this.cleared[f] = []);
   }
 
   onClearAll = () => {
-    var cleared = {};
-    this.filterNames.map(f => cleared[f] = []);
-    this.setState({ selected: cleared });
+    this.setState({ selected: clone(this.cleared) });
   }
 
   onSubmit = () => {
@@ -67,36 +79,45 @@ class FilterPage extends ServiceContext(React.Component) {
         : (index > -1) && selected[category].splice(index, 1);
     }
 
-    this.setState({ selected: selected });
+    this.setState({ selected });
   }
 
   render() {
-    const { groupFilters: filters } = this.service;
+    const {
+      groupFilters: filters,
+      loading
+    } = this.state;
+
+    if (loading) {
+      return <span />
+    }
 
     return (
-      <main className="filter-page">
+      <div className={'filter-page' + (this.props.showFilters ? ' visible' : '')}>
         <Header onClearAll={this.onClearAll} onClose={this.props.onClose} />
-        <div className="filters">
-          {this.filterNames.map( f => {
-            const filterGroupProps = {
-              selected:       this.state.selected,
-              onFilterChange: this.onFilterChange,
-              name:           f,
-              label:          filters[f].label,
-              terms:          filters[f].terms
-            };
-            return <FilterGroup key={f} {...filterGroupProps} />
-          }
-          )}
-        </div>
+          <div className="filters">
+            <div className="container">
+              {this.filterNames.map( f => {
+                const filterGroupProps = {
+                  selectedFilters:  this.state.selected,
+                  onFilterChange:   this.onFilterChange,
+                  name:             f,
+                  label:            filters[f].label,
+                  terms:            filters[f].terms
+                };
+                return <FilterGroup key={f} {...filterGroupProps} />
+              }
+              )}
+            </div>
+          </div>
         <SubmitBar onClick={this.onSubmit} />
-      </main>
+      </div>
       );
   }
 }
 
 FilterPage.propTypes = {
-  selected:           React.PropTypes.object.isRequired,
+  selectedFilters:    React.PropTypes.object.isRequired,
   handleFilterToggle: React.PropTypes.func.isRequired,
   onClose:            React.PropTypes.func.isRequired,
 };

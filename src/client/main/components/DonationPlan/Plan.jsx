@@ -1,15 +1,15 @@
-import React            from 'react';
-import { ContextMixin } from '../ContextMixins';
-import Loading          from '../Loading.jsx';
+import React              from 'react';
+import Loading            from '../Loading.jsx';
+import { ContextFromService } from '../ContextMixins';
 
-import { 
+import {
   getSelectedOrgs,
   organizeOrgsByState
 } from '../../store/utils';
 
 import StateOrgs from './StateOrgs.jsx';
 
-class Plan extends ContextMixin(React.Component) {
+class Plan extends ContextFromService(React.Component) {
 
   constructor() {
     super(...arguments);
@@ -19,62 +19,58 @@ class Plan extends ContextMixin(React.Component) {
   get readonly() {
     return false;
   }
-  
+
+  get servicePropNames() {
+    return ['orgs', 'groupFilters', 'statesDict', 'colorSectionsIDDict'];
+  }
+
   stateFromStore(storeState) {
-
-    storeState.service.orgs.then( orgs => {
-      const { 
-        groups: {
-          selected,
-          plan 
-        },
-        service: {
-          groupFilters: filters,
-          statesDict: states,
-          colorSectionsIDDict: colorDict
-        }
-      } = storeState;
-
-      this.setState({ 
-        states, 
-        filters, 
-        plan,
-        colorDict,
-        orgs: organizeOrgsByState(getSelectedOrgs(selected,orgs)),
-        loading: false
-      });
-    });
+    const {
+      groups: {
+        selected,
+        plan
+      }
+    } = storeState;
+    this.setState( {selected, plan} );
   }
 
   render() {
 
-    if( this.state.loading ) {
+    const {
+      groupFilters: filters,
+      statesDict: states,
+      colorSectionsIDDict: colorDict,
+      orgs,
+      loading,
+      selected,
+      plan
+    } = this.state;
+
+    if ( loading ) {
       return <Loading />;
     }
 
-    const { 
-      orgs, 
-      filters, 
-      states,
-      plan,
-      colorDict
-    } = this.state;
+    const sortedOrgs = orgs && organizeOrgsByState(getSelectedOrgs(selected,orgs));
 
-    return(
-        <div className="planning-section">
-          {Object.keys(orgs).map( state =>  <StateOrgs name={state} 
-                                                       key={state} 
-                                                       orgs={orgs[state]} 
-                                                       plan={plan}
-                                                       filters={filters} 
-                                                       colors={colorDict}
-                                                       readonly={this.readonly}
-                                                       state={states[state]}
-                                            /> )} 
-        </div>
+    return (
+      <div className="planning-section">
+        {Object.keys(sortedOrgs).map( state => {
+          return (
+            <StateOrgs
+              name={state}
+              key={state}
+              orgs={sortedOrgs[state]}
+              plan={plan}
+              filters={filters}
+              colors={colorDict}
+              readonly={this.readonly}
+              state={states[state]}
+            />
+          );
+      })}
+      </div>
     );
   }
 }
 
 module.exports=Plan;
-

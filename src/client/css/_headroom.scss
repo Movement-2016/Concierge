@@ -1,0 +1,32 @@
+.headroom {
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+}
+.headroom--unfixed {
+  transform: translateY(0);
+  @include bp-lg {
+    transform: none;
+  }
+}
+.headroom--scrolled {
+  position: fixed;
+  transition: transform 200ms ease-in-out;
+}
+.nav-wrapper {
+  .headroom--unpinned {
+    transform: translateY(-100%);
+  }
+  .headroom--pinned {
+    transform: translateY(0);
+  }
+}
+.filter-bar-wrapper {
+   .headroom--unpinned {
+    transform: translateY(0);
+  }
+  .headroom--pinned {
+    transform: translateY($navbar-height-mobile);
+  }
+}
