@@ -1,4 +1,10 @@
 /* eslint quotes:"off" */
+
+/*
+
+  See bin/gmail-auth.js for details
+
+*/
 var fs = require('fs');
 var google = require('googleapis');
 var googleAuth = require('google-auth-library');
@@ -88,14 +94,14 @@ class GMail {
   }
 
   onNoAuthTokenFound(err) {
-    throw new Error( err, 'no gmail auth token found. Did you generate one with ./bin/gmail-auth.js ?');
+    throw new Error( err, 'no gmail auth token found. Did you generate one with bin/gmail-auth.js ?');
   }
 }
 
 GMail.TOKEN_DIR    = process.env.HOME + '/credentials/';
 GMail.PROFILE_PATH = GMail.TOKEN_DIR + 'gmail-profile.json';     // <-- you create this
-GMail.CRED_PATH    = GMail.TOKEN_DIR + 'gmail-credentials.json'; // <-- from console.developers.google.com/api/credentials
-GMail.TOKEN_PATH   = GMail.TOKEN_DIR + 'gmail-auth.json';        // <-- written by ../bin/gmail-auth.js
+GMail.CRED_PATH    = GMail.TOKEN_DIR + 'gmail-credentials.json'; // <-- from console.developers.google.com/apis/credentials
+GMail.TOKEN_PATH   = GMail.TOKEN_DIR + 'gmail-auth.json';        // <-- written by bin/gmail-auth.js
 
 GMail.readJSON = readJSON;
 

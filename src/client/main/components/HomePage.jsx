@@ -125,6 +125,18 @@ class StateMapBound extends ContextFromService(React.Component) {
   }
 }
 
+class AuthCode extends React.Component {
+
+  render() {
+    const {
+      code 
+    } = this.props;
+
+    return (
+        <p style={{margin:30}} className="well auth-code"><h2>Auth code: <b>{code}</b></h2></p>
+      );
+  }
+}
 
 class HomePage extends PageContext(React.Component) {
 
@@ -144,6 +156,11 @@ class HomePage extends PageContext(React.Component) {
   }
 
   render() {
+
+    if( this.props.location && this.props.location.query && this.props.location.query.code ) {
+      return <AuthCode code={this.props.location.query.code} />;
+    }
+
     const {
       loading,
       page: {
