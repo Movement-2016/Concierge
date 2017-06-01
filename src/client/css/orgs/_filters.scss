@@ -2,13 +2,23 @@
   font-weight: 700;
   font-size: 18px;
   margin-bottom: 6px;
+  @include bp-lg {
+    font-size: inherit;
+  }
 }
 
 .filter-group {
-  & + .filter-group {
+  @include bp-md-down {
+    & + .filter-group {
+      border-top: 1px solid $light-border;
+      padding-top: 18px;
+      margin-top: 20px;
+    }
+  }
+  @include bp-lg {
+    margin-top: 8px;
+    padding: 12px 0;
     border-top: 1px solid $light-border;
-    padding-top: 18px;
-    margin-top: 20px;
   }
 }
 
@@ -21,20 +31,44 @@
       font-size: 18px;
       padding-left: 32px;
       margin: 9px 0;
+      @include bp-lg {
+        height: inherit;
+        font-size: inherit;
+        line-height: 16px;
+        padding-left: 22px;
+        padding-top: 1px;
+        margin: 6px 0;
+      }
     }
     &:not(:checked) + label::after {
       border: 2px solid $med-trans;
+      @include bp-lg {
+        border: 2px solid rgba(0, 0, 0, 0.5);
+        height: 16px;
+        width: 16px;
+      }
     }
     &:checked + label::after {
       border: 2px solid $primary-color-light;
       background-color: $primary-color-light;
+      @include bp-lg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+    &:checked + label::before {
+      @include bp-lg {
+        width: 7px;
+        height: 13px;
+        top: -2px;
+        left: 0;
+      }
     }
   }
 }
 
 @include bp-lg {
   .filter-area {
-    overflow: hidden;
     font-size: 14px;
     color: $med-trans;
   }
@@ -64,11 +98,6 @@
       }
     }
   }
-  .filter-group {
-    margin-top: 8px;
-    padding: 12px 0;
-    border-top: 1px solid $light-border;
-  }
   .clear-filters {
     float: right;
     line-height: 23px;
@@ -79,31 +108,5 @@
   }
   .nonprofit-type-filters {
     display: none;
-  }
-  
-  .filters {
-    [type="checkbox"] {
-      & + label {
-        height: inherit;
-        font-size: inherit;
-        line-height: 16px;
-        padding-left: 22px;
-      }
-      &:not(:checked) + label::after {
-        border: 2px solid rgba(0, 0, 0, 0.5);
-        height: 16px;
-        width: 16px;
-      }
-      &:checked + label::after {
-        width: 16px;
-        height: 16px;
-      }
-      &:checked + label::before {
-        width: 7px;
-        height: 13px;
-        top: -2px;
-        left: 0;
-      }
-    }
   }
 }

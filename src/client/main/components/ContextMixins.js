@@ -27,7 +27,6 @@ const ContextFromStore = baseClass => class extends ContextMixin(baseClass) {
   componentWillMount () {
     const { store } = this.context;
     const stateSetter = () => {
-      console.log('stateSetter called.')
       this.stateFromStore(this.storeState);
     }
     !global.IS_SERVER_REQUEST && (this.unsubscribe = store.subscribe( stateSetter ));
@@ -51,6 +50,10 @@ const ContextFromService = baseClass => class extends ContextFromStore(baseClass
     this.initialStateFromService();
   }
 
+  serviceDidLoad() {
+    return;
+  }
+
   // Checks if servicePropNames has been set, then retrieves named props from service object and adds to element's state
   initialStateFromService() {
     const state = {};
@@ -65,6 +68,7 @@ const ContextFromService = baseClass => class extends ContextFromStore(baseClass
         propNames.forEach( propName => state[propName] = service[propName] );
         state.loading = false;
         this.setState( state );
+        this.serviceDidLoad();
       });
       this.setState( state );
     }

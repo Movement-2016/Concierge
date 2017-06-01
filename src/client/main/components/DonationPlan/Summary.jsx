@@ -51,8 +51,10 @@ class Summary extends React.Component {
             <div className="total-section">
               <Totals />
               <SummaryUser />
-              <EmailPlanButton onError={this.onError} onDone={this.onDone}>Email me this plan</EmailPlanButton>
-              <RequestConsult />
+              <div className="link-area">
+                <EmailPlanButton onError={this.onError} onDone={this.onDone}>Email me this plan</EmailPlanButton>
+                <RequestConsult />
+              </div>
             </div>
           </div>
         </div>

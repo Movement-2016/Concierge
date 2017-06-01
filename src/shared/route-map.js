@@ -9,15 +9,17 @@ import {
   AdvisorPage,
   SummaryPage,
   ConsultPage,
-  ProfilePage
 } from '../client/main/components';
+
+import {
+  PlanPage,
+  ProfilePage
+} from '../client/main/components/DonationPlan';
 
 import {
   OrgsEntryPage,
   OrgsPageMobile
 } from '../client/main/components/Orgs';
-
-import PlanPage from '../client/main/components/DonationPlan';
 
 const contentPage = pageName => {
   const pageWrapper = props => <ContentPage page={props.page} pageName={pageName} />;
@@ -32,8 +34,7 @@ const TestimonialsPage = contentPage('testimonials');
 var browserOnly = true;
 
 const RouteMap = [
-  {  path: '/groups',               component: OrgsEntryPage },
-  {  path: '/groups/:slug',         component: OrgsPageMobile },
+  {  path: '/groups(/:slug)',       component: OrgsEntryPage },
 
   {  path: '/plan',                 component: PlanPage, browserOnly },
   {  path: '/plan/summary',         component: SummaryPage,  browserOnly },

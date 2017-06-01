@@ -65,6 +65,7 @@ class Plan extends ContextFromService(React.Component) {
               colors={colorDict}
               readonly={this.readonly}
               state={states[state]}
+              mobile={this.props.mobile}
             />
           );
       })}

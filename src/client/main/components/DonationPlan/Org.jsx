@@ -34,7 +34,7 @@ class Org extends React.Component {
 
     this.onChange = this.onChange.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
-    this.onRemoveOrg = this.onRemoveOrg.bind(this);      
+    this.onRemoveOrg = this.onRemoveOrg.bind(this);
   }
 
   onChange(e) {
@@ -70,7 +70,8 @@ class Org extends React.Component {
         'nonprofit-type': nonProfitTypes = []
       },
       filters,
-      readonly
+      readonly,
+      mobile
     } = this.props;
 
     const urlGive = c3_donate_link || c4_donate_link || urlWeb;
@@ -106,13 +107,15 @@ class Org extends React.Component {
             <div className="amount-wrapper">
               <div className="amount">
                 {readonly
-                  ? '$' + commaize(value)
+                  ? value
+                    ? '$' + commaize(value)
+                    : '$0'
                   : <input placeholder="$" {...inProps}/>
                 }
               </div>
               {readonly
                 ? <ContributeButton urlGive={urlGive} amount={value} />
-                : <a className="remove-group" onClick={this.onRemoveOrg}><i className="material-icons">close</i>Remove</a>
+                : !mobile && <a className="remove-group" onClick={this.onRemoveOrg}><i className="material-icons">close</i>Remove</a>
               }
             </div>
           </div>

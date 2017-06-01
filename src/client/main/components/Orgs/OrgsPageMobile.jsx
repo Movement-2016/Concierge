@@ -63,12 +63,12 @@ class OrgsPageMobile extends OrgsPage {
       return <Loading />;
     }
 
-    const pageSlug = this.props.params
-      ? this.props.params.slug
-      : 'all-groups';
+    const { pageSlug } = this.props;
 
-    orgs = getVisibleOrgs( trimOrgs(orgs, pageSlug), visibility );
+    pageSlug && ( orgs = trimOrgs(orgs, pageSlug) );
+    orgs = getVisibleOrgs( orgs, visibility );
 
+    //needs to take snapshot of selectedFilters after showFilters has been set to true
     return (
       <main className="orgs-page orgs-page-mobile">
         <FilterBar onShowFilters={this.onShowFilters} />
@@ -76,9 +76,9 @@ class OrgsPageMobile extends OrgsPage {
         <PlanTray numGroups={selectedGroups.length}/>
         <FilterPage
           showFilters={!showOrgsList}
-          selectedFilters={visibility}
+          startingFilters={visibility}
           handleFilterToggle={this.handleFilterToggle}
-          onClose={this.onShowOrgsList}
+          handleClose={this.onShowOrgsList}
         />
       </main>
     );

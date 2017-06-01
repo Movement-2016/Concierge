@@ -3,32 +3,18 @@ import { Link }  from 'react-router';
 
 import ProfileInput  from './Input.jsx';
 
-const BackToPlan = () => {
-  return (
-    <Link className="back-link" to="/plan" title="Back to plan"><i className="material-icons">chevron_left</i>Back to plan</Link>
-  );
-};
-
 class ProfileForm extends React.Component {
 
-  constructor() {
-    super(...arguments);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  onSubmit(e) {
+  onSubmit = (e) => {
     e.preventDefault();
     this.props.onSubmit();
   }
-
-
 
   render() {
     const { submitText = 'Complete Plan' } = this.props;
 
     return (
         <div className="profile-form padded-form">
-          <BackToPlan />
           <h3>Your Information</h3>
           <form className="user-info" onSubmit={this.onSubmit}>
             <div className="row">

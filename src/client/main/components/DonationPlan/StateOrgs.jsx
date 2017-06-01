@@ -1,27 +1,28 @@
 import React            from 'react';
 
-import { 
-  planFromOrg 
+import {
+  planFromOrg
 } from '../../store/utils';
 
 import Org from './Org.jsx';
 
 class StateOrgs extends React.Component {
   render() {
-    
-    const { 
-      name, 
-      orgs, 
+
+    const {
+      name,
+      orgs,
       filters,
-      colors, 
+      colors,
       plan,
       state,
-      readonly
+      readonly,
+      mobile
     } = this.props;
-    
-    const { 
-      name:label, 
-      parent: colorID 
+
+    const {
+      name:label,
+      parent: colorID
     } = state;
 
     const amountFromOrg = org => {
@@ -32,11 +33,10 @@ class StateOrgs extends React.Component {
     return (
         <div className="plan-state" id={name}>
         <h3 className={colors[colorID].slug}>{label}</h3>
-          {orgs.map( org => <Org readonly={readonly} key={org.ID} filters={filters} amount={amountFromOrg(org)} {...org} />)}
-        </div>    
+          {orgs.map( org => <Org readonly={readonly} key={org.ID} filters={filters} amount={amountFromOrg(org)} mobile={mobile} {...org} />)}
+        </div>
       );
   }
 }
 
 module.exports=StateOrgs;
-

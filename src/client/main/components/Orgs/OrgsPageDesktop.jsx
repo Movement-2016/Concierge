@@ -1,6 +1,5 @@
 import React from 'react';
 import TagString from 'tag-string';
-import { browserHistory } from 'react-router';
 import Sticky from 'react-stickynode';
 
 import OrgsPage from './OrgsPage.jsx';
@@ -10,21 +9,12 @@ import FilterArea from '../Filters/FilterArea.jsx';
 import EasyDonateTiles from '../EasyDonateTiles.jsx';
 import Loading from '../Loading.jsx';
 
-import scrollToElement from '../../../lib/scrollToElement';
-
 import {
   getVisibleOrgs,
   getVisibleStates
 } from '../../store/utils';
 
 class OrgsPageDesktop extends OrgsPage {
-
-  // helper function to scroll to a state or color section
-  goToElement = (element) => {
-    browserHistory.push('/groups#' + element);
-    const SCROLL_DELAY = 100;
-    scrollToElement('#' + element, SCROLL_DELAY);
-  }
 
   render() {
     let {
@@ -37,7 +27,6 @@ class OrgsPageDesktop extends OrgsPage {
     if( loading ) {
       return <Loading />;
     }
-    console.log('orgspagedesktop render. visibility: ', visibility);
 
     orgs = getVisibleOrgs( orgs, visibility );
 

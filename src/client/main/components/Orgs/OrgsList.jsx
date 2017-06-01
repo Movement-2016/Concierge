@@ -21,12 +21,13 @@ class OrgsList extends ContextFromService(React.Component) {
     return ['colorSections', 'colorOrder', 'statesDict', 'groupFilters']
   }
 
-  componentDidMount() {
+  serviceDidLoad() {
     // Scrolls to correct state if hash is found in url
-    if( location.hash ) {
+    const firstUpdate = false;
+    if ( location.hash ) {
       const elementName = location.hash.replace('#','');
       const element = document.getElementById(elementName);
-      element && setTimeout( () => scrollToElement('#' + elementName), 200 );
+      element && scrollToElement('#' + elementName);
     }
   }
 

@@ -52,26 +52,31 @@ function OrgContent(props) {
   );
 }
 
-function TagBlock(props) {
+function OrgTags(props) {
   const {fields, filters} = props;
 
-  const block = {};
+  const tagBlocks = {};
 
   ['issue-area', 'constituency'].forEach(taxonomySlug => {
     if (fields[taxonomySlug] && fields[taxonomySlug].length) {
       const taxonomy = filters[taxonomySlug];
       const terms = taxonomy.terms;
-      block[taxonomy.label] = fields[taxonomySlug].map(slug => terms[slug].name);
+      tagBlocks[taxonomy.label] = fields[taxonomySlug].map(slug => terms[slug].name);
     }
   });
 
+  const keys = Object.keys(tagBlocks);
+  if (!keys.length) {
+    return null;
+  }
+
   return (
     <div className="tagblocks">
-      {Object.keys(block).map(label => {
+      {keys.map( label => {
         return (
           <div className="tagblock" key={label}>
             <span className="tagblock-title">{label}: </span>
-            <span className="tagblock-tags">{block[label].join(', ')}</span>
+            <span className="tagblock-tags">{tagBlocks[label].join(', ')}</span>
           </div>
         );
       })}
@@ -146,7 +151,7 @@ class Org extends React.Component {
           <OrgImage url={image} name={name} />
           <OrgLinks {...{urlGive, urlWeb, planIcon, planText}} onOrgClick={this.onOrgClick} />
           <OrgContent description={description} />
-          <TagBlock fields={fields} filters={filters} />
+          <OrgTags fields={fields} filters={filters} />
         </div>
       );
     }
@@ -160,7 +165,7 @@ class Org extends React.Component {
         <div className="content-col">
           <OrgHeader id={id} name={name} tags={npTags} terms={npTerms}/>
           <OrgContent description={description} />
-          <TagBlock fields={fields} filters={filters} />
+          <OrgTags fields={fields} filters={filters} />
         </div>
       </div>
     );

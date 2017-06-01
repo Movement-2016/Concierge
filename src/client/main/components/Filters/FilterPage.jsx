@@ -43,63 +43,64 @@ class FilterPage extends ContextFromService(React.Component) {
     super(props);
 
     this.cleared = {};
-    this.filterNames = Object.keys(this.props.selectedFilters);
+    this.filterNames = Object.keys(this.props.startingFilters);
     this.filterNames.map(f => this.cleared[f] = []);
 
-    this.state = {
-      selected: clone(this.cleared)
-    };
+    this.state = { selectedFilters: clone(this.cleared) };
   }
 
+  // Clear filters and load unfiltered groups page when first mounted
   componentDidMount() {
-    this.props.handleFilterToggle( this.state.selected );
-  }
-
-  cleared = () => {
-    this.filterNames.map(f => this.cleared[f] = []);
+    this.props.handleFilterToggle( clone(this.cleared) );
   }
 
   onClearAll = () => {
-    this.setState({ selected: clone(this.cleared) });
+    this.setState({ selectedFilters: clone(this.cleared) });
+  }
+
+  onClose = () => {
+    this.setState({ selectedFilters: clone(this.props.startingFilters) });
+    this.props.handleClose();
   }
 
   onSubmit = () => {
-    this.props.handleFilterToggle( this.state.selected );
-    this.props.onClose();
+    this.props.handleFilterToggle( clone(this.state.selectedFilters) );
+    this.props.handleClose();
   }
 
   onFilterChange = (category, term, addFilter) => {
 
-    const selected = this.state.selected;
+    const selectedFilters = this.state.selectedFilters;
 
-    if ( selected[category] ) {
-      const index = selected[category].indexOf(term);
+    if ( selectedFilters[category] ) {
+      const index = selectedFilters[category].indexOf(term);
       addFilter
-        ? (index === -1) && selected[category].push(term)
-        : (index > -1) && selected[category].splice(index, 1);
+        ? (index === -1) && selectedFilters[category].push(term)
+        : (index > -1) && selectedFilters[category].splice(index, 1);
     }
 
-    this.setState({ selected });
+    this.setState({ selectedFilters });
   }
 
   render() {
     const {
       groupFilters: filters,
+      selectedFilters,
       loading
     } = this.state;
 
     if (loading) {
-      return <span />
+      return null;
     }
 
     return (
       <div className={'filter-page' + (this.props.showFilters ? ' visible' : '')}>
-        <Header onClearAll={this.onClearAll} onClose={this.props.onClose} />
+        <Header onClearAll={this.onClearAll} onClose={this.onClose} />
           <div className="filters">
             <div className="container">
               {this.filterNames.map( f => {
                 const filterGroupProps = {
-                  selectedFilters:  this.state.selected,
+                  selectedFilters,
                   onFilterChange:   this.onFilterChange,
                   name:             f,
                   label:            filters[f].label,
@@ -117,9 +118,9 @@ class FilterPage extends ContextFromService(React.Component) {
 }
 
 FilterPage.propTypes = {
-  selectedFilters:    React.PropTypes.object.isRequired,
+  startingFilters:    React.PropTypes.object.isRequired,
   handleFilterToggle: React.PropTypes.func.isRequired,
-  onClose:            React.PropTypes.func.isRequired,
+  handleClose:        React.PropTypes.func.isRequired,
 };
 
 

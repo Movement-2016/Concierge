@@ -11,6 +11,7 @@
     }
   }
 }
+
 .planning-section {
   margin-bottom: 3rem;
   .plan-state {
@@ -36,7 +37,8 @@
   .nonprofit-tags {
     text-align: left;
     font-size: 12px;
-    color: $med-trans;
+    color: $lighter-trans;
+    font-weight: 500;
   }
   .amount-col {
     text-align: right;
@@ -47,22 +49,18 @@
     display: inline-block;
   }
 }
-.back-link {
-  text-transform: uppercase;
-  display: block;
-  font-size: 13px;
-  i {
-    vertical-align: middle;
-    padding-bottom: 4px;
-    margin-left: -8px;
-    margin-right: -2px;
-  }
-}
+
 .total-section {
-  float: right;
-  padding-left: 58px;
-  width: 100%;
-  max-width: 300px;
+  border-top: 1px solid $light-border;
+  padding-top: 1.5rem;
+  @include bp-md {
+    float: right;
+    padding-left: 58px;
+    width: 100%;
+    max-width: 300px;
+    border-top: 0;
+    padding-top: 0;
+  }
   .plan-total {
     @include clearfix;
     text-transform: uppercase;
@@ -74,23 +72,37 @@
       float: right;
     }
   }
-  .complete-button {
-    width: 100%;
-    line-height: 40px;
-    height: 40px;
+  .link-area {
+    max-width: 240px;
+    margin: 0 auto;
+    @include bp-md {
+      max-width: auto;
+    }
+  }
+}
+
+.complete-button {
+  width: 100%;
+  line-height: 40px;
+  height: 40px;
+  margin: 2rem 0;
+  padding: 0 1rem;
+  @include bp-md {
     margin: 1rem 0;
-    padding: 0 1rem;
   }
 }
 .consult-area {
   @include z-depth-1;
   border-radius: 2px;
-  margin: 3rem 0;
+  @include bp-md {
+    margin: 2rem 0 1rem;
+  }
   .consult-desc {
     padding: 1rem 12px;
     color: $lighter-trans;
   }
   .consult-button {
+    text-align: center;
     width: 100%;
     padding: 0 12px;
     border-top: 1px solid $light-border;
@@ -98,10 +110,9 @@
     height: 48px;
     line-height: 48px;
     i {
-      @include button-icon;
-    }
-    .consult-button-text {
-      @include button-icon-text;
+      vertical-align: middle;
+      margin-bottom: 4px;
+      margin-right: 11px;
     }
   }
 }

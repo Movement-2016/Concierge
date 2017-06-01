@@ -65,7 +65,9 @@
   @include clearfix;
   padding: 0 $group-padding;
   color: $lighter-trans;
-
+  @include bp-lg {
+    padding: 0 3%;
+  }
   h4 {
     font-size: 24px;
     margin: 0;

@@ -1,15 +1,23 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 
 import { ContextFromService } from '../ContextMixins';
-
 import FilterGroup from './FilterGroup.jsx';
 import ScrollLinks from './ScrollLinks.jsx';
 import StatePicker from './StatePicker.jsx';
+
+import scrollToElement from '../../../lib/scrollToElement';
 
 class FilterArea extends ContextFromService(React.Component) {
 
   get servicePropNames() {
     return ['groupFilters', 'colorSectionsDict', 'statesDict'];
+  }
+
+  // helper function to scroll to a state or color section
+  scrollToElement = (element) => {
+    browserHistory.push('/groups#' + element);
+    scrollToElement('#' + element);
   }
 
   onFilterChange = (category, term, addFilter) => {
@@ -41,7 +49,6 @@ class FilterArea extends ContextFromService(React.Component) {
     }
 
     const {
-      scrollToElement,
       visibleColorSections,
       visibleStates,
       selectedFilters
@@ -54,8 +61,8 @@ class FilterArea extends ContextFromService(React.Component) {
         {showOrgsNav && <div className="groups-nav">
           <div className="groups-nav-title">Navigate</div>
           <div className="filter-group">
-            <ScrollLinks links={colorSectionsDict} scrollToElement={scrollToElement} visible={visibleColorSections} />
-            <StatePicker terms={statesDict} scrollToElement={scrollToElement} visible={visibleStates} />
+            <ScrollLinks links={colorSectionsDict} scrollToElement={this.scrollToElement} visible={visibleColorSections} />
+            <StatePicker terms={statesDict} scrollToElement={this.scrollToElement} visible={visibleStates} />
           </div>
         </div>}
         <div className="filters">
@@ -80,7 +87,6 @@ class FilterArea extends ContextFromService(React.Component) {
 FilterArea.propTypes = {
   selectedFilters:      React.PropTypes.object.isRequired,
   handleFilterToggle:   React.PropTypes.func.isRequired,
-  scrollToElement:      React.PropTypes.func.isRequired,
 };
 
 

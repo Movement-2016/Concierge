@@ -1,11 +1,15 @@
 .summary-form {
   .group-link {
-    font-weight: 400;
+    margin-top: 3px;
     font-size: 12px;
     text-transform: uppercase;
     i {
-      font-size: 18px;
-      margin-left: 2px;
+      display: none;
+      @include bp-md {
+        display: inline-block;
+        font-size: 16px;
+        margin-right: 3px;
+      }
     }
   }
   .user-info {
@@ -19,5 +23,18 @@
   }
   .back-link {
     margin-top: 0.5rem;
+  }
+}
+.back-link {
+  margin-top: 2rem;
+  text-transform: uppercase;
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  i {
+    vertical-align: middle;
+    font-size: 19px;
+    margin-left: -4px;
+    margin-bottom: 3px;
   }
 }

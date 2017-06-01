@@ -11,7 +11,7 @@ function PlanTray(props) {
         <div className="title">My Donation Plan</div>
         <div className="info">{numGroups} Group{s}</div>
       </div>
-      <div className={'button-area' + (numGroups ? ' open' : '')}>
+      <div className="button-area">
         <Link to="/plan" className="plan-btn btn-flat waves-effect waves-light">
           <i className="material-icons">playlist_add_check</i>
           <span className="button-text">Go to plan</span>

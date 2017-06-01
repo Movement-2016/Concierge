@@ -1,5 +1,7 @@
 .padded-form {
-  padding: 2rem 1rem;
+  position: relative;
+  margin: 2rem -5.5555555556%;
+  padding: 2rem 5%;
   background-color: $form-bg-color;
   @include z-depth-2;
 
