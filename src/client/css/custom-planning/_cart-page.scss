@@ -1,11 +1,11 @@
 .donation-form {
   .amount-wrapper {
-    text-align: left;
+    // text-align: left;
   }
   .amount {
     input {
-      font-size: 1rem;
-      background-color: $white;
+      text-align: right;
+      font-size: 15px;
       border: 1px solid $med-border;
       padding: 0 8px;
       margin-bottom: 3px;
@@ -19,13 +19,15 @@
     }
   }
   .remove-group {
-    font-size: 11px;
+    margin-right: 3px;
+    font-size: 10px;
     cursor: pointer;
     @include light-link;
     i {
       vertical-align: middle;
-      font-size: 12px;
-      padding: 0 2px 2px 0;
+      font-size: 11px;
+      margin-bottom: 2px;
+      margin-right: 2px;
     }
   }
 }

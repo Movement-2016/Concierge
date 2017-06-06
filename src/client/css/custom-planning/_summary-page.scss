@@ -1,36 +1,49 @@
+.plan-summary-page {
+  .page-title {
+    margin-bottom: 2rem;
+  }
+  .user-info {
+    text-align: center;
+    @include bp-lg {
+      text-align: left;
+      margin-top: 1.67rem;
+      font-size: 14px;
+    }
+    .edit-user-info {
+      display: block;
+      @include light-link;
+      margin-top: 4px;
+      font-size: 11px;
+    }
+  }
+}
+
 .summary-form {
   .group-link {
-    margin-top: 3px;
+    margin-top: 4px;
     font-size: 12px;
     text-transform: uppercase;
     i {
       display: none;
-      @include bp-md {
-        display: inline-block;
+      @include bp-lg {
         font-size: 16px;
         margin-right: 3px;
       }
     }
   }
-  .user-info {
-    margin: 2rem 0;
-    .edit-user-info {
-      display: block;
-      margin-top: 4px;
-      font-size: 11px;
-      @include light-link;
-    }
-  }
-  .back-link {
-    margin-top: 0.5rem;
+  .button {
+    padding: 0 1rem;
   }
 }
 .back-link {
-  margin-top: 2rem;
+  margin-top: 3rem;
   text-transform: uppercase;
   display: block;
   font-size: 13px;
   font-weight: 700;
+  @include bp-lg {
+    margin-top: 1rem;
+  }
   i {
     vertical-align: middle;
     font-size: 19px;

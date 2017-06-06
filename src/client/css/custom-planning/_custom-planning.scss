@@ -13,7 +13,10 @@
 }
 
 .planning-section {
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
+  @include bp-lg {
+    margin-bottom: 1.5rem;
+  }
   .plan-state {
     h3 {
       font-size: 1rem;
@@ -31,6 +34,7 @@
     margin-top: 1rem;
   }
   .group-title {
+    font-weight: 500;
     margin-bottom: 3px;
     font-size: 1rem;
   }
@@ -48,12 +52,16 @@
     max-width: 110px;
     display: inline-block;
   }
+  .amount {
+    line-height: 1.2;
+    margin-bottom: 3px;
+  }
 }
 
 .total-section {
   border-top: 1px solid $light-border;
   padding-top: 1.5rem;
-  @include bp-md {
+  @include bp-lg {
     float: right;
     padding-left: 58px;
     width: 100%;
@@ -64,7 +72,8 @@
   .plan-total {
     @include clearfix;
     text-transform: uppercase;
-    font-size: 1.35rem;
+    font-size: 1.33rem;
+    line-height: 1.1;
     .label {
       float: left;
     }
@@ -73,28 +82,32 @@
     }
   }
   .link-area {
-    max-width: 240px;
+    max-width: 220px;
     margin: 0 auto;
-    @include bp-md {
+    @include bp-lg {
       max-width: auto;
     }
   }
 }
 
-.complete-button {
-  width: 100%;
-  line-height: 40px;
-  height: 40px;
-  margin: 2rem 0;
-  padding: 0 1rem;
-  @include bp-md {
-    margin: 1rem 0;
+.padded-form {
+  .complete-button {
+    font-size: 15px;
+    width: 100%;
+    line-height: 40px;
+    height: 40px;
+    margin: 3rem 0 2rem;
+    padding: 0 1rem;
+    @include bp-lg {
+      margin: 2rem 0;
+    }
   }
 }
 .consult-area {
   @include z-depth-1;
   border-radius: 2px;
-  @include bp-md {
+  font-size: 14px;
+  @include bp-lg {
     margin: 2rem 0 1rem;
   }
   .consult-desc {
@@ -112,7 +125,7 @@
     i {
       vertical-align: middle;
       margin-bottom: 4px;
-      margin-right: 11px;
+      margin-right: 8px;
     }
   }
 }

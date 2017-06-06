@@ -36,6 +36,16 @@ $trans-blue: rgba(20, 123, 204, 0.64);
 $facebook-blue: rgb(59, 89, 152);
 $twitter-blue: rgb(0, 172, 237);
 
+// Text shades
+$dark-trans: rgba(0, 0, 0, 0.87);
+$med-trans: rgba(0, 0, 0, 0.70);
+$lighter-trans: rgba(0, 0, 0, 0.52);
+$lightest-trans: rgba(0, 0, 0, 0.38);
+
+// Border shades
+$light-border: rgba(0, 0, 0, 0.08);
+$med-border: rgba(0, 0, 0, 0.16);
+
 // Color theme
 $primary-color: color("blue", "base");
 $primary-color-light: color("blue", "lighten-1");
@@ -48,20 +58,9 @@ $navbar-color: $white;
 $main-bg-color: color("grey", "lighten-5");
 $form-bg-color: $white;
 $link-color: $primary-color;
-
-// Text shades
-$dark-trans: rgba(0, 0, 0, 0.87);
-$med-trans: rgba(0, 0, 0, 0.70);
-$lighter-trans: rgba(0, 0, 0, 0.52);
-$lightest-trans: rgba(0, 0, 0, 0.38);
-
-// Borders
-$light-border: rgba(0, 0, 0, 0.08);
-$med-border: rgba(0, 0, 0, 0.16);
-
-// Input
 $input-border-color: $lighter-trans;
 $input-focus-color: $primary-color;
+$radio-empty-color: $lighter-trans;
 
 // Groups
 $group-padding: 5%;

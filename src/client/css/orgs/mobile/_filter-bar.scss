@@ -8,6 +8,10 @@
   @include clearfix;
   text-transform: uppercase;
   font-weight: 700;
+  @include bp-md {
+    height: 56px;
+    line-height: 56px;
+  }
   .navigate-button {
     float: left;
     color: $secondary-color;

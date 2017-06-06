@@ -90,6 +90,7 @@
 @mixin light-link {
   color: $lightest-trans;
   text-transform: uppercase;
+  font-weight: 700;
   &:hover,
   &:focus {
     color: $primary-color-light;

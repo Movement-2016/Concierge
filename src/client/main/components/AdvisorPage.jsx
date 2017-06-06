@@ -29,7 +29,7 @@ class AdvisorPage extends ContextFromService(React.Component) {
 
   renderAdvisorColumn(arr,index) {
     return (
-      <div key={index} className="col m4">
+      <div key={index} className="col s12 m4">
         <ul>
           {arr.map(n => <li key={n} dangerouslySetInnerHTML={{__html:n}} />)}
         </ul>

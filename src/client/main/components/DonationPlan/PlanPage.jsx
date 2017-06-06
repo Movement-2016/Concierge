@@ -39,17 +39,15 @@ class PlanPage extends React.Component {
   render() {
     return (
       <main className="content-page custom-planning cart-page">
-        <div className="container">
+        <div className="container small-container">
           <h1 className="page-title">My Donation Plan</h1>
           <PageDescription />
-        </div>
-        <div className="container">
           <div className="padded-form donation-form">
             <div className="row">
-              <div className="col s12 m8">
+              <div className="col s12 l8">
                 <Plan mobile={this.props.mobile} />
               </div>
-              <div className="col s12 m4">
+              <div className="col s12 l4">
                 <div className="total-section">
                   <Totals />
                   <div className="link-area">

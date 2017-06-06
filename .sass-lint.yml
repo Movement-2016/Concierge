@@ -46,7 +46,7 @@ rules:
 
   # Nesting
   declarations-before-nesting: 1
-  force-attribute-nesting: 1
+  force-attribute-nesting: 0
   force-element-nesting: 0
   force-pseudo-nesting: 0
 

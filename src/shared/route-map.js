@@ -5,15 +5,14 @@ import {
   HouseParty,
   ContactPage,
   NotFoundPage,
-  DonatePage,
   AdvisorPage,
-  SummaryPage,
   ConsultPage,
 } from '../client/main/components';
 
 import {
   PlanPage,
-  ProfilePage
+  ProfilePage,
+  SummaryPage
 } from '../client/main/components/DonationPlan';
 
 import {

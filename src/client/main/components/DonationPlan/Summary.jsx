@@ -8,7 +8,6 @@ import RequestConsult   from './RequestConsult.jsx';
 import SummaryUser      from './SummaryUser.jsx';
 
 class SummaryListing extends Plan {
-
   get readonly() {
     return true;
   }
@@ -25,7 +24,7 @@ class Summary extends React.Component {
     super(...arguments);
     this.state = {
       msg: '',
-      error: '',
+      error: ''
     };
     this.onDone = this.onDone.bind(this);
     this.onError = this.onError.bind(this);
@@ -41,24 +40,29 @@ class Summary extends React.Component {
 
   render() {
 
-    return(
-      <div className="padded-form summary-form">
-        <div className="row">
-          <div className="col s12 m8">
-            <SummaryListing />
-          </div>
-          <div className="col s12 m4">
-            <div className="total-section">
-              <Totals />
-              <SummaryUser />
-              <div className="link-area">
-                <EmailPlanButton onError={this.onError} onDone={this.onDone}>Email me this plan</EmailPlanButton>
-                <RequestConsult />
+    const { mobile } = this.props;
+
+    return (
+      <div>
+        {mobile && <SummaryUser />}
+        <div className="padded-form summary-form">
+          <div className="row">
+            <div className="col s12 l8">
+              <SummaryListing />
+            </div>
+            <div className="col s12 l4">
+              <div className="total-section">
+                <Totals />
+                {!mobile && <SummaryUser />}
+                <div className="link-area">
+                  <EmailPlanButton onError={this.onError} onDone={this.onDone}>Email me this plan</EmailPlanButton>
+                  <RequestConsult />
+                </div>
               </div>
             </div>
           </div>
+          <EditPlan />
         </div>
-        <EditPlan />
       </div>
     );
   }
