@@ -96,12 +96,12 @@ class NewsTiles extends ContextFromService(React.Component) {
 class StateMapBound extends ContextFromService(React.Component) {
 
   get servicePropNames() {
-    return ['states', 'colorSections'];
+    return ['states', 'colorSections']
   }
 
   render() {
     if( global.IS_SERVER_REQUEST ) {
-      return <span />;
+      return <span />
     }
 
     let {
@@ -111,14 +111,14 @@ class StateMapBound extends ContextFromService(React.Component) {
     } = this.state;
 
     if( loading ) {
-      return <Loading />;
+      return <Loading />
     }
 
     return (
         <div className="container">
           <h2 className="section-title">Find a Group</h2>
           <div className="map-desc">Click the map to browse the groups in each state.</div>
-          <StateMap dataSource={states} colors={colorSections} />;
+          <StateMap dataSource={states} colors={colorSections} />
         </div>
       );
 
@@ -129,7 +129,7 @@ class AuthCode extends React.Component {
 
   render() {
     const {
-      code 
+      code
     } = this.props;
 
     return (
