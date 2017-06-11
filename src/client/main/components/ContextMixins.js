@@ -65,12 +65,13 @@ const ServiceContext = baseClass => class extends ContextMixin(baseClass) {
       }
     });
 
-    this.setState(state, 
-      () => asyncProps.length && Promise.all( asyncProps ).then( props => {
+    const setPropStates = props => {
         var state = props.reduce( (obj,e) => {return { ...obj, ...e };}, {} );
         state.loading = false;
         this.setState( state );
-      }) );
+      };
+
+    this.setState(state, () => asyncProps.length && Promise.all( asyncProps ).then( setPropStates ) );
 
   }
 };

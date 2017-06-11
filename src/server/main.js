@@ -3,10 +3,15 @@
 global.IS_SERVER_REQUEST = true;
 global.jQuery = function(a) { return a; };
 
-const cluster = require('cluster');
+const USE_CLUSTER = false;
+
+const cluster = USE_CLUSTER && require('cluster');
 const processCommand = require ('./cmd').processCommand;
 const server = require ('./server');
 
+/*
+  start the server
+*/
 function main () {
   const command = processCommand (process.argv.slice (2));
   if (command.exit) {
@@ -17,7 +22,10 @@ function main () {
   server.start (port);
 }
 
-if(cluster.isMaster) {
+/*
+  use node cluster
+*/
+if(USE_CLUSTER && cluster.isMaster) {
     var numWorkers = require('os').cpus().length;
 
     console.log('Master cluster setting up ' + numWorkers + ' workers...');
