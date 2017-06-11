@@ -159,7 +159,7 @@ class MovementVoteService {
   }
 
   get filters() {
-    return this.content.then( () => this.groupFilters );
+    return this.content.then( () => this._filters = this.groupFilters );
   }
 
 

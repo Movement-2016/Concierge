@@ -53,15 +53,15 @@ class App extends React.Component {
     const { initService } = service.actions;
 
     store.dispatch( initService(service) );
+    
     if( !this.state.loading ) {
       return;
     }
 
-    service.content.then( () => {
+    service.menu.then( menu => {
       store.dispatch( initFilters(service.groupFilters) );
       subscribeToStore(store);
 
-      const menu = service.menu;
       const TIMING_DELAY = 250;
       setTimeout( () => this.setState({ menu, loading: false }), TIMING_DELAY );
 

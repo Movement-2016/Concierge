@@ -11,44 +11,33 @@ import StateOrgs from './StateOrgs.jsx';
 
 class Plan extends ContextFromService(React.Component) {
 
-  constructor() {
-    super(...arguments);
-    this.state = { loading: true };
-  }
-
   get readonly() {
     return false;
   }
 
   get servicePropNames() {
-    return ['orgs', 'groupFilters', 'statesDict', 'colorSectionsIDDict'];
-  }
-
-  stateFromStore(storeState) {
-    const {
-      groups: {
-        selected,
-        plan
-      }
-    } = storeState;
-    this.setState( {selected, plan} );
+    return ['orgs'];
   }
 
   render() {
+
+    if ( this.state.loading ) {
+      return <Loading />;
+    }
 
     const {
       groupFilters: filters,
       statesDict: states,
       colorSectionsIDDict: colorDict,
       orgs,
-      loading,
-      selected,
-      plan
-    } = this.state;
+    } = this.service;
 
-    if ( loading ) {
-      return <Loading />;
-    }
+    const {
+      groups: {
+        selected,
+        plan
+      }
+    } = this.storeState;
 
     const sortedOrgs = orgs && organizeOrgsByState(getSelectedOrgs(selected,orgs));
 

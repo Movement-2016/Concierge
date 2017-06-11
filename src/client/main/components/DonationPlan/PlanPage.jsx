@@ -2,17 +2,16 @@ import React            from 'react';
 import { Link }         from 'react-router';
 
 import Plan             from './Plan.jsx';
-import ContentPage      from '../ContentPage.jsx';
 import Totals           from './Totals.jsx';
 import RequestConsult   from './RequestConsult.jsx';
 
-import { ContextFromStore } from '../ContextMixins';
+import { ServiceMixin } from '../ContextMixins';
 
-const BackToGroups = () => {
-  return (
-    <Link className="back-link" to="/groups" title="Continue Browsing Groups"><i className="material-icons">chevron_left</i>Back to browse groups</Link>
-    );
-};
+// const BackToGroups = () => {
+//   return (
+//     <Link className="back-link" to="/groups" title="Continue Browsing Groups"><i className="material-icons">chevron_left</i>Back to browse groups</Link>
+//     );
+// };
 
 const PageDescription = () => {
   return (
@@ -20,7 +19,7 @@ const PageDescription = () => {
   );
 };
 
-class SummaryLink extends ContextFromStore(React.Component) {
+class SummaryLink extends ServiceMixin(React.Component) {
 
   render() {
     const { user: {email, phone} } = this.storeState;

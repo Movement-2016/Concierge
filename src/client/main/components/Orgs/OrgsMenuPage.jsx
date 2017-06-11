@@ -20,21 +20,20 @@ function BrowseLink(props) {
 class OrgsMenuPage extends ContextFromService(React.Component) {
 
   get servicePropNames() {
-    return ['colorSectionsDict', 'statesDict', 'numGroups'];
+    return ['states'];
   }
 
   render() {
+
+    if (this.state.loading) {
+      return <Loading />;
+    }
 
     const {
       colorSectionsDict,
       statesDict,
       numGroups,
-      loading
-    } = this.state;
-
-    if (loading) {
-      return <Loading />;
-    }
+    } = this.service;
 
     const colorKeys = Object.keys(colorSectionsDict);
     const statesKeys = Object.keys(statesDict);
@@ -50,12 +49,12 @@ class OrgsMenuPage extends ContextFromService(React.Component) {
         </div>
         <div className="orgs-link-section">
           { colorKeys.map( c => {
-            return <BrowseLink title={colorSectionsDict[c].name} key={c} slug={c} count={colorSectionsDict[c].count} />
+            return <BrowseLink title={colorSectionsDict[c].name} key={c} slug={c} count={colorSectionsDict[c].count} />;
           })}
         </div>
         <div className="orgs-link-section">
           { statesKeys.map( s => {
-            return <BrowseLink title={statesDict[s].name} key={s} slug={s} count={statesDict[s].count} />
+            return <BrowseLink title={statesDict[s].name} key={s} slug={s} count={statesDict[s].count} />;
           })}
         </div>
       </main>

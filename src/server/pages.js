@@ -5,9 +5,9 @@ var reactServer  = require('react-dom/server');
 var p2regex      = require('path-to-regexp');
 
 var routeMap     = require('../shared/route-map');
-var {
+var { 
   App,
-  HomePage
+  HomePage 
 }                = require('../client/main/components');
 var service      = require('../shared/m-service');
 
@@ -52,7 +52,7 @@ function render(res,component,name,props) {
     } else {
       var CE            = React.createElement;
       let elem          = CE(App, { menu }, CE(component,props) );
-      text              = htmlFromElement( elem  );
+      text              = htmlFromElement( elem  );      
       renderCache[name] = text;
     }
     res.status(200).send(text);
@@ -63,15 +63,15 @@ function renderPage(req, res, next) {
   const name = req.path;
 
   const route = routeMap.find( r => r.match.test(name) );
-
+  
    if( !route ) {
     next();
     return;
   }
 
   // console.log( 'returning ',name,' - memory: ', process.memoryUsage().heapUsed );
-
-  const {
+  
+  const { 
     component,
     component: {
       preloadPage
@@ -85,7 +85,7 @@ function renderPage(req, res, next) {
     } else {
       service.getPage(preloadPage)
         .then( page => render( res, component, name, {page} ) )
-        .catch( next );
+        .catch( next );      
     }
   } else {
     render( res, component, name, {} );
@@ -93,7 +93,7 @@ function renderPage(req, res, next) {
 
 }
 
-function clearCache(req, res) {
+function clearCache(req, res) {  
   for( var key in renderCache ) {
     renderCache[key] = null;
   }
@@ -102,16 +102,25 @@ function clearCache(req, res) {
 
 function pagesRoutes(app) {
 
-  return Promise.all( [
+  return Promise.all( [ 
 
     // TODO: do this through a registration process
 
-    service.content,
+    service.menu, 
+    service.orgs, 
+    service.advisors,
+    service.news,
+    service.testimonials,
+    service.states,
+    service.colors,
+    service.filters,
+    service.groups,
+    service.donateTiles,
     service.getPage('home')
 
-    ] ).then( () => {
+    ] ).then( ([_menu]) => {
 
-      menu = service.menu;
+      menu = _menu;
       indexPageText = fs.readFileSync('./dist/public/index.html').toString();
 
       app.get( '/*', renderPage );

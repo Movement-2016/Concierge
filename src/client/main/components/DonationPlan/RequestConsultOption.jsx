@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { ContextFromStore } from '../ContextMixins';
+import { ServiceMixin } from '../ContextMixins';
 
 import { setProfile } from '../../../account/store/actions';
 
-class RequestConsultOption extends ContextFromService(React.Component) {
+class RequestConsultOption extends ServiceMixin(React.Component) {
 
   constructor() {
     super(...arguments);

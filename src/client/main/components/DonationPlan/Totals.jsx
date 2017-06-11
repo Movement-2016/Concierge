@@ -1,9 +1,9 @@
 import React     from 'react';
 import commaize  from 'commaize';
 
-import { ContextFromStore } from '../ContextMixins';
+import { ContextMixin } from '../ContextMixins';
 
-class Totals extends ContextFromStore(React.Component) {
+class Totals extends ContextMixin(React.Component) {
 
   stateFromStore(storeState) {
     const {

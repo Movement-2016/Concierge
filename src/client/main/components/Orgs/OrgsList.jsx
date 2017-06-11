@@ -1,9 +1,7 @@
 import React from 'react';
 import Loading from '../Loading.jsx';
 
-import {
-  ContextFromService
-} from '../ContextMixins';
+import { ContextFromService } from '../ContextMixins';
 
 import ColorGroup from './ColorGroup.jsx';
 
@@ -18,12 +16,11 @@ const getVisibleColorSections = (allColorSections,orgs) => {
 class OrgsList extends ContextFromService(React.Component) {
 
   get servicePropNames() {
-    return ['colorSections', 'colorOrder', 'statesDict', 'groupFilters']
+    return [ 'groups'];
   }
 
-  serviceDidLoad() {
+  componentDidMount() {
     // Scrolls to correct state if hash is found in url
-    const firstUpdate = false;
     if ( location.hash ) {
       const elementName = location.hash.replace('#','');
       const element = document.getElementById(elementName);
@@ -31,22 +28,22 @@ class OrgsList extends ContextFromService(React.Component) {
     }
   }
 
-  stateFromStore(storeState) {
-    const { groups } = storeState;
-    this.setState( {groups} );
-  }
-
   getVisibleColorSections() {
 
     const {
-      groupFilters: filters,
-      colorSections,
-      colorOrder,
-      statesDict,
       groups
     } = this.state;
 
-    const { orgs } = this.props;
+    const {
+      groupFilters: filters,
+      statesDict,
+      colorSections,
+      colorOrder,      
+    } = this.service;
+
+    const { 
+      orgs 
+    } = this.props;
 
     const order = {};
     colorOrder.forEach( (c,i) => order[c] = i );
@@ -66,8 +63,6 @@ class OrgsList extends ContextFromService(React.Component) {
     if (this.state.loading) {
       return <Loading />;
     }
-
-    const vcs = this.getVisibleColorSections();
 
     const {
       groups: {

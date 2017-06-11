@@ -44,16 +44,16 @@ const emailContact = ({ storeState, onError, onDone, message }) => {
 
 };
 
-const emailHouseParty = ({ storeState, onError, onDone, message }) => {
+// const emailHouseParty = ({ storeState, onError, onDone, message }) => {
 
-  const payload = {
-    ...storeState.user,
+//   const payload = {
+//     ...storeState.user,
 
-    advisorEmail: ADVISOR_EMAIL,
-    message
-  }
+//     advisorEmail: ADVISOR_EMAIL,
+//     message
+//   };
 
-}
+// };
 
 const emailPlan = ({ storeState, onError, onDone, forceConsult = false }) => {
 
@@ -152,7 +152,7 @@ const trimOrgs = (orgs, pageSlug) => {
     }
   }
   return orgs;
-}
+};
 
 const getVisibleStates = orgs => {
   return path('..state',orgs).reduce( (a,e) => { a.indexOf(e) < 0 && a.push(e); return a; }, [] ).sort();

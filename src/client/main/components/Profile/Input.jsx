@@ -1,10 +1,10 @@
 import React     from 'react';
 
-import { ContextFromStore } from '../ContextMixins';
+import { ContextMixin } from '../ContextMixins';
 
 import { setProfile } from '../../../account/store/actions';
 
-class ProfileInput extends ContextFromStore(React.Component) {
+class ProfileInput extends ContextMixin(React.Component) {
 
   constructor() {
     super(...arguments);

@@ -1,6 +1,9 @@
+/* eslint no-console:off */
+
 import React from 'react';
 
-const ContextMixin = baseClass => class extends baseClass {
+
+const ServiceMixin = baseClass => class extends baseClass {
 
   static contextTypes = {
     store: React.PropTypes.object.isRequired
@@ -9,74 +12,70 @@ const ContextMixin = baseClass => class extends baseClass {
   get storeState() {
     return this.context.store.getState();
   }
-
+  
   get service() {
     return this.storeState.service;
   }
 
 };
 
-const ContextFromStore = baseClass => class extends ContextMixin(baseClass) {
+const ContextMixin = baseClass => class extends ServiceMixin(baseClass) {
 
   constructor() {
     super(...arguments);
-
     !global.IS_SERVER_REQUEST && (this.stateFromStore = this.stateFromStore.bind(this));
   }
 
   componentWillMount () {
     const { store } = this.context;
-    const stateSetter = () => {
-      this.stateFromStore(this.storeState);
-    }
+    const stateSetter = () => this.stateFromStore(store.getState());
     !global.IS_SERVER_REQUEST && (this.unsubscribe = store.subscribe( stateSetter ));
-    this.stateFromStore(this.storeState);
+    this.stateFromStore(store.getState());
   }
 
   componentWillUnmount () {
-    this.unsubscribe();
+    this.unsubscribe ();
   }
 
   stateFromStore() {
-    return;
+    throw 'Derivations of ContextMixin must implement stateFromStore';
   }
 
 };
 
-const ContextFromService = baseClass => class extends ContextFromStore(baseClass) {
+const ServiceContext = baseClass => class extends ContextMixin(baseClass) {
 
-  componentWillMount () {
-    super.componentWillMount();
-    this.initialStateFromService();
-  }
+  stateFromStore( /* storeState */ ) {
 
-  serviceDidLoad() {
-    return;
-  }
+    const state       = {};
+    const propNames   = this.servicePropNames;
+    const service     = this.service;
+    const asyncProps  = [];
 
-  // Checks if servicePropNames has been set, then retrieves named props from service object and adds to element's state
-  initialStateFromService() {
-    const state = {};
-    const propNames = this.servicePropNames;
-    const service = this.service;
-    if (propNames) {
-      state.loading = true;
-      if( global.IS_SERVER_REQUEST ) {
-        console.log( "WARNING: MAKING PROMISE REQUEST FROM SERVICE: ", propNames);
+    propNames && propNames.length && propNames.forEach( propName => {
+      const value = this.props[propName] || service.cachedValue(propName);
+      if( value ) {
+        state[propName] = value;
+      } else {
+        if( global.IS_SERVER_REQUEST ) {
+          throw `ERROR: PROPERTY WAS NOT CACHED PROPERLY: ${propName}`;
+        }
+        asyncProps.push( service[propName].then( propValue => Promise.resolve( { [propName]:propValue } )) );
+        state.loading = true;          
       }
-      service.content.then( () => {
-        propNames.forEach( propName => state[propName] = service[propName] );
+    });
+
+    this.setState(state, 
+      () => asyncProps.length && Promise.all( asyncProps ).then( props => {
+        var state = props.reduce( (obj,e) => {return { ...obj, ...e };}, {} );
         state.loading = false;
         this.setState( state );
-        this.serviceDidLoad();
-      });
-      this.setState( state );
-    }
-  }
+      }) );
 
+  }
 };
 
-const PageContext = baseClass => class extends ContextMixin(baseClass) {
+const PageContext = baseClass => class extends ServiceMixin(baseClass) {
 
   constructor() {
     super(...arguments);
@@ -87,11 +86,13 @@ const PageContext = baseClass => class extends ContextMixin(baseClass) {
       this.state = { loading: true };
     }
   }
-
+  
 };
 
 module.exports = {
-  ContextFromStore,
-  ContextFromService,
-  PageContext
+  ServiceMixin,
+  ContextMixin,
+  PageContext,
+  ServiceContext,
+  ContextFromService: ServiceContext
 };

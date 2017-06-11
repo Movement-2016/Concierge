@@ -96,23 +96,22 @@ class NewsTiles extends ContextFromService(React.Component) {
 class StateMapBound extends ContextFromService(React.Component) {
 
   get servicePropNames() {
-    return ['states', 'colorSections']
+    return ['states'];
   }
 
   render() {
     if( global.IS_SERVER_REQUEST ) {
-      return <span />
+      return <span />;
+    }
+
+    if( this.state.loading ) {
+      return <Loading />;
     }
 
     let {
-      states,
+      statesList: states,
       colorSections,
-      loading
-    } = this.state;
-
-    if( loading ) {
-      return <Loading />
-    }
+    } = this.service;
 
     return (
         <div className="container">

@@ -11,7 +11,7 @@ import scrollToElement from '../../../lib/scrollToElement';
 class FilterArea extends ContextFromService(React.Component) {
 
   get servicePropNames() {
-    return ['groupFilters', 'colorSectionsDict', 'statesDict'];
+    return ['states']; 
   }
 
   // helper function to scroll to a state or color section
@@ -37,16 +37,15 @@ class FilterArea extends ContextFromService(React.Component) {
   }
 
   render() {
+    if (this.state.loading) {
+      return <div />;
+    }
+
     const {
       groupFilters: filters,
       colorSectionsDict,
       statesDict,
-      loading
-    } = this.state;
-
-    if (loading) {
-      return <div />;
-    }
+    } = this.service;
 
     const {
       visibleColorSections,

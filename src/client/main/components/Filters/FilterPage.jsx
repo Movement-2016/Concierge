@@ -36,7 +36,7 @@ function SubmitBar(props) {
 class FilterPage extends ContextFromService(React.Component) {
 
   get servicePropNames() {
-    return ['groupFilters'];
+    return ['filters'];
   }
 
   constructor(props) {
@@ -83,15 +83,14 @@ class FilterPage extends ContextFromService(React.Component) {
   }
 
   render() {
+    if (this.state.loading) {
+      return null;
+    }
+
     const {
       groupFilters: filters,
       selectedFilters,
-      loading
-    } = this.state;
-
-    if (loading) {
-      return null;
-    }
+    } = this.service;
 
     return (
       <div className={'filter-page' + (this.props.showFilters ? ' visible' : '')}>
@@ -106,7 +105,7 @@ class FilterPage extends ContextFromService(React.Component) {
                   label:            filters[f].label,
                   terms:            filters[f].terms
                 };
-                return <FilterGroup key={f} {...filterGroupProps} />
+                return <FilterGroup key={f} {...filterGroupProps} />;
               }
               )}
             </div>

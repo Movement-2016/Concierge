@@ -16,8 +16,8 @@ let orgs = null;
 
 function init () {
 
-  return service.content.then( () => {
-      orgs = service.orgs;
+  return service.orgs.then( _orgs => {
+      orgs = _orgs;
       console.log('Ready to use email');
     }).catch( err => {
       console.log( err );
@@ -206,4 +206,5 @@ module.exports = app => {
     app.post( '/api/plan/send',  mailPlan );
     app.post( '/api/houseparty', houseParty );
     app.post( '/api/contact',    contactEmail );
+    init();
 };
