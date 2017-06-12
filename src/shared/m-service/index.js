@@ -14,7 +14,7 @@ if( typeof window !== 'undefined') {
 }
 
 const WP_DEV      = false;
-const WP_API_HOST = WP_DEV ? 'http://localhost:8080/wordpress' : 'https://wp.movementvote.org';
+const WP_API_HOST = WP_DEV ? 'http://localhost:8081/wordpress' : 'https://wp.movementvote.org';
 const WP_API_BASE = WP_API_HOST + '/wp-json/movement-2018/';
 
 function checkStatus(response) {
@@ -58,16 +58,10 @@ class MovementVoteService {
       : (this._promises['content'] = this._fetch( 'content' )).then( p => {this._promises['content'] = null; return this._content = p;} );
   }
 
-  getPage(slug) {
-    return this._pages[slug]
-      ? Promise.resolve(this._pages[slug])
-      : this._fetch( 'page/' + slug ).then( p => this._pages[slug] = p );
-  }
-
 /* Non-promise */
 
-  cachedPage(slug) {
-    return this._pages[slug] || null;
+  getPage(slug) {
+    return this._content.pages[slug];
   }
 
   get news() {

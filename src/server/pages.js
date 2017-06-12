@@ -41,7 +41,7 @@ function htmlFromElement(elem) {
 
 }
 
-function render(res,component,name,props) {
+function render(res, component, name, props) {
 
     // const heap = process.memoryUsage().heapUsed;
     // console.log( 'page render ',name,' - memory: ', commaize(heap) );
@@ -64,32 +64,15 @@ function renderPage(req, res, next) {
 
   const route = routeMap.find( r => r.match.test(name) );
 
-   if( !route ) {
+  if( !route ) {
     next();
     return;
   }
 
+  // console.log('renderPage() called. name: ', name, ', route: ', route);
   // console.log( 'returning ',name,' - memory: ', process.memoryUsage().heapUsed );
 
-  const {
-    component,
-    component: {
-      preloadPage
-    }
-  } = route;
-
-  if( preloadPage ) {
-    const page = service.cachedPage(preloadPage);
-    if( page ) {
-      render( res, component, name, {page} );
-    } else {
-      service.getPage(preloadPage)
-        .then( page => render( res, component, name, {page} ) )
-        .catch( next );
-    }
-  } else {
-    render( res, component, name, {} );
-  }
+  render( res, route.component, name, {} );
 
 }
 
@@ -102,14 +85,7 @@ function clearCache(req, res) {
 
 function pagesRoutes(app) {
 
-  return Promise.all( [
-
-    // TODO: do this through a registration process
-
-    service.content,
-    service.getPage('home')
-
-    ] ).then( () => {
+  return service.content.then( () => {
 
       menu = service.menu;
       indexPageText = fs.readFileSync('./dist/public/index.html').toString();
@@ -120,8 +96,8 @@ function pagesRoutes(app) {
 
       console.log( 'Ready to render');
 
-  }).catch(err => {
-    console.log( 'ERROR GETTING CONTENT: ', err );
+    }).catch(err => {
+      console.log( 'ERROR GETTING CONTENT: ', err );
   });
 
 }
