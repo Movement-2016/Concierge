@@ -1,5 +1,4 @@
 import React              from 'react';
-import Loading            from '../Loading.jsx';
 import { ContextFromService } from '../ContextMixins';
 
 import {
@@ -10,11 +9,6 @@ import {
 import StateOrgs from './StateOrgs.jsx';
 
 class Plan extends ContextFromService(React.Component) {
-
-  constructor() {
-    super(...arguments);
-    this.state = { loading: true };
-  }
 
   get readonly() {
     return false;
@@ -41,14 +35,9 @@ class Plan extends ContextFromService(React.Component) {
       statesDict: states,
       colorSectionsIDDict: colorDict,
       orgs,
-      loading,
       selected,
       plan
     } = this.state;
-
-    if ( loading ) {
-      return <Loading />;
-    }
 
     const sortedOrgs = orgs && organizeOrgsByState(getSelectedOrgs(selected,orgs));
 

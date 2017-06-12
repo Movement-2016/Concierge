@@ -11,13 +11,8 @@ class DonateTiles extends ContextFromService(React.Component) {
 
   render() {
     const {
-      donateTiles,
-      loading
+      donateTiles
     } = this.state;
-
-    if( loading ) {
-      return null;
-    }
 
     const {
       TileComp = Tile,

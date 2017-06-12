@@ -7,7 +7,6 @@ import OrgsList from './OrgsList.jsx';
 import PlanTray from './PlanTray.jsx';
 import FilterArea from '../Filters/FilterArea.jsx';
 import EasyDonateTiles from '../EasyDonateTiles.jsx';
-import Loading from '../Loading.jsx';
 
 import {
   getVisibleOrgs,
@@ -19,14 +18,9 @@ class OrgsPageDesktop extends OrgsPage {
   render() {
     let {
       orgs,
-      loading,
       visibility,
       selectedGroups
     } = this.state;
-
-    if( loading ) {
-      return <Loading />;
-    }
 
     orgs = getVisibleOrgs( orgs, visibility );
 

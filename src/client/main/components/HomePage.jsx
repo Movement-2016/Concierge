@@ -9,7 +9,6 @@ import StateMap            from './StateMap.jsx';
 import Thermometer         from './Thermometer.jsx';
 import SocialButtons       from './Social.jsx';
 import Tile                from './Tile.jsx';
-import Loading             from './Loading.jsx';
 import DonateTiles         from './DonateTiles.jsx';
 
 import scrollToElement from '../../lib/scrollToElement';
@@ -107,12 +106,7 @@ class StateMapBound extends ContextFromService(React.Component) {
     let {
       states,
       colorSections,
-      loading
     } = this.state;
-
-    if( loading ) {
-      return <Loading />
-    }
 
     return (
         <div className="container">
@@ -162,7 +156,6 @@ class HomePage extends PageContext(React.Component) {
     }
 
     const {
-      loading,
       page: {
         fields: {
           tag_line,
@@ -172,12 +165,7 @@ class HomePage extends PageContext(React.Component) {
           current
         } = {}
       } = {}
-
     } = this.state;
-
-    if( loading ) {
-      return <Loading />;
-    }
 
     return(
 

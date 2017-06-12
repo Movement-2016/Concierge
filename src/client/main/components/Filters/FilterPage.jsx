@@ -86,12 +86,7 @@ class FilterPage extends ContextFromService(React.Component) {
     const {
       groupFilters: filters,
       selectedFilters,
-      loading
     } = this.state;
-
-    if (loading) {
-      return null;
-    }
 
     return (
       <div className={'filter-page' + (this.props.showFilters ? ' visible' : '')}>

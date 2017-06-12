@@ -3,7 +3,7 @@ import Alert from '../../ui/Alert.jsx';
 import ContentPage from './ContentPage.jsx';
 import ProfileInput  from './Profile/Input.jsx';
 
-class PartyForm extends React.Component {
+class HousePartyPage extends React.Component {
 
   constructor() {
     super(...arguments);
@@ -96,4 +96,6 @@ class PartyForm extends React.Component {
   }
 }
 
-module.exports = PartyForm;
+HousePartyPage.preloadPage = 'houseparty';
+
+module.exports = HousePartyPage;

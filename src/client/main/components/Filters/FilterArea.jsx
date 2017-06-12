@@ -41,12 +41,7 @@ class FilterArea extends ContextFromService(React.Component) {
       groupFilters: filters,
       colorSectionsDict,
       statesDict,
-      loading
     } = this.state;
-
-    if (loading) {
-      return <div />;
-    }
 
     const {
       visibleColorSections,

@@ -62,7 +62,7 @@ class App extends React.Component {
       subscribeToStore(store);
 
       const menu = service.menu;
-      const TIMING_DELAY = 250;
+      const TIMING_DELAY = 10;
       setTimeout( () => this.setState({ menu, loading: false }), TIMING_DELAY );
 
     }).catch( error => {

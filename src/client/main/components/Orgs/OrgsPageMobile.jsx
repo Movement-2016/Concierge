@@ -7,7 +7,6 @@ import OrgsPage from './OrgsPage.jsx';
 import OrgsList from './OrgsList.jsx';
 import FilterPage from '../Filters/FilterPage.jsx';
 import PlanTray from './PlanTray.jsx';
-import Loading from '../Loading.jsx';
 
 import { trimOrgs, getVisibleOrgs } from '../../store/utils';
 import scrollToElement from '../../../lib/scrollToElement';
@@ -53,15 +52,10 @@ class OrgsPageMobile extends OrgsPage {
   render() {
     let {
       orgs,
-      loading,
       showOrgsList,
       visibility,
       selectedGroups
     } = this.state;
-
-    if( loading ) {
-      return <Loading />;
-    }
 
     const { pageSlug } = this.props;
 

@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 import { ContextFromService } from '../ContextMixins';
 
-import Loading from '../Loading.jsx';
-
 function BrowseLink(props) {
   const {title, slug, count} = props;
 
@@ -29,12 +27,7 @@ class OrgsMenuPage extends ContextFromService(React.Component) {
       colorSectionsDict,
       statesDict,
       numGroups,
-      loading
     } = this.state;
-
-    if (loading) {
-      return <Loading />;
-    }
 
     const colorKeys = Object.keys(colorSectionsDict);
     const statesKeys = Object.keys(statesDict);

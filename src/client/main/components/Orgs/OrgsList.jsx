@@ -1,5 +1,4 @@
 import React from 'react';
-import Loading from '../Loading.jsx';
 
 import {
   ContextFromService
@@ -21,9 +20,13 @@ class OrgsList extends ContextFromService(React.Component) {
     return ['colorSections', 'colorOrder', 'statesDict', 'groupFilters']
   }
 
-  serviceDidLoad() {
+  // constructor() {
+  //   super(...arguments);
+  //   this.state = { loading: true };
+  // }
+
+  componentDidMount() {
     // Scrolls to correct state if hash is found in url
-    const firstUpdate = false;
     if ( location.hash ) {
       const elementName = location.hash.replace('#','');
       const element = document.getElementById(elementName);
@@ -62,10 +65,6 @@ class OrgsList extends ContextFromService(React.Component) {
   }
 
   render() {
-
-    if (this.state.loading) {
-      return <Loading />;
-    }
 
     const vcs = this.getVisibleColorSections();
 

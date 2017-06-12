@@ -1,6 +1,5 @@
 import React from 'react';
 import { PageContext } from './ContextMixins';
-import Loading from './Loading.jsx';
 
 class ContentPageShell extends React.Component {
   render() {
@@ -31,10 +30,6 @@ class ContentPage extends PageContext(React.Component) {
   }
 
   render() {
-
-    if( !this.state.page ) {
-      return <Loading />;
-    }
 
     const {
       page:{

@@ -2,7 +2,7 @@ import React from 'react';
 
 import {
   ContentPage,
-  HouseParty,
+  HousePartyPage,
   ContactPage,
   NotFoundPage,
   AdvisorPage,
@@ -45,9 +45,9 @@ const RouteMap = [
   {  path: '/team',                 component: MeetTheTeamPage },
 
   {  path: '/getintouch',           component: ContactPage, browserOnly },
-  {  path: '/houseparty',           component: HouseParty, browserOnly },
+  {  path: '/houseparty',           component: HousePartyPage },
 
-  {  path: '*' ,             component: NotFoundPage, browserOnly },
+  {  path: '*' ,                    component: NotFoundPage, browserOnly },
 ];
 
 module.exports = RouteMap;
