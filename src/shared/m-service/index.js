@@ -60,7 +60,7 @@ class MovementVoteService {
 
 /* Non-promise */
 
-  getPage(slug) {
+  getPage = (slug) => {
     return this._content.pages[slug];
   }
 
