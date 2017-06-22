@@ -31,7 +31,7 @@ function State(props) {
           mobile,
           ...o
         };
-        return <Org key={o.ID} {...orgProps} />
+        return <Org key={o.ID} {...orgProps} />;
       })}
     </div>
   );

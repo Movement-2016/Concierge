@@ -1,18 +1,12 @@
 import React               from 'react';
 
-import {
-  ContextFromService,
-  PageContext
-}                          from './ContextMixins.js';
-
 import StateMap            from './StateMap.jsx';
 import Thermometer         from './Thermometer.jsx';
 import SocialButtons       from './Social.jsx';
 import Tile                from './Tile.jsx';
-import Loading             from './Loading.jsx';
 import DonateTiles         from './DonateTiles.jsx';
 
-import scrollToElement from '../../lib/scrollToElement';
+import scrollToElement     from '../../lib/scrollToElement';
 
 class Testimonial extends React.Component {
   render() {
@@ -45,21 +39,12 @@ class Testimonial extends React.Component {
 }
 
 
-class Testimonials extends ContextFromService(React.Component) {
-
-  get servicePropNames() {
-    return ['testimonials'];
-  }
+class Testimonials extends React.Component {
 
   render() {
     const {
-      testimonials,
-      loading
-    } = this.state;
-
-    if( loading ) {
-      return null;
-    }
+       testimonials
+    } = this.props;
 
     return (
       <div className="testimonials flex-container">
@@ -69,21 +54,12 @@ class Testimonials extends ContextFromService(React.Component) {
   }
 }
 
-class NewsTiles extends ContextFromService(React.Component) {
-
-  get servicePropNames() {
-    return ['news'];
-  }
+class NewsTiles extends React.Component {
 
   render() {
     const {
       news,
-      loading
-    } = this.state;
-
-    if( loading ) {
-      return null;
-    }
+    } = this.props;
 
     return (
       <div className="news-tiles">
@@ -93,25 +69,17 @@ class NewsTiles extends ContextFromService(React.Component) {
   }
 }
 
-class StateMapBound extends ContextFromService(React.Component) {
-
-  get servicePropNames() {
-    return ['states'];
-  }
+class StateMapBound extends React.Component {
 
   render() {
     if( global.IS_SERVER_REQUEST ) {
       return <span />;
     }
 
-    if( this.state.loading ) {
-      return <Loading />;
-    }
-
     let {
-      statesList: states,
+      states,
       colorSections,
-    } = this.service;
+    } = this.props;
 
     return (
         <div className="container">
@@ -137,11 +105,7 @@ class AuthCode extends React.Component {
   }
 }
 
-class HomePage extends PageContext(React.Component) {
-
-  get page() {
-    return 'home';
-  }
+class HomePage extends React.Component {
 
   componentDidMount() {
     if( location.hash ) {
@@ -156,12 +120,11 @@ class HomePage extends PageContext(React.Component) {
 
   render() {
 
-    if( this.props.location && this.props.location.query && this.props.location.query.code ) {
-      return <AuthCode code={this.props.location.query.code} />;
+    if( this.props.queryParams && this.props.queryParams.code ) {
+      return <AuthCode code={this.props.queryParams.code} />;
     }
 
     const {
-      loading,
       page: {
         fields: {
           tag_line,
@@ -170,13 +133,14 @@ class HomePage extends PageContext(React.Component) {
           goal,
           current
         } = {}
-      } = {}
+      } = {},
+      donateTiles,
+      states,
+      colorSections,
+      testimonials,
+      news
 
-    } = this.state;
-
-    if( loading ) {
-      return <Loading />;
-    }
+    } = this.props.model;
 
     return(
 
@@ -197,20 +161,20 @@ class HomePage extends PageContext(React.Component) {
         <section className="donate-section" id="donate">
           <div className="container">
             <h2 className="section-title">Choose a Way to Give</h2>
-            <DonateTiles />
+            <DonateTiles tiles={donateTiles} />
           </div>
         </section>
         <section className="map-section">
-          <StateMapBound />
+          <StateMapBound states={states} colorSections={colorSections} />
         </section>
         <section className="testimonial-section">
           <div className="container">
-            <Testimonials />
+            <Testimonials testimonials={testimonials} />
           </div>
         </section>
         <section className="news-section">
           <div className="container">
-            <NewsTiles />
+            <NewsTiles news={news} />
           </div>
         </section>
       </main>

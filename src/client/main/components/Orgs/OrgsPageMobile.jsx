@@ -1,16 +1,16 @@
 import React from 'react';
-import { Link, browserHistory } from 'react-router';
+// import router from '../../../../shared/router';
+import Link from '../../../ui/LinkToRoute';
 import Headroom from 'react-headroom';
-import path from 'jspath';
+
 
 import OrgsPage from './OrgsPage.jsx';
 import OrgsList from './OrgsList.jsx';
 import FilterPage from '../Filters/FilterPage.jsx';
 import PlanTray from './PlanTray.jsx';
-import Loading from '../Loading.jsx';
 
 import { trimOrgs, getVisibleOrgs } from '../../store/utils';
-import scrollToElement from '../../../lib/scrollToElement';
+
 
 function FilterBar(props) {
   return (
@@ -35,8 +35,8 @@ function FilterBar(props) {
 
 class OrgsPageMobile extends OrgsPage {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super(...arguments);
     this.state = {
       showOrgsList: true
     };
@@ -51,17 +51,15 @@ class OrgsPageMobile extends OrgsPage {
   }
 
   render() {
+
+    const props = this.props;
+
     let {
       orgs,
-      loading,
       showOrgsList,
       visibility,
       selectedGroups
-    } = this.state;
-
-    if( loading ) {
-      return <Loading />;
-    }
+    } = props;
 
     const { pageSlug } = this.props;
 
@@ -72,7 +70,7 @@ class OrgsPageMobile extends OrgsPage {
     return (
       <main className="orgs-page orgs-page-mobile">
         <FilterBar onShowFilters={this.onShowFilters} />
-        <OrgsList orgs={orgs} mobile={true} />
+        <OrgsList {...props} mobile />
         <PlanTray numGroups={selectedGroups.length}/>
         <FilterPage
           showFilters={!showOrgsList}

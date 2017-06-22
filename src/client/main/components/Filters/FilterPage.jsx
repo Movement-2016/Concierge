@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { ContextFromService } from '../ContextMixins';
 import FilterGroup from './FilterGroup.jsx';
 
 function clone(object) {
@@ -33,18 +32,14 @@ function SubmitBar(props) {
   );
 }
 
-class FilterPage extends ContextFromService(React.Component) {
+class FilterPage extends React.Component {
 
-  get servicePropNames() {
-    return ['filters'];
-  }
-
-  constructor(props) {
-    super(props);
+  constructor() {
+    super(...arguments);
 
     this.cleared = {};
     this.filterNames = Object.keys(this.props.startingFilters);
-    this.filterNames.map(f => this.cleared[f] = []);
+    this.filterNames.forEach(f => this.cleared[f] = []);
 
     this.state = { selectedFilters: clone(this.cleared) };
   }
@@ -83,14 +78,13 @@ class FilterPage extends ContextFromService(React.Component) {
   }
 
   render() {
-    if (this.state.loading) {
-      return null;
-    }
-
     const {
       groupFilters: filters,
+    } = this.props;
+
+    const {
       selectedFilters,
-    } = this.service;
+    } = this.state;
 
     return (
       <div className={'filter-page' + (this.props.showFilters ? ' visible' : '')}>

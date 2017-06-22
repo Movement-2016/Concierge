@@ -8,7 +8,7 @@ function ColorGroup(props) {
   const {
     slug:       name,
     name:       label,
-    statesDict: allStates,
+    statesDict,
     states,
     selected,
     store,
@@ -27,9 +27,9 @@ function ColorGroup(props) {
           store,
           filters,
           mobile,
-          ...allStates[s]
+          ...statesDict[s]
         };
-        return <State key={s} {...stateProps} />
+        return <State key={s} {...stateProps} />;
       })}
     </div>
   );

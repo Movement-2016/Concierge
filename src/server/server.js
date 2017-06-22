@@ -8,7 +8,7 @@ const path           = require ('path');
 const https          = require('https');
 const http           = require('http');
 
-const routes = require ('./routes');
+const routes     = require ('./routes');
 
 const sslPath    = '/etc/letsencrypt/live/movementvote.org/';
 const SSL_PORT   = 4000;
@@ -83,7 +83,7 @@ function startApp(app,port,resolve) {
   // static file handling
   app.use (express.static (PUBLIC_DIR));
 
-  // for not explicitly handled HTML routes, return root document
+  // called from next() on error from routes()
   app.use ('*', (req, res) => {
     console.log( 'returning index.html - memory: ', process.memoryUsage().heapUsed );
     res.sendFile (`${PUBLIC_DIR}/index.html`);

@@ -12,7 +12,7 @@ class StatePicker extends React.Component {
 
   handleChange(event) {
     const newValue = event.target.value;
-    if (newValue != 'select-state') {
+    if (newValue !== 'select-state') {
       this.props.scrollToElement(newValue);
     }
     this.setState({value: newValue});

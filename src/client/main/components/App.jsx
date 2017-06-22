@@ -1,8 +1,6 @@
 import React              from 'react';
-import { render }         from 'react-dom';
 import { Provider }       from 'react-redux';
 import MediaQuery         from 'react-responsive';
-
 
 import '../../lib/polyfills';
 
@@ -10,85 +8,74 @@ import { initFilters }       from '../store/actions';
 
 import configureStore        from '../../store/configureStore';
 
-import service               from '../../../shared/m-service';
+import router                from '../../../shared/router'; 
 
 import {
   unsubscribeFromStore,
   subscribeToStore
 } from '../../lib/analytics';
 
-import Router       from './Routes.jsx';
-import Nav          from './Nav.jsx';
-import Footer       from './Footer.jsx';
-import Loading      from './Loading.jsx';
+import Nav             from './Nav.jsx';
+import Footer          from './Footer.jsx';
+
+import appBrowserModel from './AppBrowserModel';
 
 const store = configureStore();
 
 const SITE_TITLE = 'Movement 2017';
 
-const ErrorPage = ({ error, err }) => {
-    const msg = error.toString();
-    let   msg2 = err.toString();
-    (msg2 === msg) && (msg2 = '');
-    return (<div className="error-page">
-      <h3>There was a problem</h3>
-      <pre>{msg}</pre>
-      <pre>{msg2}</pre>
-    </div>);
-  };
+// const ErrorPage = ({ error, err }) => {
+//     const msg = error.toString();
+//     let   msg2 = err.toString();
+//     (msg2 === msg) && (msg2 = '');
+//     return (<div className="error-page">
+//       <h3>There was a problem</h3>
+//       <pre>{msg}</pre>
+//       <pre>{msg2}</pre>
+//     </div>);
+//   };
+
 
 class App extends React.Component {
+
   constructor (props) {
     super (props);
-    this.state = {
-      menu: props.menu,
-      loading: !global.IS_SERVER_REQUEST,
-      error: '',
-      err: ''
-    };
+    this.onNavigate = this.onNavigate.bind(this);
+    this.state = { ...props };
   }
 
-  componentWillMount () {
-
-    const { initService } = service.actions;
-
-    store.dispatch( initService(service) );
-    
-    if( !this.state.loading ) {
-      return;
+  componentWillMount() {
+    if( !global.IS_SERVER_REQUEST ) {
+      router.on( router.events.NAVIGATE_TO, this.onNavigate );
+      store.dispatch( initFilters(this.state.groupFilters) );
+      subscribeToStore(store);    
     }
-
-    service.menu.then( menu => {
-      store.dispatch( initFilters(service.groupFilters) );
-      subscribeToStore(store);
-
-      const TIMING_DELAY = 250;
-      setTimeout( () => this.setState({ menu, loading: false }), TIMING_DELAY );
-
-    }).catch( error => {
-      var err = error.message || error.statusText || error + '';
-      this.setState( { error, err, loading: false } );
-    });
   }
 
-  // before unmount, remove store listener
   componentWillUnmount () {
     unsubscribeFromStore();
   }
 
-  render () {
-    if( this.state.loading ) {
-      return <Loading />;
-    }
+  onNavigate(spec) {
+    this.setState( spec );
+  }
 
-    const {
-      err,
-      error,
-      menu
+  render () {
+
+    const { 
+      menu,
+      component: { 
+        component:comp 
+      },
+      model, 
+      browserOnly,
+      params, 
+      path,
+      queryParams 
     } = this.state;
 
-    if( error ) {
-      return <ErrorPage error={error} err={err} />;
+    if( !path || (browserOnly && global.IS_SERVER_REQUEST) ) {
+      return <p />;
     }
 
     return (
@@ -96,11 +83,10 @@ class App extends React.Component {
         <MediaQuery maxWidth={992} values={{width: 1400}}>
           {(matches) => {
             // add additional mobile prop to child element
-            const child = React.cloneElement( React.Children.only(this.props.children), {mobile: matches} );
             return (
               <div className="site-wrapper">
                 <Nav menu={menu} siteTitle={SITE_TITLE} mobile={matches} />
-                {child}
+                {comp && React.createElement(comp, { store, model, params, queryParams, mobile: matches} )}
                 <Footer />
               </div>
             );
@@ -111,13 +97,6 @@ class App extends React.Component {
   }
 }
 
-App.propTypes = {
-  location: React.PropTypes.object,
-  children: React.PropTypes.node,
-};
-
-if( !global.IS_SERVER_REQUEST ) {
-  render( <Router App={App} store={store} />, document.getElementById('app') );
-}
+appBrowserModel(App);
 
 module.exports = App;

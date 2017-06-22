@@ -1,23 +1,10 @@
-import React               from 'react';
-import { ContextFromService }  from './ContextMixins';
-import Tile                from './Tile.jsx';
+import React    from 'react';
+import Tile     from './Tile.jsx';
 
 
-class DonateTiles extends ContextFromService(React.Component) {
-
-  get servicePropNames() {
-    return ['donateTiles'];
-  }
+class DonateTiles extends React.Component {
 
   render() {
-    const {
-      donateTiles,
-      loading
-    } = this.state;
-
-    if( loading ) {
-      return null;
-    }
 
     const {
       TileComp = Tile,
@@ -27,7 +14,7 @@ class DonateTiles extends ContextFromService(React.Component) {
     return (
       <div className="donate-tiles">
         {title && (<div className="title">{title}</div>)}
-        {donateTiles.map( (d, i) => <TileComp key={i} {...d} />)}
+        {this.props.tiles.map( (d, i) => <TileComp key={i} {...d} />)}
       </div>
     );
   }

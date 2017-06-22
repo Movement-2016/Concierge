@@ -1,5 +1,5 @@
 import React from 'react';
-import TagString from 'tag-string';
+
 import Sticky from 'react-stickynode';
 
 import OrgsPage from './OrgsPage.jsx';
@@ -7,7 +7,6 @@ import OrgsList from './OrgsList.jsx';
 import PlanTray from './PlanTray.jsx';
 import FilterArea from '../Filters/FilterArea.jsx';
 import EasyDonateTiles from '../EasyDonateTiles.jsx';
-import Loading from '../Loading.jsx';
 
 import {
   getVisibleOrgs,
@@ -17,25 +16,22 @@ import {
 class OrgsPageDesktop extends OrgsPage {
 
   render() {
-    let {
-      orgs,
-      loading,
+    const {
       visibility,
       selectedGroups
     } = this.state;
 
-    if( loading ) {
-      return <Loading />;
-    }
-
-    orgs = getVisibleOrgs( orgs, visibility );
+    const props = this.props;
+    
+    const orgs = getVisibleOrgs( props.orgs, visibility );
 
     const filterAreaProps = {
+      ...props,
       scrollToElement:       this.goToElement,
       handleFilterToggle:    this.handleFilterToggle,
       selectedFilters:       visibility,
       visibleColorSections:  Object.keys(orgs),
-      visibleStates:         getVisibleStates(orgs),
+      visibleStates:         getVisibleStates(orgs),            
     };
 
     const title = 'Browse Groups';
@@ -50,12 +46,12 @@ class OrgsPageDesktop extends OrgsPage {
                 <FilterArea {...filterAreaProps} />
               </Sticky>
             </div>
-            <OrgsList orgs={orgs} mobile={false} />
+            <OrgsList {...props} />
             <div className="plan-sidebar-wrapper">
               <Sticky top={104} bottomBoundary=".orgs-container">
                 <div className="plan-sidebar">
                   <PlanTray numGroups={selectedGroups.length}/>
-                  <EasyDonateTiles />
+                  <EasyDonateTiles tiles={this.props.model.ezDonateTiles} />
                 </div>
               </Sticky>
             </div>

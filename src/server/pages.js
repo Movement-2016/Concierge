@@ -1,139 +1,39 @@
 /* eslint no-console:off */
-var fs           = require('fs');
-var React        = require('react');
-var reactServer  = require('react-dom/server');
-var p2regex      = require('path-to-regexp');
 
-var routeMap     = require('../shared/route-map');
-var { 
-  App,
-  HomePage 
-}                = require('../client/main/components');
-var service      = require('../shared/m-service');
+const BODY_REGEX         = /(<div\s+id="app">)([^<]+)?(<\/div>)/;
+const PATH_TO_INDEX_HTML = './dist/public/index.html';
 
-// var commaize = require('commaize');
+//const p2regex           = require( 'path-to-regexp');
 
-var { renderToStaticMarkup } = reactServer;
+//const routeMap          = require( '../shared/route-map');
+const router            = require( '../shared/router'); 
+const ReactServerRouter = require( './react-router');
+const { App }           = require( '../client/main/components');
 
-var indexPageText  = null;
-var menu = null;
-var renderCache = {};
+// router.routes = routeMap.filter( r => !r.browserOnly );
 
-routeMap = routeMap.filter( r => !r.browserOnly ).map( r => {
-  const fixedPath = r.path.replace('(','').replace(')','?');
-  r.match = p2regex(fixedPath);
-  return r;
-});
+// .map( r => {
+//   const fixedPath = r.path.replace('(','').replace(')','?');
+//   r.match = p2regex(fixedPath);
+//   return r;
+// });
 
-routeMap.push( { path: '/', component: HomePage, match: /^\/$/ } );
-
-function htmlFromElement(elem) {
-
-  var body = renderToStaticMarkup(elem);
-
-  var text = indexPageText.replace('<!-- RENDER CONTENT -->',body);
-
-  // meta tags replacement goes here -----
-  //
-  // text = text.replace('<!-- META TAG CONENT -->', props.metaTags)
-
-  return text;
-
-}
-
-function render(res,component,name,props) {
-
-    // const heap = process.memoryUsage().heapUsed;
-    // console.log( 'page render ',name,' - memory: ', commaize(heap) );
-
-    var text = renderCache[name];
-    if( text ) {
-      // console.log('serving cached page ', name);
-    } else {
-      var CE            = React.createElement;
-      let elem          = CE(App, { menu }, CE(component,props) );
-      text              = htmlFromElement( elem  );      
-      renderCache[name] = text;
-    }
-    res.status(200).send(text);
-}
+let reactRouter = null;
 
 function renderPage(req, res, next) {
 
-  const name = req.path;
-
-  const route = routeMap.find( r => r.match.test(name) );
-  
-   if( !route ) {
-    next();
-    return;
+  if( !reactRouter ) {
+    reactRouter = new ReactServerRouter( router, App, PATH_TO_INDEX_HTML, BODY_REGEX ) ;
   }
 
-  // console.log( 'returning ',name,' - memory: ', process.memoryUsage().heapUsed );
-  
-  const { 
-    component,
-    component: {
-      preloadPage
-    }
-  } = route;
-
-  if( preloadPage ) {
-    const page = service.cachedPage(preloadPage);
-    if( page ) {
-      render( res, component, name, {page} );
-    } else {
-      service.getPage(preloadPage)
-        .then( page => render( res, component, name, {page} ) )
-        .catch( next );      
-    }
-  } else {
-    render( res, component, name, {} );
-  }
-
-}
-
-function clearCache(req, res) {  
-  for( var key in renderCache ) {
-    renderCache[key] = null;
-  }
-  res.status(200).send('cache cleared');
+  reactRouter.resolve(req.path,req,res,next, (url, req, res) => {
+      return res; // quiet warning
+    });
 }
 
 function pagesRoutes(app) {
-
-  return Promise.all( [ 
-
-    // TODO: do this through a registration process
-
-    service.menu, 
-    service.orgs, 
-    service.advisors,
-    service.news,
-    service.testimonials,
-    service.states,
-    service.colors,
-    service.filters,
-    service.groups,
-    service.donateTiles,
-    service.getPage('home')
-
-    ] ).then( ([_menu]) => {
-
-      menu = _menu;
-      indexPageText = fs.readFileSync('./dist/public/index.html').toString();
-
-      app.get( '/*', renderPage );
-
-      app.use( '/api/clearcache', clearCache );
-
-      console.log( 'Ready to render');
-
-  }).catch(err => {
-    console.log( 'ERROR GETTING CONTENT: ', err );
-  });
-
+    console.log( 'setting up app pages-------------------');
+    return Promise.resolve( app.get( '/*', renderPage ), 1 );
 }
-
 
 module.exports = pagesRoutes;

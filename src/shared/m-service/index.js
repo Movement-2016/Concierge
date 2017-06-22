@@ -48,6 +48,20 @@ class MovementVoteService {
     return this;
   }
 
+  query( jspath ) {
+    return this.content.then( content => path( jspath, content ) );
+  }
+
+  queries( hash ) {
+    var keys = Object.keys(hash);
+    const vals = keys.map( k => this.query(hash[k]) );
+    const reducer = (accum,val,index) => { 
+      accum[keys[index]] = val;
+      return accum;
+    };
+    return Promise.all(vals).then( results => results.reduce(reducer,{}) );
+  }
+
   get content() {
     if( this._promises['content'] ) {
       return this._promises['content'];
@@ -105,34 +119,6 @@ class MovementVoteService {
       });
       return this._orgs = orgs;
     });
-  }
-
-  /* Returns a structured object of menu items with structure menu.parentItem.childItem */
-  get menu() {
-    return this._menu
-      ? Promise.resolve(this._menu)
-      : this.content.then( () => {
-            var menu = {};
-            this._content.menu.forEach( item => {
-              const parent = parseInt(item.parent);
-              var id = item.ID;
-              if( parent === 0 ) {
-                if( !menu[id] ) {
-                  menu[id] = item;
-                  menu[id].children = [];
-                }
-              } else {
-                if( !menu[parent] ) {
-                  var parentItem = path('.menu{.ID=='+parent+'}',this._content)[0];
-                  menu[parent] = parentItem;
-                  menu[parent].children = [];
-                }
-                menu[parent].children.push(item);
-              }
-            });
-            this._menu = Object.keys(menu).map( k => menu[k]);
-            return this._menu;
-        });
   }
 
   getPage(slug) {
@@ -271,3 +257,4 @@ var service = new MovementVoteService();
 service.actions = actions;
 
 module.exports = service;
+

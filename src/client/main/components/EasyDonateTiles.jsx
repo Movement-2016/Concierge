@@ -30,7 +30,7 @@ class EasyDonateTile extends React.Component {
 class EasyDonateTiles extends React.Component {
 
   render() {
-    return <DonateTiles title="Easy Donate Options" TileComp={EasyDonateTile} />;
+    return <DonateTiles tiles={this.props.tiles} title="Easy Donate Options" TileComp={EasyDonateTile} />;
   }
 }
 

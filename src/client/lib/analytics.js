@@ -1,4 +1,4 @@
-import { browserHistory } from 'react-router';
+//import { browserHistory } from 'react-router';
 import path from 'jspath';
 
 (function() {
@@ -7,9 +7,11 @@ import path from 'jspath';
     return;
   }
 
-  browserHistory.listen( () => {
-    window.ga && window.ga( 'send', 'pageview', document.location.pathname );
-  });
+  // TODO: sink the navigate event from the router
+  
+  // browserHistory.listen( () => {
+  //   window.ga && window.ga( 'send', 'pageview', document.location.pathname );
+  // });
 
   const sendGAEvent = ({type,name,data}) => window.ga && window.ga('send', 'event', type, name, data );
 

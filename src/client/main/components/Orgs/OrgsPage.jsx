@@ -1,14 +1,9 @@
 import React from 'react';
-import TagString from 'tag-string';
 
-import { ContextFromService } from '../ContextMixins';
+import { StoreWatcher } from '../ContextMixins';
 import { setVisibility } from '../../store/actions';
 
-class OrgsPage extends ContextFromService(React.Component) {
-
-  get servicePropNames() {
-    return ['orgs'];
-  }
+class OrgsPage extends StoreWatcher(React.Component) {
 
   stateFromStore(storeState) {
     const {
@@ -24,7 +19,6 @@ class OrgsPage extends ContextFromService(React.Component) {
   handleFilterToggle = (visibility) => {
     this.context.store.dispatch( setVisibility( visibility ) );
   }
-
 
 }
 

@@ -41,7 +41,7 @@ function FilterGroup(props) {
         {label}
       </div>
       {selectedFilters[name] && Object.keys(terms).map( t => {
-          const checked = selectedFilters[name].includes(t) ? true : false
+          const checked = selectedFilters[name].includes(t) ? true : false;
           const filterProps = {
             slug:     t,
             label:    terms[t].name,
@@ -49,7 +49,7 @@ function FilterGroup(props) {
             onChange: onFilterChange,
             checked
           };
-          return <Filter key={t} {...filterProps} />
+          return <Filter key={t} {...filterProps} />;
         }
       )}
     </div>

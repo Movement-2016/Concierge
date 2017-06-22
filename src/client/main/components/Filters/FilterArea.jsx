@@ -1,22 +1,17 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import router from '../../../../shared/router';
 
-import { ContextFromService } from '../ContextMixins';
 import FilterGroup from './FilterGroup.jsx';
 import ScrollLinks from './ScrollLinks.jsx';
 import StatePicker from './StatePicker.jsx';
 
 import scrollToElement from '../../../lib/scrollToElement';
 
-class FilterArea extends ContextFromService(React.Component) {
-
-  get servicePropNames() {
-    return ['states']; 
-  }
+class FilterArea extends React.Component {
 
   // helper function to scroll to a state or color section
   scrollToElement = (element) => {
-    browserHistory.push('/groups#' + element);
+    router.setBrowserAddressBar('/groups#' + element);
     scrollToElement('#' + element);
   }
 
@@ -37,17 +32,13 @@ class FilterArea extends ContextFromService(React.Component) {
   }
 
   render() {
-    if (this.state.loading) {
-      return <div />;
-    }
 
     const {
-      groupFilters: filters,
-      colorSectionsDict,
-      statesDict,
-    } = this.service;
-
-    const {
+      model: {
+        groupFilters: filters,
+        colorSectionsDict,
+        statesDict
+      },
       visibleColorSections,
       visibleStates,
       selectedFilters

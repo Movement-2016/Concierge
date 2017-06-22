@@ -1,10 +1,6 @@
 import React from 'react';
-import Loading from '../Loading.jsx';
-
-import { ContextFromService } from '../ContextMixins';
-
 import ColorGroup from './ColorGroup.jsx';
-
+import { StoreWatcher } from '../ContextMixins';
 import scrollToElement from '../../../lib/scrollToElement';
 
 const getVisibleColorSections = (allColorSections,orgs) => {
@@ -13,10 +9,11 @@ const getVisibleColorSections = (allColorSections,orgs) => {
   return visible;
 };
 
-class OrgsList extends ContextFromService(React.Component) {
+class OrgsList extends StoreWatcher(React.Component) {
 
-  get servicePropNames() {
-    return [ 'groups'];
+  stateFromStore( storeState ) {
+    const { groups } = storeState;
+    this.setState( { groups } );
   }
 
   componentDidMount() {
@@ -30,39 +27,29 @@ class OrgsList extends ContextFromService(React.Component) {
 
   getVisibleColorSections() {
 
+    const { 
+      model: {
+        groupFilters: filters,
+        statesDict,
+        colorSections,
+        colorOrder,      
+        orgs
+      }
+    } = this.props;
+
     const {
       groups
     } = this.state;
 
-    const {
-      groupFilters: filters,
-      statesDict,
-      colorSections,
-      colorOrder,      
-    } = this.service;
-
-    const { 
-      orgs 
-    } = this.props;
-
-    const order = {};
-    colorOrder.forEach( (c,i) => order[c] = i );
-
-    const colorGroups = {};
-    colorSections.forEach( color => colorGroups[color.slug] = color );
-
-    const sections = getVisibleColorSections(colorGroups,orgs);
-
-    const colors = Object.keys(sections).sort( (a,b) => order[a] > order[b] );
+    const order       = colorOrder.reduce( (accum,c,i) => { accum[c] = i; return accum; }, {} );
+    const colorGroups = colorSections.reduce( (accum,color) => { accum[color.slug] = color; return accum; }, {} );
+    const sections    = getVisibleColorSections(colorGroups,orgs);
+    const colors      = Object.keys(sections).sort( (a,b) => order[a] > order[b] );
 
     return { groups, filters, statesDict, sections, colors, orgs, colorGroups };
   }
 
   render() {
-
-    if (this.state.loading) {
-      return <Loading />;
-    }
 
     const {
       groups: {
