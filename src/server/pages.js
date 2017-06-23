@@ -7,7 +7,7 @@ const PATH_TO_INDEX_HTML = './dist/public/index.html';
 
 //const routeMap          = require( '../shared/route-map');
 const router            = require( '../shared/router'); 
-const ReactServerRouter = require( './react-router');
+const ReactServerRouter = require( './server-router');
 const { App }           = require( '../client/main/components');
 
 // router.routes = routeMap.filter( r => !r.browserOnly );

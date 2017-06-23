@@ -17,10 +17,12 @@ class Plan extends React.Component {
   render() {
 
     const {
-      groupFilters: filters,
-      statesDict: states,
-      colorSectionsIDDict: colorDict,
-      orgs,
+      model: {
+        groupFilters: filters,
+        statesDict: states,
+        colorSectionsIDDict: colorDict,
+        orgs
+      },
       store,
       mobile
     } = this.props;
@@ -37,8 +39,9 @@ class Plan extends React.Component {
     const shared = {
       plan,
       filters,
-      readonly: this.readonly,
+      store,
       mobile,
+      readonly: this.readonly,
       colors: colorDict
     };
 

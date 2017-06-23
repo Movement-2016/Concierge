@@ -14,7 +14,7 @@ const StoreWatcher = baseClass => class extends baseClass {
   }
 
   stateFromStore() {
-    throw 'Derivations of ContextMixin must implement stateFromStore';
+    throw 'Derivations of StoreWatcher must implement stateFromStore';
   }
 
 };

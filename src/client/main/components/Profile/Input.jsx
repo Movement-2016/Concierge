@@ -38,6 +38,8 @@ class ProfileInput extends StoreWatcher(React.Component) {
       ...this.props
     };
 
+    eProps.store && (delete eProps['store']);
+    
     return <input {...eProps} />;
 
   }
