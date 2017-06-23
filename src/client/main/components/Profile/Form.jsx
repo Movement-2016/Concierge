@@ -10,7 +10,10 @@ class ProfileForm extends React.Component {
   }
 
   render() {
-    const { submitText = 'Complete Plan' } = this.props;
+    const { 
+      submitText = 'Complete Plan',
+      store 
+    } = this.props;
 
     return (
         <div className="profile-form padded-form">
@@ -18,18 +21,18 @@ class ProfileForm extends React.Component {
           <form className="user-info" onSubmit={this.onSubmit}>
             <div className="row">
               <div className="col s12 m6">
-                <ProfileInput name="fname" placeholder="First Name" />
+                <ProfileInput store={store} name="fname" placeholder="First Name" />
               </div>
               <div className="col s12 m6">
-                <ProfileInput name="lname" placeholder="Last Name"  />
+                <ProfileInput store={store} name="lname" placeholder="Last Name"  />
               </div>
             </div>
             <div className="row">
               <div className="col s12 m6">
-                <ProfileInput type="email" name="email" placeholder="Email *" required />
+                <ProfileInput store={store} type="email" name="email" placeholder="Email *" required />
               </div>
               <div className="col s12 m6">
-                <ProfileInput type="tel" name="phone" placeholder="Phone *" required />
+                <ProfileInput store={store} type="tel" name="phone" placeholder="Phone *" required />
               </div>
             </div>
             <div className="action-area">

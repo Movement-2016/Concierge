@@ -17,7 +17,8 @@ class StateOrgs extends React.Component {
       plan,
       state,
       readonly,
-      mobile
+      mobile,
+      store
     } = this.props;
 
     const {
@@ -33,7 +34,14 @@ class StateOrgs extends React.Component {
     return (
         <div className="plan-state" id={name}>
         <h3 className={colors[colorID].slug}>{label}</h3>
-          {orgs.map( org => <Org readonly={readonly} key={org.ID} filters={filters} amount={amountFromOrg(org)} mobile={mobile} {...org} />)}
+          {orgs.map( org => <Org readonly={readonly} 
+                                 key={org.ID} 
+                                 filters={filters} 
+                                 amount={amountFromOrg(org)} 
+                                 mobile={mobile} 
+                                 store={store}
+                                 {...org} 
+                            />)}
         </div>
       );
   }

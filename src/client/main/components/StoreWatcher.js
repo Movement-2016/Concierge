@@ -3,9 +3,10 @@ const StoreWatcher = baseClass => class extends baseClass {
 
   componentWillMount () {
     const { store } = this.props;
+    this.stateFromStore = this.stateFromStore.bind(this);
     const stateSetter = () => this.stateFromStore(store.getState());
     !global.IS_SERVER_REQUEST && (this.unsubscribe = store.subscribe( stateSetter ));
-    this.stateFromStore(store.getState());
+    stateSetter();
   }
 
   componentWillUnmount () {
@@ -18,6 +19,5 @@ const StoreWatcher = baseClass => class extends baseClass {
 
 };
 
-module.exports = {
-  StoreWatcher
-};
+module.exports = StoreWatcher;
+

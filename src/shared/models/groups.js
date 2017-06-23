@@ -14,10 +14,10 @@ const GroupsModel = {
     
     const queries = {
       states:        '.taxonomies.state.terms.*{.parent!=0}',
-      allStates:     utils.STATES_QUERY,
       taxonomies:    '.taxonomies',
       colorOrder:    '.colorOrder',
       groups:        utils.GROUPS_QUERY,
+      allStates:     utils.STATES_QUERY,
       donateTiles:   '.posts.donatetile',
     };
 
@@ -34,7 +34,7 @@ const GroupsModel = {
       return { 
         colorOrder,
         groups,
-        statesDict:        states.reduce( (accum,s) => { accum[s.slug] = s; return accum; }, {}),
+        statesDict:        states.reduce( (accum,s) => (accum[s.slug] = s, accum), {}),
         groupFilters:      utils.groupFilters(taxonomies),
         colorSections:     utils.colorSections(allStates,colorOrder),
         orgs:              utils.orgs(allStates,groups,colorOrder),

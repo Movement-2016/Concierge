@@ -55,10 +55,7 @@ class MovementVoteService {
   queries( hash ) {
     var keys = Object.keys(hash);
     const vals = keys.map( k => this.query(hash[k]) );
-    const reducer = (accum,val,index) => { 
-      accum[keys[index]] = val;
-      return accum;
-    };
+    const reducer = (accum,val,index) => (accum[keys[index]] = val, accum);
     return Promise.all(vals).then( results => results.reduce(reducer,{}) );
   }
 

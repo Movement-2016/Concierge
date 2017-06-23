@@ -1,12 +1,10 @@
 import React     from 'react';
 import Link      from '../../../ui/LinkToRoute';
 
-import { ContextFromService } from '../ContextMixins';
-
-class SummaryUser extends ContextFromService(React.Component) {
+class SummaryUser extends React.Component {
 
   render() {
-    const { user } = this.storeState;
+    const { user } = this.props.store.getState();
 
     if( !user ) {
       return <span />;

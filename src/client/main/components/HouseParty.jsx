@@ -43,7 +43,8 @@ class PartyForm extends React.Component {
 
   render() {
     const { done, error } = this.state;
-
+    const { store } = this.props;
+    
       return (
         <ContentPage model={this.props.model} pageName="houseparty">
           <div className="houseparty-form padded-form">
@@ -51,27 +52,27 @@ class PartyForm extends React.Component {
             <form className="user-info" onSubmit={this.onSubmit}>
               <div className="row">
                 <div className="col s12 m6">
-                  <ProfileInput name="fname" placeholder="First Name *" required />
+                  <ProfileInput store={store} name="fname" placeholder="First Name *" required />
                 </div>
                 <div className="col s12 m6">
-                  <ProfileInput name="lname" placeholder="Last Name *" required />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col s12 m6">
-                  <ProfileInput type="email" name="email" placeholder="Email *" required />
-                </div>
-                <div className="col s12 m6">
-                  <ProfileInput type="tel" name="phone" placeholder="Phone *" required />
+                  <ProfileInput store={store} name="lname" placeholder="Last Name *" required />
                 </div>
               </div>
               <div className="row">
                 <div className="col s12 m6">
-                  <ProfileInput className="input-city" name="city" placeholder="City *" required />
-                  <ProfileInput className="input-state" name="state" placeholder="State *" required />
+                  <ProfileInput store={store} type="email" name="email" placeholder="Email *" required />
                 </div>
                 <div className="col s12 m6">
-                  <ProfileInput name="affiliation" placeholder="Business or Affiliation" />
+                  <ProfileInput store={store} type="tel" name="phone" placeholder="Phone *" required />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col s12 m6">
+                  <ProfileInput store={store} className="input-city" name="city" placeholder="City *" required />
+                  <ProfileInput store={store} className="input-state" name="state" placeholder="State *" required />
+                </div>
+                <div className="col s12 m6">
+                  <ProfileInput store={store} name="affiliation" placeholder="Business or Affiliation" />
                 </div>
               </div>
               <div className="checkbox-group">

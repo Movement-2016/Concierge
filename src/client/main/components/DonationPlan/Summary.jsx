@@ -40,22 +40,25 @@ class Summary extends React.Component {
 
   render() {
 
-    const { mobile } = this.props;
+    const { 
+      mobile,
+      store
+    } = this.props;
 
     return (
       <div>
-        {mobile && <SummaryUser />}
+        {mobile && <SummaryUser store={store} />}
         <div className="padded-form summary-form">
           <div className="row">
             <div className="col s12 l8">
-              <SummaryListing />
+              <SummaryListing {...this.props} />
             </div>
             <div className="col s12 l4">
               <div className="total-section">
-                <Totals />
-                {!mobile && <SummaryUser />}
+                <Totals store={store} />
+                {!mobile && <SummaryUser store={store} />}
                 <div className="link-area">
-                  <EmailPlanButton onError={this.onError} onDone={this.onDone}>Email me this plan</EmailPlanButton>
+                  <EmailPlanButton store={store} onError={this.onError} onDone={this.onDone}>{'Email me this plan'}</EmailPlanButton>
                   <RequestConsult />
                 </div>
               </div>

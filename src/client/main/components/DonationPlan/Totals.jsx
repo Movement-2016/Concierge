@@ -1,9 +1,9 @@
 import React     from 'react';
 import commaize  from 'commaize';
 
-import { ContextMixin } from '../ContextMixins';
+import StoreWatcher from '../StoreWatcher';
 
-class Totals extends ContextMixin(React.Component) {
+class Totals extends StoreWatcher(React.Component) {
 
   stateFromStore(storeState) {
     const {

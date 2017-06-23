@@ -1,7 +1,5 @@
-import React     from 'react';
-
-import commaize from 'commaize';
-
+import React            from 'react';
+import commaize         from 'commaize';
 import ContributeButton from './ContributeButton.jsx';
 
 import {
@@ -9,23 +7,17 @@ import {
   toggleItem
 } from '../../store/actions';
 
-// import { filterTagsByTypes } from '../../store/utils';
-
-
 import {
   selectPrevElement,
   selectNextElement
 } from '../../../ui/util';
 
-const KEY_ARROW_UP = 40;
+const KEY_ARROW_UP   = 40;
 const KEY_ARROW_DOWN = 38;
 
 
 class Org extends React.Component {
 
-  static contextTypes = {
-    store: React.PropTypes.object.isRequired
-  }
 
   constructor() {
     super(...arguments);
@@ -41,7 +33,7 @@ class Org extends React.Component {
     let { target:{value} } = e;
     value = value.replace(/[^0-9]/g,'');
     const { ID:id } = this.props;
-    this.context.store.dispatch( addPlanItem(id,value || 0) );
+    this.props.store.dispatch( addPlanItem(id,value || 0) );
     this.setState({ value });
   }
 
@@ -56,7 +48,7 @@ class Org extends React.Component {
 
   onRemoveOrg(e) {
     e.preventDefault();
-    this.context.store.dispatch( toggleItem(this.props.ID) );
+    this.props.store.dispatch( toggleItem(this.props.ID) );
   }
 
   render() {
@@ -124,7 +116,5 @@ class Org extends React.Component {
     );
   }
 }
-
-Org.INPUT_SELECTOR = 'item-amount';
 
 module.exports = Org;

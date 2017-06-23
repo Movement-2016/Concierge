@@ -5,8 +5,6 @@ import Plan             from './Plan.jsx';
 import Totals           from './Totals.jsx';
 import RequestConsult   from './RequestConsult.jsx';
 
-import { ServiceMixin } from '../ContextMixins';
-
 // const BackToGroups = () => {
 //   return (
 //     <Link className="back-link" to="/groups" title="Continue Browsing Groups"><i className="material-icons">chevron_left</i>Back to browse groups</Link>
@@ -19,10 +17,16 @@ const PageDescription = () => {
   );
 };
 
-class SummaryLink extends ServiceMixin(React.Component) {
+class SummaryLink extends React.Component {
 
   render() {
-    const { user: {email, phone} } = this.storeState;
+    const { 
+      user: {
+        email, 
+        phone 
+      } 
+    } = this.props.store.getState();
+
     const isUserKnown = email && phone;
 
     const url = isUserKnown ? '/plan/summary' : '/plan/profile';
@@ -38,7 +42,6 @@ class PlanPage extends React.Component {
   render() {
     const {
       store,
-      mobile
     } = this.props;
 
     return (
@@ -49,7 +52,7 @@ class PlanPage extends React.Component {
           <div className="padded-form donation-form">
             <div className="row">
               <div className="col s12 l8">
-                <Plan store={store} mobile={mobile} />
+                <Plan {...this.props} />
               </div>
               <div className="col s12 l4">
                 <div className="total-section">

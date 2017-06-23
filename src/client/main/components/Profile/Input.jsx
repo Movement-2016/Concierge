@@ -1,10 +1,10 @@
 import React     from 'react';
 
-import { ContextMixin } from '../ContextMixins';
+import StoreWatcher from '../StoreWatcher';
 
 import { setProfile } from '../../../account/store/actions';
 
-class ProfileInput extends ContextMixin(React.Component) {
+class ProfileInput extends StoreWatcher(React.Component) {
 
   constructor() {
     super(...arguments);
@@ -23,7 +23,7 @@ class ProfileInput extends ContextMixin(React.Component) {
   onChange(e) {
     const { value } = e.target;
     const { name } = this.props;
-    this.context.store.dispatch( setProfile( { [name]: value }) );
+    this.props.store.dispatch( setProfile( { [name]: value }) );
   }
 
   render() {

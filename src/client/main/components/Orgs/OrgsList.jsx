@@ -1,6 +1,6 @@
 import React from 'react';
 import ColorGroup from './ColorGroup.jsx';
-import { StoreWatcher } from '../ContextMixins';
+import StoreWatcher from '../StoreWatcher';
 import scrollToElement from '../../../lib/scrollToElement';
 
 const getVisibleColorSections = (allColorSections,orgs) => {
@@ -41,8 +41,8 @@ class OrgsList extends StoreWatcher(React.Component) {
       groups
     } = this.state;
 
-    const order       = colorOrder.reduce( (accum,c,i) => { accum[c] = i; return accum; }, {} );
-    const colorGroups = colorSections.reduce( (accum,color) => { accum[color.slug] = color; return accum; }, {} );
+    const order       = colorOrder.reduce( (accum,c,i) => (accum[c] = i, accum), {} );
+    const colorGroups = colorSections.reduce( (accum,color) => (accum[color.slug] = color, accum), {} );
     const sections    = getVisibleColorSections(colorGroups,orgs);
     const colors      = Object.keys(sections).sort( (a,b) => order[a] > order[b] );
 

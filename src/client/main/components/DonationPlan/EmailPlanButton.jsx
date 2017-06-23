@@ -4,10 +4,6 @@ import { emailPlan } from '../../store/utils';
 
 class EmailPlanButton extends React.Component {
 
-  static contextTypes = {
-    store: React.PropTypes.object.isRequired
-  }
-
   constructor() {
     super(...arguments);
     this.onEmail = this.onEmail.bind(this);
@@ -15,11 +11,10 @@ class EmailPlanButton extends React.Component {
 
   onEmail(e) {
     e.preventDefault();
-    const storeState = this.context.store.getState();
+    const storeState = this.props.store.getState();
     const { onError, onDone } = this.props;
     emailPlan( { storeState, onError, onDone } );
   }
-
 
   render() {
     const { text, children } = this.props;
@@ -27,5 +22,5 @@ class EmailPlanButton extends React.Component {
   }
 }
 
-module.exports=EmailPlanButton;
+module.exports = EmailPlanButton;
 

@@ -6,10 +6,6 @@ import { emailPlan } from '../store/utils';
 
 class ConsultPage extends React.Component {
 
-  static contextTypes = {
-    store: React.PropTypes.object.isRequired
-  }
-
   constructor() {
     super(...arguments);
     this.onSubmit = this.onSubmit.bind(this);
@@ -31,7 +27,7 @@ class ConsultPage extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    const storeState = this.context.store.getState();
+    const storeState = this.props.store.getState();
     const props = {
       onError: this.onError,
       onDone: this.onDone
@@ -42,8 +38,8 @@ class ConsultPage extends React.Component {
   render() {
     return (
       <Shell title="Request a Consultation" name="custom-planning profile-page">
-        <p className="page-description">Please make sure your information is correct and an advisor will be in touch soon!</p>
-        <ProfileForm onSubmit={this.onSubmit} submitText="Request Consultation" />
+        <p className="page-description">{'Please make sure your information is correct and an advisor will be in touch soon!'}</p>
+        <ProfileForm store={this.props.store} onSubmit={this.onSubmit} submitText="Request Consultation" />
       </Shell>
     );
   }

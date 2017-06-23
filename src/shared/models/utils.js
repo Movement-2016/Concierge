@@ -6,7 +6,7 @@ import path from 'jspath';
 const groupFilters = tax => {
   return Object.keys( tax )
     .filter( k => k !== 'state')
-    .reduce( (accum,k) => { accum[k] = { ...tax[k], tags: Object.keys(tax[k].terms) }; return accum; }, {} );
+    .reduce( (accum,k) => (accum[k] = { ...tax[k], tags: Object.keys(tax[k].terms) },accum), {} );
 };
 
 const STATES_QUERY = '.taxonomies.state.terms';
@@ -26,7 +26,7 @@ const statesInColor = (color, states) => {
 */
 const colorSections = (states,colorOrder) =>  {
   var colors   = statesInColor(0,states);
-  var orderMap = colorOrder.reduce( (accum,c,i) => { accum[c] = i; return accum; }, {} );
+  var orderMap = colorOrder.reduce( (accum,c,i) => (accum[c] = i,accum), {} );
   return colors.sort( (a,b) => orderMap[a.slug] > orderMap[b.slug] );
 };
 
@@ -51,10 +51,8 @@ const orgs = (states, groups, colorOrder) => {
   Returns a dictionary of color sections 
 */
 const colorSectionsDict = (states,colorOrder) => {
-  return colorSections(states,colorOrder).reduce( (accum,c) => {
-    accum[c.slug] = { ...c, count: numGroupsInColor(c,states) };
-    return accum;
-  }, {} );
+  return colorSections(states,colorOrder)
+            .reduce( (accum,c) => (accum[c.slug] = { ...c, count: numGroupsInColor(c,states) }, accum) );
 };
 
 /*

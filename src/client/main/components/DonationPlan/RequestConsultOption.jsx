@@ -1,10 +1,8 @@
 import React from 'react';
 
-import { ServiceMixin } from '../ContextMixins';
-
 import { setProfile } from '../../../account/store/actions';
 
-class RequestConsultOption extends ServiceMixin(React.Component) {
+class RequestConsultOption extends React.Component {
 
   constructor() {
     super(...arguments);
@@ -14,11 +12,11 @@ class RequestConsultOption extends ServiceMixin(React.Component) {
 
   onChecked(e) {
     const { value } = e.target;
-    this.context.store.dispatch( setProfile( { wantsConsult: !value }) );
+    this.props.store.dispatch( setProfile( { wantsConsult: !value }) );
   }
 
   render() {
-    const value = this.storeState.user.wantsConsult;
+    const value = this.props.store.getState().user.wantsConsult;
 
     return(
       <div className="consult-request">

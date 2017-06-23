@@ -21,6 +21,8 @@ class Plan extends React.Component {
       statesDict: states,
       colorSectionsIDDict: colorDict,
       orgs,
+      store,
+      mobile
     } = this.props;
 
     const {
@@ -28,24 +30,28 @@ class Plan extends React.Component {
         selected,
         plan
       }
-    } = this.storeState;
+    } = store.getState();
 
     const sortedOrgs = orgs && organizeOrgsByState(getSelectedOrgs(selected,orgs));
+
+    const shared = {
+      plan,
+      filters,
+      readonly: this.readonly,
+      mobile,
+      colors: colorDict
+    };
 
     return (
       <div className="planning-section">
         {Object.keys(sortedOrgs).map( state => {
           return (
             <StateOrgs
+              {...shared}
               name={state}
               key={state}
               orgs={sortedOrgs[state]}
-              plan={plan}
-              filters={filters}
-              colors={colorDict}
-              readonly={this.readonly}
               state={states[state]}
-              mobile={this.props.mobile}
             />
           );
       })}

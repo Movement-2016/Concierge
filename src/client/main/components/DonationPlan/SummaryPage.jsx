@@ -5,10 +5,10 @@ import Summary   from './Summary.jsx';
 
 function PlanSummaryPage(props) {
   return (
-    <Shell title="Plan Results" name="plan-summary-page" big={false}>
-      <Summary mobile={props.mobile}/>
+    <Shell title="Plan Results" name="plan-summary-page" >
+      <Summary {...props} />
     </Shell>
   );
-};
+}
 
 module.exports = PlanSummaryPage;

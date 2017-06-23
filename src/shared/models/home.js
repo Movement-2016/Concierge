@@ -6,8 +6,7 @@ import {
 import service from '../m-service';
 
 const orderColors = ( colors, order ) => {
-  const reducer = (om,c,i) => {om[c] = i; return om;};
-  var orderMap = order.reduce( reducer, {} );
+  var orderMap = order.reduce( (om,c,i) => (om[c] = i, om), {} );
   return colors.sort( (a,b) => orderMap[a.slug] > orderMap[b.slug] );
 };
 

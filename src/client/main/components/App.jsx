@@ -1,13 +1,7 @@
 import React              from 'react';
-import { Provider }       from 'react-redux';
 import MediaQuery         from 'react-responsive';
-
-import '../../lib/polyfills';
-
 import { initFilters }       from '../store/actions';
-
 import configureStore        from '../../store/configureStore';
-
 import router                from '../../../shared/router'; 
 
 import {
@@ -19,6 +13,9 @@ import Nav             from './Nav.jsx';
 import Footer          from './Footer.jsx';
 
 import appBrowserModel from './AppBrowserModel';
+
+import '../../lib/polyfills';
+
 
 const store = configureStore();
 
@@ -79,20 +76,18 @@ class App extends React.Component {
     }
 
     return (
-      <Provider store={store}>
-        <MediaQuery maxWidth={992} values={{width: 1400}}>
-          {(matches) => {
-            // add additional mobile prop to child element
-            return (
-              <div className="site-wrapper">
-                <Nav menu={menu} siteTitle={SITE_TITLE} mobile={matches} />
-                {comp && React.createElement(comp, { store, model, params, queryParams, mobile: matches} )}
-                <Footer />
-              </div>
-            );
-          }}
-        </MediaQuery>
-      </Provider>
+      <MediaQuery maxWidth={992} values={{width: 1400}}>
+        {(matches) => {
+          // add additional mobile prop to child element
+          return (
+            <div className="site-wrapper">
+              <Nav menu={menu} siteTitle={SITE_TITLE} mobile={matches} />
+              {comp && React.createElement(comp, { store, model, params, queryParams, mobile: matches} )}
+              <Footer />
+            </div>
+          );
+        }}
+      </MediaQuery>
     );
   }
 }
