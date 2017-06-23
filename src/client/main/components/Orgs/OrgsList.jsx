@@ -62,6 +62,11 @@ class OrgsList extends StoreWatcher(React.Component) {
       statesDict
     } = this.getVisibleColorSections();
 
+    const {
+      store,
+      mobile
+    } = this.props;
+
     return (
       <div className="group-area">
         {colors.map( color => <ColorGroup
@@ -70,9 +75,9 @@ class OrgsList extends StoreWatcher(React.Component) {
                                 selected={selected}
                                 states={orgs[color]}
                                 filters={filters}
-                                store={this.context.store}
+                                store={store}
                                 statesDict={statesDict}
-                                mobile={this.props.mobile}
+                                mobile={mobile}
                               />
         )}
       </div>

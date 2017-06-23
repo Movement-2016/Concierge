@@ -1,6 +1,5 @@
 import React              from 'react';
-import Loading            from '../Loading.jsx';
-import { ContextFromService } from '../ContextMixins';
+
 
 import {
   getSelectedOrgs,
@@ -9,28 +8,20 @@ import {
 
 import StateOrgs from './StateOrgs.jsx';
 
-class Plan extends ContextFromService(React.Component) {
+class Plan extends React.Component {
 
   get readonly() {
     return false;
   }
 
-  get servicePropNames() {
-    return ['orgs'];
-  }
-
   render() {
-
-    if ( this.state.loading ) {
-      return <Loading />;
-    }
 
     const {
       groupFilters: filters,
       statesDict: states,
       colorSectionsIDDict: colorDict,
       orgs,
-    } = this.service;
+    } = this.props;
 
     const {
       groups: {

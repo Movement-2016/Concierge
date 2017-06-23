@@ -1,5 +1,5 @@
 import React            from 'react';
-import { Link }         from 'react-router';
+import Link             from '../../../ui/LinkToRoute';
 
 import Plan             from './Plan.jsx';
 import Totals           from './Totals.jsx';
@@ -36,6 +36,11 @@ class SummaryLink extends ServiceMixin(React.Component) {
 class PlanPage extends React.Component {
 
   render() {
+    const {
+      store,
+      mobile
+    } = this.props;
+
     return (
       <main className="content-page custom-planning cart-page">
         <div className="container small-container">
@@ -44,13 +49,13 @@ class PlanPage extends React.Component {
           <div className="padded-form donation-form">
             <div className="row">
               <div className="col s12 l8">
-                <Plan mobile={this.props.mobile} />
+                <Plan store={store} mobile={mobile} />
               </div>
               <div className="col s12 l4">
                 <div className="total-section">
-                  <Totals />
+                  <Totals store={store} />
                   <div className="link-area">
-                    <SummaryLink />
+                    <SummaryLink store={store} />
                     <RequestConsult />
                   </div>
                 </div>

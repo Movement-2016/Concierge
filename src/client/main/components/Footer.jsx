@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router'; 
+import Link from '../../ui/LinkToRoute';
 
 const Footer = () => {
   return (
@@ -47,7 +47,7 @@ const Footer = () => {
       </section>
       <section className="links-section">
         <ul className="site-links">
-          <li><Link to="https://secure.actblue.com/privacy">Privacy</Link></li>
+          <li><a to="https://secure.actblue.com/privacy">Privacy</a></li>
           <li><Link to="/getintouch">Contact</Link></li>
           <li><a href="https://github.com/movement-2016">@GitHub</a></li>
           <li><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">License</a></li>

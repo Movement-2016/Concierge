@@ -1,6 +1,4 @@
 import React from 'react';
-import { PageContext } from './ContextMixins';
-import Loading from './Loading.jsx';
 
 class ContentPageShell extends React.Component {
   render() {
@@ -24,26 +22,19 @@ class ContentPageShell extends React.Component {
   }
 }
 
-class ContentPage extends PageContext(React.Component) {
-
-  get page() {
-    return this.props.pageName;
-  }
+class ContentPage extends React.Component {
 
   render() {
 
-    if( !this.state.page ) {
-      return <Loading />;
-    }
-
     const {
-      page:{
-        post_title: title,
-        post_content: content
-      }
-    } = this.state;
-
-    const { children } = this.props;
+      model: {
+        page:{
+          post_title: title,
+          post_content: content
+        }       
+      },
+      children
+    } = this.props;
 
     return (
       <ContentPageShell name={this.page} title={title}>

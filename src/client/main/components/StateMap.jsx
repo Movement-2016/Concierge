@@ -2,7 +2,7 @@ import React from 'react';
 import 'whatwg-fetch';
 import { findDOMNode } from 'react-dom';
 import Loading from './Loading.jsx';
-import { browserHistory } from 'react-router';
+import Link from '../../ui/LinkToRoute';
 
 import '../../lib/tooltip';
 
@@ -34,7 +34,7 @@ class StateMap extends React.Component {
         e.preventDefault();
         var $this = $(this);
         var href = $this.attr('xlink:href');
-        browserHistory.push( href );
+        Link.navigateTo( href );
       });
       this.gotTT = true;
     }

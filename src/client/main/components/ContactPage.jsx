@@ -5,10 +5,6 @@ import { emailContact } from '../store/utils';
 
 class ContactPage extends React.Component {
 
-  static contextTypes = {
-    store: React.PropTypes.object.isRequired
-  }
-
   constructor() {
     super(...arguments);
     this.state = {
@@ -20,7 +16,7 @@ class ContactPage extends React.Component {
 
   onSubmit(message) {
     emailContact({
-      storeState: this.context.store.getState(),
+      storeState: this.props.store.getState(),
       onDone:  done  => this.setState({ done }),
       onError: error => this.setState({ error }),
       message,
@@ -35,7 +31,7 @@ class ContactPage extends React.Component {
     } = this.state;
 
     return (
-      <ContentPage pageName="contact">
+      <ContentPage model={this.props.model} pageName="contact">
         <ContactForm onSubmit={this.onSubmit}>
           {done && <div className="submit-message submit-success">{done}</div>}
           {error && <div className="submit-message submit-error">{error}</div>}

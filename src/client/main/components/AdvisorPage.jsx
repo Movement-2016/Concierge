@@ -1,7 +1,6 @@
 import React              from 'react';
 import { Shell }          from './ContentPage.jsx';
-import { ContextFromService } from './ContextMixins';
-import Loading            from './Loading.jsx';
+
 
 const nameRegex = /[a-z-]+$/i;
 
@@ -9,11 +8,7 @@ const processAdvisors = advisors =>
         advisors && advisors.map( a => a.post_title )
                                 .sort( (a,b) => a.match(nameRegex)[0].localeCompare(b.match(nameRegex)[0]) );
 
-class AdvisorPage extends ContextFromService(React.Component) {
-
-  get servicePropNames() {
-    return ['advisors'];
-  }
+class AdvisorPage extends React.Component {
 
   sliceAdvisors(advisors) {
     const NUM_COLS = 3;
@@ -37,19 +32,16 @@ class AdvisorPage extends ContextFromService(React.Component) {
   }
 
   render() {
-    let { loading, advisors } = this.state;
+    let { advisors } = this.props.model;
 
     advisors = processAdvisors(advisors);
 
     return (
       <Shell title="Advisory Board" name="advisors">
         <div className="content">
-          {loading
-            ? <Loading />
-            : <div className="row">
-                {this.sliceAdvisors(advisors).map( this.renderAdvisorColumn )}
-              </div>
-          }
+          <div className="row">
+            {this.sliceAdvisors(advisors).map( this.renderAdvisorColumn )}
+          </div>
         </div>
       </Shell>
     );

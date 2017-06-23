@@ -1,5 +1,5 @@
 import React     from 'react';
-import { Link }  from 'react-router';
+import Link from '../../../ui/LinkToRoute';
 
 import Totals           from './Totals.jsx';
 import EmailPlanButton  from './EmailPlanButton.jsx';

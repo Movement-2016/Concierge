@@ -1,5 +1,5 @@
-import React    from 'react';
-import { Link } from 'react-router';
+import React  from 'react';
+import Link   from '../../../ui/LinkToRoute';
 
 
 const RequestConsult = () => {
@@ -13,6 +13,6 @@ const RequestConsult = () => {
       </Link>
     </div>
   );
-}
+};
 
 module.exports = RequestConsult;
