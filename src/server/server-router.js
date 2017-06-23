@@ -4,11 +4,11 @@ const React                    = require( 'react');
 
 class ReactServerRouter {
 
-  constructor( router, AppModule, pathToIndexHTML, bodyRegex ) {
+  constructor( router, AppSpec, pathToIndexHTML, bodyRegex ) {
     this.router     = router;
     this.indexHTML  = fs.readFileSync(pathToIndexHTML,'utf8');
     this.bodyRegex  = bodyRegex;
-    this.AppFactory = React.createFactory(AppModule);
+    this.AppSpec    = AppSpec;
   }
 
   resolve(url,req,res,errCallback,successCallback) {
@@ -17,8 +17,7 @@ class ReactServerRouter {
 
     if( !handlers ) {
       res.statusCode = 404;
-      res.end('Not Found');
-      successCallback(url,req,res);
+      errCallback( 'file not found', url, req, res );
       return;
     } 
 
@@ -28,19 +27,23 @@ class ReactServerRouter {
 
       .then( model => {
     
+          const {
+            App,
+            appModel
+          } = this.AppSpec;
+
           var props = {
             model,
             name:        h.component.displayName,
             component:   h.component,
+            path:        req.path,
             params:      h.params,
-            queryParams: h.queryParams 
+            queryParams: h.queryParams
           };
 
-          var bodyHTML = renderToStaticMarkup( this.AppFactory(props) );
+          Object.assign( props, appModel );
 
-          // bodyHTML = '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i><div class="hidden">'  
-          //              + bodyHTML
-          //              + '</div>';
+          var bodyHTML = renderToStaticMarkup( React.createElement( App, props ) );
 
           var html = this.indexHTML.replace(this.bodyRegex,'$1' + bodyHTML + '$3'); 
 
@@ -56,7 +59,7 @@ class ReactServerRouter {
           successCallback(url, req, res); 
 
       }).catch( function(err) {
-        errCallback( url, req, res, err );
+        errCallback( err, url, req, res );
       });
   }
 }

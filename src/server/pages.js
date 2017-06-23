@@ -1,39 +1,48 @@
 /* eslint no-console:off */
 
-const BODY_REGEX         = /(<div\s+id="app">)([^<]+)?(<\/div>)/;
+const BODY_REGEX         = /(<div id="app">)(<!-- RENDER CONTENT -->)(<\/div>)/;
 const PATH_TO_INDEX_HTML = './dist/public/index.html';
 
-//const p2regex           = require( 'path-to-regexp');
-
-//const routeMap          = require( '../shared/route-map');
+const routeMap          = require( '../shared/route-map');
 const router            = require( '../shared/router'); 
 const ReactServerRouter = require( './server-router');
-const { App }           = require( '../client/main/components');
 
-// router.routes = routeMap.filter( r => !r.browserOnly );
+const { App }    = require( '../client/main/components');
+const appModel   = require( '../shared/models/app' );
 
-// .map( r => {
-//   const fixedPath = r.path.replace('(','').replace(')','?');
-//   r.match = p2regex(fixedPath);
-//   return r;
-// });
+router.routes = routeMap.filter( r => !r.browserOnly );
 
 let reactRouter = null;
 
 function renderPage(req, res, next) {
 
-  if( !reactRouter ) {
-    reactRouter = new ReactServerRouter( router, App, PATH_TO_INDEX_HTML, BODY_REGEX ) ;
-  }
+  console.log('=======> calling router for ', req.path);
 
-  reactRouter.resolve(req.path,req,res,next, (url, req, res) => {
-      return res; // quiet warning
-    });
+  reactRouter.resolve(req.path,req,res,
+      err => {
+        err;
+        next();
+      }, 
+      (url, req, res) => {
+        res;
+      }
+    );
 }
 
 function pagesRoutes(app) {
-    console.log( 'setting up app pages-------------------');
-    return Promise.resolve( app.get( '/*', renderPage ), 1 );
+  let ret = null;
+  try {
+     ret = appModel.model().then( appModel => {
+      reactRouter = new ReactServerRouter( router, { App, appModel }, PATH_TO_INDEX_HTML, BODY_REGEX ) ;
+      app.get( '*', renderPage );
+      console.log( 'Ready for routing');
+    }).catch( err => {
+      console.log( '=====> Error during route initialization ', err );
+    });
+  } catch( err ) {
+      console.log( '=====> Error during route initialization ', err );    
+  }
+  return ret;
 }
 
 module.exports = pagesRoutes;

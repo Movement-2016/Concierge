@@ -5,6 +5,6 @@ const pages  = require('./pages');
 module.exports = app => Promise.all(
       [
         api(app),
-        //pages(app)
+        pages(app)
       ]
     ).then( () => console.log ('Ready to route') );

@@ -183,6 +183,4 @@ class HomePage extends React.Component {
   }
 }
 
-HomePage.preloadPage = 'home';
-
 module.exports = HomePage;
