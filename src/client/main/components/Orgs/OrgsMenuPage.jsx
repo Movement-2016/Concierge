@@ -19,9 +19,11 @@ class OrgsMenuPage extends React.Component {
   render() {
 
     const {
-      colorSectionsDict,
-      statesDict,
-      numGroups,
+      model: {
+        colorSectionsDict,
+        statesDict,
+        numGroups,        
+      }
     } = this.props;
 
     const colorKeys = Object.keys(colorSectionsDict);

@@ -33,7 +33,6 @@ class ReactServerRouter {
 
           var props = {
             model,
-            name:        h.component.displayName,
             component:   h.component,
             path:        req.path,
             params:      h.params,
@@ -55,7 +54,7 @@ class ReactServerRouter {
           res.setHeader( 'Content-Type', 'text/html' );
           res.end(html);
 
-          successCallback(url, req, res); 
+          successCallback && successCallback(url, req, res); 
 
       }).catch( function(err) {
         errCallback( err, url, req, res );
