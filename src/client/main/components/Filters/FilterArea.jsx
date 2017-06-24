@@ -65,7 +65,7 @@ class FilterArea extends React.Component {
                 label: filters[f].label,
                 terms: filters[f].terms
             };
-              return <FilterGroup key={f} {...filterGroupProps} />
+              return <FilterGroup key={f} {...filterGroupProps} />;
           }
           )}
         </div>

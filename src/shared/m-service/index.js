@@ -1,6 +1,5 @@
 /* global $ */
 
-var actions = require('./actions');
 var path    = require('jspath');
 
 let _fetch = null;
@@ -82,8 +81,6 @@ class MovementVoteService {
 }
 
 var service = new MovementVoteService();
-
-service.actions = actions;
 
 module.exports = service;
 

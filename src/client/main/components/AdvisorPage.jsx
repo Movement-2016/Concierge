@@ -49,6 +49,4 @@ class AdvisorPage extends React.Component {
   }
 }
 
-AdvisorPage.preload = storeState => storeState.service.content.then( () => storeState.service.advisors);
-
 module.exports = AdvisorPage;

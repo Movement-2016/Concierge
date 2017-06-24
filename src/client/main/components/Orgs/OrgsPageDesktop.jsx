@@ -23,15 +23,24 @@ class OrgsPageDesktop extends OrgsPage {
 
     const props = this.props;
     
-    const orgs = getVisibleOrgs( props.orgs, visibility );
+    const {
+      model,
+      store,
+      model: {
+        orgs,
+        ezDonateTiles
+      }
+    } = props;
+
+    const visibleOrgs = getVisibleOrgs( orgs, visibility );
 
     const filterAreaProps = {
-      ...props,
+      model,
       scrollToElement:       this.goToElement,
       handleFilterToggle:    this.handleFilterToggle,
       selectedFilters:       visibility,
-      visibleColorSections:  Object.keys(orgs),
-      visibleStates:         getVisibleStates(orgs),            
+      visibleColorSections:  Object.keys(visibleOrgs),
+      visibleStates:         getVisibleStates(visibleOrgs),            
     };
 
     const title = 'Browse Groups';
@@ -46,12 +55,12 @@ class OrgsPageDesktop extends OrgsPage {
                 <FilterArea {...filterAreaProps} />
               </Sticky>
             </div>
-            <OrgsList {...props} />
+            <OrgsList store={store} model={model} />
             <div className="plan-sidebar-wrapper">
               <Sticky top={104} bottomBoundary=".orgs-container">
                 <div className="plan-sidebar">
                   <PlanTray numGroups={selectedGroups.length}/>
-                  <EasyDonateTiles tiles={this.props.model.ezDonateTiles} />
+                  <EasyDonateTiles tiles={ezDonateTiles} />
                 </div>
               </Sticky>
             </div>
