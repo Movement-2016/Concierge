@@ -16,7 +16,6 @@ class ReactServerRouter {
     var handlers = this.router.resolve(url);
 
     if( !handlers ) {
-      res.statusCode = 404;
       errCallback( 'file not found', url, req, res );
       return;
     } 

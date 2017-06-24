@@ -1,8 +1,7 @@
 /* eslint no-console:"off" */
-var GMail = require('./gmail');
-var service  = require('../shared/m-service');
-
-var path = require('jspath');
+var GMail    = require('./gmail');
+var apiModel = require('../shared/models/api');
+var path     = require('jspath');
 var Entities = require('html-entities').AllHtmlEntities;
 var commaize = require('commaize');
 
@@ -14,14 +13,15 @@ const mailer = new GMail();
 
 let orgs = null;
 
-function init () {
+function init (app) {
 
-  return service.orgs.then( _orgs => {
-      orgs = _orgs;
-      console.log('Ready to use email');
-    }).catch( err => {
-      console.log( err );
-    });
+  return apiModel.model().then( model => {
+    orgs = model.orgs;
+    app.post( '/api/plan/send',  mailPlan );
+    app.post( '/api/houseparty', houseParty );
+    app.post( '/api/contact',    contactEmail );
+    console.log('Ready to use email');
+  });
 }
 
 const planFormatter = ({name,urlWeb,urlGive,amount}) => `
@@ -201,10 +201,4 @@ function mailPlan (req, res) {
     .catch( err    => { console.log('error', err   ); res.status( 500 ).json( err );  });
 }
 
-module.exports = app => {
-  // TODO: routing should be somewhere else
-    app.post( '/api/plan/send',  mailPlan );
-    app.post( '/api/houseparty', houseParty );
-    app.post( '/api/contact',    contactEmail );
-    init();
-};
+module.exports = init;

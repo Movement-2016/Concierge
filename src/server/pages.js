@@ -16,11 +16,10 @@ let reactRouter = null;
 
 function renderPage(req, res, next) {
 
-  console.log('=======> calling router for ', req.path);
-
   reactRouter.resolve(req.path,req,res,
       err => {
         err;
+        console.log('===> rejected: ', req.path);
         next();
       }, 
       (url, req, res) => {
@@ -32,13 +31,13 @@ function renderPage(req, res, next) {
 function pagesRoutes(app) {
   let ret = null;
   try {
-     ret = appModel.model().then( appModel => {
-      reactRouter = new ReactServerRouter( router, { App, appModel }, PATH_TO_INDEX_HTML, BODY_REGEX ) ;
-      app.get( '*', renderPage );
-      console.log( 'Ready for routing');
-    }).catch( err => {
-      console.log( '=====> Error during route initialization ', err );
-    });
+      ret = appModel.model().then( appModel => {
+        reactRouter = new ReactServerRouter( router, { App, appModel }, PATH_TO_INDEX_HTML, BODY_REGEX ) ;
+        app.get( /.*/, renderPage );
+        console.log( 'Ready for routing');
+      }).catch( err => {
+        console.log( '=====> Error during route initialization ', err );
+      });
   } catch( err ) {
       console.log( '=====> Error during route initialization ', err );    
   }

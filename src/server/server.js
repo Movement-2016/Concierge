@@ -53,9 +53,13 @@ function start (port) {
                     resave: true,
                   }));
 
+      // static file handling
+      app.use (express.static (PUBLIC_DIR));
+
       routes(app).then( () => startApp(app,port,resolve) );
 
     } catch (err)  {
+      console.log( 'BOOT ERROR', err );
       reject (err);
     }
   });
@@ -79,9 +83,6 @@ function startApp(app,port,resolve) {
       res.sendFile (`${PUBLIC_DIR}${req.path}`);
     }
   });
-
-  // static file handling
-  app.use (express.static (PUBLIC_DIR));
 
   // called from next() on error from routes()
   app.use ('*', (req, res) => {

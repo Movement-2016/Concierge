@@ -4,7 +4,7 @@ const pages  = require('./pages');
 
 module.exports = app => Promise.all(
       [
-        api(app),
-        pages(app)
+         api(app),
+         pages(app)
       ]
     ).then( () => console.log ('Ready to route') );
