@@ -2,7 +2,7 @@ import React from 'react';
 import 'whatwg-fetch';
 import { findDOMNode } from 'react-dom';
 import Loading from './Loading.jsx';
-import Link from '../../ui/LinkToRoute';
+import Link from '../../services/LinkToRoute';
 
 import '../../lib/tooltip';
 

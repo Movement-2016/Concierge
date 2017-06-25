@@ -1,6 +1,6 @@
 import React from 'react';
 // import router from '../../../../shared/router';
-import Link from '../../../ui/LinkToRoute';
+import Link from '../../../services/LinkToRoute';
 import Headroom from 'react-headroom';
 
 

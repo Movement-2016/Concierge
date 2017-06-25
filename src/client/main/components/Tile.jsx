@@ -1,5 +1,5 @@
 import React    from 'react';
-import Link from '../../ui/LinkToRoute';
+import Link from '../../services/LinkToRoute';
 
 class TileBody extends React.Component {
   render() {

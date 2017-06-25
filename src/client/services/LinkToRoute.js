@@ -53,7 +53,7 @@ class Link extends React.Component {
 
 Link.navigateTo = function(path) {
   // can't import because of circular dependencies
-  var router = require('../../shared/router');
+  var router = require('./router').service;
   router.navigateTo( path );  
 };
 

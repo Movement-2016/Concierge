@@ -1,30 +1,36 @@
 /* eslint no-console:off */
 const routeMap          = require( '../shared/route-map');
-const router            = require( '../shared/router'); 
-const ReactServerRouter = require( './server-router');
+const Router            = require( './router'); 
 
 const { App }    = require( '../client/main/components');
-const appModel   = require( '../shared/models/app' );
+const AppModel   = require( '../shared/models/app' );
 
 const BODY_REGEX         = /(<div id="app">)(<!-- RENDER CONTENT -->)(<\/div>)/;
 const PATH_TO_INDEX_HTML = './dist/public/index.html';
 
-router.routes = routeMap.filter( r => !r.browserOnly );
-
-let reactRouter = null;
+let router = null;
 
 function renderPage(req, res, next) {
-  reactRouter.resolve( req.path, req, res, () => next() );
+  router.RenderPath( req.path, req, res, next );
 }
 
 function pagesRoutes(app) {
 
-  return appModel.model().then( appModel => {
-    reactRouter = new ReactServerRouter( router, { App, appModel }, PATH_TO_INDEX_HTML, BODY_REGEX ) ;
+  return AppModel.model().then( appModel => {
+
+    router = new Router( routeMap.filter( r => !r.browserOnly ), 
+                        { App, appModel }, 
+                        BODY_REGEX, 
+                        PATH_TO_INDEX_HTML );
+
     app.get( '*', renderPage );
+
     console.log( 'Ready for routing');
+
   }).catch( err => {
+    
     console.log( '=====> Error during route initialization ', err );
+  
   });
   
 }

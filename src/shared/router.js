@@ -1,16 +1,27 @@
 import RouteRecognizer  from 'route-recognizer';
 import EventEmitter     from 'events';
 
+const PRE_NAVIGATE     = 'PRE_NAVIGATE';
+const NAVIGATE_TO      = 'NAVIGATE_TO';
+const NOT_FOUND        = 'NOT_FOUND';
+
 class Router extends EventEmitter
 {
   constructor() {
     super(...arguments);
 
     this._routes = null;
-
-    (typeof window !== 'undefined') && (window.onpopstate = this.updateURL.bind(this));
+    this.events = Router.events;
   }
   
+  alertNotFound(payload) {
+    this.emit( Router.events.NOT_FOUND, payload );
+  }
+
+  get _currentPath() {
+    // not supported on server
+  }
+
   get routes() {
     return this._routes;
   }
@@ -19,13 +30,6 @@ class Router extends EventEmitter
     this._routes = r;
     this.recognizer = new RouteRecognizer();
     r.forEach( handler => this.recognizer.add( [ { handler, path: handler.path }]) );
-  }
-
-  get _currentPath() {
-    const { 
-      search = '', 
-      pathname } = document.location;
-    return pathname + search;
   }
 
   /*
@@ -48,31 +52,13 @@ class Router extends EventEmitter
     return null;
   }
 
-  /* in browser methods */
-  navigateTo(url,stateObj) {
-    try {
-      this.setBrowserAddressBar(url,stateObj);
-      this.updateURL();
-    } 
-    catch(e) {
-      throw e;
-    }
-  }
-
-  setBrowserAddressBar(url,stateObj) {
-    if( url ) {
-      window.history.pushState(stateObj || null,null,url);
-      if( window.ga ) {
-        window.ga( 'send', 'pageview', document.location.pathname );
-      }
-    }
-  }
-
   // Called from .navigateTo() and when user hits 'back' or 'foward' button
-  updateURL() {
-    var handlers = this.resolve(this._currentPath);
+  // or on the server with 'path'
+
+  updateURL(popStateEvent,path,payload={}) {
+    var handlers = this.resolve(path || this._currentPath);
     if (!handlers ) {
-      return window.alert('Not Found');
+      return this.alertNotFound(payload); 
     }
     if( handlers.length > 1 ) {
       throw new Error('wups - don\'t do nested route handlers yet');
@@ -89,34 +75,26 @@ class Router extends EventEmitter
             path:         handler.path,
             params:       handler.params,
             queryParams:  handler.queryParams,
-            hash:         document.location.hash || '',
+            hash:         typeof(document) !== 'undefined' && document.location.hash || '',
+            payload
           };
           
           this.emit( Router.events.PRE_NAVIGATE, meta );
 
           this.emit( Router.events.NAVIGATE_TO, meta);
-          
+
       }).catch( error => {
         throw error;
       });
   }
+
 }
 
-const MODEL_UPDATED    = 'MODEL_UPDATED';
-const PRE_NAVIGATE     = 'PRE_NAVIGATE';
-const NAVIGATE_TO      = 'NAVIGATE_TO';
-const NAVIGATE_TO_THIS = 'NAVIGATE_TO_THIS';
-
 Router.events = {
-  MODEL_UPDATED,
-  PRE_NAVIGATE,
   NAVIGATE_TO,
-  NAVIGATE_TO_THIS
+  PRE_NAVIGATE,
+  NOT_FOUND
 };
 
-const router = new Router();
-
-router.events = Router.events;
-
-module.exports = router;
+module.exports = Router;
 

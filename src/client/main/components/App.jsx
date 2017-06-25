@@ -2,14 +2,10 @@ import React           from 'react';
 import MediaQuery      from 'react-responsive';
 import { initFilters } from '../store/actions';
 import configureStore  from '../../store/configureStore';
-import router          from '../../../shared/router'; 
 import Nav             from './Nav.jsx';
 import Footer          from './Footer.jsx';
 
-import appBrowserModel from './AppBrowserModel';
-
 import '../../lib/polyfills';
-
 
 const store = configureStore();
 
@@ -19,13 +15,13 @@ class App extends React.Component {
 
   constructor (props) {
     super (props);
-    this.onNavigate = this.onNavigate.bind(this);
     this.state = { ...props };
   }
 
   componentWillMount() {
     if( !global.IS_SERVER_REQUEST ) {
-      router.on( router.events.NAVIGATE_TO, this.onNavigate );
+      const Router = require('../../services/router');
+      Router.service.on( Router.service.events.NAVIGATE_TO, this.onNavigate.bind(this) );
       store.dispatch( initFilters(this.state.groupFilters) );
     }
   }
@@ -76,7 +72,5 @@ class App extends React.Component {
     );
   }
 }
-
-appBrowserModel(App);
 
 module.exports = App;

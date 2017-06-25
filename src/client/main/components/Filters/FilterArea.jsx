@@ -1,5 +1,5 @@
 import React from 'react';
-import router from '../../../../shared/router';
+import Router from '../../../services/router';
 
 import FilterGroup from './FilterGroup.jsx';
 import ScrollLinks from './ScrollLinks.jsx';
@@ -11,7 +11,7 @@ class FilterArea extends React.Component {
 
   // helper function to scroll to a state or color section
   scrollToElement = (element) => {
-    router.setBrowserAddressBar('/groups#' + element);
+    Router.service.setBrowserAddressBar('/groups#' + element);
     scrollToElement('#' + element);
   }
 

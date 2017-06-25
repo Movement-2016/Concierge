@@ -21,7 +21,7 @@ const rm = require('gulp-rm');
 const indexJS = require('index-js');
 
 const browserifyConfig =  {
-  entries: 'src/client/main/components/App.jsx',
+  entries: 'src/client/main/components/AppBrowserModel.js',
   debug: true,
 };
 

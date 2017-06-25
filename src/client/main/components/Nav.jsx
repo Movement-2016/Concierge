@@ -1,7 +1,7 @@
 import React               from 'react';
 
 import scrollToElement from '../../lib/scrollToElement';
-import Link            from '../../ui/LinkToRoute';
+import Link            from '../../services/LinkToRoute';
 
 import Headroom from 'react-headroom';
 

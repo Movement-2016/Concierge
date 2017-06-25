@@ -1,6 +1,6 @@
 import React from 'react';
 
-import router from '../../../../shared/router';
+import Link from '../../../services/LinkToRoute';
 
 import OrgsMenuPage from './OrgsMenuPage.jsx';
 import OrgsPageDesktop from './OrgsPageDesktop.jsx';
@@ -13,7 +13,7 @@ class OrgsEntryPage extends React.Component {
     if( !global.IS_SERVER_REQUEST ) {
       const { params, mobile } = this.props;
       if (params && params.slug && !mobile) {
-        router.navigateTo('/groups#' + params.slug);
+        Link.navigateTo('/groups#' + params.slug);
       }      
     }
   }
