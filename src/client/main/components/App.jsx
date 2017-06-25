@@ -4,6 +4,7 @@ import { initFilters } from '../store/actions';
 import configureStore  from '../../store/configureStore';
 import Nav             from './Nav.jsx';
 import Footer          from './Footer.jsx';
+import TitleSetter     from './TitleSetter.jsx';
 
 import '../../lib/polyfills';
 
@@ -35,7 +36,8 @@ class App extends React.Component {
     const { 
       menu,
       component: { 
-        component:comp 
+        component:comp,
+        title
       },
       model, 
       browserOnly,
@@ -62,6 +64,7 @@ class App extends React.Component {
         {(isMobile) => {
           return (
             <div className="site-wrapper">
+              {title && <TitleSetter title={SITE_TITLE + ' - ' + title} />}
               <Nav menu={menu} siteTitle={SITE_TITLE} mobile={isMobile} />
               {comp && React.createElement(comp, { store, model, params, queryParams, mobile: isMobile} )}
               <Footer />

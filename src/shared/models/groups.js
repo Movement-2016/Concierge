@@ -10,6 +10,15 @@ const GroupsModel = {
 
   component: OrgsEntryPage,
   
+  title: 'Groups',
+
+  meta: [
+    {
+      name: 'description',
+      content: 'A directory of grassroots orgs as culled and curated by Gamechangers Lab. Use this page to create a donation plan'
+    }
+  ],
+
   model: () => {
     
     const queries = {

@@ -15,6 +15,8 @@ const HomePageModel = {
   paths: [ '/' ],
 
   component: HomePage,
+
+  title: 'Home',
   
   model: () => {
     

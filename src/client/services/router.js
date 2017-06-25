@@ -31,9 +31,6 @@ class BrowserRouter extends Router
   setBrowserAddressBar(url,stateObj) {
     if( url ) {
       window.history.pushState(stateObj || null,null,url);
-      if( window.ga ) {
-        window.ga( 'send', 'pageview', document.location.pathname );
-      }
     }
   }
 

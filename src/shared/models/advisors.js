@@ -11,8 +11,17 @@ const TeamModel = {
   paths: [ '/advisors'  ],
 
   component: AdvisorPage,
-  
-  model: () => service.query('.posts.advisor').then( advisors => {return { advisors }} )
+
+  title: 'Advisors',
+
+  meta: [
+    {
+      name: 'description',
+      content: 'MovementVote consultants, adivsors, sponsors and partners'
+    }
+  ],
+
+  model: () => service.query('.posts.advisor').then( advisors => { return { advisors }; } )
 
 };
 

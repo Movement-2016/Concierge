@@ -5,6 +5,8 @@ const fs                = require( 'fs');
 const { renderToStaticMarkup } = require( 'react-dom/server');
 const React                    = require( 'react');
 
+const utils = require('./html-utils');
+
 class ServerRouter {
 
   constructor( routeMap, AppSpec, bodyRegex, pathToIndex ) {
@@ -42,11 +44,7 @@ class ServerRouter {
 
     var html = this.indexHTML.replace(this.bodyRegex,'$1' + bodyHTML + '$3'); 
 
-    const title = props.component.title || null;
-    
-    if( title ) {
-      html = html.replace( /<title>[^<]+<\/title>/, '<title>' + title + '</title>');
-    }
+    html = utils.titleSetter( props.component, utils.metaSetter(  props.component, html ) );
 
     res.setHeader( 'Content-Type', 'text/html' );
     res.end(html);
