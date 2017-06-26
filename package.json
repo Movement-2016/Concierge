@@ -33,9 +33,9 @@
   },
   "scripts": {
     "test": "",
-    "start": "nodemon --expose-gc dist/server/main.js --port=3000",
+    "start": "nodemon --ignore src/ --expose-gc dist/server/main.js --port=3000",
     "build": "gulp",
-    "build-stage": "gulp stage",
+    "build-stage": "gulp no-watch",
     "lint": "eslint src/**"
   },
   "devDependencies": {

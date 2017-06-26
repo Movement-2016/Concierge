@@ -5,8 +5,10 @@ const Router            = require( './router');
 const { App }    = require( '../client/main/components');
 const AppModel   = require( '../shared/models/app' );
 
-const BODY_REGEX         = /(<div id="app">)(<!-- RENDER CONTENT -->)(<\/div>)/;
-const PATH_TO_INDEX_HTML = './dist/public/index.html';
+const { 
+  BODY_REGEX,
+  PATH_TO_INDEX_HTML
+} = require('./config');
 
 let router = null;
 

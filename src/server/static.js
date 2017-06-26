@@ -3,6 +3,10 @@ var fs   = require('fs');
 var glob = require('glob');
 var url  = require('url');
 
+const {
+  PUBLIC_DIR
+} = require('./config');
+
 var mimeTypes = [
   [ new RegExp('\.js$'),    'text/javascript'],
   [ new RegExp('\.css$'),   'text/css'],
@@ -20,33 +24,33 @@ var mimeTypes = [
   [ new RegExp('\.txt$'),   'text/plain'],
 ];
 
-let maxMem = 0;
-
 class StaticRouter {
 
   constructor() {
     this.staticIncludes = [];
     this.pathToStaticsRoot = null;
-
   }
 
-  install(pathToStaticsRoot,app) {
+  install(app) {
 
-    this.pathToStaticsRoot = pathToStaticsRoot;
+    this.pathToStaticsRoot = PUBLIC_DIR;
 
     return new Promise( (resolve, reject) => {
-      pathToStaticsRoot = pathToStaticsRoot.replace(/\/$/,'');
-      var _this = this;
-      glob( pathToStaticsRoot + '/**/*.*',function(e,f) {
+
+      this.pathToStaticsRoot = this.pathToStaticsRoot.replace(/\/$/,'');
+
+      glob( this.pathToStaticsRoot + '/**/*.*', (e,f) => {
         if( e ) {
           reject(e);
         } else {
-          _this.staticIncludes = f;
+          this.staticIncludes = f;
+          console.log( 'Ready for static routing');
           resolve( null, f );
         }
       });
+
       app.use ('*', this.handle.bind(this) );
-      console.log( 'Ready for static routing');
+
     });
   }
 
@@ -61,41 +65,33 @@ class StaticRouter {
 
       var file = this.pathToStaticsRoot + path;
 
-      if( !this._inner_resolve( file, res ) ) {
-        //next();
-        const hused = process.memoryUsage().heapUsed;
-        if( hused > maxMem ) {
-          maxMem = hused;
-          console.log( 'returning index.html for ', file,   ' memory: ', maxMem );
-        }
-        this.sendFile (res,`${this.pathToStaticsRoot}/index.html`);      
+      if( !this._inner_resolve( file, res, next ) ) {
+        next();
       }
   }
 
-  _inner_resolve( pathToStatic, res ) {
+  _inner_resolve( pathToStatic, res, next ) {
     if( pathToStatic.match( '\.js$') && this.staticIncludes.includes( pathToStatic + '.gz' ) ) {
 
       res.setHeader( 'content-type', 'text/javascript' );
       res.setHeader( 'content-encoding', 'gzip' );
-      this.sendFile( res, pathToStatic + '.gz',true);
+      this.sendFile( res, pathToStatic + '.gz', true, next);
       return true;
     }
 
     if( this.staticIncludes.includes( pathToStatic ) ) {
-      this.sendFile( res, pathToStatic );
+      this.sendFile( res, pathToStatic, false, next );
       return true;
     }
 
     return false;
   }
 
-  sendFile(res,fName,skipMime) {
+  sendFile(res,fName,skipMime,next) {
 
     fs.readFile(fName, (err, data) => {
       if (err) {
-        console.log( 'Error ******', err );
-        res.statusCode = 404;
-        res.end('Not Found');
+        next();
       } else {
         if( !skipMime ) {
           var mime = this.sniffMime(fName);

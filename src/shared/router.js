@@ -58,7 +58,8 @@ class Router extends EventEmitter
   updateURL(popStateEvent,path,payload={}) {
     var handlers = this.resolve(path || this._currentPath);
     if (!handlers ) {
-      return this.alertNotFound(payload); 
+      this.alertNotFound(payload); 
+      return;
     }
     if( handlers.length > 1 ) {
       throw new Error('wups - don\'t do nested route handlers yet');

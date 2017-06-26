@@ -3,6 +3,7 @@ class MiddleWare {
 
   constructor() {
     this._paths = [];
+    this.handle = this.handle.bind(this);
   }
 
   post( path, callback ) {
@@ -52,7 +53,7 @@ class MiddleWare {
   }
 
   get handler() {
-    return this.handle.bind(this);
+    return this.handle;
   }
 }
 

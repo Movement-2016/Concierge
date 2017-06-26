@@ -31,6 +31,7 @@ class ServerRouter {
 
     const {
       res,
+      req
     } = props.payload;
 
     const {
