@@ -4,6 +4,7 @@ var apiModel = require('../shared/models/api');
 var path     = require('jspath');
 var Entities = require('html-entities').AllHtmlEntities;
 var commaize = require('commaize');
+var reqJSON  = require('./req-json');
 
 const SUBJECT_HEAD = '[Movement Vote]';
 
@@ -97,108 +98,110 @@ ${message ? 'Message: "' + message + '"' : ''}
 
 function houseParty (req, res) {
 
-  console.log( req.body );
+  reqJSON(req).then( json => {
 
-  const {
+    const {
         email,
         phone,
-      } = req.body;
+      } = json;
 
-  if( !email || !phone ) {
-    res.status( 500 ).json({});
-  }
+    if( !email || !phone ) {
+      res.status( 500 ).json({});
+    }
 
-  const mail = partyFormat(req.body);
+    const mail = partyFormat(req.body);
 
-  const payload = {
-    to: 'advisor@movementvote.org',
-    subject: SUBJECT_HEAD + ' New house party form submission from ' + email,
-    message: entities.decode(mail)
-  };
+    const payload = {
+      to: 'advisor@movementvote.org',
+      subject: SUBJECT_HEAD + ' New house party form submission from ' + email,
+      message: entities.decode(mail)
+    };
 
-  mailer.send( payload )
-    .then( result => { console.log(email,result); res.status( 200 ).json(result); } )
-    .catch( err => { console.log('error', err ); res.status( 500 ).json( err ); } );
+    mailer.send( payload )
+      .then( result => { console.log(email,result); res.status( 200 ).json(result); } )
+      .catch( err => { console.log('error', err ); res.status( 500 ).json( err ); } );
 
+  });
 }
 
 function contactEmail (req, res) {
 
-  console.log( req.body );
+  reqJSON(req).then( json => {
+    const {
+        email,
+        advisorEmail
+      } = json;
 
-  const {
-      email,
-      advisorEmail
-    } = req.body;
+    if( !email ) {
+      res.status( 500 ).json({});
+    }
 
-  if( !email ) {
-    res.status( 500 ).json({});
-  }
+    const mail = contactFormat(req.body);
 
-  const mail = contactFormat(req.body);
+    const payload = {
+      to: advisorEmail,
+      subject: SUBJECT_HEAD + ' New contact form submission from ' + email,
+      message: entities.decode(mail)
+    };
 
-  const payload = {
-    to: advisorEmail,
-    subject: SUBJECT_HEAD + ' New contact form submission from ' + email,
-    message: entities.decode(mail)
-  };
+    mailer.send( payload )
+      .then ( result => { console.log(email,result);  res.status( 200 ).json(result); } )
+      .catch( err    => { console.log('error', err ); res.status( 500 ).json( err ); } );
+  });
 
-  mailer.send( payload )
-    .then( result => { console.log(email,result); res.status( 200 ).json(result); } )
-    .catch( err => { console.log('error', err ); res.status( 500 ).json( err ); } );
 
 }
 
 function mailPlan (req, res) {
 
-  const {
-    fname,
-    lname,
-    phone,
-    email,
-    advisorEmail,
-    wantsConsult,
-    items
-  } = req.body;
-
-  if( !items || !email ) {
-    res.status( 500 ).json({});
-  }
-
-  let mail = planMailHeader({fname,lname,email,phone,wantsConsult});
-  let total = 0;
-  items.forEach( item => {
-    const { id, amount } = item;
-    const group = path(`..{.ID==${id}}`,orgs)[0];
-    console.log(item);
-    total += Number(amount);
+  reqJSON(req).then( json => {
     const {
-      post_title: name,
-      fields: {
-        website: urlWeb,
-        c4_donate_link: urlC4,
-        c3_donate_link: urlC3
-      }
-    } = group;
-    const urlGive = urlC3 || urlC4;
-    mail += planFormatter({name,urlWeb,urlGive,amount});
+      fname,
+      lname,
+      phone,
+      email,
+      advisorEmail,
+      wantsConsult,
+      items
+    } = json;
+
+    if( !items || !email ) {
+      res.status( 500 ).json({});
+    }
+
+    let mail = planMailHeader({fname,lname,email,phone,wantsConsult});
+    let total = 0;
+    items.forEach( item => {
+      const { id, amount } = item;
+      const group = path(`..{.ID==${id}}`,orgs)[0];
+      total += Number(amount);
+      const {
+        post_title: name,
+        fields: {
+          website: urlWeb,
+          c4_donate_link: urlC4,
+          c3_donate_link: urlC3
+        }
+      } = group;
+      const urlGive = urlC3 || urlC4;
+      mail += planFormatter({name,urlWeb,urlGive,amount});
+    });
+    mail += planMailFooter(total);
+
+    const payload = {
+      to: advisorEmail,
+      subject: SUBJECT_HEAD + ' Your Giving Plan',
+      message: entities.decode(mail)
+    };
+
+    mailer.send( payload )
+      .then( () => {
+        const userPayload = Object.assign({},payload,{to:email});
+        return mailer.send( userPayload );
+      })
+      .then(  result => { console.log( email,   result); res.status( 200 ).json(result); })
+      .catch( err    => { console.log('error', err   ); res.status( 500 ).json( err );  });
   });
-  mail += planMailFooter(total);
-
-  const payload = {
-    to: advisorEmail,
-    subject: SUBJECT_HEAD + ' Your Giving Plan',
-    message: entities.decode(mail)
-  };
-
-  mailer.send( payload )
-    .then( result => {
-      console.log(email,result);
-      const userPayload = Object.assign({},payload,{to:email});
-      return mailer.send( userPayload );
-    })
-    .then(  result => { console.log( email,   result); res.status( 200 ).json(result); })
-    .catch( err    => { console.log('error', err   ); res.status( 500 ).json( err );  });
 }
 
 module.exports = init;
