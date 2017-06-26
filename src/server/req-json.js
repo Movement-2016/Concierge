@@ -5,10 +5,10 @@ const reqJSON = req => {
   return new Promise( (resolve, reject) => {
 
     let data = '';
-    req.on('data', function (chunk) {
-      data += chunk.toString();
-    });
-    req.on('end', function () {
+    
+    req.on('data', chunk => data += chunk.toString() );
+
+    req.on('end', () => {
         try {
           resolve(JSON.parse(data));
         } catch( e ) {
