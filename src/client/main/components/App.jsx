@@ -8,6 +8,8 @@ import TitleSetter     from './TitleSetter.jsx';
 
 import '../../lib/polyfills';
 
+import scrollToTop from '../../lib/scrollToTop';
+
 const store = configureStore();
 
 const SITE_TITLE = 'Movement 2017';
@@ -28,7 +30,7 @@ class App extends React.Component {
   }
 
   onNavigate(spec) {
-    this.setState( spec );
+    this.setState( spec, (document !== undefined) && !document.location.hash && scrollToTop );
   }
 
   render () {

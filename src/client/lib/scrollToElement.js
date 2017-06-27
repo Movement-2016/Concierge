@@ -1,11 +1,12 @@
 /* global $ */
 
-const fixedHeader = true;
+const DO_FIXED_HEADER          = true;
+const FIXED_KNOWN_MAGIC_OFFSET = 10;
 
 function scrollToElement(e, offset) {
 
-  const defaultOffset = fixedHeader
-    ? document.querySelector('.main-nav').offsetHeight + 10
+  const defaultOffset = DO_FIXED_HEADER         
+    ? document.querySelector('.main-nav').offsetHeight + FIXED_KNOWN_MAGIC_OFFSET
     : 0;
   var $e = $(e);
   if( $e[0] ) {
