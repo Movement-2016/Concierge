@@ -16,11 +16,11 @@ const colorSectionsIDDict = states =>  utils.statesInColor(0,states)
 
 const planDataModel = () => {
   const queries = {
-    taxonomies:    '.taxonomies',
-    states:        '.taxonomies.state.terms.*{.parent!=0}',
-    colorOrder:    '.colorOrder',
-    groups:        utils.GROUPS_QUERY,
-    allStates:     utils.STATES_QUERY,
+    taxonomies:      '.taxonomies',
+    colorOrder:       '.colorOrder',
+    groups:           '.posts.group',
+    states:           utils.STATES_QUERY, 
+    statesAndColors:  utils.STATES_AND_COLORS_QUERY,
   };
 
   return service.queries( queries ).then( results => {
@@ -30,14 +30,14 @@ const planDataModel = () => {
       states,
       colorOrder,
       groups,
-      allStates: [ allStates ]
+      statesAndColors: [ statesAndColors ]
     } = results;
 
     return { 
       statesDict:          states.reduce( (accum,s) => (accum[s.slug] = s, accum), {}),
       groupFilters:        utils.groupFilters(taxonomies),
-      colorSectionsIDDict: colorSectionsIDDict(allStates),
-      orgs:                utils.orgs(allStates,groups,colorOrder),
+      colorSectionsIDDict: colorSectionsIDDict(statesAndColors),
+      orgs:                utils.orgs(statesAndColors,groups,colorOrder),
     };
   });
 };

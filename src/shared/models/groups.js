@@ -22,12 +22,12 @@ const GroupsModel = {
   model: () => {
     
     const queries = {
-      states:        '.taxonomies.state.terms.*{.parent!=0}',
-      taxonomies:    '.taxonomies',
-      colorOrder:    '.colorOrder',
-      groups:        utils.GROUPS_QUERY,
-      allStates:     utils.STATES_QUERY,
-      donateTiles:   '.posts.donatetile',
+      taxonomies:       '.taxonomies',
+      colorOrder:       '.colorOrder',
+      groups:           '.posts.group',
+      donateTiles:      '.posts.donatetile',
+      statesAndColors:  utils.STATES_AND_COLORS_QUERY,
+      states:           utils.STATES_QUERY, 
     };
 
     return service.queries(queries).then( hash => {
@@ -37,7 +37,7 @@ const GroupsModel = {
         colorOrder,
         groups,
         states,
-        allStates: [ allStates ]
+        statesAndColors: [ statesAndColors ]
       } = hash;
 
       return { 
@@ -45,10 +45,10 @@ const GroupsModel = {
         groups,
         statesDict:        states.reduce( (accum,s) => (accum[s.slug] = s, accum), {}),
         groupFilters:      utils.groupFilters(taxonomies),
-        colorSections:     utils.colorSections(allStates,colorOrder),
-        orgs:              utils.orgs(allStates,groups,colorOrder),
+        colorSections:     utils.colorSections(statesAndColors,colorOrder),
+        orgs:              utils.orgs(statesAndColors,groups,colorOrder),
         numGroups:         Object.keys(groups).length,
-        colorSectionsDict: utils.colorSectionsDict(allStates,colorOrder),
+        colorSectionsDict: utils.colorSectionsDict(statesAndColors,colorOrder),
         ezDonateTiles:     hash.donateTiles.splice(0,2)
       };
     });

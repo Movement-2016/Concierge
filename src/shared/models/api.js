@@ -8,9 +8,9 @@ const ApiModel = {
   model: () => {
 
     const queries = {
-      groups:        utils.GROUPS_QUERY,
-      allStates:     utils.STATES_QUERY,
-      colorOrder:    '.colorOrder',
+      groups:           '.posts.group',
+      colorOrder:       '.colorOrder',
+      statesAndColors:  utils.STATES_AND_COLORS_QUERY,
     };
 
     return service.queries(queries).then( results => {
@@ -18,11 +18,11 @@ const ApiModel = {
         const {
           colorOrder,
           groups,
-          allStates: [ allStates ]
+          statesAndColors: [ statesAndColors ]
         } = results;
 
         return {
-          orgs: utils.orgs(allStates,groups,colorOrder)
+          orgs: utils.orgs(statesAndColors,groups,colorOrder)
         };
       });
     }

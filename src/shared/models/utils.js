@@ -9,8 +9,9 @@ const groupFilters = tax => {
     .reduce( (accum,k) => (accum[k] = { ...tax[k], tags: Object.keys(tax[k].terms) },accum), {} );
 };
 
-const STATES_QUERY = '.taxonomies.state.terms';
-const GROUPS_QUERY = '.posts.group';
+const STATES_AND_COLORS_QUERY = '.taxonomies.state.terms';
+const STATES_QUERY            = '.taxonomies.state.terms.*{.parent!=0}';
+const COLORS_QUERY            = '.taxonomies.state.terms.*{.parent==0}';
 
 /* 
   Returns a list of states when passed a color category object.
@@ -24,8 +25,8 @@ const statesInColor = (color, states) => {
 /* 
   Returns a list of state color categories sorted in correct display order 
 */
-const colorSections = (states,colorOrder) =>  {
-  var colors   = statesInColor(0,states);
+const colorSections = (statesAndColors,colorOrder) =>  {
+  var colors   = statesInColor(0,statesAndColors);
   var orderMap = colorOrder.reduce( (accum,c,i) => (accum[c] = i,accum), {} );
   return colors.sort( (a,b) => orderMap[a.slug] > orderMap[b.slug] );
 };
@@ -33,13 +34,13 @@ const colorSections = (states,colorOrder) =>  {
 /* 
   Returns a structured array of groups with structure orgs[color][state][org] 
 */
-const orgs = (states, groups, colorOrder) => {
+const orgs = (statesAndColors, groups, colorOrder) => {
 
   const orgs = {};
-  const colors = colorSections(states,colorOrder);
+  const colors = colorSections(statesAndColors,colorOrder);
   colors.forEach( color => {
     orgs[color.slug] = {};
-    statesInColor(color,states).forEach( state => {
+    statesInColor(color,statesAndColors).forEach( state => {
       const foundOrgs =  path('.{.fields.state=="'+state.slug+'"}', groups);
       foundOrgs.length && (orgs[color.slug][state.slug] = foundOrgs);
     });
@@ -50,22 +51,23 @@ const orgs = (states, groups, colorOrder) => {
 /*
   Returns a dictionary of color sections 
 */
-const colorSectionsDict = (states,colorOrder) => {
-  return colorSections(states,colorOrder)
-            .reduce( (accum,c) => (accum[c.slug] = { ...c, count: numGroupsInColor(c,states) }, accum) );
+const colorSectionsDict = (statesAndColors,colorOrder) => {
+  return colorSections(statesAndColors,colorOrder)
+            .reduce( (accum,c) => (accum[c.slug] = { ...c, count: numGroupsInColor(c,statesAndColors) }, accum) );
 };
 
 /*
   Returns number of groups in the passed color category 
 */
-const numGroupsInColor = (color,states) => {
+const numGroupsInColor = (color,statesAndColors) => {
   const summer = (accum,s) => accum + s.count;
-  return statesInColor(color,states).reduce( summer, 0 );
+  return statesInColor(color,statesAndColors).reduce( summer, 0 );
 };
 
 module.exports = {
+  STATES_AND_COLORS_QUERY,
   STATES_QUERY,
-  GROUPS_QUERY,
+  COLORS_QUERY,
 
   groupFilters,
   statesInColor,

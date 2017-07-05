@@ -3,6 +3,8 @@ import {
   HomePage
 } from '../../client/main/components';
 
+import utils from './utils';
+
 import service from '../m-service';
 
 const orderColors = ( colors, order ) => {
@@ -24,8 +26,8 @@ const HomePageModel = {
       donateTiles:   '.posts.donatetile',
       news:          '.posts.news',
       testimonials:  '.posts.testimonials',
-      states:        '.taxonomies.state.terms.*{.parent!=0}',
-      colors:        '.taxonomies.state.terms.*{.parent==0}',
+      states:        utils.STATES_QUERY,
+      colors:        utils.COLORS_QUERY,
       colorOrder:    '.colorOrder'
     };
     
