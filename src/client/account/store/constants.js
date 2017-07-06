@@ -1,9 +1,2 @@
 // constants for actions
-export const SET_AUTHENTICATED = 'SET_AUTHENTICATED';
 export const SET_PROFILE = 'SET_PROFILE';
-export const SET_USER_FIRSTNAME = 'SET_USER_FIRSTNAME';
-export const SET_USER_LASTNAME = 'SET_USER_LASTNAME';
-export const SET_USER_EMAIL = 'SET_USER_EMAIL';
-export const SET_USER_PHONE = 'SET_USER_PHONE';
-export const UPDATE_PLANNED = 'UPDATE_PLANNED';
-export const UPDATE_GIVEN = 'UPDATE_GIVEN';

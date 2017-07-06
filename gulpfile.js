@@ -36,14 +36,24 @@ const babelifyOpts = {
 };
 
 const dependencies = [
+  'es6-promise-polyfill',
+  'events',
   'jspath',
+  'lodash',
   'node-fetch',
   'react',
   'react-dom',
+  'react-headroom',
   'react-redux',
+  'react-responsive',
+  'react-share',
+  'react-stickynode',
   'redux',
   'redux-thunk',
+  'route-recognizer',
   'whatwg-fetch',
+
+
 ];
 
 const fonts = [
