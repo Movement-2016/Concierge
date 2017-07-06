@@ -6,7 +6,7 @@ class ProfileForm extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.onSubmit();
+    this.props.onSubmit(e);
   }
 
   render() {
