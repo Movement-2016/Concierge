@@ -28,13 +28,14 @@
     margin: 15px;
   }
 }
-.dfa-logo {
+.dfa-logo,
+.afya-logo {
   padding: 4px 0;
   @include bp-md {
     padding: 7px 0;
   }
 }
-.student-power-logo,
+.studentpower-logo,
 .peoples-action-logo,
 .ccca-logo,
 .courage-logo {
