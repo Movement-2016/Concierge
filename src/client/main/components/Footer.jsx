@@ -10,17 +10,17 @@ const Footer = () => {
           <li className="partner-logo wf-logo">
             <a href="http://workingfamilies.org" target="_blank"><img src="/images/partner-logos/working-families-logo.png" /></a>
           </li>
-          <li className="partner-logo bus-fed-logo">
-            <a href="http://busfedaction.org" target="_blank"><img src="/images/partner-logos/bus-federation-logo.png" /></a>
+          <li className="partner-logo afya-logo">
+            <a href="https://www.allianceforyouthaction.org/" target="_blank"><img src="/images/partner-logos/afya-logo.png" /></a>
           </li>
           <li className="partner-logo peoples-action-logo">
-            <a href="http://peoplesaction.org" target="_blank"><img src="/images/partner-logos/peoples-action-logo.png" /></a>
+            <a href="http://peoplesaction.org" target="_blank"><img src="/images/partner-logos/peoples-action-logo@0,5x.png" /></a>
           </li>
-          <li className="partner-logo student-power-logo">
-            <a><img src="/images/partner-logos/student-power-logo.png" /></a>
+          <li className="partner-logo studentpower-logo">
+            <a href="https://studentpower.us" target="_blank"><img src="/images/partner-logos/studentpower-logo@0,5x.png" /></a>
           </li>
           <li className="partner-logo lacafe-logo">
-            <a><img src="/images/partner-logos/lacafe.png" /></a>
+            <a><img src="/images/partner-logos/lacafe@0,5x.png" /></a>
           </li>
           <li className="partner-logo powerpac-logo">
             <a href="http://powerpac.org"><img src="/images/partner-logos/powerpac@0,5x.png" /></a>
@@ -55,6 +55,6 @@ const Footer = () => {
       </section>
     </footer>
   );
-};  
+};
 
 module.exports = Footer;

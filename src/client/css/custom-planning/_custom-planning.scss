@@ -5,9 +5,11 @@
   .page-description {
     color: $med-trans;
     font-size: 16px;
+    @include bp-md {
+      margin: 0 2rem;
+    }
     @include bp-lg {
       font-size: 18px;
-      margin: 0 30px;
     }
   }
 }
