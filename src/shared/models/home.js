@@ -13,37 +13,37 @@ const orderColors = ( colors, order ) => {
 };
 
 const HomePageModel = {
-  
+
   paths: [ '/' ],
 
   component: HomePage,
 
   title: 'Home',
-  
+
   model: () => {
-    
+
     const queries = {
       donateTiles:   '.posts.donatetile',
       news:          '.posts.news',
-      testimonials:  '.posts.testimonials',
+      testimonials:  '.posts.testimonial',
       states:        utils.STATES_QUERY,
       colors:        utils.COLORS_QUERY,
       colorOrder:    '.colorOrder'
     };
-    
+
     let props = {};
     return service.queries(queries).then( _hash => {
 
       props = { ..._hash };
-      
+
       props.colorSections = orderColors( props.colors, props.colorOrder );
-      
+
       return service.getPage('home');
-    
+
     }).then( homePage => {
 
       props.page = homePage;
-      
+
       return props;
     });
   }
