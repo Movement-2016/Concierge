@@ -10,7 +10,8 @@ const ApiModel = {
     const queries = {
       groups:           '.posts.group',
       colorOrder:       '.colorOrder',
-      statesAndColors:  utils.STATES_AND_COLORS_QUERY,
+      colors:           utils.COLORS_QUERY,
+      states:           utils.STATES_QUERY
     };
 
     return service.queries(queries).then( results => {
@@ -18,11 +19,12 @@ const ApiModel = {
         const {
           colorOrder,
           groups,
-          statesAndColors: [ statesAndColors ]
+          colors,
+          states,
         } = results;
 
         return {
-          orgs: utils.orgs(statesAndColors,groups,colorOrder)
+          orgs: utils.orgs(colors, states, groups, colorOrder)
         };
       });
     }

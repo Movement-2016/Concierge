@@ -11,15 +11,13 @@ import {
   ConsultPage
 } from '../../client/main/components';
 
-const colorSectionsIDDict = states =>  utils.statesInColor(0,states)
-                                            .reduce( (dict,color) => (dict[color.term_id] = color, dict), {} );
-
 const planDataModel = () => {
   const queries = {
     taxonomies:      '.taxonomies',
     colorOrder:       '.colorOrder',
     groups:           '.posts.group',
-    states:           utils.STATES_QUERY, 
+    states:           utils.STATES_QUERY,
+    colors:           utils.COLORS_QUERY,
     statesAndColors:  utils.STATES_AND_COLORS_QUERY,
   };
 
@@ -27,17 +25,17 @@ const planDataModel = () => {
 
     const {
       taxonomies: [ taxonomies ],
+      colors,
       states,
       colorOrder,
       groups,
-      statesAndColors: [ statesAndColors ]
     } = results;
 
-    return { 
+    return {
       statesDict:          states.reduce( (accum,s) => (accum[s.slug] = s, accum), {}),
+      colorSectionsIDDict: colors.reduce( (accum,color) => (accum[color.term_id] = color, accum), {} ),
       groupFilters:        utils.groupFilters(taxonomies),
-      colorSectionsIDDict: colorSectionsIDDict(statesAndColors),
-      orgs:                utils.orgs(statesAndColors,groups,colorOrder),
+      orgs:                utils.orgs(colors, states, groups, colorOrder),
     };
   });
 };

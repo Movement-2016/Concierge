@@ -1,7 +1,7 @@
 import path from 'jspath';
 
-/* 
-  remove 'state' from taxonomies 
+/*
+  remove 'state' from taxonomies
 */
 const groupFilters = tax => {
   return Object.keys( tax )
@@ -13,34 +13,31 @@ const STATES_AND_COLORS_QUERY = '.taxonomies.state.terms';
 const STATES_QUERY            = '.taxonomies.state.terms.*{.parent!=0}';
 const COLORS_QUERY            = '.taxonomies.state.terms.*{.parent==0}';
 
-/* 
-  Returns a list of states when passed a color category object.
-  If no color category is passed, returns an unsorted list of color categories. 
+/*
+  Returns a list of states in a given color category.
 */
-const statesInColor = (color, states) => {
-  var id = (color && color.term_id) || 0;
-  return path('.*{.parent=='+id+'}',states);
-};
+const statesInColor = (color, states) => path('.{.parent=='+color.term_id+'}', states);
 
-/* 
-  Returns a list of state color categories sorted in correct display order 
+/*
+  Returns a list of color sections sorted in correct display order
 */
-const colorSections = (statesAndColors,colorOrder) =>  {
-  var colors   = statesInColor(0,statesAndColors);
-  var orderMap = colorOrder.reduce( (accum,c,i) => (accum[c] = i,accum), {} );
+const colorSections = (colors, colorOrder) =>  {
+  var orderMap = colorOrder.reduce( (accum, c, i) => {
+    accum[c] = i;
+    return accum;
+  }, {} );
   return colors.sort( (a,b) => orderMap[a.slug] > orderMap[b.slug] );
 };
 
-/* 
-  Returns a structured array of groups with structure orgs[color][state][org] 
+/*
+  Returns a structured array of groups with structure orgs[color][state][org]
 */
-const orgs = (statesAndColors, groups, colorOrder) => {
-
+const orgs = (colors, states, groups, colorOrder) => {
   const orgs = {};
-  const colors = colorSections(statesAndColors,colorOrder);
-  colors.forEach( color => {
+  const sortedColors = colorSections(colors, colorOrder);
+  sortedColors.forEach( color => {
     orgs[color.slug] = {};
-    statesInColor(color,statesAndColors).forEach( state => {
+    statesInColor(color, states).forEach( state => {
       const foundOrgs =  path('.{.fields.state=="'+state.slug+'"}', groups);
       foundOrgs.length && (orgs[color.slug][state.slug] = foundOrgs);
     });
@@ -49,19 +46,22 @@ const orgs = (statesAndColors, groups, colorOrder) => {
 };
 
 /*
-  Returns a dictionary of color sections 
+  Returns a dictionary of color sections with count for number of groups within each color section
 */
-const colorSectionsDict = (statesAndColors,colorOrder) => {
-  return colorSections(statesAndColors,colorOrder)
-            .reduce( (accum,c) => (accum[c.slug] = { ...c, count: numGroupsInColor(c,statesAndColors) }, accum) );
-};
+const colorSectionsDict = (colorSections, states) => {
+  return colorSections.reduce( (accum, c) => {
+    accum[c.slug] = { ...c, count: numGroupsInColor(c, states) };
+    return accum;
+  }, {} );
+}
+
 
 /*
-  Returns number of groups in the passed color category 
+  Returns number of groups in the passed color category
 */
-const numGroupsInColor = (color,statesAndColors) => {
+const numGroupsInColor = (color, states) => {
   const summer = (accum,s) => accum + s.count;
-  return statesInColor(color,statesAndColors).reduce( summer, 0 );
+  return statesInColor(color, states).reduce( summer, 0 );
 };
 
 module.exports = {
