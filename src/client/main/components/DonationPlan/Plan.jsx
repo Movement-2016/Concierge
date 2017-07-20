@@ -1,14 +1,34 @@
-import React              from 'react';
+import React from 'react';
 
+import StoreWatcher from '../StoreWatcher';
+import StateOrgs from './StateOrgs.jsx';
 
 import {
   getSelectedOrgs,
   organizeOrgsByState
 } from '../../store/utils';
 
-import StateOrgs from './StateOrgs.jsx';
+class Plan extends StoreWatcher(React.Component) {
 
-class Plan extends React.Component {
+  stateFromStore(storeState) {
+    const {
+      store,
+      model: {
+        orgs
+      }
+    } = this.props;
+
+    const {
+      groups: {
+        selected,
+        plan
+      }
+    } = store.getState();
+
+    const sortedOrgs = orgs && organizeOrgsByState( getSelectedOrgs(selected,orgs) );
+
+    this.setState({ sortedOrgs, plan });
+  }
 
   get readonly() {
     return false;
@@ -21,20 +41,15 @@ class Plan extends React.Component {
         groupFilters: filters,
         statesDict: states,
         colorSectionsIDDict: colorDict,
-        orgs
       },
-      store,
-      mobile
+      mobile,
+      store
     } = this.props;
 
     const {
-      groups: {
-        selected,
-        plan
-      }
-    } = store.getState();
-
-    const sortedOrgs = orgs && organizeOrgsByState(getSelectedOrgs(selected,orgs));
+      sortedOrgs,
+      plan
+    } = this.state;
 
     const shared = {
       plan,
