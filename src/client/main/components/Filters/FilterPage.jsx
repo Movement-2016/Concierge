@@ -26,7 +26,7 @@ function SubmitBar(props) {
   return (
     <div className="filter-page-bar filter-submit-bar">
       <a className="filter-submit-button btn-flat waves-effect waves-light" onClick={props.onClick}>
-        {'View Groups'}
+        {'Apply Filters'}
       </a>
     </div>
   );
