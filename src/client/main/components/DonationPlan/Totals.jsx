@@ -10,7 +10,7 @@ class Totals extends StoreWatcher(React.Component) {
       groups: { planTotal }
     } = storeState;
 
-    if( !this.state || !('planTotal' in this.state) || this.state.planTotal !== planTotal  ) {
+    if( !this.state || !('planTotal' in this.state) || this.state.planTotal !== planTotal ) {
       this.setState({ planTotal });
     }
   }

@@ -27,14 +27,14 @@ class OrgsList extends StoreWatcher(React.Component) {
 
   getVisibleColorSections() {
 
-    const { 
+    const {
       model: {
         groupFilters: filters,
         statesDict,
         colorSections,
-        colorOrder,      
-        orgs
-      }
+        colorOrder,
+      },
+      visibleOrgs: orgs
     } = this.props;
 
     const {

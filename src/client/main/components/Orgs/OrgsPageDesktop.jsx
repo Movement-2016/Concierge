@@ -22,7 +22,7 @@ class OrgsPageDesktop extends OrgsPage {
     } = this.state;
 
     const props = this.props;
-    
+
     const {
       model,
       store,
@@ -40,7 +40,7 @@ class OrgsPageDesktop extends OrgsPage {
       handleFilterToggle:    this.handleFilterToggle,
       selectedFilters:       visibility,
       visibleColorSections:  Object.keys(visibleOrgs),
-      visibleStates:         getVisibleStates(visibleOrgs),            
+      visibleStates:         getVisibleStates(visibleOrgs),
     };
 
     const title = 'Browse Groups';
@@ -55,7 +55,7 @@ class OrgsPageDesktop extends OrgsPage {
                 <FilterArea {...filterAreaProps} />
               </Sticky>
             </div>
-            <OrgsList store={store} model={model} />
+            <OrgsList store={store} model={model} visibleOrgs={visibleOrgs} />
             <div className="plan-sidebar-wrapper">
               <Sticky top={104} bottomBoundary=".orgs-container">
                 <div className="plan-sidebar">
