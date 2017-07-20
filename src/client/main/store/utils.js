@@ -136,22 +136,23 @@ const getVisibleOrgs = (orgs,filters) => {
 
 };
 
+// Trims orgs object to only include part indicated in pageSlug
 const trimOrgs = (orgs, pageSlug) => {
   var trimmedOrgs = {};
 
-  if (typeof(orgs[pageSlug]) !== 'undefined') {
+  if (typeof(orgs[pageSlug]) !== 'undefined') { // this is true for a color section slug like 'dark-blue-states'
     trimmedOrgs[pageSlug] = orgs[pageSlug];
     return trimmedOrgs;
   } else {
     for (var colorSection in orgs) {
-      if (typeof(orgs[colorSection][pageSlug]) !== 'undefined') {
+      if (typeof(orgs[colorSection][pageSlug]) !== 'undefined') { // this is true for a single state slug like 'new-york'
         trimmedOrgs[colorSection] = {};
         trimmedOrgs[colorSection][pageSlug] = orgs[colorSection][pageSlug];
         return trimmedOrgs;
       }
     }
   }
-  return orgs;
+  return orgs; // returns all orgs for other slugs like 'all-states' or 'random-3ghA'
 };
 
 const getVisibleStates = orgs => {
