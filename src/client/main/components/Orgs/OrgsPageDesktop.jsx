@@ -21,8 +21,6 @@ class OrgsPageDesktop extends OrgsPage {
       selectedGroups
     } = this.state;
 
-    const props = this.props;
-
     const {
       model,
       store,
@@ -30,7 +28,7 @@ class OrgsPageDesktop extends OrgsPage {
         orgs,
         ezDonateTiles
       }
-    } = props;
+    } = this.props;
 
     const visibleOrgs = getVisibleOrgs( orgs, visibility );
 

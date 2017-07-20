@@ -78,14 +78,6 @@ class FilterPage extends React.Component {
   }
 
   render() {
-    const {
-      groupFilters: filters,
-    } = this.props;
-
-    const {
-      selectedFilters,
-    } = this.state;
-
     return (
       <div className={'filter-page' + (this.props.showFilters ? ' visible' : '')}>
         <Header onClearAll={this.onClearAll} onClose={this.onClose} />
@@ -93,11 +85,11 @@ class FilterPage extends React.Component {
             <div className="container">
               {this.filterNames.map( f => {
                 const filterGroupProps = {
-                  selectedFilters,
+                  selectedFilters:  this.state.selectedFilters,
                   onFilterChange:   this.onFilterChange,
                   name:             f,
-                  label:            filters[f].label,
-                  terms:            filters[f].terms
+                  label:            this.props.filters[f].label,
+                  terms:            this.props.filters[f].terms
                 };
                 return <FilterGroup key={f} {...filterGroupProps} />;
               }
@@ -106,11 +98,13 @@ class FilterPage extends React.Component {
           </div>
         <SubmitBar onClick={this.onSubmit} />
       </div>
-      );
+    );
   }
 }
 
 FilterPage.propTypes = {
+  showFilters:        React.PropTypes.bool.isRequired,
+  filters:            React.PropTypes.object.isRequired,
   startingFilters:    React.PropTypes.object.isRequired,
   handleFilterToggle: React.PropTypes.func.isRequired,
   handleClose:        React.PropTypes.func.isRequired,

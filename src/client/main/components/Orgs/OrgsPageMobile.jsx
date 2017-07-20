@@ -1,8 +1,6 @@
 import React from 'react';
-// import router from '../../../../shared/router';
 import Link from '../../../services/LinkToRoute';
 import Headroom from 'react-headroom';
-
 
 import OrgsPage from './OrgsPage.jsx';
 import OrgsList from './OrgsList.jsx';
@@ -10,7 +8,6 @@ import FilterPage from '../Filters/FilterPage.jsx';
 import PlanTray from './PlanTray.jsx';
 
 import { trimOrgs, getVisibleOrgs } from '../../store/utils';
-
 
 function FilterBar(props) {
   return (
@@ -52,28 +49,32 @@ class OrgsPageMobile extends OrgsPage {
 
   render() {
 
-    const props = this.props;
-
-    let {
-      orgs,
-      showOrgsList,
+    const {
       visibility,
-      selectedGroups
-    } = props;
+      selectedGroups,
+      showOrgsList
+    } = this.state;
 
-    const { pageSlug } = this.props;
+    const {
+      model,
+      store,
+      pageSlug,
+      model: {
+        orgs,
+        groupFilters
+      }
+    } = this.props;
 
-    pageSlug && ( orgs = trimOrgs(orgs, pageSlug) );
-    orgs = getVisibleOrgs( orgs, visibility );
+    const visibleOrgs = getVisibleOrgs( trimOrgs(orgs, pageSlug), visibility );
 
-    //needs to take snapshot of selectedFilters after showFilters has been set to true
     return (
       <main className="orgs-page orgs-page-mobile">
         <FilterBar onShowFilters={this.onShowFilters} />
-        <OrgsList {...props} mobile />
+        <OrgsList store={store} model={model} visibleOrgs={visibleOrgs} mobile={true} />
         <PlanTray numGroups={selectedGroups.length}/>
         <FilterPage
           showFilters={!showOrgsList}
+          filters={groupFilters}
           startingFilters={visibility}
           handleFilterToggle={this.handleFilterToggle}
           handleClose={this.onShowOrgsList}
