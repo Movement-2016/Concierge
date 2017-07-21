@@ -142,7 +142,8 @@ gulp.task('shared-components-jsx',  () => {
 
 gulp.task ('_server', function () {
   return gulp.src ( 'src/server/*.js')
-    .pipe (gulp.dest (BASE + '/server'));
+            .pipe (babel())
+            .pipe (gulp.dest (BASE + '/server'));
 });
 
 // compile third-party dependencies

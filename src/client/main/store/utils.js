@@ -4,7 +4,7 @@ import 'whatwg-fetch';
 const ADVISOR_EMAIL = 'advisor@movementvote.org';
 
 
-const _do_email = ({payload,url,onDone,onError}) => {
+const _do_email = ({payload,url,onDone,onError,successMsg}) => {
 
     onDone(''); // clear error messages
     onError('');
@@ -19,16 +19,18 @@ const _do_email = ({payload,url,onDone,onError}) => {
       body: JSON.stringify (payload),
     };
 
+    const errMsg = `'Error: We were unable to send your message at this time. Please try again later or email ${ADVISOR_EMAIL} directly.'`;
+
     fetch (`${location.origin}/${url}`, opts)
       .then( resp => resp.json() )
       .then( resp => {
         // this is a gmail api thing
         if( resp.labelIds && resp.labelIds.includes('SENT') ) {
-          onDone('Thank you! Your message has been sent successfuly.');
+          onDone(successMsg);
         } else {
-          onError('Error: We were unable to send your message at this time. Please try again later or email advisor@movementvote.org directly.');
+          onError(errMsg);
         }
-      }).catch( () => onError('Error: We were unable to send your message at this time. Please try again later or email advisor@movementvote.org directly. Thank you!') );
+      }).catch( () => onError(errMsg) );
 
 };
 
@@ -40,7 +42,15 @@ const emailContact = ({ storeState, onError, onDone, message }) => {
       message
     };
 
-    _do_email({onError,onDone,payload,url:'api/contact'});
+    const args = {
+      onError,
+      onDone,
+      payload,
+      url: 'api/contact',
+      successMsg: 'Thank you! Your message has been sent successfuly.'
+    };
+
+    _do_email(args);
 
 };
 
@@ -74,7 +84,15 @@ const emailPlan = ({ storeState, onError, onDone, forceConsult = false }) => {
       planTotal
     };
 
-    _do_email({payload,url:'api/plan/send',onError,onDone});
+    const args = {
+      onError,
+      onDone,
+      payload,
+      url: 'api/contact',
+      successMsg: 'Thank you! Your plan is on the way.'
+    };
+
+    _do_email( args );
 };
 
 const fastArrCmp = (a,b) => {

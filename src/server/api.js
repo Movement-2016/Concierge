@@ -1,4 +1,3 @@
-/* eslint no-console:"off" */
 var GMail    = require('./gmail');
 var apiModel = require('../shared/models/api');
 var path     = require('jspath');
@@ -21,9 +20,15 @@ function init (app) {
     app.post( '/api/plan/send',  mailPlan );
     app.post( '/api/houseparty', houseParty );
     app.post( '/api/contact',    contactEmail );
-    console.log('Ready to use email');
+    console.log('Ready to use email (at ', new Date() ); // eslint-disable-line
   });
 }
+
+// express polyfills-ish
+
+const setStatus = (res,status) => { res.statusCode = status; return res;  };
+
+const jsonPolyfill = res => { res.json = obj => res.end(JSON.stringify(obj));  };
 
 const planFormatter = ({name,urlWeb,urlGive,amount}) => `
 ${name} - $${amount} ${urlWeb && `\nWebsite: ${urlWeb}`} ${urlGive && `\nDonation: ${urlGive}`}
@@ -96,6 +101,7 @@ ${message ? 'Message: "' + message + '"' : ''}
 
 `;
 
+
 function houseParty (req, res) {
 
   reqJSON(req).then( json => {
@@ -106,10 +112,10 @@ function houseParty (req, res) {
       } = json;
 
     if( !email || !phone ) {
-      res.status( 500 ).json({});
+      return setStatus( res,  500 ).end();
     }
 
-    const mail = partyFormat(req.body);
+    const mail = partyFormat(json);
 
     const payload = {
       to: 'advisor@movementvote.org',
@@ -117,9 +123,11 @@ function houseParty (req, res) {
       message: entities.decode(mail)
     };
 
-    mailer.send( payload )
-      .then( result => { console.log(email,result); res.status( 200 ).json(result); } )
-      .catch( err => { console.log('error', err ); res.status( 500 ).json( err ); } );
+    jsonPolyfill(res);
+
+    mailer.send( payload )      
+      .then( result => { console.log(email,result); setStatus( res,  200 ).json(result); } ) // eslint-disable-line no-console
+      .catch( err => { console.log('error', err ); setStatus( res,  500 ).json( err ); } ); // eslint-disable-line no-console
 
   });
 }
@@ -133,10 +141,10 @@ function contactEmail (req, res) {
       } = json;
 
     if( !email ) {
-      res.status( 500 ).json({});
+      return setStatus( res,  500 ).end();
     }
 
-    const mail = contactFormat(req.body);
+    const mail = contactFormat(json);
 
     const payload = {
       to: advisorEmail,
@@ -144,12 +152,17 @@ function contactEmail (req, res) {
       message: entities.decode(mail)
     };
 
-    mailer.send( payload )
-      .then ( result => { console.log(email,result);  res.status( 200 ).json(result); } )
-      .catch( err    => { console.log('error', err ); res.status( 500 ).json( err ); } );
+    jsonPolyfill(res);
+    
+    return mailer.send( payload )
+      .then ( result => { console.log(email,result);  setStatus( res,  200 ).json(result); } ); // eslint-disable-line no-console
+      
+  }).catch( err => {
+
+    console.error( err ); // eslint-disable-line no-console
+    setStatus( res, 500 ).end( err.message );
+
   });
-
-
 }
 
 function mailPlan (req, res) {
@@ -166,7 +179,7 @@ function mailPlan (req, res) {
     } = json;
 
     if( !items || !email ) {
-      res.status( 500 ).json({});
+      return setStatus( res, 500).end();
     }
 
     let mail = planMailHeader({fname,lname,email,phone,wantsConsult});
@@ -194,13 +207,17 @@ function mailPlan (req, res) {
       message: entities.decode(mail)
     };
 
+    jsonPolyfill(res);
+    
     mailer.send( payload )
-      .then( () => {
-        const userPayload = Object.assign({},payload,{to:email});
-        return mailer.send( userPayload );
-      })
-      .then(  result => { console.log( email,   result); res.status( 200 ).json(result); })
-      .catch( err    => { console.log('error', err   ); res.status( 500 ).json( err );  });
+      .then( () => mailer.send( { ...payload, to: email }) )
+      .then(  result => { console.log( email, result); setStatus( res, 200 ).json(result); } ) ; // eslint-disable-line no-console
+
+  }).catch( err => {
+
+    console.error( err ); // eslint-disable-line no-console
+    setStatus( res, 500 ).end( err.message );
+
   });
 }
 

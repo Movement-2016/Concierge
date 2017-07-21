@@ -30,8 +30,8 @@ class Summary extends React.Component {
     this.onError = this.onError.bind(this);
   }
 
-  onDone(msg) {
-    this.setState({ msg });
+  onDone( done ) {
+    this.setState({ done });
   }
 
   onError(error) {
@@ -44,6 +44,11 @@ class Summary extends React.Component {
       mobile,
       store
     } = this.props;
+
+    const {
+      done,
+      error
+    } = this.state;
 
     return (
       <div>
@@ -59,6 +64,8 @@ class Summary extends React.Component {
                 {!mobile && <SummaryUser store={store} />}
                 <div className="link-area">
                   <EmailPlanButton store={store} onError={this.onError} onDone={this.onDone}>{'Email me this plan'}</EmailPlanButton>
+                  {done && <div className="submit-message submit-success">{done}</div>}
+                  {error && <div className="submit-message submit-error">{error}</div>}
                   <RequestConsult />
                 </div>
               </div>
