@@ -97,6 +97,11 @@ The IP of the AWS server can change when you stop/(re)start the instance. In tha
 
 If there are errors sending email or the contact email or the domain changes you'll need to re-run the GMail auhorization script. Please see bin/gmail-auth.js for details.
 
+
+#### cron Reboots
+
+Because of a memory leak tracked back to mismatches in [Node and expressjs](https://github.com/expressjs/express/issues/2997) there was a time when we rebooted the server in a crontab twice a day. This may or may not be the case as you read this. Check for crontabs as root (sudo) as well as ec2-user before ruling it out.
+
 ## License
 
 MIT
