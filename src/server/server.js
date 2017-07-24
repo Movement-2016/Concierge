@@ -9,7 +9,7 @@ const {
   httpsOnly
 } = require('./ssl');
 
-const MiddleWare   = require('./MiddleWare');
+const MiddleWare   = require('./middleware');
 const StaticServer = require('./static');
 
 const staticServer = new StaticServer();
