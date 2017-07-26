@@ -1,11 +1,11 @@
 
 import {
   HomePage
-} from '../../client/main/components';
+} from '../../client/components';
 
-import utils from './utils';
+import utils from '../lib/query-utils';
 
-import service from '../m-service';
+import service from '../services/m-service';
 
 const orderColors = ( colors, order ) => {
   var orderMap = order.reduce( (om,c,i) => (om[c] = i, om), {} );

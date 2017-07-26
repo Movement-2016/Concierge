@@ -1,6 +1,6 @@
 
-import service      from '../m-service';
-import utils        from './utils';
+import service      from '../services/m-service';
+import utils        from '../lib/query-utils';
 
 const convertMenuToHierarchy = _menu => {
 

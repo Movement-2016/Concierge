@@ -1,8 +1,8 @@
-import utils from './utils';
+import utils from '../lib/query-utils';
 
-import { OrgsEntryPage } from '../../client/main/components/Orgs';
+import { OrgsEntryPage } from '../../client/components/Orgs';
 
-import service from '../m-service';
+import service from '../services/m-service';
 
 const GroupsModel = {
 
