@@ -6,7 +6,7 @@ import SocialButtons       from './Social.jsx';
 import Tile                from './Tile.jsx';
 import DonateTiles         from './DonateTiles.jsx';
 
-import scrollToElement     from '../../lib/scrollToElement';
+import scrollToElement     from '../lib/scrollToElement';
 
 class Testimonial extends React.Component {
   render() {
@@ -23,6 +23,7 @@ class Testimonial extends React.Component {
       ? { backgroundImage: 'url("' + image + '")' }
       : {};
 
+    /* eslint-disable react/no-danger */
     return (
       <div className="testimonial flex-item">
         <div className="testimonial-content" dangerouslySetInnerHTML={{__html:content}} />

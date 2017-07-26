@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 function Filter(props) {
 
@@ -25,7 +26,7 @@ function Filter(props) {
   );
 }
 
-function FilterGroup(props) {
+function _FilterGroup(props) {
 
   const {
     label,
@@ -55,5 +56,8 @@ function FilterGroup(props) {
     </div>
   );
 }
+
+const mapStateToProps = s => ({ _filters: s.groups.visibility }); // I think this is a cheap way to subscribe to store changes (?)
+const FilterGroup = connect(mapStateToProps)(_FilterGroup);
 
 module.exports = FilterGroup;

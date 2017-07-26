@@ -2,7 +2,7 @@ import React            from 'react';
 
 import {
   planFromOrg
-} from '../../shared/lib/group-utils';
+} from '../../../shared/lib/group-utils';
 
 import Org from './Org.jsx';
 

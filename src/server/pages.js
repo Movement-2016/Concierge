@@ -1,8 +1,8 @@
 /* eslint no-console:off */
-const routeMap          = require( '../shared/route-map');
+const routeMap          = require( '../shared/services/route-map');
 const Router            = require( './router'); 
 
-const { App }    = require( '../client/main/components');
+const { App }    = require( '../client/components');
 const AppModel   = require( '../shared/models/app' );
 
 const { 

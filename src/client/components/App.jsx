@@ -2,17 +2,16 @@ import React           from 'react';
 import MediaQuery      from 'react-responsive';
 import { Provider }    from 'react-redux';
 
-import { initFilters } from '../store/actions';
-import configureStore  from '../../store/configureStore';
+import { initFilters } from '../../shared/store/actions/groups';
+import store           from '../../shared/store/';
+
 import Nav             from './Nav.jsx';
 import Footer          from './Footer.jsx';
 import TitleSetter     from './TitleSetter.jsx';
 
-import '../../lib/polyfills';
+import '../lib/polyfills';
 
-import scrollToTop from '../../lib/scrollToTop';
-
-const store = configureStore();
+import scrollToTop from '../lib/scrollToTop';
 
 const SITE_TITLE = 'Movement 2017';
 
@@ -25,7 +24,7 @@ class App extends React.Component {
 
   componentWillMount() {
     if( !global.IS_SERVER_REQUEST ) {
-      const Router = require('../../services/router');
+      const Router = require('../services/router');
       Router.service.on( Router.service.events.NAVIGATE_TO, this.onNavigate.bind(this) );
       store.dispatch( initFilters(this.state.groupFilters) );
     }

@@ -6,7 +6,7 @@ import StateOrgs from './StateOrgs.jsx';
 import {
   getSelectedOrgs,
   organizeOrgsByState
-} from '../../shared/lib/group-utils';
+} from '../../../shared/lib/group-utils';
 
 class _Plan extends React.Component {
 

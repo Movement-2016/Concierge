@@ -1,5 +1,8 @@
 import React from 'react';
-import Link from '../../../services/LinkToRoute';
+import { connect } from 'react-redux';
+import { setVisibility } from '../../../shared/store/actions/groups';
+
+import Link from '../../services/LinkToRoute';
 import Headroom from 'react-headroom';
 
 import OrgsPage from './OrgsPage.jsx';
@@ -7,7 +10,7 @@ import OrgsList from './OrgsList.jsx';
 import FilterPage from '../Filters/FilterPage.jsx';
 import PlanTray from './PlanTray.jsx';
 
-import { trimOrgs, getVisibleOrgs } from '../../store/utils';
+import { trimOrgs, getVisibleOrgs } from '../../../shared/lib/group-utils';
 
 function FilterBar(props) {
   return (
@@ -30,7 +33,7 @@ function FilterBar(props) {
   );
 }
 
-class OrgsPageMobile extends OrgsPage {
+class _OrgsPageMobile extends OrgsPage {
 
   constructor() {
     super(...arguments);
@@ -50,8 +53,6 @@ class OrgsPageMobile extends OrgsPage {
   render() {
 
     const {
-      visibility,
-      selectedGroups,
       showOrgsList
     } = this.state;
 
@@ -62,7 +63,9 @@ class OrgsPageMobile extends OrgsPage {
       model: {
         orgs,
         groupFilters
-      }
+      },
+      visibility,
+      selectedGroups
     } = this.props;
 
     const visibleOrgs = getVisibleOrgs( trimOrgs(orgs, pageSlug), visibility );
@@ -70,7 +73,7 @@ class OrgsPageMobile extends OrgsPage {
     return (
       <main className="orgs-page orgs-page-mobile">
         <FilterBar onShowFilters={this.onShowFilters} />
-        <OrgsList store={store} model={model} visibleOrgs={visibleOrgs} mobile={true} />
+        <OrgsList store={store} model={model} visibleOrgs={visibleOrgs} mobile />
         <PlanTray numGroups={selectedGroups.length}/>
         <FilterPage
           showFilters={!showOrgsList}
@@ -83,5 +86,10 @@ class OrgsPageMobile extends OrgsPage {
     );
   }
 }
+
+const mapStateToProps = s => ({ visibility: s.groups.visibility, selectedGroups: s.groups.selected });
+const mapDispatchToProps = { setVisibility };
+
+const OrgsPageMobile = connect( mapStateToProps, mapDispatchToProps )(_OrgsPageMobile);
 
 module.exports = OrgsPageMobile;

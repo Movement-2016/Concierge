@@ -4,7 +4,7 @@ import {
 } from 'redux';
 
 import thunk      from 'redux-thunk';
-import logger     from 'redux-logger';
+import {createLogger}   from 'redux-logger';
 
 import reducers     from './reducers';
 
@@ -25,7 +25,7 @@ const store = createStore(
   // tool for visualizing 
   // Redux state changes in the browser console
     
-  applyMiddleware(logger())
+  applyMiddleware(createLogger())
 
 );
 

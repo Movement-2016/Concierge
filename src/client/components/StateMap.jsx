@@ -2,9 +2,9 @@ import React from 'react';
 import 'whatwg-fetch';
 import { findDOMNode } from 'react-dom';
 import Loading from './Loading.jsx';
-import Link from '../../services/LinkToRoute';
+import Link from '../services/LinkToRoute';
 
-import '../../lib/tooltip';
+import '../lib/tooltip';
 
 class StateMap extends React.Component {
 
@@ -97,6 +97,7 @@ class StateMap extends React.Component {
 
     const { mapData } = this.state;
 
+    /* eslint-disable react/no-danger */
     return (
       <div className="map-area">
         {mapData

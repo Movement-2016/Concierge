@@ -21,7 +21,7 @@ const rm = require('gulp-rm');
 const indexJS = require('index-js');
 
 const browserifyConfig =  {
-  entries: 'src/client/main/components/AppBrowserModel.js',
+  entries: 'src/client/App.js',
   debug: true,
 };
 
@@ -53,7 +53,6 @@ const dependencies = [
   'route-recognizer',
   'whatwg-fetch',
 
-
 ];
 
 const fonts = [
@@ -76,6 +75,7 @@ let BASE = 'dist';
 var stdTasks = [ 'indecies', 'html', 'images', 'server', 'styles', 'fonts', 'vendor-styles', 'vendor-client-js', 'vendor' ];
 
 gulp.task ('default',   [               ...stdTasks, 'browserify-watch', 'watch']);
+gulp.task ('build',     [               ...stdTasks, 'browserify' ]);
 gulp.task ('no-watch',  [ 'production', ...stdTasks, 'browserify' ]);
 
 gulp.task( 'production', function() {

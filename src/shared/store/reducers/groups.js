@@ -14,8 +14,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
 
     case SET_VISIBILITY: {
-      const { visibility } = action;
-      return { ...state, visibility };
+
+      return { ...state, visibility: {...action.visibility}  };
     }
 
     case TOGGLE_SELECTION: {

@@ -1,5 +1,5 @@
 import React    from 'react';
-import Link from '../../services/LinkToRoute';
+import Link from '../services/LinkToRoute';
 
 class TileBody extends React.Component {
   render() {
@@ -18,6 +18,7 @@ class TileBody extends React.Component {
       ? { backgroundImage: 'url("' + image + '")' }
       : {};
 
+    /* eslint-disable react/no-danger */
     return (
       <div className="tile-body">
         <div className="tile-header" style={tileHeaderStyle}>

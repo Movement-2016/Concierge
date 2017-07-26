@@ -1,12 +1,12 @@
-import React               from 'react';
+import React       from 'react';
 import { connect } from 'react-redux';
 
-import scrollToElement from '../../lib/scrollToElement';
-import Link            from '../../services/LinkToRoute';
+import scrollToElement from '../lib/scrollToElement';
+import Link            from '../services/LinkToRoute';
 
 import Headroom from 'react-headroom';
 
-const _MenuItem = ( {url,label} ) => {
+const _MenuItem = ({ url,label }) => {
   var isExternal = global.IS_SERVER_REQUEST || url.includes('http');
   return isExternal
     ? <li className="menu-item"><a href={url}>{label}</a></li>

@@ -7,7 +7,7 @@ import ContributeButton from './ContributeButton.jsx';
 import {
   addPlanItem,
   toggleItem
-} from '../../shared/store/actions/plan';
+} from '../../../shared/store/actions/plan';
 
 import {
   selectPrevElement,

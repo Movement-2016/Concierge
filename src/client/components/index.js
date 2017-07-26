@@ -2,7 +2,6 @@
 
 import AdvisorPage from './AdvisorPage.jsx';
 import App from './App.jsx';
-import AppBrowserModel from './AppBrowserModel';
 import ConsultPage from './ConsultPage.jsx';
 import ContactForm from './ContactForm.jsx';
 import ContactPage from './ContactPage.jsx';
@@ -17,7 +16,6 @@ import Nav from './Nav.jsx';
 import NotFoundPage from './NotFoundPage.jsx';
 import Social from './Social.jsx';
 import StateMap from './StateMap.jsx';
-import StoreWatcher from './StoreWatcher';
 import Thermometer from './Thermometer.jsx';
 import Tile from './Tile.jsx';
 import TitleSetter from './TitleSetter.jsx';
@@ -26,7 +24,6 @@ import TitleSetter from './TitleSetter.jsx';
 module.exports = {
     AdvisorPage,
     App,
-    AppBrowserModel,
     ConsultPage,
     ContactForm,
     ContactPage,
@@ -41,7 +38,6 @@ module.exports = {
     NotFoundPage,
     Social,
     StateMap,
-    StoreWatcher,
     Thermometer,
     Tile,
     TitleSetter 

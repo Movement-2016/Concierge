@@ -1,7 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ColorGroup from './ColorGroup.jsx';
-import StoreWatcher from '../StoreWatcher';
-import scrollToElement from '../../../lib/scrollToElement';
+import scrollToElement from '../../lib/scrollToElement';
 
 const getVisibleColorSections = (allColorSections,orgs) => {
   const visible = {};
@@ -9,12 +9,7 @@ const getVisibleColorSections = (allColorSections,orgs) => {
   return visible;
 };
 
-class OrgsList extends StoreWatcher(React.Component) {
-
-  stateFromStore( storeState ) {
-    const { groups } = storeState;
-    this.setState( { groups } );
-  }
+class _OrgsList extends React.Component {
 
   componentDidMount() {
     // Scrolls to correct state if hash is found in url
@@ -34,12 +29,9 @@ class OrgsList extends StoreWatcher(React.Component) {
         colorSections,
         colorOrder,
       },
-      visibleOrgs: orgs
-    } = this.props;
-
-    const {
+      visibleOrgs: orgs,
       groups
-    } = this.state;
+    } = this.props;
 
     const order       = colorOrder.reduce( (accum,c,i) => (accum[c] = i, accum), {} );
     const colorGroups = colorSections.reduce( (accum,color) => (accum[color.slug] = color, accum), {} );
@@ -84,5 +76,9 @@ class OrgsList extends StoreWatcher(React.Component) {
     );
   }
 }
+
+const mapStateToProps = s => ({ groups: s.groups });
+
+const OrgsList = connect(mapStateToProps)(_OrgsList);
 
 module.exports = OrgsList;

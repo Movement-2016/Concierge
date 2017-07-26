@@ -21,12 +21,13 @@ class AdvisorPage extends React.Component {
 
     return cols;
   }
-
+  
+  /* eslint-disable react/no-danger */
   renderAdvisorColumn(arr,index) {
     return (
       <div key={index} className="col s12 m4">
         <ul>
-          {arr.map(n => <li key={n} dangerouslySetInnerHTML={{__html:n}} />)}
+          {arr.map(n => <li key={n} dangerouslySetInnerHTML={{__html:n}} />) } 
         </ul>
       </div>);
   }

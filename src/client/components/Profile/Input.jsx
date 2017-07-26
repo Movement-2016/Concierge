@@ -1,36 +1,24 @@
 import React     from 'react';
+import { connect } from 'react-redux';
+import { setProfile } from '../../../shared/store/actions/user';
 
-import StoreWatcher from '../StoreWatcher';
-
-import { setProfile } from '../../../account/store/actions';
-
-class ProfileInput extends StoreWatcher(React.Component) {
+class _ProfileInput extends React.Component {
 
   constructor() {
     super(...arguments);
-    this.state = { value: '' };
+    this.state = { value: this.props.user[this.props.name] };
     this.onChange = this.onChange.bind(this);
-  }
-
-  stateFromStore(storeState) {
-    const { user } = storeState;
-    const { name } = this.props;
-    if( user[name] !== this.state.value ) {
-      this.setState({ value: user[name] });
-    }
   }
 
   onChange(e) {
     const { value } = e.target;
     const { name } = this.props;
-    this.props.store.dispatch( setProfile( { [name]: value }) );
+    this.props.setProfile( { [name]: value } );
   }
 
   render() {
 
-
     const { value } = this.state;
-
 
     const eProps = {
       onChange: this.onChange,
@@ -45,8 +33,15 @@ class ProfileInput extends StoreWatcher(React.Component) {
   }
 }
 
-ProfileInput.defaultProps = {
+_ProfileInput.defaultProps = {
   type: 'text'
 };
+
+const mapStateToProps = s => ({ user: s.user });
+const mapDispatchToProps = {
+  setProfile
+};
+
+const ProfileInput = connect(mapStateToProps,mapDispatchToProps)(_ProfileInput);
 
 module.exports = ProfileInput;

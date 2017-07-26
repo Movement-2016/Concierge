@@ -1,10 +1,10 @@
 import React from 'react';
-
+import {connect} from 'react-redux';
 import { Shell } from './ContentPage.jsx';
 import ProfileForm from './Profile/Form.jsx';
-import { emailPlan } from '../store/utils';
+import { emailPlan } from '../services/email';
 
-class ConsultPage extends React.Component {
+class _ConsultPage extends React.Component {
 
   constructor() {
     super(...arguments);
@@ -27,23 +27,39 @@ class ConsultPage extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    const storeState = this.props.store.getState();
+
+    const {
+      user,
+      plan
+    } = this.props;
+
+    const {
+      onError,
+      onDone
+    } = this;
+
     const props = {
-      onError: this.onError,
-      onDone: this.onDone
+      onError,
+      onDone,
+      user,
+      plan,
+      forceConsult: true
     };
-    emailPlan( { storeState, ...props, forceConsult: true } );
+    
+    emailPlan( props );
   }
 
   render() {
     return (
       <Shell title="Request a Consultation" name="custom-planning profile-page">
         <p className="page-description">{'Please make sure your information is correct and an advisor will be in touch soon!'}</p>
-        <ProfileForm store={this.props.store} onSubmit={this.onSubmit} submitText="Request Consultation" />
+        <ProfileForm onSubmit={this.onSubmit} submitText="Request Consultation" />
       </Shell>
     );
   }
 }
 
+const mapStateToProps = s => ({user: s.user, plan: s.plan});
+const ConsultPage = connect(mapStateToProps)(_ConsultPage);
 
 module.exports = ConsultPage;

@@ -1,9 +1,10 @@
 import React            from 'react';
+import {connect}        from 'react-redux';
 import ContentPage      from './ContentPage.jsx';
 import ContactForm      from './ContactForm.jsx';
-import { emailContact } from '../store/utils';
+import { emailContact } from '../services/email';
 
-class ContactPage extends React.Component {
+class _ContactPage extends React.Component {
 
   constructor() {
     super(...arguments);
@@ -15,8 +16,9 @@ class ContactPage extends React.Component {
   }
 
   onSubmit(message) {
+
     emailContact({
-      storeState: this.props.store.getState(),
+      user: this.props.user,
       onDone:  done  => this.setState({ done }),
       onError: error => this.setState({ error }),
       message,
@@ -44,5 +46,8 @@ class ContactPage extends React.Component {
     );
   }
 }
+
+const mapStateToProps = s => ({ user: s.user });
+const ContactPage = connect(mapStateToProps)(_ContactPage);
 
 export default ContactPage;

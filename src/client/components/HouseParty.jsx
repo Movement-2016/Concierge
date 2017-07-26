@@ -13,18 +13,7 @@ class PartyForm extends React.Component {
       learnMore: false
     };
     this.onSubmit = this.onSubmit.bind(this);
-    // this.onChecked = this.onChecked.bind(this);
   }
-
-  // componentDidMount() {
-  //   /* bug in jquery forces a primer for events */
-  //   $('#hostParty').click( function() {} );
-  //   $('#learnMore').click( function() {} );
-  // }
-  //
-  // onChecked(e) {
-  //   this.setState( { [e.target.name]: !e.target.value } );
-  // }
 
   onSubmit(e) {
 
@@ -43,8 +32,7 @@ class PartyForm extends React.Component {
 
   render() {
     const { done, error } = this.state;
-    const { store } = this.props;
-    
+
       return (
         <ContentPage model={this.props.model} pageName="houseparty">
           <div className="houseparty-form padded-form">
@@ -52,27 +40,27 @@ class PartyForm extends React.Component {
             <form className="user-info" onSubmit={this.onSubmit}>
               <div className="row">
                 <div className="col s12 m6">
-                  <ProfileInput store={store} name="fname" placeholder="First Name *" required />
+                  <ProfileInput name="fname" placeholder="First Name *" required />
                 </div>
                 <div className="col s12 m6">
-                  <ProfileInput store={store} name="lname" placeholder="Last Name *" required />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col s12 m6">
-                  <ProfileInput store={store} type="email" name="email" placeholder="Email *" required />
-                </div>
-                <div className="col s12 m6">
-                  <ProfileInput store={store} type="tel" name="phone" placeholder="Phone *" required />
+                  <ProfileInput name="lname" placeholder="Last Name *" required />
                 </div>
               </div>
               <div className="row">
                 <div className="col s12 m6">
-                  <ProfileInput store={store} className="input-city" name="city" placeholder="City *" required />
-                  <ProfileInput store={store} className="input-state" name="state" placeholder="State *" required />
+                  <ProfileInput type="email" name="email" placeholder="Email *" required />
                 </div>
                 <div className="col s12 m6">
-                  <ProfileInput store={store} name="affiliation" placeholder="Business or Affiliation" />
+                  <ProfileInput type="tel" name="phone" placeholder="Phone *" required />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col s12 m6">
+                  <ProfileInput className="input-city" name="city" placeholder="City *" required />
+                  <ProfileInput className="input-state" name="state" placeholder="State *" required />
+                </div>
+                <div className="col s12 m6">
+                  <ProfileInput name="affiliation" placeholder="Business or Affiliation" />
                 </div>
               </div>
               <div className="checkbox-group">

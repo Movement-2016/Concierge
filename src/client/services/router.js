@@ -1,4 +1,4 @@
-import Router from '../../shared/router';
+import Router from '../../shared/services/router';
 
 
 class BrowserRouter extends Router

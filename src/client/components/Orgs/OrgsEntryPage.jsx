@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Link from '../../../services/LinkToRoute';
+import Link from '../../services/LinkToRoute';
 
 import OrgsMenuPage from './OrgsMenuPage.jsx';
 import OrgsPageDesktop from './OrgsPageDesktop.jsx';

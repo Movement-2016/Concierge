@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { setVisibility } from '../../../shared/store/actions/groups';
 
 import Sticky from 'react-stickynode';
 
@@ -11,15 +14,11 @@ import EasyDonateTiles from '../EasyDonateTiles.jsx';
 import {
   getVisibleOrgs,
   getVisibleStates
-} from '../../store/utils';
+} from '../../../shared/lib/group-utils';
 
-class OrgsPageDesktop extends OrgsPage {
+class _OrgsPageDesktop extends OrgsPage {
 
   render() {
-    const {
-      visibility,
-      selectedGroups
-    } = this.state;
 
     const {
       model,
@@ -27,7 +26,9 @@ class OrgsPageDesktop extends OrgsPage {
       model: {
         orgs,
         ezDonateTiles
-      }
+      },
+      visibility,
+      selectedGroups
     } = this.props;
 
     const visibleOrgs = getVisibleOrgs( orgs, visibility );
@@ -69,5 +70,10 @@ class OrgsPageDesktop extends OrgsPage {
     );
   }
 }
+
+const mapStateToProps = s => ({ visibility: s.groups.visibility, selectedGroups: s.groups.selected });
+const mapDispatchToProps = { setVisibility };
+
+const OrgsPageDesktop = connect( mapStateToProps, mapDispatchToProps )(_OrgsPageDesktop);
 
 module.exports = OrgsPageDesktop;

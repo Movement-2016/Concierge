@@ -5,7 +5,7 @@ import FilterGroup from './FilterGroup.jsx';
 import ScrollLinks from './ScrollLinks.jsx';
 import StatePicker from './StatePicker.jsx';
 
-import scrollToElement from '../../../lib/scrollToElement';
+import scrollToElement from '../../lib/scrollToElement';
 
 class FilterArea extends React.Component {
 

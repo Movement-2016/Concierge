@@ -18,7 +18,6 @@ class ContactForm extends React.Component {
     const {
       submitText = 'Submit',
       children,
-      store
     } = this.props;
 
     return (
@@ -27,18 +26,18 @@ class ContactForm extends React.Component {
           <form className="user-info" onSubmit={this.onSubmit}>
             <div className="row">
               <div className="col s12 m6">
-                <ProfileInput store={store} name="fname" placeholder="First Name" />
+                <ProfileInput name="fname" placeholder="First Name" />
               </div>
               <div className="col s12 m6">
-                <ProfileInput store={store} name="lname" placeholder="Last Name"  />
+                <ProfileInput name="lname" placeholder="Last Name"  />
               </div>
             </div>
             <div className="row">
               <div className="col s12 m6">
-                <ProfileInput store={store} type="email" name="email" placeholder="Email *" required />
+                <ProfileInput type="email" name="email" placeholder="Email *" required />
               </div>
               <div className="col s12 m6">
-                <ProfileInput store={store} type="tel" name="phone" placeholder="Phone" />
+                <ProfileInput type="tel" name="phone" placeholder="Phone" />
               </div>
             </div>
             <div className="row">

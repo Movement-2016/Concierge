@@ -32,10 +32,10 @@ const _do_email = ({payload,url,onDone,onError,successMsg}) => {
 
 };
 
-const emailContact = ({ storeState, onError, onDone, message }) => {
+const emailContact = ({ user, onError, onDone, message }) => {
 
     const payload = {
-      ...storeState.user,
+      ...user,
       advisorEmail: ADVISOR_EMAIL,
       message
     };
@@ -52,26 +52,12 @@ const emailContact = ({ storeState, onError, onDone, message }) => {
 
 };
 
-// const emailHouseParty = ({ storeState, onError, onDone, message }) => {
-
-//   const payload = {
-//     ...storeState.user,
-
-//     advisorEmail: ADVISOR_EMAIL,
-//     message
-//   };
-
-// };
-
-const emailPlan = ({ storeState, onError, onDone, forceConsult = false }) => {
+const emailPlan = ({ user, plan, onError, onDone, forceConsult = false }) => {
 
     let {
-      groups:{
-        plan: items,
-        planTotal
-      },
-      user
-    } = storeState;
+        donations: items,
+        total: planTotal
+      } = plan;
 
     forceConsult && (user = { ...user, wantsConsult: true });
 
