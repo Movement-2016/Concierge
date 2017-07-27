@@ -3,8 +3,7 @@
 const DO_FIXED_HEADER          = true;
 const FIXED_KNOWN_MAGIC_OFFSET = 10;
 
-function scrollToElement(e, offset) {
-
+const _scrollToElement = ( e, offset ) => {
   const defaultOffset = DO_FIXED_HEADER         
     ? document.querySelector('.main-nav').offsetHeight + FIXED_KNOWN_MAGIC_OFFSET
     : 0;
@@ -19,6 +18,15 @@ function scrollToElement(e, offset) {
         }
       );
   }
-}
+
+};
+
+const scrollToElement = (e, offset, delay) => {
+  if( delay ) {
+    setTimeout( () => _scrollToElement(e,offset), delay );
+  } else {
+    _scrollToElement(e,offset);
+  }
+};
 
 module.exports = scrollToElement;

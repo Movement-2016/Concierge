@@ -6,7 +6,9 @@ import SocialButtons       from './Social.jsx';
 import Tile                from './Tile.jsx';
 import DonateTiles         from './DonateTiles.jsx';
 
-import scrollToElement     from '../lib/scrollToElement';
+import scrollToHash     from '../lib/scrollToHash';
+
+const SCROLL_DELAY = 100;
 
 class Testimonial extends React.Component {
   render() {
@@ -109,24 +111,13 @@ class AuthCode extends React.Component {
 class HomePage extends React.Component {
 
   componentDidMount() {
-    this.scrollToHash();
+    scrollToHash(0,SCROLL_DELAY);
   }
 
   componentDidUpdate() {
-    this.scrollToHash();
+    scrollToHash(0,SCROLL_DELAY);
   }
   
-  scrollToHash() {
-    if( location.hash ) {
-      setTimeout( () => {
-        const elemName = location.hash.replace('#','');
-        const elem = document.getElementById(elemName);
-        const SCROLL_DELAY = 100;
-        elem && setTimeout( () => scrollToElement('#' + elemName), SCROLL_DELAY );
-      }, 200);
-    }    
-  }
-
   render() {
 
     if( this.props.queryParams && this.props.queryParams.code ) {
