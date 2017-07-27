@@ -1,11 +1,7 @@
 import React from 'react';
-
 import FilterGroup from './FilterGroup.jsx';
 
-function clone(object) {
-  return JSON.parse( JSON.stringify(object) );
-}
-
+import { clone } from '../../../shared/lib/general-utils';
 
 function Header(props) {
   return (
@@ -38,7 +34,7 @@ class FilterPageMobile extends React.Component {
     super(...arguments);
 
     this.cleared = {};
-    
+
     const filterNames = Object.keys(this.props.filtersDict);
     filterNames.forEach(f => this.cleared[f] = []);
 

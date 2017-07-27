@@ -1,29 +1,39 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-function Filter(props) {
+class Filter extends React.Component {
 
-  const {
-    label,
-    slug,
-    category,
-    onChange,
-    checked
-  } = props;
+  shouldComponentUpdate(nextProps) {
+    if (this.props.checked !== nextProps.checked) {
+      return true;
+    }
+    return false;
+  }
 
-  const checkboxProps = {
-    type:      'checkbox',
-    className: 'filter-checkbox filled-in',
-    id:        'checkbox-' + slug,
-    onChange:   () => onChange(category, slug, !checked),
-    checked
-  };
+  render() {
 
-  return (
-    <div className="filter">
-      <input {...checkboxProps} /> <label htmlFor={checkboxProps.id}>{label}</label>
-    </div>
-  );
+    const {
+      label,
+      slug,
+      category,
+      onChange,
+      checked
+    } = this.props;
+
+    const checkboxProps = {
+      type:      'checkbox',
+      className: 'filter-checkbox filled-in',
+      id:        'checkbox-' + slug,
+      onChange:   () => onChange(category, slug, !checked),
+      checked
+    };
+
+    return (
+      <div className="filter">
+        <input {...checkboxProps} /> <label htmlFor={checkboxProps.id}>{label}</label>
+      </div>
+    );
+  }
 }
 
 function FilterGroup(props) {
@@ -56,5 +66,13 @@ function FilterGroup(props) {
     </div>
   );
 }
+
+FilterGroup.propTypes = {
+  label:                React.PropTypes.string.isRequired,
+  name:                 React.PropTypes.string.isRequired,
+  terms:                React.PropTypes.object.isRequired,
+  onFilterChange:       React.PropTypes.func.isRequired,
+  selectedFilters:      React.PropTypes.object.isRequired,
+};
 
 module.exports = FilterGroup;

@@ -6,6 +6,8 @@ import ScrollLinks from './ScrollLinks.jsx';
 import StatePicker from './StatePicker.jsx';
 
 import scrollToElement from '../../lib/scrollToElement';
+import { clone } from '../../../shared/lib/general-utils';
+
 
 function ClearAllButton(props) {
   return <a className={'clearall-button' + (props.visible ? ' visible' : '')} onClick={props.onClearAll}>Clear All</a>
@@ -25,14 +27,16 @@ class FilterSidebarDesktop extends React.Component {
       handleFilterToggle
     } = this.props;
 
+    const newFilters = clone(selectedFilters);
+
     if ( selectedFilters[category] ) {
       const index = selectedFilters[category].indexOf(term);
       addFilter
-        ? (index === -1) && selectedFilters[category].push(term)
-        : (index > -1) && selectedFilters[category].splice(index, 1);
+        ? (index === -1) && newFilters[category].push(term)
+        : (index > -1) && newFilters[category].splice(index, 1);
     }
 
-    handleFilterToggle( selectedFilters );
+    handleFilterToggle( newFilters );
   }
 
   onClearAll = () => {
@@ -41,11 +45,19 @@ class FilterSidebarDesktop extends React.Component {
       handleFilterToggle
     } = this.props;
 
+    const cleared = {};
     for (var category in selectedFilters) {
-      selectedFilters[category] = [];
+      cleared[category] = [];
     }
 
-    handleFilterToggle( selectedFilters );
+    handleFilterToggle( cleared );
+  }
+
+  shouldComponentUpdate(nextProps) {
+    if (this.props.selectedFilters !== nextProps.selectedFilters) {
+      return true;
+    }
+    return false;
   }
 
   render() {
@@ -67,6 +79,8 @@ class FilterSidebarDesktop extends React.Component {
     const showClearAllButton = numFiltersSelected > 0;
 
     const showOrgsNav = visibleColorSections.length + visibleStates.length > 0;
+
+    console.log('Sidebar render');
 
     return (
       <div className="filter-sidebar">
@@ -98,8 +112,11 @@ class FilterSidebarDesktop extends React.Component {
 }
 
 FilterSidebarDesktop.propTypes = {
+  model:                React.PropTypes.object.isRequired,
   selectedFilters:      React.PropTypes.object.isRequired,
   handleFilterToggle:   React.PropTypes.func.isRequired,
+  visibleColorSections: React.PropTypes.array.isRequired,
+  visibleStates:        React.PropTypes.array.isRequired,
 };
 
 
