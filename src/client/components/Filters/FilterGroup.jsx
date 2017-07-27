@@ -26,7 +26,7 @@ function Filter(props) {
   );
 }
 
-function _FilterGroup(props) {
+function FilterGroup(props) {
 
   const {
     label,
@@ -56,8 +56,5 @@ function _FilterGroup(props) {
     </div>
   );
 }
-
-const mapStateToProps = s => ({ _filters: s.groups.visibility }); // I think this is a cheap way to subscribe to store changes (?)
-const FilterGroup = connect(mapStateToProps)(_FilterGroup);
 
 module.exports = FilterGroup;
