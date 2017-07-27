@@ -1,5 +1,5 @@
-var service  = require('../m-service');
-var utils   = require('./utils');
+var service  = require('../services/m-service');
+var utils   = require('../lib/query-utils');
 
 
 const ApiModel = {

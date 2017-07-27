@@ -1,7 +1,7 @@
 
 import {
   HouseParty
-} from '../../client/main/components';
+} from '../../client/components';
 
 const HousePartyPageModel = {
   

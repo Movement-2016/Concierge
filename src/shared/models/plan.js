@@ -1,15 +1,15 @@
-import service from '../m-service';
-import utils   from './utils';
+import service from '../services/m-service';
+import utils   from '../lib/query-utils';
 
 import {
   PlanPage,
   ProfilePage,
   SummaryPage
-} from '../../client/main/components/DonationPlan';
+} from '../../client/components/DonationPlan';
 
 import {
   ConsultPage
-} from '../../client/main/components';
+} from '../../client/components';
 
 const planDataModel = () => {
   const queries = {

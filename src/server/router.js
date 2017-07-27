@@ -1,5 +1,5 @@
 /* eslint no-console:off */
-const Router            = require( '../shared/router'); 
+const Router            = require( '../shared/services/router'); 
 const fs                = require( 'fs');
 
 const { renderToStaticMarkup } = require( 'react-dom/server');

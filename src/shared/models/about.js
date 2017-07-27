@@ -1,9 +1,9 @@
 
 import {
   ContentPage
-} from '../../client/main/components';
+} from '../../client/components';
 
-import service from '../m-service';
+import service from '../services/m-service';
 
 
 const AboutModel = {
