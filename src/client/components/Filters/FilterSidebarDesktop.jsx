@@ -7,7 +7,11 @@ import StatePicker from './StatePicker.jsx';
 
 import scrollToElement from '../../lib/scrollToElement';
 
-class FilterArea extends React.Component {
+function ClearAllButton(props) {
+  return <a className={'clearall-button' + (props.visible ? ' visible' : '')} onClick={props.onClearAll}>Clear All</a>
+}
+
+class FilterSidebarDesktop extends React.Component {
 
   // helper function to scroll to a state or color section
   scrollToElement = (element) => {
@@ -31,11 +35,24 @@ class FilterArea extends React.Component {
     handleFilterToggle( selectedFilters );
   }
 
+  onClearAll = () => {
+    const {
+      selectedFilters,
+      handleFilterToggle
+    } = this.props;
+
+    for (var category in selectedFilters) {
+      selectedFilters[category] = [];
+    }
+
+    handleFilterToggle( selectedFilters );
+  }
+
   render() {
 
     const {
       model: {
-        groupFilters: filters,
+        groupFilters: filtersDict,
         colorSectionsDict,
         statesDict
       },
@@ -44,10 +61,15 @@ class FilterArea extends React.Component {
       selectedFilters
     } = this.props;
 
+    const numFiltersSelected = Object.keys(selectedFilters).reduce(
+      (accum, category) => accum + selectedFilters[category].length, 0
+    );
+    const showClearAllButton = numFiltersSelected > 0;
+
     const showOrgsNav = visibleColorSections.length + visibleStates.length > 0;
 
     return (
-      <div className="filter-area">
+      <div className="filter-sidebar">
         {showOrgsNav && <div className="groups-nav">
           <div className="groups-nav-title">Navigate</div>
           <div className="filter-group">
@@ -56,14 +78,15 @@ class FilterArea extends React.Component {
           </div>
         </div>}
         <div className="filters">
-          <div className="filters-title">Filter</div>
-          {Object.keys(filters).map( f => {
+          <ClearAllButton visible={showClearAllButton} onClearAll={this.onClearAll} />
+          <div className="filters-title">Filters</div>
+          {Object.keys(filtersDict).map( f => {
             const filterGroupProps = {
                 onFilterChange: this.onFilterChange,
                 selectedFilters,
                 name: f,
-                label: filters[f].label,
-                terms: filters[f].terms
+                label: filtersDict[f].label,
+                terms: filtersDict[f].terms
             };
               return <FilterGroup key={f} {...filterGroupProps} />;
           }
@@ -74,10 +97,10 @@ class FilterArea extends React.Component {
   }
 }
 
-FilterArea.propTypes = {
+FilterSidebarDesktop.propTypes = {
   selectedFilters:      React.PropTypes.object.isRequired,
   handleFilterToggle:   React.PropTypes.func.isRequired,
 };
 
 
-module.exports = FilterArea;
+module.exports = FilterSidebarDesktop;

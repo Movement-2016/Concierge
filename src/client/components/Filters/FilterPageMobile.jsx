@@ -32,14 +32,15 @@ function SubmitBar(props) {
   );
 }
 
-class FilterPage extends React.Component {
+class FilterPageMobile extends React.Component {
 
   constructor() {
     super(...arguments);
 
     this.cleared = {};
-    this.filterNames = Object.keys(this.props.startingFilters);
-    this.filterNames.forEach(f => this.cleared[f] = []);
+    
+    const filterNames = Object.keys(this.props.filtersDict);
+    filterNames.forEach(f => this.cleared[f] = []);
 
     this.state = { selectedFilters: clone(this.cleared) };
   }
@@ -78,18 +79,23 @@ class FilterPage extends React.Component {
   }
 
   render() {
+    const {
+      showFilters,
+      filtersDict
+    } = this.props;
+
     return (
-      <div className={'filter-page' + (this.props.showFilters ? ' visible' : '')}>
+      <div className={'filter-page' + (showFilters ? ' visible' : '')}>
         <Header onClearAll={this.onClearAll} onClose={this.onClose} />
           <div className="filters">
             <div className="container">
-              {this.filterNames.map( f => {
+              {Object.keys(filtersDict).map( f => {
                 const filterGroupProps = {
                   selectedFilters:  this.state.selectedFilters,
                   onFilterChange:   this.onFilterChange,
                   name:             f,
-                  label:            this.props.filters[f].label,
-                  terms:            this.props.filters[f].terms
+                  label:            filtersDict[f].label,
+                  terms:            filtersDict[f].terms
                 };
                 return <FilterGroup key={f} {...filterGroupProps} />;
               }
@@ -102,13 +108,13 @@ class FilterPage extends React.Component {
   }
 }
 
-FilterPage.propTypes = {
+FilterPageMobile.propTypes = {
   showFilters:        React.PropTypes.bool.isRequired,
-  filters:            React.PropTypes.object.isRequired,
+  filtersDict:        React.PropTypes.object.isRequired,
   startingFilters:    React.PropTypes.object.isRequired,
   handleFilterToggle: React.PropTypes.func.isRequired,
   handleClose:        React.PropTypes.func.isRequired,
 };
 
 
-module.exports = FilterPage;
+module.exports = FilterPageMobile;

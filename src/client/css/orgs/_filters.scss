@@ -68,7 +68,7 @@
 }
 
 @include bp-lg {
-  .filter-area {
+  .filter-sidebar {
     font-size: 14px;
     color: $med-trans;
   }
@@ -98,12 +98,20 @@
       }
     }
   }
-  .clear-filters {
+  .clearall-button {
+    opacity: 0;
+    transition: opacity 0.2s;
     float: right;
-    line-height: 23px;
-    font-size: 10px;
-    font-weight: 700;
     text-transform: uppercase;
-    color: lighten($primary-color, 15%);
+    font-weight: 700;
+    font-size: 10.5px;
+    line-height: 21px;
+    color: lighten( desaturate($primary-color, 18%), 18%);
+    &.visible {
+      opacity: 1;
+      &:hover {
+        color: $primary-color;
+      }
+    }
   }
 }

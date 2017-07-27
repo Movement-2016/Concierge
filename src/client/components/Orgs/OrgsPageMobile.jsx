@@ -7,7 +7,7 @@ import Headroom from 'react-headroom';
 
 import OrgsPage from './OrgsPage.jsx';
 import OrgsList from './OrgsList.jsx';
-import FilterPage from '../Filters/FilterPage.jsx';
+import FilterPageMobile from '../Filters/FilterPageMobile.jsx';
 import PlanTray from './PlanTray.jsx';
 
 import { trimOrgs, getVisibleOrgs } from '../../../shared/lib/group-utils';
@@ -75,9 +75,9 @@ class _OrgsPageMobile extends OrgsPage {
         <FilterBar onShowFilters={this.onShowFilters} />
         <OrgsList store={store} model={model} visibleOrgs={visibleOrgs} mobile />
         <PlanTray numGroups={selectedGroups.length}/>
-        <FilterPage
+        <FilterPageMobile
           showFilters={!showOrgsList}
-          filters={groupFilters}
+          filtersDict={groupFilters}
           startingFilters={visibility}
           handleFilterToggle={this.handleFilterToggle}
           handleClose={this.onShowOrgsList}

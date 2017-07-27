@@ -8,7 +8,7 @@ import Sticky from 'react-stickynode';
 import OrgsPage from './OrgsPage.jsx';
 import OrgsList from './OrgsList.jsx';
 import PlanTray from './PlanTray.jsx';
-import FilterArea from '../Filters/FilterArea.jsx';
+import FilterSidebarDesktop from '../Filters/FilterSidebarDesktop.jsx';
 import EasyDonateTiles from '../EasyDonateTiles.jsx';
 
 import {
@@ -33,7 +33,7 @@ class _OrgsPageDesktop extends OrgsPage {
 
     const visibleOrgs = getVisibleOrgs( orgs, visibility );
 
-    const filterAreaProps = {
+    const FilterSidebarProps = {
       model,
       scrollToElement:       this.goToElement,
       handleFilterToggle:    this.handleFilterToggle,
@@ -49,9 +49,9 @@ class _OrgsPageDesktop extends OrgsPage {
         <div className="container orgs-container">
           <h1 className="page-title">{title}</h1>
           <div className="browse-section">
-            <div className="filter-area-wrapper">
+            <div className="filter-sidebar-wrapper">
               <Sticky top={104} bottomBoundary=".orgs-container">
-                <FilterArea {...filterAreaProps} />
+                <FilterSidebarDesktop {...FilterSidebarProps} />
               </Sticky>
             </div>
             <OrgsList store={store} model={model} visibleOrgs={visibleOrgs} />
