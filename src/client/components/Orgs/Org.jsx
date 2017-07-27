@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { toggleItem }      from '../../../shared/store/actions/plan';
-import { toggleSelection } from '../../../shared/store/actions/groups';
 
 function OrgHeader(props) {
   const labels = props.tags.map(tag => props.terms[tag].name);
@@ -111,12 +110,11 @@ class _Org extends React.Component {
   onOrgClick(e) {
     e.preventDefault();
     const { 
-      ID, toggleItem, toggleSelection 
+      ID, 
+      toggleItem
     } = this.props;
 
-    // yes, these should be reduced to one action
     toggleItem(ID);
-    toggleSelection(ID);
   }
 
   render() {
@@ -182,7 +180,6 @@ class _Org extends React.Component {
 
 const mapStateToProps = () => ({ });
 const mapDispatchToProps = {
-  toggleSelection,
   toggleItem
 };
 

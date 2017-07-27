@@ -41,10 +41,10 @@ const reducer = (state = initialState, action) => {
 
     case ADD_PLAN_ITEM: {
 
-      let { plan }         = state;
+      let { donations }    = state;
       const { id, amount } = action;
 
-      const st = { ...state, plan: [ ...path(`..{.id!=${id}}`, plan), { id, amount } ] };
+      const st = { ...state, donations: [ ...path(`..{.id!=${id}}`, donations), { id, amount } ] };
 
       updateTotal(st);
 

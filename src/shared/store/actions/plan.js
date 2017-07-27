@@ -1,8 +1,21 @@
+import {
+  toggleSelection
+} from './groups';
+
 const TOGGLE_ITEM   = 'TOGGLE_GROUP';
 const ADD_PLAN_ITEM = 'ADD_PLAN_ITEM';
 
-function toggleItem (id) {
+
+function _toggleItem (id) {
   return { type: TOGGLE_ITEM, id };
+}
+
+function toggleItem(id) {
+  return function (dispatch) {
+    const res = m => dispatch(m);
+
+    return res(_toggleItem(id)) && res(toggleSelection(id));
+  };
 }
 
 function addPlanItem(id,amount) {

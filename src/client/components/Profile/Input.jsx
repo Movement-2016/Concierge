@@ -18,7 +18,12 @@ class _ProfileInput extends React.Component {
 
   render() {
 
-    const { value } = this.state;
+    const {
+      user,
+      name
+    } = this.props;
+
+    const value = user[name];
 
     const eProps = {
       onChange: this.onChange,
@@ -26,7 +31,7 @@ class _ProfileInput extends React.Component {
       ...this.props
     };
 
-    eProps.store && (delete eProps['store']);
+    ['store','user', 'setProfile' ].forEach( p => eProps[p] && (delete eProps[p]) );
     
     return <input {...eProps} />;
 

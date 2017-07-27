@@ -1,8 +1,8 @@
-import React     from 'react';
-
+import React         from 'react';
+import { connect }   from 'react-redux';
 import { emailPlan } from '../../services/email';
 
-class EmailPlanButton extends React.Component {
+class _EmailPlanButton extends React.Component {
 
   constructor() {
     super(...arguments);
@@ -11,9 +11,15 @@ class EmailPlanButton extends React.Component {
 
   onEmail(e) {
     e.preventDefault();
-    const storeState = this.props.store.getState();
-    const { onError, onDone } = this.props;
-    emailPlan( { storeState, onError, onDone } );
+
+    const { 
+      onError, 
+      onDone,
+      user,
+      plan
+    } = this.props;
+
+    emailPlan( { user, plan, onError, onDone } );
   }
 
   render() {
@@ -21,6 +27,10 @@ class EmailPlanButton extends React.Component {
     return <button onClick={this.onEmail} className="complete-button btn waves-effect waves-light">{text}{children}</button>;
   }
 }
+
+const mapStateToProps = s => ({ plan: s.plan, user: s.user });
+
+const EmailPlanButton = connect(mapStateToProps)(_EmailPlanButton);
 
 module.exports = EmailPlanButton;
 
