@@ -9,6 +9,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.16.2",
     "commaize": "git+https://github.com/victor-stone/commaize.git",
     "es6-promise-polyfill": "^1.2.0",
     "google-auth-library": "^0.9.8",
