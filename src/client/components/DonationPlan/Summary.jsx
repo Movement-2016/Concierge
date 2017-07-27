@@ -40,7 +40,7 @@ class Summary extends React.Component {
 
   render() {
 
-    const { 
+    const {
       mobile,
       store
     } = this.props;
@@ -56,7 +56,7 @@ class Summary extends React.Component {
         <div className="padded-form summary-form">
           <div className="row">
             <div className="col s12 l8">
-              <SummaryListing {...this.props} />
+              <Plan readonly={true} {...this.props} />
             </div>
             <div className="col s12 l4">
               <div className="total-section">

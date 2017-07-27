@@ -10,10 +10,6 @@ import {
 
 class _Plan extends React.Component {
 
-  get readonly() {
-    return false;
-  }
-
   render() {
 
     const {
@@ -25,7 +21,8 @@ class _Plan extends React.Component {
       },
       mobile,
       selected,
-      plan
+      plan,
+      readonly
     } = this.props;
 
     const sortedOrgs = orgs && organizeOrgsByState( getSelectedOrgs(selected,orgs) );
@@ -34,7 +31,7 @@ class _Plan extends React.Component {
       plan,
       filters,
       mobile,
-      readonly: this.readonly,
+      readonly,
       colors: colorDict
     };
 
@@ -55,6 +52,10 @@ class _Plan extends React.Component {
     );
   }
 }
+
+_Plan.defaultProps = {
+  readonly: false
+};
 
 const mapStateToProps = s => ({ selected: s.groups.selected,
                                 plan:     s.plan.donations
