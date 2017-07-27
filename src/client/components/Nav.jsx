@@ -101,7 +101,7 @@ class Nav extends React.Component {
           <div className="navbar-fixed">
             <nav className="main-nav">
               <Link to="/" className="brand-logo">{siteTitle}</Link>
-              <CartWidget />
+              {/* <CartWidget /> */}
               <Menu className="header-menu nav-menu" menu={menu}/>
               <a data-activates="mobile-menu" className="button-collapse"><i className="material-icons">menu</i></a>
             </nav>
