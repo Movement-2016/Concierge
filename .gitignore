@@ -13,6 +13,6 @@ vendor/
 .sass-cache/
 *.scssc
 
-src/client/main/components/index.js
+src/client/components/index.js
 
 

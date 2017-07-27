@@ -224,7 +224,7 @@ gulp.task ('browserify', function () {
 gulp.task('indecies', () => {
 
   var dirs = [ 
-      'src/client/main/components'
+      'src/client/components'
     ];
 
   return gulp.src(dirs, { base: './' })

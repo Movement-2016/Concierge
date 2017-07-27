@@ -1,9 +1,9 @@
-import React        from 'react';
-import { render }   from 'react-dom';
+import { createElement } from 'react';
+import { render }        from 'react-dom';
 
 import appModel     from '../shared/models/app';
 import Router       from './services/router';     
-import App          from './components/App.jsx';
+import { App }      from './components';
 
 
 if( !global.IS_SERVER_REQUEST ) {
@@ -16,7 +16,7 @@ if( !global.IS_SERVER_REQUEST ) {
 
     router.once( router.events.NAVIGATE_TO, function(props) {
 
-      render( React.createElement( App, { ...props, ...model} ),  document.getElementById('app') );
+      render( createElement( App, { ...props, ...model} ),  document.getElementById('app') );
 
     });
     
