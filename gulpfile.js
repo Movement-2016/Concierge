@@ -36,11 +36,11 @@ const babelifyOpts = {
 };
 
 const dependencies = [
+  'axios',
   'es6-promise-polyfill',
   'events',
   'jspath',
   'lodash',
-  'node-fetch',
   'react',
   'react-dom',
   'react-headroom',
@@ -51,8 +51,6 @@ const dependencies = [
   'redux',
   'redux-thunk',
   'route-recognizer',
-  'whatwg-fetch',
-
 ];
 
 const fonts = [

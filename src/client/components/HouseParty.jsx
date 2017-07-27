@@ -1,14 +1,15 @@
 import React from 'react';
 import ContentPage from './ContentPage.jsx';
 import ProfileInput  from './Profile/Input.jsx';
+import { houseParty } from '../services/email';
 
 class PartyForm extends React.Component {
 
   constructor() {
     super(...arguments);
     this.state = {
-      done: false,
-      error: false,
+      done: '',
+      error: '',
       hostParty: false,
       learnMore: false
     };
@@ -18,16 +19,14 @@ class PartyForm extends React.Component {
   onSubmit(e) {
 
     e.preventDefault();
-    this.setState( {done: false, error: false} );
-    /* global $ */
-    $.ajax({
-            url: '/api/houseparty',
-            type: 'post',
-            dataType: 'json',
-            data: $('.user-info').serialize(),
-            success: (/*data*/) => this.setState({ done: true }),
-            error: () => this.setState({ error: true })
-        });
+
+    this.setState( {done: '', error: ''} );
+
+    /* globals $ */
+    
+    houseParty( $('.user-info').serialize() )
+      .then(  done  => this.setState({ done }) )
+      .catch( error => this.setState({ error }) );
   }
 
   render() {
@@ -76,8 +75,8 @@ class PartyForm extends React.Component {
               <textarea name="message" placeholder="Anything else you'd like to tell us?" />
               <button id="contact-form-submit" className="waves-effect waves-light btn" type="submit"><i className="material-icons right">send</i>Submit</button>
             </form>
-            {done && <div className="submit-message submit-success">Thank you! Your message has been sent successfuly.</div>}
-            {error && <div className="submit-message submit-error">Error: We were unable to send your message at this time. Please try again later or email advisor@movementvote.org directly.</div>}
+            {done && <div className="submit-message submit-success">{done}</div>}
+            {error && <div className="submit-message submit-error">{error}</div>}
           </div>
         </ContentPage>
       );

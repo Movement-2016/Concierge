@@ -17,7 +17,6 @@
     "jquery": "^3.1.0",
     "jspath": "^0.3.3",
     "materialize-css": "^0.98.0",
-    "node-fetch": "^1.6.1",
     "react": "15.3.0",
     "react-dom": "15.3.0",
     "react-headroom": "^2.1.4",
@@ -29,8 +28,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "2.1.0",
     "route-recognizer": "^0.3.3",
-    "tag-string": "git+https://github.com/victor-stone/tag-string.git",
-    "whatwg-fetch": "1.0.0"
+    "tag-string": "git+https://github.com/victor-stone/tag-string.git"
   },
   "scripts": {
     "test": "",

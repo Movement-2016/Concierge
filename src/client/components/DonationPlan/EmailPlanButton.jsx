@@ -19,7 +19,9 @@ class _EmailPlanButton extends React.Component {
       plan
     } = this.props;
 
-    emailPlan( { user, plan, onError, onDone } );
+    emailPlan( { user, plan } )
+      .then( done => onDone(done) )
+      .catch( err => onError(err) );
   }
 
   render() {

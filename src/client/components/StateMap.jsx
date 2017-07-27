@@ -1,5 +1,5 @@
 import React from 'react';
-import 'whatwg-fetch';
+import axios from 'axios';
 import { findDOMNode } from 'react-dom';
 import Loading from './Loading.jsx';
 import Link from '../services/LinkToRoute';
@@ -46,7 +46,7 @@ class StateMap extends React.Component {
 
   populateMapData(states,colors) {
     /* globals $ */
-    fetch( location.origin + '/images/state-map-data.svg')
+    axios( location.origin + '/images/state-map-data.svg')
       .then( response => response.text() )
       .then( mapData => {
           if( this.unMounted ) {

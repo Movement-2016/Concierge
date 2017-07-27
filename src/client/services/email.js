@@ -1,38 +1,49 @@
+import axios from 'axios';
 
 const ADVISOR_EMAIL = 'advisor@movementvote.org';
 
-
-const _do_email = ({payload,url,onDone,onError,successMsg}) => {
-
-    onDone(''); // clear error messages
-    onError('');
+const _do_email = ({payload,url,successMsg,stringify=true}) => {
 
     const opts = {
-      method: 'post',
+      method: 'POST',
       headers: {
         accept: 'application/json',
         'content-type': 'application/json',
       },
       credentials: 'same-origin',
-      body: JSON.stringify (payload),
+      body: stringify ? JSON.stringify (payload) : payload
     };
 
     const errMsg = `'Error: We were unable to send your message at this time. Please try again later or email ${ADVISOR_EMAIL} directly.'`;
 
-    fetch (`${location.origin}/${url}`, opts)
+    return axios (`${location.origin}/${url}`, opts)
       .then( resp => resp.json() )
       .then( resp => {
         // this is a gmail api thing
         if( resp.labelIds && resp.labelIds.includes('SENT') ) {
-          onDone(successMsg);
+          return successMsg;            
         } else {
-          onError(errMsg);
+          throw new Error(errMsg);
         }
-      }).catch( () => onError(errMsg) );
+      }).catch( () => {
+          throw new Error(errMsg);
+      });
 
 };
 
-const emailContact = ({ user, onError, onDone, message }) => {
+const houseParty = ( payload ) => {
+
+  const args = {
+    payload, 
+    stringify:  false,
+    url:        '/api/houseparty',  
+    successMsg: 'Thank you! Your house party information has been sent successfuly.'
+  };
+
+  return _do_email( args );
+};
+
+const emailContact = ({ user, message }) => {
 
     const payload = {
       ...user,
@@ -41,18 +52,16 @@ const emailContact = ({ user, onError, onDone, message }) => {
     };
 
     const args = {
-      onError,
-      onDone,
       payload,
       url: 'api/contact',
       successMsg: 'Thank you! Your message has been sent successfuly.'
     };
 
-    _do_email(args);
+    return _do_email(args);
 
 };
 
-const emailPlan = ({ user, plan, onError, onDone, forceConsult = false }) => {
+const emailPlan = ({ user, plan, forceConsult = false }) => {
 
     let {
         donations: items,
@@ -69,17 +78,16 @@ const emailPlan = ({ user, plan, onError, onDone, forceConsult = false }) => {
     };
 
     const args = {
-      onError,
-      onDone,
       payload,
       url: 'api/contact',
       successMsg: 'Thank you! Your plan is on the way.'
     };
 
-    _do_email( args );
+    return _do_email( args );
 };
 
 module.exports = {
   emailPlan,
-  emailContact
+  emailContact,
+  houseParty
 };

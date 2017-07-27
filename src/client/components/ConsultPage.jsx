@@ -39,14 +39,14 @@ class _ConsultPage extends React.Component {
     } = this;
 
     const props = {
-      onError,
-      onDone,
       user,
       plan,
       forceConsult: true
     };
     
-    emailPlan( props );
+    emailPlan( props )
+      .then( done => onDone(done) )
+      .error( err => onError(err) );
   }
 
   render() {

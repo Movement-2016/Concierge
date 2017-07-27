@@ -1,16 +1,7 @@
-/* global $ */
+import path    from 'jspath';
+import axios   from 'axios';
 
-var path    = require('jspath');
-
-let _fetch = null;
-
-if( global.IS_SERVER_REQUEST ) {
-  _fetch = require('node-fetch'.trim()); // prevent browserify bundling  
-} else {
-  _fetch = (url) => {
-    return new Promise( (success,error) => $.ajax({url,success,error}) ); //  ,xhrFields: {withCredentials:false}} ) );
-  };
-}
+let _fetch = axios;
 
 const WP_DEV      = false;
 const WP_API_HOST = WP_DEV ? 'http://localhost:8080/wordpress' : 'https://wp.movementvote.org';
@@ -38,7 +29,7 @@ class MovementVoteService {
   }
 
   _fetch(part) {
-    return _fetch( this._base + part, { mode: 'no-cors' } )
+    return _fetch( this._base + part )
             .then( checkStatus )
             .then( parseJSON );
   }
