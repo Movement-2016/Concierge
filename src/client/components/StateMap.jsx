@@ -47,11 +47,11 @@ class StateMap extends React.Component {
   populateMapData(states,colors) {
     /* globals $ */
     axios( location.origin + '/images/state-map-data.svg')
-      .then( response => response.text() )
-      .then( mapData => {
+      .then( response => {          
           if( this.unMounted ) {
             return;
           }
+          let mapData = response.data;
           const div = document.createElement('DIV');
           div.innerHTML = mapData;
           $('a',div).each( (i,a) => {

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const ADVISOR_EMAIL = 'advisor@movementvote.org';
 
-const _do_email = ({payload,url,successMsg,stringify=true}) => {
+const _do_email = ({payload,url,successMsg,}) => {
 
     const opts = {
       method: 'POST',
@@ -11,14 +11,14 @@ const _do_email = ({payload,url,successMsg,stringify=true}) => {
         'content-type': 'application/json',
       },
       credentials: 'same-origin',
-      body: stringify ? JSON.stringify (payload) : payload
+      data: payload
     };
 
     const errMsg = `'Error: We were unable to send your message at this time. Please try again later or email ${ADVISOR_EMAIL} directly.'`;
 
     return axios (`${location.origin}/${url}`, opts)
-      .then( resp => resp.json() )
-      .then( resp => {
+      .then( response => {
+        const resp = response.data;
         // this is a gmail api thing
         if( resp.labelIds && resp.labelIds.includes('SENT') ) {
           return successMsg;            
@@ -35,7 +35,6 @@ const houseParty = ( payload ) => {
 
   const args = {
     payload, 
-    stringify:  false,
     url:        '/api/houseparty',  
     successMsg: 'Thank you! Your house party information has been sent successfuly.'
   };
@@ -79,7 +78,7 @@ const emailPlan = ({ user, plan, forceConsult = false }) => {
 
     const args = {
       payload,
-      url: 'api/contact',
+      url: 'api/plan/send',
       successMsg: 'Thank you! Your plan is on the way.'
     };
 

@@ -8,6 +8,10 @@ import {createLogger}   from 'redux-logger';
 
 import reducers     from './reducers';
 
+const logger = process.env.NODE_ENV === 'production' 
+                                            ? undefined 
+                                            : applyMiddleware(createLogger());
+
 // All actions will flow through each middleware until it reaches the 
 // end to be passed to Redux reducers
 // applyMiddleware() is used to allow for async 
@@ -25,7 +29,7 @@ const store = createStore(
   // tool for visualizing 
   // Redux state changes in the browser console
     
-  applyMiddleware(createLogger())
+  logger  
 
 );
 

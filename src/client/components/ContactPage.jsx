@@ -39,7 +39,7 @@ class _ContactPage extends React.Component {
       <ContentPage model={this.props.model} pageName="contact">
         <ContactForm onSubmit={this.onSubmit}>
           {done && <div className="submit-message submit-success">{done}</div>}
-          {error && <div className="submit-message submit-error">{error}</div>}
+          {error && <div className="submit-message submit-error">{error.toString()}</div>}
         </ContactForm>
       </ContentPage>
     );

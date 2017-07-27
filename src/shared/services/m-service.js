@@ -18,8 +18,13 @@ function checkStatus(response) {
 }
 
 function parseJSON(response) {
-  return response.json ? response.json() : response;
+  return response.data; 
 }
+
+// function debugLog(result) {
+//   console.log( 'AXIOS RESULT: ', result );
+//   return result;
+// }
 
 class MovementVoteService {
   constructor() {
@@ -30,8 +35,10 @@ class MovementVoteService {
 
   _fetch(part) {
     return _fetch( this._base + part )
+            // .then( debugLog )
             .then( checkStatus )
             .then( parseJSON );
+            // .catch( debugLog );
   }
 
   init( ) {
@@ -40,7 +47,7 @@ class MovementVoteService {
 
   query( jspath ) {
     return this.content.then( content => path( jspath, content ) );
-             //          .catch( err => console.log( 'error duing query', jspath, ' ERROR: ', err ) );
+             //   .catch( err => console.log( 'error duing query', jspath, ' ERROR: ', err ) );
   }
 
   queries( hash ) {
