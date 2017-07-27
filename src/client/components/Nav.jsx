@@ -1,5 +1,4 @@
 import React       from 'react';
-import { connect } from 'react-redux';
 
 import scrollToElement from '../lib/scrollToElement';
 import Link            from '../services/LinkToRoute';
@@ -52,23 +51,6 @@ class Menu extends React.Component {
   }
 }
 
-class _CartWidget extends React.Component {
-  render() {
-    const {
-      favorites = []
-    } = this.props;
-    const style = {
-      float: 'left',
-      marginLeft: 200
-      };
-    return <div style={style} id="CartWidget">{`${favorites.length} items in ` }<Link to="/plan">{'your cart'}</Link></div>;
-  }
-}
-
-const mapStateToProps    = s => ({ favorites: s.groups.selected });
-
-const CartWidget = global.IS_SERVER_REQUEST ? _CartWidget : connect(mapStateToProps)(_CartWidget);
-
 class Nav extends React.Component {
 
   componentDidMount() {
@@ -101,7 +83,6 @@ class Nav extends React.Component {
           <div className="navbar-fixed">
             <nav className="main-nav">
               <Link to="/" className="brand-logo">{siteTitle}</Link>
-              {/* <CartWidget /> */}
               <Menu className="header-menu nav-menu" menu={menu}/>
               <a data-activates="mobile-menu" className="button-collapse"><i className="material-icons">menu</i></a>
             </nav>

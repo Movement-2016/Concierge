@@ -21,7 +21,7 @@ const rm = require('gulp-rm');
 const indexJS = require('index-js');
 
 const browserifyConfig =  {
-  entries: 'src/client/App.js',
+  entries: 'src/client/browser.js', // see 'production' below
   debug: true,
 };
 
@@ -79,6 +79,7 @@ gulp.task ('no-watch',  [ 'production', ...stdTasks, 'browserify' ]);
 gulp.task( 'production', function() {
   global.isProduction = true;
   process.env.NODE_ENV = 'production';
+  browserifyConfig.entries = 'src/client/browser-prod.js';
 });
 
 // set watch tasks for continous build

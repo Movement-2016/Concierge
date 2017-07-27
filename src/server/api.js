@@ -20,7 +20,7 @@ function init (app) {
     app.post( '/api/plan/send',  mailPlan );
     app.post( '/api/houseparty', houseParty );
     app.post( '/api/contact',    contactEmail );
-    console.log('Ready to use email (at ', new Date() ); // eslint-disable-line
+    console.log('Ready to use email'); // eslint-disable-line
   });
 }
 
