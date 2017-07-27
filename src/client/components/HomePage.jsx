@@ -109,6 +109,14 @@ class AuthCode extends React.Component {
 class HomePage extends React.Component {
 
   componentDidMount() {
+    this.scrollToHash();
+  }
+
+  componentDidUpdate() {
+    this.scrollToHash();
+  }
+  
+  scrollToHash() {
     if( location.hash ) {
       setTimeout( () => {
         const elemName = location.hash.replace('#','');
@@ -116,7 +124,7 @@ class HomePage extends React.Component {
         const SCROLL_DELAY = 100;
         elem && setTimeout( () => scrollToElement('#' + elemName), SCROLL_DELAY );
       }, 200);
-    }
+    }    
   }
 
   render() {
