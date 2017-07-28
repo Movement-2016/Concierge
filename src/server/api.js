@@ -105,30 +105,31 @@ ${message ? 'Message: "' + message + '"' : ''}
 function houseParty (req, res) {
 
   reqJSON(req).then( json => {
-
     const {
         email,
-        phone,
+        advisorEmail,
       } = json;
 
-    if( !email || !phone ) {
+    if( !email ) {
       return setStatus( res,  500 ).end();
     }
 
     const mail = partyFormat(json);
 
     const payload = {
-      to: 'advisor@movementvote.org',
+      to: advisorEmail,
       subject: SUBJECT_HEAD + ' New house party form submission from ' + email,
       message: entities.decode(mail)
     };
 
     jsonPolyfill(res);
 
-    mailer.send( payload )      
+    return mailer.send( payload )
       .then( result => { console.log(email,result); setStatus( res,  200 ).json(result); } ) // eslint-disable-line no-console
-      .catch( err => { console.log('error', err ); setStatus( res,  500 ).json( err ); } ); // eslint-disable-line no-console
 
+  }).catch( err => {
+    console.error( err ); // eslint-disable-line no-console
+    setStatus( res, 500 ).end( err.message );
   });
 }
 
@@ -153,15 +154,13 @@ function contactEmail (req, res) {
     };
 
     jsonPolyfill(res);
-    
-    return mailer.send( payload )
-      .then ( result => { console.log(email,result);  setStatus( res,  200 ).json(result); } ); // eslint-disable-line no-console
-      
-  }).catch( err => {
 
+    return mailer.send( payload )
+      .then ( result => { console.log(email,result); setStatus( res,  200 ).json(result); } ); // eslint-disable-line no-console
+
+  }).catch( err => {
     console.error( err ); // eslint-disable-line no-console
     setStatus( res, 500 ).end( err.message );
-
   });
 }
 
@@ -178,13 +177,13 @@ function mailPlan (req, res) {
       items
     } = json;
 
-    if( !items || !email ) {
+    if( !email ) {
       return setStatus( res, 500).end();
     }
 
     let mail = planMailHeader({fname,lname,email,phone,wantsConsult});
     let total = 0;
-    items.forEach( item => {
+    items && items.forEach( item => {
       const { id, amount } = item;
       const group = path(`..{.ID==${id}}`,orgs)[0];
       total += Number(amount);
@@ -199,6 +198,7 @@ function mailPlan (req, res) {
       const urlGive = urlC3 || urlC4;
       mail += planFormatter({name,urlWeb,urlGive,amount});
     });
+
     mail += planMailFooter(total);
 
     const payload = {
@@ -208,16 +208,14 @@ function mailPlan (req, res) {
     };
 
     jsonPolyfill(res);
-    
-    mailer.send( payload )
+
+    return mailer.send( payload )
       .then( () => mailer.send( { ...payload, to: email }) )
-      .then(  result => { console.log( email, result); setStatus( res, 200 ).json(result); } ) ; // eslint-disable-line no-console
+      .then( result => { console.log( email, result); setStatus( res, 200 ).json(result); } ) ; // eslint-disable-line no-console
 
   }).catch( err => {
-
     console.error( err ); // eslint-disable-line no-console
     setStatus( res, 500 ).end( err.message );
-
   });
 }
 

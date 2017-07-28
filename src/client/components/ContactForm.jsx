@@ -6,10 +6,9 @@ class ContactForm extends React.Component {
 
   constructor() {
     super(...arguments);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onSubmit(e) {
+  onSubmit = (e) => {
     e.preventDefault();
     this.props.onSubmit(this.refs.message.value);
   }
@@ -45,7 +44,7 @@ class ContactForm extends React.Component {
                 <textarea ref="message" name="message" placeholder="Your Message" required />
               </div>
             </div>
-            <button id="profile-form-submit" className="waves-effect waves-light btn" type="submit"><i className="material-icons right">send</i>{submitText}</button>
+            <button id="profile-form-submit" className="waves-effect waves-light btn" type="submit">{submitText}</button>
           </form>
           {children}
         </div>

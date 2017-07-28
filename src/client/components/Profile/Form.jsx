@@ -5,7 +5,8 @@ import ProfileInput  from './Input.jsx';
 class ProfileForm extends React.Component {
 
   onSubmit = (e) => {
-    this.props.onSubmit(e);
+    e.preventDefault();
+    this.props.onSubmit();
   }
 
   render() {

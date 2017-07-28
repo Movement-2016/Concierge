@@ -13,19 +13,14 @@ class PartyForm extends React.Component {
       hostParty: false,
       learnMore: false
     };
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onSubmit(e) {
-
+  onSubmit = (e) => {
     e.preventDefault();
-
     this.setState( {done: '', error: ''} );
-
     /* globals $ */
-    
     houseParty( $('.user-info').serialize() )
-      .then(  done  => this.setState({ done }) )
+      .then( done => this.setState({ done }) )
       .catch( error => this.setState({ error }) );
   }
 
@@ -73,10 +68,10 @@ class PartyForm extends React.Component {
                 </div>
               </div>
               <textarea name="message" placeholder="Anything else you'd like to tell us?" />
-              <button id="contact-form-submit" className="waves-effect waves-light btn" type="submit"><i className="material-icons right">send</i>Submit</button>
+              <button id="contact-form-submit" className="waves-effect waves-light btn" type="submit">Submit</button>
             </form>
             {done && <div className="submit-message submit-success">{done}</div>}
-            {error && <div className="submit-message submit-error">{error}</div>}
+            {error && <div className="submit-message submit-error">{error.toString()}</div>}
           </div>
         </ContentPage>
       );
