@@ -12,8 +12,8 @@
     .edit-user-info {
       display: block;
       @include light-link;
-      margin-top: 4px;
-      font-size: 11px;
+      margin-top: 5px;
+      font-size: 10px;
     }
   }
 }
@@ -33,21 +33,5 @@
   }
   .button {
     padding: 0 1rem;
-  }
-}
-.back-link {
-  margin-top: 3rem;
-  text-transform: uppercase;
-  display: block;
-  font-size: 13px;
-  font-weight: 700;
-  @include bp-lg {
-    margin-top: 1rem;
-  }
-  i {
-    vertical-align: middle;
-    font-size: 19px;
-    margin-left: -4px;
-    margin-bottom: 3px;
   }
 }

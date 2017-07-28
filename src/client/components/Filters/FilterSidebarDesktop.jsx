@@ -80,8 +80,6 @@ class FilterSidebarDesktop extends React.Component {
 
     const showOrgsNav = visibleColorSections.length + visibleStates.length > 0;
 
-    console.log('Sidebar render');
-
     return (
       <div className="filter-sidebar">
         {showOrgsNav && <div className="groups-nav">

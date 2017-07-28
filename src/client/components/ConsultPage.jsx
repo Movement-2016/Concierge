@@ -1,8 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { Shell } from './ContentPage.jsx';
-import ProfileForm from './Profile/Form.jsx';
 import { emailPlan } from '../services/email';
+
+import { Shell } from './ContentPage.jsx';
+import BackLink from './BackLink.jsx';
+import ProfileForm from './Profile/Form.jsx';
 
 class _ConsultPage extends React.Component {
 
@@ -43,7 +45,7 @@ class _ConsultPage extends React.Component {
       plan,
       forceConsult: true
     };
-    
+
     emailPlan( props )
       .then( done => onDone(done) )
       .error( err => onError(err) );
@@ -53,7 +55,9 @@ class _ConsultPage extends React.Component {
     return (
       <Shell title="Request a Consultation" name="custom-planning profile-page">
         <p className="page-description">{'Please make sure your information is correct and an advisor will be in touch soon!'}</p>
-        <ProfileForm onSubmit={this.onSubmit} submitText="Request Consultation" />
+        <ProfileForm onSubmit={this.onSubmit} submitText="Request Consultation">
+          <BackLink to="/plan" title="Donation Plan">Your Donation Plan</BackLink>
+        </ProfileForm>
       </Shell>
     );
   }

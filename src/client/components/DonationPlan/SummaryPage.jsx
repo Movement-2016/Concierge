@@ -1,7 +1,7 @@
-import React from 'react';
+import React      from 'react';
 
-import { Shell } from '../ContentPage.jsx';
-import Summary   from './Summary.jsx';
+import { Shell }  from '../ContentPage.jsx';
+import Summary    from './Summary.jsx';
 
 function PlanSummaryPage(props) {
   return (

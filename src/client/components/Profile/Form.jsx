@@ -5,15 +5,10 @@ import ProfileInput  from './Input.jsx';
 class ProfileForm extends React.Component {
 
   onSubmit = (e) => {
-    e.preventDefault();
     this.props.onSubmit(e);
   }
 
   render() {
-    const { 
-      submitText = 'Complete Plan',
-    } = this.props;
-
     return (
         <div className="profile-form padded-form">
           <h3>Your Information</h3>
@@ -35,9 +30,10 @@ class ProfileForm extends React.Component {
               </div>
             </div>
             <div className="action-area">
-              <button id="profile-form-submit" className="waves-effect waves-light btn" type="submit">{submitText}</button>
+              <button id="profile-form-submit" className="waves-effect waves-light btn" type="submit">{this.props.submitText}</button>
             </div>
           </form>
+          {this.props.children}
         </div>
       );
   }

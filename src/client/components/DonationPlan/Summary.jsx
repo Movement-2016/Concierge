@@ -1,6 +1,7 @@
-import React     from 'react';
-import Link from '../../services/LinkToRoute';
+import React            from 'react';
+import Link             from '../../services/LinkToRoute';
 
+import BackLink         from '../BackLink.jsx';
 import Totals           from './Totals.jsx';
 import EmailPlanButton  from './EmailPlanButton.jsx';
 import Plan             from './Plan.jsx';
@@ -13,12 +14,6 @@ class SummaryListing extends Plan {
   }
 }
 
-const EditPlan = () => {
-  return (
-    <Link className="back-link" to="/plan" title="Edit my plan"><i className="material-icons">chevron_left</i>Edit plan</Link>
-  );
-};
-
 class Summary extends React.Component {
   constructor() {
     super(...arguments);
@@ -26,17 +21,10 @@ class Summary extends React.Component {
       msg: '',
       error: ''
     };
-    this.onDone = this.onDone.bind(this);
-    this.onError = this.onError.bind(this);
   }
 
-  onDone( done ) {
-    this.setState({ done });
-  }
-
-  onError(error) {
-    this.setState({ error });
-  }
+  onDone = (done) => this.setState({ done });
+  onError = (error) => this.setState({ error });
 
   render() {
 
@@ -71,7 +59,7 @@ class Summary extends React.Component {
               </div>
             </div>
           </div>
-          <EditPlan />
+          <BackLink to="/plan" title="Edit Plan">Edit plan</BackLink>
         </div>
       </div>
     );

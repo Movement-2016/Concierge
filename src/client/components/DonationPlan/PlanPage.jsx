@@ -1,17 +1,11 @@
 import React            from 'react';
 import { connect }      from 'react-redux';
-
 import Link             from '../../services/LinkToRoute';
 
+import BackLink         from '../BackLink.jsx';
 import Plan             from './Plan.jsx';
 import Totals           from './Totals.jsx';
 import RequestConsult   from './RequestConsult.jsx';
-
-// const BackToGroups = () => {
-//   return (
-//     <Link className="back-link" to="/groups" title="Continue Browsing Groups"><i className="material-icons">chevron_left</i>Back to browse groups</Link>
-//     );
-// };
 
 const PageDescription = () => {
   return (
@@ -22,9 +16,9 @@ const PageDescription = () => {
 class _SummaryLink extends React.Component {
 
   render() {
-    const { 
-      email, 
-      phone 
+    const {
+      email,
+      phone
     } = this.props;
 
     const isUserKnown = email && phone;
@@ -52,7 +46,7 @@ class PlanPage extends React.Component {
     return (
       <main className="content-page custom-planning cart-page">
         <div className="container small-container">
-          <h1 className="page-title">My Donation Plan</h1>
+          <h1 className="page-title">Your Donation Plan</h1>
           <PageDescription />
           <div className="padded-form donation-form">
             <div className="row">
@@ -69,6 +63,7 @@ class PlanPage extends React.Component {
                 </div>
               </div>
             </div>
+            <BackLink to="/groups" title="Browse Groups">Browse Groups</BackLink>
           </div>
         </div>
       </main>

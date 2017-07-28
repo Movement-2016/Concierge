@@ -131,6 +131,23 @@
     }
   }
 }
+.back-link {
+  margin-top: 4rem;
+  text-transform: uppercase;
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: lighten( $primary-color, 15%);
+  @include bp-lg {
+    margin-top: 2rem;
+  }
+  i {
+    vertical-align: middle;
+    font-size: 19px;
+    margin-left: -4px;
+    margin-bottom: 3px;
+  }
+}
 
 @import 'custom-planning/cart-page';
 @import 'custom-planning/profile-page';

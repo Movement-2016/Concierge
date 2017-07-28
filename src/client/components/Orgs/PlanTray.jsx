@@ -8,7 +8,7 @@ function PlanTray(props) {
   return(
     <div className={'donation-plan-tray' + (numGroups ? ' has-groups' : '')} >
       <div className="info-area">
-        <div className="title">My Donation Plan</div>
+        <div className="title">Your Donation Plan</div>
         <div className="info">{numGroups} Group{s}</div>
       </div>
       <div className="button-area">
