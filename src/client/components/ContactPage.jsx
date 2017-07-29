@@ -12,20 +12,13 @@ class _ContactPage extends React.Component {
       error: '',
       done: ''
     };
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onSubmit(message) {
-
-    this.setState( { done: '', error: '' } );
-
-    const { 
-      user
-    } = this.props;
-
+  onSubmit = (message) => {
+    const { user } = this.props;
     emailContact({user, message})
-      .then( done  => this.setState({ done }) )
-      .catch( error => this.setState({ error }) ); 
+      .then( done => this.setState({ done }) )
+      .catch( error => this.setState({ error }) );
   }
 
   render() {

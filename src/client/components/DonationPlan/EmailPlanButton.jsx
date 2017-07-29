@@ -6,14 +6,13 @@ class _EmailPlanButton extends React.Component {
 
   constructor() {
     super(...arguments);
-    this.onEmail = this.onEmail.bind(this);
   }
 
-  onEmail(e) {
+  onEmail = (e) => {
     e.preventDefault();
 
-    const { 
-      onError, 
+    const {
+      onError,
       onDone,
       user,
       plan
@@ -35,4 +34,3 @@ const mapStateToProps = s => ({ plan: s.plan, user: s.user });
 const EmailPlanButton = connect(mapStateToProps)(_EmailPlanButton);
 
 module.exports = EmailPlanButton;
-

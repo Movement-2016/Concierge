@@ -53,7 +53,7 @@ class Summary extends React.Component {
                 <div className="link-area">
                   <EmailPlanButton store={store} onError={this.onError} onDone={this.onDone}>{'Email me this plan'}</EmailPlanButton>
                   {done && <div className="submit-message submit-success">{done}</div>}
-                  {error && <div className="submit-message submit-error">{error}</div>}
+                  {error && <div className="submit-message submit-error">{error.toString()}</div>}
                   <RequestConsult />
                 </div>
               </div>

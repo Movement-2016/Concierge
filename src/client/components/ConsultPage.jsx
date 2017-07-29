@@ -10,53 +10,46 @@ class _ConsultPage extends React.Component {
 
   constructor() {
     super(...arguments);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onError = this.onError.bind(this);
-    this.onDone = this.onDone.bind(this);
     this.state = {
       error: '',
-      msg: ''
+      done: ''
     };
   }
 
-  onError(error) {
-    this.setState({ error });
-  }
-
-  onDone(msg) {
-    this.setState({ msg });
-  }
-
-  onSubmit(e) {
-    e.preventDefault();
-
+  onSubmit = () => {
     const {
       user,
       plan
     } = this.props;
 
-    const {
-      onError,
-      onDone
-    } = this;
-
-    const props = {
+    const emailProps = {
       user,
       plan,
       forceConsult: true
     };
 
-    emailPlan( props )
-      .then( done => onDone(done) )
-      .error( err => onError(err) );
+    emailPlan(emailProps)
+      .then( done => this.setState({ done }) )
+      .catch( error => this.setState({ error }) );
   }
 
   render() {
+    const {
+      done,
+      error
+    } = this.state;
+
+    const successMsg = "Thanks! An advisor should be in touch with you shortly. If you don't hear from us soon, you can send an email to advisor@movementvote.org to follow up."
+
     return (
       <Shell title="Request a Consultation" name="custom-planning profile-page">
         <p className="page-description">{'Please make sure your information is correct and an advisor will be in touch soon!'}</p>
         <ProfileForm onSubmit={this.onSubmit} submitText="Request Consultation">
-          <BackLink to="/plan" title="Donation Plan">Your Donation Plan</BackLink>
+          <div>
+            {done && <div className="submit-message submit-success">{successMsg}</div>}
+            {error && <div className="submit-message submit-error">{error.toString()}</div>}
+            <BackLink to="/plan" title="Donation Plan">Your Donation Plan</BackLink>
+          </div>
         </ProfileForm>
       </Shell>
     );

@@ -2,12 +2,21 @@ import React     from 'react';
 import {connect} from 'react-redux';
 import Link      from '../../services/LinkToRoute';
 
+function propsAreSet(obj) {
+  for (var prop in obj) {
+    if (obj[prop]) {
+      return true;
+    }
+  }
+  return false;
+}
+
 class _SummaryUser extends React.Component {
 
   render() {
     const { user } = this.props;
 
-    if( !user ) {
+    if( !propsAreSet(user) ) {
       return <span />;
     }
 

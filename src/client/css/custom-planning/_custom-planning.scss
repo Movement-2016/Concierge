@@ -84,8 +84,11 @@
     }
   }
   .link-area {
-    max-width: 220px;
+    max-width: 254px;
     margin: 0 auto;
+    .submit-message {
+      margin: 0 0 2rem;
+    }
     @include bp-lg {
       max-width: auto;
     }
