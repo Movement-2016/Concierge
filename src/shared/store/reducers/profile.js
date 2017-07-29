@@ -1,4 +1,4 @@
-import { SET_PROFILE } from '../actions/user';
+import { SET_PROFILE } from '../actions/profile';
 
 const initialState = {
   username: '',
@@ -6,6 +6,7 @@ const initialState = {
   lname: '',
   email: '',
   phone: '',
+  picture: ''
 };
 
 export default function user (state = initialState, action) {

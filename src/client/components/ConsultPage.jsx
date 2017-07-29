@@ -56,7 +56,7 @@ class _ConsultPage extends React.Component {
   }
 }
 
-const mapStateToProps = s => ({user: s.user, plan: s.plan});
+const mapStateToProps = s => ({user: s.profile, plan: s.plan});
 const ConsultPage = connect(mapStateToProps)(_ConsultPage);
 
 module.exports = ConsultPage;

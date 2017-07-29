@@ -1,7 +1,9 @@
-import React from 'react';
+import React       from 'react';
 import { connect } from 'react-redux';
 
-import { setProfile } from '../../../shared/store/actions/user'; 
+import {
+  setProfile
+}  from '../../../shared/store/actions/profile'; 
 
 class _RequestConsultOption extends React.Component {
 

@@ -1,6 +1,9 @@
 import React     from 'react';
 import { connect } from 'react-redux';
-import { setProfile } from '../../../shared/store/actions/user';
+
+import {
+  setProfile
+} from '../../../shared/store/actions/profile';
 
 class _ProfileInput extends React.Component {
 
@@ -42,10 +45,8 @@ _ProfileInput.defaultProps = {
   type: 'text'
 };
 
-const mapStateToProps = s => ({ user: s.user });
-const mapDispatchToProps = {
-  setProfile
-};
+const mapStateToProps = s => ({ user: s.profile });
+const mapDispatchToProps = { setProfile };
 
 const ProfileInput = connect(mapStateToProps,mapDispatchToProps)(_ProfileInput);
 

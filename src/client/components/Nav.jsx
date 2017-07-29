@@ -1,9 +1,9 @@
-import React       from 'react';
+import React     from 'react';
+import Headroom  from 'react-headroom';
+import Login     from './Profile/Login.jsx';
 
 import scrollToElement from '../lib/scrollToElement';
 import Link            from '../services/LinkToRoute';
-
-import Headroom from 'react-headroom';
 
 const _MenuItem = ({ url,label }) => {
   var isExternal = global.IS_SERVER_REQUEST || url.includes('http');
@@ -46,6 +46,7 @@ class Menu extends React.Component {
           }
 
           {menu.map( (m,i) => <MenuItem key={i} {...m} />)}
+          <li><Login /></li>
         </ul>
       );
   }
@@ -89,6 +90,7 @@ class Nav extends React.Component {
           </div>
         </Headroom>
         <Menu className="side-nav nav-menu" id="mobile-menu" menu={menu} />
+        <Login.Popup />
       </div>
     );
   }

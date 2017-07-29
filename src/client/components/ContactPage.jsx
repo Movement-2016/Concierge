@@ -39,7 +39,7 @@ class _ContactPage extends React.Component {
   }
 }
 
-const mapStateToProps = s => ({ user: s.user });
+const mapStateToProps = s => ({ user: s.profile });
 const ContactPage = connect(mapStateToProps)(_ContactPage);
 
 export default ContactPage;

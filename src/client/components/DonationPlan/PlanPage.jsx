@@ -31,7 +31,7 @@ class _SummaryLink extends React.Component {
   }
 }
 
-const mapSummaryStateToProps = s => ({ email: s.user.email, phone: s.user.phone });
+const mapSummaryStateToProps = s => ({ email: s.profile.email, phone: s.profile.phone });
 
 const SummaryLink = connect(mapSummaryStateToProps)(_SummaryLink);
 
