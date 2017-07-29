@@ -12,6 +12,7 @@
     "axios": "^0.16.2",
     "commaize": "git+https://github.com/victor-stone/commaize.git",
     "es6-promise-polyfill": "^1.2.0",
+    "federated-logins": "git+https://github.com/victor-stone/federated-login.git",
     "google-auth-library": "^0.9.8",
     "googleapis": "^13.0.0",
     "html-entities": "^1.2.0",
