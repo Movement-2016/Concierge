@@ -1,3 +1,13 @@
 #!/bin/sh
-$commitId=`git log -1 | grep "commit" | sed 's/commit //'`
-aws deploy create-deployment --application-name MovementVoteApp --deployment-group-name MovementVoteDeployGrp --github-location repository=Movement-2016/concierge,commitId=$commidId
+echo "fetching last commit...."
+commitId=`git log -1 | grep "commit" | sed 's/commit //'`
+echo "deploying..."
+deploymentId=`aws deploy create-deployment --application-name MovementVoteApp --deployment-group-name MovementVoteDeployGrp --github-location commitId=$commitId,repository=Movement-2016/concierge | egrep -o 'd-[A-Z0-9]+'`
+echo "...done"
+echo "#!/bin/sh" > dist/deploy-status
+echo "aws deploy get-deployment --deployment-id $deploymentId | grep status" >> dist/deploy-status
+chmod a+x dist/deploy-status
+echo "#!/bin/sh" > dist/deploy-status-verbose
+echo "aws deploy get-deployment --deployment-id $deploymentId" >> dist/deploy-status-verbose
+chmod a+x dist/deploy-status-verbose
+echo "run 'dist/deploy-status' or 'dist/deploy-status-verbose' "
