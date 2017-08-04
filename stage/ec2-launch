@@ -1,7 +1,16 @@
 ## Steps for new EC2 instance
 ## This should be attached as "user-data" to EC2 instances
+
 sudo yum -y update
+
+mkdir codedeploy
+cd codedeploy
+wget https://aws-codedeploy-us-west-2.s3.amazonaws.com/latest/install
+chmod +x ./install
+sudo ./install auto
+
 aws s3 sync s3://gamechangerlabs/movement-vote-install $HOME/
+
 sudo yum -y install git
 git clone https://github.com/Movement-2016/concierge.git $HOME/concierge
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
