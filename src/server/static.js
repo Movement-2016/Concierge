@@ -84,6 +84,15 @@ class StaticRouter {
       return true;
     }
 
+    if( pathToStatic.match( /\.well-known/ ) ) {
+      try {
+        this.sendFile( res, pathToStatic, true, next );
+        return true;
+      } catch(e) {
+        return false;
+      }
+    }
+
     return false;
   }
 

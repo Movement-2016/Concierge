@@ -2,6 +2,8 @@
 const REGION           = 'us-west-2';
 const IDENTITY_POOL_ID = 'us-west-2:544ed35f-6bdb-4e28-b9a2-fca1ddbc4e7b';
 
+const PLANS_ENDPOINT   = 'https://ejy2t55834.execute-api.us-west-2.amazonaws.com/prod';
+
 module.exports = {
   REGION,
   IDENTITY_POOL_ID,
@@ -23,5 +25,7 @@ module.exports = {
   Google: {
     clientId: '549640832795-h8sjf845lqo4fia4djrs44c622408sgf.apps.googleusercontent.com',
     scope: 'profile email'
-  }
+  },
+
+  PLANS_ENDPOINT
 };

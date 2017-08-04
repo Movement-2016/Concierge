@@ -10,8 +10,12 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.2",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-2017": "0.0.0",
+    "babel-preset-es2017": "^6.24.1",
     "commaize": "git+https://github.com/victor-stone/commaize.git",
     "es6-promise-polyfill": "^1.2.0",
+    "gamechangers-plans-db": "git+https://github.com/Movement-2016/plans-db.git",
     "google-auth-library": "^0.9.8",
     "googleapis": "^13.0.0",
     "html-entities": "^1.2.0",
@@ -41,7 +45,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",
-    "babel-core": "6.13.2",
+    "babel-core": "6.17.0",
     "babel-eslint": "^6.1.2",
     "babel-plugin-transform-class-properties": "^6.11.5",
     "babel-plugin-transform-object-rest-spread": "^6.8.0",

@@ -15,6 +15,7 @@ const EMPTY_CREDENTIALS = {
 
 const INITIAL_STATE = {
   provider:       null,
+  authenticated:  false,
   ...EMPTY_CREDENTIALS
 };
 
