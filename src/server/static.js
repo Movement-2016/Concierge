@@ -84,6 +84,18 @@ class StaticRouter {
       return true;
     }
 
+    // let's encrypt using this hidden directory to temporarily
+    // store and retrieve files during cert creation/renewal
+    
+    if( pathToStatic.match( /\.well-known/ ) ) {
+      try {
+        this.sendFile( res, pathToStatic, true, next );
+        return true;
+      } catch(e) {
+        return false;
+      }
+    }
+
     return false;
   }
 
