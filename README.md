@@ -23,15 +23,13 @@ npm i pm2 -g
 
 ### Build
 
-```
+```bash
 npm run build
 ```
 
-The build uses *gulp* to run the set of tasks defined in *gulpfile.js*. 
-
 *build* is a continuous build option - the gulp build will
 set up watches and rerun build elements as file changes are saved.
-*build-stage* is a one time build option, run again to build a new stage output.
+`npm run build-stage` is a one time build option for poduction.
 
 ### Server
 
@@ -39,7 +37,7 @@ In a terminal, continuous server operation, updating on changes,
 can be activated with
 
 ```
-npm start
+npm run start
 ```
 
 The *nodemon* utility provides restart on update.
@@ -51,17 +49,13 @@ application at http://localhost:3000
 
 ## Deployment
 
-The live site is deployed to AWS on every git push on the main branch.
+Deploy to AWS EC2.
 
-Yes. That's correct. Push to the main branch and update the live site.
+```bash
+bin/deploy
+```
 
-The hooks are in git settings for this repo. Under 'Intergration and Services'
-
-Look for 'AWS CodeDepoly' and 'GitHub Auto-Deployment'
-
-Once the repo is pushed to AWS, the file `./appspec.yml' is read to determine how to build and deploy the app.
-
-Following that breadcrumb trail will help you understand that process. (Hint: see ./stage/after-install.sh)
+N.B. This must be done after a `git push` If you commit something locally and don't push the deploy will fail.
 
 ### Maintenance
 
