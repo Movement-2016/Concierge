@@ -115,8 +115,14 @@ gulp.task ('fonts', function () {
 // SERVER
 gulp.task( 'server', ['shared','shared-components','_server']);
 
-gulp.task('shared', () => {
-  return gulp.src ( 'src/shared/**/*.js')
+gulp.task('config', () => {
+  return gulp.src ( ['src/config.js'])
+            .pipe (babel())
+            .pipe (gulp.dest (BASE));
+});
+
+gulp.task('shared', ['config'], () => {
+  return gulp.src ( ['src/shared/**/*.js'])
             .pipe (babel())
             .pipe (gulp.dest (BASE + '/shared'));
 });

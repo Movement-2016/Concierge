@@ -18,11 +18,39 @@ const toggleItem = id =>  dispatch => dispatch(_toggleItem(id)) && dispatch(togg
 const addPlanItem = (id,amount) => ({ type: ADD_PLAN_ITEM, id, amount });
 
 const savePlan = () => (dispatch,getState) => {
-  const { auth } = getState();
+  const { 
+    auth, 
+    plan,
+    profile: {
+      fname
+    }
+  } = getState();
+
   if( auth.authenticated ) {
-    
+    const api = plansAPI();
+
+    let {
+      planName,
+      donations,
+      planId,
+      dirty
+    } = plan;
+  
+    if( dirty ) {
+      !planName && (planName = `${fname}'s Donation Plan`);    
+
+      const body = { 
+          planName,
+          donations
+      };
+        
+      (planId 
+          ? api.plansUpdate( planId, body ) 
+          : api.plansPost( null, body ))
+        .then( () => dispatch({ type: SAVE_PLAN }) );    
+    }
+
   }
-  ({ type: SAVE_PLAN });
 };
 
 const clearPlan = () => ({ type: clearPlan });

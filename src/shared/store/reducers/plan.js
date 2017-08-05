@@ -1,5 +1,4 @@
 import path from 'jspath';
-import planDb from '../../services/plans';
 
 import {
   TOGGLE_ITEM,
@@ -10,7 +9,7 @@ import {
 
 const initialState = {
   planId: '',
-  name: '',
+  planName: '',
   donations: [],
   total: 0,
   dirty: false
@@ -62,35 +61,6 @@ const reducer = (state = initialState, action) => {
       updateTotal(st);
 
       return st;
-    }
-
-    case SAVE_PLAN: {
-
-      const {
-        name: planName,
-        donations
-      } = state;
-      
-      const body = { 
-          planName,
-          donations
-      };
-      
-      if( state.planId ) {
-        planDb.plansUpdate( state.planId, body );
-      } else {
-        planDb.plansPost( null, body )
-          .then( )
-      }
-      
-      return { ...state, dirty: false };
-    }
-
-    case CLEAR_PLAN: {
-      if( state.planId ) {
-
-      } else {
-      }
     }
 
     default:
