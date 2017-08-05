@@ -10,8 +10,8 @@ class _Totals extends React.Component {
 
     return(
         <div className="plan-total">
-          <span className="label">Total</span>
-          <span className="total">${commaize(planTotal)}</span>
+          <span className="label">{'Total'}</span>
+          <span className="total">{'$' + commaize(planTotal) }</span>
         </div>
       );
   }

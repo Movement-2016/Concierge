@@ -8,11 +8,6 @@ import Plan             from './Plan.jsx';
 import RequestConsult   from './RequestConsult.jsx';
 import SummaryUser      from './SummaryUser.jsx';
 
-class SummaryListing extends Plan {
-  get readonly() {
-    return true;
-  }
-}
 
 class Summary extends React.Component {
   constructor() {
@@ -44,7 +39,7 @@ class Summary extends React.Component {
         <div className="padded-form summary-form">
           <div className="row">
             <div className="col s12 l8">
-              <Plan readonly={true} {...this.props} />
+              <Plan readonly {...this.props} />
             </div>
             <div className="col s12 l4">
               <div className="total-section">
@@ -59,7 +54,7 @@ class Summary extends React.Component {
               </div>
             </div>
           </div>
-          <BackLink to="/plan" title="Edit Plan">Edit plan</BackLink>
+          <BackLink to="/plan" title="Edit Plan">{'Edit plan'}</BackLink>
         </div>
       </div>
     );

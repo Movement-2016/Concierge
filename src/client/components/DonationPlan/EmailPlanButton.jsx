@@ -1,12 +1,9 @@
 import React         from 'react';
 import { connect }   from 'react-redux';
 import { emailPlan } from '../../services/email';
+import ActionButton  from './ActionButton';
 
 class _EmailPlanButton extends React.Component {
-
-  constructor() {
-    super(...arguments);
-  }
 
   onEmail = (e) => {
     e.preventDefault();
@@ -25,7 +22,7 @@ class _EmailPlanButton extends React.Component {
 
   render() {
     const { text, children } = this.props;
-    return <button onClick={this.onEmail} className="complete-button btn waves-effect waves-light">{text}{children}</button>;
+    return <ActionButton onClick={this.onEmail.bind(this)}>{text}{children}</ActionButton>;
   }
 }
 

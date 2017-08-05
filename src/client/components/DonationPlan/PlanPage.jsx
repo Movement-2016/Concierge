@@ -9,7 +9,7 @@ import RequestConsult   from './RequestConsult.jsx';
 
 const PageDescription = () => {
   return (
-    <p className="page-description">Enter a planned donation for each group. Once you complete your donation plan, we will email you a copy with simple instructions on how to donate directly to your chosen groups.</p>
+    <p className="page-description">{'Enter a planned donation for each group. Once you complete your donation plan, we will email you a copy with simple instructions on how to donate directly to your chosen groups.'}</p>
   );
 };
 
@@ -26,7 +26,7 @@ class _SummaryLink extends React.Component {
     const url = isUserKnown ? '/plan/summary' : '/plan/profile';
 
     return (
-      <Link className="complete-button btn waves-effect waves-light" to={url}>Complete Plan</Link>
+      <Link className="complete-button btn waves-effect waves-light" to={url}>{'Complete Plan'}</Link>
     );
   }
 }
@@ -35,18 +35,14 @@ const mapSummaryStateToProps = s => ({ email: s.profile.email, phone: s.profile.
 
 const SummaryLink = connect(mapSummaryStateToProps)(_SummaryLink);
 
-
 class PlanPage extends React.Component {
 
   render() {
-    const {
-      store,
-    } = this.props;
 
     return (
       <main className="content-page custom-planning cart-page">
         <div className="container small-container">
-          <h1 className="page-title">Your Donation Plan</h1>
+          <h1 className="page-title">{'Your Donation Plan'}</h1>
           <PageDescription />
           <div className="padded-form donation-form">
             <div className="row">
@@ -55,15 +51,15 @@ class PlanPage extends React.Component {
               </div>
               <div className="col s12 l4">
                 <div className="total-section">
-                  <Totals store={store} />
+                  <Totals />
                   <div className="link-area">
-                    <SummaryLink store={store} />
+                    <SummaryLink  />
                     <RequestConsult />
                   </div>
                 </div>
               </div>
             </div>
-            <BackLink to="/groups" title="Browse Groups">Browse Groups</BackLink>
+            <BackLink to="/groups" title="Browse Groups">{'Browse Groups'}</BackLink>
           </div>
         </div>
       </main>
