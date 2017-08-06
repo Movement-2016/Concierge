@@ -26,7 +26,7 @@ class _ProfileInput extends React.Component {
       name
     } = this.props;
 
-    const value = user[name];
+    const value = user[name] || '';
 
     const eProps = {
       onChange: this.onChange,

@@ -14,7 +14,7 @@ import {
 } from '../../../shared/store/actions/modal';
 
 import {
-  setProfile
+  syncProfile
 } from '../../../shared/store/actions/profile';
 
 import providers from '../../../shared/services/auth/providers';
@@ -90,12 +90,12 @@ class Popup extends Component {
     const {
       setCredentails,
       setProvider,
-      setProfile
+      syncProfile
     } = this.props;
 
-    setProfile(provider.profile); 
     setCredentails(provider.credentials);
     setProvider(provider.name);
+    syncProfile(provider.profile); 
 
     this.props.closeModal();
   }
@@ -126,7 +126,7 @@ const mapStateToProps2    = s => ({ isLoggedIn: s.auth.authenticated });
 const mapDispatchToProps2 = {  setCredentails, 
                                clearCredentails, 
                                setProvider,
-                               setProfile,
+                               syncProfile,
                                closeModal
                             };
 

@@ -1,5 +1,3 @@
-import providers from '../../services/auth/providers';
-
 import { 
   SET_CREDENTIALS, 
   CLEAR_CREDENTIALS, 
@@ -30,8 +28,6 @@ const reducer = (state = INITIAL_STATE, action) => {
       };
 
     case CLEAR_CREDENTIALS: {
-      const idProvider = providers.find( state.provider );
-      idProvider.logout();
       return {
         ...state,
         authenticated: false,

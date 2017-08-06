@@ -68,7 +68,7 @@ const vendorStyles = [
 const vendorClientJS = [
   'node_modules/jquery/dist/jquery.min.js',
   'node_modules/materialize-css/dist/js/materialize.min.js',
-  'sdk/aws-sdk-2.87.0-cog.js'
+  'sdk/aws-sdk-2.94.0.min.js'
 ];
 
 global.isProduction = false;

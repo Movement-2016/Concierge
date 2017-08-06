@@ -40,7 +40,7 @@ class GoogleLogin extends IdProvider {
 
   logout() {
     var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut(); // <--promise
+    return auth2.signOut(); // <--promise
   }
   
   _initSDK() {

@@ -89,7 +89,7 @@ class FacebookLogin extends IdProvider {
   }
 
   logout() {
-    FB.logout();
+    return new Promise( resolve => FB.logout( resolve(true) ));
   }
   
   getStatus() {

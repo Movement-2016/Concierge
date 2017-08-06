@@ -30,7 +30,7 @@ _xamzrequire = function e(t, n, r) {
         _hidden.toString();
         module.exports = AWS;
         AWS.util.update(AWS, {
-            VERSION: "2.87.0",
+            VERSION: "2.94.0",
             Signers: {},
             Protocol: {
                 Json: require("./protocol/json"),
@@ -70,31 +70,31 @@ _xamzrequire = function e(t, n, r) {
     }, {
         "./api_loader": 189,
         "./config": 193,
-        "./event_listeners": 206,
-        "./http": 207,
-        "./json/builder": 209,
-        "./json/parser": 210,
-        "./model/api": 211,
-        "./model/operation": 213,
-        "./model/paginator": 214,
-        "./model/resource_waiter": 215,
-        "./model/shape": 216,
-        "./param_validator": 217,
-        "./protocol/json": 219,
-        "./protocol/query": 220,
-        "./protocol/rest": 221,
-        "./protocol/rest_json": 222,
-        "./protocol/rest_xml": 223,
-        "./request": 228,
-        "./resource_waiter": 229,
-        "./response": 230,
-        "./sequential_executor": 232,
-        "./service": 233,
-        "./signers/request_signer": 252,
-        "./util": 260,
-        "./xml/builder": 262
+        "./event_listeners": 207,
+        "./http": 208,
+        "./json/builder": 210,
+        "./json/parser": 211,
+        "./model/api": 212,
+        "./model/operation": 214,
+        "./model/paginator": 215,
+        "./model/resource_waiter": 216,
+        "./model/shape": 217,
+        "./param_validator": 218,
+        "./protocol/json": 220,
+        "./protocol/query": 221,
+        "./protocol/rest": 222,
+        "./protocol/rest_json": 223,
+        "./protocol/rest_xml": 224,
+        "./request": 229,
+        "./resource_waiter": 230,
+        "./response": 231,
+        "./sequential_executor": 233,
+        "./service": 234,
+        "./signers/request_signer": 253,
+        "./util": 261,
+        "./xml/builder": 263
     } ],
-    262: [ function(require, module, exports) {
+    263: [ function(require, module, exports) {
         var util = require("../util");
         var builder = require("xmlbuilder");
         function XmlBuilder() {}
@@ -177,10 +177,10 @@ _xamzrequire = function e(t, n, r) {
         }
         module.exports = XmlBuilder;
     }, {
-        "../util": 260,
+        "../util": 261,
         xmlbuilder: 187
     } ],
-    252: [ function(require, module, exports) {
+    253: [ function(require, module, exports) {
         var AWS = require("../core");
         var inherit = AWS.util.inherit;
         AWS.Signers.RequestSigner = inherit({
@@ -221,14 +221,14 @@ _xamzrequire = function e(t, n, r) {
         require("./presign");
     }, {
         "../core": 194,
-        "./presign": 251,
-        "./s3": 253,
-        "./v2": 254,
-        "./v3": 255,
-        "./v3https": 256,
-        "./v4": 257
+        "./presign": 252,
+        "./s3": 254,
+        "./v2": 255,
+        "./v3": 256,
+        "./v3https": 257,
+        "./v4": 258
     } ],
-    257: [ function(require, module, exports) {
+    258: [ function(require, module, exports) {
         var AWS = require("../core");
         var v4Credentials = require("./v4_credentials");
         var inherit = AWS.util.inherit;
@@ -385,9 +385,9 @@ _xamzrequire = function e(t, n, r) {
         module.exports = AWS.Signers.V4;
     }, {
         "../core": 194,
-        "./v4_credentials": 258
+        "./v4_credentials": 259
     } ],
-    258: [ function(require, module, exports) {
+    259: [ function(require, module, exports) {
         var AWS = require("../core");
         var cachedSecret = {};
         var cacheQueue = [];
@@ -425,7 +425,7 @@ _xamzrequire = function e(t, n, r) {
     }, {
         "../core": 194
     } ],
-    256: [ function(require, module, exports) {
+    257: [ function(require, module, exports) {
         var AWS = require("../core");
         var inherit = AWS.util.inherit;
         require("./v3");
@@ -440,9 +440,9 @@ _xamzrequire = function e(t, n, r) {
         module.exports = AWS.Signers.V3Https;
     }, {
         "../core": 194,
-        "./v3": 255
+        "./v3": 256
     } ],
-    255: [ function(require, module, exports) {
+    256: [ function(require, module, exports) {
         var AWS = require("../core");
         var inherit = AWS.util.inherit;
         AWS.Signers.V3 = inherit(AWS.Signers.RequestSigner, {
@@ -498,7 +498,7 @@ _xamzrequire = function e(t, n, r) {
     }, {
         "../core": 194
     } ],
-    254: [ function(require, module, exports) {
+    255: [ function(require, module, exports) {
         var AWS = require("../core");
         var inherit = AWS.util.inherit;
         AWS.Signers.V2 = inherit(AWS.Signers.RequestSigner, {
@@ -533,7 +533,7 @@ _xamzrequire = function e(t, n, r) {
     }, {
         "../core": 194
     } ],
-    253: [ function(require, module, exports) {
+    254: [ function(require, module, exports) {
         var AWS = require("../core");
         var inherit = AWS.util.inherit;
         AWS.Signers.S3 = inherit(AWS.Signers.RequestSigner, {
@@ -660,7 +660,7 @@ _xamzrequire = function e(t, n, r) {
     }, {
         "../core": 194
     } ],
-    251: [ function(require, module, exports) {
+    252: [ function(require, module, exports) {
         var AWS = require("../core");
         var inherit = AWS.util.inherit;
         var expiresHeader = "presigned-expires";
@@ -747,7 +747,7 @@ _xamzrequire = function e(t, n, r) {
     }, {
         "../core": 194
     } ],
-    233: [ function(require, module, exports) {
+    234: [ function(require, module, exports) {
         var AWS = require("./core");
         var Api = require("./model/api");
         var regionConfig = require("./region_config");
@@ -1102,10 +1102,10 @@ _xamzrequire = function e(t, n, r) {
         module.exports = AWS.Service;
     }, {
         "./core": 194,
-        "./model/api": 211,
-        "./region_config": 226
+        "./model/api": 212,
+        "./region_config": 227
     } ],
-    226: [ function(require, module, exports) {
+    227: [ function(require, module, exports) {
         var util = require("./util");
         var regionConfig = require("./region_config_data.json");
         function generateRegionPrefix(region) {
@@ -1153,10 +1153,10 @@ _xamzrequire = function e(t, n, r) {
         }
         module.exports = configureEndpoint;
     }, {
-        "./region_config_data.json": 227,
-        "./util": 260
+        "./region_config_data.json": 228,
+        "./util": 261
     } ],
-    227: [ function(require, module, exports) {
+    228: [ function(require, module, exports) {
         module.exports = {
             rules: {
                 "*/*": {
@@ -1220,7 +1220,7 @@ _xamzrequire = function e(t, n, r) {
             }
         };
     }, {} ],
-    230: [ function(require, module, exports) {
+    231: [ function(require, module, exports) {
         var AWS = require("./core");
         var inherit = AWS.util.inherit;
         var jmespath = require("jmespath");
@@ -1294,7 +1294,7 @@ _xamzrequire = function e(t, n, r) {
         "./core": 194,
         jmespath: 13
     } ],
-    229: [ function(require, module, exports) {
+    230: [ function(require, module, exports) {
         var AWS = require("./core");
         var inherit = AWS.util.inherit;
         var jmespath = require("jmespath");
@@ -1438,7 +1438,7 @@ _xamzrequire = function e(t, n, r) {
         "./core": 194,
         jmespath: 13
     } ],
-    228: [ function(require, module, exports) {
+    229: [ function(require, module, exports) {
         (function(process) {
             var AWS = require("./core");
             var AcceptorStateMachine = require("./state_machine");
@@ -1772,11 +1772,11 @@ _xamzrequire = function e(t, n, r) {
         }).call(this, require("_process"));
     }, {
         "./core": 194,
-        "./state_machine": 259,
+        "./state_machine": 260,
         _process: 154,
         jmespath: 13
     } ],
-    259: [ function(require, module, exports) {
+    260: [ function(require, module, exports) {
         function AcceptorStateMachine(states, state) {
             this.currentState = state || null;
             this.states = states || {};
@@ -1821,7 +1821,7 @@ _xamzrequire = function e(t, n, r) {
         };
         module.exports = AcceptorStateMachine;
     }, {} ],
-    217: [ function(require, module, exports) {
+    218: [ function(require, module, exports) {
         var AWS = require("./core");
         AWS.ParamValidator = AWS.util.inherit({
             constructor: function ParamValidator(validation) {
@@ -2027,7 +2027,7 @@ _xamzrequire = function e(t, n, r) {
     }, {
         "./core": 194
     } ],
-    211: [ function(require, module, exports) {
+    212: [ function(require, module, exports) {
         var Collection = require("./collection");
         var Operation = require("./operation");
         var Shape = require("./shape");
@@ -2080,14 +2080,14 @@ _xamzrequire = function e(t, n, r) {
         }
         module.exports = Api;
     }, {
-        "../util": 260,
-        "./collection": 212,
-        "./operation": 213,
-        "./paginator": 214,
-        "./resource_waiter": 215,
-        "./shape": 216
+        "../util": 261,
+        "./collection": 213,
+        "./operation": 214,
+        "./paginator": 215,
+        "./resource_waiter": 216,
+        "./shape": 217
     } ],
-    215: [ function(require, module, exports) {
+    216: [ function(require, module, exports) {
         var util = require("../util");
         var property = util.property;
         function ResourceWaiter(name, waiter, options) {
@@ -2108,9 +2108,9 @@ _xamzrequire = function e(t, n, r) {
         }
         module.exports = ResourceWaiter;
     }, {
-        "../util": 260
+        "../util": 261
     } ],
-    214: [ function(require, module, exports) {
+    215: [ function(require, module, exports) {
         var property = require("../util").property;
         function Paginator(name, paginator) {
             property(this, "inputToken", paginator.input_token);
@@ -2121,9 +2121,9 @@ _xamzrequire = function e(t, n, r) {
         }
         module.exports = Paginator;
     }, {
-        "../util": 260
+        "../util": 261
     } ],
-    213: [ function(require, module, exports) {
+    214: [ function(require, module, exports) {
         var Shape = require("./shape");
         var util = require("../util");
         var property = util.property;
@@ -2188,10 +2188,10 @@ _xamzrequire = function e(t, n, r) {
         }
         module.exports = Operation;
     }, {
-        "../util": 260,
-        "./shape": 216
+        "../util": 261,
+        "./shape": 217
     } ],
-    207: [ function(require, module, exports) {
+    208: [ function(require, module, exports) {
         var AWS = require("./core");
         var inherit = AWS.util.inherit;
         AWS.Endpoint = inherit({
@@ -2277,7 +2277,7 @@ _xamzrequire = function e(t, n, r) {
     }, {
         "./core": 194
     } ],
-    206: [ function(require, module, exports) {
+    207: [ function(require, module, exports) {
         var AWS = require("./core");
         var SequentialExecutor = require("./sequential_executor");
         AWS.EventListeners = {
@@ -2686,15 +2686,15 @@ _xamzrequire = function e(t, n, r) {
         };
     }, {
         "./core": 194,
-        "./protocol/json": 219,
-        "./protocol/query": 220,
-        "./protocol/rest": 221,
-        "./protocol/rest_json": 222,
-        "./protocol/rest_xml": 223,
-        "./sequential_executor": 232,
+        "./protocol/json": 220,
+        "./protocol/query": 221,
+        "./protocol/rest": 222,
+        "./protocol/rest_json": 223,
+        "./protocol/rest_xml": 224,
+        "./sequential_executor": 233,
         util: 165
     } ],
-    232: [ function(require, module, exports) {
+    233: [ function(require, module, exports) {
         var AWS = require("./core");
         AWS.SequentialExecutor = AWS.util.inherit({
             constructor: function SequentialExecutor() {
@@ -2812,7 +2812,7 @@ _xamzrequire = function e(t, n, r) {
     }, {
         "./core": 194
     } ],
-    223: [ function(require, module, exports) {
+    224: [ function(require, module, exports) {
         var AWS = require("../core");
         var util = require("../util");
         var Rest = require("./rest");
@@ -2897,10 +2897,10 @@ _xamzrequire = function e(t, n, r) {
         };
     }, {
         "../core": 194,
-        "../util": 260,
-        "./rest": 221
+        "../util": 261,
+        "./rest": 222
     } ],
-    222: [ function(require, module, exports) {
+    223: [ function(require, module, exports) {
         var util = require("../util");
         var Rest = require("./rest");
         var Json = require("./json");
@@ -2959,13 +2959,13 @@ _xamzrequire = function e(t, n, r) {
             extractData: extractData
         };
     }, {
-        "../json/builder": 209,
-        "../json/parser": 210,
-        "../util": 260,
-        "./json": 219,
-        "./rest": 221
+        "../json/builder": 210,
+        "../json/parser": 211,
+        "../util": 261,
+        "./json": 220,
+        "./rest": 222
     } ],
-    221: [ function(require, module, exports) {
+    222: [ function(require, module, exports) {
         var util = require("../util");
         function populateMethod(req) {
             req.httpRequest.method = req.service.api.operations[req.operation].httpMethod;
@@ -3089,9 +3089,9 @@ _xamzrequire = function e(t, n, r) {
             generateURI: generateURI
         };
     }, {
-        "../util": 260
+        "../util": 261
     } ],
-    220: [ function(require, module, exports) {
+    221: [ function(require, module, exports) {
         var AWS = require("../core");
         var util = require("../util");
         var QueryParamSerializer = require("../query/query_param_serializer");
@@ -3185,11 +3185,11 @@ _xamzrequire = function e(t, n, r) {
         };
     }, {
         "../core": 194,
-        "../model/shape": 216,
-        "../query/query_param_serializer": 224,
-        "../util": 260
+        "../model/shape": 217,
+        "../query/query_param_serializer": 225,
+        "../util": 261
     } ],
-    224: [ function(require, module, exports) {
+    225: [ function(require, module, exports) {
         var util = require("../util");
         function QueryParamSerializer() {}
         QueryParamSerializer.prototype.serialize = function(params, shape, fn) {
@@ -3259,9 +3259,9 @@ _xamzrequire = function e(t, n, r) {
         }
         module.exports = QueryParamSerializer;
     }, {
-        "../util": 260
+        "../util": 261
     } ],
-    216: [ function(require, module, exports) {
+    217: [ function(require, module, exports) {
         var Collection = require("./collection");
         var util = require("../util");
         function property(obj, name, value) {
@@ -3557,10 +3557,10 @@ _xamzrequire = function e(t, n, r) {
         };
         module.exports = Shape;
     }, {
-        "../util": 260,
-        "./collection": 212
+        "../util": 261,
+        "./collection": 213
     } ],
-    212: [ function(require, module, exports) {
+    213: [ function(require, module, exports) {
         var memoizedProperty = require("../util").memoizedProperty;
         function memoize(name, value, fn, nameTr) {
             memoizedProperty(this, nameTr(name), function() {
@@ -3578,9 +3578,9 @@ _xamzrequire = function e(t, n, r) {
         }
         module.exports = Collection;
     }, {
-        "../util": 260
+        "../util": 261
     } ],
-    219: [ function(require, module, exports) {
+    220: [ function(require, module, exports) {
         var util = require("../util");
         var JsonBuilder = require("../json/builder");
         var JsonParser = require("../json/parser");
@@ -3641,11 +3641,11 @@ _xamzrequire = function e(t, n, r) {
             extractData: extractData
         };
     }, {
-        "../json/builder": 209,
-        "../json/parser": 210,
-        "../util": 260
+        "../json/builder": 210,
+        "../json/parser": 211,
+        "../util": 261
     } ],
-    210: [ function(require, module, exports) {
+    211: [ function(require, module, exports) {
         var util = require("../util");
         function JsonParser() {}
         JsonParser.prototype.parse = function(value, shape) {
@@ -3704,9 +3704,9 @@ _xamzrequire = function e(t, n, r) {
         }
         module.exports = JsonParser;
     }, {
-        "../util": 260
+        "../util": 261
     } ],
-    209: [ function(require, module, exports) {
+    210: [ function(require, module, exports) {
         var util = require("../util");
         function JsonBuilder() {}
         JsonBuilder.prototype.build = function(value, shape) {
@@ -3762,9 +3762,9 @@ _xamzrequire = function e(t, n, r) {
         }
         module.exports = JsonBuilder;
     }, {
-        "../util": 260
+        "../util": 261
     } ],
-    260: [ function(require, module, exports) {
+    261: [ function(require, module, exports) {
         (function(process) {
             var AWS;
             var util = {
@@ -11215,16 +11215,16 @@ _xamzrequire = function e(t, n, r) {
         "./credentials/saml_credentials": 198,
         "./credentials/temporary_credentials": 199,
         "./credentials/web_identity_credentials": 200,
-        "./http/xhr": 208,
-        "./util": 260,
-        "./xml/browser_parser": 261,
+        "./http/xhr": 209,
+        "./util": 261,
+        "./xml/browser_parser": 262,
         _process: 154,
         "buffer/": 3,
         "crypto-browserify": 5,
         "querystring/": 161,
         "url/": 162
     } ],
-    261: [ function(require, module, exports) {
+    262: [ function(require, module, exports) {
         var util = require("../util");
         var Shape = require("../model/shape");
         function DomXmlParser() {}
@@ -11401,10 +11401,10 @@ _xamzrequire = function e(t, n, r) {
         }
         module.exports = DomXmlParser;
     }, {
-        "../model/shape": 216,
-        "../util": 260
+        "../model/shape": 217,
+        "../util": 261
     } ],
-    208: [ function(require, module, exports) {
+    209: [ function(require, module, exports) {
         var AWS = require("../core");
         var EventEmitter = require("events").EventEmitter;
         require("../http");
@@ -11520,7 +11520,7 @@ _xamzrequire = function e(t, n, r) {
         AWS.HttpClient.streamsApiVersion = 1;
     }, {
         "../core": 194,
-        "../http": 207,
+        "../http": 208,
         events: 10
     } ],
     200: [ function(require, module, exports) {
@@ -14815,7 +14815,7 @@ _xamzrequire = function e(t, n, r) {
     for (var o = 0; o < r.length; o++) s(r[o]);
     return s;
 }({
-    237: [ function(require, module, exports) {
+    238: [ function(require, module, exports) {
         var AWS = require("../core");
         AWS.util.update(AWS.CognitoIdentity.prototype, {
             getOpenIdToken: function getOpenIdToken(params, callback) {
@@ -14831,7 +14831,7 @@ _xamzrequire = function e(t, n, r) {
     }, {
         "../core": 194
     } ]
-}, {}, [ 237 ]);AWS.apiLoader.services["cognitoidentity"]["2014-06-30"] = {
+}, {}, [ 238 ]);AWS.apiLoader.services["cognitoidentity"]["2014-06-30"] = {
     version: "2.0",
     metadata: {
         apiVersion: "2014-06-30",
@@ -15309,6 +15309,2939 @@ _xamzrequire = function e(t, n, r) {
         }
     },
     paginators: {}
+};AWS.apiLoader.services["cognitoidentityserviceprovider"] = {};
+
+AWS.CognitoIdentityServiceProvider = AWS.Service.defineService("cognitoidentityserviceprovider", [ "2016-04-18" ]);AWS.apiLoader.services["cognitoidentityserviceprovider"]["2016-04-18"] = {
+    version: "2.0",
+    metadata: {
+        apiVersion: "2016-04-18",
+        endpointPrefix: "cognito-idp",
+        jsonVersion: "1.1",
+        protocol: "json",
+        serviceFullName: "Amazon Cognito Identity Provider",
+        signatureVersion: "v4",
+        targetPrefix: "AWSCognitoIdentityProviderService",
+        uid: "cognito-idp-2016-04-18"
+    },
+    operations: {
+        AddCustomAttributes: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "CustomAttributes" ],
+                members: {
+                    UserPoolId: {},
+                    CustomAttributes: {
+                        type: "list",
+                        member: {
+                            shape: "S4"
+                        }
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            }
+        },
+        AdminAddUserToGroup: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "Username", "GroupName" ],
+                members: {
+                    UserPoolId: {},
+                    Username: {
+                        shape: "Sd"
+                    },
+                    GroupName: {}
+                }
+            }
+        },
+        AdminConfirmSignUp: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "Username" ],
+                members: {
+                    UserPoolId: {},
+                    Username: {
+                        shape: "Sd"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            }
+        },
+        AdminCreateUser: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "Username" ],
+                members: {
+                    UserPoolId: {},
+                    Username: {
+                        shape: "Sd"
+                    },
+                    UserAttributes: {
+                        shape: "Si"
+                    },
+                    ValidationData: {
+                        shape: "Si"
+                    },
+                    TemporaryPassword: {
+                        shape: "Sm"
+                    },
+                    ForceAliasCreation: {
+                        type: "boolean"
+                    },
+                    MessageAction: {},
+                    DesiredDeliveryMediums: {
+                        type: "list",
+                        member: {}
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    User: {
+                        shape: "Ss"
+                    }
+                }
+            }
+        },
+        AdminDeleteUser: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "Username" ],
+                members: {
+                    UserPoolId: {},
+                    Username: {
+                        shape: "Sd"
+                    }
+                }
+            }
+        },
+        AdminDeleteUserAttributes: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "Username", "UserAttributeNames" ],
+                members: {
+                    UserPoolId: {},
+                    Username: {
+                        shape: "Sd"
+                    },
+                    UserAttributeNames: {
+                        shape: "Sz"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            }
+        },
+        AdminDisableUser: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "Username" ],
+                members: {
+                    UserPoolId: {},
+                    Username: {
+                        shape: "Sd"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            }
+        },
+        AdminEnableUser: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "Username" ],
+                members: {
+                    UserPoolId: {},
+                    Username: {
+                        shape: "Sd"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            }
+        },
+        AdminForgetDevice: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "Username", "DeviceKey" ],
+                members: {
+                    UserPoolId: {},
+                    Username: {
+                        shape: "Sd"
+                    },
+                    DeviceKey: {}
+                }
+            }
+        },
+        AdminGetDevice: {
+            input: {
+                type: "structure",
+                required: [ "DeviceKey", "UserPoolId", "Username" ],
+                members: {
+                    DeviceKey: {},
+                    UserPoolId: {},
+                    Username: {
+                        shape: "Sd"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                required: [ "Device" ],
+                members: {
+                    Device: {
+                        shape: "S19"
+                    }
+                }
+            }
+        },
+        AdminGetUser: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "Username" ],
+                members: {
+                    UserPoolId: {},
+                    Username: {
+                        shape: "Sd"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                required: [ "Username" ],
+                members: {
+                    Username: {
+                        shape: "Sd"
+                    },
+                    UserAttributes: {
+                        shape: "Si"
+                    },
+                    UserCreateDate: {
+                        type: "timestamp"
+                    },
+                    UserLastModifiedDate: {
+                        type: "timestamp"
+                    },
+                    Enabled: {
+                        type: "boolean"
+                    },
+                    UserStatus: {},
+                    MFAOptions: {
+                        shape: "Sv"
+                    }
+                }
+            }
+        },
+        AdminInitiateAuth: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "ClientId", "AuthFlow" ],
+                members: {
+                    UserPoolId: {},
+                    ClientId: {
+                        shape: "S1d"
+                    },
+                    AuthFlow: {},
+                    AuthParameters: {
+                        shape: "S1f"
+                    },
+                    ClientMetadata: {
+                        shape: "S1g"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    ChallengeName: {},
+                    Session: {},
+                    ChallengeParameters: {
+                        shape: "S1k"
+                    },
+                    AuthenticationResult: {
+                        shape: "S1l"
+                    }
+                }
+            }
+        },
+        AdminListDevices: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "Username" ],
+                members: {
+                    UserPoolId: {},
+                    Username: {
+                        shape: "Sd"
+                    },
+                    Limit: {
+                        type: "integer"
+                    },
+                    PaginationToken: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    Devices: {
+                        shape: "S1t"
+                    },
+                    PaginationToken: {}
+                }
+            }
+        },
+        AdminListGroupsForUser: {
+            input: {
+                type: "structure",
+                required: [ "Username", "UserPoolId" ],
+                members: {
+                    Username: {
+                        shape: "Sd"
+                    },
+                    UserPoolId: {},
+                    Limit: {
+                        type: "integer"
+                    },
+                    NextToken: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    Groups: {
+                        shape: "S1x"
+                    },
+                    NextToken: {}
+                }
+            }
+        },
+        AdminRemoveUserFromGroup: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "Username", "GroupName" ],
+                members: {
+                    UserPoolId: {},
+                    Username: {
+                        shape: "Sd"
+                    },
+                    GroupName: {}
+                }
+            }
+        },
+        AdminResetUserPassword: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "Username" ],
+                members: {
+                    UserPoolId: {},
+                    Username: {
+                        shape: "Sd"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            }
+        },
+        AdminRespondToAuthChallenge: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "ClientId", "ChallengeName" ],
+                members: {
+                    UserPoolId: {},
+                    ClientId: {
+                        shape: "S1d"
+                    },
+                    ChallengeName: {},
+                    ChallengeResponses: {
+                        shape: "S26"
+                    },
+                    Session: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    ChallengeName: {},
+                    Session: {},
+                    ChallengeParameters: {
+                        shape: "S1k"
+                    },
+                    AuthenticationResult: {
+                        shape: "S1l"
+                    }
+                }
+            }
+        },
+        AdminSetUserSettings: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "Username", "MFAOptions" ],
+                members: {
+                    UserPoolId: {},
+                    Username: {
+                        shape: "Sd"
+                    },
+                    MFAOptions: {
+                        shape: "Sv"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            }
+        },
+        AdminUpdateDeviceStatus: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "Username", "DeviceKey" ],
+                members: {
+                    UserPoolId: {},
+                    Username: {
+                        shape: "Sd"
+                    },
+                    DeviceKey: {},
+                    DeviceRememberedStatus: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            }
+        },
+        AdminUpdateUserAttributes: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "Username", "UserAttributes" ],
+                members: {
+                    UserPoolId: {},
+                    Username: {
+                        shape: "Sd"
+                    },
+                    UserAttributes: {
+                        shape: "Si"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            }
+        },
+        AdminUserGlobalSignOut: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "Username" ],
+                members: {
+                    UserPoolId: {},
+                    Username: {
+                        shape: "Sd"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            }
+        },
+        ChangePassword: {
+            input: {
+                type: "structure",
+                required: [ "PreviousPassword", "ProposedPassword", "AccessToken" ],
+                members: {
+                    PreviousPassword: {
+                        shape: "Sm"
+                    },
+                    ProposedPassword: {
+                        shape: "Sm"
+                    },
+                    AccessToken: {
+                        shape: "S1m"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            },
+            authtype: "none"
+        },
+        ConfirmDevice: {
+            input: {
+                type: "structure",
+                required: [ "AccessToken", "DeviceKey" ],
+                members: {
+                    AccessToken: {
+                        shape: "S1m"
+                    },
+                    DeviceKey: {},
+                    DeviceSecretVerifierConfig: {
+                        type: "structure",
+                        members: {
+                            PasswordVerifier: {},
+                            Salt: {}
+                        }
+                    },
+                    DeviceName: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    UserConfirmationNecessary: {
+                        type: "boolean"
+                    }
+                }
+            }
+        },
+        ConfirmForgotPassword: {
+            input: {
+                type: "structure",
+                required: [ "ClientId", "Username", "ConfirmationCode", "Password" ],
+                members: {
+                    ClientId: {
+                        shape: "S1d"
+                    },
+                    SecretHash: {
+                        shape: "S2o"
+                    },
+                    Username: {
+                        shape: "Sd"
+                    },
+                    ConfirmationCode: {},
+                    Password: {
+                        shape: "Sm"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            },
+            authtype: "none"
+        },
+        ConfirmSignUp: {
+            input: {
+                type: "structure",
+                required: [ "ClientId", "Username", "ConfirmationCode" ],
+                members: {
+                    ClientId: {
+                        shape: "S1d"
+                    },
+                    SecretHash: {
+                        shape: "S2o"
+                    },
+                    Username: {
+                        shape: "Sd"
+                    },
+                    ConfirmationCode: {},
+                    ForceAliasCreation: {
+                        type: "boolean"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            },
+            authtype: "none"
+        },
+        CreateGroup: {
+            input: {
+                type: "structure",
+                required: [ "GroupName", "UserPoolId" ],
+                members: {
+                    GroupName: {},
+                    UserPoolId: {},
+                    Description: {},
+                    RoleArn: {},
+                    Precedence: {
+                        type: "integer"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    Group: {
+                        shape: "S1y"
+                    }
+                }
+            }
+        },
+        CreateIdentityProvider: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "ProviderName", "ProviderType", "ProviderDetails" ],
+                members: {
+                    UserPoolId: {},
+                    ProviderName: {},
+                    ProviderType: {},
+                    ProviderDetails: {
+                        shape: "S2y"
+                    },
+                    AttributeMapping: {
+                        shape: "S2z"
+                    },
+                    IdpIdentifiers: {
+                        shape: "S30"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                required: [ "IdentityProvider" ],
+                members: {
+                    IdentityProvider: {
+                        shape: "S33"
+                    }
+                }
+            }
+        },
+        CreateUserImportJob: {
+            input: {
+                type: "structure",
+                required: [ "JobName", "UserPoolId", "CloudWatchLogsRoleArn" ],
+                members: {
+                    JobName: {},
+                    UserPoolId: {},
+                    CloudWatchLogsRoleArn: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    UserImportJob: {
+                        shape: "S37"
+                    }
+                }
+            }
+        },
+        CreateUserPool: {
+            input: {
+                type: "structure",
+                required: [ "PoolName" ],
+                members: {
+                    PoolName: {},
+                    Policies: {
+                        shape: "S3f"
+                    },
+                    LambdaConfig: {
+                        shape: "S3i"
+                    },
+                    AutoVerifiedAttributes: {
+                        shape: "S3j"
+                    },
+                    AliasAttributes: {
+                        shape: "S3l"
+                    },
+                    UsernameAttributes: {
+                        shape: "S3n"
+                    },
+                    SmsVerificationMessage: {},
+                    EmailVerificationMessage: {},
+                    EmailVerificationSubject: {},
+                    SmsAuthenticationMessage: {},
+                    MfaConfiguration: {},
+                    DeviceConfiguration: {
+                        shape: "S3t"
+                    },
+                    EmailConfiguration: {
+                        shape: "S3u"
+                    },
+                    SmsConfiguration: {
+                        shape: "S3w"
+                    },
+                    UserPoolTags: {
+                        shape: "S3x"
+                    },
+                    AdminCreateUserConfig: {
+                        shape: "S3y"
+                    },
+                    Schema: {
+                        shape: "S41"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    UserPool: {
+                        shape: "S43"
+                    }
+                }
+            }
+        },
+        CreateUserPoolClient: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "ClientName" ],
+                members: {
+                    UserPoolId: {},
+                    ClientName: {},
+                    GenerateSecret: {
+                        type: "boolean"
+                    },
+                    RefreshTokenValidity: {
+                        type: "integer"
+                    },
+                    ReadAttributes: {
+                        shape: "S49"
+                    },
+                    WriteAttributes: {
+                        shape: "S49"
+                    },
+                    ExplicitAuthFlows: {
+                        shape: "S4b"
+                    },
+                    SupportedIdentityProviders: {
+                        shape: "S4d"
+                    },
+                    CallbackURLs: {
+                        shape: "S4e"
+                    },
+                    LogoutURLs: {
+                        shape: "S4g"
+                    },
+                    DefaultRedirectURI: {},
+                    AllowedOAuthFlows: {
+                        shape: "S4h"
+                    },
+                    AllowedOAuthScopes: {
+                        shape: "S4j"
+                    },
+                    AllowedOAuthFlowsUserPoolClient: {
+                        type: "boolean"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    UserPoolClient: {
+                        shape: "S4m"
+                    }
+                }
+            }
+        },
+        CreateUserPoolDomain: {
+            input: {
+                type: "structure",
+                required: [ "Domain", "UserPoolId" ],
+                members: {
+                    Domain: {},
+                    UserPoolId: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            }
+        },
+        DeleteGroup: {
+            input: {
+                type: "structure",
+                required: [ "GroupName", "UserPoolId" ],
+                members: {
+                    GroupName: {},
+                    UserPoolId: {}
+                }
+            }
+        },
+        DeleteIdentityProvider: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "ProviderName" ],
+                members: {
+                    UserPoolId: {},
+                    ProviderName: {}
+                }
+            }
+        },
+        DeleteUser: {
+            input: {
+                type: "structure",
+                required: [ "AccessToken" ],
+                members: {
+                    AccessToken: {
+                        shape: "S1m"
+                    }
+                }
+            },
+            authtype: "none"
+        },
+        DeleteUserAttributes: {
+            input: {
+                type: "structure",
+                required: [ "UserAttributeNames", "AccessToken" ],
+                members: {
+                    UserAttributeNames: {
+                        shape: "Sz"
+                    },
+                    AccessToken: {
+                        shape: "S1m"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            },
+            authtype: "none"
+        },
+        DeleteUserPool: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId" ],
+                members: {
+                    UserPoolId: {}
+                }
+            }
+        },
+        DeleteUserPoolClient: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "ClientId" ],
+                members: {
+                    UserPoolId: {},
+                    ClientId: {
+                        shape: "S1d"
+                    }
+                }
+            }
+        },
+        DeleteUserPoolDomain: {
+            input: {
+                type: "structure",
+                required: [ "Domain", "UserPoolId" ],
+                members: {
+                    Domain: {},
+                    UserPoolId: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            }
+        },
+        DescribeIdentityProvider: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "ProviderName" ],
+                members: {
+                    UserPoolId: {},
+                    ProviderName: {}
+                }
+            },
+            output: {
+                type: "structure",
+                required: [ "IdentityProvider" ],
+                members: {
+                    IdentityProvider: {
+                        shape: "S33"
+                    }
+                }
+            }
+        },
+        DescribeUserImportJob: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "JobId" ],
+                members: {
+                    UserPoolId: {},
+                    JobId: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    UserImportJob: {
+                        shape: "S37"
+                    }
+                }
+            }
+        },
+        DescribeUserPool: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId" ],
+                members: {
+                    UserPoolId: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    UserPool: {
+                        shape: "S43"
+                    }
+                }
+            }
+        },
+        DescribeUserPoolClient: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "ClientId" ],
+                members: {
+                    UserPoolId: {},
+                    ClientId: {
+                        shape: "S1d"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    UserPoolClient: {
+                        shape: "S4m"
+                    }
+                }
+            }
+        },
+        DescribeUserPoolDomain: {
+            input: {
+                type: "structure",
+                required: [ "Domain" ],
+                members: {
+                    Domain: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    DomainDescription: {
+                        type: "structure",
+                        members: {
+                            UserPoolId: {},
+                            AWSAccountId: {},
+                            Domain: {},
+                            S3Bucket: {},
+                            CloudFrontDistribution: {},
+                            Version: {},
+                            Status: {}
+                        }
+                    }
+                }
+            }
+        },
+        ForgetDevice: {
+            input: {
+                type: "structure",
+                required: [ "DeviceKey" ],
+                members: {
+                    AccessToken: {
+                        shape: "S1m"
+                    },
+                    DeviceKey: {}
+                }
+            }
+        },
+        ForgotPassword: {
+            input: {
+                type: "structure",
+                required: [ "ClientId", "Username" ],
+                members: {
+                    ClientId: {
+                        shape: "S1d"
+                    },
+                    SecretHash: {
+                        shape: "S2o"
+                    },
+                    Username: {
+                        shape: "Sd"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    CodeDeliveryDetails: {
+                        shape: "S5i"
+                    }
+                }
+            },
+            authtype: "none"
+        },
+        GetCSVHeader: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId" ],
+                members: {
+                    UserPoolId: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    UserPoolId: {},
+                    CSVHeader: {
+                        type: "list",
+                        member: {}
+                    }
+                }
+            }
+        },
+        GetDevice: {
+            input: {
+                type: "structure",
+                required: [ "DeviceKey" ],
+                members: {
+                    DeviceKey: {},
+                    AccessToken: {
+                        shape: "S1m"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                required: [ "Device" ],
+                members: {
+                    Device: {
+                        shape: "S19"
+                    }
+                }
+            }
+        },
+        GetGroup: {
+            input: {
+                type: "structure",
+                required: [ "GroupName", "UserPoolId" ],
+                members: {
+                    GroupName: {},
+                    UserPoolId: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    Group: {
+                        shape: "S1y"
+                    }
+                }
+            }
+        },
+        GetIdentityProviderByIdentifier: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "IdpIdentifier" ],
+                members: {
+                    UserPoolId: {},
+                    IdpIdentifier: {}
+                }
+            },
+            output: {
+                type: "structure",
+                required: [ "IdentityProvider" ],
+                members: {
+                    IdentityProvider: {
+                        shape: "S33"
+                    }
+                }
+            }
+        },
+        GetUser: {
+            input: {
+                type: "structure",
+                required: [ "AccessToken" ],
+                members: {
+                    AccessToken: {
+                        shape: "S1m"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                required: [ "Username", "UserAttributes" ],
+                members: {
+                    Username: {
+                        shape: "Sd"
+                    },
+                    UserAttributes: {
+                        shape: "Si"
+                    },
+                    MFAOptions: {
+                        shape: "Sv"
+                    }
+                }
+            },
+            authtype: "none"
+        },
+        GetUserAttributeVerificationCode: {
+            input: {
+                type: "structure",
+                required: [ "AccessToken", "AttributeName" ],
+                members: {
+                    AccessToken: {
+                        shape: "S1m"
+                    },
+                    AttributeName: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    CodeDeliveryDetails: {
+                        shape: "S5i"
+                    }
+                }
+            },
+            authtype: "none"
+        },
+        GlobalSignOut: {
+            input: {
+                type: "structure",
+                required: [ "AccessToken" ],
+                members: {
+                    AccessToken: {
+                        shape: "S1m"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            }
+        },
+        InitiateAuth: {
+            input: {
+                type: "structure",
+                required: [ "AuthFlow", "ClientId" ],
+                members: {
+                    AuthFlow: {},
+                    AuthParameters: {
+                        shape: "S1f"
+                    },
+                    ClientMetadata: {
+                        shape: "S1g"
+                    },
+                    ClientId: {
+                        shape: "S1d"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    ChallengeName: {},
+                    Session: {},
+                    ChallengeParameters: {
+                        shape: "S1k"
+                    },
+                    AuthenticationResult: {
+                        shape: "S1l"
+                    }
+                }
+            }
+        },
+        ListDevices: {
+            input: {
+                type: "structure",
+                required: [ "AccessToken" ],
+                members: {
+                    AccessToken: {
+                        shape: "S1m"
+                    },
+                    Limit: {
+                        type: "integer"
+                    },
+                    PaginationToken: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    Devices: {
+                        shape: "S1t"
+                    },
+                    PaginationToken: {}
+                }
+            }
+        },
+        ListGroups: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId" ],
+                members: {
+                    UserPoolId: {},
+                    Limit: {
+                        type: "integer"
+                    },
+                    NextToken: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    Groups: {
+                        shape: "S1x"
+                    },
+                    NextToken: {}
+                }
+            }
+        },
+        ListIdentityProviders: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId" ],
+                members: {
+                    UserPoolId: {},
+                    MaxResults: {
+                        type: "integer"
+                    },
+                    NextToken: {}
+                }
+            },
+            output: {
+                type: "structure",
+                required: [ "Providers" ],
+                members: {
+                    Providers: {
+                        type: "list",
+                        member: {
+                            type: "structure",
+                            members: {
+                                ProviderName: {},
+                                ProviderType: {},
+                                LastModifiedDate: {
+                                    type: "timestamp"
+                                },
+                                CreationDate: {
+                                    type: "timestamp"
+                                }
+                            }
+                        }
+                    },
+                    NextToken: {}
+                }
+            }
+        },
+        ListUserImportJobs: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "MaxResults" ],
+                members: {
+                    UserPoolId: {},
+                    MaxResults: {
+                        type: "integer"
+                    },
+                    PaginationToken: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    UserImportJobs: {
+                        type: "list",
+                        member: {
+                            shape: "S37"
+                        }
+                    },
+                    PaginationToken: {}
+                }
+            }
+        },
+        ListUserPoolClients: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId" ],
+                members: {
+                    UserPoolId: {},
+                    MaxResults: {
+                        type: "integer"
+                    },
+                    NextToken: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    UserPoolClients: {
+                        type: "list",
+                        member: {
+                            type: "structure",
+                            members: {
+                                ClientId: {
+                                    shape: "S1d"
+                                },
+                                UserPoolId: {},
+                                ClientName: {}
+                            }
+                        }
+                    },
+                    NextToken: {}
+                }
+            }
+        },
+        ListUserPools: {
+            input: {
+                type: "structure",
+                required: [ "MaxResults" ],
+                members: {
+                    NextToken: {},
+                    MaxResults: {
+                        type: "integer"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    UserPools: {
+                        type: "list",
+                        member: {
+                            type: "structure",
+                            members: {
+                                Id: {},
+                                Name: {},
+                                LambdaConfig: {
+                                    shape: "S3i"
+                                },
+                                Status: {},
+                                LastModifiedDate: {
+                                    type: "timestamp"
+                                },
+                                CreationDate: {
+                                    type: "timestamp"
+                                }
+                            }
+                        }
+                    },
+                    NextToken: {}
+                }
+            }
+        },
+        ListUsers: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId" ],
+                members: {
+                    UserPoolId: {},
+                    AttributesToGet: {
+                        type: "list",
+                        member: {}
+                    },
+                    Limit: {
+                        type: "integer"
+                    },
+                    PaginationToken: {},
+                    Filter: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    Users: {
+                        shape: "S6r"
+                    },
+                    PaginationToken: {}
+                }
+            }
+        },
+        ListUsersInGroup: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "GroupName" ],
+                members: {
+                    UserPoolId: {},
+                    GroupName: {},
+                    Limit: {
+                        type: "integer"
+                    },
+                    NextToken: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    Users: {
+                        shape: "S6r"
+                    },
+                    NextToken: {}
+                }
+            }
+        },
+        ResendConfirmationCode: {
+            input: {
+                type: "structure",
+                required: [ "ClientId", "Username" ],
+                members: {
+                    ClientId: {
+                        shape: "S1d"
+                    },
+                    SecretHash: {
+                        shape: "S2o"
+                    },
+                    Username: {
+                        shape: "Sd"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    CodeDeliveryDetails: {
+                        shape: "S5i"
+                    }
+                }
+            },
+            authtype: "none"
+        },
+        RespondToAuthChallenge: {
+            input: {
+                type: "structure",
+                required: [ "ClientId", "ChallengeName" ],
+                members: {
+                    ClientId: {
+                        shape: "S1d"
+                    },
+                    ChallengeName: {},
+                    Session: {},
+                    ChallengeResponses: {
+                        shape: "S26"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    ChallengeName: {},
+                    Session: {},
+                    ChallengeParameters: {
+                        shape: "S1k"
+                    },
+                    AuthenticationResult: {
+                        shape: "S1l"
+                    }
+                }
+            }
+        },
+        SetUserSettings: {
+            input: {
+                type: "structure",
+                required: [ "AccessToken", "MFAOptions" ],
+                members: {
+                    AccessToken: {
+                        shape: "S1m"
+                    },
+                    MFAOptions: {
+                        shape: "Sv"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            },
+            authtype: "none"
+        },
+        SignUp: {
+            input: {
+                type: "structure",
+                required: [ "ClientId", "Username", "Password" ],
+                members: {
+                    ClientId: {
+                        shape: "S1d"
+                    },
+                    SecretHash: {
+                        shape: "S2o"
+                    },
+                    Username: {
+                        shape: "Sd"
+                    },
+                    Password: {
+                        shape: "Sm"
+                    },
+                    UserAttributes: {
+                        shape: "Si"
+                    },
+                    ValidationData: {
+                        shape: "Si"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                required: [ "UserConfirmed", "UserSub" ],
+                members: {
+                    UserConfirmed: {
+                        type: "boolean"
+                    },
+                    CodeDeliveryDetails: {
+                        shape: "S5i"
+                    },
+                    UserSub: {}
+                }
+            },
+            authtype: "none"
+        },
+        StartUserImportJob: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "JobId" ],
+                members: {
+                    UserPoolId: {},
+                    JobId: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    UserImportJob: {
+                        shape: "S37"
+                    }
+                }
+            }
+        },
+        StopUserImportJob: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "JobId" ],
+                members: {
+                    UserPoolId: {},
+                    JobId: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    UserImportJob: {
+                        shape: "S37"
+                    }
+                }
+            }
+        },
+        UpdateDeviceStatus: {
+            input: {
+                type: "structure",
+                required: [ "AccessToken", "DeviceKey" ],
+                members: {
+                    AccessToken: {
+                        shape: "S1m"
+                    },
+                    DeviceKey: {},
+                    DeviceRememberedStatus: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            }
+        },
+        UpdateGroup: {
+            input: {
+                type: "structure",
+                required: [ "GroupName", "UserPoolId" ],
+                members: {
+                    GroupName: {},
+                    UserPoolId: {},
+                    Description: {},
+                    RoleArn: {},
+                    Precedence: {
+                        type: "integer"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    Group: {
+                        shape: "S1y"
+                    }
+                }
+            }
+        },
+        UpdateIdentityProvider: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "ProviderName" ],
+                members: {
+                    UserPoolId: {},
+                    ProviderName: {},
+                    ProviderDetails: {
+                        shape: "S2y"
+                    },
+                    AttributeMapping: {
+                        shape: "S2z"
+                    },
+                    IdpIdentifiers: {
+                        shape: "S30"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                required: [ "IdentityProvider" ],
+                members: {
+                    IdentityProvider: {
+                        shape: "S33"
+                    }
+                }
+            }
+        },
+        UpdateUserAttributes: {
+            input: {
+                type: "structure",
+                required: [ "UserAttributes", "AccessToken" ],
+                members: {
+                    UserAttributes: {
+                        shape: "Si"
+                    },
+                    AccessToken: {
+                        shape: "S1m"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    CodeDeliveryDetailsList: {
+                        type: "list",
+                        member: {
+                            shape: "S5i"
+                        }
+                    }
+                }
+            },
+            authtype: "none"
+        },
+        UpdateUserPool: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId" ],
+                members: {
+                    UserPoolId: {},
+                    Policies: {
+                        shape: "S3f"
+                    },
+                    LambdaConfig: {
+                        shape: "S3i"
+                    },
+                    AutoVerifiedAttributes: {
+                        shape: "S3j"
+                    },
+                    SmsVerificationMessage: {},
+                    EmailVerificationMessage: {},
+                    EmailVerificationSubject: {},
+                    SmsAuthenticationMessage: {},
+                    MfaConfiguration: {},
+                    DeviceConfiguration: {
+                        shape: "S3t"
+                    },
+                    EmailConfiguration: {
+                        shape: "S3u"
+                    },
+                    SmsConfiguration: {
+                        shape: "S3w"
+                    },
+                    UserPoolTags: {
+                        shape: "S3x"
+                    },
+                    AdminCreateUserConfig: {
+                        shape: "S3y"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            }
+        },
+        UpdateUserPoolClient: {
+            input: {
+                type: "structure",
+                required: [ "UserPoolId", "ClientId" ],
+                members: {
+                    UserPoolId: {},
+                    ClientId: {
+                        shape: "S1d"
+                    },
+                    ClientName: {},
+                    RefreshTokenValidity: {
+                        type: "integer"
+                    },
+                    ReadAttributes: {
+                        shape: "S49"
+                    },
+                    WriteAttributes: {
+                        shape: "S49"
+                    },
+                    ExplicitAuthFlows: {
+                        shape: "S4b"
+                    },
+                    SupportedIdentityProviders: {
+                        shape: "S4d"
+                    },
+                    CallbackURLs: {
+                        shape: "S4e"
+                    },
+                    LogoutURLs: {
+                        shape: "S4g"
+                    },
+                    DefaultRedirectURI: {},
+                    AllowedOAuthFlows: {
+                        shape: "S4h"
+                    },
+                    AllowedOAuthScopes: {
+                        shape: "S4j"
+                    },
+                    AllowedOAuthFlowsUserPoolClient: {
+                        type: "boolean"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    UserPoolClient: {
+                        shape: "S4m"
+                    }
+                }
+            }
+        },
+        VerifyUserAttribute: {
+            input: {
+                type: "structure",
+                required: [ "AccessToken", "AttributeName", "Code" ],
+                members: {
+                    AccessToken: {
+                        shape: "S1m"
+                    },
+                    AttributeName: {},
+                    Code: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            },
+            authtype: "none"
+        }
+    },
+    shapes: {
+        S4: {
+            type: "structure",
+            members: {
+                Name: {},
+                AttributeDataType: {},
+                DeveloperOnlyAttribute: {
+                    type: "boolean"
+                },
+                Mutable: {
+                    type: "boolean"
+                },
+                Required: {
+                    type: "boolean"
+                },
+                NumberAttributeConstraints: {
+                    type: "structure",
+                    members: {
+                        MinValue: {},
+                        MaxValue: {}
+                    }
+                },
+                StringAttributeConstraints: {
+                    type: "structure",
+                    members: {
+                        MinLength: {},
+                        MaxLength: {}
+                    }
+                }
+            }
+        },
+        Sd: {
+            type: "string",
+            sensitive: true
+        },
+        Si: {
+            type: "list",
+            member: {
+                type: "structure",
+                required: [ "Name" ],
+                members: {
+                    Name: {},
+                    Value: {
+                        type: "string",
+                        sensitive: true
+                    }
+                }
+            }
+        },
+        Sm: {
+            type: "string",
+            sensitive: true
+        },
+        Ss: {
+            type: "structure",
+            members: {
+                Username: {
+                    shape: "Sd"
+                },
+                Attributes: {
+                    shape: "Si"
+                },
+                UserCreateDate: {
+                    type: "timestamp"
+                },
+                UserLastModifiedDate: {
+                    type: "timestamp"
+                },
+                Enabled: {
+                    type: "boolean"
+                },
+                UserStatus: {},
+                MFAOptions: {
+                    shape: "Sv"
+                }
+            }
+        },
+        Sv: {
+            type: "list",
+            member: {
+                type: "structure",
+                members: {
+                    DeliveryMedium: {},
+                    AttributeName: {}
+                }
+            }
+        },
+        Sz: {
+            type: "list",
+            member: {}
+        },
+        S19: {
+            type: "structure",
+            members: {
+                DeviceKey: {},
+                DeviceAttributes: {
+                    shape: "Si"
+                },
+                DeviceCreateDate: {
+                    type: "timestamp"
+                },
+                DeviceLastModifiedDate: {
+                    type: "timestamp"
+                },
+                DeviceLastAuthenticatedDate: {
+                    type: "timestamp"
+                }
+            }
+        },
+        S1d: {
+            type: "string",
+            sensitive: true
+        },
+        S1f: {
+            type: "map",
+            key: {},
+            value: {}
+        },
+        S1g: {
+            type: "map",
+            key: {},
+            value: {}
+        },
+        S1k: {
+            type: "map",
+            key: {},
+            value: {}
+        },
+        S1l: {
+            type: "structure",
+            members: {
+                AccessToken: {
+                    shape: "S1m"
+                },
+                ExpiresIn: {
+                    type: "integer"
+                },
+                TokenType: {},
+                RefreshToken: {
+                    shape: "S1m"
+                },
+                IdToken: {
+                    shape: "S1m"
+                },
+                NewDeviceMetadata: {
+                    type: "structure",
+                    members: {
+                        DeviceKey: {},
+                        DeviceGroupKey: {}
+                    }
+                }
+            }
+        },
+        S1m: {
+            type: "string",
+            sensitive: true
+        },
+        S1t: {
+            type: "list",
+            member: {
+                shape: "S19"
+            }
+        },
+        S1x: {
+            type: "list",
+            member: {
+                shape: "S1y"
+            }
+        },
+        S1y: {
+            type: "structure",
+            members: {
+                GroupName: {},
+                UserPoolId: {},
+                Description: {},
+                RoleArn: {},
+                Precedence: {
+                    type: "integer"
+                },
+                LastModifiedDate: {
+                    type: "timestamp"
+                },
+                CreationDate: {
+                    type: "timestamp"
+                }
+            }
+        },
+        S26: {
+            type: "map",
+            key: {},
+            value: {}
+        },
+        S2o: {
+            type: "string",
+            sensitive: true
+        },
+        S2y: {
+            type: "map",
+            key: {},
+            value: {}
+        },
+        S2z: {
+            type: "map",
+            key: {},
+            value: {}
+        },
+        S30: {
+            type: "list",
+            member: {}
+        },
+        S33: {
+            type: "structure",
+            members: {
+                UserPoolId: {},
+                ProviderName: {},
+                ProviderType: {},
+                ProviderDetails: {
+                    shape: "S2y"
+                },
+                AttributeMapping: {
+                    shape: "S2z"
+                },
+                IdpIdentifiers: {
+                    shape: "S30"
+                },
+                LastModifiedDate: {
+                    type: "timestamp"
+                },
+                CreationDate: {
+                    type: "timestamp"
+                }
+            }
+        },
+        S37: {
+            type: "structure",
+            members: {
+                JobName: {},
+                JobId: {},
+                UserPoolId: {},
+                PreSignedUrl: {},
+                CreationDate: {
+                    type: "timestamp"
+                },
+                StartDate: {
+                    type: "timestamp"
+                },
+                CompletionDate: {
+                    type: "timestamp"
+                },
+                Status: {},
+                CloudWatchLogsRoleArn: {},
+                ImportedUsers: {
+                    type: "long"
+                },
+                SkippedUsers: {
+                    type: "long"
+                },
+                FailedUsers: {
+                    type: "long"
+                },
+                CompletionMessage: {}
+            }
+        },
+        S3f: {
+            type: "structure",
+            members: {
+                PasswordPolicy: {
+                    type: "structure",
+                    members: {
+                        MinimumLength: {
+                            type: "integer"
+                        },
+                        RequireUppercase: {
+                            type: "boolean"
+                        },
+                        RequireLowercase: {
+                            type: "boolean"
+                        },
+                        RequireNumbers: {
+                            type: "boolean"
+                        },
+                        RequireSymbols: {
+                            type: "boolean"
+                        }
+                    }
+                }
+            }
+        },
+        S3i: {
+            type: "structure",
+            members: {
+                PreSignUp: {},
+                CustomMessage: {},
+                PostConfirmation: {},
+                PreAuthentication: {},
+                PostAuthentication: {},
+                DefineAuthChallenge: {},
+                CreateAuthChallenge: {},
+                VerifyAuthChallengeResponse: {}
+            }
+        },
+        S3j: {
+            type: "list",
+            member: {}
+        },
+        S3l: {
+            type: "list",
+            member: {}
+        },
+        S3n: {
+            type: "list",
+            member: {}
+        },
+        S3t: {
+            type: "structure",
+            members: {
+                ChallengeRequiredOnNewDevice: {
+                    type: "boolean"
+                },
+                DeviceOnlyRememberedOnUserPrompt: {
+                    type: "boolean"
+                }
+            }
+        },
+        S3u: {
+            type: "structure",
+            members: {
+                SourceArn: {},
+                ReplyToEmailAddress: {}
+            }
+        },
+        S3w: {
+            type: "structure",
+            required: [ "SnsCallerArn" ],
+            members: {
+                SnsCallerArn: {},
+                ExternalId: {}
+            }
+        },
+        S3x: {
+            type: "map",
+            key: {},
+            value: {}
+        },
+        S3y: {
+            type: "structure",
+            members: {
+                AllowAdminCreateUserOnly: {
+                    type: "boolean"
+                },
+                UnusedAccountValidityDays: {
+                    type: "integer"
+                },
+                InviteMessageTemplate: {
+                    type: "structure",
+                    members: {
+                        SMSMessage: {},
+                        EmailMessage: {},
+                        EmailSubject: {}
+                    }
+                }
+            }
+        },
+        S41: {
+            type: "list",
+            member: {
+                shape: "S4"
+            }
+        },
+        S43: {
+            type: "structure",
+            members: {
+                Id: {},
+                Name: {},
+                Policies: {
+                    shape: "S3f"
+                },
+                LambdaConfig: {
+                    shape: "S3i"
+                },
+                Status: {},
+                LastModifiedDate: {
+                    type: "timestamp"
+                },
+                CreationDate: {
+                    type: "timestamp"
+                },
+                SchemaAttributes: {
+                    shape: "S41"
+                },
+                AutoVerifiedAttributes: {
+                    shape: "S3j"
+                },
+                AliasAttributes: {
+                    shape: "S3l"
+                },
+                UsernameAttributes: {
+                    shape: "S3n"
+                },
+                SmsVerificationMessage: {},
+                EmailVerificationMessage: {},
+                EmailVerificationSubject: {},
+                SmsAuthenticationMessage: {},
+                MfaConfiguration: {},
+                DeviceConfiguration: {
+                    shape: "S3t"
+                },
+                EstimatedNumberOfUsers: {
+                    type: "integer"
+                },
+                EmailConfiguration: {
+                    shape: "S3u"
+                },
+                SmsConfiguration: {
+                    shape: "S3w"
+                },
+                UserPoolTags: {
+                    shape: "S3x"
+                },
+                SmsConfigurationFailure: {},
+                EmailConfigurationFailure: {},
+                AdminCreateUserConfig: {
+                    shape: "S3y"
+                }
+            }
+        },
+        S49: {
+            type: "list",
+            member: {}
+        },
+        S4b: {
+            type: "list",
+            member: {}
+        },
+        S4d: {
+            type: "list",
+            member: {}
+        },
+        S4e: {
+            type: "list",
+            member: {}
+        },
+        S4g: {
+            type: "list",
+            member: {}
+        },
+        S4h: {
+            type: "list",
+            member: {}
+        },
+        S4j: {
+            type: "list",
+            member: {}
+        },
+        S4m: {
+            type: "structure",
+            members: {
+                UserPoolId: {},
+                ClientName: {},
+                ClientId: {
+                    shape: "S1d"
+                },
+                ClientSecret: {
+                    type: "string",
+                    sensitive: true
+                },
+                LastModifiedDate: {
+                    type: "timestamp"
+                },
+                CreationDate: {
+                    type: "timestamp"
+                },
+                RefreshTokenValidity: {
+                    type: "integer"
+                },
+                ReadAttributes: {
+                    shape: "S49"
+                },
+                WriteAttributes: {
+                    shape: "S49"
+                },
+                ExplicitAuthFlows: {
+                    shape: "S4b"
+                },
+                SupportedIdentityProviders: {
+                    shape: "S4d"
+                },
+                CallbackURLs: {
+                    shape: "S4e"
+                },
+                LogoutURLs: {
+                    shape: "S4g"
+                },
+                DefaultRedirectURI: {},
+                AllowedOAuthFlows: {
+                    shape: "S4h"
+                },
+                AllowedOAuthScopes: {
+                    shape: "S4j"
+                },
+                AllowedOAuthFlowsUserPoolClient: {
+                    type: "boolean"
+                }
+            }
+        },
+        S5i: {
+            type: "structure",
+            members: {
+                Destination: {},
+                DeliveryMedium: {},
+                AttributeName: {}
+            }
+        },
+        S6r: {
+            type: "list",
+            member: {
+                shape: "Ss"
+            }
+        }
+    },
+    paginators: {}
+};AWS.apiLoader.services["cognitosync"] = {};
+
+AWS.CognitoSync = AWS.Service.defineService("cognitosync", [ "2014-06-30" ]);AWS.apiLoader.services["cognitosync"]["2014-06-30"] = {
+    version: "2.0",
+    metadata: {
+        apiVersion: "2014-06-30",
+        endpointPrefix: "cognito-sync",
+        jsonVersion: "1.1",
+        serviceFullName: "Amazon Cognito Sync",
+        signatureVersion: "v4",
+        protocol: "rest-json",
+        uid: "cognito-sync-2014-06-30"
+    },
+    operations: {
+        BulkPublish: {
+            http: {
+                requestUri: "/identitypools/{IdentityPoolId}/bulkpublish",
+                responseCode: 200
+            },
+            input: {
+                type: "structure",
+                required: [ "IdentityPoolId" ],
+                members: {
+                    IdentityPoolId: {
+                        location: "uri",
+                        locationName: "IdentityPoolId"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    IdentityPoolId: {}
+                }
+            }
+        },
+        DeleteDataset: {
+            http: {
+                method: "DELETE",
+                requestUri: "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
+                responseCode: 200
+            },
+            input: {
+                type: "structure",
+                required: [ "IdentityPoolId", "IdentityId", "DatasetName" ],
+                members: {
+                    IdentityPoolId: {
+                        location: "uri",
+                        locationName: "IdentityPoolId"
+                    },
+                    IdentityId: {
+                        location: "uri",
+                        locationName: "IdentityId"
+                    },
+                    DatasetName: {
+                        location: "uri",
+                        locationName: "DatasetName"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    Dataset: {
+                        shape: "S8"
+                    }
+                }
+            }
+        },
+        DescribeDataset: {
+            http: {
+                method: "GET",
+                requestUri: "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
+                responseCode: 200
+            },
+            input: {
+                type: "structure",
+                required: [ "IdentityPoolId", "IdentityId", "DatasetName" ],
+                members: {
+                    IdentityPoolId: {
+                        location: "uri",
+                        locationName: "IdentityPoolId"
+                    },
+                    IdentityId: {
+                        location: "uri",
+                        locationName: "IdentityId"
+                    },
+                    DatasetName: {
+                        location: "uri",
+                        locationName: "DatasetName"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    Dataset: {
+                        shape: "S8"
+                    }
+                }
+            }
+        },
+        DescribeIdentityPoolUsage: {
+            http: {
+                method: "GET",
+                requestUri: "/identitypools/{IdentityPoolId}",
+                responseCode: 200
+            },
+            input: {
+                type: "structure",
+                required: [ "IdentityPoolId" ],
+                members: {
+                    IdentityPoolId: {
+                        location: "uri",
+                        locationName: "IdentityPoolId"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    IdentityPoolUsage: {
+                        shape: "Sg"
+                    }
+                }
+            }
+        },
+        DescribeIdentityUsage: {
+            http: {
+                method: "GET",
+                requestUri: "/identitypools/{IdentityPoolId}/identities/{IdentityId}",
+                responseCode: 200
+            },
+            input: {
+                type: "structure",
+                required: [ "IdentityPoolId", "IdentityId" ],
+                members: {
+                    IdentityPoolId: {
+                        location: "uri",
+                        locationName: "IdentityPoolId"
+                    },
+                    IdentityId: {
+                        location: "uri",
+                        locationName: "IdentityId"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    IdentityUsage: {
+                        type: "structure",
+                        members: {
+                            IdentityId: {},
+                            IdentityPoolId: {},
+                            LastModifiedDate: {
+                                type: "timestamp"
+                            },
+                            DatasetCount: {
+                                type: "integer"
+                            },
+                            DataStorage: {
+                                type: "long"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        GetBulkPublishDetails: {
+            http: {
+                requestUri: "/identitypools/{IdentityPoolId}/getBulkPublishDetails",
+                responseCode: 200
+            },
+            input: {
+                type: "structure",
+                required: [ "IdentityPoolId" ],
+                members: {
+                    IdentityPoolId: {
+                        location: "uri",
+                        locationName: "IdentityPoolId"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    IdentityPoolId: {},
+                    BulkPublishStartTime: {
+                        type: "timestamp"
+                    },
+                    BulkPublishCompleteTime: {
+                        type: "timestamp"
+                    },
+                    BulkPublishStatus: {},
+                    FailureMessage: {}
+                }
+            }
+        },
+        GetCognitoEvents: {
+            http: {
+                method: "GET",
+                requestUri: "/identitypools/{IdentityPoolId}/events",
+                responseCode: 200
+            },
+            input: {
+                type: "structure",
+                required: [ "IdentityPoolId" ],
+                members: {
+                    IdentityPoolId: {
+                        location: "uri",
+                        locationName: "IdentityPoolId"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    Events: {
+                        shape: "Sq"
+                    }
+                }
+            }
+        },
+        GetIdentityPoolConfiguration: {
+            http: {
+                method: "GET",
+                requestUri: "/identitypools/{IdentityPoolId}/configuration",
+                responseCode: 200
+            },
+            input: {
+                type: "structure",
+                required: [ "IdentityPoolId" ],
+                members: {
+                    IdentityPoolId: {
+                        location: "uri",
+                        locationName: "IdentityPoolId"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    IdentityPoolId: {},
+                    PushSync: {
+                        shape: "Sv"
+                    },
+                    CognitoStreams: {
+                        shape: "Sz"
+                    }
+                }
+            }
+        },
+        ListDatasets: {
+            http: {
+                method: "GET",
+                requestUri: "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets",
+                responseCode: 200
+            },
+            input: {
+                type: "structure",
+                required: [ "IdentityId", "IdentityPoolId" ],
+                members: {
+                    IdentityPoolId: {
+                        location: "uri",
+                        locationName: "IdentityPoolId"
+                    },
+                    IdentityId: {
+                        location: "uri",
+                        locationName: "IdentityId"
+                    },
+                    NextToken: {
+                        location: "querystring",
+                        locationName: "nextToken"
+                    },
+                    MaxResults: {
+                        location: "querystring",
+                        locationName: "maxResults",
+                        type: "integer"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    Datasets: {
+                        type: "list",
+                        member: {
+                            shape: "S8"
+                        }
+                    },
+                    Count: {
+                        type: "integer"
+                    },
+                    NextToken: {}
+                }
+            }
+        },
+        ListIdentityPoolUsage: {
+            http: {
+                method: "GET",
+                requestUri: "/identitypools",
+                responseCode: 200
+            },
+            input: {
+                type: "structure",
+                members: {
+                    NextToken: {
+                        location: "querystring",
+                        locationName: "nextToken"
+                    },
+                    MaxResults: {
+                        location: "querystring",
+                        locationName: "maxResults",
+                        type: "integer"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    IdentityPoolUsages: {
+                        type: "list",
+                        member: {
+                            shape: "Sg"
+                        }
+                    },
+                    MaxResults: {
+                        type: "integer"
+                    },
+                    Count: {
+                        type: "integer"
+                    },
+                    NextToken: {}
+                }
+            }
+        },
+        ListRecords: {
+            http: {
+                method: "GET",
+                requestUri: "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/records",
+                responseCode: 200
+            },
+            input: {
+                type: "structure",
+                required: [ "IdentityPoolId", "IdentityId", "DatasetName" ],
+                members: {
+                    IdentityPoolId: {
+                        location: "uri",
+                        locationName: "IdentityPoolId"
+                    },
+                    IdentityId: {
+                        location: "uri",
+                        locationName: "IdentityId"
+                    },
+                    DatasetName: {
+                        location: "uri",
+                        locationName: "DatasetName"
+                    },
+                    LastSyncCount: {
+                        location: "querystring",
+                        locationName: "lastSyncCount",
+                        type: "long"
+                    },
+                    NextToken: {
+                        location: "querystring",
+                        locationName: "nextToken"
+                    },
+                    MaxResults: {
+                        location: "querystring",
+                        locationName: "maxResults",
+                        type: "integer"
+                    },
+                    SyncSessionToken: {
+                        location: "querystring",
+                        locationName: "syncSessionToken"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    Records: {
+                        shape: "S1c"
+                    },
+                    NextToken: {},
+                    Count: {
+                        type: "integer"
+                    },
+                    DatasetSyncCount: {
+                        type: "long"
+                    },
+                    LastModifiedBy: {},
+                    MergedDatasetNames: {
+                        type: "list",
+                        member: {}
+                    },
+                    DatasetExists: {
+                        type: "boolean"
+                    },
+                    DatasetDeletedAfterRequestedSyncCount: {
+                        type: "boolean"
+                    },
+                    SyncSessionToken: {}
+                }
+            }
+        },
+        RegisterDevice: {
+            http: {
+                requestUri: "/identitypools/{IdentityPoolId}/identity/{IdentityId}/device",
+                responseCode: 200
+            },
+            input: {
+                type: "structure",
+                required: [ "IdentityPoolId", "IdentityId", "Platform", "Token" ],
+                members: {
+                    IdentityPoolId: {
+                        location: "uri",
+                        locationName: "IdentityPoolId"
+                    },
+                    IdentityId: {
+                        location: "uri",
+                        locationName: "IdentityId"
+                    },
+                    Platform: {},
+                    Token: {}
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    DeviceId: {}
+                }
+            }
+        },
+        SetCognitoEvents: {
+            http: {
+                requestUri: "/identitypools/{IdentityPoolId}/events",
+                responseCode: 200
+            },
+            input: {
+                type: "structure",
+                required: [ "IdentityPoolId", "Events" ],
+                members: {
+                    IdentityPoolId: {
+                        location: "uri",
+                        locationName: "IdentityPoolId"
+                    },
+                    Events: {
+                        shape: "Sq"
+                    }
+                }
+            }
+        },
+        SetIdentityPoolConfiguration: {
+            http: {
+                requestUri: "/identitypools/{IdentityPoolId}/configuration",
+                responseCode: 200
+            },
+            input: {
+                type: "structure",
+                required: [ "IdentityPoolId" ],
+                members: {
+                    IdentityPoolId: {
+                        location: "uri",
+                        locationName: "IdentityPoolId"
+                    },
+                    PushSync: {
+                        shape: "Sv"
+                    },
+                    CognitoStreams: {
+                        shape: "Sz"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    IdentityPoolId: {},
+                    PushSync: {
+                        shape: "Sv"
+                    },
+                    CognitoStreams: {
+                        shape: "Sz"
+                    }
+                }
+            }
+        },
+        SubscribeToDataset: {
+            http: {
+                requestUri: "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}",
+                responseCode: 200
+            },
+            input: {
+                type: "structure",
+                required: [ "IdentityPoolId", "IdentityId", "DatasetName", "DeviceId" ],
+                members: {
+                    IdentityPoolId: {
+                        location: "uri",
+                        locationName: "IdentityPoolId"
+                    },
+                    IdentityId: {
+                        location: "uri",
+                        locationName: "IdentityId"
+                    },
+                    DatasetName: {
+                        location: "uri",
+                        locationName: "DatasetName"
+                    },
+                    DeviceId: {
+                        location: "uri",
+                        locationName: "DeviceId"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            }
+        },
+        UnsubscribeFromDataset: {
+            http: {
+                method: "DELETE",
+                requestUri: "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}",
+                responseCode: 200
+            },
+            input: {
+                type: "structure",
+                required: [ "IdentityPoolId", "IdentityId", "DatasetName", "DeviceId" ],
+                members: {
+                    IdentityPoolId: {
+                        location: "uri",
+                        locationName: "IdentityPoolId"
+                    },
+                    IdentityId: {
+                        location: "uri",
+                        locationName: "IdentityId"
+                    },
+                    DatasetName: {
+                        location: "uri",
+                        locationName: "DatasetName"
+                    },
+                    DeviceId: {
+                        location: "uri",
+                        locationName: "DeviceId"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {}
+            }
+        },
+        UpdateRecords: {
+            http: {
+                requestUri: "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
+                responseCode: 200
+            },
+            input: {
+                type: "structure",
+                required: [ "IdentityPoolId", "IdentityId", "DatasetName", "SyncSessionToken" ],
+                members: {
+                    IdentityPoolId: {
+                        location: "uri",
+                        locationName: "IdentityPoolId"
+                    },
+                    IdentityId: {
+                        location: "uri",
+                        locationName: "IdentityId"
+                    },
+                    DatasetName: {
+                        location: "uri",
+                        locationName: "DatasetName"
+                    },
+                    DeviceId: {},
+                    RecordPatches: {
+                        type: "list",
+                        member: {
+                            type: "structure",
+                            required: [ "Op", "Key", "SyncCount" ],
+                            members: {
+                                Op: {},
+                                Key: {},
+                                Value: {},
+                                SyncCount: {
+                                    type: "long"
+                                },
+                                DeviceLastModifiedDate: {
+                                    type: "timestamp"
+                                }
+                            }
+                        }
+                    },
+                    SyncSessionToken: {},
+                    ClientContext: {
+                        location: "header",
+                        locationName: "x-amz-Client-Context"
+                    }
+                }
+            },
+            output: {
+                type: "structure",
+                members: {
+                    Records: {
+                        shape: "S1c"
+                    }
+                }
+            }
+        }
+    },
+    shapes: {
+        S8: {
+            type: "structure",
+            members: {
+                IdentityId: {},
+                DatasetName: {},
+                CreationDate: {
+                    type: "timestamp"
+                },
+                LastModifiedDate: {
+                    type: "timestamp"
+                },
+                LastModifiedBy: {},
+                DataStorage: {
+                    type: "long"
+                },
+                NumRecords: {
+                    type: "long"
+                }
+            }
+        },
+        Sg: {
+            type: "structure",
+            members: {
+                IdentityPoolId: {},
+                SyncSessionsCount: {
+                    type: "long"
+                },
+                DataStorage: {
+                    type: "long"
+                },
+                LastModifiedDate: {
+                    type: "timestamp"
+                }
+            }
+        },
+        Sq: {
+            type: "map",
+            key: {},
+            value: {}
+        },
+        Sv: {
+            type: "structure",
+            members: {
+                ApplicationArns: {
+                    type: "list",
+                    member: {}
+                },
+                RoleArn: {}
+            }
+        },
+        Sz: {
+            type: "structure",
+            members: {
+                StreamName: {},
+                RoleArn: {},
+                StreamingStatus: {}
+            }
+        },
+        S1c: {
+            type: "list",
+            member: {
+                type: "structure",
+                members: {
+                    Key: {},
+                    Value: {},
+                    SyncCount: {
+                        type: "long"
+                    },
+                    LastModifiedDate: {
+                        type: "timestamp"
+                    },
+                    LastModifiedBy: {},
+                    DeviceLastModifiedDate: {
+                        type: "timestamp"
+                    }
+                }
+            }
+        }
+    },
+    examples: {}
 };AWS.apiLoader.services["sts"] = {};
 
 AWS.STS = AWS.Service.defineService("sts", [ "2011-06-15" ]);
@@ -15337,7 +18270,7 @@ _xamzrequire = function e(t, n, r) {
     for (var o = 0; o < r.length; o++) s(r[o]);
     return s;
 }({
-    249: [ function(require, module, exports) {
+    250: [ function(require, module, exports) {
         var AWS = require("../core");
         AWS.util.update(AWS.STS.prototype, {
             credentialsFrom: function credentialsFrom(data, credentials) {
@@ -15360,7 +18293,7 @@ _xamzrequire = function e(t, n, r) {
     }, {
         "../core": 194
     } ]
-}, {}, [ 249 ]);AWS.apiLoader.services["sts"]["2011-06-15"] = {
+}, {}, [ 250 ]);AWS.apiLoader.services["sts"]["2011-06-15"] = {
     version: "2.0",
     metadata: {
         apiVersion: "2011-06-15",
