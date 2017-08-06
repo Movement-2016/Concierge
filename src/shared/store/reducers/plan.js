@@ -12,7 +12,8 @@ const initialState = {
   planName: '',
   donations: [],
   total: 0,
-  dirty: false
+  status: { empty: true },
+  error: ''
 };
 
 const updateTotal = st => {
@@ -35,7 +36,7 @@ const reducer = (state = initialState, action) => {
                     ? path(`..{.id!=${id}}`, donations)
                     : donations,
 
-        dirty: true
+        status: { dirty: true }
 
       };
 
@@ -54,13 +55,27 @@ const reducer = (state = initialState, action) => {
 
         donations: [ ...path(`..{.id!=${id}}`, donations), { id, amount } ],
 
-        dirty: true
+        status: { dirty: true }
 
       };
 
       updateTotal(st);
 
       return st;
+    }
+
+    case SAVE_PLAN: {
+      const { status, value } = action;
+      return { 
+        ...state, 
+        status: { [status]: true },
+        error: status === 'error' && value,
+        planId: (status === 'saved' && value) || state.planId
+      };
+    }
+
+    case CLEAR_PLAN: {
+      return { ...state, ...initialState };
     }
 
     default:

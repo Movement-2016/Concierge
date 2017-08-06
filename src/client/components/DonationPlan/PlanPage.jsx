@@ -6,6 +6,7 @@ import BackLink         from '../BackLink.jsx';
 import Plan             from './Plan.jsx';
 import Totals           from './Totals.jsx';
 import RequestConsult   from './RequestConsult.jsx';
+import AutoSavePlan     from './AutoSavePlan.jsx';
 
 const PageDescription = () => {
   return (
@@ -37,7 +38,23 @@ const SummaryLink = connect(mapSummaryStateToProps)(_SummaryLink);
 
 class PlanPage extends React.Component {
 
+  constructor() {
+    super(...arguments);
+    this.state = {
+      done: '',
+      error: ''
+    };
+  }
+
+  onDone = (done) => this.setState({ done });
+  onError = (error) => this.setState({ error });
+
   render() {
+
+    const {
+      done,
+      error
+    } = this.state;
 
     return (
       <main className="content-page custom-planning cart-page">
@@ -54,6 +71,9 @@ class PlanPage extends React.Component {
                   <Totals />
                   <div className="link-area">
                     <SummaryLink  />
+                    <AutoSavePlan onError={this.onError} onDone={this.onDone} />
+                    {done && <div className="submit-message submit-success">{done}</div>}
+                    {error && <div className="submit-message submit-error">{error.toString()}</div>}
                     <RequestConsult />
                   </div>
                 </div>

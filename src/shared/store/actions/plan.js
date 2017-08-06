@@ -33,21 +33,32 @@ const savePlan = () => (dispatch,getState) => {
       planName,
       donations,
       planId,
-      dirty
+      status
     } = plan;
   
-    if( dirty ) {
+    if( status.dirty ) {
       !planName && (planName = `${fname}'s Donation Plan`);    
 
       const body = { 
           planName,
           donations
       };
-        
-      (planId 
-          ? api.plansUpdate( planId, body ) 
-          : api.plansPost( null, body ))
-        .then( () => dispatch({ type: SAVE_PLAN }) );    
+      
+      const onError = e => dispatch({ type: SAVE_PLAN, status: 'error', value: e.toString() });
+
+      if( planId ) {
+
+        api.update( planId, body )
+              .then( () => dispatch({ type: SAVE_PLAN, status: 'saved' }))
+              .catch( onError );
+
+      } else {
+
+        api.create( body)
+              .then( plan => dispatch({ type: SAVE_PLAN, status: 'saved', value: plan.planId }) )
+              .catch( onError );
+
+      }
     }
 
   }

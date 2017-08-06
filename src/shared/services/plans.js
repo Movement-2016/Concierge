@@ -14,12 +14,17 @@ module.exports = () => {
     sessionToken
   } = AWS.config.credentials;
 
+  const {
+    REGION: region,
+    PLANS_ENDPOINT: invokeUrl
+  } = config;
+
   const cfg = {
     accessKey,
     secretKey,
     sessionToken,
-    region: config.REGION,
-    invokeUrl: config.INVOKE_URL
+    region,
+    invokeUrl
   };
 
   return new PlansDB(cfg);

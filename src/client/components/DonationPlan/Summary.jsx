@@ -1,9 +1,9 @@
 import React            from 'react';
-import Link             from '../../services/LinkToRoute';
 
 import BackLink         from '../BackLink.jsx';
 import Totals           from './Totals.jsx';
 import EmailPlanButton  from './EmailPlanButton.jsx';
+import AutoSavePlan     from './AutoSavePlan.jsx';
 import Plan             from './Plan.jsx';
 import RequestConsult   from './RequestConsult.jsx';
 import SummaryUser      from './SummaryUser.jsx';
@@ -25,7 +25,6 @@ class Summary extends React.Component {
 
     const {
       mobile,
-      store
     } = this.props;
 
     const {
@@ -35,7 +34,7 @@ class Summary extends React.Component {
 
     return (
       <div>
-        {mobile && <SummaryUser store={store} />}
+        {mobile && <SummaryUser />}
         <div className="padded-form summary-form">
           <div className="row">
             <div className="col s12 l8">
@@ -43,10 +42,11 @@ class Summary extends React.Component {
             </div>
             <div className="col s12 l4">
               <div className="total-section">
-                <Totals store={store} />
-                {!mobile && <SummaryUser store={store} />}
+                <Totals />
+                {!mobile && <SummaryUser />}
                 <div className="link-area">
-                  <EmailPlanButton store={store} onError={this.onError} onDone={this.onDone}>{'Email me this plan'}</EmailPlanButton>
+                  <EmailPlanButton onError={this.onError} onDone={this.onDone}>{'Email me this plan'}</EmailPlanButton>
+                  <AutoSavePlan onError={this.onError} onDone={this.onDone} />
                   {done && <div className="submit-message submit-success">{done}</div>}
                   {error && <div className="submit-message submit-error">{error.toString()}</div>}
                   <RequestConsult />

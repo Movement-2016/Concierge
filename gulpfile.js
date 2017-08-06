@@ -37,6 +37,8 @@ const babelifyOpts = {
 
 const dependencies = [
   'axios',
+  'commaize',
+  'crypto-js',  // <-- imported from plansDB
   'es6-promise-polyfill',
   'events',
   'jspath',
@@ -44,6 +46,7 @@ const dependencies = [
   'react',
   'react-dom',
   'react-headroom',
+  'react-modal',
   'react-redux',
   'react-responsive',
   'react-share',
@@ -51,6 +54,7 @@ const dependencies = [
   'redux',
   'redux-thunk',
   'route-recognizer',
+  'uuid'
 ];
 
 const fonts = [
