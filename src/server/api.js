@@ -1,11 +1,17 @@
-var GMail    = require('./gmail');
-var apiModel = require('../shared/models/api');
-var path     = require('jspath');
-var Entities = require('html-entities').AllHtmlEntities;
-var commaize = require('commaize');
-var reqJSON  = require('./req-json');
+import GMail    from './gmail';
+import path     from 'jspath';
+import commaize from 'commaize';
 
-const SUBJECT_HEAD = '[Movement Vote]';
+import { AllHtmlEntities as Entities } from 'html-entities';
+
+import apiModel from '../shared/models/api';
+import reqJSON  from './req-json';
+
+import {
+  SITE_TITLE,
+} from '../config'; // <-- App config (not ./server);
+
+const SUBJECT_HEAD = `[${SITE_TITLE}]`;
 
 const entities = new Entities();
 
@@ -125,7 +131,7 @@ function houseParty (req, res) {
     jsonPolyfill(res);
 
     return mailer.send( payload )
-      .then( result => { console.log(email,result); setStatus( res,  200 ).json(result); } ) // eslint-disable-line no-console
+      .then( result => { console.log(email,result); setStatus( res,  200 ).json(result); } ); // eslint-disable-line no-console
 
   }).catch( err => {
     console.error( err ); // eslint-disable-line no-console

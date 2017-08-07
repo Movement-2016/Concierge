@@ -7,7 +7,7 @@ let interval = null;
 
 let ONE_THOUSAND = 1000;
 
-let CLOCK_INTERVAL = 10000; // 10 secs
+let CLOCK_INTERVAL = 4; // secs
 
 class _SyncProfileButton extends React.Component {
 
@@ -25,7 +25,7 @@ class _SyncProfileButton extends React.Component {
   start() {
     this.update();
     if (!interval) {
-      interval = setInterval(this.update, (this.props.interval * ONE_THOUSAND) || CLOCK_INTERVAL);
+      interval = setInterval(this.update, (this.props.interval || CLOCK_INTERVAL) * ONE_THOUSAND );
     }
   }
 

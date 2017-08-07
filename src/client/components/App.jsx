@@ -13,7 +13,7 @@ import '../lib/polyfills';
 
 import scrollToTop from '../lib/scrollToTop';
 
-const SITE_TITLE = 'Movement 2017';
+import { SITE_TITLE } from '../../config';
 
 class App extends React.Component {
 

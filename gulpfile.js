@@ -17,7 +17,7 @@ const cssnano = require('cssnano');
 const sourcemaps = require ('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const ext = require('gulp-ext');
-const rm = require('gulp-rm');
+const rm = require('gulp-clean');
 const indexJS = require('index-js');
 
 const browserifyConfig =  {
@@ -246,6 +246,6 @@ gulp.task('indecies', () => {
 
 
 gulp.task( 'clean', function() {
-  return gulp.src( `${BASE}/**/*`, { read: false })
+  return gulp.src( `${BASE}`, { read: false })
     .pipe( rm({ async: false }) );
 });

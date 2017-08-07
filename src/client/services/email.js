@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ADVISOR_EMAIL = 'advisor@movementvote.org';
+import { ADMIN_EMAIL } from '../../config';
 
 const _do_email = ({payload, url, successMsg,}) => {
 
@@ -14,7 +14,9 @@ const _do_email = ({payload, url, successMsg,}) => {
       data: payload
     };
 
-    const errMsg = `We were unable to send your message at this time. Please try again later or email ${ADVISOR_EMAIL} directly.`;
+    const errMsg = `We were unable to send your message 
+                    at this time. Please try again later 
+                    or email ${ADMIN_EMAIL} directly.`;
 
     return axios(`${location.origin}/${url}`, opts)
       .then( response => {
@@ -35,7 +37,7 @@ const houseParty = (content) => {
 
   const payload = {
     ...content,
-    advisorEmail: ADVISOR_EMAIL,
+    advisorEmail: ADMIN_EMAIL,
   };
 
   const args = {
@@ -50,7 +52,7 @@ const houseParty = (content) => {
 const emailContact = ({ user, message }) => {
   const payload = {
     ...user,
-    advisorEmail: ADVISOR_EMAIL,
+    advisorEmail: ADMIN_EMAIL,
     message
   };
 
@@ -73,7 +75,7 @@ const emailPlan = ({ user, plan, forceConsult = false }) => {
 
   const payload = {
     ...user,
-    advisorEmail: ADVISOR_EMAIL,
+    advisorEmail: ADMIN_EMAIL,
     items,
     planTotal
   };

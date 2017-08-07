@@ -6,12 +6,11 @@ const PLANS_ENDPOINT   = 'https://ejy2t55834.execute-api.us-west-2.amazonaws.com
 
 const SYNC_DATASET     = 'gamechangerlabs:profile';
 
-module.exports = {
-  REGION,
-  IDENTITY_POOL_ID,
-  SYNC_DATASET,
+const ADMIN_EMAIL      = 'advisor@movementvote.org';
 
-  Facebook: {
+const SITE_TITLE       = 'Movement 2017';
+
+const Facebook = {
     clientId: '115757859022458',
     scope: 'public_profile,email',
     fields: 'email,first_name,last_name,picture',
@@ -23,12 +22,22 @@ module.exports = {
       width: undefined,
       autoLogout: false
     }
-  },
+  };
 
-  Google: {
+const Google = {
     clientId: '549640832795-h8sjf845lqo4fia4djrs44c622408sgf.apps.googleusercontent.com',
     scope: 'profile email'
-  },
+  };
 
-  PLANS_ENDPOINT
+module.exports = {
+  REGION,
+  IDENTITY_POOL_ID,
+  SYNC_DATASET,
+
+  Facebook,
+  Google,
+
+  PLANS_ENDPOINT,
+  ADMIN_EMAIL,
+  SITE_TITLE
 };

@@ -5,10 +5,16 @@
   See bin/gmail-auth.js for details
 
 */
-var fs = require('fs');
-var google = require('googleapis');
-var googleAuth = require('google-auth-library');
+import fs         from 'fs';
+import google     from 'googleapis';
+import googleAuth from 'google-auth-library';
 
+import {
+  CREDENTIALS_DIR,
+  GMAIL_AUTH,
+  GMAIL_CREDENTIALS,
+  GMAIL_PROFILE
+} from './config';
 
 const readJSON = path => new Promise( (resolve,reject) => {
   fs.readFile(path, (err, token) => {
@@ -98,10 +104,10 @@ class GMail {
   }
 }
 
-GMail.TOKEN_DIR    = process.env.HOME + '/credentials/';
-GMail.PROFILE_PATH = GMail.TOKEN_DIR + 'gmail-profile.json';     // <-- you create this
-GMail.CRED_PATH    = GMail.TOKEN_DIR + 'gmail-credentials.json'; // <-- from console.developers.google.com/apis/credentials
-GMail.TOKEN_PATH   = GMail.TOKEN_DIR + 'gmail-auth.json';        // <-- written by bin/gmail-auth.js
+GMail.TOKEN_DIR    = CREDENTIALS_DIR;
+GMail.PROFILE_PATH = GMAIL_PROFILE;
+GMail.CRED_PATH    = GMAIL_CREDENTIALS;
+GMail.TOKEN_PATH   = GMAIL_AUTH;
 
 GMail.readJSON = readJSON;
 
