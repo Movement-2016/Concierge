@@ -17,6 +17,10 @@ import {
   syncProfile
 } from '../../../shared/store/actions/profile';
 
+import {
+  getPlan
+} from '../../../shared/store/actions/plan';
+
 import providers from '../../../shared/services/auth/providers';
 
 import Modal from '../Modal.jsx';
@@ -96,12 +100,14 @@ class Popup extends Component {
       setCredentails,
       setProvider,
       syncProfile,
+      getPlan,
       closeModal
     } = this.props;
 
     setCredentails(credentials);
     setProvider(name);
     syncProfile(profile); 
+    getPlan();
     closeModal();
   }
 
@@ -132,7 +138,8 @@ const mapDispatchToProps2 = {  setCredentails,
                                clearCredentails, 
                                setProvider,
                                syncProfile,
-                               closeModal
+                               closeModal,
+                               getPlan
                             };
 
 Login.Popup = connect( mapStateToProps2, mapDispatchToProps2 )(Popup);

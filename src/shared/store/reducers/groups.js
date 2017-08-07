@@ -6,7 +6,8 @@ import {
  } from '../actions/groups';
 
 import {
-  TOGGLE_ITEM // Yea, not sure the best way to do this
+  TOGGLE_ITEM, // Yea, not sure the best way to do this
+  GET_PLAN
  } from '../actions/plan';
 
 const initialState = {
@@ -37,6 +38,16 @@ const reducer = (state = initialState, action) => {
       };
 
       return st;
+    }
+
+    // TODO: this belongs somwewhere else
+    
+    case GET_PLAN: {
+      const { plan } = action;
+      return {
+        ...state,
+        selected: plan.donations.map( d => d.id )
+      };
     }
 
     case INIT_FILTERS: {

@@ -4,13 +4,33 @@ const TOGGLE_ITEM   = 'TOGGLE_GROUP';
 const ADD_PLAN_ITEM = 'ADD_PLAN_ITEM';
 const SAVE_PLAN     = 'SAVE_PLAN';
 const CLEAR_PLAN    = 'CLEAR_PLAN';
-
+const GET_PLAN      = 'GET_PLAN';
 
 const requiresLogin = true;
 
 const toggleItem = id => ({ type: TOGGLE_ITEM, id, requiresLogin });
 
 const addPlanItem = (id,amount) => ({ type: ADD_PLAN_ITEM, id, amount, requiresLogin });
+
+const getPlan = () => (dispatch,getState) => {
+
+  const { 
+    auth: {
+      authenticated = false
+    }
+  } = getState();
+
+  if( authenticated ) {
+    const api = plansAPI();
+
+    api.list().then( plans => {
+      if( plans && plans.length ) {
+        dispatch( { type: GET_PLAN, plan: plans[0] } );
+      }
+    });
+  }
+
+};
 
 const savePlan = () => (dispatch,getState) => {
   const { 
@@ -66,9 +86,11 @@ module.exports = {
   ADD_PLAN_ITEM,
   SAVE_PLAN,
   CLEAR_PLAN,
+  GET_PLAN,
 
   toggleItem,
   addPlanItem,
   savePlan,
-  clearPlan
+  clearPlan,
+  getPlan
 };

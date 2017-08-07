@@ -4,7 +4,8 @@ import {
   TOGGLE_ITEM,
   ADD_PLAN_ITEM,
   SAVE_PLAN,
-  CLEAR_PLAN
+  CLEAR_PLAN,
+  GET_PLAN
  } from '../actions/plan';
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
 
 const updateTotal = st => {
   st.total = path('..amount',st.donations).reduce( (total,amount) => total + Number(amount), 0 );
+  return st;
 };
 
 const reducer = (state = initialState, action) => {
@@ -29,7 +31,7 @@ const reducer = (state = initialState, action) => {
 
       const isRemoving = donations.find( d => d.id === id );
 
-      const st = {
+      return( updateTotal( {
         ...state,
 
         donations: isRemoving
@@ -38,11 +40,7 @@ const reducer = (state = initialState, action) => {
 
         status: { dirty: true }
 
-      };
-
-      updateTotal(st);
-
-      return st;
+      }));
     }
 
     case ADD_PLAN_ITEM: {
@@ -50,18 +48,20 @@ const reducer = (state = initialState, action) => {
       let { donations }    = state;
       const { id, amount } = action;
 
-      const st = { 
+      return( updateTotal({ 
         ...state, 
 
         donations: [ ...path(`..{.id!=${id}}`, donations), { id, amount } ],
 
         status: { dirty: true }
 
-      };
+      }));
+    }
 
-      updateTotal(st);
+    case GET_PLAN: {
+      const { plan } = action; // <-- plan came from cloud
 
-      return st;
+      return( updateTotal({ ...state, ...plan }) );
     }
 
     case SAVE_PLAN: {
