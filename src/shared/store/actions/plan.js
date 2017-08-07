@@ -1,21 +1,16 @@
 import plansAPI from '../../services/plans';
 
-import {
-  toggleSelection
-} from './groups';
-
 const TOGGLE_ITEM   = 'TOGGLE_GROUP';
 const ADD_PLAN_ITEM = 'ADD_PLAN_ITEM';
 const SAVE_PLAN     = 'SAVE_PLAN';
 const CLEAR_PLAN    = 'CLEAR_PLAN';
 
 
-const _toggleItem = id => ({ type: TOGGLE_ITEM, id });
+const requiresLogin = true;
 
+const toggleItem = id => ({ type: TOGGLE_ITEM, id, requiresLogin });
 
-const toggleItem = id =>  dispatch => dispatch(_toggleItem(id)) && dispatch(toggleSelection(id));
-
-const addPlanItem = (id,amount) => ({ type: ADD_PLAN_ITEM, id, amount });
+const addPlanItem = (id,amount) => ({ type: ADD_PLAN_ITEM, id, amount, requiresLogin });
 
 const savePlan = () => (dispatch,getState) => {
   const { 

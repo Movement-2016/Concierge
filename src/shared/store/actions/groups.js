@@ -7,7 +7,10 @@ function setVisibility(visibility) {
 }
 
 function toggleSelection(id) {
-  return { type: TOGGLE_SELECTION, id };
+  return { 
+    type: TOGGLE_SELECTION, 
+    id 
+  };
 }
 
 function initFilters(filters) {

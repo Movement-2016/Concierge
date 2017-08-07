@@ -77,27 +77,32 @@ class Popup extends Component {
 
   constructor() {
     super(...arguments);
-    [ 'login', 'error' ].forEach( n => this[n] = this[n].bind(this) );
     this.state = { error: null };
   }
 
-  error(error) {
+  error = error => {
     this.setState( {error} );
   }
 
-  login(provider) {
+  login = provider => {
     
+    const {
+      credentials,
+      name,
+      profile
+    } = provider;
+
     const {
       setCredentails,
       setProvider,
-      syncProfile
+      syncProfile,
+      closeModal
     } = this.props;
 
-    setCredentails(provider.credentials);
-    setProvider(provider.name);
-    syncProfile(provider.profile); 
-
-    this.props.closeModal();
+    setCredentails(credentials);
+    setProvider(name);
+    syncProfile(profile); 
+    closeModal();
   }
 
   render() {
@@ -107,7 +112,7 @@ class Popup extends Component {
     } = this.state;
 
     const providerProps = {
-      error: this.error,
+      error: this.error, // <-- um?
       authenticated: this.login,
       notAuthenticated: this.logout
     };

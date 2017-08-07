@@ -34,7 +34,7 @@ const reducer = (state = initialState, action) => {
 
         donations: isRemoving
                     ? path(`..{.id!=${id}}`, donations)
-                    : donations,
+                    : [ ...donations, { id, amount: 0 } ],
 
         status: { dirty: true }
 

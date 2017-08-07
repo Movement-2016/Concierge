@@ -3,10 +3,12 @@ import {
   applyMiddleware 
 } from 'redux';
 
-import thunk      from 'redux-thunk';
-import {createLogger}   from 'redux-logger';
+import thunk              from 'redux-thunk';
+import { createLogger }   from 'redux-logger';
+
 
 import reducers     from './reducers';
+import login        from './middleware/login';
 
 const logger = process.env.NODE_ENV === 'production' 
                                             ? undefined 
@@ -23,7 +25,10 @@ const store = createStore(
   // reduxThunk allows us to store functions inside our actions (instead of 
   // only objects). Without reduxThunk we could only use very simple actions
     
-  applyMiddleware(thunk),
+  applyMiddleware(
+    thunk,
+    login
+  ),
 
 
   // tool for visualizing 

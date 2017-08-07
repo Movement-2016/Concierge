@@ -7,7 +7,7 @@ import {
 const INITIAL_STATE = {
   open: false,
   name: null,
-  options: null
+  options: {}
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -32,7 +32,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         open: false,
         name: null,
-        options: null
+        options: {}
       };
     }
   }

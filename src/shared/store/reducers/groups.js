@@ -5,6 +5,10 @@ import {
   TOGGLE_SELECTION
  } from '../actions/groups';
 
+import {
+  TOGGLE_ITEM // Yea, not sure the best way to do this
+ } from '../actions/plan';
+
 const initialState = {
   visibility: {},
   selected: []
@@ -18,6 +22,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, visibility: {...action.visibility}  };
     }
 
+    case TOGGLE_ITEM:
     case TOGGLE_SELECTION: {
 
       let { selected } = state;
