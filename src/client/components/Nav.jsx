@@ -15,7 +15,7 @@ const _MenuItem = ({ url,label }) => {
 const SubMenu = ({url, children, label}) => {
   return (
     <li className="menu-parent">
-      <Link to={url}>{label}<i className="material-icons">arrow_drop_down</i></Link>
+      <Link to={url}>{label}<i className="material-icons">{'arrow_drop_down'}</i></Link>
       <ul className="menu-children">
         {children.map( (m,i) => <_MenuItem key={i} {...m} />)}
       </ul>
@@ -42,7 +42,7 @@ class Menu extends React.Component {
     return (
         <ul className={className} id={id}>
           {id === 'mobile-menu' &&
-            <div className="top-bar"><a className="close-button"><i className="material-icons">close</i></a></div>
+            <div className="top-bar"><a className="close-button"><i className="material-icons">{'close'}</i></a></div>
           }
 
           {menu.map( (m,i) => <MenuItem key={i} {...m} />)}
@@ -85,7 +85,7 @@ class Nav extends React.Component {
             <nav className="main-nav">
               <Link to="/" className="brand-logo">{siteTitle}</Link>
               <Menu className="header-menu nav-menu" menu={menu}/>
-              <a data-activates="mobile-menu" className="button-collapse"><i className="material-icons">menu</i></a>
+              <a data-activates="mobile-menu" className="button-collapse"><i className="material-icons">{'menu'}</i></a>
             </nav>
           </div>
         </Headroom>

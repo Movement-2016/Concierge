@@ -13,7 +13,8 @@ function ColorGroup(props) {
     selected,
     store,
     filters,
-    mobile
+    mobile,
+    toggleItem
   } = props;
 
   return (
@@ -27,6 +28,7 @@ function ColorGroup(props) {
           store,
           filters,
           mobile,
+          toggleItem,
           ...statesDict[s]
         };
         return <State key={s} {...stateProps} />;

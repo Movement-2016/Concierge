@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import ColorGroup from './ColorGroup.jsx';
 import scrollToElement from '../../lib/scrollToElement';
 
+import { toggleItem }      from '../../../shared/store/actions/plan';
+
 const getVisibleColorSections = (allColorSections,orgs) => {
   const visible = {};
   Object.keys(orgs || {}).forEach( colorGroup => visible[colorGroup] = allColorSections[colorGroup] );
@@ -56,7 +58,8 @@ class _OrgsList extends React.Component {
 
     const {
       store,
-      mobile
+      mobile,
+      toggleItem
     } = this.props;
 
     return (
@@ -70,6 +73,7 @@ class _OrgsList extends React.Component {
                                 store={store}
                                 statesDict={statesDict}
                                 mobile={mobile}
+                                toggleItem={toggleItem}
                               />
         )}
       </div>
@@ -78,7 +82,8 @@ class _OrgsList extends React.Component {
 }
 
 const mapStateToProps = s => ({ groups: s.groups });
+const mapDispatchToProps = { toggleItem };
 
-const OrgsList = connect(mapStateToProps)(_OrgsList);
+const OrgsList = connect(mapStateToProps,mapDispatchToProps)(_OrgsList);
 
 module.exports = OrgsList;

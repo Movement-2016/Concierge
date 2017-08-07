@@ -14,6 +14,7 @@
     "babel-preset-2017": "0.0.0",
     "babel-preset-es2017": "^6.24.1",
     "commaize": "git+https://github.com/victor-stone/commaize.git",
+    "compare-objects": "0.0.4",
     "es6-promise-polyfill": "^1.2.0",
     "gamechangers-plans-db": "git+https://github.com/Movement-2016/plans-db.git",
     "google-auth-library": "^0.9.8",

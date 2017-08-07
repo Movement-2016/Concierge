@@ -6,24 +6,33 @@ import {
 
 const INITIAL_STATE = {
   open: false,
-  name: null
+  name: null,
+  options: null
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
 
   switch(action.type){
-    case OPEN_MODAL:
+
+    case OPEN_MODAL: {
+      const {
+        name,
+        options 
+      } = action;
       return {
         ...state,
         open: true,
-        name: action.name
+        name,
+        options
       };
+    }
 
     case CLOSE_MODAL: {
       return {
         ...state,
         open: false,
-        name: null
+        name: null,
+        options: null
       };
     }
   }

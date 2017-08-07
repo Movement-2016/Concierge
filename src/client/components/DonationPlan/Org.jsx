@@ -1,13 +1,7 @@
 import React            from 'react';
-import { connect }      from 'react-redux';
 import commaize         from 'commaize';
 
 import ContributeButton from './ContributeButton.jsx';
-
-import {
-  addPlanItem,
-  toggleItem
-} from '../../../shared/store/actions/plan';
 
 import {
   selectPrevElement,
@@ -114,7 +108,7 @@ class _Org extends React.Component {
               </div>
               {readonly
                 ? <ContributeButton urlGive={urlGive} amount={value} />
-                : !mobile && <a className="remove-group" onClick={this.onRemoveOrg}><i className="material-icons">close</i>Remove</a>
+                : !mobile && <a className="remove-group" onClick={this.onRemoveOrg}><i className="material-icons">{'close'}</i>{'Remove'}</a>
               }
             </div>
           </div>
@@ -124,9 +118,4 @@ class _Org extends React.Component {
   }
 }
 
-const mapDispatchToProps = {  addPlanItem, toggleItem };
-const mapStateToProps = () => ({ });
-
-const Org = connect( mapStateToProps, mapDispatchToProps )(_Org);
-
-module.exports = Org;
+module.exports = _Org;

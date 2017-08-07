@@ -12,7 +12,8 @@ function State(props) {
     selected: selectedOrgs,
     store,
     filters,
-    mobile
+    mobile,
+    toggleItem
   } = props;
 
   return (
@@ -20,7 +21,7 @@ function State(props) {
       <div className={`state-title ${colorGroup}`}>
         <h4>
           <span className="state-name">{label}</span>
-          <i className="material-icons color-icon">turned_in</i>
+          <i className="material-icons color-icon">{'turned_in'}</i>
         </h4>
       </div>
       {items.map( o => {
@@ -29,6 +30,7 @@ function State(props) {
           store,
           filters,
           mobile,
+          toggleItem,
           ...o
         };
         return <Org key={o.ID} {...orgProps} />;

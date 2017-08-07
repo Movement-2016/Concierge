@@ -1,7 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-
-import { toggleItem }      from '../../../shared/store/actions/plan';
 
 function OrgHeader(props) {
   const labels = props.tags.map(tag => props.terms[tag].name);
@@ -38,19 +35,16 @@ function OrgLinks (props) {
       <a className="group-link" href="#" onClick={props.onOrgClick}>
         <i className="material-icons">{props.planIcon}</i>{props.planText}</a>
       {props.urlGive && <a className="group-link" href={props.urlGive} target="_blank">
-        <i className="material-icons">star_border</i>Donate Now</a>}
+        <i className="material-icons">{'star_border'}</i>{'Donate Now'}</a>}
       {props.urlWeb && <a className="group-link" href={props.urlWeb} target="_blank">
-        <i className="material-icons">link</i>Website</a>}
+        <i className="material-icons">{'link'}</i>{'Website'}</a>}
     </div>
   );
 }
 
 function OrgContent(props) {
-  return (
-    <div className="group-content">
-      <p dangerouslySetInnerHTML={{__html: props.description}}/>
-    </div>
-  );
+  // eslint-disable-next-line 
+  return ( <div className="group-content"><p dangerouslySetInnerHTML={{__html: props.description }}/></div>);
 }
 
 function OrgTags(props) {
@@ -76,7 +70,7 @@ function OrgTags(props) {
       {keys.map( label => {
         return (
           <div className="tagblock" key={label}>
-            <span className="tagblock-title">{label}: </span>
+            <span className="tagblock-title">{label + ': '}</span>
             <span className="tagblock-tags">{tagBlocks[label].join(', ')}</span>
           </div>
         );
@@ -178,11 +172,4 @@ class _Org extends React.Component {
   }
 }
 
-const mapStateToProps = () => ({ });
-const mapDispatchToProps = {
-  toggleItem
-};
-
-const Org = connect(mapStateToProps,mapDispatchToProps)(_Org);
-
-module.exports = Org;
+module.exports = _Org;

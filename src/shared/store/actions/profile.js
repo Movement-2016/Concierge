@@ -16,7 +16,23 @@ const setProfile = _setProfile;
 
 const syncProfile = profile => dispatch => {
   dataset.list()
-    .then( hash => dataset.update( {...hash, ...profile} ) )
+    .then( (hash = {}) => {
+      const keys = Object.keys(hash);
+      let update = true;
+      if( keys ) {
+        update = false;
+        for( let i = 0; i < keys.length; i++ ) {
+          const key = keys[i];
+          if( profile[key] && (profile[key] !== hash[key]) ) {
+            update = true;
+            break;
+          }
+        }
+      }
+      return update 
+        ? dataset.update( {...hash, ...profile} )
+        : { hash };
+    })
     .then( response => dispatch(_setProfile(response.hash)) );
 };
 

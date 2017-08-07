@@ -7,10 +7,11 @@ function closeModal(){
     };
 }
 
-function openModal(name){
+function openModal(name,options){
   return {
       type: OPEN_MODAL,
-      name
+      name,
+      options
     };
 }
 

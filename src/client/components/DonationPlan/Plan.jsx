@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import StateOrgs from './StateOrgs.jsx';
 
 import {
+  addPlanItem,
+  toggleItem
+} from '../../../shared/store/actions/plan';
+
+import {
   getSelectedOrgs,
   organizeOrgsByState
 } from '../../../shared/lib/group-utils';
@@ -22,7 +27,9 @@ class _Plan extends React.Component {
       mobile,
       selected,
       plan,
-      readonly
+      readonly,
+      addPlanItem,
+      toggleItem
     } = this.props;
 
     const sortedOrgs = orgs && organizeOrgsByState( getSelectedOrgs(selected,orgs) );
@@ -45,6 +52,8 @@ class _Plan extends React.Component {
               key={state}
               orgs={sortedOrgs[state]}
               state={states[state]}
+              addPlanItem={addPlanItem}
+              toggleItem={toggleItem}
             />
           );
       })}
@@ -61,6 +70,8 @@ const mapStateToProps = s => ({ selected: s.groups.selected,
                                 plan:     s.plan.donations
                               });
 
-const Plan = connect(mapStateToProps)(_Plan);
+const mapDispatchToProps = { addPlanItem, toggleItem };
+
+const Plan = connect(mapStateToProps,mapDispatchToProps)(_Plan);
 
 module.exports = Plan;

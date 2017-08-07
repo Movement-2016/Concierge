@@ -1,4 +1,4 @@
-import React            from 'react';
+import React from 'react';
 
 import {
   planFromOrg
@@ -10,6 +10,8 @@ class StateOrgs extends React.Component {
   render() {
 
     const {
+      addPlanItem,
+      toggleItem,
       name,
       orgs,
       filters,
@@ -40,7 +42,9 @@ class StateOrgs extends React.Component {
                                  amount={amountFromOrg(org)} 
                                  mobile={mobile} 
                                  store={store}
-                                 {...org} 
+                                 {...org}
+                                 addPlanItem={addPlanItem}
+                                 toggleItem={toggleItem} 
                             />)}
         </div>
       );
