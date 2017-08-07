@@ -12,7 +12,7 @@ class ProfileForm extends React.Component {
   render() {
     return (
         <div className="profile-form padded-form">
-          <h3>Your Information</h3>
+          <h3>{'Your Information'}</h3>
           <form className="user-info" onSubmit={this.onSubmit}>
             <div className="row">
               <div className="col s12 m6">

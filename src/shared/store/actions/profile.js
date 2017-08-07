@@ -19,7 +19,7 @@ const syncProfile = profile => dispatch => {
     .then( (hash = {}) => {
       const keys = Object.keys(hash);
       let update = true;
-      if( keys ) {
+      if( keys.length ) {
         update = false;
         for( let i = 0; i < keys.length; i++ ) {
           const key = keys[i];
