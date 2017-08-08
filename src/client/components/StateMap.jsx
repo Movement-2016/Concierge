@@ -46,7 +46,7 @@ class StateMap extends React.Component {
 
   populateMapData(states,colors) {
     /* globals $ */
-    axios( location.origin + '/images/state-map-data.svg')
+    axios( location.origin + '/images/state-map-data.svg', { headers: { 'Accept': 'image/svg+xml' }} )
       .then( response => {          
           if( this.unMounted ) {
             return;

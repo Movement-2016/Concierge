@@ -2,7 +2,8 @@ import React         from 'react';
 import { connect } from 'react-redux';
 import ColorGroup from './ColorGroup.jsx';
 
-import { toggleItem }      from '../../../shared/store/actions/plan';
+import { toggleItem }       from '../../../shared/store/actions/plan';
+import { equalIfSameRoute } from '../../../shared/store/actions/router';
 
 import {
   getVisibleOrgs
@@ -37,13 +38,15 @@ const mapStateToProps = ({
     groups: {
       selected,
       visibility,
+    },
+    router: {
       model: {
           groupFilters: filters,
           statesDict,
           colorSections,
           colorOrder,
           orgs: allOrgs,
-        }
+        }        
     }
   }) => {
 
@@ -58,6 +61,8 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = { toggleItem };
 
-const OrgsList = connect(mapStateToProps,mapDispatchToProps)(_OrgsList);
+const opts = { areStatesEqual: equalIfSameRoute };
+
+const OrgsList = connect(mapStateToProps,mapDispatchToProps,null,opts)(_OrgsList);
 
 module.exports = OrgsList;

@@ -69,14 +69,24 @@ class Router extends EventEmitter
     handler.component.model(handler.params, handler.queryParams)
       .then( model => {
   
+          const {
+            component: {
+              displayName: name
+            },
+            component,
+            path,
+            params,
+            queryParams
+          } = handler;
+
           const meta = {
             model,              
-            name:         handler.component.displayName, 
-            component:    handler.component,
-            path:         handler.path,
-            params:       handler.params,
-            queryParams:  handler.queryParams,
-            hash:         typeof(document) !== 'undefined' && document.location.hash || '',
+            name,
+            component,
+            path,
+            params,
+            queryParams,
+            hash:  typeof(document) !== 'undefined' && document.location.hash || '',
             payload
           };
           

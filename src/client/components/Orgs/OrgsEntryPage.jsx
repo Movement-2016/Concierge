@@ -1,19 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import Link from '../../services/LinkToRoute';
-
-import OrgsMenuPage from './OrgsMenuPage.jsx';
+import Link            from '../../services/LinkToRoute';
+import OrgsMenuPage    from './OrgsMenuPage.jsx';
 import OrgsPageDesktop from './OrgsPageDesktop.jsx';
-import OrgsPageMobile from './OrgsPageMobile.jsx';
+import OrgsPageMobile  from './OrgsPageMobile.jsx';
 
-class OrgsEntryPage extends React.Component {
+class _OrgsEntryPage extends React.Component {
 
   // Redirect mobile state or color-group groups page to desktop groups page
+
   componentWillMount() {
     if( !global.IS_SERVER_REQUEST ) {
-      const { params, mobile } = this.props;
-      if (params && params.slug && !mobile) {
-        Link.navigateTo('/groups#' + params.slug);
+      const { slug, mobile } = this.props;
+      if (slug && !mobile) {
+        Link.navigateTo('/groups#' + slug);
       }      
     }
   }
@@ -21,16 +22,26 @@ class OrgsEntryPage extends React.Component {
   render() {
     const props = this.props;
 
-    const { params, mobile } = props;
+    const { slug, mobile } = props;
 
     if (mobile) {
-      return (params && params.slug)
-        ? <OrgsPageMobile {...props} pageSlug={params.slug} />
+      return slug
+        ? <OrgsPageMobile {...props} />
         : <OrgsMenuPage {...props} />;
     }
 
     return <OrgsPageDesktop {...props} />;
   }
 }
+
+const mapStateToProps = ({ 
+        router: {
+          params: {
+            slug = ''
+          } = {}
+        }
+      }) => ({ slug });
+
+const OrgsEntryPage = connect(mapStateToProps)(_OrgsEntryPage);
 
 module.exports = OrgsEntryPage;

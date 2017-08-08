@@ -9,9 +9,8 @@ import scrollToElement from '../../lib/scrollToElement';
 import { clone } from '../../../shared/lib/general-utils';
 
 
-function ClearAllButton(props) {
-  return <a className={'clearall-button' + (props.visible ? ' visible' : '')} onClick={props.onClearAll}>Clear All</a>
-}
+const ClearAllButton = ({ visible, onClearAll }) => <a className={'clearall-button' + (visible ? ' visible' : '')} onClick={onClearAll}>{'Clear All'}</a>;
+
 
 class FilterSidebarDesktop extends React.Component {
 
@@ -83,7 +82,7 @@ class FilterSidebarDesktop extends React.Component {
     return (
       <div className="filter-sidebar">
         {showOrgsNav && <div className="groups-nav">
-          <div className="groups-nav-title">Navigate</div>
+          <div className="groups-nav-title">{'Navigate'}</div>
           <div className="filter-group">
             <ScrollLinks links={colorSectionsDict} scrollToElement={this.scrollToElement} visible={visibleColorSections} />
             <StatePicker terms={statesDict} scrollToElement={this.scrollToElement} visible={visibleStates} />
@@ -91,7 +90,7 @@ class FilterSidebarDesktop extends React.Component {
         </div>}
         <div className="filters">
           <ClearAllButton visible={showClearAllButton} onClearAll={this.onClearAll} />
-          <div className="filters-title">Filters</div>
+          <div className="filters-title">{'Filters'}</div>
           {Object.keys(filtersDict).map( f => {
             const filterGroupProps = {
                 onFilterChange: this.onFilterChange,

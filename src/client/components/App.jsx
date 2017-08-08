@@ -5,6 +5,9 @@ import { Provider }    from 'react-redux';
 import { initFilters,
          setModel }    from '../../shared/store/actions/groups';
 
+// TODO: move this
+import { setRoute }    from '../../shared/store/actions/router';
+
 import store           from '../../shared/store/';
 
 import Nav             from './Nav.jsx';
@@ -21,6 +24,7 @@ class App extends React.Component {
 
   constructor (props) {
     super (props);
+    this.renderDisable = false;
     this.state = { ...props };
   }
 
@@ -33,7 +37,13 @@ class App extends React.Component {
   }
 
   onNavigate(spec) {
-    store.dispatch( setModel(spec.model) );
+    const {
+      model,
+      params,
+      path,
+      queryParams
+    } = spec;
+    store.dispatch( setRoute({model,params,path,queryParams}) );
     this.setState( spec, (document !== undefined) && !document.location.hash && scrollToTop );
   }
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Sticky      from 'react-stickynode';
 
 import { setVisibility } from '../../../shared/store/actions/groups';
+import { equalIfSameRoute } from '../../../shared/store/actions/router';
 
 import OrgsList             from './OrgsList.jsx';
 import PlanTray             from './PlanTray.jsx';
@@ -49,12 +50,14 @@ const _OrgsPageDesktop = ({
 
 
 const mapStateToProps = ({ 
-          groups: { 
+          router: {
             model, 
             model: {
               orgs, 
               ezDonateTiles
-            }, 
+            }
+          },
+          groups: { 
             visibility, 
             selected 
           }
@@ -77,6 +80,8 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = { setVisibility };
 
-const OrgsPageDesktop = connect( mapStateToProps, mapDispatchToProps )(_OrgsPageDesktop);
+const opts = { areStatesEqual: equalIfSameRoute };
+
+const OrgsPageDesktop = connect( mapStateToProps, mapDispatchToProps, null, opts )(_OrgsPageDesktop);
 
 module.exports = OrgsPageDesktop;

@@ -12,26 +12,24 @@ import PlanTray from './PlanTray.jsx';
 
 import { trimOrgs, getVisibleOrgs } from '../../../shared/lib/group-utils';
 
-function FilterBar(props) {
-  return (
+const FilterBar = ({ onShowFilters }) =>
     <div className="filter-bar-wrapper">
       <Headroom disableInlineStyles>
         <div className="filter-bar">
           <div className="container">
             <Link className="navigate-button" to="/groups">
-              <i className="material-icons">chevron_left</i>
+              <i className="material-icons">{'chevron_left'}</i>
               {'Navigate'}
             </Link>
-            <a className="filter-button" onClick={props.onShowFilters}>
-              <i className="material-icons">filter_list</i>
+            <a className="filter-button" onClick={onShowFilters}>
+              <i className="material-icons">{'filter_list'}</i>
               {'Filter'}
             </a>
           </div>
         </div>
       </Headroom>
-    </div>
-  );
-}
+    </div>;
+
 
 class _OrgsPageMobile extends OrgsPage {
 
@@ -87,7 +85,29 @@ class _OrgsPageMobile extends OrgsPage {
   }
 }
 
-const mapStateToProps = s => ({ visibility: s.groups.visibility, selectedGroups: s.groups.selected });
+const mapStateToProps = ({ 
+        groups: { 
+          visibility, 
+          selected:selectedGroups,
+          model: {
+            orgs,
+            groupFilters
+          },
+        router: {
+          params: {
+            slug = ''
+          } = {}
+        }
+      }
+    }) => 
+        ({
+          slug,
+          visibility,
+          selectedGroups,
+          groupFilters,
+          visibleOrgs: getVisibleOrgs( trimOrgs(orgs, slug), visibility )
+        });
+
 const mapDispatchToProps = { setVisibility };
 
 const OrgsPageMobile = connect( mapStateToProps, mapDispatchToProps )(_OrgsPageMobile);
