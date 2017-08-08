@@ -2,7 +2,9 @@ import React           from 'react';
 import MediaQuery      from 'react-responsive';
 import { Provider }    from 'react-redux';
 
-import { initFilters } from '../../shared/store/actions/groups';
+import { initFilters,
+         setModel }    from '../../shared/store/actions/groups';
+
 import store           from '../../shared/store/';
 
 import Nav             from './Nav.jsx';
@@ -31,6 +33,7 @@ class App extends React.Component {
   }
 
   onNavigate(spec) {
+    store.dispatch( setModel(spec.model) );
     this.setState( spec, (document !== undefined) && !document.location.hash && scrollToTop );
   }
 
@@ -60,6 +63,8 @@ class App extends React.Component {
         - queryParams := ?foo=bar&baz=802 -> { foo: 'bar', baz: 802 }
         - model       := prefectched data model per specs in router
         - mobile      := boolean true on small (992px) screens
+
+      UPDATE: these will be migrating into the redux store        
     */
 
     return (

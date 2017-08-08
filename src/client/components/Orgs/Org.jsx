@@ -1,55 +1,38 @@
 import React from 'react';
 
-function OrgHeader(props) {
-  const labels = props.tags.map(tag => props.terms[tag].name);
+const OrgHeader = ({ tags, terms, id, name }) => {
+  const labels = tags.map(tag => terms[tag].name).join(', ');
 
   return (
     <div className="group-header">
-      <div className="group-title" data-id={props.id} data-href={`/groups#${props.id}`}>
-        {props.name}
+      <div className="group-title" data-id={id} data-href={`/groups#${id}`}>
+        {name}
       </div>
       <div className="nonprofit-tags">
-        {labels.join(', ')}
+        {labels}
       </div>
     </div>
   );
-}
+};
 
-function OrgImage(props) {
-  if (props.url) {
-    return (
-      <img className="group-thumb group-image" src={props.url} />
-    );
-  } else {
-    const i = props.name.search('[A-Za-z]');
-    const letter = props.name[i];
-    return (
-      <div className="group-thumb group-placeholder">{letter}</div>
-    );
-  }
-}
+const OrgImage = ({ url, name }) => url 
+                                      ? <img className="group-thumb group-image" src={url} />
+                                      : <div className="group-thumb group-placeholder">{name[name.search('[A-Za-z]')]}</div>;
 
-function OrgLinks (props) {
-  return (
+const OrgLinks = ({ onOrgClick, planText, planIcon, urlGive, urlWeb }) => 
     <div className="group-links">
-      <a className="group-link" href="#" onClick={props.onOrgClick}>
-        <i className="material-icons">{props.planIcon}</i>{props.planText}</a>
-      {props.urlGive && <a className="group-link" href={props.urlGive} target="_blank">
+      <a className="group-link" href="#" onClick={onOrgClick}>
+        <i className="material-icons">{planIcon}</i>{planText}</a>
+      {urlGive && <a className="group-link" href={urlGive} target="_blank">
         <i className="material-icons">{'star_border'}</i>{'Donate Now'}</a>}
-      {props.urlWeb && <a className="group-link" href={props.urlWeb} target="_blank">
+      {urlWeb && <a className="group-link" href={urlWeb} target="_blank">
         <i className="material-icons">{'link'}</i>{'Website'}</a>}
-    </div>
-  );
-}
+    </div>;
 
-function OrgContent(props) {
-  // eslint-disable-next-line 
-  return ( <div className="group-content"><p dangerouslySetInnerHTML={{__html: props.description }}/></div>);
-}
+   
+const OrgContent = ({ description }) => <div className="group-content"><p dangerouslySetInnerHTML={{__html: description }}/></div>; // eslint-disable-line react/no-danger
 
-function OrgTags(props) {
-  const {fields, filters} = props;
-
+const OrgTags = ({fields, filters}) => {
   const tagBlocks = {};
 
   ['issue-area', 'constituency'].forEach(taxonomySlug => {
@@ -61,6 +44,7 @@ function OrgTags(props) {
   });
 
   const keys = Object.keys(tagBlocks);
+
   if (!keys.length) {
     return null;
   }
@@ -77,31 +61,16 @@ function OrgTags(props) {
       })}
     </div>
   );
-}
+
+};
 
 class _Org extends React.Component {
 
-  constructor() {
-    super(...arguments);
-
-    this.state = {
-      selected: this.props.selected
-    };
-
-    this.onOrgClick = this.onOrgClick.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.state.selected !== nextProps.selected) {
-      this.setState({selected: nextProps.selected});
-    }
-  }
-
   shouldComponentUpdate(nextProps) {
-    return this.state.selected !== nextProps.selected;
+    return this.props.selected !== nextProps.selected;
   }
 
-  onOrgClick(e) {
+  onOrgClick = e => {
     e.preventDefault();
     const { 
       ID, 
@@ -125,10 +94,9 @@ class _Org extends React.Component {
       },
       ID: id,
       filters,
-      mobile
+      mobile,
+      selected
     } = this.props;
-
-    const {selected} = this.state;
 
     const planIcon = selected
       ? 'close'

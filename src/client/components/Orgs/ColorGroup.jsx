@@ -2,10 +2,7 @@ import React from 'react';
 
 import State from './State.jsx';
 
-
-function ColorGroup(props) {
-
-  const {
+const ColorGroup = ({
     slug:       name,
     name:       label,
     statesDict,
@@ -15,9 +12,7 @@ function ColorGroup(props) {
     filters,
     mobile,
     toggleItem
-  } = props;
-
-  return (
+  }) =>
     <div className="color-group scrollspy" id={name}>
       <div className={`color-group-title ${name}-title`}>{label}</div>
       {Object.keys(states).map( s => {
@@ -33,8 +28,6 @@ function ColorGroup(props) {
         };
         return <State key={s} {...stateProps} />;
       })}
-    </div>
-  );
-}
+    </div>;
 
 module.exports = ColorGroup;

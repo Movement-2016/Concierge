@@ -2,9 +2,7 @@ import React from 'react';
 
 import Org from './Org.jsx';
 
-function State(props) {
-
-  const {
+const State = ({
     slug: name,
     name: label,
     items,
@@ -14,9 +12,7 @@ function State(props) {
     filters,
     mobile,
     toggleItem
-  } = props;
-
-  return (
+  }) => 
     <div className="state" id={name}>
       <div className={`state-title ${colorGroup}`}>
         <h4>
@@ -36,7 +32,6 @@ function State(props) {
         return <Org key={o.ID} {...orgProps} />;
       })}
     </div>
-  );
-}
+;
 
 module.exports = State;
