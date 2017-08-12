@@ -40,13 +40,15 @@ const mapStateToProps = ({
       visibility,
     },
     router: {
-      model: {
-          groupFilters: filters,
-          statesDict,
-          colorSections,
-          colorOrder,
-          orgs: allOrgs,
-        }        
+      target: {
+        model: {
+            groupFilters: filters,
+            statesDict,
+            colorSections,
+            colorOrder,
+            orgs: allOrgs,
+          }
+      }
     }
   }) => {
 

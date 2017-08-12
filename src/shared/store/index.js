@@ -10,7 +10,7 @@ import { createLogger }   from 'redux-logger';
 import reducers     from './reducers';
 import login        from './middleware/login';
 
-const logger = process.env.NODE_ENV === 'production' 
+const logger = process.env.NODE_ENV === 'production' || global.IS_SERVER_REQUEST
                                             ? undefined 
                                             : applyMiddleware(createLogger());
 

@@ -12,7 +12,12 @@ import {
   Consult
 } from '../models/plan';
 
-const mapper  = g => g.paths.map( p => {return { path: p, component: g, browserOnly: g.browserOnly || false }; } ); 
+const mapper  = g => g.paths.map( p => ({ 
+                                          path: p, 
+                                          routeModel: g, 
+                                          browserOnly: g.browserOnly || false 
+                                        }) ); 
+
 const flatner = (accum, arrs) => [ ...accum, ...arrs ];
 
 const RouteMap = [ 

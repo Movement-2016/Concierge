@@ -1,4 +1,3 @@
-/* eslint no-console:off */
 const routeMap          = require( '../shared/services/route-map');
 const Router            = require( './router'); 
 
@@ -27,11 +26,11 @@ function pagesRoutes(app) {
 
     app.get( '*', renderPage );
 
-    console.log( 'Ready for routing');
+    console.log( 'Ready for routing'); // eslint-disable-line
 
   }).catch( err => {
     
-    console.log( '=====> Error during route initialization ', err );
+    console.log( '=====> Error during route initialization ', err ); // eslint-disable-line
   
   });
   

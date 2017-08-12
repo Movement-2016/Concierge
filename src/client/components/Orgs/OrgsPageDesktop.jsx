@@ -51,10 +51,12 @@ const _OrgsPageDesktop = ({
 
 const mapStateToProps = ({ 
           router: {
-            model, 
-            model: {
-              orgs, 
-              ezDonateTiles
+            target: {
+              model, 
+              model: {
+                orgs, 
+                ezDonateTiles
+              }
             }
           },
           groups: { 

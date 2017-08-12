@@ -49,9 +49,9 @@ const houseParty = (content) => {
   return _do_email(args);
 };
 
-const emailContact = ({ user, message }) => {
+const emailContact = ({ profile, message }) => {
   const payload = {
-    ...user,
+    ...profile,
     advisorEmail: ADMIN_EMAIL,
     message
   };

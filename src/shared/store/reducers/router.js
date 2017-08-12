@@ -1,27 +1,88 @@
 
 import { 
-  SET_ROUTE
+  NAVIGATION_STARTS,
+  NAVIGATION_ENDS,
+  PATH_NOT_FOUND
 } from '../actions/router';
 
 const INITIAL_STATE = {
-  model: { },
-  params: {  },
-  queryParams: { },
-  path: ''
+  target: {
+    routeModel: {
+      paths: [],  // [ '/foo', '/foo/:bar' ]
+      meta: '',  // HTML <meta tags
+      title: '', // value for <title tag
+      model: () => Promise.resolve({}), 
+      component: null, //  React.Component
+      browserOnly: true //  might be undefined
+    },
+    payload: { res: {}, req: {}, next: () => null }, // http server
+    model: {}, // result of model promise above
+    browserOnly: true // ensured version of flag from routeModel
+  },
+  route: {
+    url: '',          //     /foo/101?baz=yes
+    path: '',         //    /foo/:bar
+    params: {},       //    { bar: 101 }
+    queryParams: {},  //    { baz: 'yes'}
+
+    location: { hash: ''}, // document.location object
+  },
+  navigating: false,
+  notFound: false
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
 
-  switch(action.type){
+  switch(action.type) {
 
-    case SET_ROUTE: {
-      const { model, params, path, queryParams } = action;
+    case NAVIGATION_STARTS: {
+        const {
+          route: {
+            path,
+            params,
+            queryParams,
+            url,
+            location,
+          },
+          target: {
+            routeModel,
+            model,
+            browserOnly,
+            payload,
+          }
+        } = action;
+
       return {
         ...state,
-        model: { ...model },
-        params: { ...params },
-        queryParams: { ...queryParams },
-        path
+        route: { path, params, queryParams, url, location },
+        target: { routeModel, model, browserOnly, payload },
+        navigating: true,
+        notFound: false
+      };
+    }
+
+    case NAVIGATION_ENDS: {
+      return {
+        ...state,
+        navigating: false,
+        notFound: false
+      };
+    }
+
+    case PATH_NOT_FOUND: {
+      const {
+        url, 
+        payload
+      } = action;
+      return {
+        ...state,
+        target: {
+          payload
+        },
+        route: {
+          url
+        },
+        notFound: true
       };
     }
   }

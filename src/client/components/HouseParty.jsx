@@ -29,7 +29,7 @@ class PartyForm extends React.Component {
     const { done, error } = this.state;
 
       return (
-        <ContentPage model={this.props.model} pageName="houseparty">
+        <ContentPage pageName="houseparty">
           <div className="houseparty-form padded-form">
             <h3>{'Your Information'}</h3>
             <form className="user-info" onSubmit={this.onSubmit}>

@@ -1,4 +1,3 @@
-/* eslint no-console:off */
 const Router            = require( '../shared/services/router'); 
 const fs                = require( 'fs');
 
@@ -7,45 +6,74 @@ const React                    = require( 'react');
 
 const utils = require('./html-utils');
 
+const store = require('../shared/store');
+const setRoutes = require('../shared/store/actions/router').setRoutes;
+
 class ServerRouter {
 
   constructor( routeMap, AppSpec, bodyRegex, pathToIndex ) {
-    this.router = new Router();
-    this.router.routes = routeMap;
+    this.router = new Router(store);
+    store.dispatch(setRoutes(routeMap));
     this.indexHTML = fs.readFileSync(pathToIndex,'utf8');
     this.AppSpec = AppSpec;
     this.bodyRegex = bodyRegex;
-    this.router.on( Router.events.NAVIGATE_TO, this.OnNavigate.bind(this) );
-    this.router.on( Router.events.NOT_FOUND,   this.OnNotFound.bind(this) );
+
+    store.subscribe( () => {
+
+      const { 
+        router,
+        router: {
+          navigating,
+          notFound,
+          target: {
+            payload: {
+              next
+            }
+          }
+        }
+       } = store.getState();
+
+      if( navigating ) {
+
+        this.navigate( router );
+
+      } else if( notFound ) {
+
+        next();
+      }
+    });
   }
 
   RenderPath( path, req, res, next ) {
     this.router.updateURL( null, path, { res, req, next } );
   }
 
-  OnNotFound( payload ) {
-    payload.next();
-  }
+  navigate( state ) {
 
-  OnNavigate( props ) {
-
-    const {
-      res,
-      req
-    } = props.payload;
+    const { 
+      target: {
+        routeModel: {
+          title = '',
+          meta = ''
+        },
+        payload: {
+          res
+        }
+      }
+    } = state;
 
     const {
       App,
       appModel
     } = this.AppSpec;
 
-    Object.assign( props, appModel );
+    const props = { model: {...appModel}, store  };
 
     var bodyHTML = renderToStaticMarkup( React.createElement( App, props ) );
 
     var html = this.indexHTML.replace(this.bodyRegex,'$1' + bodyHTML + '$3'); 
 
-    html = utils.titleSetter( props.component, utils.metaSetter(  props.component, html ) );
+    html = utils.titleSetter( title, utils.metaSetter( meta, html ) );
 
     res.setHeader( 'Content-Type', 'text/html' );
     res.end(html);
