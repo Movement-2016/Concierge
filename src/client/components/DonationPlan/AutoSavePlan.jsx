@@ -3,11 +3,11 @@ import { connect }   from 'react-redux';
 import { savePlan }  from '../../../shared/store/actions/plan';
 import { openModal } from '../../../shared/store/actions/modal';
 import ActionButton  from './ActionButton.jsx';
+import { PLAN_AUTOSAVE_INTERVAL } from '../../../config';
 
 let interval = null;
 
-let CLOCK_INTERVAL = 5000; // 5 secs
-
+const MILLISECONDS = 1000;
 
 class _SavePlanButton extends React.Component {
 
@@ -42,7 +42,7 @@ class _SavePlanButton extends React.Component {
   start() {
     this.update();
     if (!interval) {
-      interval = setInterval(this.update.bind(this), this.props.interval || CLOCK_INTERVAL);
+      interval = setInterval(this.update.bind(this), PLAN_AUTOSAVE_INTERVAL * MILLISECONDS );
     }
   }
 

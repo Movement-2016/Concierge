@@ -10,6 +10,9 @@ const ADMIN_EMAIL      = 'advisor@movementvote.org';
 
 const SITE_TITLE       = 'Movement 2017';
 
+const PLAN_AUTOSAVE_INTERVAL = 5; // seconds
+const PROFILE_AUTOSAVE_INTERVAL = 7;
+
 const Facebook = {
     clientId: '115757859022458',
     scope: 'public_profile,email',
@@ -39,5 +42,8 @@ module.exports = {
 
   PLANS_ENDPOINT,
   ADMIN_EMAIL,
-  SITE_TITLE
+  SITE_TITLE,
+
+  PLAN_AUTOSAVE_INTERVAL,
+  PROFILE_AUTOSAVE_INTERVAL
 };

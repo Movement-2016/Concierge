@@ -3,11 +3,11 @@ import { connect }     from 'react-redux';
 import { syncProfile } from '../../../shared/store/actions/profile';
 import { openModal }   from '../../../shared/store/actions/modal';
 
+import { PROFILE_AUTOSAVE_INTERVAL } from '../../../config';
+
 let interval = null;
 
-let ONE_THOUSAND = 1000;
-
-let CLOCK_INTERVAL = 4; // secs
+let MILLISECONDS = 1000;
 
 class _SyncProfileButton extends React.Component {
 
@@ -16,6 +16,7 @@ class _SyncProfileButton extends React.Component {
   }
 
   componentWillUnmount() {
+    this.update();
     if (interval) {
       clearInterval(interval);
       interval = null;
@@ -25,7 +26,7 @@ class _SyncProfileButton extends React.Component {
   start() {
     this.update();
     if (!interval) {
-      interval = setInterval(this.update, (this.props.interval || CLOCK_INTERVAL) * ONE_THOUSAND );
+      interval = setInterval(this.update, PROFILE_AUTOSAVE_INTERVAL * MILLISECONDS );
     }
   }
 
