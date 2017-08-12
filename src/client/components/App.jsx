@@ -9,7 +9,7 @@ import TitleSetter     from './TitleSetter.jsx';
 
 import '../lib/polyfills';
 
-//import scrollToTop from '../lib/scrollToTop';
+import scrollToTop from '../lib/scrollToTop';
 
 import scrollToHash     from '../lib/scrollToHash';
 
@@ -20,13 +20,20 @@ import { SITE_TITLE } from '../../config';
 class __App extends React.Component {
 
   componentDidMount() {
-    scrollToHash(0,SCROLL_DELAY);
+    this.scroll();
   }
 
   componentDidUpdate() {
-    scrollToHash(0,SCROLL_DELAY);
+    this.scroll();
   }
   
+  scroll() {
+    if( this.props.hash ) {
+      scrollToHash(0,SCROLL_DELAY);
+    } else {
+      scrollToTop();
+    }
+  }
   render () {
 
     const { 
@@ -67,8 +74,13 @@ const mapStateToProps = ({
             },
             browserOnly
           }, 
+          route: {
+            location: {
+              hash
+            }
+          }
         } 
-      }) => ({ navigating, component, title, browserOnly });
+      }) => ({ navigating, component, title, browserOnly, hash });
 
 const _App = connect(mapStateToProps)(__App);
 
