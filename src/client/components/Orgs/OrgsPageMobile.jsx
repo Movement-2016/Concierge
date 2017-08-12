@@ -55,23 +55,16 @@ class _OrgsPageMobile extends OrgsPage {
     } = this.state;
 
     const {
-      model,
-      store,
-      pageSlug,
-      model: {
-        orgs,
-        groupFilters
-      },
       visibility,
-      selectedGroups
+      selectedGroups,
+      groupFilters,
+      visibleOrgs
     } = this.props;
-
-    const visibleOrgs = getVisibleOrgs( trimOrgs(orgs, pageSlug), visibility );
 
     return (
       <main className="orgs-page orgs-page-mobile">
         <FilterBar onShowFilters={this.onShowFilters} />
-        <OrgsList store={store} model={model} visibleOrgs={visibleOrgs} mobile />
+        <OrgsList orgs={visibleOrgs} mobile />
         <PlanTray numGroups={selectedGroups.length}/>
         <FilterPageMobile
           showFilters={!showOrgsList}
@@ -88,18 +81,22 @@ class _OrgsPageMobile extends OrgsPage {
 const mapStateToProps = ({ 
         groups: { 
           visibility, 
-          selected:selectedGroups,
-          model: {
-            orgs,
-            groupFilters
-          },
+          selected: selectedGroups,
+        },
         router: {
-          params: {
-            slug = ''
-          } = {}
+          target: {
+            model: {
+              orgs,
+              groupFilters
+            },            
+          },
+          route: {
+            params: {
+              slug
+            }
+          }
         }
-      }
-    }) => 
+      }) => 
         ({
           slug,
           visibility,

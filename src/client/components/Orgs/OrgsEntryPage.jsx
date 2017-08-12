@@ -36,11 +36,14 @@ class _OrgsEntryPage extends React.Component {
 
 const mapStateToProps = ({ 
         router: {
-          params: {
-            slug = ''
-          } = {}
+          navigating,
+          route: {
+            params: {
+              slug = ''
+            } = {}            
+          }
         }
-      }) => ({ slug });
+      }) => ({ slug, navigating });
 
 const OrgsEntryPage = connect(mapStateToProps)(_OrgsEntryPage);
 

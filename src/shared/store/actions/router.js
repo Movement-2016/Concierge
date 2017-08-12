@@ -118,7 +118,7 @@ const checkRecognizerResults = handlers => {
   lie and say they are the same - this prevents the old page from trying to render the
   next route's model
 */
-const equalIfSameRoute = (s1,s2) => s1.router.route.path !== s2.router.route.path || shallowEqual(s1,s2);
+const equalIfSameRoute = (s1,s2) => s1.router.route.url !== s2.router.route.url || shallowEqual(s1,s2);
 
 
 // const equalIfSameRoute = (s1,s2) => {
