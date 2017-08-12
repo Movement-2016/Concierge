@@ -24,7 +24,7 @@ class _RequestConsultOption extends React.Component {
     return(
       <div className="consult-request">
         <input type="checkbox" name="consult-request" id="consult-request" value={value} onChange={this.onChecked} />
-        <label htmlFor="consult-request">Request a consultation with a donation advisor</label>
+        <label htmlFor="consult-request">{'Request a consultation with a donation advisor'}</label>
       </div>
       );
   }

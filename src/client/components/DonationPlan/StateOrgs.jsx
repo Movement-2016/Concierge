@@ -6,10 +6,13 @@ import {
 
 import Org from './Org.jsx';
 
-class StateOrgs extends React.Component {
-  render() {
 
-    const {
+const amountFromOrg = (org,plan) => {
+  const { amount = 0 } = planFromOrg(plan,org.ID) || {};
+  return amount;
+};
+
+const StateOrgs = ({
       addPlanItem,
       toggleItem,
       name,
@@ -17,38 +20,24 @@ class StateOrgs extends React.Component {
       filters,
       colors,
       plan,
-      state,
+      state: {
+        name:label,
+        parent: colorID
+      },
       readonly,
-      mobile,
-      store
-    } = this.props;
-
-    const {
-      name:label,
-      parent: colorID
-    } = state;
-
-    const amountFromOrg = org => {
-      const { amount = 0 } = planFromOrg(plan,org.ID) || {};
-      return amount;
-    };
-
-    return (
-        <div className="plan-state" id={name}>
-        <h3 className={colors[colorID].slug}>{label}</h3>
-          {orgs.map( org => <Org readonly={readonly} 
-                                 key={org.ID} 
-                                 filters={filters} 
-                                 amount={amountFromOrg(org)} 
-                                 mobile={mobile} 
-                                 store={store}
-                                 {...org}
-                                 addPlanItem={addPlanItem}
-                                 toggleItem={toggleItem} 
-                            />)}
-        </div>
-      );
-  }
-}
+      mobile
+    }) => <div className="plan-state" id={name}>
+            <h3 className={colors[colorID].slug}>{label}</h3>
+              {orgs.map( org => <Org readonly={readonly} 
+                                   key={org.ID} 
+                                   filters={filters} 
+                                   amount={amountFromOrg(org,plan)} 
+                                   mobile={mobile} 
+                                   {...org}
+                                   addPlanItem={addPlanItem}
+                                   toggleItem={toggleItem} 
+                                />)}
+          </div>
+;
 
 module.exports=StateOrgs;
