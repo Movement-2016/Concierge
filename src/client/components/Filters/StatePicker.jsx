@@ -1,42 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import Link from '../../services/LinkToRoute';
 
-class StatePicker extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 'select-state'
-    };
+import { 
+  stateFilter,
+  DEFAULT_STATE_FILTER
+} from '../../../shared/store/actions/groups';
 
-    this.handleChange = this.handleChange.bind(this);
-  }
+const onPick = ({target:{value}},stateFilter) => {
+    stateFilter(value);
+    value !== DEFAULT_STATE_FILTER && Link.navigateTo( '#' + value );
+};
 
-  handleChange(event) {
-    const newValue = event.target.value;
-    if (newValue !== 'select-state') {
-      Link.navigateTo( '#' + newValue );
-    }
-    this.setState({value: newValue});
-  }
+const _StatePicker = ({
+  visible,
+  terms,
+  value,
+  stateFilter
+}) => visible.length
+        ? <select className="jump-state browser-default" value={value} onChange={e => onPick(e,stateFilter)}>
+            <option value={DEFAULT_STATE_FILTER}>{'Select State...'}</option>
+            {visible.map(k => <option key={k} value={k}>{terms[k].name}</option>)}
+          </select>
+        : <span />;
 
-  render() {
-    const {
-      visible,
-      terms
-    } = this.props;
 
-    if (!visible.length) {
-      return <span/>;
-    }
-
-    return (
-      <select className="jump-state browser-default" value={this.state.value} onChange={this.handleChange}>
-        <option value="select-state">{'Select State...'}</option>
-        {visible.map(k => <option key={k} value={k}>{terms[k].name}</option>)}
-      </select>
-    );
-  }
-
-}
+const StatePicker = connect( null, { stateFilter } )(_StatePicker);
 
 module.exports = StatePicker;

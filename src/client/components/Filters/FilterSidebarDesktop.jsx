@@ -5,57 +5,19 @@ import FilterGroup from './FilterGroup.jsx';
 import ScrollLinks from './ScrollLinks.jsx';
 import StatePicker from './StatePicker.jsx';
 
-import { setVisibility } from '../../../shared/store/actions/groups';
-
-import { clone } from '../../../shared/lib/general-utils';
+import { 
+  filterRequest, 
+  filterClear
+} from '../../../shared/store/actions/groups';
 
 import {
   getVisibleOrgs,
   getVisibleStates
 } from '../../../shared/lib/group-utils';
 
-
-
 const ClearAllButton = ({ visible, onClearAll }) => <a className={'clearall-button' + (visible ? ' visible' : '')} onClick={onClearAll}>{'Clear All'}</a>;
 
-
-class _FilterSidebarDesktop extends React.Component {
-
-  onFilterChange = (category, term, addFilter) => {
-    const {
-      selectedFilters,
-      setVisibility
-    } = this.props;
-
-    const newFilters = clone(selectedFilters);
-
-    if ( selectedFilters[category] ) {
-      const index = selectedFilters[category].indexOf(term);
-      addFilter
-        ? (index === -1) && newFilters[category].push(term)
-        : (index > -1) && newFilters[category].splice(index, 1);
-    }
-
-    setVisibility( newFilters );
-  }
-
-  onClearAll = () => {
-    const {
-      selectedFilters,
-      setVisibility
-    } = this.props;
-
-    const cleared = {};
-    for (var category in selectedFilters) {
-      cleared[category] = [];
-    }
-
-    setVisibility( cleared );
-  }
-
-  render() {
-
-    const {
+const _FilterSidebarDesktop = ({
       filtersDict,
       colorSectionsDict,
       statesDict,
@@ -63,18 +25,11 @@ class _FilterSidebarDesktop extends React.Component {
       visibleStates,
       selectedFilters,
       showClearAllButton,
-      showOrgsNav
-    } = this.props;
+      showOrgsNav,
 
-    const fprops = f => ({ 
-            onFilterChange: this.onFilterChange, 
-            selectedFilters,
-            name: f,
-            label: filtersDict[f].label,
-            terms: filtersDict[f].terms            
-          });
-
-    return (
+      filterRequest:onFilterChange,
+      filterClear
+    }) => 
       <div className="filter-sidebar">
         {showOrgsNav && <div className="groups-nav">
           <div className="groups-nav-title">{'Navigate'}</div>
@@ -84,14 +39,13 @@ class _FilterSidebarDesktop extends React.Component {
           </div>
         </div>}
         <div className="filters">
-          <ClearAllButton visible={showClearAllButton} onClearAll={this.onClearAll} />
+          <ClearAllButton visible={showClearAllButton} onClearAll={filterClear} />
           <div className="filters-title">{'Filters'}</div>
-          {Object.keys(filtersDict).map( f => <FilterGroup key={f} {...fprops(f)} /> )}
+          {Object.keys(filtersDict).map( (name,key,arr,{ terms, label } = filtersDict[name]) => 
+            <FilterGroup {...{ key, onFilterChange, selectedFilters, name, label, terms }} /> ) }
         </div>
       </div>
-      );
-  }
-}
+;
 
 const mapStateToProps = ({
   router: {
@@ -126,7 +80,7 @@ const mapStateToProps = ({
   };
 };
 
-const mapDispatchToProps = { setVisibility };
+const mapDispatchToProps = { filterClear, filterRequest };
 
 const FilterSidebarDesktop = connect( mapStateToProps, mapDispatchToProps )(_FilterSidebarDesktop);
 
