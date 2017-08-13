@@ -1,25 +1,13 @@
 import utils from '../lib/query-utils';
 
-import { OrgsEntryPage } from '../../client/components/Orgs';
+import { 
+  OrgsEntryPage,
+  OrgsPageMobile
+} from '../../client/components/Orgs';
 
 import service from '../services/m-service';
 
-const GroupsModel = {
-
-  paths: [ '/groups', '/groups/:slug' ],
-
-  component: OrgsEntryPage,
-
-  title: 'Groups',
-
-  meta: [
-    {
-      name: 'description',
-      content: 'A directory of grassroots orgs as culled and curated by Gamechangers Lab. Use this page to create a donation plan'
-    }
-  ],
-
-  model: () => {
+const model = () => {
 
     const queries = {
       taxonomies:       '.taxonomies',
@@ -54,8 +42,34 @@ const GroupsModel = {
         ezDonateTiles:     hash.donateTiles.splice(0,2)
       };
     });
-
-  }
 };
 
-module.exports = GroupsModel;
+const meta = [
+  {
+    name: 'description',
+    content: 'A directory of grassroots orgs as culled and curated by Gamechangers Lab. Use this page to create a donation plan'
+  }
+];
+
+const title = 'Groups';
+
+const GroupsModel = {
+
+  paths: [ '/groups' ],
+  component: OrgsEntryPage,
+  title,
+  meta,
+  model
+
+};
+
+const GroupsSlugModel = {
+
+  paths: [ '/groups/:slug' ],
+  component: OrgsPageMobile,
+  title,
+  meta,
+  model
+};
+
+module.exports = { GroupsModel, GroupsSlugModel };

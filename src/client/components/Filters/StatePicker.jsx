@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from '../../services/LinkToRoute';
 
 class StatePicker extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class StatePicker extends React.Component {
   handleChange(event) {
     const newValue = event.target.value;
     if (newValue !== 'select-state') {
-      this.props.scrollToElement(newValue);
+      Link.navigateTo( '#' + newValue );
     }
     this.setState({value: newValue});
   }
@@ -30,7 +31,7 @@ class StatePicker extends React.Component {
 
     return (
       <select className="jump-state browser-default" value={this.state.value} onChange={this.handleChange}>
-        <option value="select-state">Select State...</option>
+        <option value="select-state">{'Select State...'}</option>
         {visible.map(k => <option key={k} value={k}>{terms[k].name}</option>)}
       </select>
     );

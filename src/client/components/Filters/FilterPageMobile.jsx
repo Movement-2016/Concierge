@@ -1,34 +1,33 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import FilterGroup from './FilterGroup.jsx';
+
+import { setVisibility } from '../../../shared/store/actions/groups';
 
 import { clone } from '../../../shared/lib/general-utils';
 
-function Header(props) {
-  return (
+const Header = ({ onClose, onClearAll }) =>
     <div className="filter-page-bar filter-page-header">
       <div className="container">
-        <a className="close-button" onClick={props.onClose}>
-          <i className="material-icons">close</i>
+        <a className="close-button" onClick={onClose}>
+          <i className="material-icons">{'close'}</i>
         </a>
-        <a className="clearall-button" onClick={props.onClearAll}>
+        <a className="clearall-button" onClick={onClearAll}>
           {'Clear All'}
         </a>
       </div>
     </div>
-  );
-}
+;
 
-function SubmitBar(props) {
-  return (
+const SubmitBar = ({onClick}) => 
     <div className="filter-page-bar filter-submit-bar">
-      <a className="filter-submit-button btn-flat waves-effect waves-light" onClick={props.onClick}>
+      <a className="filter-submit-button btn-flat waves-effect waves-light" onClick={onClick}>
         {'Apply Filters'}
       </a>
     </div>
-  );
-}
+;
 
-class FilterPageMobile extends React.Component {
+class _FilterPageMobile extends React.Component {
 
   constructor() {
     super(...arguments);
@@ -43,7 +42,7 @@ class FilterPageMobile extends React.Component {
 
   // Clear filters and load unfiltered groups page when first mounted
   componentDidMount() {
-    this.props.handleFilterToggle( clone(this.cleared) );
+    this.props.setVisibility( clone(this.cleared) );
   }
 
   onClearAll = () => {
@@ -56,8 +55,13 @@ class FilterPageMobile extends React.Component {
   }
 
   onSubmit = () => {
-    this.props.handleFilterToggle( clone(this.state.selectedFilters) );
-    this.props.handleClose();
+    const {
+      setVisibility,
+      handleClose
+    } = this.props;
+
+    setVisibility( clone(this.state.selectedFilters) );
+    handleClose();
   }
 
   onFilterChange = (category, term, addFilter) => {
@@ -104,13 +108,15 @@ class FilterPageMobile extends React.Component {
   }
 }
 
-FilterPageMobile.propTypes = {
+_FilterPageMobile.propTypes = {
   showFilters:        React.PropTypes.bool.isRequired,
   filtersDict:        React.PropTypes.object.isRequired,
   startingFilters:    React.PropTypes.object.isRequired,
-  handleFilterToggle: React.PropTypes.func.isRequired,
   handleClose:        React.PropTypes.func.isRequired,
 };
 
+const mapDispatchToProps = { setVisibility };
+
+const FilterPageMobile = connect( null, mapDispatchToProps )(_FilterPageMobile);
 
 module.exports = FilterPageMobile;

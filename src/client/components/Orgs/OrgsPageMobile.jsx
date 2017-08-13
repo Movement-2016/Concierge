@@ -1,16 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setVisibility } from '../../../shared/store/actions/groups';
 
 import Link from '../../services/LinkToRoute';
 import Headroom from 'react-headroom';
 
-import OrgsPage from './OrgsPage.jsx';
+
 import OrgsList from './OrgsList.jsx';
 import FilterPageMobile from '../Filters/FilterPageMobile.jsx';
 import PlanTray from './PlanTray.jsx';
 
-import { trimOrgs, getVisibleOrgs } from '../../../shared/lib/group-utils';
+import { setVisibility } from '../../../shared/store/actions/groups';
 
 const FilterBar = ({ onShowFilters }) =>
     <div className="filter-bar-wrapper">
@@ -31,7 +30,7 @@ const FilterBar = ({ onShowFilters }) =>
     </div>;
 
 
-class _OrgsPageMobile extends OrgsPage {
+class _OrgsPageMobile extends React.Component {
 
   constructor() {
     super(...arguments);
@@ -58,19 +57,19 @@ class _OrgsPageMobile extends OrgsPage {
       visibility,
       selectedGroups,
       groupFilters,
-      visibleOrgs
+      setVisibility
     } = this.props;
 
     return (
       <main className="orgs-page orgs-page-mobile">
         <FilterBar onShowFilters={this.onShowFilters} />
-        <OrgsList orgs={visibleOrgs} mobile />
+        <OrgsList mobile />
         <PlanTray numGroups={selectedGroups.length}/>
         <FilterPageMobile
           showFilters={!showOrgsList}
           filtersDict={groupFilters}
           startingFilters={visibility}
-          handleFilterToggle={this.handleFilterToggle}
+          handleFilterToggle={visibility => setVisibility( visibility )}
           handleClose={this.onShowOrgsList}
         />
       </main>
@@ -86,23 +85,15 @@ const mapStateToProps = ({
         router: {
           target: {
             model: {
-              orgs,
               groupFilters
             },            
           },
-          route: {
-            params: {
-              slug
-            }
-          }
         }
       }) => 
         ({
-          slug,
           visibility,
           selectedGroups,
-          groupFilters,
-          visibleOrgs: getVisibleOrgs( trimOrgs(orgs, slug), visibility )
+          groupFilters
         });
 
 const mapDispatchToProps = { setVisibility };

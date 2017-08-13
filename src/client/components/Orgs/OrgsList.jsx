@@ -6,7 +6,8 @@ import { toggleItem }       from '../../../shared/store/actions/plan';
 import { equalIfSameRoute } from '../../../shared/store/actions/router';
 
 import {
-  getVisibleOrgs
+  getVisibleOrgs,
+  trimOrgs
 } from '../../../shared/lib/group-utils';
 
 
@@ -40,6 +41,11 @@ const mapStateToProps = ({
       visibility,
     },
     router: {
+      route: {
+        params: {
+          slug
+        }
+      },
       target: {
         model: {
             groupFilters: filters,
@@ -52,7 +58,7 @@ const mapStateToProps = ({
     }
   }) => {
 
-  const orgs        = getVisibleOrgs( allOrgs, visibility );
+  const orgs        = getVisibleOrgs( trimOrgs(allOrgs,slug), visibility );
   const colorGroups = colorSections.reduce( (accum,color) => (accum[color.slug] = color, accum), {} );
   const order       = colorOrder.reduce( (accum,c,i) => (accum[c] = i, accum), {} );
   const visible     = Object.keys(orgs || {}).reduce( (accum,colorGroup) => (accum[colorGroup] = colorGroups[colorGroup],accum), {} );
@@ -63,8 +69,10 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = { toggleItem };
 
+const mergeProps = (stateProps, dispatchProps, ownProps) => Object.assign({}, ownProps, stateProps, dispatchProps);
+
 const opts = { areStatesEqual: equalIfSameRoute };
 
-const OrgsList = connect(mapStateToProps,mapDispatchToProps,null,opts)(_OrgsList);
+const OrgsList = connect(mapStateToProps,mapDispatchToProps,mergeProps,opts)(_OrgsList);
 
 module.exports = OrgsList;

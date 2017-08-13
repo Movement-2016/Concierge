@@ -2,8 +2,7 @@
 import {
   SET_VISIBILITY,
   INIT_FILTERS,
-  TOGGLE_SELECTION,
-  SET_MODEL
+  TOGGLE_SELECTION
  } from '../actions/groups';
 
 import {
@@ -13,8 +12,7 @@ import {
 
 const initialState = {
   visibility: {},
-  selected: [],
-  model: {}
+  selected: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -49,13 +47,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         selected: plan.donations.map( d => d.id )
-      };
-    }
-
-    case SET_MODEL: {
-      return {
-        ...state,
-        model: { ...action.model }
       };
     }
 

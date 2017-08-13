@@ -1,29 +1,30 @@
 import React from 'react';
-import Router from '../../services/router';
+import { connect } from 'react-redux';
 
 import FilterGroup from './FilterGroup.jsx';
 import ScrollLinks from './ScrollLinks.jsx';
 import StatePicker from './StatePicker.jsx';
 
-import scrollToElement from '../../lib/scrollToElement';
+import { setVisibility } from '../../../shared/store/actions/groups';
+
 import { clone } from '../../../shared/lib/general-utils';
+
+import {
+  getVisibleOrgs,
+  getVisibleStates
+} from '../../../shared/lib/group-utils';
+
 
 
 const ClearAllButton = ({ visible, onClearAll }) => <a className={'clearall-button' + (visible ? ' visible' : '')} onClick={onClearAll}>{'Clear All'}</a>;
 
 
-class FilterSidebarDesktop extends React.Component {
-
-  // helper function to scroll to a state or color section
-  scrollToElement = (element) => {
-    Router.service.setBrowserAddressBar('/groups#' + element);
-    scrollToElement('#' + element);
-  }
+class _FilterSidebarDesktop extends React.Component {
 
   onFilterChange = (category, term, addFilter) => {
     const {
       selectedFilters,
-      handleFilterToggle
+      setVisibility
     } = this.props;
 
     const newFilters = clone(selectedFilters);
@@ -35,13 +36,13 @@ class FilterSidebarDesktop extends React.Component {
         : (index > -1) && newFilters[category].splice(index, 1);
     }
 
-    handleFilterToggle( newFilters );
+    setVisibility( newFilters );
   }
 
   onClearAll = () => {
     const {
       selectedFilters,
-      handleFilterToggle
+      setVisibility
     } = this.props;
 
     const cleared = {};
@@ -49,72 +50,84 @@ class FilterSidebarDesktop extends React.Component {
       cleared[category] = [];
     }
 
-    handleFilterToggle( cleared );
-  }
-
-  shouldComponentUpdate(nextProps) {
-    if (this.props.selectedFilters !== nextProps.selectedFilters) {
-      return true;
-    }
-    return false;
+    setVisibility( cleared );
   }
 
   render() {
 
     const {
-      model: {
-        groupFilters: filtersDict,
-        colorSectionsDict,
-        statesDict
-      },
+      filtersDict,
+      colorSectionsDict,
+      statesDict,
       visibleColorSections,
       visibleStates,
-      selectedFilters
+      selectedFilters,
+      showClearAllButton,
+      showOrgsNav
     } = this.props;
 
-    const numFiltersSelected = Object.keys(selectedFilters).reduce(
-      (accum, category) => accum + selectedFilters[category].length, 0
-    );
-    const showClearAllButton = numFiltersSelected > 0;
-
-    const showOrgsNav = visibleColorSections.length + visibleStates.length > 0;
+    const fprops = f => ({ 
+            onFilterChange: this.onFilterChange, 
+            selectedFilters,
+            name: f,
+            label: filtersDict[f].label,
+            terms: filtersDict[f].terms            
+          });
 
     return (
       <div className="filter-sidebar">
         {showOrgsNav && <div className="groups-nav">
           <div className="groups-nav-title">{'Navigate'}</div>
           <div className="filter-group">
-            <ScrollLinks links={colorSectionsDict} scrollToElement={this.scrollToElement} visible={visibleColorSections} />
-            <StatePicker terms={statesDict} scrollToElement={this.scrollToElement} visible={visibleStates} />
+            <ScrollLinks links={colorSectionsDict} visible={visibleColorSections} />
+            <StatePicker terms={statesDict}        visible={visibleStates} />
           </div>
         </div>}
         <div className="filters">
           <ClearAllButton visible={showClearAllButton} onClearAll={this.onClearAll} />
           <div className="filters-title">{'Filters'}</div>
-          {Object.keys(filtersDict).map( f => {
-            const filterGroupProps = {
-                onFilterChange: this.onFilterChange,
-                selectedFilters,
-                name: f,
-                label: filtersDict[f].label,
-                terms: filtersDict[f].terms
-            };
-              return <FilterGroup key={f} {...filterGroupProps} />;
-          }
-          )}
+          {Object.keys(filtersDict).map( f => <FilterGroup key={f} {...fprops(f)} /> )}
         </div>
       </div>
       );
   }
 }
 
-FilterSidebarDesktop.propTypes = {
-  model:                React.PropTypes.object.isRequired,
-  selectedFilters:      React.PropTypes.object.isRequired,
-  handleFilterToggle:   React.PropTypes.func.isRequired,
-  visibleColorSections: React.PropTypes.array.isRequired,
-  visibleStates:        React.PropTypes.array.isRequired,
+const mapStateToProps = ({
+  router: {
+    target: {
+      model: {
+        groupFilters: filtersDict,
+        colorSectionsDict,
+        statesDict,
+        orgs
+      },      
+    }
+  },
+  groups: { 
+    visibility, 
+  }
+}) => {
+
+  const visibleOrgs = getVisibleOrgs( orgs, visibility );
+  const numFiltersSelected = Object.keys(visibility).reduce((accum, category) => accum + visibility[category].length, 0);
+  const visibleColorSections =  Object.keys(visibleOrgs);
+  const visibleStates = getVisibleStates(visibleOrgs);
+
+  return {
+    filtersDict,
+    colorSectionsDict,
+    statesDict,
+    selectedFilters: visibility,
+    showClearAllButton: numFiltersSelected > 0,
+    showOrgsNav: visibleColorSections.length + visibleStates.length > 0,
+    visibleColorSections,
+    visibleStates
+  };
 };
 
+const mapDispatchToProps = { setVisibility };
+
+const FilterSidebarDesktop = connect( mapStateToProps, mapDispatchToProps )(_FilterSidebarDesktop);
 
 module.exports = FilterSidebarDesktop;

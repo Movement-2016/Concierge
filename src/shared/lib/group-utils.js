@@ -61,6 +61,10 @@ const getVisibleOrgs = (orgs,filters) => {
 
 // Trims orgs object to only include part indicated in pageSlug
 const trimOrgs = (orgs, pageSlug) => {
+  if( !pageSlug ) {
+    return orgs;
+  }
+  
   var trimmedOrgs = {};
 
   if (typeof(orgs[pageSlug]) !== 'undefined') { // this is true for a color section slug like 'dark-blue-states'
