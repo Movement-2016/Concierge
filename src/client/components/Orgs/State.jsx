@@ -8,7 +8,6 @@ const State = ({
     items,
     colorGroup,
     selected: selectedOrgs,
-    store,
     filters,
     mobile,
     toggleItem
@@ -23,7 +22,6 @@ const State = ({
       {items.map( o => {
         const orgProps = {
           selected: selectedOrgs.includes(o.ID),
-          store,
           filters,
           mobile,
           toggleItem,

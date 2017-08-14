@@ -64,80 +64,104 @@ const OrgTags = ({fields, filters}) => {
 
 };
 
-class _Org extends React.Component {
-
-  shouldComponentUpdate(nextProps) {
-    return this.props.selected !== nextProps.selected;
-  }
-
-  onOrgClick = e => {
-    e.preventDefault();
-    const { 
-      ID, 
-      toggleItem
-    } = this.props;
-
-    toggleItem(ID);
-  }
-
-  render() {
-    const {
-      post_title: name,
-      post_content: description,
-      fields,
-      fields: {
-        website: urlWeb,
-        c4_donate_link: urlC4,
-        c3_donate_link: urlC3,
-        'nonprofit-type': npTags = [],
-        image
-      },
-      ID: id,
-      filters,
-      mobile,
-      selected
-    } = this.props;
-
-    const planIcon = selected
-      ? 'close'
-      : 'playlist_add';
-    const planText = selected
-      ? 'Remove'
-      : 'Add to plan';
-    const cls = selected
-      ? 'selected'
-      : '';
-
-    const npTerms = filters['nonprofit-type'].terms;
-
-    const urlGive = urlC3 || urlC4;
-
-    if (mobile) {
-      return (
+const OrgMobile = ({
+    cls,
+    description,
+    fields,
+    filters,
+    id,
+    image,
+    name,
+    npTags,
+    npTerms,
+    onClick,
+    planIcon,
+    planText,
+    urlGive,
+    urlWeb,
+  }) =>         
         <div className={`group ${cls}`}>
           <OrgHeader id={id} name={name} tags={npTags} terms={npTerms}/>
           <OrgImage url={image} name={name} />
-          <OrgLinks {...{urlGive, urlWeb, planIcon, planText}} onOrgClick={this.onOrgClick} />
+          <OrgLinks {...{urlGive, urlWeb, planIcon, planText}} onOrgClick={onClick} />
           <OrgContent description={description} />
           <OrgTags fields={fields} filters={filters} />
-        </div>
-      );
-    }
+        </div>;
 
-    return (
-      <div className={`group ${cls}`}>
+const OrgDesktop = ({
+    cls,
+    description,
+    fields,
+    filters,
+    id,
+    image,
+    name,
+    npTags,
+    npTerms,
+    onClick,
+    planIcon,
+    planText,
+    urlGive,
+    urlWeb,
+}) => <div className={`group ${cls}`}>
         <div className="image-col">
           <OrgImage url={image} name={name} />
-          <OrgLinks {...{urlGive, urlWeb, planIcon, planText}} onOrgClick={this.onOrgClick} />
+          <OrgLinks {...{urlGive, urlWeb, planIcon, planText}} onOrgClick={onClick} />
         </div>
         <div className="content-col">
           <OrgHeader id={id} name={name} tags={npTags} terms={npTerms}/>
           <OrgContent description={description} />
           <OrgTags fields={fields} filters={filters} />
         </div>
-      </div>
-    );
+      </div>;
+
+const translateProps = ({
+  post_title: name,
+  post_content: description,
+  fields,
+  fields: {
+    website: urlWeb,
+    c4_donate_link: urlC4,
+    c3_donate_link: urlC3,
+    'nonprofit-type': npTags = [],
+    image
+  },
+  ID: id,
+  filters,
+  mobile,
+  selected,
+  toggleItem
+}) => ({
+  cls: selected ? 'selected' : '',
+  description,
+  fields,
+  filters,
+  id,
+  image,
+  mobile,
+  name,
+  npTags,
+  npTerms: filters['nonprofit-type'].terms,
+  onClick: function(e) { e.preventDefault(); toggleItem(id); },
+  planIcon: selected ? 'close' : 'playlist_add',
+  planText: selected ? 'Remove' : 'Add to plan',
+  urlGive: urlC3 || urlC4,
+  urlWeb,
+});
+
+class Org extends React.Component {
+
+  shouldComponentUpdate(nextProps) {
+    return this.props.selected !== nextProps.selected;
+  }
+
+  render() {
+    const props = translateProps(this.props);
+
+    return props.mobile 
+            ? <OrgMobile {...props} />
+            : <OrgDesktop {...props} />;
   }
 }
 
-module.exports = _Org;
+module.exports = Org;

@@ -3,9 +3,9 @@ import axios   from 'axios';
 
 let _fetch = axios;
 
-const WP_DEV      = false;
-const WP_API_HOST = WP_DEV ? 'http://localhost:8080/wordpress' : 'https://wp.movementvote.org';
-const WP_API_BASE = WP_API_HOST + '/wp-json/movement-2018/';
+import {
+  M_SERVICE_END_POINT 
+} from '../../config';
 
 function checkStatus(response) {
   if (!response.status || (response.status >= 200 && response.status < 300)) {
@@ -28,9 +28,11 @@ function parseJSON(response) {
 
 class MovementVoteService {
   constructor() {
-    this._base = WP_API_BASE;
+    this._base = M_SERVICE_END_POINT;
     this._pages = {};
     this._promises = {};
+
+    this._database = {};
   }
 
   _fetch(part) {
@@ -59,13 +61,13 @@ class MovementVoteService {
   }
 
   get content() {
-    if( this._promises['content'] ) {
-      return this._promises['content'];
+    if( this._promises.content ) {
+      return this._promises.content;
     }
     return this._content
       ? Promise.resolve(this._content)
-      : (this._promises['content'] = this._fetch( 'content' )).then( p => {
-                                                  this._promises['content'] = null; 
+      : (this._promises.content = this._fetch( 'content' )).then( p => {
+                                                  this._promises.content = null; 
                                                   return this._content = p;
                                                 } );
   }
@@ -75,7 +77,6 @@ class MovementVoteService {
       ? Promise.resolve(this._pages[slug])
       : this._fetch( 'page/' + slug ).then( p => this._pages[slug] = p );
   }
-
 }
 
 var service = new MovementVoteService();

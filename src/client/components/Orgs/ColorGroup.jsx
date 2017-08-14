@@ -8,7 +8,6 @@ const ColorGroup = ({
     statesDict,
     states,
     selected,
-    store,
     filters,
     mobile,
     toggleItem
@@ -20,7 +19,6 @@ const ColorGroup = ({
           items: states[s],
           colorGroup: name,
           selected,
-          store,
           filters,
           mobile,
           toggleItem,

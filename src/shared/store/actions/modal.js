@@ -1,19 +1,9 @@
 const OPEN_MODAL      = 'OPEN_MODAL';
 const CLOSE_MODAL     = 'CLOSE_MODAL';
 
-function closeModal(){
-  return {
-      type: CLOSE_MODAL
-    };
-}
+const closeModal = () => ({ type: CLOSE_MODAL });
 
-function openModal(name,options){
-  return {
-      type: OPEN_MODAL,
-      name,
-      options
-    };
-}
+const openModal = (name,options) => ({ type: OPEN_MODAL, name, options });
 
 module.exports = {
   closeModal,

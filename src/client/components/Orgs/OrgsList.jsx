@@ -22,17 +22,8 @@ const _OrgsList = ({
       toggleItem
     }) =>
       <div className="group-area">
-        {colors.map( color => <ColorGroup
-                                key={color}
-                                {...colorGroups[color]}
-                                selected={selected}
-                                states={orgs[color]}
-                                filters={filters}
-                                statesDict={statesDict}
-                                mobile={mobile}
-                                toggleItem={toggleItem}
-                              />
-        )}
+        {colors.map( color => 
+          <ColorGroup {...{key:color, states:orgs[color], selected, filters, statesDict, mobile, toggleItem,...colorGroups[color]}}/>)}
       </div>;
 
 const mapStateToProps = ({
@@ -69,10 +60,8 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = { toggleItem };
 
-const mergeProps = (stateProps, dispatchProps, ownProps) => Object.assign({}, ownProps, stateProps, dispatchProps);
-
 const opts = { areStatesEqual: equalIfSameRoute };
 
-const OrgsList = connect(mapStateToProps,mapDispatchToProps,mergeProps,opts)(_OrgsList);
+const OrgsList = connect(mapStateToProps,mapDispatchToProps,null,opts)(_OrgsList);
 
 module.exports = OrgsList;

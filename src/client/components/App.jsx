@@ -66,7 +66,6 @@ class __App extends React.Component {
 
 const mapStateToProps = ({ 
         router: { 
-          navigating, 
           target: {
             routeModel: {
               component,
@@ -80,7 +79,7 @@ const mapStateToProps = ({
             }
           }
         } 
-      }) => ({ navigating, component, title, browserOnly, hash });
+      }) => ({ component, title, browserOnly, hash });
 
 const _App = connect(mapStateToProps)(__App);
 
