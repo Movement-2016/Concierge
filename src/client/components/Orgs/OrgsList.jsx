@@ -1,15 +1,16 @@
-import React         from 'react';
+import React       from 'react';
 import { connect } from 'react-redux';
-import ColorGroup from './ColorGroup.jsx';
+import ColorGroup  from './ColorGroup.jsx';
 
-import { toggleItem }       from '../../../shared/store/actions/plan';
-import { equalIfSameRoute } from '../../../shared/store/actions/router';
+import { toggleItem }   from '../../../shared/store/actions/plan';
+import shallowEqual     from '../../../shared/lib/shallowEqual';
 
 import {
   getVisibleOrgs,
   trimOrgs
 } from '../../../shared/lib/group-utils';
 
+function log() { var d = new Date(); console.log(...arguments, d, d.getMilliseconds()); return true; } // eslint-disable-line no-console
 
 const _OrgsList = ({
       selected,
@@ -20,7 +21,7 @@ const _OrgsList = ({
       colorGroups,
       mobile,
       toggleItem
-    }) =>
+    }) => log('PAINTING ORGLIST') &&
       <div className="group-area">
         {colors.map( color => 
           <ColorGroup {...{key:color, states:orgs[color], selected, filters, statesDict, mobile, toggleItem,...colorGroups[color]}}/>)}
@@ -61,7 +62,9 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = { toggleItem };
 
-const opts = { areStatesEqual: equalIfSameRoute };
+const preventRefreshOnNavigate = (s1,s2) => s2.router.navigating || shallowEqual(s1.groups,s2.groups);
+
+const opts = { areStatesEqual: preventRefreshOnNavigate };
 
 const OrgsList = connect(mapStateToProps,mapDispatchToProps,null,opts)(_OrgsList);
 

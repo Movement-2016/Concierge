@@ -2,8 +2,6 @@ import React       from 'react';
 import { connect } from 'react-redux';
 import Sticky      from 'react-stickynode';
 
-import { equalIfSameRoute } from '../../../shared/store/actions/router';
-
 import OrgsList             from './OrgsList.jsx';
 import PlanTray             from './PlanTray.jsx';
 import FilterSidebarDesktop from '../Filters/FilterSidebarDesktop.jsx';
@@ -60,8 +58,6 @@ const mapStateToProps = ({
   };
 };
 
-const opts = { areStatesEqual: equalIfSameRoute };
-
-const OrgsPageDesktop = connect( mapStateToProps, null, null, opts )(_OrgsPageDesktop);
+const OrgsPageDesktop = connect( mapStateToProps )(_OrgsPageDesktop);
 
 module.exports = OrgsPageDesktop;

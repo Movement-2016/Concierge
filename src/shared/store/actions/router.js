@@ -1,5 +1,4 @@
 import RouteRecognizer  from 'route-recognizer';
-import shallowEqual     from '../../lib/shallowEqual';
 
 const SET_ROUTES        = 'SET_ROUTES';
 const NAVIGATION_STARTS = 'NAVIGATION_STARTS';
@@ -113,19 +112,6 @@ const checkRecognizerResults = handlers => {
   return handlers[0];
 };
 
-/*
-  If the paths are NOT the same between the incoming state and the current state then we
-  lie and say they are the same - this prevents the old page from trying to render the
-  next route's model
-*/
-const equalIfSameRoute = (s1,s2) => s1.router.route.url !== s2.router.route.url || shallowEqual(s1,s2);
-
-
-// const equalIfSameRoute = (s1,s2) => {
-//   console.log( 'EQUAL IF SAME CALLED');
-//   return _equalIfSameRoute(s1,s2);
-// };
-
 module.exports = {
   SET_ROUTES,
   NAVIGATION_STARTS,
@@ -136,7 +122,5 @@ module.exports = {
   // setNavigationStarts,
   // setNavigationEnds,
   // pathNotFound,
-  navigateTo,
-
-  equalIfSameRoute
+  navigateTo
 };
