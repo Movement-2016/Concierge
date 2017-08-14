@@ -26,6 +26,7 @@ const _OrgsList = ({
           <ColorGroup {...{key:color, states:orgs[color], selected, filters, statesDict, mobile, toggleItem,...colorGroups[color]}}/>)}
       </div>;
 
+
 const mapStateToProps = ({
     groups: {
       selected,
