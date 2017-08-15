@@ -8,7 +8,6 @@ import providers       from '../shared/services/auth/providers';
 import Router          from './services/router';     
 import { App }         from './components';
 import config          from '../config';
-import { initFilters } from '../shared/store/actions/groups';
 
 
 if( !global.IS_SERVER_REQUEST ) {
@@ -17,17 +16,7 @@ if( !global.IS_SERVER_REQUEST ) {
 
   appModel.model().then( model => {
 
-    // Step 1. initialize UX filters 
-    //         this browser only
-    //         makes no sense to do this on server
-
-    const {
-      groupFilters 
-    } = model;
-
-    store.dispatch( initFilters(groupFilters) );
-
-    // Step 2. initialize router
+    // Step 1. initialize router
     //         the browser has a different route map from server
     //         see server/pages.js 
 
@@ -35,7 +24,7 @@ if( !global.IS_SERVER_REQUEST ) {
     const routeMap = require('../shared/services/route-map');
     store.dispatch( setRoutes(routeMap) );
 
-    // Step 3. Render the App into the index.html via DOM
+    // Step 2. Render the App into the index.html via DOM
     //         the server uses a different API to do this
 
 
@@ -54,7 +43,7 @@ if( !global.IS_SERVER_REQUEST ) {
       }
     });
     
-    // Step 4. Trigger a navigation state change
+    // Step 3. Trigger a navigation state change
     //
 
     router.updateURL();

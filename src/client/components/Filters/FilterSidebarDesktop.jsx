@@ -1,48 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import ClearAllButton from './ClearAllButton.jsx';
 import FilterGroup from './FilterGroup.jsx';
 import ScrollLinks from './ScrollLinks.jsx';
 import StatePicker from './StatePicker.jsx';
 
-import { 
-  filterRequest, 
-  filterClear
-} from '../../../shared/store/actions/groups';
-
-import {
-  getVisibleOrgs,
-  getVisibleStates
-} from '../../../shared/lib/group-utils';
-
-const ClearAllButton = ({ visible, onClearAll }) => <a className={'clearall-button' + (visible ? ' visible' : '')} onClick={onClearAll}>{'Clear All'}</a>;
-
 const _FilterSidebarDesktop = ({
-      filtersDict,
-      colorSectionsDict,
-      statesDict,
-      visibleColorSections,
-      visibleStates,
-      selectedFilters,
-      showClearAllButton,
+      filterCategories,
       showOrgsNav,
-
-      filterRequest:onFilterChange,
-      filterClear
     }) => 
       <div className="filter-sidebar">
         {showOrgsNav && <div className="groups-nav">
           <div className="groups-nav-title">{'Navigate'}</div>
           <div className="filter-group">
-            <ScrollLinks links={colorSectionsDict} visible={visibleColorSections} />
-            <StatePicker terms={statesDict}        visible={visibleStates} />
+            <ScrollLinks />
+            <StatePicker />
           </div>
         </div>}
         <div className="filters">
-          <ClearAllButton visible={showClearAllButton} onClearAll={filterClear} />
+          <ClearAllButton />
           <div className="filters-title">{'Filters'}</div>
-          {Object.keys(filtersDict).map( (name,key,arr,{ terms, label } = filtersDict[name]) => 
-            <FilterGroup {...{ key, onFilterChange, selectedFilters, name, label, terms }} /> ) }
+          {filterCategories.map( ({id,name,slug}) => <FilterGroup key={id} {...{slug,id,name}}  /> )}
         </div>
       </div>
 ;
@@ -51,37 +30,18 @@ const mapStateToProps = ({
   router: {
     target: {
       model: {
-        groupFilters: filtersDict,
-        colorSectionsDict,
-        statesDict,
-        orgs
-      },      
+        db
+      }
     }
   },
   groups: { 
     visibility, 
   }
-}) => {
+}) => ({
+    filterCategories: db.tagCategories,
+    showOrgsNav: db.visibleGroups(visibility).length > 0
+  });
 
-  const visibleOrgs = getVisibleOrgs( orgs, visibility );
-  const numFiltersSelected = Object.keys(visibility).reduce((accum, category) => accum + visibility[category].length, 0);
-  const visibleColorSections =  Object.keys(visibleOrgs);
-  const visibleStates = getVisibleStates(visibleOrgs);
-
-  return {
-    filtersDict,
-    colorSectionsDict,
-    statesDict,
-    selectedFilters: visibility,
-    showClearAllButton: numFiltersSelected > 0,
-    showOrgsNav: visibleColorSections.length + visibleStates.length > 0,
-    visibleColorSections,
-    visibleStates
-  };
-};
-
-const mapDispatchToProps = { filterClear, filterRequest };
-
-const FilterSidebarDesktop = connect( mapStateToProps, mapDispatchToProps )(_FilterSidebarDesktop);
+const FilterSidebarDesktop = connect( mapStateToProps )(_FilterSidebarDesktop);
 
 module.exports = FilterSidebarDesktop;

@@ -36,27 +36,23 @@ const _OrgsPageDesktop = ({
         <div className="bottom-spacer" />
       </main>;
 
-
 const mapStateToProps = ({ 
-          router: {
-            target: {
-              model: {
-                db
-              }
-            }
-          },
-          groups: { 
-            selected: {
-              length: numSelected
+        router: {
+          target: {
+            model: {
+              db
             }
           }
-        }) => {
-
-  return { 
-    numSelected,
-    ezDonateTiles: db.donateTiles
-  };
-};
+        },
+        groups: { 
+          selected: {
+            length: numSelected
+          }
+        }
+      }) => ({ 
+          numSelected,
+          ezDonateTiles: db.donateTiles
+        });
 
 const OrgsPageDesktop = connect( mapStateToProps )(_OrgsPageDesktop);
 

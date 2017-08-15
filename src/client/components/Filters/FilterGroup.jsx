@@ -1,4 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { 
+  toggleFilter
+} from '../../../shared/store/actions/groups';
 
 class Filter extends React.Component {
 
@@ -9,52 +14,60 @@ class Filter extends React.Component {
   render() {
 
     const {
-      label,
-      slug,
-      category,
-      onChange,
+      toggleFilter,
+      id,
+      name,
       checked
     } = this.props;
 
     const checkboxProps = {
       type:      'checkbox',
       className: 'filter-checkbox filled-in',
-      id:        'checkbox-' + slug,
-      onChange:   () => onChange(category, slug, !checked),
+      id:        'checkbox-' + id,
+      onChange:   () => toggleFilter(id),
       checked
     };
 
     return (
       <div className="filter">
-        <input {...checkboxProps} /> <label htmlFor={checkboxProps.id}>{label}</label>
+        <input {...checkboxProps} /> <label htmlFor={checkboxProps.id}>{name}</label>
       </div>
     );
   }
 }
 
-const FilterGroup = ({
-    label,
+const _FilterGroup = ({
+    id,
+    slug,
     name,
-    terms,
-    onFilterChange,
-    selectedFilters
-  }) => <div className={`filter-group ${name}-filters`}>
+    tags,
+    toggleFilter,
+    selected
+  }) => <div className={`filter-group ${slug}-filters`}>
           <div className="filter-group-label">
-            {label}
+            {name}
           </div>
-          {selectedFilters[name] && Object.keys(terms).map( t => {
-              const checked = selectedFilters[name].includes(t) ? true : false;
-              const filterProps = {
-                slug:     t,
-                label:    terms[t].name,
-                category: name,
-                onChange: onFilterChange,
-                checked
-              };
-              return <Filter key={t} {...filterProps} />;
-            }
-          )}
+          {tags.filter( tag => tag.category === id ).map( ({id,name}) => <Filter key={id} {...{toggleFilter,id,name,checked:selected.includes(id)}} />)}
         </div>
 ;
+
+const mapStateToProps = ({
+  router: {
+    target: {
+      model: {
+        db: {
+          tags
+        }
+      }
+    }
+  },
+  groups: {
+    visibility: selected
+  }
+}) => ({ tags, selected });
+
+const mapDispatchToProps = { toggleFilter };
+
+const FilterGroup = connect( mapStateToProps, mapDispatchToProps )(_FilterGroup);
 
 module.exports = FilterGroup;

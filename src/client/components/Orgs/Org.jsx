@@ -1,19 +1,15 @@
 import React from 'react';
 
-const OrgHeader = ({ tags, terms, id, name }) => {
-  const labels = tags.map(tag => terms[tag].name).join(', ');
-
-  return (
+const OrgHeader = ({ tags, id, name }) => 
     <div className="group-header">
       <div className="group-title" data-id={id} data-href={`/groups#${id}`}>
         {name}
       </div>
       <div className="nonprofit-tags">
-        {labels}
+        {tags && tags.tags.map( tag => tag.name ).join(', ')}
       </div>
     </div>
-  );
-};
+;
 
 const OrgImage = ({ url, name }) => url 
                                       ? <img className="group-thumb group-image" src={url} />
@@ -32,116 +28,98 @@ const OrgLinks = ({ onOrgClick, planText, planIcon, urlGive, urlWeb }) =>
    
 const OrgContent = ({ description }) => <div className="group-content"><p dangerouslySetInnerHTML={{__html: description }}/></div>; // eslint-disable-line react/no-danger
 
-const OrgTags = ({fields, filters}) => {
-  const tagBlocks = {};
-
-  ['issue-area', 'constituency'].forEach(taxonomySlug => {
-    if (fields[taxonomySlug] && fields[taxonomySlug].length) {
-      const taxonomy = filters[taxonomySlug];
-      const terms = taxonomy.terms;
-      tagBlocks[taxonomy.label] = fields[taxonomySlug].map(slug => terms[slug].name);
-    }
-  });
-
-  const keys = Object.keys(tagBlocks);
-
-  if (!keys.length) {
-    return null;
-  }
-
-  return (
+const OrgTags = ({tags}) =>
     <div className="tagblocks">
-      {keys.map( label => {
+      {Object.keys(tags).filter( key => tags[key].category.tag ).map( key => {
         return (
-          <div className="tagblock" key={label}>
-            <span className="tagblock-title">{label + ': '}</span>
-            <span className="tagblock-tags">{tagBlocks[label].join(', ')}</span>
+          <div className="tagblock" key={key}>
+            <span className="tagblock-title">{tags[key].category.name + ': '}</span>
+            <span className="tagblock-tags">{tags[key].tags.map(tag => tag.name).join(', ')}</span>
           </div>
         );
       })}
     </div>
-  );
-
-};
+;
 
 const OrgMobile = ({
-    cls,
-    description,
-    fields,
-    filters,
-    id,
-    image,
-    name,
-    npTags,
-    npTerms,
-    onClick,
-    planIcon,
-    planText,
-    urlGive,
-    urlWeb,
+  cls,
+  description,
+  id,
+  image,
+  name,
+  tags,
+  onClick,
+  planIcon,
+  planText,
+  urlGive,
+  urlWeb
   }) =>         
         <div className={`group ${cls}`}>
-          <OrgHeader id={id} name={name} tags={npTags} terms={npTerms}/>
+          <OrgHeader id={id} name={name} tags={tags['nonprofit-type']} />
           <OrgImage url={image} name={name} />
           <OrgLinks {...{urlGive, urlWeb, planIcon, planText}} onOrgClick={onClick} />
           <OrgContent description={description} />
-          <OrgTags fields={fields} filters={filters} />
+          <OrgTags tags={tags} />
         </div>;
 
 const OrgDesktop = ({
-    cls,
-    description,
-    fields,
-    filters,
-    id,
-    image,
-    name,
-    npTags,
-    npTerms,
-    onClick,
-    planIcon,
-    planText,
-    urlGive,
-    urlWeb,
+  cls,
+  description,
+  id,
+  image,
+  name,
+  tags,
+  onClick,
+  planIcon,
+  planText,
+  urlGive,
+  urlWeb,
 }) => <div className={`group ${cls}`}>
         <div className="image-col">
           <OrgImage url={image} name={name} />
           <OrgLinks {...{urlGive, urlWeb, planIcon, planText}} onOrgClick={onClick} />
         </div>
         <div className="content-col">
-          <OrgHeader id={id} name={name} tags={npTags} terms={npTerms}/>
+          <OrgHeader id={id} name={name} tags={tags['nonprofit-type']} />
           <OrgContent description={description} />
-          <OrgTags fields={fields} filters={filters} />
+          <OrgTags tags={tags} />
         </div>
       </div>;
 
+const tagsByCat = tags => tags.reduce( (accum,tag) => {
+  const catSlug = tag.category.slug;
+  if( !accum[catSlug] ) {
+    accum[catSlug] = {
+      category: tag.category,
+      tags: []
+    };
+  }
+  accum[catSlug].tags.push(tag);
+  return accum;
+}, {});
+
 const translateProps = ({
-  post_title: name,
-  post_content: description,
-  fields,
-  fields: {
-    website: urlWeb,
-    c4_donate_link: urlC4,
-    c3_donate_link: urlC3,
-    'nonprofit-type': npTags = [],
-    image
+  org: {
+    id,
+    body:description,
+    title:name,
+    website: urlWeb = '',
+    c4_donate_link: urlC4 = '',
+    c3_donate_link: urlC3 = '',
+    image = '',
+    tags,
+    state
   },
-  ID: id,
-  filters,
-  mobile,
   selected,
   toggleItem
 }) => ({
   cls: selected ? 'selected' : '',
   description,
-  fields,
-  filters,
   id,
   image,
-  mobile,
   name,
-  npTags,
-  npTerms: filters['nonprofit-type'].terms,
+  tags: tagsByCat(tags),
+  state,
   onClick: function(e) { e.preventDefault(); toggleItem(id); },
   planIcon: selected ? 'close' : 'playlist_add',
   planText: selected ? 'Remove' : 'Add to plan',

@@ -1,9 +1,7 @@
 
 import {
-  SET_VISIBILITY,
-  INIT_FILTERS,
   TOGGLE_SELECTION,
-  FILTER_REQUEST,
+  TOGGLE_FILTER,
   FILTER_CLEAR,
   STATE_FILTER,
 
@@ -16,41 +14,33 @@ import {
  } from '../actions/plan';
 
 const initialState = {
-  visibility: {},
+  visibility: [],
   selected: [],
   stateFilter: DEFAULT_STATE_FILTER
 };
 
-const setVisiblity = ( state, visibility) => ({ ...state, visibility: {...visibility}  });
-
 const reducer = (state = initialState, action) => {
   switch (action.type) {
 
-    case FILTER_REQUEST: {
-      const { category, term, addFilter } = action;
-      const { 
-        visibility,
-        visibility: {
-          [category]: cat = []
-        }
-      } = state;
+    case TOGGLE_FILTER: {
 
-      const incs = cat.includes(term);
+      let { visibility } = state;
+      const { id } = action;
 
-      return ( incs === addFilter )
-        ? state
-        : setVisiblity(state,{ ...visibility, [category]: incs ? cat.filter( t => t !== term ) : [...cat, term ] } );
+      const st = {
+        ...state,
+
+        visibility: visibility.includes(id)
+                    ? visibility.filter( _id => _id !== id )
+                    : [ ...visibility, id ]
+      };
+
+      return st;
     }
 
     case FILTER_CLEAR: {
-      const { visibility } = state;
-      return setVisiblity( state, Object.keys(visibility).reduce( (accum,key) => (accum[key] = [],accum), {} ) );
+      return { ...state, visibility: [] };
     }
-
-    case SET_VISIBILITY: {
-      return setVisiblity(state,action.visibility);
-    }
-
 
     case TOGGLE_ITEM:
     case TOGGLE_SELECTION: {
@@ -82,13 +72,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         selected: plan.donations.map( d => d.id )
       };
-    }
-
-    case INIT_FILTERS: {
-      const visibility = {};
-      const { filters } = action;
-      Object.keys(filters).forEach( f => { visibility[f] = []; } );
-      return { ...state, visibility };
     }
 
     default:

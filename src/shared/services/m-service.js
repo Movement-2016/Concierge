@@ -66,15 +66,7 @@ class MovementVoteService {
 
     const gotContent = content => {
 
-      this._db = new ContentDatabase((new Normalizer(content)).db);
-
-      try {
-      var grp = this._db.match( 'groups', 'state', 41 )[0];
-      grp = this._db.resolve( this._db.sample(), grp );
-      grp;
-    } catch( e ) {
-      // noop
-    }
+      this._db = new MovementDatabase((new Normalizer(content)).db);
 
       this._promises.content = null; 
       return this._content = content;
@@ -98,6 +90,8 @@ class MovementVoteService {
 
 }
 
+const uniqueReducer = (accum,value) => (!accum.includes(value) && accum.push(value), accum);
+
 class ContentDatabase {
 
   constructor(data) {
@@ -105,33 +99,30 @@ class ContentDatabase {
   }
 
   tableQuery( table, query ) {
-    const q = '.' + table + query;
-    return  path( q, this._data ).map( r => ({...r}) );
+    const result = query
+          ? path( '.' + table + query, this._data )
+          : this._data[table];
+    return result.length && typeof result[0] === 'object'
+             ? result.map( r => ({...r}) )
+             : result;
   }
 
-  getRecord( table, id ) {
-    return this.getRecords(table,[id])[0];
+  getRecord( table, id, key = 'id' ) {
+    const result = this.getRecords(table,[id],key);
+    return result.length && result[0];
   }
 
-  getRecords( table, ids ) {
-    const pred = '{' + ids.map( id => '.id ==' + id ).join( ' || ') + '}';
+  getRecords( table, ids, key = 'id' ) {
+    if( !ids || !ids.length ) {
+      return [];
+    }
+    const pred = '{' + ids.map( id => `.${key}==${id}` ).join( ' || ') + '}';
     return this.tableQuery( table, pred );
   }
 
   getChildren( table, parent ) {
     const pred = '{.parent==$parent}';
     return this.tableQuery( table, pred, {parent} );
-  }
-
-  resolveRecord( field, table, record ) {
-    const key = record[field];
-    // const value = Array.isArray( record[field] ) 
-    //                 ? this.getRecord( table, record[field] ) 
-    //                 : this.getRecords( table, record[field] );
-
-    const value = this[ Array.isArray(key) ? 'getRecords' : 'getRecord'](table, key);
-
-    return {...record, [field]: value};
   }
 
   /*
@@ -151,37 +142,60 @@ class ContentDatabase {
 
   */
   match( table, field, value, eq = true ) {
+    if( Array.isArray(value) ) {
+      return this.matches(table,field,value);
+    }
     const op = eq ? '==' : '!=';
     const pred = `{.${field}${op}${value}}`;
     return this.tableQuery( table, pred );
   }
 
-  sample() {
-    const tagsSchema = {
-      category: { table: 'tagCategories' }
-    };
-    const orgSchema = {
-      tags: { table: 'tags', schema: tagsSchema }
-    };
-
-    return orgSchema;
+  unique( table, field ) {
+    return this.tableQuery(table,'.' + field).reduce(uniqueReducer, [] );
   }
 
-  resolve( schema, record ) {
+  matches( table , field, values ) {
+
+    const intersect = (arr1,arr2) => {
+      for( var i = arr1.len-1; i >= 0; i-- ) {
+        if( arr2.indexOf(arr1[i]) !== -1 ) {
+          return true;
+        }
+        return false;
+      }
+    };
+
+    const recs = this.tableQuery(table);
+
+    return values.length 
+              ? recs.filter( rec => intersect(rec[field],values) )
+              : recs;
+
+  }
+
+  denormalize( schema, record ) {
 
     if( Array.isArray(record) ) {
-      return record.map( R => this.resolve(schema, R), this );
+      return record.map( R => this.denormalize(schema, R), this );
     }
 
-    let result = null;
+    let result = {...record};
     Object.keys( schema ).forEach( field => {
-      result = this.resolveRecord( field, schema[field].table, record );
+      result = this.denormalizeRecord( field, schema[field].table, result );
       if( schema[field].schema ) {
-        result[field] = this.resolve( schema[field].schema, result[field] );
+        result[field] = this.denormalize( schema[field].schema, result[field] );
       }
     });
     return result;
   }
+
+  denormalizeRecord( field, table, record ) {
+    const key = record[field];
+    const value = this[ Array.isArray(key) ? 'getRecords' : 'getRecord'](table, key);
+
+    return {...record, [field]: value};
+  }
+
 
   buildTree( table, rootNode ) {
 
@@ -197,6 +211,90 @@ class ContentDatabase {
 
     return rootNode;
   }
+}
+
+class MovementDatabase extends ContentDatabase {
+
+  constructor() {
+    super(...arguments);
+    this._visiblity = null;
+    this._cache = {};
+  }
+  get tagCategories() {
+    return this.tableQuery('tagCategories');
+  }
+
+  get groups() {
+    return this.tableQuery('groups');
+  }
+
+  get tags() {
+    return this.tableQuery('tags');
+  }
+
+  get donateTiles() {
+    return this.tableQuery('donateTiles');
+  }
+
+  _checkVisibleCache(visibility,field,cb) {
+    if( this._visiblity === visibility ) {
+      if( this._cache[field] ) {
+        return this._cache[field];
+      }
+    } else {
+      this._visiblity = visibility;
+      this._cache = {}; // empty the cache;      
+    }
+    return this._cache[field] = cb(visibility);
+  }
+
+  visibleGroups(visibility) {
+    return this._checkVisibleCache( visibility, 'groups', () => 
+      visibility.length 
+        ? this.match( 'groups', 'tags', visibility )
+        : this.tableQuery('groups') );
+  }
+
+  visibleStates(visibility) {
+    return this._checkVisibleCache( visibility, 'states', () => 
+      this.getRecords( 'states', path( '.state', this.visibleGroups(visibility) ) ) );
+  }
+
+  visibleColors(visibility) {
+    return this._checkVisibleCache( visibility, 'colors', () => 
+      this.getRecords( 'states', path( '.parent', this.visibleStates(visibility) ) ) );
+  }
+
+  denormalizeVisibleStates(visibility) {
+    return this._checkVisibleCache( visibility, 'normalizedStates', () => 
+      this.denormalize( this.stateSchema, this.visibleGroups(visibility) ) );
+  }
+
+  denormalizeVisibleGroups(visibility) {
+    return this._checkVisibleCache( visibility, 'normalizedGroups', () => 
+      this.denormalize( this.groupSchema, this.visibleGroups(visibility) ) );
+  }
+
+  get tagsSchema() {
+    return {
+      category: { table: 'tagCategories' }
+    };
+  }
+
+  get stateSchema() {
+    return {
+      parent: { table: 'states'}
+    };
+  }
+
+  get groupSchema() {
+    return {
+      tags: { table: 'tags', schema: this.tagsSchema },
+      state: { table: 'states', schema: this.stateSchema }
+    };
+  }
+
+
 }
 
 class Normalizer {
@@ -333,9 +431,10 @@ class Normalizer {
         });
       });
 
-      grp.state = tax.state.terms[ rec.fields.state[0] ].term_id;      
+      grp.state = tax.state.terms[ rec.fields.state[0] ].term_id;
     } else {
-      grp.state = 999999;
+      grp.state = tax.state.terms[ 'national' ].term_id;
+      grp.tags = [];
     }
 
     return grp;
