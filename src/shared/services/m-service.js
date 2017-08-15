@@ -113,11 +113,12 @@ class ContentDatabase {
   }
 
   getRecords( table, ids, key = 'id' ) {
-    if( !ids || !ids.length ) {
-      return [];
-    }
-    const pred = '{' + ids.map( id => `.${key}==${id}` ).join( ' || ') + '}';
-    return this.tableQuery( table, pred );
+    const pred = this._buildIds(ids,key);
+    return pred ? this.tableQuery( table, pred ) : [];
+  }
+
+  _buildIds( ids, key = 'id' ) {
+    return ids && ids.length && '{' + ids.map( id => `.${key}==${id}` ).join( ' || ') + '}';
   }
 
   getChildren( table, parent ) {
@@ -220,6 +221,7 @@ class MovementDatabase extends ContentDatabase {
     this._visiblity = null;
     this._cache = {};
   }
+  
   get tagCategories() {
     return this.tableQuery('tagCategories');
   }
@@ -234,6 +236,15 @@ class MovementDatabase extends ContentDatabase {
 
   get donateTiles() {
     return this.tableQuery('donateTiles');
+  }
+
+  get colors() {
+    if( !this._colors ) {
+      this._colors = this.match( 'states', 'parent', 0 );
+      const order = this.tableQuery('colorOrder');
+      this._colors.sort( (c1,c2) => order.indexOf(c1.id) > order.indexOf(c2.id) ? 1 : -1 );
+    }
+    return this._colors;
   }
 
   _checkVisibleCache(visibility,field,cb) {
@@ -261,8 +272,11 @@ class MovementDatabase extends ContentDatabase {
   }
 
   visibleColors(visibility) {
-    return this._checkVisibleCache( visibility, 'colors', () => 
-      this.getRecords( 'states', path( '.parent', this.visibleStates(visibility) ) ) );
+    return this._checkVisibleCache( visibility, 'colors', () => {
+      const ids = path( '.parent', this.visibleStates(visibility) );
+      const pred = '.' + this._buildIds(ids);
+      return path( pred, this.colors );
+    });
   }
 
   denormalizeVisibleStates(visibility) {
