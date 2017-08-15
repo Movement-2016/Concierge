@@ -158,18 +158,18 @@ class ContentDatabase {
   matches( table , field, values ) {
 
     const intersect = (arr1,arr2) => {
-      for( var i = arr1.len-1; i >= 0; i-- ) {
-        if( arr2.indexOf(arr1[i]) !== -1 ) {
-          return true;
+      for( var i = arr1.length-1; i >= 0; i-- ) {
+        if( arr2.indexOf(arr1[i]) === -1 ) {
+          return false;
         }
-        return false;
       }
+      return true;
     };
 
     const recs = this.tableQuery(table);
 
     return values.length 
-              ? recs.filter( rec => intersect(rec[field],values) )
+              ? recs.filter( rec => intersect(values,rec[field]) )
               : recs;
 
   }

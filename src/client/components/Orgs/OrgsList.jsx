@@ -2,9 +2,9 @@ import React       from 'react';
 import { connect } from 'react-redux';
 import ColorGroup  from './ColorGroup.jsx';
 
-// function log() { var d = new Date(); console.log(...arguments, d, d.getMilliseconds()); return true; } // eslint-disable-line no-console
+function log() { var d = new Date(); console.log(...arguments, d, d.getMilliseconds()); return true; } // eslint-disable-line no-console
 
-const _OrgsList = ({colors,states,groups,selected}) =>
+const _OrgsList = ({colors,states,groups,selected}) => log("PAINTING ORG LIST") &&
       <div className="group-area">
         {colors.map( color => <ColorGroup key={color.id} {...{color, states, groups, selected}} /> )}
       </div>;
@@ -34,7 +34,8 @@ const mapStateToProps = ({
     selected
   });
 
+const opts = { areStatesEqual: (s1,s2) => s1.groups.visibility === s2.groups.visibility };
 
-const OrgsList = connect(mapStateToProps)(_OrgsList);
+const OrgsList = connect(mapStateToProps,null,null,opts)(_OrgsList);
 
 module.exports = OrgsList;
