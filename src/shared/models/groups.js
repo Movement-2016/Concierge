@@ -31,6 +31,7 @@ const model = () => {
       const colorSections = utils.colorSections(colors, colorOrder);
 
       return {
+        db: service.db,
         colorOrder,
         groups,
         colorSections,

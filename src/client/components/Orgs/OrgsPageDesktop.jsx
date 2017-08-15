@@ -41,7 +41,7 @@ const mapStateToProps = ({
           router: {
             target: {
               model: {
-                ezDonateTiles
+                db
               }
             }
           },
@@ -54,7 +54,7 @@ const mapStateToProps = ({
 
   return { 
     numSelected,
-    ezDonateTiles,
+    ezDonateTiles: db.donateTiles
   };
 };
 
