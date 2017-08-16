@@ -6,15 +6,29 @@ class JSPathDatabase {
 
   constructor(data) {
     this._data = data;
+    this._copyOnQuery = true;
+    this._coqState = [];
   }
 
-  tableQuery( table, query ) {
-    const result = query
-          ? path( '.' + table + query, this._data )
-          : this._data[table];
-    return result.length && typeof result[0] === 'object'
-             ? result.map( r => ({...r}) )
-             : result;
+  query( table, query, repl ) {
+    let result = null;
+    if( typeof table === 'string' ) {
+      result = query
+        ? path( '.' + table + query, this._data, repl )
+        : this._data[table];
+    } else {
+      if( !query ) {
+        return table; // <-- N.B. Cloudy Tuesdays in the forecast
+      }
+      result = path( '.' + query, table, repl );
+    }
+
+    if( this._copyOnQuery ) {
+      return result.length && typeof result[0] === 'object'
+               ? result.map( r => ({...r}) )
+               : result;      
+    }
+    return result;
   }
 
   getRecord( table, id, key = 'id' ) {
@@ -24,7 +38,7 @@ class JSPathDatabase {
 
   getRecords( table, ids, key = 'id' ) {
     const pred = this._buildIds(ids,key);
-    return pred ? this.tableQuery( table, pred ) : [];
+    return pred ? this.query( table, pred ) : [];
   }
 
   _buildIds( ids, key = 'id' ) {
@@ -33,7 +47,7 @@ class JSPathDatabase {
 
   getChildren( table, parent ) {
     const pred = '{.parent==$parent}';
-    return this.tableQuery( table, pred, {parent} );
+    return this.query( table, pred, {parent} );
   }
 
   /*
@@ -58,11 +72,11 @@ class JSPathDatabase {
     }
     const op = eq ? '==' : '!=';
     const pred = `{.${field}${op}${value}}`;
-    return this.tableQuery( table, pred );
+    return this.query( table, pred );
   }
 
   unique( table, field ) {
-    return this.tableQuery(table,'.' + field).reduce(uniqueReducer, [] );
+    return this.query(table,'.' + field).reduce(uniqueReducer, [] );
   }
 
   matches( table , field, values ) {
@@ -76,7 +90,7 @@ class JSPathDatabase {
       return true;
     };
 
-    const recs = this.tableQuery(table);
+    const recs = this.query(table);
 
     return values.length 
               ? recs.filter( rec => intersect(values,rec[field]) )
@@ -102,25 +116,38 @@ class JSPathDatabase {
 
   denormalizeRecord( field, table, record ) {
     const key = record[field];
+    this._pushCOQState(false);
     const value = this[ Array.isArray(key) ? 'getRecords' : 'getRecord'](table, key);
-
+    this._popCOQState();
     return {...record, [field]: value};
   }
 
-
   buildTree( table, rootNode ) {
 
+    let result = null;
+    this._pushCOQState(false);
     if( !rootNode ) {
-      return this.match(table,'parent',0).map( R => this.buildTree(table,R) );
+      result = this.match(table,'parent',0).map( R => this.buildTree(table,R) );
+    } else {
+      const children = this.getChildren(table,rootNode.id);
+
+      if( children.length ) {
+        result = { ...rootNode, children: children.map( C => this.buildTree(table,C) ) };
+      } else {
+        result = rootNode;
+      }
     }
+    this._popCOQState();
+    return result;
+  }
 
-    const children = this.getChildren(table,rootNode.id);
+  _pushCOQState(state) {
+    this._coqState.push( this._copyOnQuery );
+    this._copyOnQuery = state;
+  }
 
-    if( children.length ) {
-      return { ...rootNode, children: children.map( C => this.buildTree(table,C) ) };
-    }
-
-    return rootNode;
+  _popCOQState() {
+    this._copyOnQuery = this._coqState.pop();
   }
 }
 

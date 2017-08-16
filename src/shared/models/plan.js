@@ -1,5 +1,4 @@
 import service from '../services/m-service';
-import utils   from '../lib/query-utils';
 
 import {
   PlanPage,
@@ -11,34 +10,7 @@ import {
   ConsultPage
 } from '../../client/components';
 
-const planDataModel = () => {
-  const queries = {
-    taxonomies:      '.taxonomies',
-    colorOrder:       '.colorOrder',
-    groups:           '.posts.group',
-    states:           utils.STATES_QUERY,
-    colors:           utils.COLORS_QUERY,
-    statesAndColors:  utils.STATES_AND_COLORS_QUERY,
-  };
-
-  return service.queries( queries ).then( results => {
-
-    const {
-      taxonomies: [ taxonomies ],
-      colors,
-      states,
-      colorOrder,
-      groups,
-    } = results;
-
-    return {
-      statesDict:          states.reduce( (accum,s) => (accum[s.slug] = s, accum), {}),
-      colorSectionsIDDict: colors.reduce( (accum,color) => (accum[color.term_id] = color, accum), {} ),
-      groupFilters:        utils.groupFilters(taxonomies),
-      orgs:                utils.orgs(colors, states, groups, colorOrder),
-    };
-  });
-};
+const planDataModel = () => service.db.then( db => ({db}) );
 
 const noop = () => Promise.resolve( {} );
 

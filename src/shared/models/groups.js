@@ -1,4 +1,3 @@
-import utils from '../lib/query-utils';
 
 import { 
   OrgsEntryPage,
@@ -7,43 +6,7 @@ import {
 
 import service from '../services/m-service';
 
-const model = () => {
-
-    const queries = {
-      taxonomies:       '.taxonomies',
-      colorOrder:       '.colorOrder',
-      groups:           '.posts.group',
-      donateTiles:      '.posts.donatetile',
-      states:           utils.STATES_QUERY,
-      colors:           utils.COLORS_QUERY
-    };
-
-    return service.queries(queries).then( hash => {
-
-      const {
-        taxonomies: [ taxonomies ],
-        colorOrder,
-        groups,
-        states,
-        colors,
-      } = hash;
-
-      const colorSections = utils.colorSections(colors, colorOrder);
-
-      return {
-        db: service.db,
-        colorOrder,
-        groups,
-        colorSections,
-        statesDict:        states.reduce( (accum,s) => (accum[s.slug] = s, accum), {}),
-        groupFilters:      utils.groupFilters(taxonomies),
-        orgs:              utils.orgs(colors, states, groups, colorOrder),
-        numGroups:         Object.keys(groups).length,
-        colorSectionsDict: utils.colorSectionsDict(colorSections, states),
-        ezDonateTiles:     hash.donateTiles.splice(0,2)
-      };
-    });
-};
+const model = () => service.db.then( db => ({db}) );
 
 const meta = [
   {

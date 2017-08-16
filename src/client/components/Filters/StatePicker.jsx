@@ -15,7 +15,7 @@ const _StatePicker = ({
 }) => visible.length
         ? <select className="jump-state browser-default" value={value} onChange={onPick}>
             <option value={DEFAULT_STATE_FILTER}>{'Select State...'}</option>
-            {visible.map(({id,name}) => <option key={id} value={id}>{name}</option>)}
+            {visible.map(({slug,name}) => <option key={slug} value={slug}>{name}</option>)}
           </select>
         : <span />;
 

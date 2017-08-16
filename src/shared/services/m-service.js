@@ -63,7 +63,7 @@ class MovementVoteService {
   }
 
   get db() {
-    return this._db;
+    return this.content.then( () => this._db );
   }
 
   get content() {

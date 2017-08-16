@@ -3,66 +3,24 @@ import { connect } from 'react-redux';
 
 import StateOrgs from './StateOrgs.jsx';
 
-import {
-  addPlanItem,
-  toggleItem
-} from '../../../shared/store/actions/plan';
-
-import {
-  getSelectedOrgs,
-  organizeOrgsByState
-} from '../../../shared/lib/group-utils';
-
 const _Plan = ({
-      // store state
-      filters,
+
       states,
-      colorDict,
-      sortedOrgs,
-      donations,
-
-      // dispatch
-      addPlanItem,
-      toggleItem,
-
-      // native
+      groups,
+      donations: plan,
       mobile,
-      readonly,
+      readonly = false,
 
     }) => <div className="planning-section">
-            {Object.keys(sortedOrgs).map( state => {
-              return (
-                <StateOrgs
-                  plan={donations}
-                  filters={filters}
-                  mobile={mobile}
-                  readonly={readonly}
-                  colors={colorDict}
-                  addPlanItem={addPlanItem}
-                  toggleItem={toggleItem}
-
-                  name={state}
-                  key={state}
-                  orgs={sortedOrgs[state]}
-                  state={states[state]}
-                />
-              );
-            })}
+            {states.map( state => <StateOrgs key={state.id} {...{plan,mobile,readonly,state,groups}} /> )}
           </div>
 ;
-
-_Plan.defaultProps = {
-  readonly: false
-};
 
 const mapStateToProps = ({
   router: {
     target: {
       model: {
-        groupFilters: filters,
-        statesDict: states,
-        colorSectionsIDDict: colorDict,
-        orgs
+        db
       },      
     }
   },
@@ -73,17 +31,11 @@ const mapStateToProps = ({
     donations
   }
 }) => ({
-  filters,
-  states,
-  colorDict,
-  sortedOrgs: orgs && organizeOrgsByState( getSelectedOrgs(selected,orgs) ),
-  orgs,
-  selected,
+  groups: db.denormalizedSelectedGroups(selected),
+  states: db.denormalizedSelectedStates(selected),
   donations
 });
 
-const mapDispatchToProps = { addPlanItem, toggleItem };
-
-const Plan = connect(mapStateToProps,mapDispatchToProps)(_Plan);
+const Plan = connect(mapStateToProps)(_Plan);
 
 module.exports = Plan;
