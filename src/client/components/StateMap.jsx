@@ -6,22 +6,20 @@ import Link from '../services/LinkToRoute';
 
 import '../lib/tooltip';
 
+let mapCache = null;
+
 class StateMap extends React.Component {
 
   constructor() {
     super(...arguments);
     this.state = {
-      mapData: null
+      mapData: mapCache
     };
     this.unMounted = false;
   }
 
   componentDidMount() {
-    const states = {};
-    this.props.dataSource.forEach( s => states[s.slug] = s );
-    const colors = {};
-    this.props.colors.forEach( c => colors[c.term_id] = c );
-    this.populateMapData(states,colors);
+    this.populateMapData(this.props.dataSource);
   }
 
   componentDidUpdate() {
@@ -44,7 +42,12 @@ class StateMap extends React.Component {
     this.unMounted = true;
   }
 
-  populateMapData(states,colors) {
+  populateMapData(states) {
+    if( mapCache ) {
+      this.setState({ mapData:mapCache });
+      return;
+    }
+
     /* globals $ */
     axios( location.origin + '/images/state-map-data.svg', { headers: { 'Accept': 'image/svg+xml' }} )
       .then( response => {          
@@ -60,20 +63,20 @@ class StateMap extends React.Component {
             const stateName = $e.attr('xlink:href').match(/[a-z\-]+$/)[0];
             const formattedName = stateName.replace('-', ' ');
 
-            const state = states[stateName] || null;
+            const state = states.find( state => state.slug === stateName );
 
             $e.attr('data-toggle', 'tooltip');
 
             let link, title, cls;
             title = `<div class="tooltip-header"><span class="state-name">${formattedName}</span> - `;
             if( state ) {
-              const { parent, count } = state;
+              const { parent:{ slug }, count, description } = state;
               link  = '/groups#' + stateName;
-              cls   = 'map-' + colors[parent].slug.replace(/-states/,'');
+              cls   = 'map-' + slug.replace(/-states/,'');
               const s = (count === 1 ? '' : 's');
               title += `${count} group${s}</div>`;
-              if( state.description ) {
-                title += '<div class="race-data">' + state.description + '</div>';
+              if( description ) {
+                title += `<div class="race-data">${description}</div>`;
               }
             } else {
               link  = '/groups#no-groups';
@@ -87,9 +90,9 @@ class StateMap extends React.Component {
           });
 
           mapData = div.innerHTML;
+          mapCache = mapData;
           this.setState({ mapData });
           div.innerHTML = '';
-
         });
   }
 

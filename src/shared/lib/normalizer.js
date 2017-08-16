@@ -64,7 +64,7 @@ class Normalizer {
   }
 
   fixNews() {
-    return this._content.posts.news.map( p => (delete p.fields.category, p) ).map( this.fixPost, this );
+    return this._content.posts.news.map( p => (p.category = p.fields.category[0], delete p.fields.category, p) ).map( this.fixPost, this );
   }
 
   fixOrderColor() {

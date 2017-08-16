@@ -53,6 +53,7 @@ const dependencies = [
   'react-stickynode',
   'redux',
   'redux-thunk',
+  'redux-logger',
   'route-recognizer',
   'uuid'
 ];

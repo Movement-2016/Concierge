@@ -1,44 +1,14 @@
 
-import service      from '../services/m-service';
-import utils        from '../lib/query-utils';
-
-const convertMenuToHierarchy = _menu => {
-
-  const menu = [];
-  _menu.forEach( item => {
-      const parent = parseInt(item.parent);
-      var id = item.ID;
-      if( parent === 0 ) {
-        if( !menu[id] ) {
-          menu[id] = item;
-          menu[id].children = [];
-        }
-      } else {
-        if( !menu[parent] ) {
-          var parentItem = _menu.filter( m => m.ID === parent )[0];
-          menu[parent] = parentItem;
-          menu[parent].children = [];
-        }
-        menu[parent].children.push(item);
-      }
-    });
-  return menu; 
-};
+import service from '../services/m-service';
 
 const AppModel = {
 
   model: () => {
 
-    const queries = {
-      menu:       '.menu',
-      taxonomies: '.taxonomies'
-    };
-
-    return service.queries( queries ).then( results => {
+    return service.db.then( db => {
 
       return {
-        menu: convertMenuToHierarchy(results.menu),
-        groupFilters: utils.groupFilters(results.taxonomies[0])
+        menu: db.buildTree('menu')
       };
     });
   }

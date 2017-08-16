@@ -23,7 +23,7 @@ const SubMenu = ({url, children, label}) => {
     );
 };
 
-const MenuItem = ({url, children, label}) => {
+const MenuItem = ({url, children = [], label}) => {
 
   return children.length
       ? <SubMenu url={url} label={label} children={children} />

@@ -9,19 +9,17 @@ import DonateTiles         from './DonateTiles.jsx';
 /* eslint-disable react/no-danger */
 
 const Testimonial = ({
-      post_title: title,
-      post_content: content,
-      fields: {
-        image,
-        author_title: authorTitle
-      }
+      author,
+      body,
+      image,
+      title
     }) => <div className="testimonial flex-item">
-            <div className="testimonial-content" dangerouslySetInnerHTML={{__html:content}} />
+            <div className="testimonial-content" dangerouslySetInnerHTML={{__html:body}} />
             <div className="author-area">
               <div className="author-pic" style={image?{ backgroundImage: 'url("' + image + '")' }:{}} />
               <div className="author-info">
-                <div className="author-name">{title}</div>
-                <div className="author-title">{authorTitle}</div>
+                <div className="author-name">{author}</div>
+                <div className="author-title">{title}</div>
               </div>
             </div>
           </div>
@@ -39,13 +37,13 @@ const NewsTiles = ({news}) =>
       </div>
 ;
 
-const StateMapBound = ({states,colorSections,}) => 
+const StateMapBound = ({states,}) => 
         global.IS_SERVER_REQUEST
             ? <span />
             : <div className="container">
                 <h2 className="section-title">{'Find a Group'}</h2>
                 <div className="map-desc">{'Click the map to browse the groups in each state.'}</div>
-                <StateMap dataSource={states} colors={colorSections} />
+                <StateMap dataSource={states} />
               </div>
 ;
 
@@ -61,7 +59,6 @@ const _HomePage = ({
       model: {
         donateTiles,
         states,
-        colorSections,
         testimonials,
         news 
       }
@@ -88,7 +85,7 @@ const _HomePage = ({
                 </div>
               </section>
               <section className="map-section">
-                <StateMapBound states={states} colorSections={colorSections} />
+                <StateMapBound states={states} />
               </section>
               <section className="testimonial-section">
                 <div className="container">
