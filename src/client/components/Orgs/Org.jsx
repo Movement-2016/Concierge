@@ -1,4 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import {
+  toggleItem
+} from '../../../shared/store/actions/plan';
 
 const OrgHeader = ({ tags, id, name }) => 
     <div className="group-header">
@@ -127,7 +131,7 @@ const translateProps = ({
   urlWeb,
 });
 
-class Org extends React.Component {
+class _Org extends React.Component {
 
   shouldComponentUpdate(nextProps) {
     return this.props.selected !== nextProps.selected;
@@ -141,5 +145,9 @@ class Org extends React.Component {
             : <OrgDesktop {...props} />;
   }
 }
+
+const mapDispatchToProps = { toggleItem };
+
+const Org = connect(null,mapDispatchToProps)(_Org);
 
 module.exports = Org;

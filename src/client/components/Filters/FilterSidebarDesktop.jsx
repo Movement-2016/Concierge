@@ -42,6 +42,8 @@ const mapStateToProps = ({
     showOrgsNav: db.visibleGroups(visibility).length > 0
   });
 
-const FilterSidebarDesktop = connect( mapStateToProps )(_FilterSidebarDesktop);
+const opts = { areStatesEqual: (s1,s2) => s1.groups.visibility === s2.groups.visibility };
+
+const FilterSidebarDesktop = connect( mapStateToProps, null, null, opts )(_FilterSidebarDesktop);
 
 module.exports = FilterSidebarDesktop;

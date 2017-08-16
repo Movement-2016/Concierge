@@ -13,8 +13,7 @@ const State = ({
     },
     groups,
     selected,
-    mobile,
-    toggleItem
+    mobile
   }) => 
     <div className="state" id={slug}>
       <div className={`state-title ${colorSlug}`}>
@@ -23,7 +22,7 @@ const State = ({
           <i className="material-icons color-icon">{'turned_in'}</i>
         </h4>
       </div>
-      {groups.filter( grp => grp.state.id === id ).map( org => <Org key={org.id} {...{org,toggleItem,selected:selected.includes(org.id),mobile}} />  )}
+      {groups.filter( grp => grp.state.id === id ).map( org => <Org key={org.id} {...{org,selected:selected.includes(org.id),mobile}} />  )}
     </div>
 ;
 

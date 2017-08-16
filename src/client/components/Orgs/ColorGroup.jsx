@@ -11,12 +11,11 @@ const ColorGroup = ({
     states,
     groups,
     selected,
-    mobile,
-    toggleItem = () => false
+    mobile
   }) =>
     <div className="color-group scrollspy" id={slug}>
       <div className={`color-group-title ${slug}-title`}>{name}</div>
-      {states.filter( state => state.parent === id ).map( state => <State key={state.id} {...{mobile,state,groups,selected,toggleItem}} />)}
+      {states.filter( state => state.parent === id ).map( state => <State key={state.id} {...{mobile,state,groups,selected}} />)}
     </div>;
 
 module.exports = ColorGroup;
