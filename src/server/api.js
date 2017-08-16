@@ -1,5 +1,4 @@
 import GMail    from './gmail';
-import path     from 'jspath';
 import commaize from 'commaize';
 
 import { AllHtmlEntities as Entities } from 'html-entities';
@@ -17,12 +16,12 @@ const entities = new Entities();
 
 const mailer = new GMail();
 
-let orgs = null;
+let db = null;
 
 function init (app) {
 
   return apiModel.model().then( model => {
-    orgs = model.orgs;
+    db = model.db;
     app.post( '/api/plan/send',  mailPlan );
     app.post( '/api/houseparty', houseParty );
     app.post( '/api/contact',    contactEmail );
@@ -184,22 +183,20 @@ function mailPlan (req, res) {
     } = json;
 
     if( !email ) {
-      return setStatus( res, 500).end();
+      throw 'Invalid payload for emailing plan';
     }
 
     let mail = planMailHeader({fname,lname,email,phone,wantsConsult});
     let total = 0;
     items && items.forEach( item => {
       const { id, amount } = item;
-      const group = path(`..{.ID==${id}}`,orgs)[0];
+      const group = db.getRecord('groups', id);
       total += Number(amount);
       const {
-        post_title: name,
-        fields: {
-          website: urlWeb,
-          c4_donate_link: urlC4,
-          c3_donate_link: urlC3
-        }
+        title: name,
+        website: urlWeb,
+        c4_donate_link: urlC4,
+        c3_donate_link: urlC3
       } = group;
       const urlGive = urlC3 || urlC4;
       mail += planFormatter({name,urlWeb,urlGive,amount});

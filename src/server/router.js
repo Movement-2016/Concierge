@@ -69,7 +69,7 @@ class ServerRouter {
 
     const props = { model: {...appModel}, store  };
 
-    var bodyHTML = '<h1>fake</h1>'; // renderToStaticMarkup( React.createElement( App, props ) );
+    var bodyHTML = renderToStaticMarkup( React.createElement( App, props ) );
 
     var html = this.indexHTML.replace(this.bodyRegex,'$1' + bodyHTML + '$3'); 
 
