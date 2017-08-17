@@ -11,7 +11,7 @@ import PlanTray from './PlanTray.jsx';
 
 import { setVisibility } from '../../../shared/store/actions/groups';
 
-const FilterBar = ({ onShowFilters }) =>
+const FilterBar = ({ onShowFilters, numFilters }) =>
     <div className="filter-bar-wrapper">
       <Headroom disableInlineStyles>
         <div className="filter-bar">
@@ -22,7 +22,7 @@ const FilterBar = ({ onShowFilters }) =>
             </Link>
             <a className="filter-button" onClick={onShowFilters}>
               <i className="material-icons">{'filter_list'}</i>
-              {'Filter'}
+              {'Filter' + (numFilters ? ` (${numFilters})` : '')}
             </a>
           </div>
         </div>
@@ -54,22 +54,17 @@ class _OrgsPageMobile extends React.Component {
     } = this.state;
 
     const {
-      visibility,
-      selectedGroups,
-      groupFilters,
-      setVisibility
+      numGroups,
+      numFilters
     } = this.props;
 
     return (
       <main className="orgs-page orgs-page-mobile">
-        <FilterBar onShowFilters={this.onShowFilters} />
-        <OrgsList mobile />
-        <PlanTray numGroups={selectedGroups.length}/>
+        <FilterBar numFilters={numFilters} onShowFilters={this.onShowFilters} />
+        {showOrgsList && <OrgsList mobile />}
+        <PlanTray numGroups={numGroups}/>
         <FilterPageMobile
           showFilters={!showOrgsList}
-          filtersDict={groupFilters}
-          startingFilters={visibility}
-          handleFilterToggle={setVisibility}
           handleClose={this.onShowOrgsList}
         />
       </main>
@@ -79,21 +74,13 @@ class _OrgsPageMobile extends React.Component {
 
 const mapStateToProps = ({ 
         groups: { 
-          visibility, 
-          selected: selectedGroups,
-        },
-        router: {
-          target: {
-            model: {
-              groupFilters
-            },            
-          },
+          selected,
+          visibility
         }
       }) => 
         ({
-          visibility,
-          selectedGroups,
-          groupFilters
+          numGroups: selected.length,
+          numFilters: visibility.length
         });
 
 const mapDispatchToProps = { setVisibility };

@@ -15,17 +15,16 @@ class Filter extends React.Component {
 
     const {
       toggleFilter,
-      onFilterChange,
       id,
       name,
-      checked
+      checked      
     } = this.props;
 
     const checkboxProps = {
       type:      'checkbox',
       className: 'filter-checkbox filled-in',
       id:        'checkbox-' + id,
-      onChange:   () => (onFilterChange || toggleFilter)(id),
+      onChange:   () => toggleFilter(id),
       checked
     };
 
@@ -38,17 +37,20 @@ class Filter extends React.Component {
 }
 
 const _FilterGroup = ({
-    id,
+    id: catId,
     slug,
     name,
     tags,
     toggleFilter,
-    selected
+    selected,
+    visibleFilters
   }) => <div className={`filter-group ${slug}-filters`}>
           <div className="filter-group-label">
             {name}
           </div>
-          {tags.filter( tag => tag.category === id ).map( ({id,name}) => <Filter key={id} {...{toggleFilter,id,name,checked:selected.includes(id)}} />)}
+          {tags
+            .filter( ({category,id}) => category === catId && (!visibleFilters || visibleFilters.includes(id) ))
+            .map( ({id,name}) => <Filter key={id} {...{toggleFilter,id,name,checked:selected.includes(id)}} />)}
         </div>
 ;
 
@@ -68,6 +70,10 @@ const mapStateToProps = ({
 }) => ({ tags, selected });
 
 const mapDispatchToProps = { toggleFilter };
+
+// const mergeProps = (stateProps, dispatchProps, ownProps) => 
+//             ({...ownProps, ...stateProps, ...dispatchProps, toggleFilter: ownProps.onFilterChange || dispatchProps.toggleFilter });
+
 
 const FilterGroup = connect( mapStateToProps, mapDispatchToProps )(_FilterGroup);
 

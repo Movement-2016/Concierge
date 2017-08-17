@@ -1,6 +1,8 @@
 import path    from 'jspath';
 import JSPathDatabase from '../lib/jspath-database';
 
+const uniqueIdReducer = (accum,id) => ((!accum.includes(id) && accum.push(id)), accum);
+
 class ContentDB extends JSPathDatabase {
 
   constructor() {
@@ -51,7 +53,7 @@ class ContentDB extends JSPathDatabase {
     return this._colors;
   }
 
-  _trimBySlug( slug, results ) {
+  _trimBySlug( slug, results, field = 'state' ) {
     if( !slug ) {
       return results;
     }
@@ -63,9 +65,10 @@ class ContentDB extends JSPathDatabase {
     let ids = state.parent === 0
           ? this.query( 'states', '.{.parent==$parent}.id', {parent:state.id} )
           : [state.id];
-    return this.getRecords( results, ids, 'state' );
+    return this.getRecords( results, ids, field );
 
   }
+
   visibleGroups(visibility, slug = '') {
     return this._checkVisibleCache( visibility, 'groups' + slug, () => 
       this._trimBySlug( slug, visibility.length 
@@ -85,6 +88,39 @@ class ContentDB extends JSPathDatabase {
         ? path( '.' + this._buildIds(ids), this.colors )
         : [];
     });
+  }
+
+  /*
+    A slug might be a state or a color
+  */
+  visibleCategories(slug) {
+    if( !slug ) {
+      return this.tagCategories;
+    }
+
+    const p = this._isColorSlug(slug) 
+                      ? '.{.state.parent.slug==$slug}.tags.category.id'
+                      : '.{.state.slug==$slug}.tags.category.id';
+
+    return path(p,this.denormalizedGroups,{slug}).reduce(uniqueIdReducer,[]);
+  }
+
+  /*
+    A slug might be a state or a color
+  */
+  visibleFilters(slug) {
+    if( !slug ) {
+      return null;
+    }
+    const p = this._isColorSlug(slug) 
+                      ? '.{.state.parent.slug==$slug}.tags.id'
+                      : '.{.state.slug==$slug}.tags.id';
+
+    return path(p,this.denormalizedGroups,{slug}).reduce(uniqueIdReducer,[]);
+  }
+
+  _isColorSlug(slug) {
+    return this.queryItem('states', '.{.slug==$slug}.parent', {slug}) === 0;
   }
 
   denormalizeVisibleStates(visibility, slug = '') {

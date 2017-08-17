@@ -31,6 +31,11 @@ class JSPathDatabase {
     return result;
   }
 
+  queryItem( table, query, repl ) {
+    const result = this.query(table,query,repl);
+    return result && result.length === 1 && result[0];
+  }
+
   getRecord( table, id, key = 'id' ) {
     const result = this.getRecords(table,[id],key);
     return result.length && result[0];
