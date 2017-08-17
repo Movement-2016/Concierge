@@ -6,8 +6,8 @@ class JSPathDatabase {
 
   constructor(data) {
     this._data = data;
-    this._copyOnQuery = true;
-    this._coqState = [];
+    this._immutable = true;
+    this._immutableState = [];
   }
 
   query( table, query, repl ) {
@@ -23,7 +23,7 @@ class JSPathDatabase {
       result = path( '.' + query, table, repl );
     }
 
-    if( this._copyOnQuery ) {
+    if( this._immutable ) {
       return result.length && typeof result[0] === 'object'
                ? result.map( r => ({...r}) )
                : result;      
@@ -147,12 +147,12 @@ class JSPathDatabase {
   }
 
   _pushCOQState(state) {
-    this._coqState.push( this._copyOnQuery );
-    this._copyOnQuery = state;
+    this._immutableState.push( this._immutable );
+    this._immutable = state;
   }
 
   _popCOQState() {
-    this._copyOnQuery = this._coqState.pop();
+    this._immutable = this._immutableState.pop();
   }
 }
 
