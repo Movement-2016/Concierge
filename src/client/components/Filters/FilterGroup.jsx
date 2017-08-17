@@ -15,6 +15,7 @@ class Filter extends React.Component {
 
     const {
       toggleFilter,
+      onFilterChange,
       id,
       name,
       checked
@@ -24,7 +25,7 @@ class Filter extends React.Component {
       type:      'checkbox',
       className: 'filter-checkbox filled-in',
       id:        'checkbox-' + id,
-      onChange:   () => toggleFilter(id),
+      onChange:   () => (onFilterChange || toggleFilter)(id),
       checked
     };
 

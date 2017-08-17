@@ -51,39 +51,54 @@ class ContentDB extends JSPathDatabase {
     return this._colors;
   }
 
-  visibleGroups(visibility) {
-    return this._checkVisibleCache( visibility, 'groups', () => 
-      visibility.length 
-        ? this.match( 'groups', 'tags', visibility )
-        : this.query('groups') );
+  _trimBySlug( slug, results ) {
+    if( !slug ) {
+      return results;
+    }
+    const stateArr = this.match( 'states', 'slug', `"${slug}"` );
+    if( stateArr.length !== 1 ) {
+      return results;
+    }
+    const state = stateArr[0];
+    let ids = state.parent === 0
+          ? this.query( 'states', '.{.parent==$parent}.id', {parent:state.id} )
+          : [state.id];
+    return this.getRecords( results, ids, 'state' );
+
+  }
+  visibleGroups(visibility, slug = '') {
+    return this._checkVisibleCache( visibility, 'groups' + slug, () => 
+      this._trimBySlug( slug, visibility.length 
+                                  ? this.match( 'groups', 'tags', visibility )
+                                  : this.query('groups') ) );
    }
 
-  visibleStates(visibility) {
-    return this._checkVisibleCache( visibility, 'states', () => 
-                     this.getRecords( 'states', path( '.state', this.visibleGroups(visibility) ) ) );
+  visibleStates(visibility, slug = '') {
+    return this._checkVisibleCache( visibility, 'states' + slug, () => 
+                     this.getRecords( 'states', path( '.state', this.visibleGroups(visibility,slug) ) ) );
   }
 
-  visibleColors(visibility) {
-    return this._checkVisibleCache( visibility, 'colors', () => {
-      const ids = path( '.parent', this.visibleStates(visibility) );
+  visibleColors(visibility, slug = '') {
+    return this._checkVisibleCache( visibility, 'colors' + slug, () => {
+      const ids = path( '.parent', this.visibleStates(visibility,slug) );
       return ids.length 
         ? path( '.' + this._buildIds(ids), this.colors )
         : [];
     });
   }
 
-  denormalizeVisibleStates(visibility) {
-    return this._checkVisibleCache( visibility, 'normalizedStates', () => 
+  denormalizeVisibleStates(visibility, slug = '') {
+    return this._checkVisibleCache( visibility, 'normalizedStates' + slug, () => 
               visibility.length
-                ? this.getRecords( this.denormalizedStates, path( '.id', this.visibleStates(visibility) ) )
+                ? this.getRecords( this.denormalizedStates, path( '.id', this.visibleStates(visibility,slug) ) )
                 : this.denormalizedStates
               );
   }
 
-  denormalizeVisibleGroups(visibility) {
-    return this._checkVisibleCache( visibility, 'normalizedGroups', () =>
+  denormalizeVisibleGroups(visibility, slug = '') {
+    return this._checkVisibleCache( visibility, 'normalizedGroups' + slug, () =>
               visibility.length
-                ? this.getRecords( this.denormalizedGroups, path( '.id', this.visibleGroups(visibility) ) ) 
+                ? this.getRecords( this.denormalizedGroups, path( '.id', this.visibleGroups(visibility,slug) ) ) 
                 : this.denormalizedGroups
                );
   }
@@ -120,6 +135,10 @@ class ContentDB extends JSPathDatabase {
       this._visibleCache = {}; // empty the cache;      
     }
     return this._visibleCache[field] = cb(visibility);
+  }
+
+  _slugToId( table, slug ) {
+    return this.query( table, '.{.slug=$slug}.id', {slug} );
   }
 
   get tagsSchema() {

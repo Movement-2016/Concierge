@@ -2,6 +2,7 @@
 import {
   TOGGLE_SELECTION,
   TOGGLE_FILTER,
+  SET_VISIBILITY,
   FILTER_CLEAR,
   STATE_FILTER,
 
@@ -38,6 +39,11 @@ const reducer = (state = initialState, action) => {
       return st;
     }
 
+    case SET_VISIBILITY: {
+      const { visibility } = action;
+      return { ...state, visibility: [...visibility] };
+    }
+    
     case FILTER_CLEAR: {
       return { ...state, visibility: [] };
     }

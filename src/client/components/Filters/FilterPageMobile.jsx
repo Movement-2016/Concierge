@@ -32,25 +32,21 @@ class _FilterPageMobile extends React.Component {
   constructor() {
     super(...arguments);
 
-    this.cleared = {};
-
-    const filterNames = Object.keys(this.props.filtersDict);
-    filterNames.forEach(f => this.cleared[f] = []);
-
+    this.cleared = [];
     this.state = { selectedFilters: clone(this.cleared) };
   }
 
   // Clear filters and load unfiltered groups page when first mounted
   componentDidMount() {
-    this.props.setVisibility( clone(this.cleared) );
+    this.props.setVisibility( [...this.cleared] );
   }
 
   onClearAll = () => {
-    this.setState({ selectedFilters: clone(this.cleared) });
+    this.setState({ selectedFilters: [...this.cleared] });
   }
 
   onClose = () => {
-    this.setState({ selectedFilters: clone(this.props.startingFilters) });
+    this.setState({ selectedFilters: [...this.props.startingFilters] });
     this.props.handleClose();
   }
 
@@ -60,19 +56,19 @@ class _FilterPageMobile extends React.Component {
       handleClose
     } = this.props;
 
-    setVisibility( clone(this.state.selectedFilters) );
+    setVisibility( [...this.state.selectedFilters] );
     handleClose();
   }
 
-  onFilterChange = (category, term, addFilter) => {
+  onFilterChange = (term) => {
 
-    const selectedFilters = this.state.selectedFilters;
+    let selectedFilters = this.state.selectedFilters;
 
-    if ( selectedFilters[category] ) {
-      const index = selectedFilters[category].indexOf(term);
-      addFilter
-        ? (index === -1) && selectedFilters[category].push(term)
-        : (index > -1) && selectedFilters[category].splice(index, 1);
+    const index = selectedFilters.indexOf(term);
+    if( index === -1 ) {
+      selectedFilters.push(term);
+    } else {
+      selectedFilters.splice(index,1);
     }
 
     this.setState({ selectedFilters });
@@ -81,25 +77,17 @@ class _FilterPageMobile extends React.Component {
   render() {
     const {
       showFilters,
-      filtersDict
+      filterCategories
     } = this.props;
+
+    const onFilterChange = this.onFilterChange;
 
     return (
       <div className={'filter-page' + (showFilters ? ' visible' : '')}>
         <Header onClearAll={this.onClearAll} onClose={this.onClose} />
           <div className="filters">
             <div className="container">
-              {Object.keys(filtersDict).map( f => {
-                const filterGroupProps = {
-                  selectedFilters:  this.state.selectedFilters,
-                  onFilterChange:   this.onFilterChange,
-                  name:             f,
-                  label:            filtersDict[f].label,
-                  terms:            filtersDict[f].terms
-                };
-                return <FilterGroup key={f} {...filterGroupProps} />;
-              }
-              )}
+              {filterCategories.map( ({id,name,slug}) => <FilterGroup key={id} {...{slug,id,name,onFilterChange}}  /> )}
             </div>
           </div>
         <SubmitBar onClick={this.onSubmit} />
@@ -108,15 +96,24 @@ class _FilterPageMobile extends React.Component {
   }
 }
 
-_FilterPageMobile.propTypes = {
-  showFilters:        React.PropTypes.bool.isRequired,
-  filtersDict:        React.PropTypes.object.isRequired,
-  startingFilters:    React.PropTypes.object.isRequired,
-  handleClose:        React.PropTypes.func.isRequired,
-};
+const mapStateToProps = ({
+  router: {
+    target: {
+      model: {
+        db
+      }
+    }
+  },
+  groups: { 
+    visibility, 
+  }
+}) => ({
+    filterCategories: db.tagCategories,
+    showOrgsNav: db.visibleGroups(visibility).length > 0
+  });
 
 const mapDispatchToProps = { setVisibility };
 
-const FilterPageMobile = connect( null, mapDispatchToProps )(_FilterPageMobile);
+const FilterPageMobile = connect( mapStateToProps, mapDispatchToProps )(_FilterPageMobile);
 
 module.exports = FilterPageMobile;

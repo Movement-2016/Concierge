@@ -28,9 +28,9 @@ const mapStateToProps = ({
       }
     }
   }) => ({ 
-    colors: db.visibleColors(visibility),
-    states: db.visibleStates(visibility),
-    groups: db.denormalizeVisibleGroups( visibility ),
+    colors: db.visibleColors( visibility, slug ),
+    states: db.visibleStates( visibility, slug ),
+    groups: db.denormalizeVisibleGroups( visibility, slug ),
     selected
   });
 

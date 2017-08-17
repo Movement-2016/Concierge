@@ -69,7 +69,7 @@ class _OrgsPageMobile extends React.Component {
           showFilters={!showOrgsList}
           filtersDict={groupFilters}
           startingFilters={visibility}
-          handleFilterToggle={visibility => setVisibility( visibility )}
+          handleFilterToggle={setVisibility}
           handleClose={this.onShowOrgsList}
         />
       </main>

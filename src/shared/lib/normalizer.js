@@ -20,6 +20,15 @@ class Normalizer {
       testimonials: this.fixTestimonials()
     };
 
+    for( var i = 0; i < this._db.states.length; i++ ) {
+      if( this._db.states[i].parent === 0 ) {
+        this._db.states[i].count = this._db.states
+                                      .filter( state => state.parent === this._db.states[i].id )
+                                      .reduce( ((counts,state) => counts + state.count), 0 );
+      }
+
+    }
+
     return this._db;
   }
 

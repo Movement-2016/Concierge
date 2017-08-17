@@ -13,29 +13,22 @@ const BrowseLink = ({title, slug, count}) =>
 
 const PAGE_TITLE = 'Browse Groups';
 
-const removeNational = arr => {
-  const statesKeys = [ ...arr ];
-  statesKeys.splice( statesKeys.indexOf('national'), 1);
-  return statesKeys;
-};
-
 const _OrgsMenuPage = ({
-        colorSectionsDict,
-        statesDict,
+        states,
+        colors,
         numGroups,     
-        colorKeys,
-        statesKeys 
       }) => <main className="orgs-menu-page">
               <h1 className="page-title">{PAGE_TITLE}</h1>
               <div className="orgs-link-section">
                 <BrowseLink title="See All Groups" slug="all-groups" count={numGroups}/>
               </div>
-              <div className="orgs-link-section">
-                {colorKeys.map( c => <BrowseLink title={colorSectionsDict[c].name} key={c} slug={c} count={colorSectionsDict[c].count} />)}
-              </div>
-              <div className="orgs-link-section">
-                {statesKeys.map( s => <BrowseLink title={statesDict[s].name} key={s} slug={s} count={statesDict[s].count} />)}
-              </div>
+              {
+                [colors,states].map( str => 
+                  <div className="orgs-link-section">
+                    {str.map( ({name,slug,count}) => <BrowseLink title={name} key={slug} slug={slug} count={count} /> )}
+                  </div>
+                  )
+              }
             </main>
 ;
 
@@ -43,19 +36,15 @@ const mapStateToProps = ({
   router: {
     target: {
       model: {
-        colorSectionsDict,
-        statesDict,
-        numGroups
+        db
       }
     }
   }
 
 }) => ({
-  colorSectionsDict,
-  statesDict,
-  numGroups,
-  colorKeys: Object.keys(colorSectionsDict),
-  statesKeys: removeNational(Object.keys(statesDict))
+  states: db.states.filter( state => state.slug !== 'national' ),
+  colors: db.colors,
+  numGroups: db.groups.length
 });
 
 const OrgsMenuPage = connect( mapStateToProps )(_OrgsMenuPage);
