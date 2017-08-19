@@ -115,10 +115,11 @@ class Groups extends PostBare {
 
     if( this.fields ) {
       this.websiteBinding  = 'fields.website';
-      this.c4_donate_link  = 'fields.c4_donate_link';
-      this.c3_donate_link  = 'fields.c3_donate_link';
-      this.pac_donate_link = 'fields.pac_donate_link';
-      this.image           = 'fields.image';      
+      
+      this.c4_donate_linkBinding  = 'fields.c4_donate_link';
+      this.c3_donate_linkBinding  = 'fields.c3_donate_link';
+      this.pac_donate_linkBinding = 'fields.pac_donate_link';
+      this.imageBinding           = 'fields.image';      
     }
 
     this.getState = () => this.fields
