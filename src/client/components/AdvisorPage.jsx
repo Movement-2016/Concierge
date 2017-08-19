@@ -31,7 +31,7 @@ const sliceAdvisors = advisors => {
 const renderAdvisorColumn = (arr,index) =>       
   <div key={index} className="col s12 m4">
     <ul>
-      {arr.map(n => <li key={n} dangerouslySetInnerHTML={{__html:n}} />) } 
+      {arr.map((n,i) => <li key={i} dangerouslySetInnerHTML={{__html:n}} />) } 
     </ul>
   </div>
 ;

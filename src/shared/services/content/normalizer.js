@@ -38,10 +38,15 @@ class PostBare extends serialize.Model {
 class Post extends PostBare {
   constructor() {
     super(...arguments);
-    for( var key in this.fields ) {
-      this[ key + 'Binding'] = 'fields.' + key;
+    if( this.fields ) {
+      for( var key in this.fields ) {
+        this[ key + 'Binding'] = 'fields.' + key;
+      }      
     }
   }
+}
+
+class Page extends Post { 
 }
 
 class DonateTiles extends Post {
@@ -193,7 +198,8 @@ const serializeContent = content => {
   }
 };
 
+const serializePage = jsonData => serialize( { jsonData, model: Page } );
 
-module.exports = serializeContent;
+module.exports = { serializeContent, serializePage };
 
 

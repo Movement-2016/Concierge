@@ -1,6 +1,6 @@
 import path    from 'jspath';
 import JSPathDatabase from '../../lib/jspath-database';
-import normalize from './normalizer';
+import { serializeContent, serializePage } from './normalizer';
 
 const uniqueIdReducer = (accum,id) => ((!accum.includes(id) && accum.push(id)), accum);
 
@@ -11,10 +11,19 @@ class ContentDB extends JSPathDatabase {
     this._visiblity = null;
     this._visibleCache = {};
     this._cache = {};
+    this._pages = {};
   }
   
   set data( data ) {
-    super.data = normalize(data);
+    super.data = serializeContent(data);
+  }
+
+  addPage( name, data ) {
+    return this._pages[name] = serializePage(data);
+  }
+
+  getPage( name ) {
+    return this._pages[name];
   }
 
   get tagCategories() {

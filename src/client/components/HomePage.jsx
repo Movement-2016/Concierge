@@ -106,13 +106,11 @@ const mapStateToProps = ({
       model, 
       model: { 
         page: {
-          fields: {
-            tag_line,
-            homepage_description: description,
-            number_groups_donated: groupNumber,
-            goal,
-            current
-          } = {}
+          tag_line,
+          homepage_description: description,
+          number_groups_donated: groupNumber,
+          goal,
+          current
         }
       },
     },

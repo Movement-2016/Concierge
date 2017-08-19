@@ -44,54 +44,33 @@ class MovementVoteService {
             // .catch( debugLog );
   }
 
-  init( ) {
-    return this;
-  }
-
-  query( jspath ) {
-    return this.content.then( content => path( jspath, content ) );
-             //   .catch( err => console.log( 'error duing query', jspath, ' ERROR: ', err ) );
-  }
-
-  queries( hash ) {
-    var keys = Object.keys(hash);
-    const vals = keys.map( k => this.query(hash[k]) );
-    const reducer = (accum,val,index) => (accum[keys[index]] = val, accum);
-    return Promise.all(vals)
-                  .then( results => results.reduce(reducer,{}) );
-  }
 
   get db() {
-    return this.content.then( () => this._db );
-  }
 
-  get content() {
-
-    const gotContent = content => {
-
-      this._db = new ContentDB();
-      
-      this._db.data = content;
-
-      this._promises.content = null; 
-
-      return this._content = content;
-
-    };
+    if( this._db ) {
+      return Promise.resolve(this._db);
+    }
 
     if( this._promises.content ) {
       return this._promises.content;
     }
 
-    return this._content
-      ? Promise.resolve(this._content)
-      : (this._promises.content = this._fetch( 'content' )).then( gotContent );
+    this._promises.content = this._fetch( 'content' ).then( content => {
+        this._db = new ContentDB();
+        this._db.data = content;
+        this._promises.content = null;
+        return this._db;
+      });
+
+    return this._promises.content;
   }
 
   getPage(slug) {
-    return this._pages[slug]
-      ? Promise.resolve(this._pages[slug])
-      : this._fetch( 'page/' + slug ).then( p => this._pages[slug] = p );
+    const page = this._db.getPage(slug);
+
+    return page
+      ? Promise.resolve(page)
+      : this._fetch( 'page/' + slug ).then( json => this._db.addPage(slug,json));
   }
 
 }

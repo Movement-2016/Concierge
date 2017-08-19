@@ -14,7 +14,7 @@ const HomePageModel = {
 
   title: 'ContactPage',
   
-  model: () => service.getPage('contact').then( page => { return { page }; } ),
+  model: () => service.getPage('contact').then( page => ({page}) ),
 
   browserOnly: true
 };

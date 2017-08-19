@@ -32,8 +32,8 @@ const mapStateToProps = ({
     target: {
       model: {
         page:{
-          post_title: title,
-          post_content: content
+          title,
+          body: content
         }       
       },      
     }
