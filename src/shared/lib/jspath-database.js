@@ -4,10 +4,14 @@ const uniqueReducer = (accum,value) => (!accum.includes(value) && accum.push(val
 
 class JSPathDatabase {
 
-  constructor(data) {
+  constructor(data=null) {
     this._data = data;
     this._immutable = true;
     this._immutableState = [];
+  }
+
+  set data(data) {
+    this._data = data;
   }
 
   query( table, query, repl ) {
@@ -121,16 +125,16 @@ class JSPathDatabase {
 
   denormalizeRecord( field, table, record ) {
     const key = record[field];
-    this._pushCOQState(false);
+    this._pushImmutable(false);
     const value = this[ Array.isArray(key) ? 'getRecords' : 'getRecord'](table, key);
-    this._popCOQState();
+    this._popImmutable();
     return {...record, [field]: value};
   }
 
   buildTree( table, rootNode ) {
 
     let result = null;
-    this._pushCOQState(false);
+    this._pushImmutable(false);
     if( !rootNode ) {
       result = this.match(table,'parent',0).map( R => this.buildTree(table,R) );
     } else {
@@ -142,16 +146,16 @@ class JSPathDatabase {
         result = rootNode;
       }
     }
-    this._popCOQState();
+    this._popImmutable();
     return result;
   }
 
-  _pushCOQState(state) {
+  _pushImmutable(state) {
     this._immutableState.push( this._immutable );
     this._immutable = state;
   }
 
-  _popCOQState() {
+  _popImmutable() {
     this._immutable = this._immutableState.pop();
   }
 }

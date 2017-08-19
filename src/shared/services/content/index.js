@@ -1,5 +1,6 @@
 import path    from 'jspath';
-import JSPathDatabase from '../lib/jspath-database';
+import JSPathDatabase from '../../lib/jspath-database';
+import normalize from './normalizer';
 
 const uniqueIdReducer = (accum,id) => ((!accum.includes(id) && accum.push(id)), accum);
 
@@ -9,8 +10,13 @@ class ContentDB extends JSPathDatabase {
     super(...arguments);
     this._visiblity = null;
     this._visibleCache = {};
+    this._cache = {};
   }
   
+  set data( data ) {
+    super.data = normalize(data);
+  }
+
   get tagCategories() {
     return this.query('tagCategories');
   }
@@ -20,17 +26,11 @@ class ContentDB extends JSPathDatabase {
   }
 
   get denormalizedGroups() {
-    if( !this._normalizedGroups ) {
-      this._normalizedGroups = this.denormalize( this.groupSchema, this.groups );
-    }
-    return this._normalizedGroups;
+    return this._checkQueryCache( 'denormalizedGroups', () => this.denormalize( this.groupSchema, this.groups ) );
   }
 
   get denormalizedStates() {
-    if( !this._normalizedStates ) {
-      this._normalizedStates = this.denormalize( this.stateSchema, this.states );
-    }
-    return this._normalizedStates;
+    return this._checkQueryCache( 'denormalizedStates', () => this.denormalize( this.stateSchema, this.states ) );
   }
 
   get tags() {
@@ -46,27 +46,7 @@ class ContentDB extends JSPathDatabase {
   }
 
   get colors() {
-    if( !this._colors ) {
-      this._colors = this.match( 'states', 'parent', 0 );
-      this._colors.sort( (c1,c2) => c1.order - c2.order );
-    }
-    return this._colors;
-  }
-
-  _trimBySlug( slug, results, field = 'state' ) {
-    if( !slug ) {
-      return results;
-    }
-    const stateArr = this.match( 'states', 'slug', `"${slug}"` );
-    if( stateArr.length !== 1 ) {
-      return results;
-    }
-    const state = stateArr[0];
-    let ids = state.parent === 0
-          ? this.query( 'states', '.{.parent==$parent}.id', {parent:state.id} )
-          : [state.id];
-    return this.getRecords( results, ids, field );
-
+    return this._checkQueryCache( 'colors', () => this.match( 'states', 'parent', 0 ).sort( (c1,c2) => c1.order - c2.order ) );
   }
 
   visibleGroups(visibility, slug = '') {
@@ -78,7 +58,7 @@ class ContentDB extends JSPathDatabase {
 
   visibleStates(visibility, slug = '') {
     return this._checkVisibleCache( visibility, 'states' + slug, () => 
-                     this.getRecords( 'states', path( '.state', this.visibleGroups(visibility,slug) ) ) );
+                     this.getRecords( 'states', path('.state', this.visibleGroups(visibility,slug)).reduce(uniqueIdReducer,[]) ) );
   }
 
   visibleColors(visibility, slug = '') {
@@ -119,10 +99,6 @@ class ContentDB extends JSPathDatabase {
     return path(p,this.denormalizedGroups,{slug}).reduce(uniqueIdReducer,[]);
   }
 
-  _isColorSlug(slug) {
-    return this.queryItem('states', '.{.slug==$slug}.parent', {slug}) === 0;
-  }
-
   denormalizeVisibleStates(visibility, slug = '') {
     return this._checkVisibleCache( visibility, 'normalizedStates' + slug, () => 
               visibility.length
@@ -161,6 +137,33 @@ class ContentDB extends JSPathDatabase {
     return this.getRecords( this.denormalizedStates, path( '.state', this.selectedGroups(selected) ) );
   }
   
+  _isColorSlug(slug) {
+    return this.queryItem('states', '.{.slug==$slug}.parent', {slug}) === 0;
+  }
+
+  _trimBySlug( slug, results, field = 'state' ) {
+    if( !slug ) {
+      return results;
+    }
+    const stateArr = this.match( 'states', 'slug', `"${slug}"` );
+    if( stateArr.length !== 1 ) {
+      return results;
+    }
+    const state = stateArr[0];
+    let ids = state.parent === 0
+          ? this.query( 'states', '.{.parent==$parent}.id', {parent:state.id} )
+          : [state.id];
+    return this.getRecords( results, ids, field );
+
+  }
+
+  _checkQueryCache( key, cb ) {
+    if( !this._cache[key] ) {
+      this._cache[key] = cb();
+    }
+    return this._cache[key];
+  }
+
   _checkVisibleCache(visibility,field,cb) {
     if( this._visiblity === visibility ) {
       if( this._visibleCache[field] ) {

@@ -2,7 +2,6 @@ import path    from 'jspath';
 import axios   from 'axios';
 
 // for now
-import Normalizer from '../lib/normalizer';
 import ContentDB  from './content';
 
 let _fetch = axios;
@@ -70,9 +69,12 @@ class MovementVoteService {
 
     const gotContent = content => {
 
-      this._db = new ContentDB((new Normalizer(content)).db);
+      this._db = new ContentDB();
+      
+      this._db.data = content;
 
       this._promises.content = null; 
+
       return this._content = content;
 
     };
