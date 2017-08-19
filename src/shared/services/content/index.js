@@ -25,14 +25,6 @@ class ContentDB extends JSPathDatabase {
     return this.query('groups');
   }
 
-  get denormalizedGroups() {
-    return this._checkQueryCache( 'denormalizedGroups', () => this.denormalize( this.groupSchema, this.groups ) );
-  }
-
-  get denormalizedStates() {
-    return this._checkQueryCache( 'denormalizedStates', () => this.denormalize( this.stateSchema, this.states ) );
-  }
-
   get tags() {
     return this.query('tags');
   }
@@ -48,6 +40,19 @@ class ContentDB extends JSPathDatabase {
   get colors() {
     return this._checkQueryCache( 'colors', () => this.match( 'states', 'parent', 0 ).sort( (c1,c2) => c1.order - c2.order ) );
   }
+
+  get advisors() {
+    return this.query('advisors');
+  }
+  
+  get denormalizedGroups() {
+    return this._checkQueryCache( 'denormalizedGroups', () => this.denormalize( this.groupSchema, this.groups ) );
+  }
+
+  get denormalizedStates() {
+    return this._checkQueryCache( 'denormalizedStates', () => this.denormalize( this.stateSchema, this.states ) );
+  }
+
 
   visibleGroups(visibility, slug = '') {
     return this._checkVisibleCache( visibility, 'groups' + slug, () => 

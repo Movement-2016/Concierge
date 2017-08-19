@@ -2,22 +2,28 @@ import React              from 'react';
 import { connect }        from 'react-redux';
 import { Shell }          from './ContentPage.jsx';
 
-const nameRegex = /[a-z-]+$/i;
+const NUM_COLS = 3;
 
-const processAdvisors = advisors =>
-        advisors && advisors.map( a => a.post_title )
-                                .sort( (a,b) => a.match(nameRegex)[0].localeCompare(b.match(nameRegex)[0]) );
+const processAdvisors = advisors => {
+  const arr = [ ...advisors ];
 
+  const modulo = arr.length % NUM_COLS;
+
+  if( modulo ) {
+    for( var i = 0; i < NUM_COLS - modulo; i++ ) {
+      arr.push( { name: '', sort: 'zzzzz' } );
+    }
+  }
+
+  return arr.sort( (a,b) => a.sort.localeCompare(b.sort) ).map( a => a.name );
+};
 
 const sliceAdvisors = advisors => {
-  const NUM_COLS = 3;
-
   const itemsPerCol = Math.trunc(advisors.length/NUM_COLS);
 
   const cols = new Array( NUM_COLS )
                 .fill(true)
                 .map( (a,i) => advisors.slice(i*itemsPerCol,Math.max(i*itemsPerCol+itemsPerCol)) );
-
   return cols;
 };
 
