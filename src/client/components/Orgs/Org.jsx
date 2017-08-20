@@ -91,14 +91,8 @@ const OrgDesktop = ({
       </div>;
 
 const tagsByCat = tags => tags.reduce( (accum,tag) => {
-  const catSlug = tag.category.slug;
-  if( !accum[catSlug] ) {
-    accum[catSlug] = {
-      category: tag.category,
-      tags: []
-    };
-  }
-  accum[catSlug].tags.push(tag);
+  const { category, category: { slug } } = tag;
+  (accum[slug] && accum[slug].tags.push(tag)) || (accum[slug] = { category, tags: [tag] });
   return accum;
 }, {});
 

@@ -19,6 +19,7 @@ const M_SERVICE_END_POINT = WP_API_HOST + '/wp-json/movement-2018/';
 
 
 const Facebook = {
+    providerKey: 'graph.facebook.com',
     clientId: '115757859022458',
     scope: 'public_profile,email',
     fields: 'email,first_name,last_name,picture',
@@ -33,8 +34,9 @@ const Facebook = {
   };
 
 const Google = {
+    providerKey: 'accounts.google.com',
     clientId: '549640832795-h8sjf845lqo4fia4djrs44c622408sgf.apps.googleusercontent.com',
-    scope: 'profile email'
+    scope: 'profile email',
   };
 
 module.exports = {
@@ -42,8 +44,10 @@ module.exports = {
   IDENTITY_POOL_ID,
   SYNC_DATASET,
 
-  Facebook,
-  Google,
+  IdentityProviders: {
+    Facebook,
+    Google,    
+  },
 
   PLANS_ENDPOINT,
   ADMIN_EMAIL,

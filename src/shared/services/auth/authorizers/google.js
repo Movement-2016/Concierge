@@ -45,9 +45,11 @@ class GoogleLogin extends IdProvider {
   
   _initSDK() {
     const {
-      Google: {
-        clientId,
-        scope
+      IdentityProviders: {
+        Google: {
+          clientId,
+          scope
+        }
       }
     } = this._config;
 

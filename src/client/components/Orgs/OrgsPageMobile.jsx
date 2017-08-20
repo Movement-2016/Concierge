@@ -9,8 +9,6 @@ import OrgsList from './OrgsList.jsx';
 import FilterPageMobile from '../Filters/FilterPageMobile.jsx';
 import PlanTray from './PlanTray.jsx';
 
-import { setVisibility } from '../../../shared/store/actions/groups';
-
 const FilterBar = ({ onShowFilters, numFilters }) =>
     <div className="filter-bar-wrapper">
       <Headroom disableInlineStyles>
@@ -83,8 +81,6 @@ const mapStateToProps = ({
           numFilters: visibility.length
         });
 
-const mapDispatchToProps = { setVisibility };
-
-const OrgsPageMobile = connect( mapStateToProps, mapDispatchToProps )(_OrgsPageMobile);
+const OrgsPageMobile = connect( mapStateToProps )(_OrgsPageMobile);
 
 module.exports = OrgsPageMobile;

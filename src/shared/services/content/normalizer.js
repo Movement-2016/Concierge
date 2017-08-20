@@ -5,10 +5,11 @@ class Testimonial extends serialize.Model {
     super(...arguments);
     this.idBinding = 'ID';
     this.bodyBinding = 'post_content';
-    this.authorBinding = 'post_title';
     this.slugBinding = 'post_name';
     this.titleBinding = 'fields.author_title';
+
     this.imageBinding = 'fields.image';
+    this.authorBinding = 'post_title';
   }
 }
 
@@ -49,7 +50,7 @@ class Post extends PostBare {
 class Page extends Post { 
 }
 
-class DonateTiles extends Post {
+class DonateTile extends Post {
 }
 
 class News extends PostBare {
@@ -69,7 +70,7 @@ class TaxonomyNode extends serialize.Model {
   }
 }
 
-class States extends TaxonomyNode {
+class State extends TaxonomyNode {
   constructor() {
     super(...arguments);
     this.descriptionBinding = 'description';
@@ -91,7 +92,7 @@ class States extends TaxonomyNode {
 
 }
 
-class Tags extends TaxonomyNode {
+class Tag extends TaxonomyNode {
   constructor() {
     super(...arguments);
     this.categoryBinding = 'category';
@@ -108,14 +109,14 @@ class Advisor extends serialize.Model {
   }
 }
 
-class Groups extends PostBare {
+class Group extends PostBare {
 
   constructor() {
     super(...arguments);
 
     if( this.fields ) {
       this.websiteBinding  = 'fields.website';
-      
+
       this.c4_donate_linkBinding  = 'fields.c4_donate_link';
       this.c3_donate_linkBinding  = 'fields.c3_donate_link';
       this.pac_donate_linkBinding = 'fields.pac_donate_link';
@@ -183,14 +184,15 @@ const serializeContent = content => {
 
     return {
       advisors:      serialize({ jsonData: db.posts.advisor,     model: Advisor }),
-      donateTiles:   serialize({ jsonData: db.posts.donatetile,  model: DonateTiles }),
+      donateTiles:   serialize({ jsonData: db.posts.donatetile,  model: DonateTile }),
       news:          serialize({ jsonData: db.posts.news,        model: News }),
       menu:          serialize({ jsonData: db.menu,              model: Menu }),
-      tags:          serialize({ jsonData: db.tags ,             model: Tags } ),
       testimonials:  serialize({ jsonData: db.posts.testimonial, model: Testimonial }),
-      states:        serialize({ jsonData: db.states,            model: States,        ctx: { states: db.states, order: db.colorOrder} }),
-      groups:        serialize({ jsonData: db.posts.group,       model: Groups,        ctx: { taxonomies: db.taxonomies, tagCatKeys: db.tagCatKeys }} ),
 
+      // groups....
+      tags:          serialize({ jsonData: db.tags ,             model: Tag }),
+      states:        serialize({ jsonData: db.states,            model: State,   ctx: { states: db.states, order: db.colorOrder} }),
+      groups:        serialize({ jsonData: db.posts.group,       model: Group,   ctx: { taxonomies: db.taxonomies, tagCatKeys: db.tagCatKeys }} ),
       tagCategories: db.tagCategories
     };
     

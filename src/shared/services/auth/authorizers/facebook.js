@@ -45,12 +45,12 @@ class FacebookLogin extends IdProvider {
     this._accessToken = null;
   }
 
+  get fbConfig() {
+    return this._config.IdentityProviders.Facebook;
+  }
+
   _initSDK() {
-    const {
-      Facebook: {
-        clientId
-      }
-    } = this._config;
+    const { clientId } = this.fbConfig;
 
     window.checkloginState = this.getStatus.bind(this);
     window.fbAsyncInit = function() {
@@ -84,7 +84,7 @@ class FacebookLogin extends IdProvider {
     this._initSDK();
     return props => {
       this.props = { ...props };
-      return <FacebookLoginButton {...this._config.Facebook.buttonOptions} />;
+      return <FacebookLoginButton {...this.fbConfig.buttonOptions} />;
     };
   }
 
@@ -97,7 +97,7 @@ class FacebookLogin extends IdProvider {
         if( response.status === 'connected' ) {
             this._accessToken = response.authResponse.accessToken;
 
-            FB.api( '/me', { fields: this._config.Facebook.fields }, 
+            FB.api( '/me', { fields: this.fbConfig.fields }, 
                     fields => {
                       const {
                         first_name,
