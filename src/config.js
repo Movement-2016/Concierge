@@ -1,16 +1,13 @@
 
-const REGION           = 'us-west-2';
-const IDENTITY_POOL_ID = 'us-west-2:544ed35f-6bdb-4e28-b9a2-fca1ddbc4e7b';
-
-const PLANS_ENDPOINT   = 'https://ejy2t55834.execute-api.us-west-2.amazonaws.com/prod';
-
-const SYNC_DATASET     = 'gamechangerlabs:profile';
-
+const SITE_TITLE       = 'Movement 2017';
 const ADMIN_EMAIL      = 'advisor@movementvote.org';
 
-const SITE_TITLE       = 'Movement 2017';
+const REGION           = 'us-west-2';
+const IDENTITY_POOL_ID = 'us-west-2:6069c14f-fc12-4964-bf22-80bf919eecde'; 
+const PLANS_ENDPOINT   = 'https://005h0deted.execute-api.us-west-2.amazonaws.com/prod';
+const SYNC_DATASET     = 'gamechangerlabs:profile';
 
-const PLAN_AUTOSAVE_INTERVAL = 5; // seconds
+const PLAN_AUTOSAVE_INTERVAL    = 5; // seconds
 const PROFILE_AUTOSAVE_INTERVAL = 7;
 
 const WP_DEV              = false;
@@ -44,7 +41,7 @@ module.exports = {
   IDENTITY_POOL_ID,
   SYNC_DATASET,
 
-  IdentityProviders: {
+  identityProviders: {
     Facebook,
     Google,    
   },

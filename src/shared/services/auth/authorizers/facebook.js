@@ -46,7 +46,7 @@ class FacebookLogin extends IdProvider {
   }
 
   get fbConfig() {
-    return this._config.IdentityProviders.Facebook;
+    return this._config.identityProviders.Facebook;
   }
 
   _initSDK() {

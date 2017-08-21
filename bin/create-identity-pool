@@ -33,7 +33,7 @@ if [ ! -d $WORK ]; then
   mkdir -p $WORK;
 fi
 
-PROVIDERJS='const ids = require("../../src/config").IdentityProviders; console.log( Object.keys(ids).map(key => `${ids[key].providerKey}=${ids[key].clientId}`).join( ",") );';
+PROVIDERJS='const ids = require("../../src/config").identityProviders; console.log( Object.keys(ids).map(key => `${ids[key].providerKey}=${ids[key].clientId}`).join( ",") );';
 echo $PROVIDERJS > $WORK/code.js
 PROVIDERS=`node $WORK/code.js`
 
