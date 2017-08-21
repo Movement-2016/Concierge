@@ -15,7 +15,7 @@
 #
 # The role gets attached to the pool
 #
-# The pool ID is written to ./work/create-identity-pool.result.json
+# The pool ID is written to ./$WORK/create-identity-pool.result.json
 #
 POOL_NAME=gamechangerlabs
 ROLE_NAME=id-pool-authorized
@@ -25,9 +25,17 @@ SYNC_POLICY_NAME=cognito-id-sync
 #
 ####################################################################################
 
+set -e
+
+WORK=work
+
+if [ ! -d $WORK ]; then
+  mkdir -p $WORK;
+fi
+
 PROVIDERJS='const ids = require("../../src/config").IdentityProviders; console.log( Object.keys(ids).map(key => `${ids[key].providerKey}=${ids[key].clientId}`).join( ",") );';
-echo $PROVIDERJS > work/code.js
-PROVIDERS=`node work/code.js`
+echo $PROVIDERJS > $WORK/code.js
+PROVIDERS=`node $WORK/code.js`
 
 #
 # Identity Pool
@@ -36,9 +44,9 @@ PROVIDERS=`node work/code.js`
 aws cognito-identity create-identity-pool \
        --identity-pool-name $POOL_NAME \
        --no-allow-unauthenticated-identities \
-       --supported-login-providers $PROVIDERS > work/create-identity-pool.result.json
+       --supported-login-providers $PROVIDERS > $WORK/create-identity-pool.result.json
 
-POOL_ID=`cat work/create-identity-pool.result.json |  egrep -o 'us-west-2([^"]+)'`
+POOL_ID=`cat $WORK/create-identity-pool.result.json |  egrep -o 'us-west-2([^"]+)'`
 
 echo Pool ID: $POOL_ID
 
@@ -65,11 +73,11 @@ echo Pool ID: $POOL_ID
  '      }'\
  '    }'\
  '  ]'\
- '}' > work/cognito-trust-policy.json
+ '}' > $WORK/cognito-trust-policy.json
 
-aws iam create-role --role-name $ROLE_NAME --assume-role-policy-document file://work/cognito-trust-policy.json > work/create-role.result.json
+aws iam create-role --role-name $ROLE_NAME --assume-role-policy-document file://$WORK/cognito-trust-policy.json > $WORK/create-role.result.json
 
-ROLE_ARN=`cat work/create-role.result.json |  egrep -o 'arn:aws([^"]+)'`
+ROLE_ARN=`cat $WORK/create-role.result.json |  egrep -o 'arn:aws([^"]+)'`
 
 echo Role ARN: $ROLE_ARN
 
@@ -92,17 +100,16 @@ echo '{'\
 '      ]'\
 '    }'\
 '  ]'\
-'}'\ > work/$SYNC_POLICY_NAME.json
+'}'\ > $WORK/$SYNC_POLICY_NAME.json
 
-aws iam create-policy --policy-name $SYNC_POLICY_NAME --policy-document file://work/$SYNC_POLICY_NAME.json > work/$SYNC_POLICY_NAME.result.json
+aws iam create-policy --policy-name $SYNC_POLICY_NAME --policy-document file://$WORK/$SYNC_POLICY_NAME.json > $WORK/$SYNC_POLICY_NAME.result.json
 
-SYNC_POLICY_ARN=`cat work/$SYNC_POLICY_NAME.result.json |  egrep -o 'arn:aws([^"]+)'`
+SYNC_POLICY_ARN=`cat $WORK/$SYNC_POLICY_NAME.result.json |  egrep -o 'arn:aws([^"]+)'`
 
 echo Sync Policy ARN: $SYNC_POLICY_ARN
 
-aws iam attach-role-policy --role-name $ROLE_NAME --policy-arn arn:aws:iam::aws:policy/AmazonAPIGatewayInvokeFullAccess
-aws iam attach-role-policy --role-name $ROLE_NAME --policy-arn $SYNC_POLICY_ARN
-
+aws iam              attach-role-policy --role-name $ROLE_NAME --policy-arn arn:aws:iam::aws:policy/AmazonAPIGatewayInvokeFullAccess
+aws iam              attach-role-policy --role-name $ROLE_NAME --policy-arn $SYNC_POLICY_ARN
 aws cognito-identity set-identity-pool-roles  --identity-pool-id $POOL_ID --roles authenticated=$ROLE_ARN
 
 
