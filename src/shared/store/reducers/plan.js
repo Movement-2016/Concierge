@@ -5,8 +5,13 @@ import {
   ADD_PLAN_ITEM,
   SAVE_PLAN,
   CLEAR_PLAN,
-  GET_PLAN
+  GET_PLAN,
+  LOCK_PLAN
  } from '../actions/plan';
+
+import {
+  CLEAR_CREDENTIALS // <-- here?
+} from '../actions/auth';
 
 const initialState = {
   planId: '',
@@ -14,7 +19,8 @@ const initialState = {
   donations: [],
   total: 0,
   status: { empty: true },
-  error: ''
+  error: '',
+  locked: false
 };
 
 const updateTotal = st => {
@@ -24,6 +30,12 @@ const updateTotal = st => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+
+    case LOCK_PLAN: {
+      const { locked } = action;
+      return { ...state, locked };
+    }
+
     case TOGGLE_ITEM: {
 
       let { donations } = state;
@@ -74,6 +86,7 @@ const reducer = (state = initialState, action) => {
       };
     }
 
+    case CLEAR_CREDENTIALS: // <-- yea?
     case CLEAR_PLAN: {
       return { ...state, ...initialState };
     }

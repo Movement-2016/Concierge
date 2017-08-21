@@ -11,7 +11,6 @@ const MILLISECONDS = 1000;
 
 class _SavePlanButton extends React.Component {
 
-
   constructor() {
     super(...arguments);
     this.state = { done: false, error: false };
@@ -36,6 +35,7 @@ class _SavePlanButton extends React.Component {
     if (interval) {
       clearInterval(interval);
       interval = null;
+      this.update();
     }
   }
 
@@ -83,7 +83,7 @@ class _SavePlanButton extends React.Component {
   }
 }
 
-const mapStateToProps    = s => ({ status: {...s.plan.status}, isLoggedIn: s.auth.authenticated });
+const mapStateToProps    = ({ plan:{status}, auth:{authenticated} }) => ({ status, isLoggedIn: authenticated });
 const mapDispatchToProps = { savePlan, openModal };
 
 const SavePlanButton = connect(mapStateToProps,mapDispatchToProps)(_SavePlanButton);
