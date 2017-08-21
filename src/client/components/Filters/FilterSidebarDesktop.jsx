@@ -35,14 +35,14 @@ const mapStateToProps = ({
     }
   },
   groups: { 
-    visibility, 
+    filters, 
   }
 }) => ({
     filterCategories: db.tagCategories,
-    showOrgsNav: db.visibleGroups(visibility).length > 0
+    showOrgsNav: db.visibleGroups(filters).length > 0
   });
 
-const opts = { areStatesEqual: (s1,s2) => s1.groups.visibility === s2.groups.visibility };
+const opts = { areStatesEqual: (s1,s2) => s1.groups.filters === s2.groups.filters };
 
 const FilterSidebarDesktop = connect( mapStateToProps, null, null, opts )(_FilterSidebarDesktop);
 

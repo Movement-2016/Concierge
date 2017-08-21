@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Link from '../../services/LinkToRoute';
 
 import { 
-  stateFilter,
   DEFAULT_STATE_FILTER
 } from '../../../shared/store/actions/groups';
 
@@ -29,18 +28,15 @@ const mapStateToProps = ({
     }
   },
   groups: { 
-    visibility, 
+    filters, 
   }
-}) => ({ visible: db.visibleStates(visibility) });
+}) => ({ visible: db.visibleStates(filters) });
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = () => {
   return {
-    onPick: ({target:{value}}) => {
-      dispatch(stateFilter(value));
-      value !== DEFAULT_STATE_FILTER && Link.navigateTo( '#' + value );
-    }    
+    onPick: ({target:{value}}) => value !== DEFAULT_STATE_FILTER && Link.navigateTo( '#' + value )
+    };
   };
-};
 
 const StatePicker = connect( mapStateToProps, mapDispatchToProps )(_StatePicker);
 

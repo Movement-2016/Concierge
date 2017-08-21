@@ -7,8 +7,8 @@ import {
 
 const _ClearAllButton = ({ visible, filterClear }) => <a className={'clearall-button' + (visible ? ' visible' : '')} onClick={filterClear}>{'Clear All'}</a>;
 
-const mapStateToProps = ({ groups: { visibility }} ) => ({
-  visible: visibility.length > 0
+const mapStateToProps = ({ groups: { filters }} ) => ({
+  visible: filters.length > 0
 });
 
 const mapDispatchToProps = { filterClear };

@@ -12,7 +12,7 @@ const _OrgsList = ({colors,states,groups,selected}) => log('PAINTING ORG LIST') 
 
 const mapStateToProps = ({
     groups: {
-      visibility,
+      filters,
       selected
     },
     router: {
@@ -28,13 +28,13 @@ const mapStateToProps = ({
       }
     }
   }) => ({ 
-    colors: db.visibleColors( visibility, slug ),
-    states: db.visibleStates( visibility, slug ),
-    groups: db.denormalizeVisibleGroups( visibility, slug ),
+    colors: db.visibleColors( filters, slug ),
+    states: db.visibleStates( filters, slug ),
+    groups: db.denormalizeVisibleGroups( filters, slug ),
     selected
   });
 
-const opts = { areStatesEqual: (s1,s2) => s1.groups.visibility === s2.groups.visibility && s1.groups.selected === s2.groups.selected};
+const opts = { areStatesEqual: (s1,s2) => s1.groups.filters === s2.groups.filters && s1.groups.selected === s2.groups.selected};
 
 const OrgsList = connect(mapStateToProps,null,null,opts)(_OrgsList);
 

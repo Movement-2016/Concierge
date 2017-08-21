@@ -19,12 +19,12 @@ const mapStateToProps = ({
     }
   },
   groups: { 
-    visibility, 
+    filters, 
   }
 }) => {
 
   return {
-    visible: db.visibleColors(visibility),
+    visible: db.visibleColors(filters),
     onClick: (e) => {
       e.preventDefault();
       scrollToElement( e.target.getAttribute('href') );

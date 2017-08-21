@@ -1,34 +1,24 @@
 const TOGGLE_SELECTION = 'TOGGLE_SELECTION';
-const TOGGLE_FILTER    = 'TOGGLE_FILTER';
-const FILTER_CLEAR     = 'FILTER_CLEAR';
-const STATE_FILTER     = 'STATE_FILTER';
-const SET_VISIBILITY   = 'SET_VISIBILITY';
+const FILTER_TOGGLE    = 'FILTER_TOGGLE';
+const FILTERS_CLEAR     = 'FILTERS_CLEAR';
 
 const DEFAULT_STATE_FILTER = 'select-state';
 
 
 const toggleSelection = id => ({ type: TOGGLE_SELECTION, id });
 
-const toggleFilter = id => ({ type: TOGGLE_FILTER, id });
+const toggleFilter = id => ({ type: FILTER_TOGGLE, id });
 
-const filterClear = () => ({ type: FILTER_CLEAR });
-
-const stateFilter = stateFilter => ({ type: STATE_FILTER, stateFilter });
-
-const setVisibility = visibility => ({ type: SET_VISIBILITY, visibility });
+const filterClear = () => ({ type: FILTERS_CLEAR });
 
 module.exports = {
   DEFAULT_STATE_FILTER,
   
   TOGGLE_SELECTION,
-  TOGGLE_FILTER,
-  FILTER_CLEAR,
-  STATE_FILTER,
-  SET_VISIBILITY,
+  FILTER_TOGGLE,
+  FILTERS_CLEAR,
 
   toggleSelection,
   toggleFilter,
-  filterClear,
-  stateFilter,
-  setVisibility
+  filterClear
 };

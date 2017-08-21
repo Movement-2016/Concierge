@@ -1,12 +1,8 @@
 
 import {
   TOGGLE_SELECTION,
-  TOGGLE_FILTER,
-  SET_VISIBILITY,
-  FILTER_CLEAR,
-  STATE_FILTER,
-
-  DEFAULT_STATE_FILTER
+  FILTER_TOGGLE,
+  FILTERS_CLEAR
  } from '../actions/groups';
 
 import {
@@ -20,37 +16,31 @@ import {
 
 
 const initialState = {
-  visibility: [],
-  selected: [],
-  stateFilter: DEFAULT_STATE_FILTER
+  filters: [],
+  selected: []
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
 
-    case TOGGLE_FILTER: {
+    case FILTER_TOGGLE: {
 
-      let { visibility } = state;
+      let { filters } = state;
       const { id } = action;
 
       const st = {
         ...state,
 
-        visibility: visibility.includes(id)
-                    ? visibility.filter( _id => _id !== id )
-                    : [ ...visibility, id ]
+        filters: filters.includes(id)
+                    ? filters.filter( _id => _id !== id )
+                    : [ ...filters, id ]
       };
 
       return st;
     }
 
-    case SET_VISIBILITY: {
-      const { visibility } = action;
-      return { ...state, visibility: [...visibility] };
-    }
-    
-    case FILTER_CLEAR: {
-      return { ...state, visibility: [] };
+    case FILTERS_CLEAR: {
+      return { ...state, filters: [] };
     }
 
     case CLEAR_CREDENTIALS: {// <-- ?? 
@@ -74,12 +64,7 @@ const reducer = (state = initialState, action) => {
       return st;
     }
 
-    case STATE_FILTER: {
-      const { stateFilter = DEFAULT_STATE_FILTER } = action;
-      return { ...state, stateFilter };
-    }
-
-    // TODO: this belongs somwewhere else
+    // TODO: this belongs somwewhere else (?)
     
     case GET_PLAN: {
       const { plan } = action;

@@ -9,7 +9,7 @@ import OrgsList from './OrgsList.jsx';
 import FilterPageMobile from '../Filters/FilterPageMobile.jsx';
 import PlanTray from './PlanTray.jsx';
 
-const FilterBar = ({ onShowFilters, numFilters }) =>
+const FilterBar = ({ showFilter, onShowFilters, numFilters }) =>
     <div className="filter-bar-wrapper">
       <Headroom disableInlineStyles>
         <div className="filter-bar">
@@ -18,10 +18,10 @@ const FilterBar = ({ onShowFilters, numFilters }) =>
               <i className="material-icons">{'chevron_left'}</i>
               {'Navigate'}
             </Link>
-            <a className="filter-button" onClick={onShowFilters}>
-              <i className="material-icons">{'filter_list'}</i>
-              {'Filter' + (numFilters ? ` (${numFilters})` : '')}
-            </a>
+            {showFilter && <a className="filter-button" onClick={onShowFilters}>
+                             <i className="material-icons">{'filter_list'}</i>
+                              {'Filter' + (numFilters ? ` (${numFilters})` : '')}
+                           </a>}
           </div>
         </div>
       </Headroom>
@@ -53,12 +53,13 @@ class _OrgsPageMobile extends React.Component {
 
     const {
       numGroups,
-      numFilters
+      numFilters,
+      showFilter
     } = this.props;
 
     return (
       <main className="orgs-page orgs-page-mobile">
-        <FilterBar numFilters={numFilters} onShowFilters={this.onShowFilters} />
+        <FilterBar showFilter={showFilter} numFilters={numFilters} onShowFilters={this.onShowFilters} />
         {showOrgsList && <OrgsList mobile />}
         <PlanTray numGroups={numGroups}/>
         <FilterPageMobile
@@ -71,14 +72,27 @@ class _OrgsPageMobile extends React.Component {
 }
 
 const mapStateToProps = ({ 
-        groups: { 
-          selected,
-          visibility
+    groups: {
+      filters,
+      selected
+    },
+    router: {
+      route: {
+        params: {
+          slug
         }
-      }) => 
+      },
+      target: {
+        model: {
+          db
+        }
+      }
+    }
+}) => 
         ({
           numGroups: selected.length,
-          numFilters: visibility.length
+          numFilters: filters.length,
+          showFilter: db.visibleGroups(filters,slug).length > 1
         });
 
 const OrgsPageMobile = connect( mapStateToProps )(_OrgsPageMobile);

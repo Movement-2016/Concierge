@@ -15,13 +15,13 @@ const Header = ({ onClose, onClearAll, showClearAll }) =>
     </div>
 ;
 
-const SubmitBar = ({onClick}) => 
-    <div className="filter-page-bar filter-submit-bar">
-      <a className="filter-submit-button btn-flat waves-effect waves-light" onClick={onClick}>
-        {'See Results'}
-      </a>
-    </div>
-;
+// const SubmitBar = ({onClick}) => 
+//     <div className="filter-page-bar filter-submit-bar">
+//       <a className="filter-submit-button btn-flat waves-effect waves-light" onClick={onClick}>
+//         {'See Results'}
+//       </a>
+//     </div>
+// ;
 
 class _FilterPageMobile extends React.Component {
 
@@ -67,7 +67,7 @@ class _FilterPageMobile extends React.Component {
 
 const mapStateToProps = ({
   groups: {
-    visibility
+    filters
   },
   router: {
     target: {
@@ -84,7 +84,7 @@ const mapStateToProps = ({
 }) => ({
     filterCategories: db.getRecords('tagCategories', db.visibleCategories(slug) ),
     visibleFilters: db.visibleFilters(slug),
-    nothingSelected: !visibility.length
+    nothingSelected: !filters.length
   });
 
 const mapDispatchToProps = { filterClear };

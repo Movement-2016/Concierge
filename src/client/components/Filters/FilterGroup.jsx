@@ -65,7 +65,7 @@ const mapStateToProps = ({
     }
   },
   groups: {
-    visibility: selected
+    filters: selected
   }
 }) => ({ tags, selected });
 
