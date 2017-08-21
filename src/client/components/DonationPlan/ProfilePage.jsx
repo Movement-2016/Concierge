@@ -11,7 +11,7 @@ import AutoSave    from '../Profile/AutoSave.jsx';
 
 class _PlanProfilePage extends React.Component {
 
-  onSubmit() {
+  onSubmit = () => {
     const {
       profile,
       syncProfile
@@ -26,7 +26,7 @@ class _PlanProfilePage extends React.Component {
     return (
       <Shell title="Complete Your Plan" name="custom-planning profile-page">
         <p className="page-description">{'Almost done! Enter your info below to save your donation plan, send yourself a copy, or request to speak with a donor advisor.'}</p>
-        <ProfileForm submitText="Complete Plan" onSubmit={this.onSubmit.bind(this)}>
+        <ProfileForm submitText="Complete Plan" onSubmit={this.onSubmit}>
           <BackLink to="/plan" title="Edit Plan">{'Edit plan'}</BackLink>
           <AutoSave />
         </ProfileForm>

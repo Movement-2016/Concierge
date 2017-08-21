@@ -1,42 +1,22 @@
 import React            from 'react';
 import { connect }      from 'react-redux';
-import Link             from '../../services/LinkToRoute';
+import { navigateTo }   from '../../services/LinkToRoute';
 
 import BackLink         from '../BackLink.jsx';
 import Plan             from './Plan.jsx';
 import Totals           from './Totals.jsx';
 import RequestConsult   from './RequestConsult.jsx';
 import AutoSavePlan     from './AutoSavePlan.jsx';
+import SummaryLink      from './SummaryLink.jsx';
 
-const PageDescription = () => {
-  return (
-    <p className="page-description">{'Enter a planned donation for each group. Once you complete your donation plan, we will email you a copy with simple instructions on how to donate directly to your chosen groups.'}</p>
-  );
-};
+const PageDescription = () =>
+        <p className="page-description" >
+            {`Enter a planned donation for each group. Once you complete 
+              your donation plan, we will email you a copy with simple instructions 
+              on how to donate directly to your chosen groups.`}
+        </p>;
 
-class _SummaryLink extends React.Component {
-
-  render() {
-    const {
-      email,
-      phone
-    } = this.props;
-
-    const isUserKnown = email && phone;
-
-    const url = isUserKnown ? '/plan/summary' : '/plan/profile';
-
-    return (
-      <Link className="complete-button btn waves-effect waves-light" to={url}>{'Complete Plan'}</Link>
-    );
-  }
-}
-
-const mapSummaryStateToProps = s => ({ email: s.profile.email, phone: s.profile.phone });
-
-const SummaryLink = connect(mapSummaryStateToProps)(_SummaryLink);
-
-class PlanPage extends React.Component {
+class _PlanPage extends React.Component {
 
   constructor() {
     super(...arguments);
@@ -44,6 +24,12 @@ class PlanPage extends React.Component {
       done: '',
       error: ''
     };
+  }
+
+  componentDidUpdate() {
+    if( !this.props.isLoggedIn ) {
+      navigateTo( '/groups' );
+    }
   }
 
   onDone = (done) => this.setState({ done });
@@ -86,5 +72,8 @@ class PlanPage extends React.Component {
     );
   }
 }
+
+const mapStateToProps = ({ auth: {authenticated} }) => ({ isLoggedIn: authenticated });
+const PlanPage = connect(mapStateToProps)(_PlanPage);
 
 module.exports = PlanPage;
