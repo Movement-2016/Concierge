@@ -14,6 +14,11 @@ import {
   GET_PLAN
  } from '../actions/plan';
 
+import {
+  CLEAR_CREDENTIALS // <-- here?
+} from '../actions/auth';
+
+
 const initialState = {
   visibility: [],
   selected: [],
@@ -46,6 +51,10 @@ const reducer = (state = initialState, action) => {
     
     case FILTER_CLEAR: {
       return { ...state, visibility: [] };
+    }
+
+    case CLEAR_CREDENTIALS: {// <-- ?? 
+      return { ...state, selected: [] };
     }
 
     case TOGGLE_ITEM:

@@ -5,8 +5,13 @@ const ADD_PLAN_ITEM = 'ADD_PLAN_ITEM';
 const SAVE_PLAN     = 'SAVE_PLAN';
 const CLEAR_PLAN    = 'CLEAR_PLAN';
 const GET_PLAN      = 'GET_PLAN';
+const LOCK_PLAN     = 'LOCK_PLAN';
 
 const requiresLogin = true;
+
+const clearPlan = () => ({ type: clearPlan });
+
+const lockPlan = locked => ({ type: LOCK_PLAN, locked });
 
 const toggleItem = id => ({ type: TOGGLE_ITEM, id, requiresLogin });
 
@@ -42,16 +47,20 @@ const savePlan = () => (dispatch,getState) => {
   } = getState();
 
   if( auth.authenticated ) {
-    const api = plansAPI();
-
     let {
       planName,
       donations,
       planId,
-      status
+      status,
+      locked
     } = plan;
   
-    if( status.dirty ) {
+    if( !locked && status.dirty ) {
+
+      const api = plansAPI();
+
+      dispatch( lockPlan(true) );
+
       !planName && (planName = `${fname}'s Donation Plan`);    
 
       const body = { 
@@ -59,18 +68,20 @@ const savePlan = () => (dispatch,getState) => {
           donations
       };
       
-      const onError = e => dispatch({ type: SAVE_PLAN, status: 'error', value: e.toString() });
+      const _dispatch = d => (dispatch(d),dispatch(lockPlan(false)));
+
+      const onError = e => _dispatch({ type: SAVE_PLAN, status: 'error', value: e.toString() });
 
       if( planId ) {
 
         api.update( planId, body )
-              .then( () => dispatch({ type: SAVE_PLAN, status: 'saved' }))
+              .then( () => _dispatch({ type: SAVE_PLAN, status: 'saved' }))
               .catch( onError );
 
       } else {
 
         api.create( body)
-              .then( plan => dispatch({ type: SAVE_PLAN, status: 'saved', value: plan.planId }) )
+              .then( plan => _dispatch({ type: SAVE_PLAN, status: 'saved', value: plan.planId }) )
               .catch( onError );
 
       }
@@ -78,8 +89,6 @@ const savePlan = () => (dispatch,getState) => {
 
   }
 };
-
-const clearPlan = () => ({ type: clearPlan });
 
 module.exports = {
   TOGGLE_ITEM,
