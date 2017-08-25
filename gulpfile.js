@@ -38,7 +38,7 @@ const babelifyOpts = {
 const dependencies = [
   'axios',
   'commaize',
-  'crypto-js',  // <-- imported from plansDB
+  'crypto-js',  // <-- imported from bellman
   'es6-promise-polyfill',
   'events',
   'jspath',

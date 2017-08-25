@@ -1,5 +1,5 @@
-import PlansDB from 'gamechangers-plans-db';
-import config from '../../config';
+import { prod } from 'bellman';
+
 
 /* globals AWS */
 
@@ -14,18 +14,11 @@ module.exports = () => {
     sessionToken
   } = AWS.config.credentials;
 
-  const {
-    REGION: region,
-    PLANS_ENDPOINT: invokeUrl
-  } = config;
-
   const cfg = {
     accessKey,
     secretKey,
-    sessionToken,
-    region,
-    invokeUrl
+    sessionToken
   };
 
-  return new PlansDB(cfg);
+  return prod.plans(cfg);
 };

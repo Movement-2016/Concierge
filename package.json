@@ -13,10 +13,10 @@
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-preset-2017": "0.0.0",
     "babel-preset-es2017": "^6.24.1",
+    "bellman": "git+https://github.com/Movement-2016/bellman.git",
     "commaize": "git+https://github.com/victor-stone/commaize.git",
     "compare-objects": "0.0.4",
     "es6-promise-polyfill": "^1.2.0",
-    "gamechangers-plans-db": "git+https://github.com/Movement-2016/plans-db.git",
     "google-auth-library": "^0.9.8",
     "googleapis": "^13.0.0",
     "html-entities": "^1.2.0",
@@ -36,7 +36,8 @@
     "redux-thunk": "2.1.0",
     "route-recognizer": "^0.3.3",
     "serialize": "git+https://github.com/victor-stone/serialize.git",
-    "tag-string": "git+https://github.com/victor-stone/tag-string.git"
+    "tag-string": "git+https://github.com/victor-stone/tag-string.git",
+    "uuid": "^3.1.0"
   },
   "scripts": {
     "test": "",
