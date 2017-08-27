@@ -51,14 +51,14 @@ const reducer = (state = initialState, action) => {
     case TOGGLE_SELECTION: {
 
       let { selected } = state;
-      const { id } = action;
+      const { group } = action;
 
       const st = {
         ...state,
 
-        selected: selected.includes(id)
-                    ? selected.filter( _id => _id !== id )
-                    : [ ...selected, id ]
+        selected: selected.includes(group)
+                    ? selected.filter( _id => _id !== group )
+                    : [ ...selected, group ]
       };
 
       return st;
@@ -70,7 +70,7 @@ const reducer = (state = initialState, action) => {
       const { plan } = action;
       return {
         ...state,
-        selected: plan.donations.map( d => d.id )
+        selected: plan.donations.map( d => d.group )
       };
     }
 

@@ -13,9 +13,9 @@ const clearPlan = () => ({ type: clearPlan });
 
 const lockPlan = locked => ({ type: LOCK_PLAN, locked });
 
-const toggleItem = id => ({ type: TOGGLE_ITEM, id, requiresLogin });
+const toggleItem = group => ({ type: TOGGLE_ITEM, group, requiresLogin });
 
-const addPlanItem = (id,amount) => ({ type: ADD_PLAN_ITEM, id, amount, requiresLogin });
+const addPlanItem = (group,amount) => ({ type: ADD_PLAN_ITEM, group, amount, requiresLogin });
 
 const getPlan = () => (dispatch,getState) => {
 

@@ -12,10 +12,11 @@ class _EmailPlanButton extends React.Component {
       onError,
       onDone,
       profile:user,
-      plan
+      plan,
+      db
     } = this.props;
 
-    emailPlan( { user, plan } )
+    emailPlan( { user, plan, db } )
       .then( done => onDone(done) )
       .catch( err => onError(err) );
   }
@@ -26,7 +27,7 @@ class _EmailPlanButton extends React.Component {
   }
 }
 
-const mapStateToProps = ({plan,profile}) => ({ plan, profile });
+const mapStateToProps = ({plan, profile, router:{target:{model:{db}}}}) => ({ plan, profile, db });
 
 const EmailPlanButton = connect(mapStateToProps)(_EmailPlanButton);
 

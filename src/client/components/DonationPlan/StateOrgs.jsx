@@ -4,8 +4,8 @@ import path from 'jspath';
 import Org from './Org.jsx';
 
 
-const amountFromOrg = ({id},plan) => {
-  const { amount = 0 } = path( `..{.id==${id}}`,plan )[0];
+const amountFromOrg = ({id:group},plan) => {
+  const { amount = 0 } = path( `..{.group==${group}}`,plan )[0];
   return amount;
 };
 

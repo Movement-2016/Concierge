@@ -39,16 +39,16 @@ const reducer = (state = initialState, action) => {
     case TOGGLE_ITEM: {
 
       let { donations } = state;
-      const { id } = action;
+      const { group } = action;
 
-      const isRemoving = donations.find( d => d.id === id );
+      const isRemoving = donations.find( d => d.group === group );
 
       return( updateTotal( {
         ...state,
 
         donations: isRemoving
-                    ? path(`..{.id!=${id}}`, donations)
-                    : [ ...donations, { id, amount: 0 } ],
+                    ? path(`..{.group!=${group}}`, donations)
+                    : [ ...donations, { group, amount: 0 } ],
 
         status: { dirty: true }
 
@@ -58,12 +58,12 @@ const reducer = (state = initialState, action) => {
     case ADD_PLAN_ITEM: {
 
       let { donations }    = state;
-      const { id, amount } = action;
+      const { group, amount } = action;
 
       return( updateTotal({ 
         ...state, 
 
-        donations: [ ...path(`..{.id!=${id}}`, donations), { id, amount } ],
+        donations: [ ...path(`..{.group!=${group}}`, donations), { group, amount } ],
 
         status: { dirty: true }
 
