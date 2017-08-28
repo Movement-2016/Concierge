@@ -33,7 +33,8 @@ const GroupsSlugModel = {
   component: OrgsPageMobile,
   title,
   meta,
-  model
+  model,
+  browserOnly: true
 };
 
 module.exports = { GroupsModel, GroupsSlugModel };

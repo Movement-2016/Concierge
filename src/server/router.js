@@ -7,7 +7,10 @@ const React                    = require( 'react');
 const utils = require('./html-utils');
 
 const store = require('../shared/store');
-const setRoutes = require('../shared/store/actions/router').setRoutes;
+const { 
+  setRoutes,
+  renderHTML
+} = require('../shared/store/actions/router');
 
 class ServerRouter {
 
@@ -23,11 +26,12 @@ class ServerRouter {
       const { 
         router,
         router: {
+          html,
           navigating,
           notFound,
           target: {
             payload: {
-              next
+              next = () => {}
             }
           }
         }
@@ -35,7 +39,9 @@ class ServerRouter {
 
       if( navigating ) {
 
-        this.navigate( router );
+        if( !html ) {
+          this.navigate( router );
+        }
 
       } else if( notFound ) {
 
@@ -75,8 +81,12 @@ class ServerRouter {
 
     html = utils.titleSetter( title, utils.metaSetter( meta, html ) );
 
-    res.setHeader( 'Content-Type', 'text/html' );
-    res.end(html);
+    if( res ) {
+      res.setHeader( 'Content-Type', 'text/html' );
+      res.end(html);      
+    } else {
+      process.nextTick( () => store.dispatch( renderHTML(html) ) );
+    } 
   }
 }
 

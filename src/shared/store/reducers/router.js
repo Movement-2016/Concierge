@@ -2,7 +2,8 @@
 import { 
   NAVIGATION_STARTS,
   NAVIGATION_ENDS,
-  PATH_NOT_FOUND
+  PATH_NOT_FOUND,
+  RENDER_HTML
 } from '../actions/router';
 
 const INITIAL_STATE = {
@@ -27,6 +28,7 @@ const INITIAL_STATE = {
 
     location: { hash: ''}, // document.location object
   },
+  html: null, // result of serverside render
   navigating: false,
   notFound: false
 };
@@ -59,6 +61,11 @@ const reducer = (state = INITIAL_STATE, action) => {
         navigating: true,
         notFound: false
       };
+    }
+
+    case RENDER_HTML: {
+      const { html } = action;
+      return { ...state, html };
     }
 
     case NAVIGATION_ENDS: {

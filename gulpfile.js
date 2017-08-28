@@ -9,7 +9,7 @@ const babel = require('gulp-babel');
 const browserify = require ('browserify');
 const watchify = require ('watchify');
 const uglify = require ('gulp-uglify');
-const gzip = require ('gulp-gzip');
+//const gzip = require ('gulp-gzip');
 const sass = require ('gulp-sass');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
@@ -19,6 +19,8 @@ const concat = require('gulp-concat');
 const ext = require('gulp-ext');
 const rm = require('gulp-clean');
 const indexJS = require('index-js');
+const exec = require('child_process').exec;
+
 
 const browserifyConfig =  {
   entries: 'src/client/browser.js', // see 'production' below
@@ -79,9 +81,19 @@ let BASE = 'dist';
 
 var stdTasks = [ 'indecies', 'html', 'images', 'server', 'styles', 'fonts', 'vendor-styles', 'vendor-client-js', 'vendor' ];
 
-gulp.task ('default',   [               ...stdTasks, 'browserify-watch', 'watch']);
-gulp.task ('build',     [               ...stdTasks, 'browserify' ]);
-gulp.task ('no-watch',  [ 'production', ...stdTasks, 'browserify' ]);
+gulp.task ('default',   [               'static-pages', 'browserify-watch', 'watch']);
+gulp.task ('build',     [               'static-pages', 'browserify' ]);
+gulp.task ('no-watch',  [ 'production', 'static-pages', 'browserify' ]);
+
+
+gulp.task('static-pages', [ ...stdTasks ], function (cb) {
+  exec('node ./dist/server/static-render', function (err, stdout, stderr) {
+    console.log(stdout); // eslint-disable-line
+    console.log(stderr); // eslint-disable-line
+    cb(err);
+  });
+});
+
 
 gulp.task( 'production', function() {
   global.isProduction = true;
@@ -102,7 +114,7 @@ gulp.task ('watch', function () {
 
 // copy index.html and favicon.ico
 gulp.task ('html', function () {
-  return gulp.src (['src/client/index.html', 'src/client/favicon.ico'])
+  return gulp.src (['src/client/index.app.html', 'src/client/favicon.ico'])
     .pipe (gulp.dest (`${BASE}/public`));
 });
 
@@ -166,7 +178,7 @@ gulp.task ('vendor', function () {
     .pipe (source ('vendor.bundle.js'))
     .pipe (buffer ())
     .pipe( global.isProduction ? uglify({ mangle: true }) : gutil.noop() )
-    .pipe (gzip ({ append: true }))
+//    .pipe (gzip ({ append: true }))
     .pipe (gulp.dest (`${BASE}/public/js`));
 });
 
@@ -192,7 +204,7 @@ gulp.task ('vendor-styles', function () {
 gulp.task ('vendor-client-js', function () {
  return gulp.src( vendorClientJS )
             .pipe(concat('vendor.browser.js'))
-            .pipe(gzip({ append:true }))
+//            .pipe(gzip({ append:true }))
             .pipe(gulp.dest(`${BASE}/public/js`));
 });
 
@@ -206,7 +218,7 @@ const _rebundle = (bundler,start = Date.now()) => bundler.bundle ()
       .pipe (source ('bundle.js'))
       .pipe (buffer ())
       .pipe( global.isProduction ? uglify({ mangle: true }) : gutil.noop() )
-      .pipe (gzip ({ append: true }))
+//      .pipe (gzip ({ append: true }))
       .pipe (sourcemaps.init ({ loadMaps: true }))
       .pipe (sourcemaps.write ('.'))
       .pipe (gulp.dest (`${BASE}/public/js/`));
@@ -244,8 +256,6 @@ gulp.task('indecies', () => {
           .pipe(indexJS())
           .pipe (gulp.dest ('.'));
 });
-
-
 
 gulp.task( 'clean', function() {
   return gulp.src( `${BASE}`, { read: false })

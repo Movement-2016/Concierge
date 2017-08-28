@@ -2,7 +2,7 @@ import React       from 'react';
 import { connect } from 'react-redux';
 import ColorGroup  from './ColorGroup.jsx';
 
-function log() { if( process.env.NODE_ENV !== 'production' ) {var d = new Date(); console.log(...arguments, d, d.getMilliseconds());} return true; } // eslint-disable-line no-console
+function log() { if( 0 && process.env.NODE_ENV !== 'production' ) {var d = new Date(); console.log(...arguments, d, d.getMilliseconds());} return true; } // eslint-disable-line no-console
 
 const _OrgsList = ({colors,states,groups,selected}) => log('PAINTING ORG LIST') &&
       <div className="group-area">

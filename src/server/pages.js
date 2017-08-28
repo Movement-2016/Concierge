@@ -24,7 +24,7 @@ function pagesRoutes(app) {
                         BODY_REGEX, 
                         PATH_TO_INDEX_HTML );
 
-    app.get( '*', renderPage );
+    app && app.get( '*', renderPage );
 
     console.log( 'Ready for routing'); // eslint-disable-line
 

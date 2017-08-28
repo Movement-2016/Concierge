@@ -4,10 +4,12 @@ const SET_ROUTES        = 'SET_ROUTES';
 const NAVIGATION_STARTS = 'NAVIGATION_STARTS';
 const NAVIGATION_ENDS   = 'NAVIGATION_ENDS';
 const PATH_NOT_FOUND    = 'PATH_NOT_FOUND';
+const RENDER_HTML       = 'RENDER_HTML';
 
 const setNavigationStarts = ({route, target}) => ({ type: NAVIGATION_STARTS, target, route });
 const setNavigationEnds   = () => ({ type: NAVIGATION_ENDS });
 const pathNotFound        = (payload,url) => ({ type: PATH_NOT_FOUND, payload, url });
+const renderHTML          = html => ({ type: RENDER_HTML, html });
 
 let recognizer;
 
@@ -117,8 +119,10 @@ module.exports = {
   NAVIGATION_STARTS,
   NAVIGATION_ENDS,
   PATH_NOT_FOUND,
+  RENDER_HTML,
 
   setRoutes,
+  renderHTML,
   // setNavigationStarts,
   // setNavigationEnds,
   // pathNotFound,
