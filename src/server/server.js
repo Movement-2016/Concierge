@@ -2,7 +2,7 @@
 
 const http   = require('http');
 const _404   = require('./_404');
-const routes = require ('./routes');
+const pages  = require('./pages');
 
 const {
   ssl,
@@ -28,7 +28,7 @@ function start (port) {
         httpsOnly(app);
       }
 
-      routes(app)
+      pages(app)
         .then( () => staticServer.install(app) )
         .then( () => _404(app) )
         .then( () => startApp(app,port,resolve) )

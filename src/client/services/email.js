@@ -20,14 +20,25 @@ const emailPlan = ({ user, plan, db, forceConsult = false }) => {
     group: { table: 'groups' }
   };
 
-  const donations = db.denormalize( DonationSchema, plan.donations );
+  const donations = db.denormalize( DonationSchema, plan.donations )
+                        .map( ({amount, group:{ title, website, c4_donate_link, c3_donate_link}} ) => 
+                              ({amount, group:{ title, website, c4_donate_link, c3_donate_link}} ) );
 
-  forceConsult && (user = { ...user, wantsConsult: true });
+  const { 
+    fname,
+    lname,
+    email,
+    phone,
+    wantsConsult = forceConsult || user.wantsConsult
+  } = user;
 
   const payload = {
-    ...user,
-    donations,
-    forceConsult
+    fname,
+    lname,
+    email,
+    phone,
+    wantsConsult,
+    donations
   };
 
   return mailer().plan(payload)
