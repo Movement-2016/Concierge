@@ -92,7 +92,7 @@ const mapStateToProps = ({
         ({
           numGroups: selected.length,
           numFilters: filters.length,
-          showFilter: db.visibleGroups(filters,slug).length > 1
+          showFilter: db.visibleGroups(filters,slug).length > 1 || filters.length
         });
 
 const OrgsPageMobile = connect( mapStateToProps )(_OrgsPageMobile);

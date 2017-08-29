@@ -23,8 +23,8 @@ const _OrgsMenuPage = ({
                 <BrowseLink title="See All Groups" slug="all-groups" count={numGroups}/>
               </div>
               {
-                [colors,states].map( str => 
-                  <div className="orgs-link-section">
+                [colors,states].map( (str,n) => 
+                  <div key={n} className="orgs-link-section">
                     {str.map( ({name,slug,count}) => <BrowseLink title={name} key={slug} slug={slug} count={count} /> )}
                   </div>
                   )

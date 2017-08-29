@@ -83,8 +83,8 @@ const mapStateToProps = ({
     }
   },
 }) => ({
-    filterCategories: db.getRecords('tagCategories', db.visibleCategories(!allGroups && slug) ),
-    visibleFilters: db.visibleFilters(!allGroups && slug),
+    filterCategories: db.getRecords('tagCategories', db.visibleCategories(!allGroups && slug, filters) ),
+    visibleFilters: db.visibleFilters(!allGroups && slug, filters),
     nothingSelected: !filters.length
   });
 
