@@ -37,8 +37,6 @@ function triggerNextRender () {
   }  
 }
 
-pages().then( triggerNextRender );
-
 function writePage(url,html) {
   let path = url === '/'
               ? PUBLIC_DIR + '/index.html'
@@ -48,3 +46,7 @@ function writePage(url,html) {
   fs.writeFileSync( path, html );
   console.log( 'DONE RENDER: ', path );   
 }
+
+const main = () => pages().then( triggerNextRender );
+
+module.exports = main;

@@ -19,7 +19,7 @@ const concat = require('gulp-concat');
 const ext = require('gulp-ext');
 const rm = require('gulp-clean');
 const indexJS = require('index-js');
-const exec = require('child_process').exec;
+const staticRender = require( './dist/server/static-render');
 
 
 const browserifyConfig =  {
@@ -85,15 +85,9 @@ gulp.task ('default',   [               'static-pages', 'browserify-watch', 'wat
 gulp.task ('build',     [               'static-pages', 'browserify' ]);
 gulp.task ('no-watch',  [ 'production', 'static-pages', 'browserify' ]);
 
-
-gulp.task('static-pages', [ ...stdTasks ], function (cb) {
-  exec('node ./dist/server/static-render', function (err, stdout, stderr) {
-    console.log(stdout); // eslint-disable-line
-    console.log(stderr); // eslint-disable-line
-    cb(err);
-  });
+gulp.task('static-pages', [ ...stdTasks ], function () {
+  return staticRender();
 });
-
 
 gulp.task( 'production', function() {
   global.isProduction = true;

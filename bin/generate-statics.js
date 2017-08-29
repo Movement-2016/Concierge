@@ -1,0 +1,1 @@
+require('../dist/server/static-render')();
