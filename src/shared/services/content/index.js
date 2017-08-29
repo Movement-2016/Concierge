@@ -89,7 +89,7 @@ class ContentDB extends JSPathDatabase {
   */
   visibleCategories(slug) {
     if( !slug ) {
-      return this.tagCategories;
+      return this.tagCategories.map( ({id}) => id );
     }
 
     const p = this._isColorSlug(slug) 

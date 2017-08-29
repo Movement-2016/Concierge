@@ -77,13 +77,14 @@ const mapStateToProps = ({
     },
     route: {
       params: {
-        slug
+        slug,
+        allGroups = slug === 'all-groups'
       }
     }
-  }
+  },
 }) => ({
-    filterCategories: db.getRecords('tagCategories', db.visibleCategories(slug) ),
-    visibleFilters: db.visibleFilters(slug),
+    filterCategories: db.getRecords('tagCategories', db.visibleCategories(!allGroups && slug) ),
+    visibleFilters: db.visibleFilters(!allGroups && slug),
     nothingSelected: !filters.length
   });
 
