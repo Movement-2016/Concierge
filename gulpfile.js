@@ -19,7 +19,6 @@ const concat = require('gulp-concat');
 const ext = require('gulp-ext');
 const rm = require('gulp-clean');
 const indexJS = require('index-js');
-const staticRender = require( './dist/server/static-render');
 
 
 const browserifyConfig =  {
@@ -86,6 +85,7 @@ gulp.task ('build',     [               'static-pages', 'browserify' ]);
 gulp.task ('no-watch',  [ 'production', 'static-pages', 'browserify' ]);
 
 gulp.task('static-pages', [ ...stdTasks ], function () {
+  const staticRender = require( './dist/server/static-render');
   return staticRender();
 });
 
