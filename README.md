@@ -54,8 +54,7 @@ Deploy to AWS S3 bucket.
 ```bash
 npm run deploy
 ```
-
-N.B. This must be done after a `git push` If you commit something locally and don't push the deploy will fail.
+N.B. As of this writing changes deployed are NOT tied to this repo - this is a temporary situation. For now, *please* make sure to `git push` before deploying.
 
 ## License
 
