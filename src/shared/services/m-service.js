@@ -1,4 +1,3 @@
-import path    from 'jspath';
 import axios   from 'axios';
 
 // for now

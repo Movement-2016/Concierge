@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ ! -d work ] ;
+  then
+     mkdir work
+  fi
+CSV_OUTDIR=`pwd`/work
+node ../dist/server/export-to-csv.js
+ls -l work/*.csv
