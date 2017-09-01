@@ -1,0 +1,25 @@
+version: 0.2
+
+env:
+  variables:
+    NODE_ENV: "production"
+
+phases:
+  install:
+    commands:
+      - echo Entered the install phase...
+      - npm -g gulp
+      - npm install
+  build:
+    commands:
+      - echo Entered the build phase...
+      - echo Build started on `date`
+      - gulp no-watch
+  post_build:
+    commands:
+      - echo Entered the post_build phase...
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - dist/public
+  discard-paths: yes
