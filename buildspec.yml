@@ -8,8 +8,8 @@ phases:
   install:
     commands:
       - echo Entered the install phase...
-      - npm i -g gulp
       - npm i
+      - npm i gulp
   build:
     commands:
       - echo Entered the build phase...
