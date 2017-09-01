@@ -9,7 +9,9 @@ phases:
     commands:
       - echo Entered the install phase...
       - npm i
-      - npm i gulp
+      - npm i gulp-cli -g
+      - npm i gulp -D
+    
   build:
     commands:
       - echo Entered the build phase...
