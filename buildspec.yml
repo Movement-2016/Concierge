@@ -9,11 +9,11 @@ phases:
     commands:
       - echo Entered the install phase...
       - npm i -g gulp
-      - npm i gulp
   pre_build:
     commands:
       - echo Installing source NPM dependencies...
-      - npm install    
+      - npm install  
+      - npm install --only=dev
   build:
     commands:
       - echo Entered the build phase...
