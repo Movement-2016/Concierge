@@ -9,14 +9,13 @@ phases:
     commands:
       - echo Entered the install phase...
       - npm i
-      - npm i gulp-cli -g
-      - npm i gulp -D
+      - npm i gulp
     
   build:
     commands:
       - echo Entered the build phase...
       - echo Build started on `date`
-      - gulp no-watch
+      - node node_modules/gulp/bin/gulp no-watch
   post_build:
     commands:
       - echo Entered the post_build phase...
