@@ -8,14 +8,16 @@ phases:
   install:
     commands:
       - echo Entered the install phase...
-      - npm i
-      - npm i gulp
-    
+      - npm i -g gulp
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm install    
   build:
     commands:
       - echo Entered the build phase...
       - echo Build started on `date`
-      - node node_modules/gulp/bin/gulp no-watch
+      - gulp no-watch
   post_build:
     commands:
       - echo Entered the post_build phase...
