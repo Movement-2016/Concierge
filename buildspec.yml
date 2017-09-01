@@ -1,0 +1,28 @@
+version: 0.2
+
+env:
+  variables:
+    NODE_ENV: "production"
+
+phases:
+  install:
+    commands:
+      - echo Entered the install phase...
+      - npm i -g gulp
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm install  
+      - npm install --only=dev
+  build:
+    commands:
+      - echo Entered the build phase...
+      - echo Build started on `date`
+      - gulp no-watch
+  post_build:
+    commands:
+      - echo Entered the post_build phase...
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - 'dist/public/**/*'
