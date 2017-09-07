@@ -1,8 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import {
-  toggleItem
-} from '../../../shared/store/actions/plan';
+import React            from 'react';
+import { connect }      from 'react-redux';
+
+import { toggleItem }   from '../../../shared/store/actions/plan';
+import { ENABLE_PLANS } from '../../../config';
 
 const OrgHeader = ({ tags, id, name }) => 
     <div className="group-header">
@@ -21,8 +21,8 @@ const OrgImage = ({ url, name }) => url
 
 const OrgLinks = ({ onOrgClick, planText, planIcon, urlGive, urlWeb }) => 
     <div className="group-links">
-      <a className="group-link" href="#" onClick={onOrgClick}>
-        <i className="material-icons">{planIcon}</i>{planText}</a>
+      {ENABLE_PLANS && <a className="group-link" href="#" onClick={onOrgClick}>
+        <i className="material-icons">{planIcon}</i>{planText}</a>}
       {urlGive && <a className="group-link" href={urlGive} target="_blank">
         <i className="material-icons">{'star_border'}</i>{'Donate Now'}</a>}
       {urlWeb && <a className="group-link" href={urlWeb} target="_blank">

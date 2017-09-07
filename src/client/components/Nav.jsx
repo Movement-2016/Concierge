@@ -4,6 +4,7 @@ import Login     from './Profile/Login.jsx';
 
 import scrollToElement from '../lib/scrollToElement';
 import Link            from '../services/LinkToRoute';
+import { ENABLE_LOGIN } from '../../config';
 
 const _MenuItem = ({ url,label }) => {
   var isExternal = global.IS_SERVER_REQUEST || url.includes('http');
@@ -46,7 +47,7 @@ class Menu extends React.Component {
           }
 
           {menu.map( (m,i) => <MenuItem key={i} {...m} />)}
-          <li><Login /></li>
+          {ENABLE_LOGIN && <li><Login /></li>}
         </ul>
       );
   }

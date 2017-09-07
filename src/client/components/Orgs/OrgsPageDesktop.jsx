@@ -6,6 +6,7 @@ import OrgsList             from './OrgsList.jsx';
 import PlanTray             from './PlanTray.jsx';
 import FilterSidebarDesktop from '../Filters/FilterSidebarDesktop.jsx';
 import EasyDonateTiles      from '../EasyDonateTiles.jsx';
+import { ENABLE_PLANS }     from '../../../config';
 
 const PAGE_TITLE = 'Browse Groups';
 
@@ -26,7 +27,7 @@ const _OrgsPageDesktop = ({
             <div className="plan-sidebar-wrapper">
               <Sticky top={104} bottomBoundary=".orgs-container">
                 <div className="plan-sidebar">
-                  <PlanTray numGroups={numSelected}/>
+                  {ENABLE_PLANS && <PlanTray numGroups={numSelected}/>}
                   <EasyDonateTiles tiles={ezDonateTiles} />
                 </div>
               </Sticky>

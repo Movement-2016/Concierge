@@ -20,7 +20,8 @@ class PartyForm extends React.Component {
     e.preventDefault();
     this.setState( {done: '', error: ''} );
     /* globals $ */
-    houseParty( $('.user-info').serialize() )
+    const vobj = $('.user-info').serializeArray().reduce( (obj,x) => (obj[x.name] = x.value, obj), {} );
+    houseParty( vobj )
       .then( done => this.setState({ done }) )
       .catch( error => this.setState({ error }) );
   }

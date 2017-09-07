@@ -14,6 +14,8 @@ const WP_DEV              = false;
 const WP_API_HOST         = WP_DEV ? 'http://localhost:8080/wordpress' : 'https://wp.movementvote.org';
 const M_SERVICE_END_POINT = WP_API_HOST + '/wp-json/movement-2018/';
 
+const ENABLE_PLANS = false;
+const ENABLE_LOGIN = false;
 
 const Facebook = {
     providerKey: 'graph.facebook.com',
@@ -37,6 +39,10 @@ const Google = {
   };
 
 module.exports = {
+
+  ENABLE_PLANS,
+  ENABLE_LOGIN,
+
   REGION,
   IDENTITY_POOL_ID,
   SYNC_DATASET,
