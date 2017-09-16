@@ -54,8 +54,7 @@ Deploy to AWS S3 bucket.
 ```bash
 npm run deploy
 ```
-N.B. As of this writing changes deployed are NOT tied to this repo - this is a temporary situation. For now, *please* make sure to `git push` before deploying.
-
+This will trigger a remote build and deploy to the S3 server. This will take approx. 5 minutes.
 ## License
 
 MIT
