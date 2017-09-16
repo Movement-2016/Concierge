@@ -1,64 +1,33 @@
-import React from 'react';
+import React       from 'react';
 import { connect } from 'react-redux';
+import Sticky      from 'react-stickynode';
 
-import { setVisibility } from '../../../shared/store/actions/groups';
-
-import Sticky from 'react-stickynode';
-
-import OrgsPage from './OrgsPage.jsx';
-import OrgsList from './OrgsList.jsx';
-import PlanTray from './PlanTray.jsx';
+import OrgsList             from './OrgsList.jsx';
+import PlanTray             from './PlanTray.jsx';
 import FilterSidebarDesktop from '../Filters/FilterSidebarDesktop.jsx';
-import EasyDonateTiles from '../EasyDonateTiles.jsx';
+import EasyDonateTiles      from '../EasyDonateTiles.jsx';
+import { ENABLE_PLANS }     from '../../../config';
 
-import {
-  getVisibleOrgs,
-  getVisibleStates
-} from '../../../shared/lib/group-utils';
+const PAGE_TITLE = 'Browse Groups';
 
-class _OrgsPageDesktop extends OrgsPage {
-
-  render() {
-
-    const {
-      model,
-      store,
-      model: {
-        orgs,
-        ezDonateTiles
-      },
-      visibility,
-      selectedGroups
-    } = this.props;
-
-    const visibleOrgs = getVisibleOrgs( orgs, visibility );
-
-    const FilterSidebarProps = {
-      model,
-      scrollToElement:       this.goToElement,
-      handleFilterToggle:    this.handleFilterToggle,
-      selectedFilters:       visibility,
-      visibleColorSections:  Object.keys(visibleOrgs),
-      visibleStates:         getVisibleStates(visibleOrgs),
-    };
-
-    const title = 'Browse Groups';
-
-    return (
+const _OrgsPageDesktop = ({
+      ezDonateTiles,
+      numSelected
+    }) =>
       <main className="orgs-page orgs-page-desktop">
         <div className="container orgs-container">
-          <h1 className="page-title">{title}</h1>
+          <h1 className="page-title">{PAGE_TITLE}</h1>
           <div className="browse-section">
             <div className="filter-sidebar-wrapper">
               <Sticky top={104} bottomBoundary=".orgs-container">
-                <FilterSidebarDesktop {...FilterSidebarProps} />
+                <FilterSidebarDesktop />
               </Sticky>
             </div>
-            <OrgsList store={store} model={model} visibleOrgs={visibleOrgs} />
+            <OrgsList />
             <div className="plan-sidebar-wrapper">
               <Sticky top={104} bottomBoundary=".orgs-container">
                 <div className="plan-sidebar">
-                  <PlanTray numGroups={selectedGroups.length}/>
+                  {ENABLE_PLANS && <PlanTray numGroups={numSelected}/>}
                   <EasyDonateTiles tiles={ezDonateTiles} />
                 </div>
               </Sticky>
@@ -66,14 +35,26 @@ class _OrgsPageDesktop extends OrgsPage {
           </div>
         </div>
         <div className="bottom-spacer" />
-      </main>
-    );
-  }
-}
+      </main>;
 
-const mapStateToProps = s => ({ visibility: s.groups.visibility, selectedGroups: s.groups.selected });
-const mapDispatchToProps = { setVisibility };
+const mapStateToProps = ({ 
+        router: {
+          target: {
+            model: {
+              db
+            }
+          }
+        },
+        groups: { 
+          selected: {
+            length: numSelected
+          }
+        }
+      }) => ({ 
+          numSelected,
+          ezDonateTiles: db.donateTiles
+        });
 
-const OrgsPageDesktop = connect( mapStateToProps, mapDispatchToProps )(_OrgsPageDesktop);
+const OrgsPageDesktop = connect( mapStateToProps )(_OrgsPageDesktop);
 
 module.exports = OrgsPageDesktop;

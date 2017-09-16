@@ -1,12 +1,9 @@
 import React         from 'react';
 import { connect }   from 'react-redux';
 import { emailPlan } from '../../services/email';
+import ActionButton  from './ActionButton.jsx';
 
 class _EmailPlanButton extends React.Component {
-
-  constructor() {
-    super(...arguments);
-  }
 
   onEmail = (e) => {
     e.preventDefault();
@@ -14,22 +11,23 @@ class _EmailPlanButton extends React.Component {
     const {
       onError,
       onDone,
-      user,
-      plan
+      profile:user,
+      plan,
+      db
     } = this.props;
 
-    emailPlan( { user, plan } )
+    emailPlan( { user, plan, db } )
       .then( done => onDone(done) )
       .catch( err => onError(err) );
   }
 
   render() {
     const { text, children } = this.props;
-    return <button onClick={this.onEmail} className="complete-button btn waves-effect waves-light">{text}{children}</button>;
+    return <ActionButton onClick={this.onEmail}>{text}{children}</ActionButton>;
   }
 }
 
-const mapStateToProps = s => ({ plan: s.plan, user: s.user });
+const mapStateToProps = ({plan, profile, router:{target:{model:{db}}}}) => ({ plan, profile, db });
 
 const EmailPlanButton = connect(mapStateToProps)(_EmailPlanButton);
 

@@ -9,7 +9,7 @@ const babel = require('gulp-babel');
 const browserify = require ('browserify');
 const watchify = require ('watchify');
 const uglify = require ('gulp-uglify');
-const gzip = require ('gulp-gzip');
+//const gzip = require ('gulp-gzip');
 const sass = require ('gulp-sass');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
@@ -17,8 +17,9 @@ const cssnano = require('cssnano');
 const sourcemaps = require ('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const ext = require('gulp-ext');
-const rm = require('gulp-rm');
+const rm = require('gulp-clean');
 const indexJS = require('index-js');
+
 
 const browserifyConfig =  {
   entries: 'src/client/browser.js', // see 'production' below
@@ -37,6 +38,8 @@ const babelifyOpts = {
 
 const dependencies = [
   'axios',
+  'commaize',
+  'crypto-js',  // <-- imported from bellman
   'es6-promise-polyfill',
   'events',
   'jspath',
@@ -44,13 +47,17 @@ const dependencies = [
   'react',
   'react-dom',
   'react-headroom',
+  'react-modal',
   'react-redux',
   'react-responsive',
   'react-share',
   'react-stickynode',
   'redux',
   'redux-thunk',
+  'redux-logger',
   'route-recognizer',
+  'serialize',
+  'uuid'
 ];
 
 const fonts = [
@@ -63,7 +70,8 @@ const vendorStyles = [
 
 const vendorClientJS = [
   'node_modules/jquery/dist/jquery.min.js',
-  'node_modules/materialize-css/dist/js/materialize.min.js'
+  'node_modules/materialize-css/dist/js/materialize.min.js',
+  'sdk/aws-sdk-2.94.0.min.js'
 ];
 
 global.isProduction = false;
@@ -72,9 +80,14 @@ let BASE = 'dist';
 
 var stdTasks = [ 'indecies', 'html', 'images', 'server', 'styles', 'fonts', 'vendor-styles', 'vendor-client-js', 'vendor' ];
 
-gulp.task ('default',   [               ...stdTasks, 'browserify-watch', 'watch']);
-gulp.task ('build',     [               ...stdTasks, 'browserify' ]);
-gulp.task ('no-watch',  [ 'production', ...stdTasks, 'browserify' ]);
+gulp.task ('default',   [               'static-pages', 'browserify-watch', 'watch']);
+gulp.task ('build',     [               'static-pages', 'browserify' ]);
+gulp.task ('no-watch',  [ 'production', 'static-pages', 'browserify' ]);
+
+gulp.task('static-pages', [ ...stdTasks ], function () {
+  const staticRender = require( './dist/server/static-render');
+  return staticRender();
+});
 
 gulp.task( 'production', function() {
   global.isProduction = true;
@@ -95,7 +108,7 @@ gulp.task ('watch', function () {
 
 // copy index.html and favicon.ico
 gulp.task ('html', function () {
-  return gulp.src (['src/client/index.html', 'src/client/favicon.ico'])
+  return gulp.src (['src/client/index.app.html', 'src/client/favicon.ico'])
     .pipe (gulp.dest (`${BASE}/public`));
 });
 
@@ -114,8 +127,14 @@ gulp.task ('fonts', function () {
 // SERVER
 gulp.task( 'server', ['shared','shared-components','_server']);
 
-gulp.task('shared', () => {
-  return gulp.src ( 'src/shared/**/*.js')
+gulp.task('config', () => {
+  return gulp.src ( ['src/config.js'])
+            .pipe (babel())
+            .pipe (gulp.dest (BASE));
+});
+
+gulp.task('shared', ['config'], () => {
+  return gulp.src ( ['src/shared/**/*.js'])
             .pipe (babel())
             .pipe (gulp.dest (BASE + '/shared'));
 });
@@ -153,7 +172,7 @@ gulp.task ('vendor', function () {
     .pipe (source ('vendor.bundle.js'))
     .pipe (buffer ())
     .pipe( global.isProduction ? uglify({ mangle: true }) : gutil.noop() )
-    .pipe (gzip ({ append: true }))
+//    .pipe (gzip ({ append: true }))
     .pipe (gulp.dest (`${BASE}/public/js`));
 });
 
@@ -179,7 +198,7 @@ gulp.task ('vendor-styles', function () {
 gulp.task ('vendor-client-js', function () {
  return gulp.src( vendorClientJS )
             .pipe(concat('vendor.browser.js'))
-            .pipe(gzip({ append:true }))
+//            .pipe(gzip({ append:true }))
             .pipe(gulp.dest(`${BASE}/public/js`));
 });
 
@@ -193,7 +212,7 @@ const _rebundle = (bundler,start = Date.now()) => bundler.bundle ()
       .pipe (source ('bundle.js'))
       .pipe (buffer ())
       .pipe( global.isProduction ? uglify({ mangle: true }) : gutil.noop() )
-      .pipe (gzip ({ append: true }))
+//      .pipe (gzip ({ append: true }))
       .pipe (sourcemaps.init ({ loadMaps: true }))
       .pipe (sourcemaps.write ('.'))
       .pipe (gulp.dest (`${BASE}/public/js/`));
@@ -232,9 +251,7 @@ gulp.task('indecies', () => {
           .pipe (gulp.dest ('.'));
 });
 
-
-
 gulp.task( 'clean', function() {
-  return gulp.src( `${BASE}/**/*`, { read: false })
+  return gulp.src( `${BASE}`, { read: false })
     .pipe( rm({ async: false }) );
 });

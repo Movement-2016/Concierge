@@ -1,9 +1,7 @@
 import React           from 'react';
 import MediaQuery      from 'react-responsive';
-import { Provider }    from 'react-redux';
-
-import { initFilters } from '../../shared/store/actions/groups';
-import store           from '../../shared/store/';
+import { Provider, 
+          connect }    from 'react-redux';
 
 import Nav             from './Nav.jsx';
 import Footer          from './Footer.jsx';
@@ -13,72 +11,78 @@ import '../lib/polyfills';
 
 import scrollToTop from '../lib/scrollToTop';
 
-const SITE_TITLE = 'Movement 2017';
+import scrollToHash     from '../lib/scrollToHash';
 
-class App extends React.Component {
+const SCROLL_DELAY = 100;
 
-  constructor (props) {
-    super (props);
-    this.state = { ...props };
+import { SITE_TITLE } from '../../config';
+
+class __App extends React.Component {
+
+  componentDidMount() {
+    this.scroll();
   }
 
-  componentWillMount() {
-    if( !global.IS_SERVER_REQUEST ) {
-      const Router = require('../services/router');
-      Router.service.on( Router.service.events.NAVIGATE_TO, this.onNavigate.bind(this) );
-      store.dispatch( initFilters(this.state.groupFilters) );
+  componentDidUpdate() {
+    this.scroll();
+  }
+  
+  scroll() {
+    if( this.props.hash ) {
+      scrollToHash(0,SCROLL_DELAY);
+    } else {
+      scrollToTop();
     }
   }
-
-  onNavigate(spec) {
-    this.setState( spec, (document !== undefined) && !document.location.hash && scrollToTop );
-  }
-
   render () {
 
     const { 
-      menu,
-      component: { 
-        component:comp,
-        title
-      },
-      model, 
+      component,
+      title,
       browserOnly,
-      params, 
-      path,
-      queryParams 
-    } = this.state;
+      menu
+    } = this.props;
 
-    if( !path || (browserOnly && global.IS_SERVER_REQUEST) ) {
+    if( browserOnly && global.IS_SERVER_REQUEST ) {
       return <p />;
     }
 
-    /*
-      Every top level component is instantiated with the following props:
-        - store       := Redux store
-        - param       := /groups/:slug -> { slug: somevalue }
-        - queryParams := ?foo=bar&baz=802 -> { foo: 'bar', baz: 802 }
-        - model       := prefectched data model per specs in router
-        - mobile      := boolean true on small (992px) screens
-    */
-
     return (
-      <Provider store={store}>
-        <MediaQuery maxWidth={992} values={{width: 1400}}>
-          {(isMobile) => {
-            return (
-              <div className="site-wrapper">
-                {title && <TitleSetter title={SITE_TITLE + ' - ' + title} />}
-                <Nav menu={menu} siteTitle={SITE_TITLE} mobile={isMobile} />
-                {comp && React.createElement(comp, { store, model, params, queryParams, mobile: isMobile} )}
-                <Footer />
-              </div>
-            );
-          }}
-        </MediaQuery>
-      </Provider>
+      <MediaQuery maxWidth={992} values={{width: 1400}}>
+        {(isMobile) => {
+          return (
+            <div className="site-wrapper">
+              {title && <TitleSetter title={SITE_TITLE + ' - ' + title} />}
+              <Nav menu={menu} siteTitle={SITE_TITLE} mobile={isMobile} />
+              {component && React.createElement(component, { mobile: isMobile} )}
+              <Footer />
+            </div>
+          );
+        }}
+      </MediaQuery>
     );
   }
 }
+
+const mapStateToProps = ({ 
+        router: { 
+          target: {
+            routeModel: {
+              component,
+              title
+            },
+            browserOnly
+          }, 
+          route: {
+            location: {
+              hash
+            }
+          }
+        } 
+      }) => ({ component, title, browserOnly, hash });
+
+const _App = connect(mapStateToProps)(__App);
+
+const App = ({store,model:{menu}}) => <Provider store={store}><_App menu={menu} /></Provider>;
 
 module.exports = App;

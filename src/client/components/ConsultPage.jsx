@@ -1,10 +1,12 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect   } from 'react-redux';
 import { emailPlan } from '../services/email';
 
-import { Shell } from './ContentPage.jsx';
-import BackLink from './BackLink.jsx';
+import { Shell }   from './ContentPage.jsx';
+import BackLink    from './BackLink.jsx';
 import ProfileForm from './Profile/Form.jsx';
+
+import { ADMIN_EMAIL } from '../../config';
 
 class _ConsultPage extends React.Component {
 
@@ -39,7 +41,9 @@ class _ConsultPage extends React.Component {
       error
     } = this.state;
 
-    const successMsg = "Thanks! An advisor should be in touch with you shortly. If you don't hear from us soon, you can send an email to advisor@movementvote.org to follow up."
+    const successMsg = `Thanks! An advisor should be in touch with you shortly. 
+                        If you don't hear from us soon, you can send an email 
+                        to ${ADMIN_EMAIL} to follow up.`;
 
     return (
       <Shell title="Request a Consultation" name="custom-planning profile-page">
@@ -48,7 +52,7 @@ class _ConsultPage extends React.Component {
           <div>
             {done && <div className="submit-message submit-success">{successMsg}</div>}
             {error && <div className="submit-message submit-error">{error.toString()}</div>}
-            <BackLink to="/plan" title="Donation Plan">Your Donation Plan</BackLink>
+            <BackLink to="/plan" title="Donation Plan">{'Your Donation Plan'}</BackLink>
           </div>
         </ProfileForm>
       </Shell>
@@ -56,7 +60,7 @@ class _ConsultPage extends React.Component {
   }
 }
 
-const mapStateToProps = s => ({user: s.user, plan: s.plan});
+const mapStateToProps = s => ({user: s.profile, plan: s.plan});
 const ConsultPage = connect(mapStateToProps)(_ConsultPage);
 
 module.exports = ConsultPage;

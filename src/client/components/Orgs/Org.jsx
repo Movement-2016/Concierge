@@ -1,188 +1,147 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React            from 'react';
+import { connect }      from 'react-redux';
 
-import { toggleItem }      from '../../../shared/store/actions/plan';
+import { toggleItem }   from '../../../shared/store/actions/plan';
+import { ENABLE_PLANS } from '../../../config';
 
-function OrgHeader(props) {
-  const labels = props.tags.map(tag => props.terms[tag].name);
-
-  return (
+const OrgHeader = ({ tags, id, name }) => 
     <div className="group-header">
-      <div className="group-title" data-id={props.id} data-href={`/groups#${props.id}`}>
-        {props.name}
+      <div className="group-title" data-id={id} data-href={`/groups#${id}`}>
+        {name}
       </div>
       <div className="nonprofit-tags">
-        {labels.join(', ')}
+        {tags && tags.tags.map( tag => tag.name ).join(', ')}
       </div>
     </div>
-  );
-}
+;
 
-function OrgImage(props) {
-  if (props.url) {
-    return (
-      <img className="group-thumb group-image" src={props.url} />
-    );
-  } else {
-    const i = props.name.search('[A-Za-z]');
-    const letter = props.name[i];
-    return (
-      <div className="group-thumb group-placeholder">{letter}</div>
-    );
-  }
-}
+const OrgImage = ({ url, name }) => url 
+                                      ? <img className="group-thumb group-image" src={url} />
+                                      : <div className="group-thumb group-placeholder">{name[name.search('[A-Za-z]')]}</div>;
 
-function OrgLinks (props) {
-  return (
+const OrgLinks = ({ onOrgClick, planText, planIcon, urlGive, urlWeb }) => 
     <div className="group-links">
-      <a className="group-link" href="#" onClick={props.onOrgClick}>
-        <i className="material-icons">{props.planIcon}</i>{props.planText}</a>
-      {props.urlGive && <a className="group-link" href={props.urlGive} target="_blank">
-        <i className="material-icons">star_border</i>Donate Now</a>}
-      {props.urlWeb && <a className="group-link" href={props.urlWeb} target="_blank">
-        <i className="material-icons">link</i>Website</a>}
-    </div>
-  );
-}
+      {ENABLE_PLANS && <a className="group-link" href="#" onClick={onOrgClick}>
+        <i className="material-icons">{planIcon}</i>{planText}</a>}
+      {urlGive && <a className="group-link" href={urlGive} target="_blank">
+        <i className="material-icons">{'star_border'}</i>{'Donate Now'}</a>}
+      {urlWeb && <a className="group-link" href={urlWeb} target="_blank">
+        <i className="material-icons">{'link'}</i>{'Website'}</a>}
+    </div>;
 
-function OrgContent(props) {
-  return (
-    <div className="group-content">
-      <p dangerouslySetInnerHTML={{__html: props.description}}/>
-    </div>
-  );
-}
+   
+const OrgContent = ({ description }) => <div className="group-content"><p dangerouslySetInnerHTML={{__html: description }}/></div>; // eslint-disable-line react/no-danger
 
-function OrgTags(props) {
-  const {fields, filters} = props;
-
-  const tagBlocks = {};
-
-  ['issue-area', 'constituency'].forEach(taxonomySlug => {
-    if (fields[taxonomySlug] && fields[taxonomySlug].length) {
-      const taxonomy = filters[taxonomySlug];
-      const terms = taxonomy.terms;
-      tagBlocks[taxonomy.label] = fields[taxonomySlug].map(slug => terms[slug].name);
-    }
-  });
-
-  const keys = Object.keys(tagBlocks);
-  if (!keys.length) {
-    return null;
-  }
-
-  return (
+const OrgTags = ({tags}) =>
     <div className="tagblocks">
-      {keys.map( label => {
+      {Object.keys(tags).filter( key => tags[key].category.tag ).map( key => {
         return (
-          <div className="tagblock" key={label}>
-            <span className="tagblock-title">{label}: </span>
-            <span className="tagblock-tags">{tagBlocks[label].join(', ')}</span>
+          <div className="tagblock" key={key}>
+            <span className="tagblock-title">{tags[key].category.name + ': '}</span>
+            <span className="tagblock-tags">{tags[key].tags.map(tag => tag.name).join(', ')}</span>
           </div>
         );
       })}
     </div>
-  );
-}
+;
+
+const OrgMobile = ({
+  cls,
+  description,
+  id,
+  image,
+  name,
+  tags,
+  onClick,
+  planIcon,
+  planText,
+  urlGive,
+  urlWeb
+  }) =>         
+        <div className={`group ${cls}`}>
+          <OrgHeader id={id} name={name} tags={tags['nonprofit-type']} />
+          <OrgImage url={image} name={name} />
+          <OrgLinks {...{urlGive, urlWeb, planIcon, planText}} onOrgClick={onClick} />
+          <OrgContent description={description} />
+          <OrgTags tags={tags} />
+        </div>;
+
+const OrgDesktop = ({
+  cls,
+  description,
+  id,
+  image,
+  name,
+  tags,
+  onClick,
+  planIcon,
+  planText,
+  urlGive,
+  urlWeb,
+}) => <div className={`group ${cls}`}>
+        <div className="image-col">
+          <OrgImage url={image} name={name} />
+          <OrgLinks {...{urlGive, urlWeb, planIcon, planText}} onOrgClick={onClick} />
+        </div>
+        <div className="content-col">
+          <OrgHeader id={id} name={name} tags={tags['nonprofit-type']} />
+          <OrgContent description={description} />
+          <OrgTags tags={tags} />
+        </div>
+      </div>;
+
+const tagsByCat = tags => tags.reduce( (accum,tag) => {
+  const { category, category: { slug } } = tag;
+  (accum[slug] && accum[slug].tags.push(tag)) || (accum[slug] = { category, tags: [tag] });
+  return accum;
+}, {});
+
+const translateProps = ({
+  org: {
+    id,
+    body:description,
+    title:name,
+    website: urlWeb = '',
+    c4_donate_link: urlC4 = '',
+    c3_donate_link: urlC3 = '',
+    image = '',
+    tags,
+    state
+  },
+  selected,
+  toggleItem
+}) => ({
+  cls: selected ? 'selected' : '',
+  description,
+  id,
+  image,
+  name,
+  tags: tagsByCat(tags),
+  state,
+  onClick: function(e) { e.preventDefault(); toggleItem(id); },
+  planIcon: selected ? 'close' : 'playlist_add',
+  planText: selected ? 'Remove' : 'Add to plan',
+  urlGive: urlC3 || urlC4,
+  urlWeb,
+});
 
 class _Org extends React.Component {
 
-  constructor() {
-    super(...arguments);
-
-    this.state = {
-      selected: this.props.selected
-    };
-
-    this.onOrgClick = this.onOrgClick.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.state.selected !== nextProps.selected) {
-      this.setState({selected: nextProps.selected});
-    }
-  }
-
   shouldComponentUpdate(nextProps) {
-    return this.state.selected !== nextProps.selected;
-  }
-
-  onOrgClick(e) {
-    e.preventDefault();
-    const { 
-      ID, 
-      toggleItem
-    } = this.props;
-
-    toggleItem(ID);
+    return this.props.selected !== nextProps.selected;
   }
 
   render() {
-    const {
-      post_title: name,
-      post_content: description,
-      fields,
-      fields: {
-        website: urlWeb,
-        c4_donate_link: urlC4,
-        c3_donate_link: urlC3,
-        'nonprofit-type': npTags = [],
-        image
-      },
-      ID: id,
-      filters,
-      mobile
-    } = this.props;
+    const props = translateProps(this.props);
 
-    const {selected} = this.state;
-
-    const planIcon = selected
-      ? 'close'
-      : 'playlist_add';
-    const planText = selected
-      ? 'Remove'
-      : 'Add to plan';
-    const cls = selected
-      ? 'selected'
-      : '';
-
-    const npTerms = filters['nonprofit-type'].terms;
-
-    const urlGive = urlC3 || urlC4;
-
-    if (mobile) {
-      return (
-        <div className={`group ${cls}`}>
-          <OrgHeader id={id} name={name} tags={npTags} terms={npTerms}/>
-          <OrgImage url={image} name={name} />
-          <OrgLinks {...{urlGive, urlWeb, planIcon, planText}} onOrgClick={this.onOrgClick} />
-          <OrgContent description={description} />
-          <OrgTags fields={fields} filters={filters} />
-        </div>
-      );
-    }
-
-    return (
-      <div className={`group ${cls}`}>
-        <div className="image-col">
-          <OrgImage url={image} name={name} />
-          <OrgLinks {...{urlGive, urlWeb, planIcon, planText}} onOrgClick={this.onOrgClick} />
-        </div>
-        <div className="content-col">
-          <OrgHeader id={id} name={name} tags={npTags} terms={npTerms}/>
-          <OrgContent description={description} />
-          <OrgTags fields={fields} filters={filters} />
-        </div>
-      </div>
-    );
+    return props.mobile 
+            ? <OrgMobile {...props} />
+            : <OrgDesktop {...props} />;
   }
 }
 
-const mapStateToProps = () => ({ });
-const mapDispatchToProps = {
-  toggleItem
-};
+const mapDispatchToProps = { toggleItem };
 
-const Org = connect(mapStateToProps,mapDispatchToProps)(_Org);
+const Org = connect(null,mapDispatchToProps)(_Org);
 
 module.exports = Org;

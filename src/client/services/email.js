@@ -1,90 +1,49 @@
-import axios from 'axios';
+import mailer from '../../shared/services/email';
 
-const ADVISOR_EMAIL = 'advisor@movementvote.org';
+import { ADMIN_EMAIL } from '../../config';
 
-const _do_email = ({payload, url, successMsg,}) => {
+const errMsg = () => `We were unable to send your message 
+                      at this time. Please try again later 
+                      or email ${ADMIN_EMAIL} directly.`;
 
-    const opts = {
-      method: 'POST',
-      headers: {
-        accept: 'application/json',
-        'content-type': 'application/json',
-      },
-      credentials: 'same-origin',
-      data: payload
-    };
+const houseParty = content => mailer().party({...content})
+                                .then( () => 'Thank you! Your house party information has been sent successfuly.')
+                                .catch( () => errMsg());
 
-    const errMsg = `We were unable to send your message at this time. Please try again later or email ${ADVISOR_EMAIL} directly.`;
+const emailContact = ({ profile, message }) => mailer().contact({...profile,message})
+                                                .then( () => 'Thank you! Your message has been sent successfuly.')
+                                                .catch( () => errMsg());
 
-    return axios(`${location.origin}/${url}`, opts)
-      .then( response => {
-        const resp = response.data;
-        // this is a gmail api thing
-        if( resp.labelIds && resp.labelIds.includes('SENT') ) {
-          return successMsg;
-        } else {
-          throw new Error(errMsg);
-        }
-      }).catch( () => {
-          throw new Error(errMsg);
-      });
+const emailPlan = ({ user, plan, db, forceConsult = false }) => {
 
-};
+  const DonationSchema = {
+    group: { table: 'groups' }
+  };
 
-const houseParty = (content) => {
+  const donations = db.denormalize( DonationSchema, plan.donations )
+                        .map( ({amount, group:{ title, website, c4_donate_link, c3_donate_link}} ) => 
+                              ({amount, group:{ title, website, c4_donate_link, c3_donate_link}} ) );
+
+  const { 
+    fname,
+    lname,
+    email,
+    phone,
+    wantsConsult = forceConsult || user.wantsConsult
+  } = user;
 
   const payload = {
-    ...content,
-    advisorEmail: ADVISOR_EMAIL,
+    fname,
+    lname,
+    email,
+    phone,
+    wantsConsult,
+    donations
   };
 
-  const args = {
-    payload,
-    url: 'api/houseparty',
-    successMsg: 'Thank you! Your house party information has been sent successfuly.'
-  };
-
-  return _do_email(args);
-};
-
-const emailContact = ({ user, message }) => {
-  const payload = {
-    ...user,
-    advisorEmail: ADVISOR_EMAIL,
-    message
-  };
-
-  const args = {
-    payload,
-    url: 'api/contact',
-    successMsg: 'Thank you! Your message has been sent successfuly.'
-  };
-
-  return _do_email(args);
-};
-
-const emailPlan = ({ user, plan, forceConsult = false }) => {
-  let {
-      donations: items,
-      total: planTotal
-    } = plan;
-
-  forceConsult && (user = { ...user, wantsConsult: true });
-
-  const payload = {
-    ...user,
-    advisorEmail: ADVISOR_EMAIL,
-    items,
-    planTotal
-  };
-
-  const args = {
-    payload,
-    url: 'api/plan/send',
-    successMsg: 'Thank you! Your plan is on the way.'
-  };
-
-  return _do_email( args );
+  return mailer().plan(payload)
+                    .then( () => 'Thank you! Your plan is on the way.' )
+                    .catch( () => errMsg());
 };
 
 module.exports = {

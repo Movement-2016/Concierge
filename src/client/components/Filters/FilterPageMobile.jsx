@@ -1,116 +1,95 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import FilterGroup from './FilterGroup.jsx';
 
-import { clone } from '../../../shared/lib/general-utils';
+import { filterClear } from '../../../shared/store/actions/groups';
 
-function Header(props) {
-  return (
+const Header = ({ onClose, onClearAll, showClearAll }) =>
     <div className="filter-page-bar filter-page-header">
       <div className="container">
-        <a className="close-button" onClick={props.onClose}>
-          <i className="material-icons">close</i>
+        <a className="close-button" onClick={onClose}>
+          <i className="material-icons">{'arrow_back'}</i>
         </a>
-        <a className="clearall-button" onClick={props.onClearAll}>
-          {'Clear All'}
-        </a>
+        {showClearAll && <a className="clearall-button" onClick={onClearAll}>{'Clear All'}</a>}
       </div>
     </div>
-  );
-}
+;
 
-function SubmitBar(props) {
-  return (
-    <div className="filter-page-bar filter-submit-bar">
-      <a className="filter-submit-button btn-flat waves-effect waves-light" onClick={props.onClick}>
-        {'Apply Filters'}
-      </a>
-    </div>
-  );
-}
+// const SubmitBar = ({onClick}) => 
+//     <div className="filter-page-bar filter-submit-bar">
+//       <a className="filter-submit-button btn-flat waves-effect waves-light" onClick={onClick}>
+//         {'See Results'}
+//       </a>
+//     </div>
+// ;
 
-class FilterPageMobile extends React.Component {
-
-  constructor() {
-    super(...arguments);
-
-    this.cleared = {};
-
-    const filterNames = Object.keys(this.props.filtersDict);
-    filterNames.forEach(f => this.cleared[f] = []);
-
-    this.state = { selectedFilters: clone(this.cleared) };
-  }
+class _FilterPageMobile extends React.Component {
 
   // Clear filters and load unfiltered groups page when first mounted
   componentDidMount() {
-    this.props.handleFilterToggle( clone(this.cleared) );
+    this.props.filterClear();
   }
 
   onClearAll = () => {
-    this.setState({ selectedFilters: clone(this.cleared) });
+    this.props.filterClear();
   }
 
   onClose = () => {
-    this.setState({ selectedFilters: clone(this.props.startingFilters) });
     this.props.handleClose();
   }
 
   onSubmit = () => {
-    this.props.handleFilterToggle( clone(this.state.selectedFilters) );
     this.props.handleClose();
-  }
-
-  onFilterChange = (category, term, addFilter) => {
-
-    const selectedFilters = this.state.selectedFilters;
-
-    if ( selectedFilters[category] ) {
-      const index = selectedFilters[category].indexOf(term);
-      addFilter
-        ? (index === -1) && selectedFilters[category].push(term)
-        : (index > -1) && selectedFilters[category].splice(index, 1);
-    }
-
-    this.setState({ selectedFilters });
   }
 
   render() {
     const {
       showFilters,
-      filtersDict
+      filterCategories,
+      visibleFilters,
+      nothingSelected
     } = this.props;
 
     return (
       <div className={'filter-page' + (showFilters ? ' visible' : '')}>
-        <Header onClearAll={this.onClearAll} onClose={this.onClose} />
+        <Header showClearAll={!nothingSelected} onClearAll={this.onClearAll} onClose={this.onClose} />
           <div className="filters">
             <div className="container">
-              {Object.keys(filtersDict).map( f => {
-                const filterGroupProps = {
-                  selectedFilters:  this.state.selectedFilters,
-                  onFilterChange:   this.onFilterChange,
-                  name:             f,
-                  label:            filtersDict[f].label,
-                  terms:            filtersDict[f].terms
-                };
-                return <FilterGroup key={f} {...filterGroupProps} />;
-              }
-              )}
+              {filterCategories.map( ({id,name,slug}) => <FilterGroup key={id} {...{slug,id,name,visibleFilters}}  /> )}
             </div>
           </div>
-        <SubmitBar onClick={this.onSubmit} />
       </div>
     );
   }
 }
 
-FilterPageMobile.propTypes = {
-  showFilters:        React.PropTypes.bool.isRequired,
-  filtersDict:        React.PropTypes.object.isRequired,
-  startingFilters:    React.PropTypes.object.isRequired,
-  handleFilterToggle: React.PropTypes.func.isRequired,
-  handleClose:        React.PropTypes.func.isRequired,
-};
+//         <SubmitBar onClick={this.onSubmit} />
 
+const mapStateToProps = ({
+  groups: {
+    filters
+  },
+  router: {
+    target: {
+      model: {
+        db
+      }
+    },
+    route: {
+      params: {
+        slug,
+        allGroups = slug === 'all-groups'
+      }
+    }
+  },
+}) => ({
+    filterCategories: db.getRecords('tagCategories', db.visibleCategories(!allGroups && slug, filters) ),
+    visibleFilters: db.visibleFilters(!allGroups && slug, filters),
+    nothingSelected: !filters.length
+  });
+
+const mapDispatchToProps = { filterClear };
+
+const FilterPageMobile = connect( mapStateToProps, mapDispatchToProps )(_FilterPageMobile);
 
 module.exports = FilterPageMobile;

@@ -2,39 +2,28 @@ import React from 'react';
 
 import Org from './Org.jsx';
 
-function State(props) {
-
-  const {
-    slug: name,
-    name: label,
-    items,
-    colorGroup,
-    selected: selectedOrgs,
-    store,
-    filters,
+const State = ({
+    state: {
+      slug,
+      name,
+      id,
+      parent: {
+        slug:colorSlug
+      }
+    },
+    groups,
+    selected,
     mobile
-  } = props;
-
-  return (
-    <div className="state" id={name}>
-      <div className={`state-title ${colorGroup}`}>
+  }) => 
+    <div className="state" id={slug}>
+      <div className={`state-title ${colorSlug}`}>
         <h4>
-          <span className="state-name">{label}</span>
-          <i className="material-icons color-icon">turned_in</i>
+          <span className="state-name">{name}</span>
+          <i className="material-icons color-icon">{'turned_in'}</i>
         </h4>
       </div>
-      {items.map( o => {
-        const orgProps = {
-          selected: selectedOrgs.includes(o.ID),
-          store,
-          filters,
-          mobile,
-          ...o
-        };
-        return <Org key={o.ID} {...orgProps} />;
-      })}
+      {groups.filter( grp => grp.state.id === id ).map( org => <Org key={org.id} {...{org,selected:selected.includes(org.id),mobile}} />  )}
     </div>
-  );
-}
+;
 
 module.exports = State;

@@ -1,23 +1,31 @@
-import Home     from '../models/home';
-import Groups   from '../models/groups';
-import Contact  from '../models/contact';
-import Team     from '../models/team';
-import About    from '../models/about';
-import Advisors from '../models/advisors';
-import Party    from '../models/party';
+import Home         from '../models/home';
+import {
+ GroupsModel, GroupsSlugModel
+}  from '../models/groups';
+import Contact      from '../models/contact';
+import Team         from '../models/team';
+import About        from '../models/about';
+import Advisors     from '../models/advisors';
+import Party        from '../models/party';
 import {
   Plan,
   PlanSummary,
   Profile,
   Consult
-} from '../models/plan';
+}   from '../models/plan';
 
-const mapper  = g => g.paths.map( p => {return { path: p, component: g, browserOnly: g.browserOnly || false }; } ); 
+const mapper  = g => g.paths.map( p => ({ 
+                                          path: p, 
+                                          routeModel: g, 
+                                          browserOnly: g.browserOnly || false 
+                                        }) ); 
+
 const flatner = (accum, arrs) => [ ...accum, ...arrs ];
 
 const RouteMap = [ 
   Home, 
-  Groups,
+  GroupsModel, 
+  GroupsSlugModel,
   Contact,
   Team,
   About,
@@ -26,7 +34,7 @@ const RouteMap = [
   Plan,
   PlanSummary,
   Profile,
-  Consult  
+  Consult
 ].map( mapper ).reduce( flatner, [] );
 
 module.exports = RouteMap;

@@ -11,7 +11,7 @@ const HousePartyPageModel = {
 
   title: 'Host A Party',
   
-  model: () => Promise.resolve( { page: { post_title: 'Host A House Party' } } ),
+  model: () => Promise.resolve( { page: { title: 'Host A House Party' } } ),
 
   browserOnly: true
 };

@@ -2,37 +2,20 @@ import React from 'react';
 
 import State from './State.jsx';
 
-
-function ColorGroup(props) {
-
-  const {
-    slug:       name,
-    name:       label,
-    statesDict,
+const ColorGroup = ({
+    color: {
+      name,
+      slug,
+      id
+    },
     states,
+    groups,
     selected,
-    store,
-    filters,
     mobile
-  } = props;
-
-  return (
-    <div className="color-group scrollspy" id={name}>
-      <div className={`color-group-title ${name}-title`}>{label}</div>
-      {Object.keys(states).map( s => {
-        const stateProps = {
-          items: states[s],
-          colorGroup: name,
-          selected,
-          store,
-          filters,
-          mobile,
-          ...statesDict[s]
-        };
-        return <State key={s} {...stateProps} />;
-      })}
-    </div>
-  );
-}
+  }) =>
+    <div className="color-group scrollspy" id={slug}>
+      <div className={`color-group-title ${slug}-title`}>{name}</div>
+      {states.filter( state => state.parent === id ).map( state => <State key={state.id} {...{mobile,state,groups,selected}} />)}
+    </div>;
 
 module.exports = ColorGroup;

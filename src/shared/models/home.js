@@ -3,14 +3,7 @@ import {
   HomePage
 } from '../../client/components';
 
-import utils from '../lib/query-utils';
-
 import service from '../services/m-service';
-
-const orderColors = ( colors, order ) => {
-  var orderMap = order.reduce( (om,c,i) => (om[c] = i, om), {} );
-  return colors.sort( (a,b) => orderMap[a.slug] > orderMap[b.slug] );
-};
 
 const HomePageModel = {
 
@@ -22,21 +15,15 @@ const HomePageModel = {
 
   model: () => {
 
-    const queries = {
-      donateTiles:   '.posts.donatetile',
-      news:          '.posts.news',
-      testimonials:  '.posts.testimonial',
-      states:        utils.STATES_QUERY,
-      colors:        utils.COLORS_QUERY,
-      colorOrder:    '.colorOrder'
-    };
-
     let props = {};
-    return service.queries(queries).then( _hash => {
+    return service.db.then( db => {
 
-      props = { ..._hash };
-
-      props.colorSections = orderColors( props.colors, props.colorOrder );
+      props = {
+        donateTiles:  db.query('donateTiles'),
+        news:         db.query('news'),
+        testimonials: db.query('testimonials'),
+        states:       db.denormalizedStates
+       };
 
       return service.getPage('home');
 

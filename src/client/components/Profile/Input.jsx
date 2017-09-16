@@ -1,29 +1,40 @@
 import React     from 'react';
 import { connect } from 'react-redux';
-import { setProfile } from '../../../shared/store/actions/user';
+
+import {
+  setProfile
+} from '../../../shared/store/actions/profile';
 
 class _ProfileInput extends React.Component {
 
   constructor() {
     super(...arguments);
-    this.state = { value: this.props.user[this.props.name] };
+    const {
+      profile,
+      name,
+    } = this.props;
+    this.state = { value: profile[name] };
     this.onChange = this.onChange.bind(this);
   }
 
   onChange(e) {
     const { value } = e.target;
-    const { name } = this.props;
-    this.props.setProfile( { [name]: value } );
+    const { 
+      name,
+      setProfile 
+    } = this.props;
+    
+    setProfile( { [name]: value } );
   }
 
   render() {
 
     const {
-      user,
+      profile,
       name
     } = this.props;
 
-    const value = user[name];
+    const value = profile[name] || '';
 
     const eProps = {
       onChange: this.onChange,
@@ -31,7 +42,7 @@ class _ProfileInput extends React.Component {
       ...this.props
     };
 
-    ['store','user', 'setProfile' ].forEach( p => eProps[p] && (delete eProps[p]) );
+    [ 'profile', 'setProfile' ].forEach( p => eProps[p] && (delete eProps[p]) );
     
     return <input {...eProps} />;
 
@@ -42,10 +53,8 @@ _ProfileInput.defaultProps = {
   type: 'text'
 };
 
-const mapStateToProps = s => ({ user: s.user });
-const mapDispatchToProps = {
-  setProfile
-};
+const mapStateToProps = ({ profile }) => ({ profile });
+const mapDispatchToProps = { setProfile };
 
 const ProfileInput = connect(mapStateToProps,mapDispatchToProps)(_ProfileInput);
 

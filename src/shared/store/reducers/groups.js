@@ -1,44 +1,77 @@
 
 import {
-  SET_VISIBILITY,
-  INIT_FILTERS,
-  TOGGLE_SELECTION
+  TOGGLE_SELECTION,
+  FILTER_TOGGLE,
+  FILTERS_CLEAR
  } from '../actions/groups';
 
+import {
+  TOGGLE_ITEM, // Yea, not sure the best way to do this
+  GET_PLAN
+ } from '../actions/plan';
+
+import {
+  CLEAR_CREDENTIALS // <-- here?
+} from '../actions/auth';
+
+
 const initialState = {
-  visibility: {},
+  filters: [],
   selected: []
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
 
-    case SET_VISIBILITY: {
+    case FILTER_TOGGLE: {
 
-      return { ...state, visibility: {...action.visibility}  };
-    }
-
-    case TOGGLE_SELECTION: {
-
-      let { selected } = state;
+      let { filters } = state;
       const { id } = action;
 
       const st = {
         ...state,
 
-        selected: selected.includes(id)
-                    ? selected.filter( _id => _id !== id )
-                    : [ ...selected, id ]
+        filters: filters.includes(id)
+                    ? filters.filter( _id => _id !== id )
+                    : [ ...filters, id ]
       };
 
       return st;
     }
 
-    case INIT_FILTERS: {
-      const visibility = {};
-      const { filters } = action;
-      Object.keys(filters).forEach( f => { visibility[f] = []; } );
-      return { ...state, visibility };
+    case FILTERS_CLEAR: {
+      return { ...state, filters: [] };
+    }
+
+    case CLEAR_CREDENTIALS: {// <-- ?? 
+      return { ...state, selected: [] };
+    }
+
+    case TOGGLE_ITEM:
+    case TOGGLE_SELECTION: {
+
+      let { selected } = state;
+      const { group } = action;
+
+      const st = {
+        ...state,
+
+        selected: selected.includes(group)
+                    ? selected.filter( _id => _id !== group )
+                    : [ ...selected, group ]
+      };
+
+      return st;
+    }
+
+    // TODO: this belongs somwewhere else (?)
+    
+    case GET_PLAN: {
+      const { plan } = action;
+      return {
+        ...state,
+        selected: plan.donations.map( d => d.group )
+      };
     }
 
     default:

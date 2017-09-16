@@ -1,50 +1,39 @@
-import React            from 'react';
-
-import {
-  planFromOrg
-} from '../../../shared/lib/group-utils';
+import React from 'react';
+import path from 'jspath';
 
 import Org from './Org.jsx';
 
-class StateOrgs extends React.Component {
-  render() {
 
-    const {
-      name,
-      orgs,
-      filters,
-      colors,
+const amountFromOrg = ({id:group},plan) => {
+  const { amount = 0 } = path( `..{.group==${group}}`,plan )[0];
+  return amount;
+};
+
+const StateOrgs = ({
+
+      groups,
       plan,
-      state,
+      state: {
+        id,
+        slug,
+        name,
+        parent: {
+          slug: colorID
+        }
+      },
       readonly,
-      mobile,
-      store
-    } = this.props;
-
-    const {
-      name:label,
-      parent: colorID
-    } = state;
-
-    const amountFromOrg = org => {
-      const { amount = 0 } = planFromOrg(plan,org.ID) || {};
-      return amount;
-    };
-
-    return (
-        <div className="plan-state" id={name}>
-        <h3 className={colors[colorID].slug}>{label}</h3>
-          {orgs.map( org => <Org readonly={readonly} 
-                                 key={org.ID} 
-                                 filters={filters} 
-                                 amount={amountFromOrg(org)} 
-                                 mobile={mobile} 
-                                 store={store}
-                                 {...org} 
-                            />)}
-        </div>
-      );
-  }
-}
+      mobile
+    }) => <div className="plan-state" id={slug}>
+            <h3 className={colorID}>{name}</h3>
+              {groups
+                .filter( grp => grp.state.id === id )
+                .map( org => <Org readonly={readonly} 
+                                   key={org.id} 
+                                   amount={amountFromOrg(org,plan)} 
+                                   mobile={mobile} 
+                                   {...org}
+                             />)}
+          </div>
+;
 
 module.exports=StateOrgs;

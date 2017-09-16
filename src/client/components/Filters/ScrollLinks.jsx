@@ -1,18 +1,37 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const ScrollLink = ({ slug, name, scrollToElement }) => {
-  return <a href={'#' + slug} onClick={() => scrollToElement(slug)}>{name}</a>;
-};
+import scrollToElement from '../../lib/scrollToElement';
 
-const ScrollLinks = ({ visible, links, scrollToElement }) => {
-  if( !visible.length ) {
-    return <span />;
+const ScrollLink = ({ slug, name, onClick }) => <a onClick={onClick} href={'#' + slug}>{name}</a>;
+
+const _ScrollLinks = ({ visible, onClick }) => 
+        visible.length
+          ? <div className="scroll-links">{visible.map( ({id,name,slug}) => <ScrollLink key={id} {...{onClick,name,slug}} /> )}</div>
+          : <span />;
+
+const mapStateToProps = ({
+  router: {
+    target: {
+      model: {
+        db
+      }
+    }
+  },
+  groups: { 
+    filters, 
   }
-  return(
-      <div className="scroll-links">
-        {visible.map( k => <ScrollLink key={k} scrollToElement={scrollToElement} {...links[k]} /> )}
-      </div>
-    );
+}) => {
+
+  return {
+    visible: db.visibleColors(filters),
+    onClick: (e) => {
+      e.preventDefault();
+      scrollToElement( e.target.getAttribute('href') );
+    }
+  };
 };
+
+const ScrollLinks = connect(mapStateToProps)(_ScrollLinks);
 
 module.exports = ScrollLinks;

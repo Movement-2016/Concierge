@@ -17,11 +17,11 @@ const TeamModel = {
   meta: [
     {
       name: 'description',
-      content: 'MovementVote consultants, adivsors, sponsors and partners'
+      content: 'MovementVote consultants, advisors, sponsors and partners'
     }
   ],
 
-  model: () => service.query('.posts.advisor').then( advisors => { return { advisors }; } )
+  model: () => service.db.then( db => ({ advisors: db.advisors }) )
 
 };
 

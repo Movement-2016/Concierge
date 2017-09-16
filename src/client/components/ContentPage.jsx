@@ -1,49 +1,46 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-class ContentPageShell extends React.Component {
-  render() {
-    const {
-      name,
+const ContentPageShell = ({
+      name = '',
       title,
       children,
       big
-    } = this.props;
+    }) => <main className={`content-page ${name}`}>
+            <div className={'container ' + (big ? '' : 'small-container')}>
+              <h1 className="page-title">{title}</h1>
+              {children}
+            </div>
+          </main>
+;
 
-    const cls = 'container ' + (big ? '' : 'small-container');
+/* eslint-disable react/no-danger */
 
-    return(
-        <main className={`content-page ${name}`}>
-          <div className={cls}>
-            <h1 className="page-title">{title}</h1>
+const _ContentPage = ({ 
+      pageName = '',
+      title,
+      content,
+      children
+    }) => <ContentPageShell title={title} name={pageName} >
+            <div className="content" dangerouslySetInnerHTML={{__html:content}} />
             {children}
-          </div>
-        </main>
-      );
-  }
-}
+          </ContentPageShell>
+;
 
-class ContentPage extends React.Component {
-
-  render() {
-
-    const {
+const mapStateToProps = ({
+  router: {
+    target: {
       model: {
         page:{
-          post_title: title,
-          post_content: content
+          title,
+          body: content
         }       
-      },
-      children
-    } = this.props;
-
-    return (
-      <ContentPageShell name={this.page} title={title}>
-        <div className="content" dangerouslySetInnerHTML={{__html:content}} />
-        {children}
-      </ContentPageShell>
-      );
+      },      
+    }
   }
-}
+}) => ({ title, content });
+
+const ContentPage = connect( mapStateToProps )( _ContentPage );
 
 ContentPage.Shell = ContentPageShell;
 

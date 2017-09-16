@@ -32,7 +32,7 @@ class _SummaryUser extends React.Component {
         <div className="user-name">{fname} {lname}</div>
         <div className="user-email">{email}</div>
         <div className="user-phone">{phone}</div>
-        <Link className="edit-user-info" to="/plan/profile">Edit Contact Info</Link>
+        <Link className="edit-user-info" to="/plan/profile">{'Edit Contact Info'}</Link>
       </div>
     );
   }

@@ -3,63 +3,38 @@ import { connect } from 'react-redux';
 
 import StateOrgs from './StateOrgs.jsx';
 
-import {
-  getSelectedOrgs,
-  organizeOrgsByState
-} from '../../../shared/lib/group-utils';
+const _Plan = ({
 
-class _Plan extends React.Component {
+      states,
+      groups,
+      donations: plan,
+      mobile,
+      readonly = false,
 
-  render() {
+    }) => <div className="planning-section">
+            {states.map( state => <StateOrgs key={state.id} {...{plan,mobile,readonly,state,groups}} /> )}
+          </div>
+;
 
-    const {
+const mapStateToProps = ({
+  router: {
+    target: {
       model: {
-        groupFilters: filters,
-        statesDict: states,
-        colorSectionsIDDict: colorDict,
-        orgs
-      },
-      mobile,
-      selected,
-      plan,
-      readonly
-    } = this.props;
-
-    const sortedOrgs = orgs && organizeOrgsByState( getSelectedOrgs(selected,orgs) );
-
-    const shared = {
-      plan,
-      filters,
-      mobile,
-      readonly,
-      colors: colorDict
-    };
-
-    return (
-      <div className="planning-section">
-        {Object.keys(sortedOrgs).map( state => {
-          return (
-            <StateOrgs
-              {...shared}
-              name={state}
-              key={state}
-              orgs={sortedOrgs[state]}
-              state={states[state]}
-            />
-          );
-      })}
-      </div>
-    );
+        db
+      },      
+    }
+  },
+  groups: {
+    selected
+  },
+  plan: {
+    donations
   }
-}
-
-_Plan.defaultProps = {
-  readonly: false
-};
-
-const mapStateToProps = s => ({ selected: s.groups.selected,
-                                plan:     s.plan.donations
-                              });
+}) => ({
+  groups: db.denormalizedSelectedGroups(selected),
+  states: db.denormalizedSelectedStates(selected),
+  donations
+});
 
 const Plan = connect(mapStateToProps)(_Plan);
 

@@ -1,18 +1,19 @@
-import React            from 'react';
-import { connect }      from 'react-redux';
-import commaize         from 'commaize';
+import React         from 'react';
+import { connect }   from 'react-redux';
+import path          from 'jspath';
+import commaize      from 'commaize';
 
 import ContributeButton from './ContributeButton.jsx';
-
-import {
-  addPlanItem,
-  toggleItem
-} from '../../../shared/store/actions/plan';
 
 import {
   selectPrevElement,
   selectNextElement
 } from '../../ui/util';
+
+import {
+  addPlanItem,
+  toggleItem
+} from '../../../shared/store/actions/plan';
 
 const KEY_ARROW_UP   = 40;
 const KEY_ARROW_DOWN = 38;
@@ -23,20 +24,15 @@ class _Org extends React.Component {
 
   constructor() {
     super(...arguments);
-
     this.state = { value: this.props.amount || '' };
-
-    this.onChange = this.onChange.bind(this);
-    this.onKeyDown = this.onKeyDown.bind(this);
-    this.onRemoveOrg = this.onRemoveOrg.bind(this);
   }
 
-  onChange(e) {
+  onChange = e => {
     let { target:{value} } = e;
     value = value.replace(/[^0-9]/g,'');
     
     const { 
-      ID:id,
+      id,
       addPlanItem
     } = this.props;
     
@@ -44,7 +40,7 @@ class _Org extends React.Component {
     this.setState({ value });
   }
 
-  onKeyDown(e) {
+  onKeyDown = e => {
     var sel = '.' + _Org.INPUT_SELECTOR;
     if( e.keyCode === KEY_ARROW_DOWN ) {
       selectPrevElement(sel);
@@ -53,22 +49,19 @@ class _Org extends React.Component {
     }
   }
 
-  onRemoveOrg(e) {
+  onRemoveOrg = e => {
     e.preventDefault();
-    this.props.toggleItem(this.props.ID);
+    this.props.toggleItem(this.props.id);
   }
 
   render() {
 
     const {
-      post_title: name,
-      fields: {
-        c3_donate_link,
-        c4_donate_link,
-        website: urlWeb,
-        'nonprofit-type': nonProfitTypes = []
-      },
-      filters,
+      title: name,
+      c3_donate_link,
+      c4_donate_link,
+      website: urlWeb,
+      tags,
       readonly,
       mobile
     } = this.props;
@@ -89,8 +82,7 @@ class _Org extends React.Component {
 
     const cls = 'group' + (readonly ? ' readonly' : '');
 
-    const npTerms = filters['nonprofit-type'].terms;
-    const tags    = nonProfitTypes.map( slug => npTerms[slug].name );
+    const nptags = path('.{.category.slug=="nonprofit-type"}.name',tags);
 
     return(
       <div className={cls}>
@@ -98,7 +90,7 @@ class _Org extends React.Component {
           <div className="col s8 m9">
             <div className="group-title">{name}</div>
             <div className="nonprofit-tags">
-              {tags.join(', ')}
+              {nptags.join(', ')}
             </div>
 
           </div>
@@ -114,7 +106,7 @@ class _Org extends React.Component {
               </div>
               {readonly
                 ? <ContributeButton urlGive={urlGive} amount={value} />
-                : !mobile && <a className="remove-group" onClick={this.onRemoveOrg}><i className="material-icons">close</i>Remove</a>
+                : !mobile && <a className="remove-group" onClick={this.onRemoveOrg}><i className="material-icons">{'close'}</i>{'Remove'}</a>
               }
             </div>
           </div>
@@ -124,9 +116,10 @@ class _Org extends React.Component {
   }
 }
 
-const mapDispatchToProps = {  addPlanItem, toggleItem };
-const mapStateToProps = () => ({ });
+_Org.INPUT_SELECTOR = 'orgsel';
 
-const Org = connect( mapStateToProps, mapDispatchToProps )(_Org);
+const mapDispatchToProps = { addPlanItem, toggleItem };
+
+const Org = connect(null,mapDispatchToProps)(_Org);
 
 module.exports = Org;

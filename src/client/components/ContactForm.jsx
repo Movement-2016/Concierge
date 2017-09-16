@@ -1,12 +1,9 @@
 import React         from 'react';
 
 import ProfileInput  from './Profile/Input.jsx';
+import AutoSave      from './Profile/AutoSave.jsx';
 
 class ContactForm extends React.Component {
-
-  constructor() {
-    super(...arguments);
-  }
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +18,7 @@ class ContactForm extends React.Component {
 
     return (
         <div className="padded-form">
-          <h3>Send a Message</h3>
+          <h3>{'Send a Message'}</h3>
           <form className="user-info" onSubmit={this.onSubmit}>
             <div className="row">
               <div className="col s12 m6">
@@ -45,6 +42,7 @@ class ContactForm extends React.Component {
               </div>
             </div>
             <button id="profile-form-submit" className="waves-effect waves-light btn" type="submit">{submitText}</button>
+            <AutoSave />
           </form>
           {children}
         </div>

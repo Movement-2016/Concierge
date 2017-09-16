@@ -14,7 +14,8 @@ class BrowserRouter extends Router
   get _currentPath() {
     const { 
       search = '', 
-      pathname } = document.location;
+      pathname 
+    } = document.location;
     return pathname + search;
   }
 
@@ -39,11 +40,6 @@ class BrowserRouter extends Router
     window.alert('Not Found');
   }
 
-}
-
-// hmmm
-if( !global.IS_SERVER_REQUEST ) {
-  BrowserRouter.service = new BrowserRouter();  
 }
 
 module.exports = BrowserRouter;

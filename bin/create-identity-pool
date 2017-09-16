@@ -1,0 +1,115 @@
+#####################################################################################
+#
+# Use this script to create an Cognito Federated Identity Pool in a new account
+# 
+# NOTE: running this script twice "as is" on the same account 
+#       is probably a:
+#
+#         - Really 
+#         - Bad 
+#         - Idea
+#        
+# It creates 3 things: An identity pool, a role, and a policy
+#
+# The policy (along with AmazonAPIGatewayInvokeFullAccess) gets attached to the role
+#
+# The role gets attached to the pool
+#
+# The pool ID is written to ./$WORK/create-identity-pool.result.json
+#
+POOL_NAME=gamechangerlabs
+ROLE_NAME=id-pool-authorized
+SYNC_POLICY_NAME=cognito-id-sync
+#
+#
+#
+####################################################################################
+
+set -e
+
+WORK=work
+
+if [ ! -d $WORK ]; then
+  mkdir -p $WORK;
+fi
+
+PROVIDERJS='const ids = require("../../src/config").identityProviders; console.log( Object.keys(ids).map(key => `${ids[key].providerKey}=${ids[key].clientId}`).join( ",") );';
+echo $PROVIDERJS > $WORK/code.js
+PROVIDERS=`node $WORK/code.js`
+
+#
+# Identity Pool
+#
+
+aws cognito-identity create-identity-pool \
+       --identity-pool-name $POOL_NAME \
+       --no-allow-unauthenticated-identities \
+       --supported-login-providers $PROVIDERS > $WORK/create-identity-pool.result.json
+
+POOL_ID=`cat $WORK/create-identity-pool.result.json |  egrep -o 'us-west-2([^"]+)'`
+
+echo Pool ID: $POOL_ID
+
+#
+# Role
+#
+
+ echo '{'\
+ '  "Version": "2012-10-17",'\
+ '  "Statement": ['\
+ '    {'\
+ '      "Effect": "Allow",'\
+ '      "Principal": {'\
+ '        "Federated": "cognito-identity.amazonaws.com"'\
+ '      },'\
+ '      "Action": "sts:AssumeRoleWithWebIdentity",'\
+ '      "Condition": {'\
+ '      "StringEquals": {'\
+ '          "cognito-identity.amazonaws.com:aud": "'$POOL_ID'"'\
+ '        }, '\
+ '        "ForAnyValue:StringLike": {'\
+ '          "cognito-identity.amazonaws.com:amr": "authenticated"'\
+ '        }'\
+ '      }'\
+ '    }'\
+ '  ]'\
+ '}' > $WORK/cognito-trust-policy.json
+
+aws iam create-role --role-name $ROLE_NAME --assume-role-policy-document file://$WORK/cognito-trust-policy.json > $WORK/create-role.result.json
+
+ROLE_ARN=`cat $WORK/create-role.result.json |  egrep -o 'arn:aws([^"]+)'`
+
+echo Role ARN: $ROLE_ARN
+
+#
+# Policies 
+#
+
+echo '{'\
+'  "Version": "2012-10-17",'\
+'  "Statement": ['\
+'    {'\
+'      "Effect": "Allow",'\
+'      "Action": ['\
+'        "mobileanalytics:PutEvents",'\
+'        "cognito-sync:*",'\
+'        "cognito-identity:*"'\
+'      ],'\
+'      "Resource": ['\
+'        "*"'\
+'      ]'\
+'    }'\
+'  ]'\
+'}'\ > $WORK/$SYNC_POLICY_NAME.json
+
+aws iam create-policy --policy-name $SYNC_POLICY_NAME --policy-document file://$WORK/$SYNC_POLICY_NAME.json > $WORK/$SYNC_POLICY_NAME.result.json
+
+SYNC_POLICY_ARN=`cat $WORK/$SYNC_POLICY_NAME.result.json |  egrep -o 'arn:aws([^"]+)'`
+
+echo Sync Policy ARN: $SYNC_POLICY_ARN
+
+aws iam              attach-role-policy --role-name $ROLE_NAME --policy-arn arn:aws:iam::aws:policy/AmazonAPIGatewayInvokeFullAccess
+aws iam              attach-role-policy --role-name $ROLE_NAME --policy-arn $SYNC_POLICY_ARN
+aws cognito-identity set-identity-pool-roles  --identity-pool-id $POOL_ID --roles authenticated=$ROLE_ARN
+
+

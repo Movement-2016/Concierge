@@ -15,8 +15,8 @@ class _ContactPage extends React.Component {
   }
 
   onSubmit = (message) => {
-    const { user } = this.props;
-    emailContact({user, message})
+    const { profile } = this.props;
+    emailContact({ profile, message})
       .then( done => this.setState({ done }) )
       .catch( error => this.setState({ error }) );
   }
@@ -29,7 +29,7 @@ class _ContactPage extends React.Component {
     } = this.state;
 
     return (
-      <ContentPage model={this.props.model} pageName="contact">
+      <ContentPage pageName="contact">
         <ContactForm onSubmit={this.onSubmit}>
           {done && <div className="submit-message submit-success">{done}</div>}
           {error && <div className="submit-message submit-error">{error.toString()}</div>}
@@ -39,7 +39,7 @@ class _ContactPage extends React.Component {
   }
 }
 
-const mapStateToProps = s => ({ user: s.user });
+const mapStateToProps = ({ profile }) => ({ profile });
 const ContactPage = connect(mapStateToProps)(_ContactPage);
 
 export default ContactPage;

@@ -1,78 +1,80 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { 
+  toggleFilter
+} from '../../../shared/store/actions/groups';
+
 class Filter extends React.Component {
 
   shouldComponentUpdate(nextProps) {
-    if (this.props.checked !== nextProps.checked) {
-      return true;
-    }
-    return false;
+    return this.props.checked !== nextProps.checked;
   }
 
   render() {
 
     const {
-      label,
-      slug,
-      category,
-      onChange,
-      checked
+      toggleFilter,
+      id,
+      name,
+      checked      
     } = this.props;
 
     const checkboxProps = {
       type:      'checkbox',
       className: 'filter-checkbox filled-in',
-      id:        'checkbox-' + slug,
-      onChange:   () => onChange(category, slug, !checked),
+      id:        'checkbox-' + id,
+      onChange:   () => toggleFilter(id),
       checked
     };
 
     return (
       <div className="filter">
-        <input {...checkboxProps} /> <label htmlFor={checkboxProps.id}>{label}</label>
+        <input {...checkboxProps} /> <label htmlFor={checkboxProps.id}>{name}</label>
       </div>
     );
   }
 }
 
-function FilterGroup(props) {
-
-  const {
-    label,
+const _FilterGroup = ({
+    id: catId,
+    slug,
     name,
-    terms,
-    onFilterChange,
-    selectedFilters
-  } = props;
+    tags,
+    toggleFilter,
+    selected,
+    visibleFilters
+  }) => <div className={`filter-group ${slug}-filters`}>
+          <div className="filter-group-label">
+            {name}
+          </div>
+          {tags
+            .filter( ({category,id}) => category === catId && (!visibleFilters || visibleFilters.includes(id) ))
+            .map( ({id,name}) => <Filter key={id} {...{toggleFilter,id,name,checked:selected.includes(id)}} />)}
+        </div>
+;
 
-  return (
-    <div className={`filter-group ${name}-filters`}>
-      <div className="filter-group-label">
-        {label}
-      </div>
-      {selectedFilters[name] && Object.keys(terms).map( t => {
-          const checked = selectedFilters[name].includes(t) ? true : false;
-          const filterProps = {
-            slug:     t,
-            label:    terms[t].name,
-            category: name,
-            onChange: onFilterChange,
-            checked
-          };
-          return <Filter key={t} {...filterProps} />;
+const mapStateToProps = ({
+  router: {
+    target: {
+      model: {
+        db: {
+          tags
         }
-      )}
-    </div>
-  );
-}
+      }
+    }
+  },
+  groups: {
+    filters: selected
+  }
+}) => ({ tags, selected });
 
-FilterGroup.propTypes = {
-  label:                React.PropTypes.string.isRequired,
-  name:                 React.PropTypes.string.isRequired,
-  terms:                React.PropTypes.object.isRequired,
-  onFilterChange:       React.PropTypes.func.isRequired,
-  selectedFilters:      React.PropTypes.object.isRequired,
-};
+const mapDispatchToProps = { toggleFilter };
+
+// const mergeProps = (stateProps, dispatchProps, ownProps) => 
+//             ({...ownProps, ...stateProps, ...dispatchProps, toggleFilter: ownProps.onFilterChange || dispatchProps.toggleFilter });
+
+
+const FilterGroup = connect( mapStateToProps, mapDispatchToProps )(_FilterGroup);
 
 module.exports = FilterGroup;

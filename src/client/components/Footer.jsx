@@ -1,11 +1,10 @@
 import React from 'react';
 import Link from '../services/LinkToRoute';
 
-const Footer = () => {
-  return (
+const Footer = () => 
     <footer className="site-footer">
       <section className="partner-logo-section" id="partners">
-        <div className="partners-title">National Partners</div>
+        <div className="partners-title">{'National Partners'}</div>
         <ul className="partner-logos">
           <li className="partner-logo wf-logo">
             <a href="http://workingfamilies.org" target="_blank"><img src="/images/partner-logos/working-families-logo.png" /></a>
@@ -47,14 +46,13 @@ const Footer = () => {
       </section>
       <section className="links-section">
         <ul className="site-links">
-          <li><a to="https://secure.actblue.com/privacy">Privacy</a></li>
-          <li><Link to="/getintouch">Contact</Link></li>
-          <li><a href="https://github.com/movement-2016">@GitHub</a></li>
-          <li><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">License</a></li>
+          <li><a to="https://secure.actblue.com/privacy">{'Privacy'}</a></li>
+          <li><Link to="/getintouch">{'Contact'}</Link></li>
+          <li><a href="https://github.com/movement-2016">{'@GitHub'}</a></li>
+          <li><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">{'License'}</a></li>
         </ul>
       </section>
     </footer>
-  );
-};
+;
 
 module.exports = Footer;
