@@ -54,7 +54,10 @@ Deploy to AWS S3 bucket.
 ```bash
 npm run deploy
 ```
-This will trigger a remote build and deploy to the S3 server. This will take approx. 5 minutes.
+This will trigger a remote build and deploy to the S3 server. This will take approx. 5 minutes. 
+
+For troubleshooting: the remote/build process is described [here](https://github.com/Movement-2016/bellman/tree/master/src/deploy).
+
 ## License
 
 MIT
