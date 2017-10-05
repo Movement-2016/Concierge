@@ -1,5 +1,5 @@
 
-const SITE_TITLE       = 'Movement 2017';
+const SITE_TITLE       = 'Movement Voter Project';
 const ADMIN_EMAIL      = 'advisor@movementvote.org';
 
 const REGION           = 'us-west-2';

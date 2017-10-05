@@ -28,7 +28,7 @@ const AboutModel = {
     },
     {
       name: 'keywords',
-      content: 'about, grassroots, movement-2017'
+      content: 'about, grassroots, movement-2017, movement-voter-project'
     }
   ]
 };

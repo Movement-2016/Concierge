@@ -17,7 +17,7 @@ const TeamModel = {
   meta: [
     {
       name: 'description',
-      content: 'This is the team that makes Movement 2017/2018 possible.'
+      content: 'This is the team that makes Movement Voter Project possible.'
     }
   ],
 

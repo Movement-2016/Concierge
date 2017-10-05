@@ -3,6 +3,8 @@ import {
   ShareButtons,
 } from 'react-share';
 
+import { SITE_TITLE } from '../../config';
+
 const {
   FacebookShareButton,
   TwitterShareButton,
@@ -13,7 +15,7 @@ function SocialButtons() {
     <div className="social-buttons">
       <FacebookShareButton
         url="http://movementvote.org"
-        title="Movement 2017"
+        title={SITE_TITLE}
         description="Support the best community-based vote groups in the country!"
         className="share-button fb-share-button"
       >
