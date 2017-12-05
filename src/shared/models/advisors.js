@@ -6,8 +6,8 @@ import {
 import service from '../services/m-service';
 
 
-const TeamModel = {
-  
+const AdvisorModel = {
+
   paths: [ '/advisors'  ],
 
   component: AdvisorPage,
@@ -17,7 +17,7 @@ const TeamModel = {
   meta: [
     {
       name: 'description',
-      content: 'MovementVote consultants, advisors, sponsors and partners'
+      content: 'Movement Voter Project consultants, advisors, sponsors and partners'
     }
   ],
 
@@ -25,4 +25,4 @@ const TeamModel = {
 
 };
 
-module.exports = TeamModel;
+module.exports = AdvisorModel;

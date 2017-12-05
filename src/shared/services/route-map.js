@@ -4,6 +4,7 @@ import {
 }  from '../models/groups';
 import Contact      from '../models/contact';
 import Team         from '../models/team';
+import Jobs         from '../models/jobs';
 import About        from '../models/about';
 import Advisors     from '../models/advisors';
 import Party        from '../models/party';
@@ -14,20 +15,21 @@ import {
   Consult
 }   from '../models/plan';
 
-const mapper  = g => g.paths.map( p => ({ 
-                                          path: p, 
-                                          routeModel: g, 
-                                          browserOnly: g.browserOnly || false 
-                                        }) ); 
+const mapper  = g => g.paths.map( p => ({
+                                          path: p,
+                                          routeModel: g,
+                                          browserOnly: g.browserOnly || false
+                                        }) );
 
 const flatner = (accum, arrs) => [ ...accum, ...arrs ];
 
-const RouteMap = [ 
-  Home, 
-  GroupsModel, 
+const RouteMap = [
+  Home,
+  GroupsModel,
   GroupsSlugModel,
   Contact,
   Team,
+  Jobs,
   About,
   Advisors,
   Party,

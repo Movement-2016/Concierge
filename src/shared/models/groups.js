@@ -1,5 +1,5 @@
 
-import { 
+import {
   OrgsEntryPage,
   OrgsPageMobile
 } from '../../client/components/Orgs';
@@ -11,7 +11,7 @@ const model = () => service.db.then( db => ({db}) );
 const meta = [
   {
     name: 'description',
-    content: 'A directory of grassroots orgs as culled and curated by Gamechangers Lab. Use this page to create a donation plan'
+    content: 'A directory of the best local vote groups and key national resistance networks.'
   }
 ];
 

@@ -7,24 +7,24 @@ import service from '../services/m-service';
 
 
 const AboutModel = {
-  
+
   paths: [ '/about'  ],
 
   component: ContentPage,
-  
-  model: () => service.getPage('about').then( page => { 
+
+  model: () => service.getPage('about').then( page => {
     return {
       page,
-      pageName: 'about',      
+      pageName: 'about',
     };
   }),
 
   title: 'About',
 
   meta: [
-    { 
+    {
       name: 'description',
-      content: 'Our group provides tools for activists and donors to connect with hundreds of grassroots vote groups across the United States' 
+      content: 'Movement Voter Project provides tools for activists and donors to connect with hundreds of grassroots vote groups across the United States' 
     },
     {
       name: 'keywords',

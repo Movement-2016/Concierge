@@ -33,7 +33,7 @@ const cnvt = {
 
 const tables = Object.keys(cnvt);
 
-const pages = () => ['home','about','team','contact'].map( name => service.getPage(name) );
+const pages = () => ['home', 'about', 'team', 'jobs', 'contact'].map( name => service.getPage(name) );
 
 const posts = db => ['donateTiles', 'news', 'testimonials', 'advisors' ].map( name => tocsv(db.query(name)).then( text => write(name,text) ) );
 
@@ -45,4 +45,3 @@ service
   .then( db => tables.forEach( name => tocsv( cnvt[name](db[name],db) ).then( text => write( name, text ) ) ) )
   .then( () => Promise.all( pages() ).then( pagesToCSV ).then( text => write('pages', text) ) )
   .catch( err => console.log(err, err.stack) );
-

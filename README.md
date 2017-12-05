@@ -29,7 +29,7 @@ npm run build
 
 *build* is a continuous build option - it will
 set up watches and rerun build elements as file changes are saved.
-`npm run build-stage` is a one time build option for poduction.
+`npm run build-stage` is a one time build option for production.
 
 ### Development Server
 
@@ -54,7 +54,7 @@ Deploy to AWS S3 bucket.
 ```bash
 npm run deploy
 ```
-This will trigger a remote build and deploy to the S3 server. This will take approx. 5 minutes. 
+This will trigger a remote build and deploy to the S3 server. This will take approx. 5 minutes.
 
 For troubleshooting: the remote/build process is described [here](https://github.com/Movement-2016/bellman/tree/master/src/deploy).
 
