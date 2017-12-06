@@ -15,8 +15,7 @@ function SocialButtons() {
     <div className="social-buttons">
       <FacebookShareButton
         url="http://movementvote.org"
-        title={SITE_TITLE}
-        description="Support the best community-based vote groups in the country!"
+        quote="Support the best community-based vote groups in the country!"
         className="share-button fb-share-button"
       >
         <img src="/images/facebook-icon.svg" />
