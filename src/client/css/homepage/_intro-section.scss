@@ -101,6 +101,7 @@
   }
 
   .thermometer {
+    overflow-x: hidden;
     background-color: $white;
     height: 12px;
     border-radius: 12px;
@@ -113,7 +114,11 @@
     height: 100%;
     background: $primary-color-light;
     border-radius: 12px 0 0 12px;
-    max-width: 0;
+    transition: width 0.8s linear 0.6s;
+    width: 0;
+    &.loaded {
+      width: 100%;
+    }
   }
 
   .thermometer-numbers {

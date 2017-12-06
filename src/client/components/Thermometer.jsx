@@ -1,54 +1,34 @@
-/* globals $ */
 import React    from 'react';
 
-const ANIMATE_DELAY = 1500;
-const ONE_HUNDRED = 100;
 const ONE_MILLION = 1000000;
 
 class Thermometer extends React.Component {
 
-  constructor(props) {
-    super(props);
-    const {
-      pledged,
-      goal,
-    } = this._getProps();
-    this.percent = pledged / goal * ONE_HUNDRED;
-  }
-
   componentDidMount() {
-    setTimeout( () => $('.mercury').animate( {maxWidth:this.percent + '%'}, 'slow' ), ANIMATE_DELAY );
-  }
-
-  _getProps() {
-    const {
-      current,
-      goal,
-    } = this.props;
-    return { pledged: parseInt(current), goal: parseInt(goal) };
+    $('.mercury').addClass('loaded');
   }
 
   render() {
-    const {
-      pledged,
-      goal,
-    } = this._getProps();
-    const pledgedFormatted = '$' + (pledged / ONE_MILLION).toFixed(2) + ' million';
-    const goalFormatted = '$' + (goal / ONE_MILLION).toFixed(0) + ' million';
-    const groupNumber = this.props.groupNumber;
+    const current = parseInt(this.props.current);
+    const goal = parseInt(this.props.goal);
+    const percent = current / goal * 100;
+
+    const mercuryStyle = { maxWidth: percent + '%' };
+    const currentFormatted = Math.round(current / ONE_MILLION * 100) / 100;   //round to 2 decimal places
+    const goalFormatted = Math.round(goal / ONE_MILLION);
 
     return (
       <div className="thermometer-area">
         <div className="thermometer">
-          <div className="mercury" />
+          <div className="mercury" style={mercuryStyle}></div>
         </div>
         <div className="thermometer-numbers">
           <div className="thermometer-current">
-            <div className="amount">{pledgedFormatted}</div>
-            <div className="label">donated to {groupNumber} groups</div>
+            <div className="amount">&#x24;{currentFormatted} million</div>
+            <div className="label">donated to {this.props.groupNumber} groups</div>
           </div>
           <div className="thermometer-goal">
-            <div className="amount">{goalFormatted}</div>
+            <div className="amount">&#x24;{goalFormatted} million</div>
             <div className="label">total goal</div>
           </div>
         </div>
@@ -56,5 +36,6 @@ class Thermometer extends React.Component {
     );
   }
 }
+
 
 module.exports = Thermometer;
