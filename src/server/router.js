@@ -1,4 +1,4 @@
-const Router            = require( '../shared/services/router'); 
+const Router            = require( '../shared/services/router');
 const fs                = require( 'fs');
 
 const { renderToStaticMarkup } = require( 'react-dom/server');
@@ -7,7 +7,7 @@ const React                    = require( 'react');
 const utils = require('./html-utils');
 
 const store = require('../shared/store');
-const { 
+const {
   setRoutes,
   renderHTML
 } = require('../shared/store/actions/router');
@@ -23,7 +23,7 @@ class ServerRouter {
 
     store.subscribe( () => {
 
-      const { 
+      const {
         router,
         router: {
           html,
@@ -56,7 +56,7 @@ class ServerRouter {
 
   navigate( state ) {
 
-    const { 
+    const {
       target: {
         routeModel: {
           title = '',
@@ -77,16 +77,18 @@ class ServerRouter {
 
     var bodyHTML = renderToStaticMarkup( React.createElement( App, props ) );
 
-    var html = this.indexHTML.replace(this.bodyRegex,'$1' + bodyHTML + '$3'); 
+    const replacer = (string, p1, p2, p3) => p1 + bodyHTML + p3;
+
+    var html = this.indexHTML.replace(this.bodyRegex, replacer);
 
     html = utils.titleSetter( title, utils.metaSetter( meta, html ) );
 
     if( res ) {
       res.setHeader( 'Content-Type', 'text/html' );
-      res.end(html);      
+      res.end(html);
     } else {
       process.nextTick( () => store.dispatch( renderHTML(html) ) );
-    } 
+    }
   }
 }
 
