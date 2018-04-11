@@ -1,9 +1,9 @@
 
 const SITE_TITLE       = 'Movement Voter Project';
-const ADMIN_EMAIL      = 'advisor@movementvote.org';
+const ADMIN_EMAIL      = 'advisor@movement.vote';
 
 const REGION           = 'us-west-2';
-const IDENTITY_POOL_ID = 'us-west-2:6069c14f-fc12-4964-bf22-80bf919eecde'; 
+const IDENTITY_POOL_ID = 'us-west-2:6069c14f-fc12-4964-bf22-80bf919eecde';
 const PLANS_ENDPOINT   = 'https://005h0deted.execute-api.us-west-2.amazonaws.com/prod';
 const SYNC_DATASET     = 'gamechangerlabs:profile';
 
@@ -11,7 +11,7 @@ const PLAN_AUTOSAVE_INTERVAL    = 5; // seconds
 const PROFILE_AUTOSAVE_INTERVAL = 7;
 
 const WP_DEV              = false;
-const WP_API_HOST         = WP_DEV ? 'http://localhost:8080/wordpress' : 'https://wp.movementvote.org';
+const WP_API_HOST         = WP_DEV ? 'http://localhost:8080/wordpress' : 'https://wp.movement.vote';
 const M_SERVICE_END_POINT = WP_API_HOST + '/wp-json/movement-2018/';
 
 const ENABLE_PLANS = false;
@@ -49,7 +49,7 @@ module.exports = {
 
   identityProviders: {
     Facebook,
-    Google,    
+    Google,
   },
 
   PLANS_ENDPOINT,
