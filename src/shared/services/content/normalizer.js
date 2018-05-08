@@ -1,4 +1,8 @@
-import serialize from 'serialize';
+import _serialize from 'serialize';
+
+const serialize = ({ jsonData, model, ctx }) => _serialize(jsonData, model, ctx);
+
+serialize.Model = _serialize.Model;
 
 class Testimonial extends serialize.Model {
   constructor() {
@@ -42,12 +46,12 @@ class Post extends PostBare {
     if( this.fields ) {
       for( var key in this.fields ) {
         this[ key + 'Binding'] = 'fields.' + key;
-      }      
+      }
     }
   }
 }
 
-class Page extends Post { 
+class Page extends Post {
 }
 
 class DonateTile extends Post {
@@ -82,7 +86,7 @@ class State extends TaxonomyNode {
                             .reduce( (counts,state) => counts + state.count, 0 );
       } else {
         return this.count;
-      }     
+      }
     };
 
     if( this.parent === 0 ) {
@@ -120,7 +124,7 @@ class Group extends PostBare {
       this.c4_donate_linkBinding  = 'fields.c4_donate_link';
       this.c3_donate_linkBinding  = 'fields.c3_donate_link';
       this.pac_donate_linkBinding = 'fields.pac_donate_link';
-      this.imageBinding           = 'fields.image';      
+      this.imageBinding           = 'fields.image';
     }
 
     this.getState = () => this.fields
@@ -128,7 +132,7 @@ class Group extends PostBare {
                             : this._ctx.taxonomies.state.terms[ 'national' ].term_id;
 
     this.getTags = () => {
-      
+
       if( !this.fields ) {
         return [];
       }
@@ -153,7 +157,7 @@ const _preserialize = db => {
   const tagCats = {
     'issue-area':     { id: 1, tag: true },
     constituency:     { id: 2, tag: true },
-    'nonprofit-type': { id: 3, tag: false } 
+    'nonprofit-type': { id: 3, tag: false }
   };
 
   const tagCatKeys = Object.keys(tagCats);
@@ -195,7 +199,7 @@ const serializeContent = content => {
       groups:        serialize({ jsonData: db.posts.group,       model: Group,   ctx: { taxonomies: db.taxonomies, tagCatKeys: db.tagCatKeys }} ),
       tagCategories: db.tagCategories
     };
-    
+
   } catch( e ) {
     console.log( 'ERROR DURING SERALIZE: ', e ); // eslint-disable-line no-console
   }
@@ -204,5 +208,3 @@ const serializeContent = content => {
 const serializePage = jsonData => serialize( { jsonData, model: Page } );
 
 module.exports = { serializeContent, serializePage };
-
-
