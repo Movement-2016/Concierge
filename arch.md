@@ -13,7 +13,7 @@ The key to the code is understanding where these paths converge/diverge.
 
 - Once inside [navigateTo](./src/shared/store/actions/router.js#navigateTo), the data is fetched and the results and matching React page component is put in the Redux store.
 
-- `navigateTo` emits a NAVIGATION_STARTS state change. [client/browser.js](./src/client/browser.js) watches the store change and tells React to render into the live browser DOM. [server/router.js](./src/server/router.js) watches the store change and tells React to render to an HTML string.
+- `navigateTo` then emits a NAVIGATION_STARTS state change. [client/browser.js](./src/client/browser.js) watches the store change and tells React to render into the live browser DOM. [server/router.js](./src/server/router.js) watches the store change and tells React to render to an HTML string.
 
 - All code paths use the [App component](./src/client/components/App.jsx) which pulls the page component from store state to render as a child 
 ````javascript
