@@ -56,7 +56,7 @@ const dependencies = [
   'redux-thunk',
   'redux-logger',
   'route-recognizer',
-  'serialize',
+  'serialize-js-model',
   'uuid'
 ];
 

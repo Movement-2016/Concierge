@@ -1,4 +1,4 @@
-import _serialize from 'serialize';
+import _serialize from 'serialize-js-model';
 
 const serialize = ({ jsonData, model, ctx }) => _serialize(jsonData, model, ctx);
 
