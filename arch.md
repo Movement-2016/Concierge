@@ -14,11 +14,23 @@ User clicks on a link which is handled in [LinkToRoute](./[src/client/services/L
 
 - For all cases the data is fetched in [navigateTo](./src/shared/store/actions/router.js#navigateTo) and the resulting data and matching React page component is put in the Redux store
 
-- A __NAVIGATION_STARTS__ state change is handled in [browser.js](./src/client/browser.js) watches the store change and tells React to render into the live browser DOM and [server/router.js](./src/server/router.js) watches the store change and tells React to render to an HTML string.
+- A NAVIGATION_STARTS state change is handled in [browser.js](./src/client/browser.js) watches the store change and tells React to render into the live browser DOM and [server/router.js](./src/server/router.js) watches the store change and tells React to render to an HTML string.
 
-- All code paths use the [App component](./src/client/components/App.jsx) which pulls the page component from store state to render
+- All code paths use the [App component](./src/client/components/App.jsx) which pulls the page component from store state to render as a child 
+````javascript
+const mapStateToProps = ({ 
+        router: { 
+          target: {
+            routeModel: {
+              component
+            }
+            ...
+          },
+        } 
+      }) => ({ component, ... });
+````
 
-- Individual page components dig the fetched data out of the Reudx store's state as part of `mapStoreToProps`. A good example can be seen in the [Advisors](./src/client/components/AdvisorPage.jsx)
+- Individual page components dig the fetched data out of the Reudx store's state as part of `mapStoreToProps`. A good example can be seen in the [Advisors](./src/client/components/AdvisorPage.jsx) page
 ````javascript
 const mapStoreToProps = ({
   router: {
