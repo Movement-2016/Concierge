@@ -6,17 +6,17 @@ import {
 import service from '../services/m-service';
 
 
-const HomePageModel = {
-  
+const ContactModel = {
+
   paths: [ '/contact', '/getintouch' ],
 
   component: ContactPage,
 
   title: 'ContactPage',
-  
+
   model: () => service.getPage('contact').then( page => ({page}) ),
 
-  browserOnly: true
+  // browserOnly: true
 };
 
-module.exports = HomePageModel;
+module.exports = ContactModel;
