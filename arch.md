@@ -11,7 +11,7 @@ The key to the code is understanding where these paths converge/diverge.
 
 - User clicks on a link which is handled in [client/../LinkToRoute](./[src/client/services/LinkToRoute.js) or uses the 'back' button which [client/../router.js](./src/client/services/router.js) hooks the `window.onpopstate` event. For the build version [static-render.js](./src/server/static-render.js) iterates through the [routes map](./src/shared/services/route-map.js) and explicitly triggers a render of every page. All of these codepaths send a `navigateTo` request to the Redux store
 
-- Once inside [navigateTo](./src/shared/store/actions/router.js#navigateTo) and the data is fetched and the results and matching React page component is put in the Redux store.
+- Once inside [navigateTo](./src/shared/store/actions/router.js#navigateTo), the data is fetched and the results and matching React page component is put in the Redux store.
 
 - `navigateTo` emits a NAVIGATION_STARTS state change. [client/browser.js](./src/client/browser.js) watches the store change and tells React to render into the live browser DOM. [server/router.js](./src/server/router.js) watches the store change and tells React to render to an HTML string.
 
