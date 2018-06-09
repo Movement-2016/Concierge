@@ -45,7 +45,7 @@ class Post extends PostBare {
     super(...arguments);
     if( this.fields ) {
       for( var key in this.fields ) {
-        this[ key + 'Binding'] = 'fields.' + key;
+        this[key + 'Binding'] = 'fields.' + key;
       }
     }
   }
@@ -54,15 +54,10 @@ class Post extends PostBare {
 class Page extends Post {
 }
 
-class DonateTile extends Post {
+class Fund extends Post {
 }
 
-class News extends PostBare {
-  constructor() {
-    super(...arguments);
-    this.imageBinding = 'fields.image';
-    this.getCategory = () => this.fields.category[0];
-  }
+class TeamMember extends Post {
 }
 
 class TaxonomyNode extends serialize.Model {
@@ -156,7 +151,7 @@ const _preserialize = db => {
 
   const tagCats = {
     'issue-area':     { id: 1, tag: true },
-    constituency:     { id: 2, tag: true },
+    'constituency':   { id: 2, tag: true },
     'nonprofit-type': { id: 3, tag: false }
   };
 
@@ -188,10 +183,10 @@ const serializeContent = content => {
 
     return {
       advisors:      serialize({ jsonData: db.posts.advisor,     model: Advisor }),
-      donateTiles:   serialize({ jsonData: db.posts.donatetile,  model: DonateTile }),
-      news:          serialize({ jsonData: db.posts.news,        model: News }),
-      menu:          serialize({ jsonData: db.menu,              model: Menu }),
+      funds:         serialize({ jsonData: db.posts.fund,        model: Fund }),
       testimonials:  serialize({ jsonData: db.posts.testimonial, model: Testimonial }),
+      teamMembers:   serialize({ jsonData: db.posts.teamMember,  model: TeamMember }),
+      menu:          serialize({ jsonData: db.menu,              model: Menu }),
 
       // groups....
       tags:          serialize({ jsonData: db.tags ,             model: Tag }),

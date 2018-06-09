@@ -13,7 +13,7 @@ class ContentDB extends JSPathDatabase {
     this._cache = {};
     this._pages = {};
   }
-  
+
   set data( data ) {
     super.data = serializeContent(data);
   }
@@ -38,8 +38,8 @@ class ContentDB extends JSPathDatabase {
     return this.query('tags');
   }
 
-  get donateTiles() {
-    return this.query('donateTiles');
+  get funds() {
+    return this.query('funds');
   }
 
   get states() {
@@ -53,7 +53,11 @@ class ContentDB extends JSPathDatabase {
   get advisors() {
     return this.query('advisors');
   }
-  
+
+  get teamMembers() {
+    return this.query('teamMembers');
+  }
+
   get denormalizedGroups() {
     return this._checkQueryCache( 'denormalizedGroups', () => this.denormalize( this.groupSchema, this.groups ) );
   }
@@ -64,21 +68,21 @@ class ContentDB extends JSPathDatabase {
 
 
   visibleGroups(filters, slug = '') {
-    return this._checkFiltersCache( filters, 'groups' + slug, () => 
-      this._trimBySlug( slug, filters.length 
+    return this._checkFiltersCache( filters, 'groups' + slug, () =>
+      this._trimBySlug( slug, filters.length
                                   ? this.match( 'groups', 'tags', filters )
                                   : this.query('groups') ) );
    }
 
   visibleStates(filters, slug = '') {
-    return this._checkFiltersCache( filters, 'states' + slug, () => 
+    return this._checkFiltersCache( filters, 'states' + slug, () =>
                      this.getRecords( 'states', path('.state', this.visibleGroups(filters,slug)).reduce(uniqueIdReducer,[]) ) );
   }
 
   visibleColors(filters, slug = '') {
     return this._checkFiltersCache( filters, 'colors' + slug, () => {
       const ids = path( '.parent', this.visibleStates(filters,slug) );
-      return ids.length 
+      return ids.length
         ? path( '.' + this._buildIds(ids), this.colors )
         : [];
     });
@@ -92,7 +96,7 @@ class ContentDB extends JSPathDatabase {
       return this.tagCategories.map( ({id}) => id );
     }
 
-    const p = this._isColorSlug(slug) 
+    const p = this._isColorSlug(slug)
                       ? '.{.state.parent.slug==$slug}.tags.category.id'
                       : '.{.state.slug==$slug}.tags.category.id';
 
@@ -106,7 +110,7 @@ class ContentDB extends JSPathDatabase {
     if( !slug ) {
       return null;
     }
-    const p = this._isColorSlug(slug) 
+    const p = this._isColorSlug(slug)
                       ? '.{.state.parent.slug==$slug}.tags.id'
                       : '.{.state.slug==$slug}.tags.id';
 
@@ -114,7 +118,7 @@ class ContentDB extends JSPathDatabase {
   }
 
   denormalizeVisibleStates(filters, slug = '') {
-    return this._checkFiltersCache( filters, 'normalizedStates' + slug, () => 
+    return this._checkFiltersCache( filters, 'normalizedStates' + slug, () =>
               filters.length
                 ? this.getRecords( this.denormalizedStates, path( '.id', this.visibleStates(filters,slug) ) )
                 : this.denormalizedStates
@@ -124,7 +128,7 @@ class ContentDB extends JSPathDatabase {
   denormalizeVisibleGroups(filters, slug = '') {
     return this._checkFiltersCache( filters, 'normalizedGroups' + slug, () =>
               filters.length
-                ? this.getRecords( this.denormalizedGroups, path( '.id', this.visibleGroups(filters,slug) ) ) 
+                ? this.getRecords( this.denormalizedGroups, path( '.id', this.visibleGroups(filters,slug) ) )
                 : this.denormalizedGroups
                );
   }
@@ -134,7 +138,7 @@ class ContentDB extends JSPathDatabase {
       if( this._selectedCache ) {
         return this._selectedCache;
       }
-    } 
+    }
     this._selected = selected;
     return this._selectedCache = this.getRecords( 'groups', selected );
   }
@@ -150,7 +154,7 @@ class ContentDB extends JSPathDatabase {
   denormalizedSelectedStates(selected) {
     return this.getRecords( this.denormalizedStates, path( '.state', this.selectedGroups(selected) ) );
   }
-  
+
   _isColorSlug(slug) {
     return this.queryItem('states', '.{.slug==$slug}.parent', {slug}) === 0;
   }
@@ -185,7 +189,7 @@ class ContentDB extends JSPathDatabase {
       }
     } else {
       this._filters = filters;
-      this._filtersCache = {}; // empty the cache;      
+      this._filtersCache = {}; // empty the cache;
     }
     return this._filtersCache[field] = cb(filters);
   }
@@ -217,4 +221,3 @@ class ContentDB extends JSPathDatabase {
 }
 
 module.exports = ContentDB;
-

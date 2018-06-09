@@ -10,9 +10,10 @@ const SYNC_DATASET     = 'gamechangerlabs:profile';
 const PLAN_AUTOSAVE_INTERVAL    = 5; // seconds
 const PROFILE_AUTOSAVE_INTERVAL = 7;
 
-const WP_DEV              = false;
-const WP_API_HOST         = WP_DEV ? 'http://localhost:8080/wordpress' : 'https://wp.movement.vote';
-const M_SERVICE_END_POINT = WP_API_HOST + '/wp-json/movement-2018/';
+//@TODO change back wp-dev!
+const WP_DEV              = true;
+const WP_API_HOST         = WP_DEV ? 'http://localhost/movement-admin' : 'https://wp.movement.vote';
+const M_SERVICE_END_POINT = WP_API_HOST + '/wp-json/movement/';
 
 const ENABLE_PLANS = false;
 const ENABLE_LOGIN = false;
