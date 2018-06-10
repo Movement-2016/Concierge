@@ -8,7 +8,7 @@ const AppModel = {
     return service.db.then( db => {
 
       return {
-        menu: db.buildTree('menu')
+        menu: db.buildTree('headerMenu')
       };
     });
   }

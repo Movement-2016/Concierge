@@ -182,11 +182,12 @@ const serializeContent = content => {
     const db = { ...content, ..._preserialize(content) };
 
     return {
-      advisors:      serialize({ jsonData: db.posts.advisor,     model: Advisor }),
-      funds:         serialize({ jsonData: db.posts.fund,        model: Fund }),
-      testimonials:  serialize({ jsonData: db.posts.testimonial, model: Testimonial }),
-      teamMembers:   serialize({ jsonData: db.posts.teamMember,  model: TeamMember }),
-      menu:          serialize({ jsonData: db.menu,              model: Menu }),
+      advisors:      serialize({ jsonData: db.posts.advisor,         model: Advisor }),
+      funds:         serialize({ jsonData: db.posts.fund,            model: Fund }),
+      testimonials:  serialize({ jsonData: db.posts.testimonial,     model: Testimonial }),
+      teamMembers:   serialize({ jsonData: db.posts.teamMember,      model: TeamMember }),
+      headerMenu:    serialize({ jsonData: db.menus['header-menu'],  model: Menu }),
+      footerMenu:    serialize({ jsonData: db.menus['footer-menu'],  model: Menu }),
 
       // groups....
       tags:          serialize({ jsonData: db.tags ,             model: Tag }),

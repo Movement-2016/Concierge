@@ -2,21 +2,22 @@ import React     from 'react';
 import Headroom  from 'react-headroom';
 import Login     from './Profile/Login.jsx';
 
-import scrollToElement from '../lib/scrollToElement';
-import Link            from '../services/LinkToRoute';
+import scrollToElement  from '../lib/scrollToElement';
+import idFormat         from '../lib/helperFunctions';
+import Link             from '../services/LinkToRoute';
 import { ENABLE_LOGIN } from '../../config';
 
 const _MenuItem = ({ url,label }) => {
   var isExternal = global.IS_SERVER_REQUEST || url.includes('http');
   return isExternal
-    ? <li className="menu-item"><a href={url}>{label}</a></li>
-    : <li className="menu-item"><Link to={url}>{label}</Link></li>;
+    ? <li id={'menu-item-'+idFormat(label)} className="menu-item"><a href={url}>{label}</a></li>
+    : <li id={'menu-item-'+idFormat(label)} className="menu-item"><Link to={url}>{label}</Link></li>;
 };
 
 const SubMenu = ({url, children, label}) => {
   return (
-    <li className="menu-parent">
-      <Link to={url}>{label}<i className="material-icons">{'arrow_drop_down'}</i></Link>
+    <li id={'menu-item-'+idFormat(label)} className="menu-parent">
+      <Link to={url}>{label}</Link>
       <ul className="menu-children">
         {children.map( (m,i) => <_MenuItem key={i} {...m} />)}
       </ul>

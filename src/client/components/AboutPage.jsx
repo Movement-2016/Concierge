@@ -2,11 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import scrollToElement from '../lib/scrollToElement';
+import idFormat         from '../lib/helperFunctions';
 
 /* eslint-disable react/no-danger */
-
-
-const idFormat = str => str.replace(/\s+/g, '-').toLowerCase();
 
 const PageMenuItem = ({title}) => <a onClick={() => scrollToElement('#'+idFormat(title) )}>{title}</a>;
 
