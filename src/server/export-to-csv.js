@@ -35,7 +35,7 @@ const tables = Object.keys(cnvt);
 
 const pages = () => ['home', 'about', 'team', 'jobs', 'contact'].map( name => service.getPage(name) );
 
-const posts = db => ['donateTiles', 'news', 'testimonials', 'advisors' ].map( name => tocsv(db.query(name)).then( text => write(name,text) ) );
+const posts = db => ['funds', 'teamMembers', 'testimonials', 'advisors' ].map( name => tocsv(db.query(name)).then( text => write(name,text) ) );
 
 const pagesToCSV = pages => tocsv( pages.map( ({slug,...f}) => ({slug,...f}) ) );
 

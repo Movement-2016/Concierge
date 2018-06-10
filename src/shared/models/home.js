@@ -19,8 +19,6 @@ const HomePageModel = {
     return service.db.then( db => {
 
       props = {
-        donateTiles:  db.query('donateTiles'),
-        news:         db.query('news'),
         testimonials: db.query('testimonials'),
         states:       db.denormalizedStates
        };

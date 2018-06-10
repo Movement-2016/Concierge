@@ -5,13 +5,11 @@ import Sticky      from 'react-stickynode';
 import OrgsList             from './OrgsList.jsx';
 import PlanTray             from './PlanTray.jsx';
 import FilterSidebarDesktop from '../Filters/FilterSidebarDesktop.jsx';
-import EasyDonateTiles      from '../EasyDonateTiles.jsx';
 import { ENABLE_PLANS }     from '../../../config';
 
 const PAGE_TITLE = 'Browse Groups';
 
 const _OrgsPageDesktop = ({
-      ezDonateTiles,
       numSelected
     }) =>
       <main className="orgs-page orgs-page-desktop">
@@ -28,7 +26,6 @@ const _OrgsPageDesktop = ({
               <Sticky top={104} bottomBoundary=".orgs-container">
                 <div className="plan-sidebar">
                   {ENABLE_PLANS && <PlanTray numGroups={numSelected}/>}
-                  <EasyDonateTiles tiles={ezDonateTiles} />
                 </div>
               </Sticky>
             </div>
@@ -37,22 +34,14 @@ const _OrgsPageDesktop = ({
         <div className="bottom-spacer" />
       </main>;
 
-const mapStateToProps = ({ 
-        router: {
-          target: {
-            model: {
-              db
-            }
-          }
-        },
-        groups: { 
+const mapStateToProps = ({
+        groups: {
           selected: {
             length: numSelected
           }
         }
-      }) => ({ 
+      }) => ({
           numSelected,
-          ezDonateTiles: db.donateTiles
         });
 
 const OrgsPageDesktop = connect( mapStateToProps )(_OrgsPageDesktop);

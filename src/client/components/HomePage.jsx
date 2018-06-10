@@ -3,8 +3,6 @@ import { connect }         from 'react-redux';
 import StateMap            from './StateMap.jsx';
 import Thermometer         from './Thermometer.jsx';
 import SocialButtons       from './Social.jsx';
-import Tile                from './Tile.jsx';
-import DonateTiles         from './DonateTiles.jsx';
 
 /* eslint-disable react/no-danger */
 
@@ -31,13 +29,7 @@ const Testimonials = ({testimonials}) =>
       </div>
 ;
 
-const NewsTiles = ({news}) => 
-      <div className="news-tiles">
-        {news.map( (n, i) => <Tile key={i} {...n} /> )}
-      </div>
-;
-
-const StateMapBound = ({states,}) => 
+const StateMapBound = ({states,}) =>
         global.IS_SERVER_REQUEST
             ? <span />
             : <div className="container">
@@ -57,12 +49,10 @@ const _HomePage = ({
       goal,
       current,
       model: {
-        donateTiles,
         states,
         testimonials,
-        news 
       }
-    }) => authCode 
+    }) => authCode
           ? <AuthCode code={authCode} />
           : <main className="home">
               <section className="intro-section">
@@ -81,7 +71,6 @@ const _HomePage = ({
               <section className="donate-section" id="donate">
                 <div className="container">
                   <h2 className="section-title">{'Choose a Way to Give'}</h2>
-                  <DonateTiles tiles={donateTiles} />
                 </div>
               </section>
               <section className="map-section">
@@ -92,19 +81,14 @@ const _HomePage = ({
                   <Testimonials testimonials={testimonials} />
                 </div>
               </section>
-              <section className="news-section">
-                <div className="container">
-                  <NewsTiles news={news} />
-                </div>
-              </section>
             </main>
 ;
 
-const mapStateToProps = ({ 
-  router: { 
-    target: { 
-      model, 
-      model: { 
+const mapStateToProps = ({
+  router: {
+    target: {
+      model,
+      model: {
         page: {
           tag_line,
           homepage_description: description,
