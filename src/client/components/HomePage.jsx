@@ -1,26 +1,34 @@
-import React               from 'react';
-import { connect }         from 'react-redux';
-import StateMap            from './StateMap.jsx';
-import Thermometer         from './Thermometer.jsx';
-import SocialButtons       from './Social.jsx';
+import React                        from 'react';
+import { connect }                  from 'react-redux';
+import StateMap                     from './StateMap.jsx';
+import Thermometer                  from './Thermometer.jsx';
+import {SocialButtons, TwitterFeed} from './Social.jsx';
+
+import Link from '../services/LinkToRoute';
 
 /* eslint-disable react/no-danger */
 
-const Testimonial = ({
-      author,
-      body,
-      image,
-      title
-    }) => <div className="testimonial flex-item">
-            <div className="testimonial-content" dangerouslySetInnerHTML={{__html:body}} />
-            <div className="author-area">
-              <div className="author-pic" style={image?{ backgroundImage: 'url("' + image + '")' }:{}} />
-              <div className="author-info">
-                <div className="author-name">{author}</div>
-                <div className="author-title">{title}</div>
-              </div>
-            </div>
-          </div>
+const Tile = ({ label, image, description, url }) =>
+  <Link className="donate-tile" to={url}>
+    <div className="tile-image" style={{ backgroundImage: `url("${image}")` }} />
+    <div className="tile-body">
+      <div className="tile-label">{label}<i className="material-icons">{'chevron_right'}</i></div>
+      <div className="tile-description">{description}</div>
+    </div>
+  </Link>
+;
+
+const Testimonial = ({ author, body, image, title }) =>
+  <div className="testimonial flex-item">
+    <div className="testimonial-content" dangerouslySetInnerHTML={{__html:body}} />
+    <div className="author-area">
+      <div className="author-pic" style={{ backgroundImage: `url("${image}")` }} />
+      <div className="author-info">
+        <div className="author-name">{author}</div>
+        <div className="author-title">{title}</div>
+      </div>
+    </div>
+  </div>
 ;
 
 const Testimonials = ({testimonials}) =>
@@ -43,11 +51,14 @@ const AuthCode = ({code}) => <p style={{margin:30}} className="well auth-code"><
 
 const _HomePage = ({
       authCode,
-      tag_line,
-      description,
+      tagLine,
+      introText,
+      introLinkText,
       groupNumber,
       goal,
       current,
+      homeTileSectionTitle,
+      homeTiles,
       model: {
         states,
         testimonials,
@@ -58,19 +69,22 @@ const _HomePage = ({
               <section className="intro-section">
                 <div className="container">
                   <SocialButtons />
-                  <h1 className="intro-tagline">{tag_line}</h1>
+                  <h1 className="intro-tagline">{tagLine}</h1>
                   <Thermometer goal={goal} current={current} groupNumber={groupNumber} />
                 </div>
                 <div className="intro-description">
                   <div className="container">
-                    <p dangerouslySetInnerHTML={{__html:description}} />
+                    <p>{introText}</p>
+                    <Link to="/about">{introLinkText}<i className="material-icons">{'chevron_right'}</i></Link>
                   </div>
                 </div>
               </section>
-              <a name="donate" />
               <section className="donate-section" id="donate">
                 <div className="container">
-                  <h2 className="section-title">{'Choose a Way to Give'}</h2>
+                  <h2 className="section-title">{homeTileSectionTitle}</h2>
+                  <div className="donate-tiles">
+                    {homeTiles.map( (d, i) => <Tile key={i} {...d} /> )}
+                  </div>
                 </div>
               </section>
               <section className="map-section">
@@ -81,6 +95,9 @@ const _HomePage = ({
                   <Testimonials testimonials={testimonials} />
                 </div>
               </section>
+              <section className="social-feed-section">
+                <TwitterFeed />
+              </section>
             </main>
 ;
 
@@ -90,11 +107,14 @@ const mapStateToProps = ({
       model,
       model: {
         page: {
-          tag_line,
-          homepage_description: description,
+          tagLine,
+          introText,
+          introLinkText,
           number_groups_donated: groupNumber,
           goal,
-          current
+          current,
+          homeTileSectionTitle,
+          homeTiles
         }
       },
     },
@@ -104,7 +124,8 @@ const mapStateToProps = ({
       }
     }
   }
-}) => ({tag_line,description,groupNumber,goal,current,model,authCode});
+}) => ({tagLine, introText, introLinkText, groupNumber, goal, current,
+        homeTileSectionTitle, homeTiles, model, authCode});
 
 const HomePage = connect(mapStateToProps)( _HomePage );
 
