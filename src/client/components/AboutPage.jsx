@@ -28,15 +28,12 @@ const PageSection = ({ title, content, image }) => (
 
 const _AboutPage = ({ title, headerImage, pageSections }) => (
 	<main className="about-page">
-		<section
-			className="page-header"
-			style={{ backgroundImage: `url(${headerImage})` }}
-  >
+		<div className="page-header" style={{ backgroundImage: `url(${headerImage})` }}>
 			<h1 className="page-title">{title}</h1>
 			<nav className="page-menu">
 				{pageSections.map((d, i) => <PageMenuItem key={i} title={d.title} />)}
 			</nav>
-		</section>
+		</div>
 		{pageSections.map((d, i) => <PageSection key={i} {...d} />)}
 	</main>
 );

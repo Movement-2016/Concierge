@@ -15,8 +15,7 @@ const Tile = ({ label, image, description, url }) => (
 		/>
 		<div className="tile-body">
 			<div className="tile-label">
-				{label}
-				<i className="material-icons">{'chevron_right'}</i>
+				{label} <i className="material-icons">{'chevron_right'}</i>
 			</div>
 			<div className="tile-description">{description}</div>
 		</div>
@@ -95,7 +94,13 @@ const _HomePage = ({
         <div className="container">
           <h2 className="section-title">{homeTileSectionTitle}</h2>
           <div className="donate-tiles">
-            {homeTiles.map((d, i) => <Tile key={i} {...d}/>)}
+            <div className="row">
+              {homeTiles.map((d, i) => (
+                <div className="col s12 m4">
+                  <Tile key={i} {...d}/>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

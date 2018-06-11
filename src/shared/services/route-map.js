@@ -1,11 +1,11 @@
 import Home from '../models/home';
 import { GroupsModel, GroupsSlugModel } from '../models/groups';
+import { FundsModel, FundModel } from '../models/funds';
 import Contact from '../models/contact';
 import Team from '../models/team';
 import Jobs from '../models/jobs';
 import About from '../models/about';
 import Advisors from '../models/advisors';
-import Funds from '../models/funds';
 import Party from '../models/party';
 import { Plan, PlanSummary, Profile, Consult } from '../models/plan';
 
@@ -27,7 +27,8 @@ const RouteMap = [
 	Jobs,
 	About,
 	Advisors,
-	Funds,
+	FundsModel,
+  FundModel,
 	Party,
 	Plan,
 	PlanSummary,

@@ -1,22 +1,38 @@
-import { FundsPage } from '../../client/components';
+import { FundsPage, FundPage } from '../../client/components';
 
 import service from '../services/m-service';
 
 const FundsModel = {
-	paths: ['/funds'],
+  paths: ['/funds'],
+  component: FundsPage,
+  title: 'Featured Funds',
+  meta: [
+    {
+      name: 'description',
+      content: 'Movement Voter Project featured funds selected for their strategic importance in 2018.',
+    },
+  ],
 
-	component: FundsPage,
-
-	title: 'Featured Funds',
-
-	meta: [
-		{
-			name: 'description',
-			content: 'Movement Voter Project featured funds, selected for their strategic importance in 2018.',
-		},
-	],
-
-	model: () => service.db.then(db => ({ funds: db.funds })),
+  model: () => {
+    let props = {};
+    return service.db
+      .then(db => {
+        props.funds = db.funds;
+        return service.getPage('funds');
+      })
+      .then(fundsPage => {
+        props.page = fundsPage;
+        return props;
+      });
+  },
 };
 
-module.exports = FundsModel;
+const FundModel = {
+  paths: ['/funds/:slug'],
+  component: FundPage,
+  title: 'About this featured fund',
+
+  model: () => service.db.then(db => ({ funds: db.funds, groups: db.groups })),
+};
+
+module.exports = { FundsModel, FundModel };
