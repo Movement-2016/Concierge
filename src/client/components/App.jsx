@@ -1,6 +1,6 @@
 import React           from 'react';
 import MediaQuery      from 'react-responsive';
-import { Provider, 
+import { Provider,
           connect }    from 'react-redux';
 
 import Nav             from './Nav.jsx';
@@ -26,7 +26,7 @@ class __App extends React.Component {
   componentDidUpdate() {
     this.scroll();
   }
-  
+
   scroll() {
     if( this.props.hash ) {
       scrollToHash(0,SCROLL_DELAY);
@@ -36,7 +36,7 @@ class __App extends React.Component {
   }
   render () {
 
-    const { 
+    const {
       component,
       title,
       browserOnly,
@@ -64,15 +64,15 @@ class __App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ 
-        router: { 
+const mapStateToProps = ({
+        router: {
           target: {
             routeModel: {
               component,
               title
             },
             browserOnly
-          }, 
+          },
           route: {
             location: {
               hash

@@ -1,8 +1,6 @@
 import React from 'react';
 import { ShareButtons } from 'react-share';
 
-import { TwitterTimelineEmbed } from 'react-twitter-embed';
-
 const { FacebookShareButton, TwitterShareButton } = ShareButtons;
 
 function SocialButtons() {
@@ -26,14 +24,4 @@ function SocialButtons() {
 	);
 }
 
-const TwitterFeed = () => <span />;
-	// global.IS_SERVER_REQUEST ? <span /> :
-	// 	<TwitterTimelineEmbed
-	// 		sourceType="profile"
-	// 		screenName="movementvote"
-	// 		options={{ dnt: true }}
-	// 		autoHeight
-	// 	/>
-	// ;
-
-module.exports = { SocialButtons, TwitterFeed };
+module.exports = SocialButtons;
