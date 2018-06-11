@@ -8,7 +8,7 @@ import TwitterFeed from './TwitterFeed.jsx';
 import Link from '../services/LinkToRoute';
 
 const Tile = ({ label, image, description, url }) => (
-	<Link className="donate-tile" to={url}>
+	<Link className="tile donate-tile" to={url}>
 		<div
 			className="tile-image"
 			style={{ backgroundImage: `url("${image}")` }}
@@ -96,8 +96,8 @@ const _HomePage = ({
           <div className="donate-tiles">
             <div className="row">
               {homeTiles.map((d, i) => (
-                <div className="col s12 m4">
-                  <Tile key={i} {...d}/>
+                <div key={i} className="col s12 m4">
+                  <Tile {...d}/>
                 </div>
               ))}
             </div>

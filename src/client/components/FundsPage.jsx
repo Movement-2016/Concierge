@@ -5,16 +5,12 @@ import striptags from 'striptags';
 import Link from '../services/LinkToRoute';
 
 const FundTile = ({ slug, label, url, image, description }) => (
-  <div className="fund-tile">
+  <div className="tile fund-tile">
     <div className="tile-image" style={{ backgroundImage: `url("${image}")` }} />
     <div className="tile-body">
-      <div className="tile-label">
-        {label} <i className="material-icons">{'chevron_right'}</i>
-      </div>
+      <div className="tile-label">{label}</div>
       <div className="tile-description">{description}</div>
-      <a className="donate-button" to={url} target="_blank">
-        {'Donate Now'}
-      </a>
+      <a className="donate-button" to={url} target="_blank">{'Donate Now'}</a>
       <Link className="about-fund-button" to={'/funds/' + slug}>
         {'About the groups in this fund'}
         <i className="material-icons">{'chevron_right'}</i>

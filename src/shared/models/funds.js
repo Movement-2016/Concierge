@@ -31,6 +31,7 @@ const FundModel = {
   paths: ['/funds/:slug'],
   component: FundPage,
   title: 'About this featured fund',
+  browserOnly: true,
 
   model: () => service.db.then(db => ({ funds: db.funds, groups: db.groups })),
 };
