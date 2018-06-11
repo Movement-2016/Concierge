@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import scrollToElement from '../lib/scrollToElement';
-import idFormat from '../lib/helperFunctions';
+import { idFormat } from '../lib/helperFunctions';
 
 /* eslint-disable react/no-danger */
 

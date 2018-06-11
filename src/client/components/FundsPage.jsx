@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import striptags from 'striptags';
 
+import DonateLink from './DonateLink.jsx';
+
 import Link from '../services/LinkToRoute';
 
 const FundTile = ({ slug, label, url, image, description }) => (
@@ -10,7 +12,7 @@ const FundTile = ({ slug, label, url, image, description }) => (
     <div className="tile-body">
       <div className="tile-label">{label}</div>
       <div className="tile-description">{description}</div>
-      <a className="donate-button" to={url} target="_blank">{'Donate Now'}</a>
+      <DonateLink url={url}>{'Donate Now'}</DonateLink>
       <Link className="about-fund-button" to={'/funds/' + slug}>
         {'About the groups in this fund'}
         <i className="material-icons">{'chevron_right'}</i>

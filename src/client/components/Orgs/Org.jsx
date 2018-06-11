@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import striptags from 'striptags';
 
+import DonateLink from '../DonateLink.jsx';
+
 import { toggleItem } from '../../../shared/store/actions/plan';
 import { ENABLE_PLANS } from '../../../config';
 
@@ -30,10 +32,9 @@ const OrgLinks = ({ onOrgClick, planText, planIcon, urlGive, urlWeb }) => (
       </a>
     )}
     {urlGive && (
-      <a className="group-link" href={urlGive} target="_blank">
-        <i className="material-icons">{'star_border'}</i>
-        {'Donate Now'}
-      </a>
+      <DonateLink className="group-link" url={urlGive}>
+        <i className="material-icons">{'star_border'}</i> {'Donate Now'}
+      </DonateLink>
     )}
     {urlWeb && (
       <a className="group-link" href={urlWeb} target="_blank">

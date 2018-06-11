@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Org from './Orgs/OrgBasic.jsx';
+import DonateLink from './DonateLink.jsx';
 
 import Link from '../services/LinkToRoute';
 
@@ -10,7 +11,7 @@ const FundTile = ({label, url, image, description }) => (
     <div className="tile-image" style={{ backgroundImage: `url("${image}")` }} />
     <div className="tile-body">
       <div className="tile-label">{label}</div>
-      <a className="donate-button" to={url} target="_blank">{'Donate Now'}</a>
+      <DonateLink url={url}>{'Donate Now'}</DonateLink>
       <div className="tile-description">{description}</div>
       <Link to="/about/#our-process">
         {'Learn more about our process'}

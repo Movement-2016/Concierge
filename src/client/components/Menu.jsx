@@ -1,7 +1,7 @@
 import React from 'react';
 import Login from './Profile/Login.jsx';
 
-import idFormat from '../lib/helperFunctions';
+import { idFormat } from '../lib/helperFunctions';
 import Link from '../services/LinkToRoute';
 import { ENABLE_LOGIN } from '../../config';
 

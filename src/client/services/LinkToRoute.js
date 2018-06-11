@@ -1,7 +1,9 @@
 import React  from 'react';
 
+import { getRefCode } from '../lib/helperFunctions';
+
 /*
-  href        - destination 
+  href        - destination
   host        - any truthy value that indicates to let the browser handle the link
   onNavigate  - callback will short circuit any action and call back with this.props.model
   text        - prints this text
@@ -15,7 +17,7 @@ class Link extends React.Component {
     super(...arguments);
     this.handleClick = this.handleClick.bind(this);
   }
-  
+
   handleClick(e) {
     let { href, host, onNavigate, to } = this.props;
 
@@ -24,7 +26,7 @@ class Link extends React.Component {
     if( onNavigate ) {
       e.preventDefault();
       e.stopPropagation();
-      onNavigate(this.props.model);      
+      onNavigate(this.props.model);
     } else {
       if( !host ) {
         e.preventDefault();
@@ -32,7 +34,7 @@ class Link extends React.Component {
         if( typeof href === 'string' && href !== '#') {
           Link.navigateTo(href);
         }
-      }    
+      }
     }
     return true;
   }
@@ -51,11 +53,12 @@ class Link extends React.Component {
   }
 }
 
-Link.navigateTo = function(path) {
+Link.navigateTo = function(_path) {
   // can't import because of circular dependencies
   var router = require('./router').service;
-  router.navigateTo( path );  
+  const refCode = getRefCode();
+  const path = refCode ? (_path + '?refcode=' + refCode) : _path;
+  router.navigateTo( path );
 };
 
 module.exports = Link;
-
