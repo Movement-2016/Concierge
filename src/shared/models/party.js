@@ -1,15 +1,13 @@
 import { HouseParty } from '../../client/components';
 
+import service from '../services/m-service';
+
 const HousePartyPageModel = {
 	paths: ['/houseparty'],
-
 	component: HouseParty,
-
 	title: 'Host A Party',
 
-	model: () => Promise.resolve({ page: { title: 'Host A House Party' } }),
-
-	// browserOnly: true
+	model: () => service.getPage('houseparty').then( page => ({page}) ),
 };
 
 module.exports = HousePartyPageModel;

@@ -7,7 +7,7 @@ import {
 } from '../../client/components/DonationPlan';
 
 import {
-  ConsultPage
+  ContactAdvisorPage
 } from '../../client/components';
 
 const planDataModel = () => service.db.then( db => ({db}) );
@@ -38,7 +38,7 @@ const Models = {
   },
   Consult: {
     paths:       [ '/plan/consult' ],
-    component:   ConsultPage,
+    component:   ContactAdvisorPage,
     model:       noop,
     browserOnly: true,
     title:       'Request a Consult'

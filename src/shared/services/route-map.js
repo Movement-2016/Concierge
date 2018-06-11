@@ -2,6 +2,7 @@ import Home from '../models/home';
 import { GroupsModel, GroupsSlugModel } from '../models/groups';
 import { FundsModel, FundModel } from '../models/funds';
 import Contact from '../models/contact';
+import ContactAdvisor from '../models/contactAdvisor';
 import Team from '../models/team';
 import Jobs from '../models/jobs';
 import About from '../models/about';
@@ -23,6 +24,7 @@ const RouteMap = [
 	GroupsModel,
 	GroupsSlugModel,
 	Contact,
+	ContactAdvisor,
 	Team,
 	Jobs,
 	About,

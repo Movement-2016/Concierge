@@ -5,20 +5,21 @@ import AutoSave      from './Profile/AutoSave.jsx';
 
 class ContactForm extends React.Component {
 
-  onSubmit = (e) => {
+  onSubmit = e => {
     e.preventDefault();
     this.props.onSubmit(this.refs.message.value);
   }
 
   render() {
     const {
+      title = 'Contact Us',
       submitText = 'Submit',
       children,
     } = this.props;
 
     return (
         <div className="padded-form">
-          <h3>{'Send a Message'}</h3>
+          <h3>{title}</h3>
           <form className="user-info" onSubmit={this.onSubmit}>
             <div className="row">
               <div className="col s12 m6">
