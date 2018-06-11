@@ -1,19 +1,15 @@
-
-import {
-  HouseParty
-} from '../../client/components';
+import { HouseParty } from '../../client/components';
 
 const HousePartyPageModel = {
+	paths: ['/houseparty'],
 
-  paths: [ '/houseparty' ],
+	component: HouseParty,
 
-  component: HouseParty,
+	title: 'Host A Party',
 
-  title: 'Host A Party',
+	model: () => Promise.resolve({ page: { title: 'Host A House Party' } }),
 
-  model: () => Promise.resolve( { page: { title: 'Host A House Party' } } ),
-
-  // browserOnly: true
+	// browserOnly: true
 };
 
 module.exports = HousePartyPageModel;
