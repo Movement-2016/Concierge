@@ -26,13 +26,14 @@ function SocialButtons() {
 	);
 }
 
-const TwitterFeed = () => (
-	<TwitterTimelineEmbed
-		sourceType="profile"
-		screenName="movementvote"
-		options={{ dnt: true }}
-		autoHeight
-	/>
-);
+const TwitterFeed = () => <span />;
+	// global.IS_SERVER_REQUEST ? <span /> :
+	// 	<TwitterTimelineEmbed
+	// 		sourceType="profile"
+	// 		screenName="movementvote"
+	// 		options={{ dnt: true }}
+	// 		autoHeight
+	// 	/>
+	// ;
 
 module.exports = { SocialButtons, TwitterFeed };
