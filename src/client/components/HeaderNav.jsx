@@ -7,7 +7,6 @@ import Menu from './Menu.jsx';
 import scrollToElement from '../lib/scrollToElement';
 import Link from '../services/LinkToRoute';
 
-
 class HeaderNav extends React.Component {
   componentDidMount() {
     /* global $ */
@@ -35,17 +34,27 @@ class HeaderNav extends React.Component {
         <Headroom disable={!mobile} disableInlineStyles>
           <div className="navbar-fixed">
             <nav className="main-nav">
-              <Link to="/" className="brand-logo">
+              <Link to="/" id="header-logo" className="brand-logo">
                 {siteTitle}
               </Link>
-              <Menu className="header-menu nav-menu" menu={menu} />
-              <a data-activates="mobile-menu" className="button-collapse">
+              <a data-activates="side-nav" className="button-collapse">
                 <i className="material-icons">{'menu'}</i>
               </a>
+              {!mobile && <Menu id="header-menu" className="nav-menu" menu={menu} />}
             </nav>
           </div>
         </Headroom>
-        <Menu className="side-nav nav-menu" id="mobile-menu" menu={menu} />
+        <nav id="side-nav" className="side-nav">
+          <div className="top-bar">
+            <Link to="/" id="side-logo" className="brand-logo">
+              {siteTitle}
+            </Link>
+            <a className="close-button">
+              <i className="material-icons">{'close'}</i>
+            </a>
+          </div>
+          <Menu id="side-menu" className="nav-menu" menu={menu} />
+        </nav>
         <Login.Popup />
       </div>
     );

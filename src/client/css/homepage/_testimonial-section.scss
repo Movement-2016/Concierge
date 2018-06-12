@@ -1,5 +1,5 @@
 .testimonial-section {
-  background-color: $primary-color-light-2;
+  background-color: $blue-light-2;
   padding: 30px 0;
   @include bp-lg {
     padding: 40px 0 30px;
@@ -24,7 +24,7 @@ $testimonial-pic-size: 52px;
     font-size: 18px;
     font-weight: 300;
     font-style: italic;
-    color: $lighter-trans;
+    color: $trans-light;
     position: relative;
     line-height: 1.4;
     flex: 1;
@@ -69,7 +69,7 @@ $testimonial-pic-size: 52px;
     font-weight: 700;
   }
   .author-title {
-    color: $lightest-trans;
+    color: $trans-light-2;
     @include bp-md-only {
       margin-top: 3px;
       line-height: 1.1;

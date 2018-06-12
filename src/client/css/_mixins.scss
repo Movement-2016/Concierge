@@ -88,12 +88,12 @@
   margin-left: -40px;
 }
 @mixin light-link {
-  color: $lightest-trans;
+  color: $trans-light-2;
   text-transform: uppercase;
   font-weight: 700;
   &:hover,
   &:focus {
-    color: $primary-color-light;
+    color: $blue-light;
   }
 }
 @keyframes pushRight {

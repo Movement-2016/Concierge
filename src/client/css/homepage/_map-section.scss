@@ -10,17 +10,17 @@
 
     .section-title {
       margin-bottom: 6px;
-      color: $secondary-color-light;
+      color: $red-light;
     }
     .map-desc {
-      color: $med-trans;
+      color: $trans-base;
     }
   }
 
   .map-area {
     max-width: 1000px;
     margin: 0 auto 30px;
-    color: $lighter-trans;
+    color: $trans-light;
 
     .q0-7 {
       fill: desaturate($state-dark-red, 20%);

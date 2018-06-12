@@ -6,7 +6,7 @@
   }
 
   .tile-header {
-    @include bg-overlay($primary-color, 0.20, 2px);
+    @include bg-overlay($blue-base, 0.20, 2px);
     @include bp-md-only {
       height: 100px;
     }
@@ -29,11 +29,11 @@
     @extend %flex-item;
 
     .tile-tag {
-      background: rgba($secondary-color, 0.9);
+      background: rgba($red-base, 0.9);
       z-index: 20;
       top: 0;
       &::after {
-        border-top: 29px solid rgba($secondary-color, 0.9);
+        border-top: 29px solid rgba($red-base, 0.9);
         border-right-width: 15px;
       }
     }
@@ -45,14 +45,14 @@
         opacity: 0;
       }
       .tile-tag {
-        background: rgba($secondary-color, 0.96);
+        background: rgba($red-base, 0.96);
 
       }
       .tile-title {
-        color: darken($primary-color, 5%);
+        color: darken($blue-base, 5%);
       }
       .tile-content {
-        color: $dark-trans;
+        color: $trans-dark;
       }
     }
   }

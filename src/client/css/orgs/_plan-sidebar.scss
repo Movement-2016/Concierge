@@ -23,7 +23,7 @@ $tray-height: 64px;
     }
 
     .title {
-      color: $lighter-trans;
+      color: $trans-light;
     }
 
     .info {
@@ -42,7 +42,7 @@ $tray-height: 64px;
       height: $tray-height;
       line-height: $tray-height;
       border-left: 1px solid $light-border;
-      color: $secondary-color;
+      color: $red-base;
       i {
         vertical-align: middle;
         margin-bottom: 3px;
@@ -61,7 +61,7 @@ $tray-padding: 16px;
     @include z-depth-1;
 
     .title {
-      color: $lighter-trans;
+      color: $trans-light;
       padding: 0 $tray-padding;
     }
 
@@ -69,7 +69,7 @@ $tray-padding: 16px;
       padding: 8px $tray-padding $tray-padding;
       font-size: 18px;
       font-weight: 700;
-      color: $med-trans;
+      color: $trans-base;
     }
 
     .button-area {
@@ -84,7 +84,7 @@ $tray-padding: 16px;
     .plan-btn {
       height: 48px;
       line-height: 48px;
-      color: $primary-color;
+      color: $blue-base;
       padding: 0 $tray-padding;
       border-top: 1px solid $light-border;
       width: 100%;
@@ -102,7 +102,7 @@ $tray-padding: 16px;
     margin-top: 40px;
 
     .title {
-      color: $lightest-trans;
+      color: $trans-light-2;
       font-size: 14px;
       margin-bottom: 6px;
     }
@@ -115,7 +115,7 @@ $tray-padding: 16px;
     margin-bottom: 12px;
 
     .tile-title {
-      color: $lighter-trans;
+      color: $trans-light;
       font-size: 16px;
       font-weight: 700;
       text-transform: uppercase;
@@ -125,12 +125,12 @@ $tray-padding: 16px;
       margin: 2px 0 8px;
       font-size: 13px;
       font-weight: 300;
-      color: $lighter-trans;
+      color: $trans-light;
     }
 
     .tile-button {
       height: 0;
-      background: $secondary-color-light;
+      background: $red-light;
       color: $white;
       text-align: center;
       font-weight: 700;
@@ -142,7 +142,7 @@ $tray-padding: 16px;
       font-size: 12.5px;
 
       &:hover {
-        background: $secondary-color;
+        background: $red-base;
       }
     }
   }

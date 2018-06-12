@@ -4,6 +4,14 @@
   }
 }
 
+nav .brand-logo {
+  color: $blue-base;
+  font-size: 18px;
+  font-family: 'museo-slab', 'Roboto', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
 .main-nav {
   background-color: $navbar-color;
   @include z-depth-2;
@@ -20,28 +28,55 @@
     }
     i {
       margin-left: -3px;
-      font-size: 28px;
-      color: color('grey', 'lighten-1');
+      font-size: 20px;
+      color: $trans-light-2;
     }
-  }
-  .brand-logo {
-    color: $primary-color;
-    font-size: 18px;
-    font-family: 'museo-slab', 'Roboto', sans-serif;
-    font-weight: 900;
-    font-style: italic;
   }
 }
 
-.header-menu {
-  display: none;
-  @include bp-lg {
-    display: block;
-    float: right;
+#header-menu {
+  display: block;
+  float: right;
+  a {
+    font-size: 15px;
+    color: $trans-light;
+    padding: 0 $menu-padding-lg;
+    &:hover {
+      background-color: color('grey', 'lighten-3');
+    }
+  }
+  #menu-item-donate > a {
+    font-weight: 900;
+    color: $red-base;
+  }
+  .menu-parent {
+    & > a {
+      height: $navbar-height-lg;
+    }
+    &:hover .menu-children {
+      display: block;
+    }
+    &:last-of-type {
+      .menu-children {
+        right: 0;
+      }
+    }
+  }
+
+  .menu-children {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    @include z-depth-1;
+    li {
+      line-height: 56px;
+      height: 56px;
+      float: none;
+    }
     a {
-      font-size: 16px;
-      color: $lighter-trans;
       padding: 0 $menu-padding-lg;
+      display: block;
+      background-color: $navbar-color;
       &:hover {
         background-color: color('grey', 'lighten-3');
       }
@@ -49,79 +84,50 @@
   }
 }
 
-.side-nav {
+#side-nav {
+  width: 100%;
+  a {
+    padding: 0 30px;
+  }
   .top-bar {
-    text-align: right;
+    a {
+      height: 56px;
+      line-height: 56px;
+    }
     border-bottom: 1px solid $light-border;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
+    @include clearfix;
+  }
+  .brand-logo {
+    color: $blue-light;
+    float: left;
+    left: auto;
+    transform: none;
   }
   .close-button {
-    padding-right: 24px;
+    float: right;
+    padding-right: 20px;
     i {
-      line-height: 56px;
-      color: $lighter-trans;
+      font-size: 22px;
+      line-height: inherit;
+      color: $trans-light-2;
     }
-  }
-  li {
-    line-height: 56px;
-  }
-  a {
-    height: 56px;
-    line-height: 56px;
-    padding: 0 30px;
-    font-size: 18px;
   }
 }
 
-.nav-menu {
-  .menu-parent {
-    i {
-      display: none;
-    }
-    @include bp-lg {
-      & > a {
-        height: $navbar-height-lg;
-      }
-
-      i {
-        font-size: 22px;
-        height: inherit;
-        line-height: inherit;
-        display: inline-block;
-        vertical-align: middle;
-      }
-      &:hover .menu-children {
-        display: block;
-      }
-    }
+#side-menu {
+  a {
+    font-size: 18px;
+    height: 42px;
+    line-height: 42px;
   }
-
-  .menu-children {
-    a {
-      padding-left: 40px;
-      line-height: 48px;
-      height: 48px;
-      color: $med-trans;
-    }
-    @include bp-lg {
-      display: none;
-      position: absolute;
-      min-width: 160px;
-      @include z-depth-1;
-
-      li {
-        float: none;
-      }
-
-      a {
-        padding: 0 $menu-padding-lg;
-        color: $lighter-trans;
-        display: block;
-        background-color: $navbar-color;
-        &:hover {
-          background-color: color('grey', 'lighten-3');
-        }
-      }
+  .menu-parent {
+    margin-bottom: 18px;
+    & > a {
+      height: 40px;
+      line-height: 40px;
+      font-weight: 900;
+      color: $red-base;
     }
   }
 }

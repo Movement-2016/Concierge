@@ -2,7 +2,7 @@
   @include page-padding;
 
   .page-title {
-    color: $lighter-trans;
+    color: $trans-light;
     margin-bottom: 24px;
   }
 
@@ -23,7 +23,7 @@
     .link-count {
       float: right;
       background-color: #f3f3f3;
-      color: $lighter-trans;
+      color: $trans-light;
       height: 24px;
       line-height: 25px;
       border-radius: 35px;

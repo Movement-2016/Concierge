@@ -25,7 +25,7 @@
     line-height: $navbar-height-mobile;
     @include clearfix;
     a {
-      color: $lighter-trans;
+      color: $trans-light;
     }
     .close-button {
       float: left;
@@ -57,14 +57,14 @@
     padding: 15px 0;
     text-align: center;
     .filter-submit-button {
-      background-color: $secondary-color;
+      background-color: $red-base;
       color: $white;
       border-radius: 20px;
       height: 36px;
       line-height: 36px;
       padding: 0 2.5rem;
       &:hover {
-        background: $secondary-color-light;
+        background: $red-light;
       }
     }
   }

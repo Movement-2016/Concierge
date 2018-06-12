@@ -12,9 +12,9 @@
     }
     .tile-tag {
       bottom: 0;
-      background: $lighter-trans;
+      background: $trans-light;
       &::after {
-        border-bottom: 29px solid $lighter-trans;
+        border-bottom: 29px solid $trans-light;
         border-right-width: 15px;
       }
     }
@@ -30,7 +30,7 @@
   .tile-title {
     font-size: 18px;
     font-weight: 700;
-    color: $secondary-color;
+    color: $red-base;
     @include bp-lg {
       font-size: 20px;
     }

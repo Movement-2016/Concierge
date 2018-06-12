@@ -14,7 +14,7 @@
     margin: 0 0 1em;
     font-size: 16px;
     text-transform: uppercase;
-    color: $lighter-trans;
+    color: $trans-light;
     @include bp-lg {
       font-size: 18px;
     }
@@ -24,7 +24,7 @@
     height: inherit;
     line-height: 20px;
     &::after {
-      color: $lighter-trans;
+      color: $trans-light;
     }
   }
 
@@ -51,8 +51,8 @@
 }
 
 .submit-error {
-  color: $secondary-color;
-  border: 1px solid $secondary-color;
+  color: $red-base;
+  border: 1px solid $red-base;
 }
 
 .submit-success {

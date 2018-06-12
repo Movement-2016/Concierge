@@ -26,54 +26,61 @@ $xs-screen: 374px;
 $small-screen: 760px;
 $medium-screen: 992px;
 $large-screen: 1200px;
-$small-and-up: "only screen and (min-width: #{$xs-screen-up})";
-$xl-and-up: "only screen and (min-width: #{$large-screen-up})";
+$small-and-up: 'only screen and (min-width: #{$xs-screen-up})';
+$xl-and-up: 'only screen and (min-width: #{$large-screen-up})';
 
 // Base colors
 $white: #fff;
-$trans-white: rgba(255, 255, 255, 0.96);
-$trans-blue: rgba(20, 123, 204, 0.64);
+$white-trans: rgba(255, 255, 255, 0.96);
+
+$blue-base: color('blue', 'base');
+$blue-dark: color('blue', 'darken-1');
+$blue-light: color('blue', 'lighten-1');
+$blue-light-2: color('blue', 'lighten-2');
+$blue-trans: transparentize($blue-base, 0.36);
+
+$red-base: #f56b62;
+$red-light: color('red', 'accent-1');
+
+$green: #15bd82;
+
 $facebook-blue: rgb(59, 89, 152);
 $twitter-blue: rgb(0, 172, 237);
 
 // Text shades
-$dark-trans: rgba(0, 0, 0, 0.87);
-$med-trans: rgba(0, 0, 0, 0.70);
-$lighter-trans: rgba(0, 0, 0, 0.52);
-$lightest-trans: rgba(0, 0, 0, 0.38);
+$trans-dark: rgba(0, 0, 0, 0.87);
+$trans-base: rgba(0, 0, 0, 0.7);
+$trans-light: rgba(0, 0, 0, 0.52);
+$trans-light-2: rgba(0, 0, 0, 0.38);
 
 // Border shades
 $light-border: rgba(0, 0, 0, 0.08);
 $med-border: rgba(0, 0, 0, 0.16);
 
-// Color theme
-$primary-color: color("blue", "base");
-$primary-color-light: color("blue", "lighten-1");
-$primary-color-light-2: color("blue", "lighten-2");
-$secondary-color: #f56b62;
-$secondary-color-light: color("red", "accent-1");
+// materialize-css color theme
+$primary-color: $blue-base;
+$primary-color-light: $blue-light;
+$secondary-color: $red-base;
 
 // Element colors
 $navbar-color: $white;
-$main-bg-color: color("grey", "lighten-5");
+$main-bg-color: color('grey', 'lighten-5');
 $form-bg-color: $white;
-$link-color: $primary-color;
-$input-border-color: $lighter-trans;
-$input-focus-color: $primary-color;
-$radio-empty-color: $lighter-trans;
+$link-color: $blue-base;
+$input-border-color: $trans-light;
+$input-focus-color: $blue-base;
+$radio-empty-color: $trans-light;
 
 // Groups
 $group-padding: 5%;
 
 // Navbar
-$navbar-font-color: $lighter-trans;
+$navbar-font-color: $trans-light;
 $navbar-brand-font-size: 1.7rem;
 
 // State colors
-$state-purple: color("purple", "lighten-1");
-$state-dark-red: color("red", "darken-3");
-$state-light-red: color("red", "lighten-1");
-$state-dark-blue: color("blue", "darken-3");
-$state-light-blue: color("blue", "lighten-2");
-
-$green: #15bd82;
+$state-purple: color('purple', 'lighten-1');
+$state-dark-red: color('red', 'darken-3');
+$state-light-red: color('red', 'lighten-1');
+$state-dark-blue: color('blue', 'darken-3');
+$state-light-blue: color('blue', 'lighten-2');

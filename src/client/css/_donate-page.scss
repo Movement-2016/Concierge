@@ -4,7 +4,7 @@
   position: relative;
   margin: 0 auto 1rem;
   background-color: $form-bg-color;
-  color: $dark-trans;
+  color: $trans-dark;
   @include z-depth-2;
   &:hover, &:focus {
     @include z-depth-3;
@@ -16,7 +16,7 @@
   .form-title {
     text-align: center;
     margin: 0 0 20px;
-    color: $secondary-color-light;
+    color: $red-light;
   }
   @include bp-md {
     max-width: 280px;

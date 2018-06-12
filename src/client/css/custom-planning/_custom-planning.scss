@@ -3,7 +3,7 @@
     margin-bottom: 24px;
   }
   .page-description {
-    color: $med-trans;
+    color: $trans-base;
     font-size: 16px;
     @include bp-md {
       margin: 0 2rem;
@@ -23,7 +23,7 @@
     h3 {
       font-size: 1rem;
       text-transform: uppercase;
-      color: $lighter-trans;
+      color: $trans-light;
       margin: 0 0 1rem;
     }
   }
@@ -43,7 +43,7 @@
   .nonprofit-tags {
     text-align: left;
     font-size: 12px;
-    color: $lighter-trans;
+    color: $trans-light;
     font-weight: 500;
   }
   .amount-col {
@@ -117,14 +117,14 @@
   }
   .consult-desc {
     padding: 1rem 12px;
-    color: $lighter-trans;
+    color: $trans-light;
   }
   .consult-button {
     text-align: center;
     width: 100%;
     padding: 0 12px;
     border-top: 1px solid $light-border;
-    color: $primary-color-light;
+    color: $blue-light;
     height: 48px;
     line-height: 48px;
     i {
@@ -140,7 +140,7 @@
   display: block;
   font-size: 13px;
   font-weight: 700;
-  color: lighten( $primary-color, 15%);
+  color: lighten( $blue-base, 15%);
   @include bp-lg {
     margin-top: 2rem;
   }

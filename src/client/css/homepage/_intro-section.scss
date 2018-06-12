@@ -69,7 +69,7 @@
     font-size: 28px;
     line-height: 1.2;
     text-align: center;
-    text-shadow: 0 1px 2px $lighter-trans;
+    text-shadow: 0 1px 2px $trans-light;
     margin: 20px auto;
     @include intro-width;
     @include bp-sm {
@@ -112,7 +112,7 @@
 
   .mercury {
     height: 100%;
-    background: $primary-color-light;
+    background: $blue-light;
     border-radius: 12px 0 0 12px;
     transition: width 0.8s linear 0.6s;
     width: 0;
@@ -126,7 +126,7 @@
     margin-top: 6px;
     line-height: 1.33;
     color: $white;
-    text-shadow: 0 1px 2px $lighter-trans;
+    text-shadow: 0 1px 2px $trans-light;
     .amount {
       font-size: 16px;
       font-weight: 900;
@@ -153,7 +153,7 @@
   }
 
   .intro-description {
-    background: $trans-blue;
+    background: $blue-trans;
     color: $white;
     padding: 20px 0;
     @include bp-lg {

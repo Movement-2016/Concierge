@@ -9,7 +9,7 @@
   }
 
   .partners-title {
-    color: $lightest-trans;
+    color: $trans-light-2;
     text-transform: uppercase;
     @media #{$small-and-down} {
       padding-bottom: 16px;
@@ -17,10 +17,10 @@
   }
 
   a {
-    color: $lightest-trans;
+    color: $trans-light-2;
 
     &:hover {
-      color: $lighter-trans;
+      color: $trans-light;
     }
   }
 

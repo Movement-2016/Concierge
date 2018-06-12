@@ -125,23 +125,19 @@ gulp.task('browser-sync', ['static-pages'], function() {
 
 // copy index.html and favicon.ico
 gulp.task('html', function() {
-  return gulp.src(['src/client/index.app.html', 'src/client/favicon.ico'])
-    .pipe(gulp.dest(`${BASE}/public`))
-    .pipe(browserSync.stream());
+  return gulp
+    .src(['src/client/index.app.html', 'src/client/favicon.ico'])
+    .pipe(gulp.dest(`${BASE}/public`));
 });
 
 // copy images
 gulp.task('images', function() {
-  return gulp.src('src/client/images/**/*')
-    .pipe(gulp.dest(`${BASE}/public/images`))
-    .pipe(browserSync.stream());
+  return gulp.src('src/client/images/**/*').pipe(gulp.dest(`${BASE}/public/images`));
 });
 
 // copy fonts
 gulp.task('fonts', function() {
-  return gulp.src(fonts)
-    .pipe(gulp.dest(`${BASE}/public/fonts`))
-    .pipe(browserSync.stream());
+  return gulp.src(fonts).pipe(gulp.dest(`${BASE}/public/fonts`));
 });
 
 // SERVER
@@ -151,16 +147,14 @@ gulp.task('config', () => {
   return gulp
     .src(['src/config.js'])
     .pipe(babel())
-    .pipe(gulp.dest(BASE))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest(BASE));
 });
 
 gulp.task('shared', ['config'], () => {
   return gulp
     .src(['src/shared/**/*.js'])
     .pipe(babel())
-    .pipe(gulp.dest(BASE + '/shared'))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest(BASE + '/shared'));
 });
 
 const sharedDeps = [
@@ -173,8 +167,7 @@ gulp.task('shared-components', sharedDeps, () => {
   return gulp
     .src('src/client/**/*.js')
     .pipe(babel())
-    .pipe(gulp.dest(BASE + '/client'))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest(BASE + '/client'));
 });
 
 gulp.task('shared-components-jsx', () => {
@@ -182,47 +175,49 @@ gulp.task('shared-components-jsx', () => {
     .src('src/client/**/*.jsx')
     .pipe(babel())
     .pipe(ext.replace('jsx'))
-    .pipe(gulp.dest(BASE + '/client'))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest(BASE + '/client'));
 });
 
 gulp.task('_server', function() {
   return gulp
     .src('src/server/*.js')
     .pipe(babel())
-    .pipe(gulp.dest(BASE + '/server'))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest(BASE + '/server'));
 });
 
 // compile third-party dependencies
 gulp.task('vendor', function() {
-  return browserify().require(dependencies).bundle()
-    .pipe(source('vendor.bundle.js'))
-    .pipe(buffer())
-    .pipe(global.isProduction ? uglify({ mangle: true }) : gutil.noop())
-    //    .pipe (gzip ({ append: true }))
-    .pipe(gulp.dest(`${BASE}/public/js`))
-    .pipe(browserSync.stream());
+  return (
+    browserify()
+      .require(dependencies)
+      .bundle()
+      .pipe(source('vendor.bundle.js'))
+      .pipe(buffer())
+      .pipe(global.isProduction ? uglify({ mangle: true }) : gutil.noop())
+      // .pipe(gzip({ append: true }))
+      .pipe(gulp.dest(`${BASE}/public/js`))
+  );
 });
 
 gulp.task('styles', function() {
   var processors = [autoprefixer, cssnano];
-  return gulp
-    .src('src/client/css/main.scss')
-    .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
-    .pipe(postcss(processors))
-    .pipe(sourcemaps.write('maps'))
-    .pipe(gulp.dest(`${BASE}/public/css`))
-    .pipe(browserSync.stream({match: '**/*.css'}));
+  return (
+    gulp
+      .src('src/client/css/main.scss')
+      .pipe(sourcemaps.init())
+      .pipe(sass().on('error', sass.logError))
+      // .pipe(postcss(processors))
+      .pipe(sourcemaps.write('maps'))
+      .pipe(gulp.dest(`${BASE}/public/css`))
+      .pipe(browserSync.stream({ match: '**/*.css' }))
+  );
 });
 
 gulp.task('vendor-styles', function() {
   return gulp
     .src(vendorStyles)
     .pipe(concat('vendor.css'))
-    .pipe(gulp.dest(`${BASE}/public/css`))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest(`${BASE}/public/css`));
 });
 
 gulp.task('vendor-client-js', function() {
@@ -232,12 +227,12 @@ gulp.task('vendor-client-js', function() {
       .pipe(concat('vendor.browser.js'))
       //            .pipe(gzip({ append:true }))
       .pipe(gulp.dest(`${BASE}/public/js`))
-      .pipe(browserSync.stream())
   );
 });
 
-const _rebundle = (bundler, start = Date.now()) => (
-  bundler.bundle()
+const _rebundle = (bundler, start = Date.now()) =>
+  bundler
+    .bundle()
     .on('error', function(err) {
       gutil.log(gutil.colors.red(err.toString()));
       browserSync.notify('Browserify Error!');
@@ -251,9 +246,7 @@ const _rebundle = (bundler, start = Date.now()) => (
     //      .pipe (gzip ({ append: true }))
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(`${BASE}/public/js/`))
-    .pipe(browserSync.stream({once: true}))
-);
+    .pipe(gulp.dest(`${BASE}/public/js/`));
 
 gulp.task('browserify-watch', function() {
   const bundler = watchify(browserify(browserifyConfig, watchify.args));
