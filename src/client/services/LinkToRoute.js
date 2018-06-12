@@ -56,6 +56,7 @@ class Link extends React.Component {
 Link.navigateTo = function(_path) {
   // can't import because of circular dependencies
   var router = require('./router').service;
+  // preserve refcode url param if it exists 
   const refCode = getRefCode();
   const path = refCode ? (_path + '?refcode=' + refCode) : _path;
   router.navigateTo( path );
