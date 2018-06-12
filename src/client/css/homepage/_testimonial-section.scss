@@ -1,5 +1,5 @@
 .testimonial-section {
-  background-color: $blue-light-2;
+  background-color: $blue-light;
   padding: 30px 0;
   @include bp-lg {
     padding: 40px 0 30px;
@@ -31,14 +31,15 @@ $testimonial-pic-size: 52px;
     @include bp-md-only {
       font-size: 15px;
     }
-    &::after { //this makes the quote arrow
+    &::after {
+      //this makes the quote arrow
       position: absolute;
       border: 8px solid transparent;
       border-top: 9px solid $white;
       border-bottom: 0;
       top: 100%;
       left: $testimonial-pic-size / 2 - 8px;
-      content: " ";
+      content: ' ';
       height: 0;
       width: 0;
     }
@@ -56,7 +57,7 @@ $testimonial-pic-size: 52px;
     width: $testimonial-pic-size;
     border-radius: 40px;
     @include full-bg;
-    @include bg-overlay(color("yellow", "base"), 0.08, 40px);
+    @include bg-overlay(color('yellow', 'base'), 0.08, 40px);
   }
   .author-info {
     vertical-align: top;

@@ -2,12 +2,13 @@
   @include z-depth-2;
   background-color: $white;
   border-top: 1px solid $light-border;
-  padding: 30px;
   text-align: center;
-  @include bp-md {
-    padding-top: 50px;
+  section {
+    padding: 30px;
+    @include bp-md {
+      padding-top: 50px;
+    }
   }
-
   .partners-title {
     color: $trans-light-2;
     text-transform: uppercase;
@@ -15,25 +16,26 @@
       padding-bottom: 16px;
     }
   }
-
-  a {
-    color: $trans-light-2;
-
-    &:hover {
-      color: $trans-light;
-    }
+  .menu-section {
+    background: $blue-light;
   }
+}
 
-  .links-section {
-    margin-top: 40px;
-    li {
-      display: inline-block;
-      font-size: 14px;
-      padding: 0 8px;
-      @include bp-md {
-        font-size: 1rem;
-        padding: 0 16px;
-      }
+#footer-menu {
+  margin-top: 20px;
+  a {
+    color: white;
+    height: 30px;
+    line-height: 30px;
+    display: block;
+  }
+  .menu-parent {
+    margin-bottom: 24px;
+    & > a {
+      height: 26px;
+      line-height: 26px;
+      font-weight: 900;
+      color: $white-trans;
     }
   }
 }

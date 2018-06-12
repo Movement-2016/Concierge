@@ -31,7 +31,7 @@ $xl-and-up: 'only screen and (min-width: #{$large-screen-up})';
 
 // Base colors
 $white: #fff;
-$white-trans: rgba(255, 255, 255, 0.96);
+$white-trans: transparentize(white, 0.3);
 
 $blue-base: color('blue', 'base');
 $blue-dark: color('blue', 'darken-1');
