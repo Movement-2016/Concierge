@@ -26,11 +26,10 @@ form {
 }
 
 .container {
-  @include bp-md-only {
+  @include bp-md {
     width: 95%;
   }
   @include bp-lg {
-    width: 90%;
     max-width: $site-max-width;
     min-width: $medium-screen-up - (2 * $site-padding-lg);
   }

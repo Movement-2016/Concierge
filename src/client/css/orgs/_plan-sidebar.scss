@@ -9,7 +9,7 @@ $tray-height: 64px;
     transition: transform 200ms ease-in-out;
     width: 100%;
     background-color: $navbar-color;
-    box-shadow: 0 0 4px rgba(0, 0, 0, .12), 0 0 8px rgba(0, 0, 0, .26);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.12), 0 0 8px rgba(0, 0, 0, 0.26);
 
     &.has-groups {
       transform: translateY(0);
@@ -94,55 +94,6 @@ $tray-padding: 16px;
         @include reg-icon;
         font-size: 26px;
         margin-right: 8px;
-      }
-    }
-  }
-
-  .donate-tiles {
-    margin-top: 40px;
-
-    .title {
-      color: $trans-light-2;
-      font-size: 14px;
-      margin-bottom: 6px;
-    }
-  }
-
-  .donate-tile {
-    padding: $tray-padding;
-    background-color: $white;
-    border: 1px solid $light-border;
-    margin-bottom: 12px;
-
-    .tile-title {
-      color: $trans-light;
-      font-size: 16px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .tile-content {
-      margin: 2px 0 8px;
-      font-size: 13px;
-      font-weight: 300;
-      color: $trans-light;
-    }
-
-    .tile-button {
-      height: 0;
-      background: $red-light;
-      color: $white;
-      text-align: center;
-      font-weight: 700;
-      height: 27px;
-      line-height: 27px;
-      padding: 0;
-      width: 100%;
-      border-radius: 20px;
-      font-size: 12.5px;
-
-      &:hover {
-        background: $red-base;
       }
     }
   }

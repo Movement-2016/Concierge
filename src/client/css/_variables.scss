@@ -37,7 +37,14 @@ $blue-base: color('blue', 'base');
 $blue-dark: color('blue', 'darken-1');
 $blue-light: color('blue', 'lighten-1');
 $blue-light-2: color('blue', 'lighten-2');
+$blue-light-3: #cee8ff;
 $blue-trans: transparentize($blue-base, 0.36);
+
+$gradient-blue-trans: linear-gradient(
+  to right,
+  transparentize(#146aad, 0.17),
+  transparentize(#2e93c0, 0.17)
+);
 
 $red-base: #f56b62;
 $red-light: color('red', 'accent-1');

@@ -1,9 +1,6 @@
 .testimonial-section {
   background-color: $blue-light;
-  padding: 30px 0;
-  @include bp-lg {
-    padding: 40px 0 30px;
-  }
+  padding: 40px 0;
 }
 
 $testimonial-pic-size: 52px;
@@ -55,9 +52,10 @@ $testimonial-pic-size: 52px;
   }
   .author-pic {
     width: $testimonial-pic-size;
+    overflow: hidden;
     border-radius: 40px;
     @include full-bg;
-    @include bg-overlay(color('yellow', 'base'), 0.08, 40px);
+    @include bg-overlay(color('yellow', 'base'), 0.08);
   }
   .author-info {
     vertical-align: top;

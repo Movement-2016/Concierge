@@ -12,7 +12,8 @@ const Tile = ({ label, image, description, url }) => (
     <div className="tile-image" style={{ backgroundImage: `url("${image}")` }} />
     <div className="tile-body">
       <div className="tile-label">
-        {label} <i className="material-icons">{'chevron_right'}</i>
+        {label}
+        <i className="material-icons">{'chevron_right'}</i>
       </div>
       <div className="tile-description">{description}</div>
     </div>
@@ -47,7 +48,9 @@ const StateMapBound = ({ states }) =>
   ) : (
     <div className="container">
       <h2 className="section-title">{'Find a Group'}</h2>
-      <div className="map-desc">{'Click the map to browse the groups in each state.'}</div>
+      <div className="map-desc">
+        {'Click the map to browse Movement Voter Project groups in each state.'}
+      </div>
       <StateMap dataSource={states} />
     </div>
   );
@@ -96,15 +99,7 @@ const _HomePage = ({
       <section className="donate-section" id="donate">
         <div className="container">
           <h2 className="section-title">{homeTileSectionTitle}</h2>
-          <div className="donate-tiles">
-            <div className="row">
-              {homeTiles.map((d, i) => (
-                <div key={i} className="col s12 m4">
-                  <Tile {...d} />
-                </div>
-              ))}
-            </div>
-          </div>
+          <div className="donate-tiles">{homeTiles.map((d, i) => <Tile key={i} {...d} />)}</div>
         </div>
       </section>
       <section className="map-section">
@@ -116,7 +111,7 @@ const _HomePage = ({
         </div>
       </section>
       <section className="social-feed-section">
-        {global.IS_SERVER_REQUEST ? <span /> : <TwitterFeed />}
+        <div className="container">{global.IS_SERVER_REQUEST ? <span /> : <TwitterFeed />}</div>
       </section>
     </main>
   );
