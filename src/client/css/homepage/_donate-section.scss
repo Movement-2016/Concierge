@@ -11,17 +11,11 @@
   }
   .tile-body {
     padding: 15px;
-    @include bp-md-only {
-      padding: 15px 10px;
-    }
   }
 
   .tile-description {
     color: $trans-base;
     line-height: 1.4;
-    @include bp-md {
-      font-size: 13px;
-    }
     @include bp-lg {
       font-size: 15px;
     }
@@ -31,9 +25,6 @@
     font-size: 22px;
     font-weight: 700;
     color: $red-base;
-    @include bp-md-only {
-      font-size: 18px;
-    }
     i {
       margin-left: 2px;
       vertical-align: middle;
@@ -85,6 +76,17 @@
       }
       &:last-of-type {
         order: 2;
+      }
+    }
+    @include bp-md-only {
+      .tile-body {
+        padding: 15px 10px;
+      }
+      .tile-label {
+        font-size: 18px;
+      }
+      .tile-description {
+        font-size: 13px;
       }
     }
   }

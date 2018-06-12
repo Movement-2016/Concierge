@@ -1,0 +1,101 @@
+.funds-page {
+  @include page-padding;
+  .page-title {
+    font-weight: 900;
+    color: $red-base;
+  }
+  .page-intro {
+    font-weight: 300;
+    @include bp-sm {
+      font-size: 16px;
+    }
+    @include bp-md {
+      font-size: 18px;
+    }
+    @include bp-lg {
+      font-size: 19px;
+      max-width: 790px;
+      margin: 0 auto;
+    }
+    a {
+      display: inline-block;
+      height: 2em;
+      line-height: 2em;
+      color: $blue-light;
+      font-size: 14px;
+      font-weight: 500;
+      @include bp-sm {
+        font-size: 15px;
+      }
+      @include bp-md {
+        font-size: 16px;
+      }
+      @include bp-lg {
+        font-size: 17px;
+      }
+      i {
+        font-size: 15px;
+        vertical-align: middle;
+        margin-left: 2px;
+        @include bp-lg {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
+.fund-tiles {
+  margin-top: 25px;
+  @include bp-md {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px -2.5%;
+  }
+  @include bp-lg {
+    margin: 50px -1.5%;
+  }
+}
+.fund-tile {
+  margin-bottom: 25px;
+  @include bp-md {
+    width: 45%;
+    margin: 0 2.5% 35px;
+  }
+  @include bp-lg {
+    width: 30.333%;
+    margin: 0 1.5% 40px;
+  }
+  .tile-image {
+    height: 133px;
+  }
+  .donate-button {
+    display: block;
+    background: $blue-light;
+    color: white;
+    font-size: 18px;
+    font-weight: 900;
+    text-align: center;
+    height: 46px;
+    line-height: 46px;
+    border-radius: 3px;
+    margin: 15px 0 10px;
+    @include hover-grow(1.02);
+  }
+  .about-fund-button {
+    display: block;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    color: $trans-light-2;
+    font-size: 15px;
+    font-weight: 700;
+    @include hover-grow(1.03);
+    i {
+      font-size: 16px;
+      vertical-align: middle;
+      margin-left: 2px;
+      margin-bottom: 1px;
+    }
+  }
+}

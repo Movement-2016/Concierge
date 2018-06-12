@@ -25,28 +25,28 @@ const _FundsPage = ({ title, body, linkText, funds }) => (
   <main className="funds-page">
     <div className="page-header">
       <h1 className="page-title">{title}</h1>
-      <div className="page-intro">
-        <p>{striptags(body)}</p>
-        <Link to="/about/#our-process">
-          {linkText} <i className="material-icons">{'chevron_right'}</i>
-        </Link>
+      <div className="container">
+        <div className="page-intro">
+          <p>{striptags(body)}</p>
+          <Link to="/about/#our-process">
+            {linkText}
+            <i className="material-icons">{'chevron_right'}</i>
+          </Link>
+        </div>
       </div>
     </div>
     <div className="container">
       <div className="fund-tiles">
-        <div className="row">
-          {funds.map((fund, i) => (
-            <div key={i} className="col s12 m4">
-              <FundTile
-                label={fund.title}
-                slug={fund.slug}
-                url={fund.fundUrl}
-                image={fund.image}
-                description={fund.description}
-              />
-            </div>
-          ))}
-        </div>
+        {funds.map((fund, i) => (
+          <FundTile
+            key={i}
+            label={fund.title}
+            slug={fund.slug}
+            url={fund.fundUrl}
+            image={fund.image}
+            description={fund.fundDescriptionShort}
+          />
+        ))}
       </div>
     </div>
   </main>

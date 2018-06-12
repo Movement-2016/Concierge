@@ -8,7 +8,7 @@ html {
 }
 
 body {
-  font-family: "museo-sans", "Roboto", sans-serif;
+  font-family: 'museo-sans', 'Roboto', sans-serif;
 }
 
 p {
@@ -27,7 +27,6 @@ a {
   margin: 0 0 1.5rem;
   font-size: 1.8rem;
   @include bp-md {
-    font-size: 2.2rem;
-    margin-bottom: 3rem;
+    font-size: 2.4rem;
   }
 }

@@ -39,6 +39,9 @@
   }
   .menu-parent {
     margin-bottom: 24px;
+    @include bp-lg {
+      margin-bottom: 0;
+    }
     & > a {
       font-weight: 900;
       color: $white-trans;
