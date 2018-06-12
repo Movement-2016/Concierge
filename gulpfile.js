@@ -100,7 +100,7 @@ gulp.task('production', function() {
 
 // set watch tasks for continous build
 gulp.task('watch', function() {
-  gulp.watch('src/client/index.html', ['html']);
+  gulp.watch('src/client/index.app.html', ['html']);
   gulp.watch('src/client/images/**/*', ['images']);
   gulp.watch('src/server/*.js', ['server']);
   gulp.watch('src/shared/**/*', ['shared']);
@@ -110,7 +110,7 @@ gulp.task('watch', function() {
 });
 
 // Live reload browser on file changes
-gulp.task('browser-sync', function() {
+gulp.task('browser-sync', ['static-pages'], function() {
   browserSync.init({
     // For more options @link http://www.browsersync.io/docs/options/
     proxy: projectURL,
@@ -119,25 +119,29 @@ gulp.task('browser-sync', function() {
     // true: inject CSS changes. false: reload browser on every change.
     injectChanges: true,
     // Use a specific port (instead of the one auto-detected by Browsersync).
-    // port: 7000,
+    port: 3001,
   });
 });
 
 // copy index.html and favicon.ico
 gulp.task('html', function() {
-  return gulp
-    .src(['src/client/index.app.html', 'src/client/favicon.ico'])
-    .pipe(gulp.dest(`${BASE}/public`));
+  return gulp.src(['src/client/index.app.html', 'src/client/favicon.ico'])
+    .pipe(gulp.dest(`${BASE}/public`))
+    .pipe(browserSync.stream());
 });
 
 // copy images
 gulp.task('images', function() {
-  return gulp.src('src/client/images/**/*').pipe(gulp.dest(`${BASE}/public/images`));
+  return gulp.src('src/client/images/**/*')
+    .pipe(gulp.dest(`${BASE}/public/images`))
+    .pipe(browserSync.stream());
 });
 
 // copy fonts
 gulp.task('fonts', function() {
-  return gulp.src(fonts).pipe(gulp.dest(`${BASE}/public/fonts`));
+  return gulp.src(fonts)
+    .pipe(gulp.dest(`${BASE}/public/fonts`))
+    .pipe(browserSync.stream());
 });
 
 // SERVER
@@ -147,14 +151,16 @@ gulp.task('config', () => {
   return gulp
     .src(['src/config.js'])
     .pipe(babel())
-    .pipe(gulp.dest(BASE));
+    .pipe(gulp.dest(BASE))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('shared', ['config'], () => {
   return gulp
     .src(['src/shared/**/*.js'])
     .pipe(babel())
-    .pipe(gulp.dest(BASE + '/shared'));
+    .pipe(gulp.dest(BASE + '/shared'))
+    .pipe(browserSync.stream());
 });
 
 const sharedDeps = [
@@ -167,7 +173,8 @@ gulp.task('shared-components', sharedDeps, () => {
   return gulp
     .src('src/client/**/*.js')
     .pipe(babel())
-    .pipe(gulp.dest(BASE + '/client'));
+    .pipe(gulp.dest(BASE + '/client'))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('shared-components-jsx', () => {
@@ -175,28 +182,27 @@ gulp.task('shared-components-jsx', () => {
     .src('src/client/**/*.jsx')
     .pipe(babel())
     .pipe(ext.replace('jsx'))
-    .pipe(gulp.dest(BASE + '/client'));
+    .pipe(gulp.dest(BASE + '/client'))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('_server', function() {
   return gulp
     .src('src/server/*.js')
     .pipe(babel())
-    .pipe(gulp.dest(BASE + '/server'));
+    .pipe(gulp.dest(BASE + '/server'))
+    .pipe(browserSync.stream());
 });
 
 // compile third-party dependencies
 gulp.task('vendor', function() {
-  return (
-    browserify()
-      .require(dependencies)
-      .bundle()
-      .pipe(source('vendor.bundle.js'))
-      .pipe(buffer())
-      .pipe(global.isProduction ? uglify({ mangle: true }) : gutil.noop())
-      //    .pipe (gzip ({ append: true }))
-      .pipe(gulp.dest(`${BASE}/public/js`))
-  );
+  return browserify().require(dependencies).bundle()
+    .pipe(source('vendor.bundle.js'))
+    .pipe(buffer())
+    .pipe(global.isProduction ? uglify({ mangle: true }) : gutil.noop())
+    //    .pipe (gzip ({ append: true }))
+    .pipe(gulp.dest(`${BASE}/public/js`))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('styles', function() {
@@ -207,14 +213,16 @@ gulp.task('styles', function() {
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss(processors))
     .pipe(sourcemaps.write('maps'))
-    .pipe(gulp.dest(`${BASE}/public/css`));
+    .pipe(gulp.dest(`${BASE}/public/css`))
+    .pipe(browserSync.stream({match: '**/*.css'}));
 });
 
 gulp.task('vendor-styles', function() {
   return gulp
     .src(vendorStyles)
     .pipe(concat('vendor.css'))
-    .pipe(gulp.dest(`${BASE}/public/css`));
+    .pipe(gulp.dest(`${BASE}/public/css`))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('vendor-client-js', function() {
@@ -224,6 +232,7 @@ gulp.task('vendor-client-js', function() {
       .pipe(concat('vendor.browser.js'))
       //            .pipe(gzip({ append:true }))
       .pipe(gulp.dest(`${BASE}/public/js`))
+      .pipe(browserSync.stream())
   );
 });
 
@@ -243,6 +252,7 @@ const _rebundle = (bundler, start = Date.now()) => (
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(`${BASE}/public/js/`))
+    .pipe(browserSync.stream({once: true}))
 );
 
 gulp.task('browserify-watch', function() {
@@ -253,8 +263,7 @@ gulp.task('browserify-watch', function() {
 
   function rebundle() {
     const start = Date.now();
-    return _rebundle(bundler, start)
-      .pipe(browserSync.stream());
+    return _rebundle(bundler, start);
   }
 
   return rebundle();

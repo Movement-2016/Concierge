@@ -30,9 +30,6 @@
     font-family: 'museo-slab', 'Roboto', sans-serif;
     font-weight: 900;
     font-style: italic;
-    @include bp-lg {
-      font-size: 22px;
-    }
   }
 }
 
