@@ -6,7 +6,7 @@
   section {
     padding: 30px;
     @include bp-md {
-      padding-top: 50px;
+      padding: 50px;
     }
   }
   .partners-title {
@@ -23,17 +23,23 @@
 
 #footer-menu {
   margin-top: 20px;
+  @include bp-lg {
+    text-align: left;
+    & > li {
+      display: inline-block;
+      margin-right: 80px;
+      vertical-align: top;
+    }
+  }
   a {
     color: white;
-    height: 30px;
-    line-height: 30px;
+    height: 2em;
+    line-height: 2em;
     display: block;
   }
   .menu-parent {
     margin-bottom: 24px;
     & > a {
-      height: 26px;
-      line-height: 26px;
       font-weight: 900;
       color: $white-trans;
     }
