@@ -19,9 +19,6 @@ const concat = require('gulp-concat');
 const ext = require('gulp-ext');
 const rm = require('gulp-clean');
 const indexJS = require('index-js');
-const browserSync = require('browser-sync').create();
-
-const projectURL = 'localhost:3000';
 
 const browserifyConfig = {
   entries: 'src/client/browser.js', // see 'production' below
@@ -83,7 +80,7 @@ var stdTasks = [
   'vendor',
 ];
 
-gulp.task('default', ['static-pages', 'browserify-watch', 'browser-sync', 'watch']);
+gulp.task('default', ['static-pages', 'browserify-watch', 'watch']);
 gulp.task('build', ['static-pages', 'browserify']);
 gulp.task('no-watch', ['production', 'static-pages', 'browserify']);
 
@@ -100,27 +97,13 @@ gulp.task('production', function() {
 
 // set watch tasks for continous build
 gulp.task('watch', function() {
-  gulp.watch('src/client/index.app.html', ['html']);
+  gulp.watch('src/client/index.html', ['html']);
   gulp.watch('src/client/images/**/*', ['images']);
   gulp.watch('src/server/*.js', ['server']);
   gulp.watch('src/shared/**/*', ['shared']);
   gulp.watch(dependencies, ['vendor']);
   gulp.watch('src/client/css/**/*.scss', ['styles']);
   gulp.watch('src/client/fonts/**/*', ['fonts']);
-});
-
-// Live reload browser on file changes
-gulp.task('browser-sync', ['static-pages'], function() {
-  browserSync.init({
-    // For more options @link http://www.browsersync.io/docs/options/
-    proxy: projectURL,
-    // true: automatically open the browser with BrowserSync live server.
-    open: true,
-    // true: inject CSS changes. false: reload browser on every change.
-    injectChanges: true,
-    // Use a specific port (instead of the one auto-detected by Browsersync).
-    port: 3001,
-  });
 });
 
 // copy index.html and favicon.ico
@@ -193,9 +176,8 @@ gulp.task('vendor', function() {
       .bundle()
       .pipe(source('vendor.bundle.js'))
       .pipe(buffer())
-      // .pipe(global.isProduction ? uglify() : gutil.noop())
-      .pipe(gutil.noop())
-      // .pipe(gzip({ append: true }))
+      .pipe(global.isProduction ? uglify({ mangle: true }) : gutil.noop())
+      //    .pipe (gzip ({ append: true }))
       .pipe(gulp.dest(`${BASE}/public/js`))
   );
 });
@@ -208,8 +190,7 @@ gulp.task('styles', function() {
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss(processors))
     .pipe(sourcemaps.write('maps'))
-    .pipe(gulp.dest(`${BASE}/public/css`))
-    .pipe(browserSync.stream({ match: '**/*.css' }));
+    .pipe(gulp.dest(`${BASE}/public/css`));
 });
 
 gulp.task('vendor-styles', function() {
@@ -234,16 +215,14 @@ const _rebundle = (bundler, start = Date.now()) =>
     .bundle()
     .on('error', function(err) {
       gutil.log(gutil.colors.red(err.toString()));
-      browserSync.notify('Browserify Error!');
     })
     .on('end', function() {
       gutil.log(gutil.colors.green('Finished rebundling in', Date.now() - start, 'ms.'));
     })
     .pipe(source('bundle.js'))
     .pipe(buffer())
-    // .pipe(global.isProduction ? uglify() : gutil.noop())
-    .pipe(gutil.noop())
-    // .pipe(gzip({ append: true }))
+    .pipe(global.isProduction ? uglify({ mangle: true }) : gutil.noop())
+    //      .pipe (gzip ({ append: true }))
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(`${BASE}/public/js/`));
@@ -266,6 +245,7 @@ gulp.task('browserify', function() {
   const bundler = browserify(browserifyConfig);
   bundler.external(dependencies);
   bundler.transform(babelify, babelifyOpts);
+  //bundler.on ('update', rebundle);
   return _rebundle(bundler);
 });
 
