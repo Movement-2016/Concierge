@@ -1,13 +1,11 @@
-import axios   from 'axios';
+import axios from 'axios';
 
 // for now
-import ContentDB  from './content';
+import ContentDB from './content';
 
 let _fetch = axios;
 
-import {
-  M_SERVICE_END_POINT 
-} from '../../config';
+import { M_SERVICE_END_POINT } from '../../config';
 
 function checkStatus(response) {
   if (!response.status || (response.status >= 200 && response.status < 300)) {
@@ -20,11 +18,11 @@ function checkStatus(response) {
 }
 
 function parseJSON(response) {
-  return response.data; 
+  return response.data;
 }
 
 // function debugLog(result) {
-//   console.log( 'AXIOS RESULT: ', result );
+//   console.log('AXIOS RESULT: ', result);
 //   return result;
 // }
 
@@ -36,31 +34,31 @@ class MovementVoteService {
   }
 
   _fetch(part) {
-    return _fetch( this._base + part )
-            // .then( debugLog )
-            .then( checkStatus )
-            .then( parseJSON );
-            // .catch( debugLog );
+    return (
+      _fetch(this._base + part)
+        // .then(debugLog)
+        .then(checkStatus)
+        .then(parseJSON)
+    );
+    // .catch(debugLog);
   }
 
-
   get db() {
-
-    if( this._db ) {
+    if (this._db) {
       return Promise.resolve(this._db);
     }
 
-    if( this._promises.content ) {
+    if (this._promises.content) {
       return this._promises.content;
     }
 
-    this._promises.content = this._fetch( 'content' ).then( content => {
-        this._db = new ContentDB();
-        this._db.data = content;
-        this._promises.content = null;
-        return this._db;
-      });
-
+    this._promises.content = this._fetch('content').then(content => {
+      this._db = new ContentDB();
+      // console.log('content:', content);
+      this._db.data = content;
+      this._promises.content = null;
+      return this._db;
+    });
     return this._promises.content;
   }
 
@@ -69,12 +67,10 @@ class MovementVoteService {
 
     return page
       ? Promise.resolve(page)
-      : this._fetch( 'page/' + slug ).then( json => this._db.addPage(slug,json));
+      : this._fetch('page/' + slug).then(json => this._db.addPage(slug, json));
   }
-
 }
 
 var service = new MovementVoteService();
 
 module.exports = service;
-
