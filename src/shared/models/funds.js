@@ -9,7 +9,8 @@ const FundsModel = {
   meta: [
     {
       name: 'description',
-      content: 'Movement Voter Project featured funds selected for their strategic importance in 2018.',
+      content:
+        'Movement Voter Project featured funds selected for their strategic importance in 2018.',
     },
   ],
 
@@ -33,7 +34,7 @@ const FundModel = {
   title: 'About this featured fund',
   browserOnly: true,
 
-  model: () => service.db.then(db => ({ funds: db.funds, groups: db.groups })),
+  model: () => service.db.then(db => ({ funds: db.funds, groups: db.groups, states: db.states })),
 };
 
 module.exports = { FundsModel, FundModel };

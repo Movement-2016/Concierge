@@ -1,7 +1,6 @@
 import React from 'react';
 import striptags from 'striptags';
 
-
 const OrgHeader = ({ stateName, name }) => (
   <div className="group-header">
     <div className="group-title">{name}</div>
@@ -9,22 +8,21 @@ const OrgHeader = ({ stateName, name }) => (
   </div>
 );
 
-const OrgImage = ({ url, name }) =>
-  url ? (
-    <img className="group-thumb group-image" src={url} />
+const OrgImage = ({ image, name }) =>
+  image ? (
+    <img className="group-thumb group-image" src={image} />
   ) : (
     <div className="group-thumb group-placeholder">{name[name.search('[A-Za-z]')]}</div>
   );
 
-const OrgLinks = ({ urlWeb }) => (
+const OrgLinks = ({ urlWeb }) =>
   urlWeb && (
     <div className="group-links">
       <a className="group-link" href={urlWeb} target="_blank">
         <i className="material-icons">{'link'}</i> {'Website'}
       </a>
     </div>
-  )
-);
+  );
 
 const OrgContent = ({ description }) => (
   <div className="group-content">
@@ -34,10 +32,12 @@ const OrgContent = ({ description }) => (
 
 const OrgMobile = ({ description, image, name, stateName, urlWeb }) => (
   <div className="group">
-    <OrgImage {...{ name, image }} />
-    <div className="intro-block">
-      <OrgHeader {...{ name, stateName }} />
-      <OrgLinks urlWeb={urlWeb} />
+    <div className="group-top">
+      <OrgImage {...{ name, image }} />
+      <div className="intro-block">
+        <OrgHeader {...{ name, stateName }} />
+        <OrgLinks urlWeb={urlWeb} />
+      </div>
     </div>
     <OrgContent description={description} />
   </div>
@@ -60,7 +60,7 @@ const translateProps = ({
   body: description,
   title: name,
   website: urlWeb = '',
-  state: stateName,
+  statename: stateName,
   image = '',
 }) => ({ description, image, name, stateName, urlWeb });
 

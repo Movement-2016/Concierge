@@ -13,7 +13,7 @@ const FundTile = ({ slug, label, url, image, description }) => (
       <div className="tile-label">{label}</div>
       <div className="tile-description">{description}</div>
       <DonateLink url={url}>{'Donate Now'}</DonateLink>
-      <Link className="about-fund-button" to={'/funds/' + slug}>
+      <Link className="more-link about-fund-button" to={'/funds/' + slug}>
         {'About the groups in this fund'}
         <i className="material-icons">{'chevron_right'}</i>
       </Link>

@@ -12,7 +12,7 @@ const OrgHeader = ({ tags, id, name }) => (
     <div className="group-title" data-id={id} data-href={`/groups#${id}`}>
       {name}
     </div>
-    <div className="nonprofit-tags">{tags && tags.tags.map(tag => tag.name).join(', ')}</div>
+    <div className="group-header-tags">{tags && tags.tags.map(tag => tag.name).join(', ')}</div>
   </div>
 );
 
@@ -33,7 +33,8 @@ const OrgLinks = ({ onOrgClick, planText, planIcon, urlGive, urlWeb }) => (
     )}
     {urlGive && (
       <DonateLink className="group-link" url={urlGive}>
-        <i className="material-icons">{'star_border'}</i> {'Donate Now'}
+        <i className="material-icons">{'star_border'}</i>
+        {'Donate Now'}
       </DonateLink>
     )}
     {urlWeb && (
@@ -80,10 +81,12 @@ const OrgMobile = ({
   urlWeb,
 }) => (
   <div className={`group ${cls}`}>
-    <OrgImage url={image} name={name} />
-    <div className="intro-block">
-      <OrgHeader id={id} name={name} tags={tags['nonprofit-type']} />
-      <OrgLinks {...{ urlGive, urlWeb, planIcon, planText }} onOrgClick={onClick} />
+    <div className="group-top">
+      <OrgImage url={image} name={name} />
+      <div className="intro-block">
+        <OrgHeader id={id} name={name} tags={tags['nonprofit-type']} />
+        <OrgLinks {...{ urlGive, urlWeb, planIcon, planText }} onOrgClick={onClick} />
+      </div>
     </div>
     <OrgContent description={description} />
     <OrgTags tags={tags} />

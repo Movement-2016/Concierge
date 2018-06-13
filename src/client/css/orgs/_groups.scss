@@ -1,9 +1,11 @@
-
-.state .group {
+.group {
   border-top: 1px solid $light-border;
   padding: 30px $group-padding;
   @include bp-lg {
     padding: 4.5% 3%;
+  }
+  .group-top {
+    display: flex;
   }
 }
 
@@ -29,12 +31,15 @@
   }
 }
 
-.nonprofit-tags {
+.group-header-tags {
   min-height: 2px;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
   font-weight: 700;
   font-size: 14px;
-  color: $trans-light-2;
+  color: $trans-light;
+  @include bp-md {
+    margin-bottom: 10px;
+  }
 }
 
 .group-thumb {
@@ -68,12 +73,7 @@
 }
 
 .group-links {
-  display: inline-block;
-  vertical-align: top;
-  padding-top: 4px;
   @include bp-lg {
-    display: block;
-    padding-top: 0;
     margin-top: 10px;
     margin-left: 2px;
   }
@@ -81,23 +81,25 @@
 
 .group-link {
   display: block;
-  margin-bottom: 9px;
+  margin-bottom: 4px;
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
-
+  @include bp-md {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
   i {
     @include reg-icon;
-    margin-right: 8px;
+    margin-right: 5px;
+    margin-left: -2px;
     font-size: 20px;
+    &.add {
+      font-size: 22px;
+    }
   }
-
-  i.add {
-    font-size: 22px;
-  }
-
   &:hover {
-    color: $blue-light;
+    color: $blue-dark;
   }
 }
 
@@ -115,7 +117,7 @@
 
 .tagblock {
   font-size: 14px;
-  color: $trans-light-2;
+  color: $trans-light;
   font-weight: 700;
 }
 

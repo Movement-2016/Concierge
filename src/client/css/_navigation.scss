@@ -41,8 +41,11 @@ nav .brand-logo {
 }
 
 #header-menu {
-  display: block;
-  float: right;
+  display: none;
+  @include bp-lg {
+    display: block;
+    float: right;
+  }
   a {
     font-size: 15px;
     color: $trans-light;

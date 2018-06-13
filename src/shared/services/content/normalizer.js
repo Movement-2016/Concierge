@@ -121,6 +121,11 @@ class Group extends PostBare {
         ? this._ctx.taxonomies.state.terms[this.fields.state[0]].term_id
         : this._ctx.taxonomies.state.terms['national'].term_id;
 
+    this.getStatename = () =>
+      this.fields
+        ? this._ctx.taxonomies.state.terms[this.fields.state[0]].name
+        : this._ctx.taxonomies.state.terms['national'].name;
+
     this.getTags = () => {
       if (!this.fields) {
         return [];
