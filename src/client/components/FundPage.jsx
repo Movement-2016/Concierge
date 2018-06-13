@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Sticky from 'react-stickynode';
 
 import Org from './Orgs/OrgBasic.jsx';
 import DonateLink from './DonateLink.jsx';
@@ -36,7 +37,13 @@ const _FundPage = ({ mobile, slug, funds, groups }) => {
     <main className="fund-page">
       <div className="container">
         <div className="page-header">
-          <FundTile {...tileProps} />
+          {mobile ? (
+            <FundTile {...tileProps} />
+          ) : (
+            <Sticky top={80} bottomBoundary=".page-header">
+              <FundTile {...tileProps} />
+            </Sticky>
+          )}
         </div>
         <div className="page-body">
           <div className="page-intro">

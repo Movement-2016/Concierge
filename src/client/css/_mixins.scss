@@ -49,6 +49,11 @@
     @content;
   }
 }
+@mixin bp-xl {
+  @media #{$xl-and-up} {
+    @content;
+  }
+}
 @mixin bp-md-only {
   @media #{$medium-only} {
     @content;

@@ -1,10 +1,40 @@
 .fund-page {
   @include page-padding;
-  @include bp-md-down {
-    .container {
+  @include bp-lg {
+    padding-top: 4rem;
+  }
+  .container {
+    @include bp-sm-down {
       width: 100%;
     }
-    .fund-tile {
+    @include bp-lg {
+      display: flex;
+    }
+  }
+  .page-header {
+    @include bp-lg {
+      order: 1;
+      flex-shrink: 0;
+      width: 32%;
+      max-width: 330px;
+      margin-left: 5%;
+      padding-top: 45px;
+    }
+  }
+  .page-intro {
+    color: $trans-base;
+    line-height: 1.4;
+    @include bp-md-down {
+      padding: 0 5%;
+    }
+    @include bp-lg {
+      color: inherit;
+      font-size: 19px;
+      font-weight: 300;
+    }
+  }
+  .fund-tile {
+    @include bp-md-down {
       box-shadow: none;
       background: none;
       border-radius: 0;
@@ -33,17 +63,18 @@
         @include z-depth-3;
       }
     }
-  }
-  .page-intro {
-    color: $trans-base;
-    line-height: 1.4;
-    padding: 0 5%;
+    @include bp-lg {
+      .tile-description {
+        color: black;
+        font-weight: 300;
+      }
+    }
   }
 }
 .fund-groups {
   margin-top: 20px;
   .group {
-    @include z-depth-1;
+    @include z-depth-2;
     background: white;
     border-radius: 2px;
     margin-bottom: 20px;

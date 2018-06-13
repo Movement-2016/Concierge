@@ -50,21 +50,21 @@
     display: flex;
     flex-wrap: wrap;
     margin: 30px -2.5%;
+    .fund-tile {
+      width: 45%;
+      margin: 0 2.5% 35px;
+    }
   }
   @include bp-lg {
     margin: 50px -1.5%;
+    .fund-tile {
+      width: 30.333%;
+      margin: 0 1.5% 40px;
+    }
   }
 }
 .fund-tile {
   margin-bottom: 25px;
-  @include bp-md {
-    width: 45%;
-    margin: 0 2.5% 35px;
-  }
-  @include bp-lg {
-    width: 30.333%;
-    margin: 0 1.5% 40px;
-  }
   .tile-image {
     height: 133px;
   }

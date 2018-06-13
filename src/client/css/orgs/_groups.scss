@@ -38,7 +38,7 @@
   font-size: 14px;
   color: $trans-light;
   @include bp-md {
-    margin-bottom: 10px;
+    margin-bottom: 6px;
   }
 }
 
@@ -54,6 +54,7 @@
     width: 127px;
     height: 127px;
     margin-right: 0;
+    margin-bottom: 12px;
   }
 }
 
@@ -72,20 +73,13 @@
   }
 }
 
-.group-links {
-  @include bp-lg {
-    margin-top: 10px;
-    margin-left: 2px;
-  }
-}
-
 .group-link {
   display: block;
   margin-bottom: 4px;
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 700;
-  @include bp-md {
+  @include bp-lg {
     font-size: 13px;
     margin-bottom: 6px;
   }
@@ -94,6 +88,9 @@
     margin-right: 5px;
     margin-left: -2px;
     font-size: 20px;
+    @include bp-lg {
+      margin-left: 1px;
+    }
     &.add {
       font-size: 22px;
     }
