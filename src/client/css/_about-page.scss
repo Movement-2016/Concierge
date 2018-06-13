@@ -1,0 +1,86 @@
+.about-page {
+  .page-header {
+    @include full-bg;
+    padding-top: 80px;
+    @include bp-sm-down {
+      padding-bottom: 10px;
+    }
+  }
+  .page-title {
+    color: white;
+    font-weight: 900;
+    font-size: 30px;
+    @include bp-lg {
+      font-size: 48px;
+      margin: 110px 0 30px;
+    }
+  }
+  .page-menu {
+    padding-top: 20px;
+    text-align: center;
+    background: linear-gradient(to top, rgba(black, 0.78), transparent);
+    @include bp-sm-down {
+      display: none;
+    }
+    @include bp-lg {
+      padding-top: 30px;
+    }
+    a {
+      display: inline-block;
+      height: 40px;
+      line-height: 40px;
+      padding: 0 22px;
+      color: white;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 12px;
+      @include bp-lg {
+        height: 50px;
+        line-height: 50px;
+        padding: 0 25px;
+        font-size: 14px;
+      }
+    }
+  }
+  .page-section {
+    padding-top: 50px;
+    @include bp-md {
+      padding-top: 60px;
+    }
+    @include bp-lg {
+      padding-top: 80px;
+    }
+    .section-title {
+      font-weight: 900;
+      color: $red-base;
+      text-align: left;
+      margin: 0 0 12px;
+      font-size: 18px;
+      @include bp-lg {
+        font-size: 22px;
+      }
+    }
+    .section-body {
+      margin-bottom: 50px;
+      font-weight: 300;
+      line-height: 1.66;
+      @include bp-md {
+        margin-bottom: 60px;
+      }
+      @include bp-lg {
+        font-size: 18px;
+        margin-bottom: 80px;
+      }
+      p {
+        margin-bottom: 1em;
+      }
+    }
+  }
+  .image-banner {
+    padding-top: 150px;
+    @include full-bg;
+    @include bp-md {
+      padding-top: 22.17%;
+    }
+  }
+}

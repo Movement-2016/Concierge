@@ -9,24 +9,6 @@
   }
 }
 
-@mixin page-padding {
-  padding: 3rem 0;
-  @include bp-md {
-    padding: 4rem 0;
-  }
-  @include bp-lg {
-    padding: 6rem 0;
-  }
-}
-
-// grow element on hover
-@mixin hover-grow($scale) {
-  transition: transform 0.1s ease;
-  &:hover {
-    transform: scale($scale);
-  }
-}
-
 @mixin bp-sm {
   @media #{$small-and-up} {
     @content;
@@ -63,6 +45,24 @@
 @mixin bp-md-down {
   @media #{$medium-and-down} {
     @content;
+  }
+}
+
+@mixin page-padding {
+  padding: 3rem 0;
+  @include bp-md {
+    padding: 4rem 0;
+  }
+  @include bp-lg {
+    padding: 6rem 0;
+  }
+}
+
+// grow element on hover
+@mixin hover-grow($scale) {
+  transition: transform 0.1s ease;
+  &:hover {
+    transform: scale($scale);
   }
 }
 
