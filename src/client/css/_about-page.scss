@@ -34,6 +34,10 @@
       text-transform: uppercase;
       font-weight: 700;
       font-size: 12px;
+      border-radius: 4px 4px 0 0;
+      &:hover {
+        background: rgba(white, 0.1);
+      }
       @include bp-lg {
         height: 50px;
         line-height: 50px;
@@ -48,7 +52,7 @@
       padding-top: 60px;
     }
     @include bp-lg {
-      padding-top: 80px;
+      padding-top: 90px;
     }
     .section-title {
       font-weight: 900;
@@ -69,7 +73,7 @@
       }
       @include bp-lg {
         font-size: 18px;
-        margin-bottom: 80px;
+        margin-bottom: 100px;
       }
       p {
         margin-bottom: 1em;

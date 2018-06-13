@@ -201,16 +201,14 @@ gulp.task('vendor', function() {
 
 gulp.task('styles', function() {
   var processors = [autoprefixer, cssnano];
-  return (
-    gulp
-      .src('src/client/css/main.scss')
-      .pipe(sourcemaps.init())
-      .pipe(sass().on('error', sass.logError))
-      // .pipe(postcss(processors))
-      .pipe(sourcemaps.write('maps'))
-      .pipe(gulp.dest(`${BASE}/public/css`))
-      .pipe(browserSync.stream({ match: '**/*.css' }))
-  );
+  return gulp
+    .src('src/client/css/main.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(postcss(processors))
+    .pipe(sourcemaps.write('maps'))
+    .pipe(gulp.dest(`${BASE}/public/css`))
+    .pipe(browserSync.stream({ match: '**/*.css' }));
 });
 
 gulp.task('vendor-styles', function() {

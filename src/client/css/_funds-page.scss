@@ -60,14 +60,15 @@
     .fund-tile {
       width: 30.333%;
       margin: 0 1.5% 40px;
+      .donate-button {
+        height: 52px;
+        line-height: 52px;
+      }
     }
   }
 }
 .fund-tile {
   margin-bottom: 25px;
-  .tile-image {
-    height: 133px;
-  }
   .donate-button {
     display: block;
     background: $blue-light;
@@ -79,7 +80,9 @@
     line-height: 46px;
     border-radius: 3px;
     margin: 15px 0 10px;
-    @include hover-grow(1.02);
+    &:hover {
+      background: $blue-base;
+    }
   }
   .more-link {
     display: block;
@@ -97,6 +100,8 @@
     text-align: center;
     font-weight: 700;
     color: $trans-light-2;
-    @include hover-grow(1.03);
+    &:hover {
+      color: $trans-light;
+    }
   }
 }

@@ -5,7 +5,7 @@
   border-radius: 2px;
   overflow: hidden;
   .tile-image {
-    height: 110px;
+    padding-top: 45%;
     @include full-bg;
     @include bg-overlay($blue-base, 0.2);
   }
