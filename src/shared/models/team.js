@@ -1,32 +1,22 @@
-
-import {
-  ContentPage
-} from '../../client/components';
+import { TeamPage } from '../../client/components';
 
 import service from '../services/m-service';
 
-
 const TeamModel = {
-  
-  paths: [ '/team'  ],
+  paths: ['/team'],
 
-  component: ContentPage,
-  
-  title: 'Team',
+  component: TeamPage,
+
+  title: 'Meet The Team',
 
   meta: [
     {
       name: 'description',
-      content: 'This is the team that makes Movement Voter Project possible.'
-    }
+      content: 'This is the team that makes MVP possible.',
+    },
   ],
 
-  model: () => service.getPage('team').then( page => { 
-    return {
-      page,
-      pageName: 'team',      
-    };
-  })
+  model: () => service.db.then(db => ({ teamMembers: db.teamMembers })),
 };
 
 module.exports = TeamModel;

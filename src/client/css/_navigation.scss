@@ -6,13 +6,10 @@
 
 nav .brand-logo {
   color: $blue-base;
-  font-size: 16px;
+  font-size: 17px;
   font-family: 'museo-slab', 'Roboto', sans-serif;
   font-weight: 900;
   font-style: italic;
-  @include bp-sm {
-    font-size: 17px;
-  }
   @include bp-lg {
     font-size: 18px;
   }
