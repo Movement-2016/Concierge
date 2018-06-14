@@ -17,14 +17,9 @@
 
 .team-page {
   .content {
-    margin-top: 10px;
     max-width: 760px;
     margin-left: auto;
     margin-right: auto;
-  }
-  .page-title {
-    font-weight: 900;
-    color: $red-base;
   }
   .team-member {
     margin: 40px 0;
@@ -59,6 +54,7 @@
     margin-right: 15px;
     border-radius: 2px;
     @include bp-md {
+      border-radius: 3px;
       width: 182px;
       margin-right: 22px;
     }

@@ -1,5 +1,6 @@
 import React from 'react';
-import striptags from 'striptags';
+
+import { cleanHtml } from '../../lib/helperFunctions';
 
 const OrgHeader = ({ stateName, name }) => (
   <div className="group-header">
@@ -26,7 +27,7 @@ const OrgLinks = ({ urlWeb }) =>
 
 const OrgContent = ({ description }) => (
   <div className="group-content">
-    <p>{striptags(description)}</p>
+    <p dangerouslySetInnerHTML={{ __html: cleanHtml(description) }} />
   </div>
 );
 

@@ -1,3 +1,5 @@
+import sanitizeHtml from 'sanitize-html';
+
 const idFormat = str => str.replace(/\s+/g, '-').toLowerCase();
 
 // Checks url for refcode param. Returns refcode or false
@@ -11,4 +13,12 @@ const getRefCode = () => {
   return false;
 };
 
-module.exports = { idFormat, getRefCode };
+const cleanHtml = dirty =>
+  sanitizeHtml(dirty, {
+    allowedTags: ['a'],
+    allowedAttributes: {
+      a: ['href', 'target'],
+    },
+  });
+
+module.exports = { idFormat, getRefCode, cleanHtml };

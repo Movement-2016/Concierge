@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import striptags from 'striptags';
+import { cleanHtml } from '../../lib/helperFunctions';
 
 import DonateLink from '../DonateLink.jsx';
 
@@ -48,7 +48,7 @@ const OrgLinks = ({ onOrgClick, planText, planIcon, urlGive, urlWeb }) => (
 
 const OrgContent = ({ description }) => (
   <div className="group-content">
-    <p>{striptags(description)}</p>
+    <p dangerouslySetInnerHTML={{ __html: cleanHtml(description) }} />
   </div>
 );
 

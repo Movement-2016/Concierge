@@ -1,15 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import striptags from 'striptags';
 
 import { Shell } from './ContentPage.jsx';
+
+import { cleanHtml } from '../lib/helperFunctions';
 
 const TeamMember = ({ title, position, body, image }) => (
   <div className="team-member">
     <img className="team-image" src={image} />
     <div className="team-name">{title}</div>
     <div className="team-position">{position}</div>
-    <div className="team-body">{body}</div>
+    <div className="team-body" dangerouslySetInnerHTML={{ __html: cleanHtml(body) }} />
   </div>
 );
 

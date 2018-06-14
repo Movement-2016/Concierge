@@ -27,11 +27,11 @@ strong {
 .page-title {
   text-align: center;
   text-transform: capitalize;
-  color: $trans-base;
-  font-weight: 700;
-  margin: 0 0 1.5rem;
+  color: $red-base;
+  font-weight: 900;
+  margin: 0 0 2rem;
   font-size: 1.8rem;
   @include bp-md {
-    font-size: 2.4rem;
+    font-size: 2.3rem;
   }
 }
