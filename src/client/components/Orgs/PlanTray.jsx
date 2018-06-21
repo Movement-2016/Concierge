@@ -1,8 +1,8 @@
-import React  from 'react';
-import Link   from '../../services/LinkToRoute';
+import React from 'react';
+import Link from '../../services/LinkToRoute';
 
-const PlanTray = ({numGroups}) =>
-  <div className={`donation-plan-tray ${numGroups ? ' has-groups' : ''}`} >
+const PlanTray = ({ numGroups }) => (
+  <div className={`donation-plan-tray ${numGroups ? ' has-groups' : ''}`}>
     <div className="info-area">
       <div className="title">{'Your Donation Plan'}</div>
       <div className="info">{`${numGroups} Group${numGroups !== 1 ? 's' : ''}`}</div>
@@ -14,6 +14,6 @@ const PlanTray = ({numGroups}) =>
       </Link>
     </div>
   </div>
-;
+);
 
 module.exports = PlanTray;

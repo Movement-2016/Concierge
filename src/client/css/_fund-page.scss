@@ -34,6 +34,9 @@
     }
   }
   .fund-tile {
+    .tile-image::after {
+      opacity: 0;
+    }
     @include bp-md-down {
       box-shadow: none;
       background: none;

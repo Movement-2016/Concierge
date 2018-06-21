@@ -5,5 +5,5 @@ import SummaryPage from './SummaryPage.jsx';
 module.exports = {
   PlanPage,
   ProfilePage,
-  SummaryPage
+  SummaryPage,
 };

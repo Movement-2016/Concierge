@@ -146,38 +146,34 @@
   .intro-description {
     background: $gradient-blue-trans;
     color: $white;
-    padding: 25px 0 20px;
-    font-size: 14px;
+    padding: 32px 0 24px;
     @include bp-md {
       text-align: center;
     }
     @include bp-lg {
-      padding: 30px 0 25px;
+      padding: 38px 0 30px;
     }
-    p {
-      @include bp-md {
-        margin: 0 auto;
-        font-size: 15px;
-        max-width: 680px;
-      }
+    .description-body {
+      font-size: 16px;
       @include bp-lg {
-        font-size: 17px;
-        max-width: 782px;
+        max-width: 948px;
+        margin: 0 auto;
+        font-size: 21px;
+      }
+      p {
+        margin-bottom: 0.66em;
       }
     }
     a {
       display: inline-block;
-      margin-top: 0.33em;
+      margin-top: 3px;
       height: 2em;
       line-height: 2em;
       color: $blue-light-3;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 700;
-      @include bp-md {
-        margin-top: 0.5em;
-      }
       @include bp-lg {
-        font-size: 15px;
+        font-size: 16px;
       }
       i {
         font-size: 17px;

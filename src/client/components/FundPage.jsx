@@ -40,7 +40,7 @@ const _FundPage = ({ mobile, slug, funds, groups }) => {
           {mobile ? (
             <FundTile {...tileProps} />
           ) : (
-            <Sticky top={80} bottomBoundary=".page-header">
+            <Sticky top={100} bottomBoundary=".page-header">
               <FundTile {...tileProps} />
             </Sticky>
           )}

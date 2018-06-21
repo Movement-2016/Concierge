@@ -17,8 +17,8 @@ class _ContactPage extends React.Component {
     const { profile } = this.props;
 
     emailContact({ profile, message })
-      .then( done => this.setState({ done }))
-      .catch( error => this.setState({ error }));
+      .then(done => this.setState({ done }))
+      .catch(error => this.setState({ error }));
   };
 
   render() {

@@ -1,46 +1,42 @@
-import React            from 'react';
-import { connect }      from 'react-redux';
-import { navigateTo }   from '../../services/LinkToRoute';
+import React from 'react';
+import { connect } from 'react-redux';
+import { navigateTo } from '../../services/LinkToRoute';
 
-import BackLink         from '../BackLink.jsx';
-import Plan             from './Plan.jsx';
-import Totals           from './Totals.jsx';
-import RequestConsult   from './RequestConsult.jsx';
-import AutoSavePlan     from './AutoSavePlan.jsx';
-import SummaryLink      from './SummaryLink.jsx';
+import BackLink from '../BackLink.jsx';
+import Plan from './Plan.jsx';
+import Totals from './Totals.jsx';
+import RequestConsult from './RequestConsult.jsx';
+import AutoSavePlan from './AutoSavePlan.jsx';
+import SummaryLink from './SummaryLink.jsx';
 
-const PageDescription = () =>
-        <p className="page-description" >
-            {`Enter a planned donation for each group. Once you complete 
+const PageDescription = () => (
+  <p className="page-description">
+    {`Enter a planned donation for each group. Once you complete 
               your donation plan, we will email you a copy with simple instructions 
               on how to donate directly to your chosen groups.`}
-        </p>;
+  </p>
+);
 
 class _PlanPage extends React.Component {
-
   constructor() {
     super(...arguments);
     this.state = {
       done: '',
-      error: ''
+      error: '',
     };
   }
 
   componentDidUpdate() {
-    if( !this.props.isLoggedIn ) {
-      navigateTo( '/groups' );
+    if (!this.props.isLoggedIn) {
+      navigateTo('/groups');
     }
   }
 
-  onDone = (done) => this.setState({ done });
-  onError = (error) => this.setState({ error });
+  onDone = done => this.setState({ done });
+  onError = error => this.setState({ error });
 
   render() {
-
-    const {
-      done,
-      error
-    } = this.state;
+    const { done, error } = this.state;
 
     return (
       <main className="content-page custom-planning cart-page">
@@ -56,7 +52,7 @@ class _PlanPage extends React.Component {
                 <div className="total-section">
                   <Totals />
                   <div className="link-area">
-                    <SummaryLink  />
+                    <SummaryLink />
                     <AutoSavePlan onError={this.onError} onDone={this.onDone} />
                     {done && <div className="submit-message submit-success">{done}</div>}
                     {error && <div className="submit-message submit-error">{error.toString()}</div>}
@@ -65,7 +61,9 @@ class _PlanPage extends React.Component {
                 </div>
               </div>
             </div>
-            <BackLink to="/groups" title="Browse Groups">{'Browse Groups'}</BackLink>
+            <BackLink to="/groups" title="Browse Groups">
+              {'Browse Groups'}
+            </BackLink>
           </div>
         </div>
       </main>
@@ -73,7 +71,7 @@ class _PlanPage extends React.Component {
   }
 }
 
-const mapStateToProps = ({ auth: {authenticated} }) => ({ isLoggedIn: authenticated });
+const mapStateToProps = ({ auth: { authenticated } }) => ({ isLoggedIn: authenticated });
 const PlanPage = connect(mapStateToProps)(_PlanPage);
 
 module.exports = PlanPage;

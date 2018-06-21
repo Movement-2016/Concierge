@@ -1,6 +1,6 @@
-import React     from 'react';
-import {connect} from 'react-redux';
-import Link      from '../../services/LinkToRoute';
+import React from 'react';
+import { connect } from 'react-redux';
+import Link from '../../services/LinkToRoute';
 
 function propsAreSet(obj) {
   for (var prop in obj) {
@@ -12,27 +12,25 @@ function propsAreSet(obj) {
 }
 
 class _SummaryUser extends React.Component {
-
   render() {
     const { user } = this.props;
 
-    if( !propsAreSet(user) ) {
+    if (!propsAreSet(user)) {
       return <span />;
     }
 
-    const {
-      fname,
-      lname,
-      phone,
-      email
-    } = user;
+    const { fname, lname, phone, email } = user;
 
     return (
       <div className="user-info">
-        <div className="user-name">{fname} {lname}</div>
+        <div className="user-name">
+          {fname} {lname}
+        </div>
         <div className="user-email">{email}</div>
         <div className="user-phone">{phone}</div>
-        <Link className="edit-user-info" to="/plan/profile">{'Edit Contact Info'}</Link>
+        <Link className="edit-user-info" to="/plan/profile">
+          {'Edit Contact Info'}
+        </Link>
       </div>
     );
   }

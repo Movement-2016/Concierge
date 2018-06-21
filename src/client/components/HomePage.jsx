@@ -1,11 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import sanitizeHtml from 'sanitize-html';
+
 import StateMap from './StateMap.jsx';
 import Thermometer from './Thermometer.jsx';
 import SocialButtons from './SocialButtons.jsx';
 import TwitterFeed from './TwitterFeed.jsx';
 
 import Link from '../services/LinkToRoute';
+
+const cleanHtml = dirty =>
+  sanitizeHtml(dirty, {
+    allowedTags: ['p'],
+  });
 
 const Tile = ({ label, image, description, url }) => (
   <Link className="tile donate-tile" to={url}>
@@ -88,7 +95,10 @@ const _HomePage = ({
         </div>
         <div className="intro-description">
           <div className="container">
-            <p>{introText}</p>
+            <div
+              className="description-body"
+              dangerouslySetInnerHTML={{ __html: cleanHtml(introText) }}
+            />
             <Link to="/about">
               {introLinkText}
               <i className="material-icons">{'chevron_right'}</i>
@@ -102,13 +112,13 @@ const _HomePage = ({
           <div className="donate-tiles">{homeTiles.map((d, i) => <Tile key={i} {...d} />)}</div>
         </div>
       </section>
-      <section className="map-section">
-        <StateMapBound states={states} />
-      </section>
       <section className="testimonial-section">
         <div className="container">
           <Testimonials testimonials={testimonials} />
         </div>
+      </section>
+      <section className="map-section">
+        <StateMapBound states={states} />
       </section>
       <section className="social-feed-section">
         <div className="container">{global.IS_SERVER_REQUEST ? <span /> : <TwitterFeed />}</div>

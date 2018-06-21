@@ -7,5 +7,5 @@ module.exports = {
   OrgsEntryPage,
   OrgsMenuPage,
   OrgsPageMobile,
-  OrgsPageDesktop
+  OrgsPageDesktop,
 };

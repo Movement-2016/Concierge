@@ -3,32 +3,35 @@ import { connect } from 'react-redux';
 
 import scrollToElement from '../../lib/scrollToElement';
 
-const ScrollLink = ({ slug, name, onClick }) => <a onClick={onClick} href={'#' + slug}>{name}</a>;
+const ScrollLink = ({ slug, name, onClick }) => (
+  <a onClick={onClick} href={'#' + slug}>
+    {name}
+  </a>
+);
 
-const _ScrollLinks = ({ visible, onClick }) => 
-        visible.length
-          ? <div className="scroll-links">{visible.map( ({id,name,slug}) => <ScrollLink key={id} {...{onClick,name,slug}} /> )}</div>
-          : <span />;
+const _ScrollLinks = ({ visible, onClick }) =>
+  visible.length ? (
+    <div className="scroll-links">
+      {visible.map(({ id, name, slug }) => <ScrollLink key={id} {...{ onClick, name, slug }} />)}
+    </div>
+  ) : (
+    <span />
+  );
 
 const mapStateToProps = ({
   router: {
     target: {
-      model: {
-        db
-      }
-    }
+      model: { db },
+    },
   },
-  groups: { 
-    filters, 
-  }
+  groups: { filters },
 }) => {
-
   return {
     visible: db.visibleColors(filters),
-    onClick: (e) => {
+    onClick: e => {
       e.preventDefault();
-      scrollToElement( e.target.getAttribute('href') );
-    }
+      scrollToElement(e.target.getAttribute('href'));
+    },
   };
 };
 

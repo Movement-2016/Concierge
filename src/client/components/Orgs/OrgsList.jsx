@@ -13,7 +13,9 @@ function log() {
 const _OrgsList = ({ colors, states, groups, selected, mobile }) =>
   log('PAINTING ORG LIST') && (
     <div className="group-area">
-      {colors.map(color => <ColorGroup key={color.id} {...{ mobile, color, states, groups, selected }} />)}
+      {colors.map(color => (
+        <ColorGroup key={color.id} {...{ mobile, color, states, groups, selected }} />
+      ))}
     </div>
   );
 

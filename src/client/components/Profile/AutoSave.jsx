@@ -1,7 +1,7 @@
-import React           from 'react';
-import { connect }     from 'react-redux';
+import React from 'react';
+import { connect } from 'react-redux';
 import { syncProfile } from '../../../shared/store/actions/profile';
-import { openModal }   from '../../../shared/store/actions/modal';
+import { openModal } from '../../../shared/store/actions/modal';
 
 import { PROFILE_AUTOSAVE_INTERVAL } from '../../../config';
 
@@ -10,7 +10,6 @@ let interval = null;
 let MILLISECONDS = 1000;
 
 class _SyncProfileButton extends React.Component {
-
   componentDidMount() {
     this.start();
   }
@@ -26,30 +25,29 @@ class _SyncProfileButton extends React.Component {
   start() {
     this.update();
     if (!interval) {
-      interval = setInterval(this.update, PROFILE_AUTOSAVE_INTERVAL * MILLISECONDS );
+      interval = setInterval(this.update, PROFILE_AUTOSAVE_INTERVAL * MILLISECONDS);
     }
   }
 
   update = () => {
-    const {
-      profile,
-      syncProfile,
-      isLoggedIn
-    } = this.props;
+    const { profile, syncProfile, isLoggedIn } = this.props;
 
-    if( isLoggedIn ) {
-        syncProfile(profile);
+    if (isLoggedIn) {
+      syncProfile(profile);
     }
-  }
+  };
 
   render() {
     return null;
   }
 }
 
-const mapStateToProps    = s => ({ isLoggedIn: s.auth.authenticated, profile: s.profile  });
+const mapStateToProps = s => ({ isLoggedIn: s.auth.authenticated, profile: s.profile });
 const mapDispatchToProps = { syncProfile, openModal };
 
-const SyncProfileButton = connect(mapStateToProps,mapDispatchToProps)(_SyncProfileButton);
+const SyncProfileButton = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_SyncProfileButton);
 
 module.exports = SyncProfileButton;

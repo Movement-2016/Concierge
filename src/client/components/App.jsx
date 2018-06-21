@@ -47,7 +47,7 @@ class __App extends React.Component {
               {title && <TitleSetter title={SITE_TITLE + ' - ' + title} />}
               <HeaderNav menu={headerMenu} siteTitle={SITE_TITLE} mobile={isMobile} />
               {component && React.createElement(component, { mobile: isMobile })}
-              <Footer menu={footerMenu}/>
+              <Footer menu={footerMenu} />
             </div>
           );
         }}
@@ -72,7 +72,7 @@ const _App = connect(mapStateToProps)(__App);
 
 const App = ({ store, model: { headerMenu, footerMenu } }) => (
   <Provider store={store}>
-    <_App {...{headerMenu, footerMenu}} />
+    <_App {...{ headerMenu, footerMenu }} />
   </Provider>
 );
 

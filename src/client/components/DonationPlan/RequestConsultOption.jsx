@@ -1,12 +1,9 @@
-import React       from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
-import {
-  setProfile
-}  from '../../../shared/store/actions/profile'; 
+import { setProfile } from '../../../shared/store/actions/profile';
 
 class _RequestConsultOption extends React.Component {
-
   constructor() {
     super(...arguments);
     this.state = { value: false };
@@ -15,24 +12,33 @@ class _RequestConsultOption extends React.Component {
 
   onChecked(e) {
     const { value } = e.target;
-    this.props.setProfile( { wantsConsult: !value } ) ;
+    this.props.setProfile({ wantsConsult: !value });
   }
 
   render() {
     const value = this.props.wantsConsult;
 
-    return(
+    return (
       <div className="consult-request">
-        <input type="checkbox" name="consult-request" id="consult-request" value={value} onChange={this.onChecked} />
+        <input
+          type="checkbox"
+          name="consult-request"
+          id="consult-request"
+          value={value}
+          onChange={this.onChecked}
+        />
         <label htmlFor="consult-request">{'Request a consultation with a donation advisor'}</label>
       </div>
-      );
+    );
   }
 }
 
-const mapStateToProps    = s => ({ wantsConsult: s.user.wantsConsult });
+const mapStateToProps = s => ({ wantsConsult: s.user.wantsConsult });
 const mapDispatchToProps = { setProfile };
 
-const RequestConsultOption = connect( mapStateToProps, mapDispatchToProps )(_RequestConsultOption);
+const RequestConsultOption = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_RequestConsultOption);
 
 module.exports = RequestConsultOption;

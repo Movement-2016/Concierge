@@ -15,7 +15,6 @@
       padding: 20px;
     }
   }
-
   .tile-description {
     color: $trans-base;
     line-height: 1.4;
@@ -40,7 +39,7 @@
   }
   &:hover {
     @include z-depth-3;
-    .tile-header::after {
+    .tile-image::after {
       opacity: 0;
     }
     .tile-label {
