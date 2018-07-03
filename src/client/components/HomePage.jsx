@@ -11,7 +11,7 @@ import Link from '../services/LinkToRoute';
 
 const cleanHtml = dirty =>
   sanitizeHtml(dirty, {
-    allowedTags: ['p'],
+    allowedTags: ['p', 'br'],
   });
 
 const Tile = ({ label, image, description, url }) => (
@@ -90,7 +90,7 @@ const _HomePage = ({
       <section className="intro-section">
         <div className="container">
           <SocialButtons />
-          <h1 className="intro-tagline">{tagLine}</h1>
+          <div className="intro-tagline" dangerouslySetInnerHTML={{ __html: cleanHtml(tagLine) }} />
           <Thermometer goal={goal} current={current} groupNumber={groupNumber} />
         </div>
         <div className="intro-description">

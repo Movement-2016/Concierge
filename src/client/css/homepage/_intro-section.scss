@@ -60,18 +60,18 @@
     text-align: center;
     text-shadow: 0 1px 2px $trans-light;
     margin: 30px auto 20px;
-    max-width: 220px;
+    // max-width: 220px;
     @include bp-sm {
       font-size: 28px;
-      max-width: 240px;
+      // max-width: 240px;
     }
     @include bp-md {
-      max-width: 310px;
+      // max-width: 310px;
       font-size: 36px;
       margin-bottom: 25px;
     }
     @include bp-lg {
-      max-width: 380px;
+      // max-width: 380px;
       font-size: 44px;
       margin-top: 90px;
     }
