@@ -9,7 +9,7 @@ const babel = require('gulp-babel');
 const browserify = require('browserify');
 const watchify = require('watchify');
 const uglify = require('gulp-uglify');
-//const gzip = require ('gulp-gzip');
+const gzip = require('gulp-gzip');
 const sass = require('gulp-sass');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
@@ -187,17 +187,14 @@ gulp.task('_server', function() {
 
 // compile third-party dependencies
 gulp.task('vendor', function() {
-  return (
-    browserify()
-      .require(dependencies)
-      .bundle()
-      .pipe(source('vendor.bundle.js'))
-      .pipe(buffer())
-      // .pipe(global.isProduction ? uglify() : gutil.noop())
-      .pipe(gutil.noop())
-      // .pipe(gzip({ append: true }))
-      .pipe(gulp.dest(`${BASE}/public/js`))
-  );
+  return browserify()
+    .require(dependencies)
+    .bundle()
+    .pipe(source('vendor.bundle.js'))
+    .pipe(buffer())
+    .pipe(global.isProduction ? uglify() : gutil.noop())
+    .pipe(gzip({ append: true }))
+    .pipe(gulp.dest(`${BASE}/public/js`));
 });
 
 gulp.task('styles', function() {
@@ -220,13 +217,11 @@ gulp.task('vendor-styles', function() {
 });
 
 gulp.task('vendor-client-js', function() {
-  return (
-    gulp
-      .src(vendorClientJS)
-      .pipe(concat('vendor.browser.js'))
-      //            .pipe(gzip({ append:true }))
-      .pipe(gulp.dest(`${BASE}/public/js`))
-  );
+  return gulp
+    .src(vendorClientJS)
+    .pipe(concat('vendor.browser.js'))
+    .pipe(gzip({ append: true }))
+    .pipe(gulp.dest(`${BASE}/public/js`));
 });
 
 const _rebundle = (bundler, start = Date.now()) =>
@@ -242,10 +237,9 @@ const _rebundle = (bundler, start = Date.now()) =>
     .pipe(source('bundle.js'))
     .pipe(buffer())
     // .pipe(global.isProduction ? uglify() : gutil.noop())
-    .pipe(gutil.noop())
-    // .pipe(gzip({ append: true }))
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(sourcemaps.write('.'))
+    .pipe(gzip({ append: true }))
     .pipe(gulp.dest(`${BASE}/public/js/`));
 
 gulp.task('browserify-watch', function() {
