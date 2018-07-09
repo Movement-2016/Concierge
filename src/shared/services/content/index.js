@@ -59,6 +59,10 @@ class ContentDB extends JSPathDatabase {
     return this.query('teamMembers');
   }
 
+  get blogPosts() {
+    return this.query('blogPosts');
+  }
+
   get denormalizedGroups() {
     return this._checkQueryCache('denormalizedGroups', () =>
       this.denormalize(this.groupSchema, this.groups)

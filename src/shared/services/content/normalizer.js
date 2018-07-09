@@ -56,6 +56,8 @@ class Fund extends Post {}
 
 class TeamMember extends Post {}
 
+class BlogPost extends Post {}
+
 class TaxonomyNode extends serialize.Model {
   constructor() {
     super(...arguments);
@@ -183,6 +185,7 @@ const serializeContent = content => {
       funds: serialize({ jsonData: db.posts.fund, model: Fund }),
       testimonials: serialize({ jsonData: db.posts.testimonial, model: Testimonial }),
       teamMembers: serialize({ jsonData: db.posts.teamMember, model: TeamMember }),
+      blogPosts: serialize({ jsonData: db.posts.blogPost, model: BlogPost }),
       headerMenu: serialize({ jsonData: db.menus['header-menu'], model: Menu }),
       footerMenu: serialize({ jsonData: db.menus['footer-menu'], model: Menu }),
 
