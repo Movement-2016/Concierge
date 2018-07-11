@@ -20,7 +20,7 @@ module.exports = (stage,service) => {
     cache = {};
   } else if( accessKey && cacheKey === accessKey && cache[stage+service]) {
     return cache[stage+service];
-  }    
+  }
 
   cacheKey = accessKey;
 

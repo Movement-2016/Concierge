@@ -5,7 +5,6 @@ const TwitterFeed = () => (
   <Timeline
     dataSource={{ sourceType: 'profile', screenName: 'movementvote' }}
     options={{ height: '400' }}
-    onLoad={() => console.log('Timeline is loaded!')}
   />
 );
 

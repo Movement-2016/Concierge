@@ -15,7 +15,6 @@ class _ContactPage extends React.Component {
 
   onSubmit = message => {
     const { profile } = this.props;
-
     emailContact({ profile, message })
       .then(done => this.setState({ done }))
       .catch(error => this.setState({ error }));
