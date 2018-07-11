@@ -8,16 +8,22 @@ class _ContactPage extends React.Component {
   constructor() {
     super(...arguments);
     this.state = {
-      error: '',
-      done: '',
+      error: false,
+      done: false,
     };
   }
 
   onSubmit = message => {
     const { profile } = this.props;
     emailContact({ profile, message })
-      .then(done => this.setState({ done }))
-      .catch(error => this.setState({ error }));
+      .then(success => {
+        console.log(success);
+        this.setState({ done: true, error: false });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ done: false, error: true });
+      });
   };
 
   render() {

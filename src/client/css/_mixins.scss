@@ -126,6 +126,20 @@
   animation-duration: 0.8s;
   animation-delay: 0.3s;
 }
+
+@mixin blankout {
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 254, 254, 0.76);
+    z-index: 10;
+  }
+}
+
 @mixin z-depth-1 {
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.16);
 }

@@ -8,8 +8,8 @@ class PartyForm extends React.Component {
   constructor() {
     super(...arguments);
     this.state = {
-      done: '',
-      error: '',
+      done: false,
+      error: false,
       hostParty: false,
       learnMore: false,
     };
@@ -17,19 +17,26 @@ class PartyForm extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.setState({ done: '', error: '' });
     /* globals $ */
     const vobj = $('.user-info')
       .serializeArray()
       .reduce((obj, x) => ((obj[x.name] = x.value), obj), {});
     houseParty(vobj)
-      .then(done => this.setState({ done }))
-      .catch(error => this.setState({ error }));
+      .then(success => {
+        console.log(success);
+        this.setState({ done: true, error: false });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ done: false, error: true });
+      });
   };
 
   render() {
     const { done, error } = this.state;
-
+    const successMsg = 'Success! Your message has been sent.';
+    const errorMsg =
+      'Error. Your message could not be sent at this time. Please email advisor@movement.vote directly.';
     return (
       <ContentPage pageName="houseparty">
         <div className="houseparty-form padded-form">
@@ -78,8 +85,8 @@ class PartyForm extends React.Component {
             </button>
             <AutoSave />
           </form>
-          {done && <div className="submit-message submit-success">{done}</div>}
-          {error && <div className="submit-message submit-error">{error.toString()}</div>}
+          {done && <div className="submit-message submit-success">{successMsg}</div>}
+          {error && <div className="submit-message submit-error">{errorMsg}</div>}
         </div>
       </ContentPage>
     );

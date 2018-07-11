@@ -9,7 +9,6 @@ const babel = require('gulp-babel');
 const browserify = require('browserify');
 const watchify = require('watchify');
 const uglify = require('gulp-uglify');
-const gzip = require('gulp-gzip');
 const sass = require('gulp-sass');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
@@ -193,7 +192,6 @@ gulp.task('vendor', function() {
     .pipe(source('vendor.bundle.js'))
     .pipe(buffer())
     .pipe(global.isProduction ? uglify() : gutil.noop())
-    // .pipe(gzip({ append: true }))
     .pipe(gulp.dest(`${BASE}/public/js`));
 });
 
@@ -220,7 +218,6 @@ gulp.task('vendor-client-js', function() {
   return gulp
     .src(vendorClientJS)
     .pipe(concat('vendor.browser.js'))
-    // .pipe(gzip({ append: true }))
     .pipe(gulp.dest(`${BASE}/public/js`));
 });
 
@@ -239,7 +236,6 @@ const _rebundle = (bundler, start = Date.now()) =>
     // .pipe(global.isProduction ? uglify() : gutil.noop())
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(sourcemaps.write('.'))
-    // .pipe(gzip({ append: true }))
     .pipe(gulp.dest(`${BASE}/public/js/`));
 
 gulp.task('browserify-watch', function() {
