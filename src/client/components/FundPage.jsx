@@ -1,15 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Sticky from 'react-stickynode';
-import sanitizeHtml from 'sanitize-html';
+import { cleanHtml } from '../lib/helperFunctions';
 
 import Org from './Orgs/OrgBasic.jsx';
 import DonateLink from './DonateLink.jsx';
-
-const cleanHtml = dirty =>
-  sanitizeHtml(dirty, {
-    allowedTags: ['p', 'br', 'ul', 'ol', 'li', 'a', 'strong', 'b'],
-  });
 
 const FundTile = ({ label, url, image, description }) => (
   <div className="tile fund-tile">

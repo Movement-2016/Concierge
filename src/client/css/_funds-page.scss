@@ -36,6 +36,7 @@
   }
   .page-intro {
     background: white;
+    color: $trans-dark;
     font-size: 14px;
     padding: 30px 0;
     @include bp-sm {
@@ -58,9 +59,6 @@
       display: inline-block;
       font-weight: 700;
       font-size: 13px;
-      &:hover {
-        color: white;
-      }
       @include bp-sm {
         font-size: 13.5px;
       }

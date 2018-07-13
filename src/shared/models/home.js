@@ -1,37 +1,32 @@
-
-import {
-  HomePage
-} from '../../client/components';
+import { HomePage } from '../../client/components';
 
 import service from '../services/m-service';
 
 const HomePageModel = {
-
-  paths: [ '/' ],
+  paths: ['/'],
 
   component: HomePage,
 
   title: 'Home',
 
   model: () => {
-
     let props = {};
-    return service.db.then( db => {
+    return service.db
+      .then(db => {
+        props = {
+          testimonials: db.query('testimonials'),
+          blogPosts: db.query('blogPosts'),
+          states: db.denormalizedStates,
+        };
 
-      props = {
-        testimonials: db.query('testimonials'),
-        states:       db.denormalizedStates
-       };
+        return service.getPage('home');
+      })
+      .then(homePage => {
+        props.page = homePage;
 
-      return service.getPage('home');
-
-    }).then( homePage => {
-
-      props.page = homePage;
-
-      return props;
-    });
-  }
+        return props;
+      });
+  },
 };
 
 module.exports = HomePageModel;

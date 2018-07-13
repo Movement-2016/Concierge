@@ -15,7 +15,7 @@ const getRefCode = () => {
 
 const cleanHtml = dirty =>
   sanitizeHtml(dirty, {
-    allowedTags: ['a', 'br'],
+    allowedTags: ['p', 'br', 'ul', 'ol', 'li', 'a', 'strong', 'b'],
     allowedAttributes: {
       a: ['href', 'target'],
     },

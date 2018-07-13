@@ -1,17 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import sanitizeHtml from 'sanitize-html';
 
 import StateMap from './StateMap.jsx';
 import Thermometer from './Thermometer.jsx';
 import TwitterFeed from './TwitterFeed.jsx';
 
+import { cleanHtml } from '../lib/helperFunctions';
 import Link from '../services/LinkToRoute';
-
-const cleanHtml = dirty =>
-  sanitizeHtml(dirty, {
-    allowedTags: ['p', 'br'],
-  });
 
 const Tile = ({ label, image, description, url }) => (
   <Link className="tile donate-tile" to={url}>
