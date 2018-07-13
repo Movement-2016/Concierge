@@ -1,54 +1,65 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import striptags from 'striptags';
+import sanitizeHtml from 'sanitize-html';
 
 import DonateLink from './DonateLink.jsx';
 
 import Link from '../services/LinkToRoute';
 
+const cleanHtml = dirty =>
+  sanitizeHtml(dirty, {
+    allowedTags: ['p', 'br'],
+  });
+
 const FundTile = ({ slug, label, url, image, description }) => (
   <div className="tile fund-tile">
-    <div className="tile-image" style={{ backgroundImage: `url("${image}")` }} />
-    <div className="tile-body">
-      <div className="tile-label">{label}</div>
-      <div className="tile-description">{description}</div>
-      <DonateLink url={url}>{'Donate Now'}</DonateLink>
-      <Link className="more-link about-fund-button" to={'/funds/' + slug}>
-        {'About the groups in this fund'}
-        <i className="material-icons">{'chevron_right'}</i>
-      </Link>
-    </div>
+    <Link className="tile-top" to={'/funds/' + slug}>
+      <div className="tile-image" style={{ backgroundImage: `url("${image}")` }} />
+      <div className="tile-body">
+        <div className="tile-label">
+          {label}
+          <i className="material-icons">{'chevron_right'}</i>
+        </div>
+        <div className="tile-description">{description}</div>
+      </div>
+    </Link>
+    <DonateLink className="tile-donate-button" url={url}>
+      {'Donate Now'}
+    </DonateLink>
   </div>
 );
 
-const _FundsPage = ({ title, body, linkText, funds }) => (
+const _FundsPage = ({ title, body, linkText, funds, image }) => (
   <main className="funds-page">
-    <div className="page-header">
+    <div className="page-header" style={{ backgroundImage: `url(${image})` }}>
       <h1 className="page-title">{title}</h1>
+    </div>
+    <div className="page-intro">
       <div className="container">
-        <div className="page-intro">
-          <p>{striptags(body)}</p>
-          <Link to="/about/#our-process">
-            {linkText}
-            <i className="material-icons">{'chevron_right'}</i>
-          </Link>
+        <div className="intro-content" dangerouslySetInnerHTML={{ __html: cleanHtml(body) }} />
+        <Link to="/about/#our-process">
+          {linkText}
+          <i className="material-icons">{'chevron_right'}</i>
+        </Link>
+      </div>
+    </div>
+    <section className="funds-section">
+      <h2 className="section-title">{'Choose A Fund'}</h2>
+      <div className="container">
+        <div className="fund-tiles">
+          {funds.map((fund, i) => (
+            <FundTile
+              key={i}
+              label={fund.title}
+              slug={fund.slug}
+              url={fund.fundUrl}
+              image={fund.image}
+              description={fund.fundDescriptionShort}
+            />
+          ))}
         </div>
       </div>
-    </div>
-    <div className="container">
-      <div className="fund-tiles">
-        {funds.map((fund, i) => (
-          <FundTile
-            key={i}
-            label={fund.title}
-            slug={fund.slug}
-            url={fund.fundUrl}
-            image={fund.image}
-            description={fund.fundDescriptionShort}
-          />
-        ))}
-      </div>
-    </div>
+    </section>
   </main>
 );
 
@@ -57,11 +68,11 @@ const mapStoreToProps = ({
     target: {
       model: {
         funds,
-        page: { title, body, fundPageLinkText: linkText },
+        page: { title, body, fundPageLinkText: linkText, image },
       },
     },
   },
-}) => ({ title, body, linkText, funds });
+}) => ({ title, body, linkText, funds, image });
 
 const FundsPage = connect(mapStoreToProps)(_FundsPage);
 
