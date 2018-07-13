@@ -52,13 +52,6 @@
 }
 
 .donate-section {
-  padding: 60px 0;
-  @include bp-md {
-    padding: 80px 0;
-  }
-  @include bp-lg {
-    padding: 100px 0;
-  }
   .section-title {
     color: $red-base;
   }
@@ -69,7 +62,11 @@
     }
   }
   .donate-tile {
-    margin-bottom: 25px;
+    @include bp-sm-down {
+      & + .donate-tile {
+        margin-top: 25px;
+      }
+    }
     @include bp-md {
       width: 30.333%;
       margin: 0 1.5%;

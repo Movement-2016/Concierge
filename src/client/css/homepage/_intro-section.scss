@@ -94,13 +94,12 @@
 .home .intro-description {
   background: $gradient-blue;
   color: $white;
-  padding: 30px 0 26px;
+  padding: 35px 0 20px;
   @include bp-md {
     text-align: center;
-    padding: 36px 0 30px;
   }
   @include bp-lg {
-    padding: 40px 0 34px;
+    padding: 40px 0 35px;
   }
   .description-body {
     font-size: 15px;

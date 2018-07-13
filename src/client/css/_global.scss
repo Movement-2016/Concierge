@@ -25,6 +25,10 @@ form {
   margin: 0;
 }
 
+img {
+  max-width: 100%;
+}
+
 .container {
   @include bp-md {
     width: 95%;

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import StateMap from './StateMap.jsx';
 import Thermometer from './Thermometer.jsx';
 import TwitterFeed from './TwitterFeed.jsx';
+import BlogPosts from './BlogPosts.jsx';
 
 import { cleanHtml } from '../lib/helperFunctions';
 import Link from '../services/LinkToRoute';
@@ -75,7 +76,7 @@ const _HomePage = ({
   current,
   homeTileSectionTitle,
   homeTiles,
-  model: { states, testimonials },
+  model: { states, testimonials, blogPosts },
 }) =>
   authCode ? (
     <AuthCode code={authCode} />
@@ -99,7 +100,7 @@ const _HomePage = ({
           </Link>
         </div>
       </div>
-      <section className="donate-section" id="donate">
+      <section className="padded-section donate-section" id="donate">
         <div className="container">
           <h2 className="section-title">{homeTileSectionTitle}</h2>
           <div className="donate-tiles">{homeTiles.map((d, i) => <Tile key={i} {...d} />)}</div>
@@ -110,10 +111,16 @@ const _HomePage = ({
           <Testimonials testimonials={testimonials} />
         </div>
       </section>
-      <section className="map-section">
+      <section className="padded-section blog-section">
+        <div className="container">
+          <h2 className="section-title">{'Latest Updates'}</h2>
+          <BlogPosts posts={blogPosts} />
+        </div>
+      </section>
+      <section className="padded-section map-section">
         <StateMapBound states={states} />
       </section>
-      <section className="social-feed-section">
+      <section className="padded-section social-feed-section">
         <div className="container">{global.IS_SERVER_REQUEST ? <span /> : <TwitterFeed />}</div>
       </section>
     </main>

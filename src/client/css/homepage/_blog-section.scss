@@ -1,0 +1,49 @@
+.blog-section {
+  background: white;
+}
+.blog-posts {
+  max-width: 650px;
+  margin: 0 auto;
+}
+.blog-post {
+  margin-top: 2em;
+  @include bp-md {
+    margin-top: 3em;
+    // display: flex;
+  }
+  .post-image {
+    float: left;
+    width: 30%;
+    max-width: 138px;
+    margin-right: 2.5%;
+    border-radius: 2px;
+    flex-shrink: 0;
+    overflow: hidden;
+    margin-top: 3px;
+  }
+  .post-title {
+    font-weight: 900;
+    color: $red-base;
+    font-size: 16px;
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+    @include bp-md {
+      font-size: 20px;
+    }
+  }
+  .post-body {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.4;
+    @include bp-md {
+      font-size: 15px;
+    }
+    p,
+    li {
+      margin-bottom: 0.66em;
+    }
+    a {
+      font-weight: 500;
+    }
+  }
+}
