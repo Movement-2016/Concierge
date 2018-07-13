@@ -7,7 +7,7 @@
   .tile-image {
     padding-top: 45%;
     @include full-bg;
-    @include bg-overlay($blue-base, 0.2);
+    @include bg-overlay($blue-base, 0.1);
   }
   .tile-body {
     padding: 15px;

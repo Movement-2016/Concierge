@@ -3,7 +3,7 @@ $site-max-width: 1200px;
 $site-padding-lg: 30px;
 $menu-padding-lg: 20px;
 
-$navbar-height: 56px;
+$navbar-height: 50px;
 $navbar-height-mobile: $navbar-height;
 $navbar-height-lg: 64px;
 
@@ -40,20 +40,15 @@ $blue-light-2: color('blue', 'lighten-2');
 $blue-light-3: #cee8ff;
 $blue-trans: transparentize($blue-base, 0.36);
 
-$gradient-blue-trans: linear-gradient(
-  to right,
-  transparentize(#146aad, 0.17),
-  transparentize(#2e93c0, 0.17)
-);
+$gradient-blue: linear-gradient(to right, #146aad, #4a9ed8);
 
 $red-base: #f56b62;
 $red-light: color('red', 'accent-1');
 
 $green: #15bd82;
 
-$facebook-blue: rgb(59, 89, 152);
-$twitter-blue: rgb(0, 172, 237);
-
+$facebook-blue: #587bc5;
+$twitter-blue: #2db2ff;
 // Text shades
 $trans-dark: rgba(0, 0, 0, 0.87);
 $trans-base: rgba(0, 0, 0, 0.7);

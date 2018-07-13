@@ -7,6 +7,19 @@ import Menu from './Menu.jsx';
 import scrollToElement from '../lib/scrollToElement';
 import Link from '../services/LinkToRoute';
 
+import { FACEBOOK_URL, TWITTER_URL } from '../../config';
+
+const SocialLinks = () => (
+  <div className="social-links">
+    <a className="social-link facebook-link" href={FACEBOOK_URL} target="_blank">
+      <img src="images/facebook-icon.svg" />
+    </a>
+    <a className="social-link twitter-link" href={TWITTER_URL} target="_blank">
+      <img src="images/twitter-icon.svg" />
+    </a>
+  </div>
+);
+
 class HeaderNav extends React.Component {
   componentDidMount() {
     /* global $ */
@@ -32,7 +45,7 @@ class HeaderNav extends React.Component {
     return (
       <div className="nav-wrapper">
         <Headroom disable={!mobile} disableInlineStyles>
-          <div className="navbar-fixed">
+          <div className="navbar">
             <nav className="main-nav">
               <Link to="/" id="header-logo" className="brand-logo">
                 {siteTitle}
@@ -40,7 +53,12 @@ class HeaderNav extends React.Component {
               <a data-activates="side-nav" className="button-collapse">
                 <i className="material-icons">{'menu'}</i>
               </a>
-              {!mobile && <Menu id="header-menu" className="nav-menu" menu={menu} />}
+              {!mobile && (
+                <div id="header-links">
+                  <Menu id="header-menu" className="nav-menu" menu={menu} />
+                  <SocialLinks id="header-social-links" />
+                </div>
+              )}
             </nav>
           </div>
         </Headroom>
@@ -54,6 +72,7 @@ class HeaderNav extends React.Component {
             </a>
           </div>
           <Menu id="side-menu" className="nav-menu" menu={menu} />
+          <SocialLinks />
         </nav>
         <Login.Popup />
       </div>

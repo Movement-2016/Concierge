@@ -13,6 +13,9 @@ const WP_DEV = false;
 const WP_API_HOST = WP_DEV ? 'http://localhost/movement-admin' : 'https://wp.movement.vote';
 const M_SERVICE_END_POINT = WP_API_HOST + '/wp-json/movement/';
 
+const FACEBOOK_URL = 'https://www.facebook.com/MovementVoterProject/';
+const TWITTER_URL = 'https://twitter.com/MovementVote';
+
 const ENABLE_PLANS = false;
 const ENABLE_LOGIN = false;
 
@@ -44,6 +47,9 @@ module.exports = {
   REGION,
   IDENTITY_POOL_ID,
   SYNC_DATASET,
+
+  FACEBOOK_URL,
+  TWITTER_URL,
 
   identityProviders: {
     Facebook,

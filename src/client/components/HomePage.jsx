@@ -4,7 +4,6 @@ import sanitizeHtml from 'sanitize-html';
 
 import StateMap from './StateMap.jsx';
 import Thermometer from './Thermometer.jsx';
-import SocialButtons from './SocialButtons.jsx';
 import TwitterFeed from './TwitterFeed.jsx';
 
 import Link from '../services/LinkToRoute';
@@ -89,23 +88,22 @@ const _HomePage = ({
     <main className="home">
       <section className="intro-section">
         <div className="container">
-          <SocialButtons />
           <div className="intro-tagline" dangerouslySetInnerHTML={{ __html: cleanHtml(tagLine) }} />
           <Thermometer goal={goal} current={current} groupNumber={groupNumber} />
         </div>
-        <div className="intro-description">
-          <div className="container">
-            <div
-              className="description-body"
-              dangerouslySetInnerHTML={{ __html: cleanHtml(introText) }}
-            />
-            <Link to="/about">
-              {introLinkText}
-              <i className="material-icons">{'chevron_right'}</i>
-            </Link>
-          </div>
-        </div>
       </section>
+      <div className="intro-description">
+        <div className="container">
+          <div
+            className="description-body"
+            dangerouslySetInnerHTML={{ __html: cleanHtml(introText) }}
+          />
+          <Link to="/about">
+            {introLinkText}
+            <i className="material-icons">{'chevron_right'}</i>
+          </Link>
+        </div>
+      </div>
       <section className="donate-section" id="donate">
         <div className="container">
           <h2 className="section-title">{homeTileSectionTitle}</h2>

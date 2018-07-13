@@ -1,4 +1,7 @@
-.navbar-fixed {
+.navbar {
+  position: relative;
+  height: $navbar-height;
+  z-index: 997;
   @include bp-lg {
     height: $navbar-height-lg;
   }
@@ -6,10 +9,13 @@
 
 nav .brand-logo {
   color: $blue-base;
-  font-size: 17px;
+  font-size: 16px;
   font-family: 'museo-slab', 'Roboto', sans-serif;
   font-weight: 900;
   font-style: italic;
+  @include bp-md {
+    font-size: 17px;
+  }
   @include bp-lg {
     font-size: 18px;
   }
@@ -21,7 +27,7 @@ nav .brand-logo {
   @include bp-lg {
     height: $navbar-height-lg;
     line-height: $navbar-height-lg;
-    padding: 0 ($site-padding-lg - $menu-padding-lg) 0 $site-padding-lg;
+    padding: 0 $site-padding-lg;
   }
 
   .button-collapse {
@@ -31,18 +37,22 @@ nav .brand-logo {
     }
     i {
       margin-left: -3px;
+      margin-top: -1px;
       font-size: 20px;
       color: $trans-light-2;
     }
   }
 }
 
-#header-menu {
+#header-links {
   display: none;
   @include bp-lg {
     display: block;
     float: right;
   }
+}
+#header-menu {
+  float: left;
   a {
     font-size: 15px;
     color: $trans-light;
@@ -61,11 +71,6 @@ nav .brand-logo {
     }
     &:hover .menu-children {
       display: block;
-    }
-    &:last-of-type {
-      .menu-children {
-        right: 0;
-      }
     }
   }
 
@@ -88,6 +93,32 @@ nav .brand-logo {
       }
     }
   }
+}
+#header-social-links {
+  height: $navbar-height-lg;
+  display: inline-flex;
+  align-items: center;
+  .social-link {
+    height: 26px;
+    width: 48px;
+    text-align: center;
+    padding: 5px 0;
+    margin-left: 20px;
+    border-radius: 3px;
+    opacity: 0.85;
+    &:hover {
+      opacity: 1;
+    }
+    img {
+      height: 100%;
+    }
+  }
+}
+.twitter-link {
+  background: $twitter-blue;
+}
+.facebook-link {
+  background: $facebook-blue;
 }
 
 #side-nav {
@@ -119,13 +150,29 @@ nav .brand-logo {
       color: $trans-light-2;
     }
   }
+  .social-links {
+    margin-left: 30px;
+    margin-top: 30px;
+  }
+  .social-link {
+    display: inline-block;
+    height: 28px;
+    width: 52px;
+    text-align: center;
+    padding: 5px 0;
+    margin-right: 20px;
+    border-radius: 3px;
+    img {
+      height: 100%;
+    }
+  }
 }
 
 #side-menu {
   a {
-    font-size: 18px;
-    height: 42px;
-    line-height: 42px;
+    font-size: 17px;
+    height: 36px;
+    line-height: 36px;
   }
   .menu-parent {
     margin-bottom: 18px;

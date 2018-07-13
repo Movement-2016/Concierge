@@ -1,55 +1,16 @@
 .intro-section {
-  background: linear-gradient(rgba(71, 55, 47, 0.3), rgba(71, 55, 47, 0.3)),
-    url('/images/hands.jpg');
+  background: url('/images/hands.jpg');
   @include full-bg;
   position: relative;
-  padding-top: 20px;
-
-  .social-buttons {
-    text-align: right;
-    @include bp-lg {
-      position: absolute;
-      right: 30px;
-      top: 25;
-    }
+  padding: 50px 0;
+  @include bp-sm {
+    padding: 60px 0;
   }
-  .share-button {
-    display: inline-block;
-    text-align: center;
-    cursor: pointer;
-    width: 48px;
-    height: 26px;
-    border-radius: 2px;
-    @include z-depth-1;
-    &:hover,
-    &:focus {
-      @include z-depth-3;
-    }
-    @include bp-lg {
-      width: 68px;
-      height: 38px;
-    }
-    img {
-      height: 18px;
-      margin: 4px auto;
-      @include bp-lg {
-        height: 24px;
-        margin: 7px auto;
-      }
-    }
+  @include bp-md {
+    padding: 70px 0;
   }
-
-  .fb-share-button {
-    margin-right: 8px;
-    background: $facebook-blue;
-
-    @include bp-md {
-      margin-right: 20px;
-    }
-  }
-
-  .twitter-share-button {
-    background: $twitter-blue;
+  @include bp-lg {
+    padding: 85px 0;
   }
 
   .intro-tagline {
@@ -59,36 +20,22 @@
     line-height: 1.2;
     text-align: center;
     text-shadow: 0 1px 2px $trans-light;
-    margin: 30px auto 20px;
-    // max-width: 220px;
+    margin: 0 auto 20px;
     @include bp-sm {
       font-size: 28px;
-      // max-width: 240px;
     }
     @include bp-md {
-      // max-width: 310px;
       font-size: 36px;
       margin-bottom: 25px;
     }
     @include bp-lg {
-      // max-width: 380px;
       font-size: 44px;
-      margin-top: 90px;
     }
   }
 
   .thermometer-area {
-    margin: 0 auto 50px;
+    margin: 0 auto;
     max-width: 500px;
-    @include bp-sm {
-      margin-bottom: 60px;
-    }
-    @include bp-md {
-      margin-bottom: 80px;
-    }
-    @include bp-lg {
-      margin-bottom: 90px;
-    }
   }
 
   .thermometer {
@@ -142,47 +89,65 @@
     float: right;
     text-align: right;
   }
-
-  .intro-description {
-    background: $gradient-blue-trans;
-    color: $white;
-    padding: 32px 0 24px;
+}
+.home .intro-description {
+  background: $gradient-blue;
+  color: $white;
+  padding: 30px 0 26px;
+  @include bp-md {
+    text-align: center;
+    padding: 36px 0 26px;
+  }
+  @include bp-lg {
+    padding: 40px 0 30px;
+  }
+  .description-body {
+    font-size: 15px;
+    line-height: 1.33;
+    font-weight: 500;
     @include bp-md {
-      text-align: center;
+      font-size: 17px;
     }
     @include bp-lg {
-      padding: 38px 0 30px;
+      max-width: 948px;
+      margin: 0 auto;
+      font-size: 20px;
     }
-    .description-body {
+    p {
+      margin-bottom: 0.6em;
+      @include bp-md {
+        margin-bottom: 0.45em;
+      }
+    }
+  }
+  a {
+    display: inline-block;
+    height: 2em;
+    line-height: 2em;
+    color: $blue-light-3;
+    font-size: 13.5px;
+    font-weight: 700;
+    border-radius: 100px;
+    @include bp-md {
+      height: 2.5em;
+      line-height: 2.5em;
+      margin-top: 2px;
+      font-size: 15px;
+      padding: 0 12px 0 15px;
+      &:hover {
+        background: transparentize(white, 0.92);
+      }
+    }
+    @include bp-lg {
       font-size: 16px;
-      @include bp-lg {
-        max-width: 948px;
-        margin: 0 auto;
-        font-size: 21px;
-      }
-      p {
-        margin-bottom: 0.66em;
-      }
     }
-    a {
-      display: inline-block;
-      margin-top: 3px;
-      height: 2em;
-      line-height: 2em;
-      color: $blue-light-3;
-      font-size: 14px;
-      font-weight: 700;
+    i {
+      font-size: 17px;
+      vertical-align: middle;
+      margin-bottom: 2px;
+      margin-left: 2px;
       @include bp-lg {
-        font-size: 16px;
-      }
-      i {
-        font-size: 17px;
-        vertical-align: middle;
-        margin-bottom: 2px;
-        margin-left: 2px;
-        @include bp-lg {
-          font-size: 20px;
-        }
+        font-size: 20px;
       }
     }
   }
