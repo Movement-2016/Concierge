@@ -9,8 +9,8 @@ import Link from '../services/LinkToRoute';
 
 import { FACEBOOK_URL, TWITTER_URL } from '../../config';
 
-const SocialLinks = () => (
-  <div className="social-links">
+const SocialLinks = ({ id }) => (
+  <div id={id} className="social-links">
     <a className="social-link facebook-link" href={FACEBOOK_URL} target="_blank">
       <img src="images/facebook-icon.svg" />
     </a>
@@ -72,7 +72,7 @@ class HeaderNav extends React.Component {
             </a>
           </div>
           <Menu id="side-menu" className="nav-menu" menu={menu} />
-          <SocialLinks />
+          <SocialLinks id="side-menu-social-links" />
         </nav>
         <Login.Popup />
       </div>
