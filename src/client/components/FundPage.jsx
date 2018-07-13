@@ -25,13 +25,23 @@ const FundTile = ({ label, url, image, description }) => (
 const _FundPage = ({ mobile, slug, funds, groups }) => {
   let fund;
   funds.some(f => f.slug === slug && (fund = f));
+  const fundGroups = groups.filter(g => fund.fundGroups.includes(g.id));
+
+  fundGroups.sort((a, b) => {
+    const nameA = a.statename.toUpperCase();
+    const nameB = b.statename.toUpperCase();
+    if (nameA === nameB) {
+      return a.title.toUpperCase() < b.title.toUpperCase() ? -1 : 1;
+    }
+    return nameA < nameB ? -1 : 1;
+  });
+
   const tileProps = {
     image: fund.image,
     label: fund.title,
     description: fund.fundDescriptionLong,
     url: fund.fundUrl,
   };
-  const fundGroups = groups.filter(g => fund.fundGroups.includes(g.id));
 
   return (
     <main className="fund-page">
@@ -64,10 +74,10 @@ const mapStoreToProps = ({
       params: { slug },
     },
     target: {
-      model: { funds, groups, states },
+      model: { funds, groups },
     },
   },
-}) => ({ slug, funds, groups, states });
+}) => ({ slug, funds, groups });
 
 const FundPage = connect(mapStoreToProps)(_FundPage);
 
