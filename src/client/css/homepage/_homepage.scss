@@ -23,14 +23,44 @@
 }
 
 .social-feed-section {
-  background: white;
+  @include bp-lg {
+    background: white;
+  }
   .container {
-    max-width: 500px;
-    min-width: 0;
+    max-width: 800px;
+  }
+}
+.social-feeds {
+  @include bp-md {
+    display: flex;
+    justify-content: space-between;
+    .social-feed {
+      width: 47%;
+      max-width: 400px;
+    }
+  }
+}
+.social-feed {
+  & + .social-feed {
+    @include bp-sm-down {
+      margin-top: 3em;
+    }
+  }
+  .feed-title {
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 10px;
   }
   iframe {
     @include z-depth-2;
   }
+}
+.twitter-feed .feed-title {
+  color: $twitter-blue;
+}
+.facebook-feed .feed-title {
+  color: $facebook-blue;
 }
 
 %flex-container {

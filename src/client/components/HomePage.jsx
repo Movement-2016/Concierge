@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import StateMap from './StateMap.jsx';
 import Thermometer from './Thermometer.jsx';
-import TwitterFeed from './TwitterFeed.jsx';
+import { FacebookFeed, TwitterFeed } from './Social.jsx';
 import BlogPosts from './BlogPosts.jsx';
 
 import { cleanHtml } from '../lib/helperFunctions';
@@ -121,7 +121,16 @@ const _HomePage = ({
         <StateMapBound states={states} />
       </section>
       <section className="padded-section social-feed-section">
-        <div className="container">{global.IS_SERVER_REQUEST ? <span /> : <TwitterFeed />}</div>
+        {global.IS_SERVER_REQUEST ? (
+          <span />
+        ) : (
+          <div className="container">
+            <div className="social-feeds">
+              <TwitterFeed className="social-feed" />
+              <FacebookFeed classname="social-feed" />
+            </div>
+          </div>
+        )}
       </section>
     </main>
   );
