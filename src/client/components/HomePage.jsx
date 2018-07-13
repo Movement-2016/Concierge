@@ -106,15 +106,15 @@ const _HomePage = ({
           <div className="donate-tiles">{homeTiles.map((d, i) => <Tile key={i} {...d} />)}</div>
         </div>
       </section>
-      <section className="testimonial-section">
-        <div className="container">
-          <Testimonials testimonials={testimonials} />
-        </div>
-      </section>
       <section className="padded-section blog-section">
         <div className="container">
           <h2 className="section-title">{'Latest Updates'}</h2>
           <BlogPosts posts={blogPosts} />
+        </div>
+      </section>
+      <section className="testimonial-section">
+        <div className="container">
+          <Testimonials testimonials={testimonials} />
         </div>
       </section>
       <section className="padded-section map-section">

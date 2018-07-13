@@ -23,9 +23,6 @@
 }
 
 .social-feed-section {
-  @include bp-lg {
-    background: white;
-  }
   .container {
     max-width: 800px;
   }
@@ -46,14 +43,17 @@
       margin-top: 3em;
     }
   }
+  .feed-wrapper {
+    background: white;
+    height: 400px;
+    width: 100%;
+    @include z-depth-2;
+  }
   .feed-title {
     text-transform: uppercase;
     text-align: center;
     font-weight: 700;
     margin-bottom: 10px;
-  }
-  iframe {
-    @include z-depth-2;
   }
 }
 .twitter-feed .feed-title {
