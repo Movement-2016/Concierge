@@ -12,10 +12,10 @@ import { FACEBOOK_URL, TWITTER_URL } from '../../config';
 const SocialLinks = ({ id }) => (
   <div id={id} className="social-links">
     <a className="social-link facebook-link" href={FACEBOOK_URL} target="_blank">
-      <img src="images/facebook-icon.svg" />
+      <img src="/images/facebook-icon.svg" />
     </a>
     <a className="social-link twitter-link" href={TWITTER_URL} target="_blank">
-      <img src="images/twitter-icon.svg" />
+      <img src="/images/twitter-icon.svg" />
     </a>
   </div>
 );
