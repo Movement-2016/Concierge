@@ -3,74 +3,97 @@
   @include bp-lg {
     padding-top: 4rem;
   }
+  .page-title {
+    padding: 0 5%;
+    @include bp-lg {
+      padding: 0;
+      text-align: left;
+      font-size: 2.2rem;
+    }
+  }
   .container {
     @include bp-sm-down {
       width: 100%;
     }
+  }
+  #fund-page-body {
     @include bp-lg {
       display: flex;
+      align-items: flex-start;
     }
   }
-  .page-header {
+  .fund-intro {
+    font-weight: 300;
+    background: white;
+    padding: 2em 5% 1em;
+    margin-bottom: 60px;
+    @include z-depth-2;
     @include bp-lg {
-      order: 1;
-      flex-shrink: 0;
-      width: 32%;
-      max-width: 330px;
-      margin-left: 5%;
-      padding-top: 45px;
+      padding: 4.5% 3%;
+    }
+    p,
+    li {
+      margin-bottom: 1em;
     }
   }
-  .page-intro {
-    color: $trans-base;
+  .fund-intro-title {
+    color: $trans-light-2;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 1em;
+    @include bp-md {
+      font-size: 18px;
+    }
+  }
+  .fund-groups-sentence {
+    padding: 0 5%;
+    font-weight: 700;
+    color: $trans-light-2;
+    font-size: 16px;
     line-height: 1.4;
-    @include bp-md-down {
-      padding: 0 5%;
+    @include bp-md {
+      text-align: center;
+      font-size: 18px;
     }
-    @include bp-lg {
-      color: inherit;
-      font-size: 19px;
-      font-weight: 300;
-    }
+  }
+  .fund-action {
+    flex-shrink: 0;
+    width: 32%;
+    max-width: 330px;
+    margin-left: 5%;
   }
   .fund-tile {
     .tile-image::after {
       opacity: 0;
     }
-    @include bp-md-down {
-      box-shadow: none;
-      background: none;
-      border-radius: 0;
-      margin-bottom: 1em;
-      .tile-image,
-      .more-link {
-        display: none;
-      }
-      .tile-body {
-        padding: 0 5%;
-      }
-      .tile-label {
-        text-align: center;
-        font-weight: 900;
-        margin-bottom: 15px;
-      }
-      .donate-button {
-        border-radius: 0;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        margin: 0;
-        width: 100%;
-        height: 56px;
-        line-height: 56px;
-        @include z-depth-3;
-      }
+    .tile-description {
+      color: $trans-dark;
     }
-    @include bp-lg {
-      .tile-description {
-        color: black;
-        font-weight: 300;
-      }
+  }
+  .fund-donate-button {
+    background: $blue-base;
+    color: white;
+    text-align: center;
+    font-weight: 900;
+    font-size: 18px;
+    border-radius: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
+    @include z-depth-3;
+    @include bp-md {
+      font-size: 20px;
+      height: 76px;
+      line-height: 76px;
+    }
+    i {
+      vertical-align: middle;
+      font-size: 1.1em;
+      margin-left: 3px;
     }
   }
 }
@@ -81,5 +104,8 @@
     background: white;
     border-radius: 2px;
     margin-bottom: 20px;
+    .group-content {
+      font-size: 15px;
+    }
   }
 }

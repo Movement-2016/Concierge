@@ -1,11 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Sticky from 'react-stickynode';
+import sanitizeHtml from 'sanitize-html';
 
 import Org from './Orgs/OrgBasic.jsx';
 import DonateLink from './DonateLink.jsx';
 
-import Link from '../services/LinkToRoute';
+const cleanHtml = dirty =>
+  sanitizeHtml(dirty, {
+    allowedTags: ['p', 'br', 'ul', 'ol', 'li', 'a', 'strong', 'b'],
+  });
 
 const FundTile = ({ label, url, image, description }) => (
   <div className="tile fund-tile">
@@ -14,10 +18,6 @@ const FundTile = ({ label, url, image, description }) => (
       <div className="tile-label">{label}</div>
       <DonateLink url={url}>{'Donate Now'}</DonateLink>
       <div className="tile-description">{description}</div>
-      <Link className="more-link" to="/about/#our-process">
-        {'Learn more about our process'}
-        <i className="material-icons">{'chevron_right'}</i>
-      </Link>
     </div>
   </div>
 );
@@ -39,28 +39,41 @@ const _FundPage = ({ mobile, slug, funds, groups }) => {
   const tileProps = {
     image: fund.image,
     label: fund.title,
-    description: fund.fundDescriptionLong,
+    description: fund.fundDescriptionShort,
     url: fund.fundUrl,
   };
 
   return (
     <main className="fund-page">
       <div className="container">
-        <div className="page-header">
-          {mobile ? (
-            <FundTile {...tileProps} />
-          ) : (
-            <Sticky top={100} bottomBoundary=".page-header">
-              <FundTile {...tileProps} />
-            </Sticky>
-          )}
-        </div>
-        <div className="page-body">
-          <div className="page-intro">
-            {'Your donation to the ' + tileProps.label + ' supports these groups:'}
+        <h1 className="page-title">{fund.title}</h1>
+        <div id="fund-page-body">
+          <div className="fund-content">
+            <div className="fund-intro">
+              <div className="fund-intro-title">{'About This Fund'}</div>
+              <div
+                className="fund-intro-text"
+                dangerouslySetInnerHTML={{ __html: cleanHtml(fund.fundIntro) }}
+              />
+            </div>
+            <div className="fund-groups-sentence">
+              {'The ' + fund.title + ' supports these groups:'}
+            </div>
+            <div className="fund-groups">
+              {fundGroups.map((g, i) => <Org key={i} mobile={mobile} {...g} />)}
+            </div>
           </div>
-          <div className="fund-groups">
-            {fundGroups.map((g, i) => <Org key={i} mobile={mobile} {...g} />)}
+          <div className="fund-action">
+            {mobile ? (
+              <DonateLink className="fund-donate-button" url={fund.fundUrl}>
+                {'Donate Now'}
+                <i className="material-icons">{'chevron_right'}</i>
+              </DonateLink>
+            ) : (
+              <Sticky top={40} bottomBoundary="#fund-page-body">
+                <FundTile {...tileProps} />
+              </Sticky>
+            )}
           </div>
         </div>
       </div>

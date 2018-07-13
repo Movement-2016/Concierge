@@ -9,6 +9,9 @@
     @include bp-lg {
       padding: 200px 0 28px;
     }
+    @include bp-xl {
+      padding-top: 240px;
+    }
     &:after {
       content: '';
       position: absolute;
@@ -32,21 +35,19 @@
     z-index: 30;
   }
   .page-intro {
-    background: $gradient-blue;
-    color: white;
+    background: white;
     font-size: 14px;
     padding: 30px 0;
     @include bp-sm {
-      font-size: 15px;
+      font-size: inherit;
     }
     @include bp-md {
-      font-size: 16px;
       padding: 50px 0;
     }
     @include bp-lg {
       font-size: 17px;
       .container {
-        width: 790px;
+        width: 840px;
         min-width: 0;
       }
     }
@@ -55,7 +56,6 @@
     }
     a {
       display: inline-block;
-      color: $blue-light-3;
       font-weight: 700;
       font-size: 13px;
       &:hover {
