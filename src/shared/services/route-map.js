@@ -6,6 +6,7 @@ import ContactAdvisor from '../models/contactAdvisor';
 import Team from '../models/team';
 import Jobs from '../models/jobs';
 import GrassrootsFundraising from '../models/grassrootsFundraising';
+import DigitalToolkit from '../models/digitalToolkit';
 import About from '../models/about';
 import Advisors from '../models/advisors';
 import Party from '../models/party';
@@ -29,6 +30,7 @@ const RouteMap = [
   Team,
   Jobs,
   GrassrootsFundraising,
+  DigitalToolkit,
   About,
   Advisors,
   FundsModel,

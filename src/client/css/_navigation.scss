@@ -63,6 +63,7 @@ nav .brand-logo {
     padding: 0 $menu-padding-lg;
     &:hover {
       background-color: color('grey', 'lighten-4');
+      color: $trans-light;
     }
   }
   .menu-parent {
@@ -71,7 +72,7 @@ nav .brand-logo {
     }
     &:hover {
       a {
-        // color: $blue-base;
+        color: $trans-light;
       }
       .menu-children {
         display: block;
@@ -90,7 +91,7 @@ nav .brand-logo {
       float: none;
     }
     a {
-      // color: $blue-base;
+      color: $trans-light;
       font-weight: 500;
       padding: 0 $menu-padding-lg;
       display: block;

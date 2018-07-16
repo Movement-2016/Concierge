@@ -14,8 +14,20 @@
     @include bp-md {
       font-size: 18px;
     }
+    a {
+      color: #255398;
+      text-decoration: underline;
+      text-decoration-color: rgba(#255398, 0.3);
+      font-weight: 500;
+      &:hover {
+        color: #4887e7;
+      }
+    }
+    strong a,
+    b a {
+      font-weight: inherit;
+    }
   }
-
   p {
     margin: 1em 0;
   }
