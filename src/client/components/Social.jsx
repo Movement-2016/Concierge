@@ -24,7 +24,6 @@ const FacebookFeed = () => (
           href="https://www.facebook.com/MovementVoterProject/"
           tabs="timeline"
           height="400"
-          width="400"
           smallHeader="true"
           adaptContainerWidth="true"
           hideCover="true"
