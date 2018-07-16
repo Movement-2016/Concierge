@@ -4,19 +4,6 @@ const serialize = ({ jsonData, model, ctx }) => _serialize(jsonData, model, ctx)
 
 serialize.Model = _serialize.Model;
 
-class Testimonial extends serialize.Model {
-  constructor() {
-    super(...arguments);
-    this.idBinding = 'ID';
-    this.bodyBinding = 'post_content';
-    this.slugBinding = 'post_name';
-    this.titleBinding = 'fields.position';
-
-    this.imageBinding = 'fields.image';
-    this.authorBinding = 'post_title';
-  }
-}
-
 class Menu extends serialize.Model {
   constructor() {
     super(...arguments);
@@ -53,6 +40,8 @@ class Post extends PostBare {
 class Page extends Post {}
 
 class Fund extends Post {}
+
+class Testimonial extends Post {}
 
 class TeamMember extends Post {}
 

@@ -2,20 +2,19 @@
   background: white;
 }
 .blog-posts {
-  max-width: 650px;
+  max-width: 680px;
   margin: 0 auto;
 }
 .blog-post {
   margin-top: 2em;
   @include bp-md {
     margin-top: 3em;
-    // display: flex;
   }
   .post-image {
     float: left;
-    width: 30%;
-    max-width: 138px;
-    margin-right: 2.5%;
+    width: 29%;
+    max-width: 185px;
+    margin-right: 3.5%;
     border-radius: 2px;
     flex-shrink: 0;
     overflow: hidden;
@@ -24,11 +23,14 @@
   .post-title {
     font-weight: 900;
     color: $red-base;
-    font-size: 16px;
+    font-size: 19px;
     line-height: 1.2;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.4em;
     @include bp-md {
-      font-size: 20px;
+      font-size: 22px;
+    }
+    @include bp-lg {
+      font-size: 24px;
     }
   }
   .post-body {

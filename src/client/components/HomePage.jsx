@@ -5,6 +5,7 @@ import StateMap from './StateMap.jsx';
 import Thermometer from './Thermometer.jsx';
 import { FacebookFeed, TwitterFeed } from './Social.jsx';
 import BlogPosts from './BlogPosts.jsx';
+import Testimonials from './Testimonials.jsx';
 
 import { cleanHtml } from '../lib/helperFunctions';
 import Link from '../services/LinkToRoute';
@@ -20,28 +21,6 @@ const Tile = ({ label, image, description, url }) => (
       <div className="tile-description">{description}</div>
     </div>
   </Link>
-);
-
-const Testimonial = ({ author, body, image, title }) => (
-  <div className="testimonial flex-item">
-    <div className="testimonial-content">{body}</div>
-    <div className="author-area">
-      <div
-        className="author-pic"
-        style={image ? { backgroundImage: 'url("' + image + '")' } : {}}
-      />
-      <div className="author-info">
-        <div className="author-name">{author}</div>
-        <div className="author-title">{title}</div>
-      </div>
-    </div>
-  </div>
-);
-
-const Testimonials = ({ testimonials }) => (
-  <div className="testimonials flex-container">
-    {testimonials.map((t, i) => <Testimonial key={i} {...t} />)}
-  </div>
 );
 
 const StateMapBound = ({ states }) =>
@@ -75,6 +54,7 @@ const _HomePage = ({
   goal,
   current,
   homeTileSectionTitle,
+  homeTestimonialSectionTitle,
   homeTiles,
   model: { states, testimonials, blogPosts },
 }) =>
@@ -106,10 +86,9 @@ const _HomePage = ({
           <div className="donate-tiles">{homeTiles.map((d, i) => <Tile key={i} {...d} />)}</div>
         </div>
       </section>
-      <section className="testimonial-section">
-        <div className="container">
-          <Testimonials testimonials={testimonials} />
-        </div>
+      <section className="padded-section testimonial-section">
+        <h2 className="section-title">{homeTestimonialSectionTitle}</h2>
+        <Testimonials testimonials={testimonials} />
       </section>
       <section className="padded-section map-section">
         <StateMapBound states={states} />
@@ -148,6 +127,7 @@ const mapStateToProps = ({
           goal,
           current,
           homeTileSectionTitle,
+          homeTestimonialSectionTitle,
           homeTiles,
         },
       },
@@ -164,6 +144,7 @@ const mapStateToProps = ({
   goal,
   current,
   homeTileSectionTitle,
+  homeTestimonialSectionTitle,
   homeTiles,
   model,
   authCode,

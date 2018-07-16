@@ -1,78 +1,160 @@
 .testimonial-section {
-  background-color: $blue-light;
+  background: $gradient-blue;
   padding: 40px 0;
+  .section-title {
+    color: $white-trans;
+  }
 }
-
-$testimonial-pic-size: 52px;
-.testimonials {
-  @extend %flex-container;
-}
-.testimonial {
-  @extend %flex-item;
-  margin: 30px 0;
+.testimonial-area {
   @include bp-md {
     display: flex;
-    flex-direction: column;
+    margin: 40px 40px 0;
+    justify-content: center;
   }
-  .testimonial-content {
-    background-color: $white;
-    border-radius: 4px;
-    padding: 8px 15px;
+}
+.testimonial-buttons {
+  @include bp-sm-down {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding: 3px 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    &:last-child {
+      &:after {
+        display: block;
+        padding: 5px;
+        content: '';
+        flex-shrink: 0;
+      }
+    }
+  }
+  @include bp-md {
+    flex-shrink: 0;
+    text-align: center;
+    margin-top: 4px;
+  }
+}
+.testimonial-button {
+  border-radius: 2px;
+  flex-shrink: 0;
+  color: white;
+  background: $bluegrey;
+  line-height: 1.1;
+  padding: 4px;
+  font-weight: 900;
+  font-size: 11px;
+  height: 38px;
+  width: 88px;
+  display: inline-flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  transition-property: width, height, padding, transform;
+  transition-duration: 0.2s;
+  @include z-depth-1;
+  &:hover {
+    transform: scale(1.03);
+    background-color: lighten($bluegrey, 3%);
+  }
+  @include bp-md {
+    display: flex;
+    padding: 7px;
+    font-size: 13px;
+    width: 110px;
+    height: 46px;
+    margin-bottom: 15px;
+  }
+
+  & + .testimonial-button {
+    @include bp-sm-down {
+      margin-left: 10px;
+    }
+  }
+  &.focused {
+    background: $blue-light;
+    @include bp-sm-down {
+      height: 44px;
+      width: 94px;
+      padding: 7px;
+    }
+    @include bp-md {
+      transform: scale(1.12);
+    }
+  }
+}
+.testimonial-list {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+}
+.testimonial {
+  position: absolute;
+  visibility: hidden;
+  top: 0;
+  margin: 20px 5% 0;
+  color: white;
+  @include bp-md {
+    margin: 0 0 0 50px;
+  }
+  @include bp-lg {
+    margin-left: 60px;
+  }
+  &.focused {
+    visibility: visible;
+  }
+}
+.testimonial-title {
+  font-weight: 900;
+  font-size: 19px;
+  margin-bottom: 6px;
+  @include bp-md {
+    font-size: 22px;
+  }
+  @include bp-lg {
+    font-size: 25px;
+  }
+}
+.testimonial-body {
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 300;
+  margin-bottom: 15px;
+  @include bp-md {
     font-size: 18px;
-    font-weight: 300;
-    font-style: italic;
-    color: $trans-light;
-    position: relative;
-    line-height: 1.4;
-    flex: 1;
-    @include bp-md-only {
-      font-size: 15px;
-    }
-    &::after {
-      //this makes the quote arrow
-      position: absolute;
-      border: 8px solid transparent;
-      border-top: 9px solid $white;
-      border-bottom: 0;
-      top: 100%;
-      left: $testimonial-pic-size / 2 - 8px;
-      content: ' ';
-      height: 0;
-      width: 0;
-    }
   }
-  .author-area {
-    margin-top: 17px;
+  @include bp-lg {
+    font-size: 20px;
   }
-  .author-pic,
-  .author-info {
-    height: $testimonial-pic-size;
-    display: inline-block;
-    max-width: calc(100% - 60px);
+}
+.testimonial-footer {
+  display: flex;
+  align-items: top;
+}
+.testimonial-img {
+  height: 48px;
+  border-radius: 100px;
+  margin-right: 10px;
+  @include bp-lg {
+    height: 62px;
+    margin-right: 15px;
   }
-  .author-pic {
-    width: $testimonial-pic-size;
-    overflow: hidden;
-    border-radius: 40px;
-    @include full-bg;
-    @include bg-overlay(color('yellow', 'base'), 0.08);
+}
+.testimonial-author-name {
+  font-weight: 700;
+  margin: 5px 0 2px;
+  @include bp-lg {
+    font-size: 19px;
   }
-  .author-info {
-    vertical-align: top;
-    margin-left: 8px;
-    line-height: 20px;
-    padding: (($testimonial-pic-size - 20px * 2) / 2) 0;
-  }
-  .author-name {
-    color: $white;
-    font-weight: 700;
-  }
-  .author-title {
-    color: $trans-light-2;
-    @include bp-md-only {
-      margin-top: 3px;
-      line-height: 1.1;
-      font-size: 14px;
-    }
+}
+.testimonial-author-title {
+  line-height: 1.1;
+  font-size: 0.9em;
+  color: rgba(white, 0.9);
+  @include bp-lg {
+    font-size: 16px;
   }
 }
