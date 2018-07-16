@@ -3,7 +3,7 @@ import { ContentPage } from '../../client/components';
 import service from '../services/m-service';
 
 const DigitalToolkitModel = {
-  paths: ['/digital-toolkit'],
+  paths: ['/digitaltoolkit'],
 
   component: ContentPage,
 
@@ -11,7 +11,7 @@ const DigitalToolkitModel = {
     service.getPage('digitaltoolkit').then(page => {
       return {
         page,
-        pageName: 'digital-toolkit',
+        pageName: 'digitaltoolkit',
       };
     }),
 
