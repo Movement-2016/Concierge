@@ -68,19 +68,22 @@
     height: 46px;
     margin-bottom: 15px;
   }
+  @include bp-lg {
+    padding: 10px;
+    font-size: 14px;
+    width: 120px;
+    height: 50px;
+    margin-bottom: 15px;
+  }
 
   & + .testimonial-button {
     @include bp-sm-down {
-      margin-left: 10px;
+      margin-left: 14px;
     }
   }
   &.focused {
     background: $blue-light;
-    @include bp-sm-down {
-      height: 44px;
-      width: 94px;
-      padding: 7px;
-    }
+    transform: scale(1.15);
     @include bp-md {
       transform: scale(1.12);
     }

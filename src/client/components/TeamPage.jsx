@@ -14,17 +14,15 @@ const TeamMember = ({ title, position, body, image }) => (
   </div>
 );
 
-const _TeamPage = ({ teamMembers }) => {
-  return (
-    <Shell title="Meet Our Team" name="team-page">
-      <div className="content">
-        <div className="team-members">
-          {teamMembers.map((t, i) => <TeamMember key={i} {...t} />)}
-        </div>
+const _TeamPage = ({ teamMembers }) => (
+  <Shell title="Meet Our Team" name="team-page">
+    <div className="content">
+      <div className="team-members">
+        {teamMembers.reverse().map((t, i) => <TeamMember key={i} {...t} />)}
       </div>
-    </Shell>
-  );
-};
+    </div>
+  </Shell>
+);
 
 const mapStoreToProps = ({
   router: {
