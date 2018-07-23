@@ -15,9 +15,9 @@
       font-size: 18px;
     }
     a {
-      color: #255398;
+      color: $blue-dark-2;
       text-decoration: underline;
-      text-decoration-color: rgba(#255398, 0.3);
+      text-decoration-color: rgba($blue-dark-2, 0.4);
       font-weight: 500;
       &:hover {
         color: #4887e7;

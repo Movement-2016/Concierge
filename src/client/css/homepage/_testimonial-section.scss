@@ -98,9 +98,12 @@
 .testimonial {
   position: absolute;
   visibility: hidden;
+  opacity: 0;
   top: 0;
   margin: 20px 5% 0;
   color: white;
+  transition-property: visibility, opacity;
+  transition-duration: 0.2s;
   @include bp-md {
     margin: 0 0 0 50px;
   }
@@ -109,6 +112,7 @@
   }
   &.focused {
     visibility: visible;
+    opacity: 1;
   }
 }
 .testimonial-title {

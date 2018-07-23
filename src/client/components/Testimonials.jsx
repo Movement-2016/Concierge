@@ -35,6 +35,15 @@ class Testimonials extends React.Component {
   }
 
   componentDidMount() {
+    this.setHeight();
+    this.initTimer();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  setHeight = () => {
     const testimonials = document.querySelectorAll('.testimonial');
     let maxHeight = 0;
     for (var t of testimonials) {
@@ -43,10 +52,20 @@ class Testimonials extends React.Component {
       }
     }
     document.querySelector('.testimonial-list').style.minHeight = maxHeight;
-  }
+  };
 
-  handleClick = index => {
+  initTimer = () => {
+    this.interval = setInterval(this.cycleFocus, this.props.timeInterval);
+  };
+
+  cycleFocus = () => {
+    const nextFocus = (this.state.focusIndex + 1) % this.props.testimonials.length;
+    this.setState({ focusIndex: nextFocus });
+  };
+
+  handleButtonClick = index => {
     this.setState({ focusIndex: index });
+    clearInterval(this.interval);
   };
 
   render() {
@@ -58,7 +77,7 @@ class Testimonials extends React.Component {
               key={i}
               index={i}
               focus={i === this.state.focusIndex}
-              handleClick={this.handleClick}
+              handleClick={this.handleButtonClick}
               label={t.title}
             />
           ))}

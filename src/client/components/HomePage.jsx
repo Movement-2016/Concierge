@@ -88,7 +88,7 @@ const _HomePage = ({
       </section>
       <section className="padded-section testimonial-section">
         <h2 className="section-title">{homeTestimonialSectionTitle}</h2>
-        <Testimonials testimonials={testimonials} />
+        <Testimonials testimonials={testimonials} timeInterval={5000} />
       </section>
       <section className="padded-section map-section">
         <StateMapBound states={states} />
