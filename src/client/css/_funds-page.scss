@@ -110,9 +110,17 @@
 .fund-tile {
   margin-bottom: 35px;
   position: relative;
-  padding-bottom: 69px;
-  @include bp-sm {
-    padding-bottom: 73px;
+  @include bp-md {
+    order: 1;
+    &:first-of-type {
+      @include z-depth-3;
+      &:hover {
+        @include z-depth-4;
+      }
+    }
+    &:nth-of-type(2) {
+      order: 0;
+    }
   }
   .tile-top {
     display: block;
@@ -121,42 +129,18 @@
     padding: 18px 15px;
   }
   .donate-button {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     display: block;
     background: $blue-light;
-    margin: 0 15px 15px;
     border-radius: 3px;
+    margin-top: 12px;
     color: white;
     font-size: 18px;
     font-weight: 900;
     text-align: center;
-    height: 54px;
-    line-height: 54px;
-    @include bp-sm {
-      height: 58px;
-      line-height: 58px;
-    }
+    height: 58px;
+    line-height: 58px;
     &:hover {
       background: $blue-base;
     }
-  }
-  .more-link {
-    display: block;
-    height: 30px;
-    line-height: 30px;
-    font-size: 15px;
-    i {
-      font-size: 16px;
-      vertical-align: middle;
-      margin-left: 2px;
-      margin-bottom: 1px;
-    }
-  }
-  .about-fund-button {
-    font-weight: 700;
-    color: $trans-light;
   }
 }

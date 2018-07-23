@@ -1,5 +1,3 @@
-/* global $ */
-
 import React from 'react';
 import sanitizeHtml from 'sanitize-html';
 

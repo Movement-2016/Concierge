@@ -11,8 +11,8 @@ const FundTile = ({ label, url, image, description }) => (
     <div className="tile-image" style={{ backgroundImage: `url("${image}")` }} />
     <div className="tile-body">
       <div className="tile-label">{label}</div>
-      <DonateLink url={url}>{'Donate Now'}</DonateLink>
       <div className="tile-description">{description}</div>
+      <DonateLink url={url}>{'Donate Now'}</DonateLink>
     </div>
   </div>
 );

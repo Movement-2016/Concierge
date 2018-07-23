@@ -12,21 +12,19 @@ const cleanHtml = dirty =>
   });
 
 const FundTile = ({ slug, label, url, image, description }) => (
-  <div className="tile fund-tile">
-    <Link className="tile-top" to={'/funds/' + slug}>
-      <div className="tile-image" style={{ backgroundImage: `url("${image}")` }} />
-      <div className="tile-body">
-        <div className="tile-label">
-          {label}
-          <i className="material-icons">{'chevron_right'}</i>
-        </div>
-        <div className="tile-description">{description}</div>
+  <Link className="tile fund-tile" to={'/funds/' + slug}>
+    <div className="tile-image" style={{ backgroundImage: `url("${image}")` }} />
+    <div className="tile-body">
+      <div className="tile-label">
+        {label}
+        <i className="material-icons">{'chevron_right'}</i>
       </div>
-    </Link>
-    <DonateLink className="tile-donate-button" url={url}>
-      {'Donate Now'}
-    </DonateLink>
-  </div>
+      <div className="tile-description">{description}</div>
+    </div>
+  </Link>
+  // <DonateLink className="tile-donate-button" url={url}>
+  //   {'Donate Now'}
+  // </DonateLink>
 );
 
 const _FundsPage = ({ title, body, linkText, funds, image }) => (
