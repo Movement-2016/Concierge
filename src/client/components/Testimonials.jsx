@@ -10,12 +10,12 @@ const TestimonialButton = ({ index, focus, handleClick, label }) => (
   </a>
 );
 
-const Testimonial = ({ focus, title, authorName, authorTitle, body, image }) => (
+const Testimonial = ({ focus, title, authorName, authorTitle, body, authorImage }) => (
   <div className={'testimonial' + (focus ? ' focused' : '')}>
     <div className="testimonial-title">{title}</div>
     <div className="testimonial-body" dangerouslySetInnerHTML={{ __html: sanitizeHtml(body) }} />
     <div className="testimonial-footer">
-      <img className="testimonial-img" src={image} />
+      <img className="testimonial-img" src={authorImage} />
       <div className="testimonial-meta">
         <div className="testimonial-author-name">{authorName}</div>
         <div className="testimonial-author-title">{authorTitle}</div>
