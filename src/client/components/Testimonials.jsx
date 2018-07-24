@@ -10,15 +10,20 @@ const TestimonialButton = ({ index, focus, handleClick, label }) => (
   </a>
 );
 
-const Testimonial = ({ focus, title, authorName, authorTitle, body, authorImage }) => (
+const Testimonial = ({ focus, title, image, authorName, authorTitle, body, authorImage }) => (
   <div className={'testimonial' + (focus ? ' focused' : '')}>
-    <div className="testimonial-title">{title}</div>
-    <div className="testimonial-body" dangerouslySetInnerHTML={{ __html: sanitizeHtml(body) }} />
-    <div className="testimonial-footer">
-      <img className="testimonial-img" src={authorImage} />
-      <div className="testimonial-meta">
-        <div className="testimonial-author-name">{authorName}</div>
-        <div className="testimonial-author-title">{authorTitle}</div>
+    <div className="testimonial-image">
+      <img src={image} />
+    </div>
+    <div className="testimonial-text">
+      <div className="testimonial-title">{title}</div>
+      <div className="testimonial-body" dangerouslySetInnerHTML={{ __html: sanitizeHtml(body) }} />
+      <div className="testimonial-footer">
+        <img className="testimonial-author-image" src={authorImage} />
+        <div className="testimonial-meta">
+          <div className="testimonial-author-name">{authorName}</div>
+          <div className="testimonial-author-title">{authorTitle}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -80,7 +85,7 @@ class Testimonials extends React.Component {
             />
           ))}
         </div>
-        <div className="testimonial-list">
+        <div className="testimonial-list container">
           {this.props.testimonials.map((t, i) => (
             <Testimonial key={i} focus={i === this.state.focusIndex} {...t} />
           ))}

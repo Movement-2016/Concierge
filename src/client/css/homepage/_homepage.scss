@@ -2,10 +2,10 @@
   .padded-section {
     padding: 60px 0 70px;
     @include bp-md {
-      padding: 70px 0 85px;
+      padding: 70px 0 80px;
     }
     @include bp-lg {
-      padding: 90px 0 110px;
+      padding: 90px 0 100px;
     }
   }
 }
