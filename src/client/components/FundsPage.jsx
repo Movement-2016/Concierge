@@ -35,7 +35,7 @@ const _FundsPage = ({ title, body, linkText, funds, image }) => (
     <div className="page-intro">
       <div className="container">
         <div className="intro-content" dangerouslySetInnerHTML={{ __html: cleanHtml(body) }} />
-        <Link to="/about/#our-process">
+        <Link to="/faq">
           {linkText}
           <i className="material-icons">{'chevron_right'}</i>
         </Link>
