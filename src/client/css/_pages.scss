@@ -1,9 +1,41 @@
 .content {
+  ol,
+  ul {
+    padding-left: 20px;
+  }
   ul > li {
     list-style-type: disc;
   }
   ol > li {
     list-style-type: decimal;
+  }
+  .highlight-box {
+    background: desaturate($blue-base, 20%);
+    border-radius: 3px;
+    color: white;
+    padding: 20px 15px;
+    max-width: 675px;
+    margin: 0 auto;
+    @include bp-md {
+      padding: 30px;
+    }
+    p {
+      margin: 0;
+      font-weight: 500;
+      & + p,
+      & + ol,
+      & + ul {
+        margin-top: 1em;
+      }
+    }
+    a {
+      font-weight: 700;
+      text-decoration: underline;
+      color: white;
+      &:hover {
+        color: $blue-light-3;
+      }
+    }
   }
 }
 
@@ -68,5 +100,13 @@
       width: 182px;
       margin-right: 22px;
     }
+  }
+}
+
+.faq-page {
+  h4 {
+    margin: 2.25em 0 0.75em;
+    font-size: 1.5rem;
+    color: $trans-dark;
   }
 }

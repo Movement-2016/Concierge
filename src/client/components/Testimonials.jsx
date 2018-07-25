@@ -74,16 +74,18 @@ class Testimonials extends React.Component {
   render() {
     return (
       <div className="testimonial-area">
-        <div className="testimonial-buttons">
-          {this.props.testimonials.map((t, i) => (
-            <TestimonialButton
-              key={i}
-              index={i}
-              focus={i === this.state.focusIndex}
-              handleClick={this.handleButtonClick}
-              label={t.title}
-            />
-          ))}
+        <div className="testimonial-button-area">
+          <div className="testimonial-buttons">
+            {this.props.testimonials.map((t, i) => (
+              <TestimonialButton
+                key={i}
+                index={i}
+                focus={i === this.state.focusIndex}
+                handleClick={this.handleButtonClick}
+                label={t.title}
+              />
+            ))}
+          </div>
         </div>
         <div className="testimonial-list container">
           {this.props.testimonials.map((t, i) => (

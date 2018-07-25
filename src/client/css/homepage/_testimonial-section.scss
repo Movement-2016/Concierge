@@ -11,12 +11,17 @@
     }
   }
 }
+.testimonial-button-area {
+  overflow-x: scroll;
+  padding-left: 12px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 .testimonial-buttons {
+  height: 50px;
   display: flex;
   align-items: center;
-  height: 50px;
-  padding: 0 10px;
-  overflow-x: scroll;
   @include bp-md {
     height: 58px;
     justify-content: center;
@@ -25,16 +30,9 @@
   @include bp-lg {
     margin-bottom: 40px;
   }
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  &:last-child {
-    &:after {
-      display: block;
-      padding: 5px;
-      content: '';
-      flex-shrink: 0;
-    }
+  &:after {
+    content: '';
+    padding: 6px;
   }
 }
 .testimonial-button {
@@ -69,7 +67,6 @@
     color: white;
     background: rgba(#70b4ef, 0.87);
   }
-
   & + .testimonial-button {
     margin-left: 14px;
     @include bp-md {
@@ -80,7 +77,7 @@
     }
   }
   &.focused {
-    background: rgba(#70b4ef, 0.84);
+    background: rgba(#70b4ef, 0.92);
     color: white;
     transform: scale(1.15);
     @include z-depth-1;
@@ -92,7 +89,7 @@
 .testimonial-list {
   position: relative;
   max-width: 1100px;
-  min-height: 470px;
+  min-height: 720px;
 }
 .testimonial {
   position: absolute;
