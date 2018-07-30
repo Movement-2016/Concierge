@@ -20,8 +20,38 @@ a {
   cursor: pointer;
 }
 
+b,
 strong {
   font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  margin: 1.5em 0 0.5em;
+  line-height: 1.15em;
+}
+h1 {
+  font-size: 2.3em;
+}
+h2 {
+  font-size: 2.1em;
+}
+h3 {
+  font-size: 1.8em;
+}
+h4 {
+  font-size: 1.5em;
+}
+h5 {
+  font-size: 1.2em;
+}
+h6 {
+  font-size: 1.1em;
 }
 
 .page-title {
@@ -29,9 +59,9 @@ strong {
   text-transform: capitalize;
   color: $red-base;
   font-weight: 900;
-  margin: 0 0 2rem;
-  font-size: 1.8rem;
+  margin: 0 0 2em;
+  font-size: 1.8em;
   @include bp-md {
-    font-size: 2.5rem;
+    font-size: 2.5em;
   }
 }

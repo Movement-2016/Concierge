@@ -7,14 +7,6 @@ $navbar-height: 50px;
 $navbar-height-mobile: $navbar-height;
 $navbar-height-lg: 64px;
 
-// Base font sizes
-$h1-fontsize: 2.75rem;
-$h2-fontsize: 2.75rem;
-$h3-fontsize: 1.68rem;
-$h4-fontsize: 2rem;
-$h5-fontsize: 1.4rem;
-$h6-fontsize: 1.2rem;
-
 // Media query variables
 $xs-screen-up: 375px;
 $small-screen-up: 761px;
@@ -29,6 +21,7 @@ $xl-and-up: 'only screen and (min-width: #{$large-screen-up})';
 
 // Base colors
 $white: #fff;
+$grey-light: color('grey', 'lighten-5');
 $white-trans: transparentize(white, 0.3);
 
 $blue-base: color('blue', 'base');
@@ -65,9 +58,9 @@ $primary-color-light: $blue-light;
 $secondary-color: $red-base;
 
 // Element colors
-$navbar-color: $white;
-$main-bg-color: color('grey', 'lighten-5');
-$form-bg-color: $white;
+$navbar-color: white;
+$main-bg-color: $grey-light;
+$form-bg-color: white;
 $link-color: $blue-base;
 $input-border-color: $trans-light;
 $input-focus-color: $blue-base;

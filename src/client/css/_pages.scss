@@ -1,7 +1,7 @@
 .content {
   ol,
   ul {
-    padding-left: 20px;
+    padding-left: 8px;
   }
   ul > li {
     list-style-type: disc;
@@ -10,7 +10,7 @@
     list-style-type: decimal;
   }
   .highlight-box {
-    background: desaturate($blue-base, 20%);
+    background: desaturate($blue-light, 15%);
     border-radius: 3px;
     color: white;
     padding: 20px 15px;
@@ -108,5 +108,90 @@
     margin: 2.25em 0 0.75em;
     font-size: 1.5rem;
     color: $trans-dark;
+  }
+}
+
+.partytoolkit-page {
+  background-color: white;
+  .toolkit-section-title {
+    margin: 3em 0 1em;
+    font-size: 1.5em;
+    font-weight: 900;
+    color: $red-base;
+  }
+  .flex-table {
+    font-weight: 500;
+    color: $trans-dark;
+    font-size: 14px;
+    line-height: 1.3;
+    @include bp-md {
+      display: flex;
+      align-items: stretch;
+    }
+    @include bp-lg {
+      font-size: 15px;
+    }
+    li {
+      margin-top: 0.5em;
+    }
+    .column {
+      margin-bottom: 2em;
+      background: $grey-light;
+      border: 0 1px 1px 1px solid $light-border;
+      @include bp-md {
+        flex-shrink: 0;
+        width: 49%;
+        & + .column {
+          margin-left: 2%;
+        }
+      }
+    }
+    .column-header {
+      background: $blue-light;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-weight: 900;
+      font-size: 1.3em;
+      @include bp-md {
+        padding: 14px;
+      }
+    }
+    .column-body {
+      padding: 12px 15px 5px;
+      @include bp-md {
+        padding: 15px 20px 5px;
+      }
+      h6 {
+        text-transform: uppercase;
+        color: $trans-light-2;
+        margin-top: 1em;
+      }
+    }
+    .column-section {
+      margin-bottom: 2em;
+    }
+    .column-footer {
+      color: $trans-base;
+      font-style: italic;
+    }
+  }
+  #supply-section {
+    font-weight: 500;
+    p {
+      color: $trans-base;
+      font-weight: 700;
+    }
+    label {
+      color: inherit;
+    }
+    ul {
+      padding-left: 3px;
+      margin-bottom: 1.5em;
+    }
+    li {
+      list-style-type: none;
+      margin: 0.2em 0;
+    }
   }
 }

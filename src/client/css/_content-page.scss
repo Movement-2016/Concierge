@@ -1,11 +1,17 @@
 .content-page {
   @include page-padding;
 
-  img.alignleft {
-    margin-bottom: 1em;
-    @include bp-md {
-      float: left;
-      margin-right: 20px;
+  img {
+    &.alignleft {
+      margin-bottom: 1em;
+      @include bp-md {
+        float: left;
+        margin-right: 20px;
+      }
+    }
+    &.aligncenter {
+      margin: 0 auto;
+      display: block;
     }
   }
 

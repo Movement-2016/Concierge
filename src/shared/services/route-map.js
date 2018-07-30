@@ -8,6 +8,7 @@ import Jobs from '../models/jobs';
 import OrganizersGuide from '../models/organizersGuide';
 import Faq from '../models/faq';
 import DigitalToolkit from '../models/digitalToolkit';
+import PartyToolkit from '../models/partyToolkit';
 import About from '../models/about';
 import Advisors from '../models/advisors';
 import Party from '../models/party';
@@ -33,6 +34,7 @@ const RouteMap = [
   Faq,
   OrganizersGuide,
   DigitalToolkit,
+  PartyToolkit,
   About,
   Advisors,
   FundsModel,
