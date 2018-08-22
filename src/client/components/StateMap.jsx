@@ -80,7 +80,8 @@ class StateMap extends React.Component {
           const s = count === 1 ? '' : 's';
           title += `${count} group${s}</div>`;
           if (description) {
-            title += `<div class="race-data">${description}</div>`;
+            const descriptionFormatted = description.replace(/\n/g, '<br>');
+            title += `<div class="race-data">${descriptionFormatted}</div>`;
           }
         } else {
           link = '/groups#no-groups';
