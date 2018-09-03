@@ -44,18 +44,19 @@
 }
 
 .submit-message {
+  background-color: white;
   margin-top: 2rem;
   padding: 8px 12px;
-  border-radius: 6px;
+  border-radius: 3px;
   font-size: 14px;
 }
 
 .submit-error {
   color: $red-base;
-  border: 1px solid $red-base;
+  border: 1px solid $red-light;
 }
 
 .submit-success {
-  color: $green;
-  border: 1px solid $green;
+  color: $green-base;
+  border: 1px solid $green-light;
 }

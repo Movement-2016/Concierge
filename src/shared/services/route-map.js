@@ -47,7 +47,7 @@ const RouteMap = [
   Plan,
   PlanSummary,
   Profile,
-  // PuertoRico,
+  PuertoRico,
 ]
   .map(mapper)
   .reduce(flattener, []);

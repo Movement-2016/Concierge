@@ -45,16 +45,19 @@ const _FundsPage = ({ title, body, linkText, funds, image }) => (
       <h2 className="section-title">{'Choose A Fund'}</h2>
       <div className="container">
         <div className="fund-tiles">
-          {funds.map((fund, i) => (
-            <FundTile
-              key={i}
-              label={fund.title}
-              slug={fund.slug}
-              url={fund.fundUrl}
-              image={fund.image}
-              description={fund.fundDescriptionShort}
-            />
-          ))}
+          {funds.map(
+            (fund, i) =>
+              fund.fundDisplay && (
+                <FundTile
+                  key={i}
+                  label={fund.title}
+                  slug={fund.slug}
+                  url={fund.fundUrl}
+                  image={fund.image}
+                  description={fund.fundDescriptionShort}
+                />
+              )
+          )}
         </div>
       </div>
     </section>

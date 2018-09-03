@@ -1,13 +1,13 @@
-import { ActionPage } from '../../client/components';
+import { PuertoRicoPage } from '../../client/components';
 
 import service from '../services/m-service';
 
 const PuertoRicoModel = {
   paths: ['/puertorico'],
 
-  component: ActionPage,
+  component: PuertoRicoPage,
 
-  title: 'Puerto Rico Voter Project',
+  title: 'Puerto Rican Voter Project',
 
   model: () => service.getPage('puertorico').then(page => ({ page })),
 };
