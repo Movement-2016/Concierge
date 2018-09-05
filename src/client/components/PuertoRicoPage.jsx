@@ -14,8 +14,8 @@ class ActionSection extends React.Component {
 
     const data = {
       name: this._name.value,
-      email: this._name.email,
-      zip: this._name.zip,
+      email: this._email.value,
+      zip: this._zip.value,
     };
     const onSuccess = () => {
       this.setState({ formAlert: 'success' });

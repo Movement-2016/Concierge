@@ -1,5 +1,5 @@
 import GoogleSpreadsheet from 'google-spreadsheet';
-import { promisify } from 'es6-promisify';
+// import { promisify } from 'es6-promisify';
 
 const creds = {
   type: 'service_account',
