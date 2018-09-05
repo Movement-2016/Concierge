@@ -18,20 +18,31 @@ const creds = {
 
 const sheetId = '1eWAuqoF1DImMXspDA-jBILTqYHw6kQvGMmmWGfRoevw';
 
-async function saveToSpreadsheet() {
-  try {
-    const doc = new GoogleSpreadsheet(sheetId);
-    await promisify(doc.useServiceAccountAuth)(creds);
-    const docInfo = await promisify(doc.getInfo)();
-    const sheet = docInfo.worksheets[0];
-    await promisify(sheet.addRow)({
-      name: 'Janet',
-      email: 'testing12@gmail.com',
-      zip: 54032,
+const saveToSpreadsheet = (data, handleSuccess, handleError) => {
+  const doc = new GoogleSpreadsheet(sheetId);
+  // Authenticate with the Google Spreadsheets API.
+  doc.useServiceAccountAuth(creds, function(err) {
+    err && handleError(err);
+    doc.addRow(1, data, function(err) {
+      if (err) {
+        handleError(err);
+      } else {
+        handleSuccess();
+      }
     });
-  } catch (error) {
-    console.log(error);
-  }
-}
+  });
+};
+
+// async function saveToSpreadsheet(fields) {
+//   try {
+//     const doc = new GoogleSpreadsheet(sheetId);
+//     await promisify(doc.useServiceAccountAuth)(creds);
+//     const docInfo = await promisify(doc.getInfo)();
+//     const sheet = docInfo.worksheets[0];
+//     await promisify(sheet.addRow)(fields);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
 module.exports = saveToSpreadsheet;

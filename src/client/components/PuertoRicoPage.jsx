@@ -11,13 +11,25 @@ class ActionSection extends React.Component {
 
   onSubmit = event => {
     event.preventDefault();
-    saveToSpreadsheet();
-    this.setState({ formAlert: 'success' });
-    // this.props.onSubmit(this.refs.message.value);
+
+    const data = {
+      name: this._name.value,
+      email: this._name.email,
+      zip: this._name.zip,
+    };
+    const onSuccess = () => {
+      this.setState({ formAlert: 'success' });
+    };
+    const onError = error => {
+      console.log(error);
+      this.setState({ formAlert: 'error' });
+    };
+
+    saveToSpreadsheet(data, onSuccess, onError);
   };
 
   render() {
-    const { title, description, buttonText, successMessage } = this.props;
+    const { title, description, buttonText, successMessage, errorMessage } = this.props;
     return (
       <div className="take-action">
         <h3 className="action-title">{title}</h3>
@@ -29,7 +41,7 @@ class ActionSection extends React.Component {
             name="name"
             ref={input => (this._name = input)}
             placeholder="Your Name"
-            // required
+            required
           />
           <div className="input-wrapper">
             <input
@@ -38,7 +50,7 @@ class ActionSection extends React.Component {
               name="email"
               ref={input => (this._email = input)}
               placeholder="Email"
-              // required
+              required
             />
             <input
               type="text"
@@ -46,14 +58,17 @@ class ActionSection extends React.Component {
               name="zip"
               ref={input => (this._zip = input)}
               placeholder="Zip Code"
-              // required
+              required
             />
           </div>
-          <button className="submit-button" type="submit">
+          <button className="waves-effect waves-light submit-button" type="submit">
             {buttonText}
           </button>
           {this.state.formAlert === 'success' && (
             <div className="submit-message submit-success">{successMessage}</div>
+          )}
+          {this.state.formAlert === 'error' && (
+            <div className="submit-message submit-error">{errorMessage}</div>
           )}
         </form>
       </div>
@@ -83,6 +98,8 @@ const PuertoRicoPage = () => {
     buttonText: 'Take The Pledge',
     successMessage:
       'Thanks for adding your name! We will follow up to let you know how you can help.',
+    errorMessage:
+      'Oops! There was an error and your information could not be submitted. Please try again later or email info@movement.vote.',
   };
 
   return (
