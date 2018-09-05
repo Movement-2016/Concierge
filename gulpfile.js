@@ -56,8 +56,6 @@ const dependencies = [
   'uuid',
 ];
 
-const fonts = ['src/client/fonts/**/*'];
-
 const vendorStyles = ['src/client/vendor.css'];
 
 const vendorClientJS = [
@@ -76,7 +74,7 @@ var stdTasks = [
   'images',
   'server',
   'styles',
-  'fonts',
+  'assets',
   'vendor-styles',
   'vendor-client-js',
   'vendor',
@@ -101,11 +99,11 @@ gulp.task('production', function() {
 gulp.task('watch', function() {
   gulp.watch('src/client/index.app.html', ['html']);
   gulp.watch('src/client/images/**/*', ['images']);
+  gulp.watch('src/client/assets/**/*', ['assets']);
   gulp.watch('src/server/*.js', ['server']);
   gulp.watch('src/shared/**/*', ['shared']);
   gulp.watch(dependencies, ['vendor']);
   gulp.watch('src/client/css/**/*.scss', ['styles']);
-  gulp.watch('src/client/fonts/**/*', ['fonts']);
 });
 
 // Live reload browser on file changes
@@ -134,9 +132,9 @@ gulp.task('images', function() {
   return gulp.src('src/client/images/**/*').pipe(gulp.dest(`${BASE}/public/images`));
 });
 
-// copy fonts
-gulp.task('fonts', function() {
-  return gulp.src(fonts).pipe(gulp.dest(`${BASE}/public/fonts`));
+// copy other assets
+gulp.task('assets', function() {
+  return gulp.src('src/client/assets/**/*').pipe(gulp.dest(`${BASE}/public/assets`));
 });
 
 // SERVER

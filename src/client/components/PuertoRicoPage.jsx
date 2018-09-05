@@ -1,4 +1,5 @@
 import React from 'react';
+import saveToSpreadsheet from '../services/saveToGoogleSheet';
 
 class ActionSection extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class ActionSection extends React.Component {
 
   onSubmit = event => {
     event.preventDefault();
+    saveToSpreadsheet();
     this.setState({ formAlert: 'success' });
     // this.props.onSubmit(this.refs.message.value);
   };
@@ -27,7 +29,7 @@ class ActionSection extends React.Component {
             name="name"
             ref={input => (this._name = input)}
             placeholder="Your Name"
-            required
+            // required
           />
           <div className="input-wrapper">
             <input
@@ -36,7 +38,7 @@ class ActionSection extends React.Component {
               name="email"
               ref={input => (this._email = input)}
               placeholder="Email"
-              required
+              // required
             />
             <input
               type="text"
@@ -44,7 +46,7 @@ class ActionSection extends React.Component {
               name="zip"
               ref={input => (this._zip = input)}
               placeholder="Zip Code"
-              required
+              // required
             />
           </div>
           <button className="submit-button" type="submit">
