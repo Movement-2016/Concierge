@@ -1,4 +1,5 @@
-import { FundsPage, FundPage } from '../../client/components';
+import { FundsPage } from '../../client/components';
+import { FundPage } from '../../client/components/FundPage.jsx';
 
 import service from '../services/m-service';
 
