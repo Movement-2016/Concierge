@@ -17,9 +17,14 @@ const FundTile = ({ label, url, image, description }) => (
   </div>
 );
 
-const _FundPage = ({ mobile, slug, funds, groups }) => {
-  let fund;
-  funds.some(f => f.slug === slug && (fund = f));
+const FundPageBody = ({ mobile, fund, groups, hideDonateButton }) => {
+  const tileProps = {
+    image: fund.image,
+    label: fund.title,
+    description: fund.fundDescriptionShort,
+    url: fund.fundUrl,
+  };
+
   const fundGroups = groups.filter(g => fund.fundGroups.includes(g.id));
 
   fundGroups.sort((a, b) => {
@@ -31,46 +36,50 @@ const _FundPage = ({ mobile, slug, funds, groups }) => {
     return nameA < nameB ? -1 : 1;
   });
 
-  const tileProps = {
-    image: fund.image,
-    label: fund.title,
-    description: fund.fundDescriptionShort,
-    url: fund.fundUrl,
-  };
+  return (
+    <div id="fund-page-body">
+      <div className="fund-content">
+        <div className="fund-intro">
+          <div className="fund-intro-title">{'About This Fund'}</div>
+          <div
+            className="fund-intro-text"
+            dangerouslySetInnerHTML={{ __html: cleanHtml(fund.fundIntro) }}
+          />
+        </div>
+        <div className="fund-groups-sentence">
+          {'The ' + fund.title + ' supports these groups:'}
+        </div>
+        <div className="fund-groups">
+          {fundGroups.map((g, i) => <Org key={i} mobile={mobile} {...g} />)}
+        </div>
+      </div>
+      <div className="fund-action">
+        {mobile ? (
+          <DonateLink
+            className={hideDonateButton ? 'fund-donate-button hidden' : 'fund-donate-button'}
+            url={fund.fundUrl}
+          >
+            {'Donate Now'}
+            <i className="material-icons">{'chevron_right'}</i>
+          </DonateLink>
+        ) : (
+          <Sticky top={40} bottomBoundary="#fund-page-body">
+            <FundTile {...tileProps} />
+          </Sticky>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const _FundPage = ({ mobile, slug, funds, groups }) => {
+  const fund = funds.find(el => el.slug === slug);
 
   return (
     <main className="fund-page">
       <div className="container">
         <h1 className="page-title">{fund.title}</h1>
-        <div id="fund-page-body">
-          <div className="fund-content">
-            <div className="fund-intro">
-              <div className="fund-intro-title">{'About This Fund'}</div>
-              <div
-                className="fund-intro-text"
-                dangerouslySetInnerHTML={{ __html: cleanHtml(fund.fundIntro) }}
-              />
-            </div>
-            <div className="fund-groups-sentence">
-              {'The ' + fund.title + ' supports these groups:'}
-            </div>
-            <div className="fund-groups">
-              {fundGroups.map((g, i) => <Org key={i} mobile={mobile} {...g} />)}
-            </div>
-          </div>
-          <div className="fund-action">
-            {mobile ? (
-              <DonateLink className="fund-donate-button" url={fund.fundUrl}>
-                {'Donate Now'}
-                <i className="material-icons">{'chevron_right'}</i>
-              </DonateLink>
-            ) : (
-              <Sticky top={40} bottomBoundary="#fund-page-body">
-                <FundTile {...tileProps} />
-              </Sticky>
-            )}
-          </div>
-        </div>
+        <FundPageBody mobile={mobile} fund={fund} groups={groups} />
       </div>
     </main>
   );
@@ -89,4 +98,4 @@ const mapStoreToProps = ({
 
 const FundPage = connect(mapStoreToProps)(_FundPage);
 
-module.exports = FundPage;
+module.exports = { FundPage, FundPageBody };

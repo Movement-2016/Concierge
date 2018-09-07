@@ -1,96 +1,71 @@
 import React from 'react';
-import saveToSpreadsheet from '../services/saveToGoogleSheet';
+import { connect } from 'react-redux';
+import ActionSection from './ActionSection.jsx';
+import { FundPageBody } from './FundPage.jsx';
 
-class ActionSection extends React.Component {
+const Video = () => (
+  <div className="prvp-video">
+    <div className="video-wrapper">
+      {global.IS_SERVER_REQUEST ? (
+        <span />
+      ) : (
+        <iframe
+          width="420"
+          height="325"
+          src="https://www.youtube.com/embed/dKuPO-282mA?rel=0&amp;showinfo=0"
+          frameBorder="0"
+          allowFullScreen
+        />
+      )}
+    </div>
+  </div>
+);
+
+class FundSection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formAlert: '',
+      hideDonateButton: true,
     };
   }
 
-  onSubmit = event => {
-    event.preventDefault();
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
 
-    const data = {
-      name: this._name.value,
-      email: this._email.value,
-      zip: this._zip.value,
-    };
-    const onSuccess = () => {
-      this.setState({ formAlert: 'success' });
-    };
-    const onError = error => {
-      console.log(error);
-      this.setState({ formAlert: 'error' });
-    };
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
 
-    saveToSpreadsheet(data, onSuccess, onError);
+  // add 'active' class to donate button once fundTitle element is 80px from bottom of viewport
+  handleScroll = () => {
+    var bounding = this._fundSection.getBoundingClientRect();
+    if (bounding.top + 200 <= window.innerHeight) {
+      this.setState({ hideDonateButton: false });
+    } else {
+      this.setState({ hideDonateButton: true });
+    }
   };
 
   render() {
-    const { title, description, buttonText, successMessage, errorMessage } = this.props;
+    const { mobile, fund, groups } = this.props;
     return (
-      <div className="take-action">
-        <h3 className="action-title">{title}</h3>
-        <p className="action-intro">{description}</p>
-        <form className="action-form" onSubmit={this.onSubmit}>
-          <input
-            type="text"
-            className="input-name"
-            name="name"
-            ref={input => (this._name = input)}
-            placeholder="Your Name"
-            required
+      <div className="fund-section" ref={el => (this._fundSection = el)}>
+        <div className="container">
+          <h2 className="fund-title">{fund.title}</h2>
+          <FundPageBody
+            mobile={mobile}
+            fund={fund}
+            groups={groups}
+            hideDonateButton={this.state.hideDonateButton}
           />
-          <div className="input-wrapper">
-            <input
-              type="email"
-              className="input-email"
-              name="email"
-              ref={input => (this._email = input)}
-              placeholder="Email"
-              required
-            />
-            <input
-              type="text"
-              className="input-zip"
-              name="zip"
-              ref={input => (this._zip = input)}
-              placeholder="Zip Code"
-              required
-            />
-          </div>
-          <button className="waves-effect waves-light submit-button" type="submit">
-            {buttonText}
-          </button>
-          {this.state.formAlert === 'success' && (
-            <div className="submit-message submit-success">{successMessage}</div>
-          )}
-          {this.state.formAlert === 'error' && (
-            <div className="submit-message submit-error">{errorMessage}</div>
-          )}
-        </form>
+        </div>
       </div>
     );
   }
 }
 
-const Video = () => (
-  <div className="prvp-video">
-    <div className="video-wrapper">
-      <iframe
-        width="420"
-        height="325"
-        src="https://www.youtube-nocookie.com/embed/I1dAIZ1RG64?rel=0&amp;showinfo=0"
-        frameBorder="0"
-        allowFullScreen
-      />
-    </div>
-  </div>
-);
-
-const PuertoRicoPage = () => {
+const _PuertoRicoPage = ({ mobile, funds, groups }) => {
   const actionSectionProps = {
     title: 'Join The Fight',
     description:
@@ -99,20 +74,33 @@ const PuertoRicoPage = () => {
     successMessage:
       'Thanks for adding your name! We will follow up to let you know how you can help.',
     errorMessage:
-      'Oops! There was an error and your information could not be submitted. Please try again later or email info@movement.vote.',
+      'Oops! There was an error and your information could not be submitted. Please try again or email info@movement.vote.',
   };
-
+  const fund = funds.find(el => el.slug === 'puertorico');
   return (
     <main className="puerto-rico-page">
-      <div className="container">
-        <img className="page-logo" src="/images/prvp-logo.png" />
-        <div className="intro-section">
-          <Video />
-          <ActionSection {...actionSectionProps} />
+      <div className="intro-section">
+        <div className="container">
+          <img className="page-logo" src="/images/prvp-logo.png" />
+          <div className="intro-content">
+            <Video />
+            <ActionSection {...actionSectionProps} />
+          </div>
         </div>
       </div>
+      <FundSection mobile={mobile} fund={fund} groups={groups} />
     </main>
   );
 };
+
+const mapStoreToProps = ({
+  router: {
+    target: {
+      model: { funds, groups },
+    },
+  },
+}) => ({ funds, groups });
+
+const PuertoRicoPage = connect(mapStoreToProps)(_PuertoRicoPage);
 
 module.exports = PuertoRicoPage;

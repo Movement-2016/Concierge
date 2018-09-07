@@ -1,105 +1,124 @@
 .puerto-rico-page {
-  padding: 35px 0;
-  @include bp-lg {
-    padding: 55px 0;
-  }
-  .container {
-    max-width: 550px;
-    @include bp-lg {
-      max-width: 1060px;
-    }
-  }
-  .page-logo {
-    width: 240px;
-    margin: 0 auto 30px;
-    display: block;
-    @include bp-md {
-      margin-bottom: 45px;
-      width: 330px;
-    }
-    @include bp-lg {
-      margin-bottom: 60px;
-      width: 390px;
-    }
-  }
   .intro-section {
+    padding: 35px 0 60px;
+    background: white;
     @include bp-lg {
+      padding: 55px 0 70px;
+    }
+    .container {
+      max-width: 550px;
+      @include bp-lg {
+        max-width: 1060px;
+      }
+    }
+    .page-logo {
+      width: 240px;
+      margin: 0 auto 30px;
+      display: block;
+      @include bp-md {
+        margin-bottom: 45px;
+        width: 330px;
+      }
+      @include bp-lg {
+        margin-bottom: 60px;
+        width: 390px;
+      }
+    }
+    .intro-content {
+      @include bp-lg {
+        display: flex;
+      }
+    }
+  }
+  .prvp-video {
+    width: 100%;
+    @include bp-lg {
+      width: 55%;
+      margin-right: 4%;
+      flex-shrink: 0;
+    }
+    .video-wrapper {
+      overflow: hidden;
+      padding-bottom: 56.25%;
+      position: relative;
+      height: 0;
+      background: $light-border;
+      iframe {
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+      }
+    }
+  }
+  .take-action {
+    margin-top: 30px;
+    @include bp-lg {
+      margin-top: 0;
+    }
+    .action-title {
+      font-weight: 900;
+      color: $red-base;
+      font-size: 1.6em;
+      margin: 0 0 10px;
+      @include bp-lg {
+        font-size: 29px;
+      }
+    }
+  }
+  .action-form {
+    margin-bottom: 30px;
+    input[type='text'],
+    input[type='email'] {
+      background: $grey-light;
+      border: 1px solid #c1c1c1;
+      height: 2.8rem;
+      padding: 0 8px;
+      box-sizing: border-box;
+      border-radius: 2px;
+    }
+    .input-name {
+      margin-top: 20px;
+    }
+    .input-wrapper {
       display: flex;
     }
-  }
-}
-.prvp-video {
-  width: 100%;
-  @include bp-lg {
-    width: 55%;
-    margin-right: 4%;
-    flex-shrink: 0;
-  }
-}
-.take-action {
-  margin-top: 30px;
-  @include bp-lg {
-    margin-top: 0;
-  }
-  .action-title {
-    font-weight: 900;
-    color: $red-base;
-    font-size: 1.7em;
-    margin-top: 0;
-    @include bp-lg {
-      font-size: 29px;
+    .input-email {
+      width: 60%;
+      flex-shrink: 0;
+      margin-right: 15px;
+    }
+    .submit-button {
+      display: block;
+      background: $red-light;
+      width: 100%;
+      border: 0;
+      height: 3.2rem;
+      color: white;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 2px;
+      &:hover {
+        background: $red-base;
+      }
     }
   }
-}
-.action-form {
-  margin-bottom: 30px;
-  input[type='text'],
-  input[type='email'] {
-    background: white;
-    border: 1px solid #c1c1c1;
-    height: 2.8rem;
-    padding: 0 8px;
-    box-sizing: border-box;
-    border-radius: 2px;
-  }
-  .input-name {
-    margin-top: 20px;
-  }
-  .input-wrapper {
-    display: flex;
-  }
-  .input-email {
-    width: 60%;
-    flex-shrink: 0;
-    margin-right: 15px;
-  }
-  .submit-button {
-    display: block;
-    background: $red-light;
-    width: 100%;
-    border: 0;
-    height: 3.2rem;
-    color: white;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 1.1rem;
-    border-radius: 2px;
-    &:hover {
-      background: $red-base;
+  .fund-section {
+    background: $grey-light;
+    border-top: 1px solid $light-border;
+    padding: 90px 0;
+    .fund-title {
+      margin: 0 0 30px;
+      font-size: 1.7em;
+      color: $red-base;
+      font-weight: 900;
+      text-align: left;
+      @include bp-lg {
+        padding: 0;
+        font-size: 2.2rem;
+      }
     }
-  }
-}
-
-.video-wrapper {
-  overflow: hidden;
-  padding-bottom: 56.25%;
-  position: relative;
-  height: 0;
-  iframe {
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    position: absolute;
   }
 }

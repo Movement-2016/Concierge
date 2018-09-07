@@ -9,7 +9,7 @@ const PuertoRicoModel = {
 
   title: 'Puerto Rican Voter Project',
 
-  model: () => service.getPage('puertorico').then(page => ({ page })),
+  model: () => service.db.then(db => ({ funds: db.funds, groups: db.groups })),
 };
 
 module.exports = PuertoRicoModel;

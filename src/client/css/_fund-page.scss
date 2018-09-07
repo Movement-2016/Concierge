@@ -16,11 +16,11 @@
       width: 100%;
     }
   }
-  #fund-page-body {
-    @include bp-lg {
-      display: flex;
-      align-items: flex-start;
-    }
+}
+#fund-page-body {
+  @include bp-lg {
+    display: flex;
+    align-items: flex-start;
   }
   .fund-intro {
     background: white;
@@ -73,6 +73,7 @@
     }
   }
   .fund-donate-button {
+    z-index: 100;
     background: $blue-base;
     color: white;
     text-align: center;

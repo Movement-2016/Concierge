@@ -34,7 +34,7 @@ const FundModel = {
   title: 'About this featured fund',
   browserOnly: true,
 
-  model: () => service.db.then(db => ({ funds: db.funds, groups: db.groups, states: db.states })),
+  model: () => service.db.then(db => ({ funds: db.funds, groups: db.groups })),
 };
 
 module.exports = { FundsModel, FundModel };
