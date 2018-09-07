@@ -24,9 +24,9 @@ class ActionSection extends React.Component {
       this.setState({ formAlert: 'success' });
     };
     const onError = error => {
-      // retry 3 times
-      if (hasErrored < 3) {
-        setTimeout(saveToSpreadsheet(data, onSuccess, onError), 100);
+      // retry 5 times
+      if (hasErrored < 5) {
+        setTimeout(saveToSpreadsheet(data, onSuccess, onError), 200);
         hasErrored++;
       } else {
         this.setState({ formAlert: 'error' });
