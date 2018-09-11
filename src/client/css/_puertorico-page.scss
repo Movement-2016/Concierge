@@ -1,41 +1,26 @@
 .puerto-rico-page {
-  .intro-section {
-    padding: 35px 0 60px;
-    background: white;
+  .container {
+    max-width: 1065px;
+  }
+  .page-logo {
+    width: 240px;
+    margin: 0 auto 30px;
+    display: block;
+    @include bp-md {
+      margin-bottom: 45px;
+      width: 330px;
+    }
     @include bp-lg {
-      padding: 55px 0 70px;
-    }
-    .container {
-      max-width: 550px;
-      @include bp-lg {
-        max-width: 1060px;
-      }
-    }
-    .page-logo {
-      width: 240px;
-      margin: 0 auto 30px;
-      display: block;
-      @include bp-md {
-        margin-bottom: 45px;
-        width: 330px;
-      }
-      @include bp-lg {
-        margin-bottom: 60px;
-        width: 390px;
-      }
-    }
-    .intro-content {
-      @include bp-lg {
-        display: flex;
-      }
+      margin-bottom: 60px;
+      width: 390px;
     }
   }
   .prvp-video {
     width: 100%;
-    @include bp-lg {
-      width: 55%;
-      margin-right: 4%;
-      flex-shrink: 0;
+    @include z-depth-2;
+    @include bp-md-only {
+      max-width: 560px;
+      margin: 0 auto;
     }
     .video-wrapper {
       overflow: hidden;
@@ -52,23 +37,46 @@
       }
     }
   }
-  .take-action {
-    margin-top: 30px;
+  .fund-intro {
+    margin-top: 40px;
+    @include bp-md {
+      margin-top: 60px;
+    }
+  }
+  .action-section {
+    @include z-depth-2;
+    max-width: 440px;
+    border-top: 1px solid $light-border;
+    padding: 30px $group-padding;
+    margin: 40px auto;
+    background: white;
+    border-radius: 2px;
     @include bp-lg {
-      margin-top: 0;
+      margin-top: 60px;
+      padding: 40px;
+      max-width: none;
+    }
+    .action-content {
+      margin: 0 auto;
+      max-width: 420px;
     }
     .action-title {
-      font-weight: 900;
-      color: $red-base;
-      font-size: 1.6em;
-      margin: 0 0 10px;
+      text-align: center;
+      font-weight: 700;
+      color: $trans-light-2;
+      font-size: 1.5em;
+      margin: 0 0 20px;
       @include bp-lg {
-        font-size: 29px;
+        font-size: 22px;
       }
+    }
+    .action-intro {
+      color: $trans-dark;
+      font-size: 14px;
     }
   }
   .action-form {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     input[type='text'],
     input[type='email'] {
       background: $grey-light;
@@ -98,26 +106,9 @@
       color: white;
       text-transform: uppercase;
       font-weight: 700;
-      font-size: 1.1rem;
       border-radius: 2px;
       &:hover {
         background: $red-base;
-      }
-    }
-  }
-  .fund-section {
-    background: $grey-light;
-    border-top: 1px solid $light-border;
-    padding: 90px 0;
-    .fund-title {
-      margin: 0 0 30px;
-      font-size: 1.7em;
-      color: $red-base;
-      font-weight: 900;
-      text-align: left;
-      @include bp-lg {
-        padding: 0;
-        font-size: 2.2rem;
       }
     }
   }
