@@ -47,7 +47,7 @@ const FundContent = ({ mobile, fund, groups }) => (
       />
     </div>
     <div className="fund-groups-sentence">{'The ' + fund.title + ' supports these groups:'}</div>
-    <FundGroups mobile={mobile} fund={fund} groups={groups} />
+    {fund.fundGroups && <FundGroups mobile={mobile} fund={fund} groups={groups} />}
   </div>
 );
 
