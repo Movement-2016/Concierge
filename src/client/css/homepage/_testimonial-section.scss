@@ -13,6 +13,7 @@
 }
 .testimonial-button-area {
   overflow-x: scroll;
+  overflow: -moz-hidden-unscrollable;
   padding-left: 12px;
   &::-webkit-scrollbar {
     display: none;
