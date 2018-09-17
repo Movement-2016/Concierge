@@ -22,9 +22,9 @@ const PartnerLogos = () => (
         <img src="/images/partner-logos/studentpower-logo@0,5x.png" />
       </a>
     </li>
-    <li className="partner-logo lacafe-logo">
-      <a>
-        <img src="/images/partner-logos/lacafe@0,5x.png" />
+    <li className="partner-logo waytowin-logo">
+      <a href="https://waytowin.us/" target="_blank">
+        <img src="/images/partner-logos/waytowin-logo.png" />
       </a>
     </li>
     <li className="partner-logo powerpac-logo">
