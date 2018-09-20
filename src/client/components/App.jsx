@@ -5,6 +5,7 @@ import { Provider, connect } from 'react-redux';
 import HeaderNav from './HeaderNav.jsx';
 import Footer from './Footer.jsx';
 import TitleSetter from './TitleSetter.jsx';
+import Loading from './Loading.jsx';
 
 import '../lib/polyfills';
 
@@ -46,7 +47,14 @@ class __App extends React.Component {
             <div className="site-wrapper">
               {title && <TitleSetter title={SITE_TITLE + ' - ' + title} />}
               <HeaderNav menu={headerMenu} siteTitle={SITE_TITLE} mobile={isMobile} />
-              {component && React.createElement(component, { mobile: isMobile })}
+              <div className="page-content">
+                {global.IS_SERVER_REQUEST && (
+                  <div className="page-loading">
+                    <Loading />
+                  </div>
+                )}
+                {component && React.createElement(component, { mobile: isMobile })}
+              </div>
               <Footer menu={footerMenu} />
             </div>
           );

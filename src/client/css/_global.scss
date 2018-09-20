@@ -11,9 +11,23 @@ html {
   flex-direction: column;
 }
 
+.page-content {
+  position: relative;
+  flex: 1;
+}
+
+.page-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 899;
+  background: rgba(white, 0.9);
+}
+
 main {
   background-color: $main-bg-color;
-  flex: 1;
 }
 
 .site-footer {
