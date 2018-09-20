@@ -2,12 +2,6 @@
   background: $gradient-blue;
   .section-title {
     color: $white-trans;
-    @include bp-md {
-      margin-bottom: 30px;
-    }
-    @include bp-lg {
-      margin-bottom: 40px;
-    }
   }
 }
 .testimonial-button-area {
