@@ -1,31 +1,24 @@
 /* global $ */
 
-const DO_FIXED_HEADER          = true;
-const FIXED_KNOWN_MAGIC_OFFSET = 10;
-
-const _scrollToElement = ( e, offset ) => {
-  const defaultOffset = DO_FIXED_HEADER         
-    ? document.querySelector('.main-nav').offsetHeight + FIXED_KNOWN_MAGIC_OFFSET
-    : 0;
-  var $e = $(e);
-  if( $e[0] ) {
-    offset = offset || defaultOffset;
-    var top = $e.offset().top;
+const _scrollToElement = (el, offset = 10) => {
+  var $el = $(el);
+  if ($el[0]) {
+    var top = $el.offset().top;
     $('html,body').animate(
-        { scrollTop: top - offset },
-        { duration: 400,
-          easing: 'swing'
-        }
-      );
+      { scrollTop: top - offset },
+      {
+        duration: 400,
+        easing: 'swing',
+      }
+    );
   }
-
 };
 
-const scrollToElement = (e, offset, delay) => {
-  if( delay ) {
-    setTimeout( () => _scrollToElement(e,offset), delay );
+const scrollToElement = (el, offset, delay) => {
+  if (delay) {
+    setTimeout(() => _scrollToElement(el, offset), delay);
   } else {
-    _scrollToElement(e,offset);
+    _scrollToElement(el, offset);
   }
 };
 

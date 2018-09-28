@@ -9,9 +9,7 @@ import Loading from './Loading.jsx';
 
 import '../lib/polyfills';
 
-import scrollToTop from '../lib/scrollToTop';
-
-import scrollToHash from '../lib/scrollToHash';
+import scrollToElement from '../lib/scrollToElement';
 
 const SCROLL_DELAY = 100;
 
@@ -19,18 +17,22 @@ import { SITE_TITLE } from '../../config';
 
 class __App extends React.Component {
   componentDidMount() {
+    console.log('Mount hash: ', location.hash);
     this.scroll();
   }
 
   componentDidUpdate() {
+    console.log('Update hash: ', location.hash);
     this.scroll();
   }
 
   scroll() {
-    if (this.props.hash) {
-      scrollToHash(0, SCROLL_DELAY);
+    console.log('scroll!');
+    if (location.hash) {
+      scrollToElement(location.hash);
     } else {
-      scrollToTop();
+      // scroll to top
+      scrollToElement('#app');
     }
   }
   render() {

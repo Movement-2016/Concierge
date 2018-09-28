@@ -86,7 +86,7 @@ const _HomePage = ({
           <div className="donate-tiles">{homeTiles.map((d, i) => <Tile key={i} {...d} />)}</div>
         </div>
       </section>
-      <section className="padded-section map-section">
+      <section id="find-a-group" className="padded-section map-section">
         <StateMapBound states={states} />
       </section>
       <section className="padded-section testimonial-section">
