@@ -44,6 +44,7 @@ const AuthCode = ({ code }) => (
 );
 
 const _HomePage = ({
+  mobile,
   authCode,
   tagLine,
   introText,
@@ -84,11 +85,11 @@ const _HomePage = ({
           <div className="donate-tiles">{homeTiles.map((d, i) => <Tile key={i} {...d} />)}</div>
         </div>
       </section>
-      <MediaQuery minWidth={761} values={{ width: 1400 }}>
+      {!mobile && (
         <section id="findagroup" className="padded-section map-section">
           <StateMapBound states={states} />
         </section>
-      </MediaQuery>
+      )}
       <section className="padded-section testimonial-section">
         <h2 className="section-title">{homeTestimonialSectionTitle}</h2>
         <Testimonials testimonials={testimonials} timeInterval={6000} />

@@ -17,17 +17,14 @@ import { SITE_TITLE } from '../../config';
 
 class __App extends React.Component {
   componentDidMount() {
-    console.log('Mount hash: ', location.hash);
     this.scroll();
   }
 
   componentDidUpdate() {
-    console.log('Update hash: ', location.hash);
     this.scroll();
   }
 
   scroll() {
-    console.log('scroll!');
     if (location.hash) {
       scrollToElement(location.hash);
     } else {
