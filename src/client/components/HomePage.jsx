@@ -85,7 +85,7 @@ const _HomePage = ({
         </div>
       </section>
       <MediaQuery minWidth={761} values={{ width: 1400 }}>
-        <section id="find-a-group" className="padded-section map-section">
+        <section id="findagroup" className="padded-section map-section">
           <StateMapBound states={states} />
         </section>
       </MediaQuery>
