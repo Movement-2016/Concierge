@@ -1,63 +1,59 @@
 .home .map-section {
-  display: none;
+  background: white;
+  display: block;
+  text-align: center;
 
-  @include bp-lg {
-    background: white;
-    display: block;
-    text-align: center;
+  .section-title {
+    margin-bottom: 6px;
+    color: $blue-light;
+  }
+  .map-desc {
+    color: $trans-light;
+  }
+}
 
-    .section-title {
-      margin-bottom: 6px;
-      color: $blue-light;
-    }
-    .map-desc {
-      color: $trans-light;
+.map-area {
+  max-width: 1000px;
+  margin: 0 auto;
+  color: $trans-light;
+
+  .q0-7 {
+    fill: desaturate($state-dark-red, 20%);
+
+    &:hover {
+      fill: $state-dark-red;
     }
   }
 
-  .map-area {
-    max-width: 1000px;
-    margin: 0 auto;
-    color: $trans-light;
+  .q2-7 {
+    fill: desaturate($state-light-red, 20%);
 
-    .q0-7 {
-      fill: desaturate($state-dark-red, 20%);
-
-      &:hover {
-        fill: $state-dark-red;
-      }
+    &:hover {
+      fill: $state-light-red;
     }
+  }
 
-    .q2-7 {
-      fill: desaturate($state-light-red, 20%);
+  .q3-7 {
+    fill: desaturate($state-purple, 20%);
 
-      &:hover {
-        fill: $state-light-red;
-      }
+    &:hover {
+      fill: $state-purple;
     }
+  }
 
-    .q3-7 {
-      fill: desaturate($state-purple, 20%);
+  .q4-7 {
+    fill: desaturate($state-light-blue, 20%);
 
-      &:hover {
-        fill: $state-purple;
-      }
+    &:hover {
+      fill: $state-light-blue;
     }
+  }
 
-    .q4-7 {
-      fill: desaturate($state-light-blue, 20%);
+  .q5-7 {
+    fill: desaturate($state-dark-blue, 20%);
 
-      &:hover {
-        fill: $state-light-blue;
-      }
-    }
-
-    .q5-7 {
-      fill: desaturate($state-dark-blue, 20%);
-
-      &:hover {
-        fill: $state-dark-blue;
-      }
+    &:hover {
+      fill: $state-dark-blue;
     }
   }
 }

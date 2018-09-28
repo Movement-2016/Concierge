@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import MediaQuery from 'react-responsive';
 
 import StateMap from './StateMap.jsx';
 import Thermometer from './Thermometer.jsx';
@@ -23,18 +24,15 @@ const Tile = ({ label, image, description, url }) => (
   </Link>
 );
 
-const StateMapBound = ({ states }) =>
-  global.IS_SERVER_REQUEST ? (
-    <span />
-  ) : (
-    <div className="container">
-      <h2 className="section-title">{'Find a Group'}</h2>
-      <div className="map-desc">
-        {'Click the map to browse Movement Voter Project groups in each state.'}
-      </div>
-      <StateMap dataSource={states} />
+const StateMapBound = ({ states }) => (
+  <div className="container">
+    <h2 className="section-title">{'Find a Group'}</h2>
+    <div className="map-desc">
+      {'Click the map to browse Movement Voter Project groups in each state.'}
     </div>
-  );
+    {!global.IS_SERVER_REQUEST && <StateMap dataSource={states} />}
+  </div>
+);
 
 const AuthCode = ({ code }) => (
   <p style={{ margin: 30 }} className="well auth-code">
@@ -86,9 +84,11 @@ const _HomePage = ({
           <div className="donate-tiles">{homeTiles.map((d, i) => <Tile key={i} {...d} />)}</div>
         </div>
       </section>
-      <section id="find-a-group" className="padded-section map-section">
-        <StateMapBound states={states} />
-      </section>
+      <MediaQuery minWidth={761} values={{ width: 1400 }}>
+        <section id="find-a-group" className="padded-section map-section">
+          <StateMapBound states={states} />
+        </section>
+      </MediaQuery>
       <section className="padded-section testimonial-section">
         <h2 className="section-title">{homeTestimonialSectionTitle}</h2>
         <Testimonials testimonials={testimonials} timeInterval={6000} />

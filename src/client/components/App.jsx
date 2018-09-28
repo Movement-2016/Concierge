@@ -44,23 +44,21 @@ class __App extends React.Component {
 
     return (
       <MediaQuery maxWidth={992} values={{ width: 1400 }}>
-        {isMobile => {
-          return (
-            <div className="site-wrapper">
-              {title && <TitleSetter title={SITE_TITLE + ' - ' + title} />}
-              <HeaderNav menu={headerMenu} siteTitle={SITE_TITLE} mobile={isMobile} />
-              <div className="page-content">
-                {global.IS_SERVER_REQUEST && (
-                  <div className="page-loading">
-                    <Loading />
-                  </div>
-                )}
-                {component && React.createElement(component, { mobile: isMobile })}
-              </div>
-              <Footer menu={footerMenu} />
+        {isMobile => (
+          <div className="site-wrapper">
+            {title && <TitleSetter title={SITE_TITLE + ' - ' + title} />}
+            <HeaderNav menu={headerMenu} siteTitle={SITE_TITLE} mobile={isMobile} />
+            <div className="page-content">
+              {global.IS_SERVER_REQUEST && (
+                <div className="page-loading">
+                  <Loading />
+                </div>
+              )}
+              {component && React.createElement(component, { mobile: isMobile })}
             </div>
-          );
-        }}
+            <Footer menu={footerMenu} />
+          </div>
+        )}
       </MediaQuery>
     );
   }
