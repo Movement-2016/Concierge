@@ -27,6 +27,13 @@ const FundGroups = ({ mobile, fund, groups }) => {
     if (nameA === nameB) {
       return a.title.toUpperCase() < b.title.toUpperCase() ? -1 : 1;
     }
+    // Place national groups last
+    if (nameA === 'NATIONAL GROUPS') {
+      return 1;
+    }
+    if (nameB === 'NATIONAL GROUPS') {
+      return -1;
+    }
     return nameA < nameB ? -1 : 1;
   });
 
