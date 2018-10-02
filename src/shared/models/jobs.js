@@ -1,32 +1,28 @@
-
-import {
-  ContentPage
-} from '../../client/components';
+import { ContentPage } from '../../client/components';
 
 import service from '../services/m-service';
 
-
 const JobsModel = {
-
-  paths: [ '/jobs'  ],
+  paths: ['/jobs'],
 
   component: ContentPage,
 
-  model: () => service.getPage('jobs').then( page => {
-    return {
-      page,
-      pageName: 'jobs',
-    };
-  }),
+  model: () =>
+    service.getPage('jobs').then(page => {
+      return {
+        page,
+        pageName: 'jobs',
+      };
+    }),
 
   title: 'Jobs',
 
   meta: [
     {
       name: 'description',
-      content: 'Current job listings with Movement Voter Project.'
-    }
-  ]
+      content: 'Current job listings with Movement Voter Project.',
+    },
+  ],
 };
 
 module.exports = JobsModel;

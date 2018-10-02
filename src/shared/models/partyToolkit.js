@@ -3,7 +3,7 @@ import { ContentPage } from '../../client/components';
 import service from '../services/m-service';
 
 const PartyToolkitModel = {
-  paths: ['/partytoolkit'],
+  paths: ['/partytoolkit', '/houseparty'],
 
   component: ContentPage,
 
