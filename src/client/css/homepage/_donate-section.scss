@@ -1,6 +1,6 @@
 .tile {
   display: block;
-  background: $white;
+  background: white;
   @include z-depth-2;
   border-radius: 2px;
   overflow: hidden;
@@ -17,17 +17,19 @@
   }
   .tile-description {
     color: $trans-base;
-    line-height: 1.4;
+    line-height: 1.2;
+    font-size: 13px;
     @include bp-lg {
-      font-size: 15px;
+      text-align: left;
+      font-size: 14px;
     }
   }
   .tile-label {
-    margin-bottom: 7px;
+    color: $trans-base;
+    margin-bottom: 6px;
     line-height: 1.2;
-    font-size: 22px;
+    font-size: 19px;
     font-weight: 700;
-    color: $red-base;
     i {
       margin-left: 2px;
       vertical-align: middle;
@@ -43,10 +45,10 @@
       opacity: 0;
     }
     .tile-label {
-      color: darken($red-base, 5%);
+      color: black;
     }
     .tile-description {
-      color: $trans-dark;
+      color: black;
     }
   }
 }
@@ -69,10 +71,6 @@
       margin: 0 1.5%;
       &:first-of-type {
         order: 1;
-        @include z-depth-3;
-        &:hover {
-          @include z-depth-4;
-        }
       }
       &:last-of-type {
         order: 2;
@@ -83,10 +81,10 @@
         padding: 15px 10px;
       }
       .tile-label {
-        font-size: 18px;
+        font-size: 17px;
       }
       .tile-description {
-        font-size: 13px;
+        font-size: 12px;
       }
     }
   }

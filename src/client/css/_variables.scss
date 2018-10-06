@@ -20,23 +20,22 @@ $small-and-up: 'only screen and (min-width: #{$xs-screen-up})';
 $xl-and-up: 'only screen and (min-width: #{$large-screen-up})';
 
 // Base colors
-$white: #fff;
 $grey-light: color('grey', 'lighten-5');
 $white-trans: transparentize(white, 0.3);
 
-$blue-base: color('blue', 'base');
-$blue-dark: color('blue', 'darken-1');
+$blue-base: #3391ff;
+$blue-dark: #427cc1;
 $blue-dark-2: color('blue', 'darken-3');
-$blue-light: color('blue', 'lighten-1');
-$blue-light-2: color('blue', 'lighten-2');
-$blue-light-3: #cee8ff;
+$blue-light: #539fff;
+$blue-light-2: #cee8ff;
 $blue-trans: transparentize($blue-base, 0.36);
-$bluegrey: #85b5e1;
+$bluegrey: #749ddb;
 
-$gradient-blue: linear-gradient(to right, #146aad, #4a9ed8);
+$gradient-blue: linear-gradient(to left, #588fd5, #224e92);
 
 $red-base: #f56b62;
 $red-light: color('red', 'accent-1');
+$red-light-2: #ff9189;
 
 $green-base: #038b5b;
 $green-light: #15bd82;

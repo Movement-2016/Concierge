@@ -16,7 +16,7 @@
     position: fixed;
     width: 100%;
     z-index: 20;
-    background-color: $white;
+    background-color: white;
     @include z-depth-2;
   }
   .filter-page-header {
@@ -58,7 +58,7 @@
     text-align: center;
     .filter-submit-button {
       background-color: $red-base;
-      color: $white;
+      color: white;
       border-radius: 20px;
       height: 36px;
       line-height: 36px;

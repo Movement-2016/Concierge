@@ -26,7 +26,7 @@ class StateMap extends React.Component {
       const $e = $(findDOMNode(this));
       const $links = $('[data-toggle="tooltip"]', $e);
 
-      $links.tooltipX({ container: '#map', html: true });
+      $links.tooltipX({ container: '#map-image', html: true });
       $links.click(function(e) {
         e.preventDefault();
         var $this = $(this);
@@ -107,7 +107,11 @@ class StateMap extends React.Component {
     /* eslint-disable react/no-danger */
     return (
       <div className="map-area">
-        {mapData ? <div id="map" dangerouslySetInnerHTML={{ __html: mapData }} /> : <Loading />}
+        {mapData ? (
+          <div id="map-image" dangerouslySetInnerHTML={{ __html: mapData }} />
+        ) : (
+          <Loading />
+        )}
       </div>
     );
   }

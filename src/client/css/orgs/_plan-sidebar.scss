@@ -57,7 +57,7 @@ $tray-padding: 16px;
 @include bp-lg {
   .donation-plan-tray {
     padding-top: $tray-padding;
-    background-color: $white;
+    background-color: white;
     @include z-depth-1;
 
     .title {

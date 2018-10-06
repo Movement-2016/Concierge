@@ -10,7 +10,9 @@ const PLAN_AUTOSAVE_INTERVAL = 5; // seconds
 const PROFILE_AUTOSAVE_INTERVAL = 7;
 
 const WP_DEV = false;
-const WP_API_HOST = WP_DEV ? 'http://localhost/movement-admin' : 'https://wp.movement.vote';
+const WP_API_HOST = WP_DEV
+  ? 'https://movement2018.staging.wpengine.com'
+  : 'https://wp.movement.vote';
 const M_SERVICE_END_POINT = WP_API_HOST + '/wp-json/movement/';
 
 const FACEBOOK_URL = 'https://www.facebook.com/MovementVoterProject/';

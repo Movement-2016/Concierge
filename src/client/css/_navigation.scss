@@ -16,11 +16,8 @@ nav .brand-logo {
   font-family: 'museo-slab', 'Roboto', sans-serif;
   font-weight: 900;
   font-style: italic;
-  @include bp-md {
-    font-size: 17px;
-  }
   @include bp-lg {
-    font-size: 18px;
+    font-size: 17px;
   }
 }
 
@@ -57,11 +54,12 @@ nav .brand-logo {
 #header-menu {
   float: left;
   a {
-    font-size: 15px;
+    color: $trans-base;
+    font-size: 14px;
     padding: 0 $menu-padding-lg;
     &:hover {
       background-color: color('grey', 'lighten-4');
-      color: $trans-light;
+      color: $trans-base;
     }
   }
   .menu-parent {
@@ -70,7 +68,7 @@ nav .brand-logo {
     }
     &:hover {
       a {
-        color: $trans-light;
+        color: $trans-base;
       }
       .menu-children {
         display: block;
@@ -89,7 +87,7 @@ nav .brand-logo {
       float: none;
     }
     a {
-      color: $trans-light;
+      color: $trans-base;
       font-weight: 500;
       padding: 0 $menu-padding-lg;
       display: block;
@@ -106,26 +104,21 @@ nav .brand-logo {
   align-items: center;
   margin-left: 4px;
   .social-link {
-    height: 26px;
-    width: 48px;
+    height: 28px;
+    width: 28px;
     text-align: center;
     padding: 5px 0;
-    margin-left: 20px;
-    border-radius: 3px;
-    opacity: 0.85;
+    margin-left: 30px;
     &:hover {
-      opacity: 1;
+      img {
+        filter: brightness(35%);
+      }
     }
     img {
+      filter: brightness(46%);
       height: 100%;
     }
   }
-}
-.twitter-link {
-  background: $twitter-blue;
-}
-.facebook-link {
-  background: $facebook-blue;
 }
 
 #side-nav {
@@ -163,14 +156,14 @@ nav .brand-logo {
   }
   .social-link {
     display: inline-block;
-    height: 28px;
-    width: 52px;
+    height: 32px;
+    width: 32px;
     text-align: center;
     padding: 5px 0;
-    margin-right: 20px;
-    border-radius: 3px;
+    margin-right: 30px;
     img {
       height: 100%;
+      filter: brightness(46%);
     }
   }
 }

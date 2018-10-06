@@ -1,5 +1,8 @@
 .home .blog-section {
   background: white;
+  .section-title {
+    color: $trans-light;
+  }
 }
 .blog-posts {
   max-width: 680px;
@@ -27,16 +30,16 @@
     }
   }
   .post-title {
-    font-weight: 900;
+    font-weight: 700;
     color: $red-base;
-    font-size: 19px;
+    font-size: 22px;
     line-height: 1.2;
     margin-bottom: 0.4em;
     @include bp-md {
-      font-size: 22px;
+      font-size: 25px;
     }
     @include bp-lg {
-      font-size: 24px;
+      font-size: 27px;
     }
   }
   .post-body {

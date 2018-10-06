@@ -56,7 +56,7 @@
       margin-bottom: 1em;
     }
     a {
-      color: $blue-light-3;
+      color: $blue-light-2;
       display: inline-block;
       font-weight: 700;
       font-size: 13px;
@@ -84,6 +84,12 @@
 .funds-section {
   background: $main-bg-color;
   padding: 50px 0;
+  .section-title {
+    text-align: center;
+    font-size: 22px;
+    color: $trans-base;
+    margin: 10px 0 30px;
+  }
   @include bp-md {
     padding: 60px 0;
   }

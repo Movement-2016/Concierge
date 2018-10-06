@@ -7,6 +7,7 @@ import Thermometer from './Thermometer.jsx';
 import { FacebookFeed, TwitterFeed } from './Social.jsx';
 import BlogPosts from './BlogPosts.jsx';
 import Testimonials from './Testimonials.jsx';
+import DonateLink from './DonateLink.jsx';
 
 import { cleanHtml } from '../lib/helperFunctions';
 import Link from '../services/LinkToRoute';
@@ -45,16 +46,21 @@ const AuthCode = ({ code }) => (
 
 const _HomePage = ({
   mobile,
-  authCode,
   tagLine,
   introText,
-  introLinkText,
+  introDonateLabel,
+  introDonateUrl,
   groupNumber,
   goal,
   current,
-  homeTileSectionTitle,
-  homeTestimonialSectionTitle,
   homeTiles,
+  homeTileSectionTitle,
+  homeTileSectionSubtitle,
+  homeTestimonialSectionTitle,
+  homeTestimonialSectionSubtitle,
+  homeMapSectionTitle,
+  homeMapSectionSubtitle,
+  authCode,
   model: { states, testimonials, blogPosts },
 }) =>
   authCode ? (
@@ -63,35 +69,45 @@ const _HomePage = ({
     <main className="home">
       <section className="intro-section">
         <div className="container">
-          <div className="intro-tagline" dangerouslySetInnerHTML={{ __html: cleanHtml(tagLine) }} />
-          <Thermometer goal={goal} current={current} groupNumber={groupNumber} />
+          <div className="intro-content">
+            <div className="intro-text">
+              <h2
+                className="intro-header"
+                dangerouslySetInnerHTML={{ __html: cleanHtml(tagLine) }}
+              />
+              <div
+                className="intro-description"
+                dangerouslySetInnerHTML={{ __html: cleanHtml(introText) }}
+              />
+            </div>
+            <div className="intro-widgets">
+              <DonateLink url={introDonateUrl}>{introDonateLabel}</DonateLink>
+              <Thermometer goal={goal} current={current} groupNumber={groupNumber} />
+            </div>
+          </div>
         </div>
       </section>
-      <div className="intro-description">
+      <section className="padded-section donate-section">
         <div className="container">
-          <div
-            className="description-body"
-            dangerouslySetInnerHTML={{ __html: cleanHtml(introText) }}
-          />
-          <Link to="/about">
-            {introLinkText}
-            <i className="material-icons">{'chevron_right'}</i>
-          </Link>
-        </div>
-      </div>
-      <section className="padded-section donate-section" id="donate">
-        <div className="container">
-          <h2 className="section-title">{homeTileSectionTitle}</h2>
+          <h3 className="section-title">{homeTileSectionTitle}</h3>
+          <div className="section-subtitle">{homeTileSectionSubtitle}</div>
           <div className="donate-tiles">{homeTiles.map((d, i) => <Tile key={i} {...d} />)}</div>
         </div>
       </section>
       {!mobile && (
-        <section id="findagroup" className="padded-section map-section">
-          <StateMapBound states={states} />
+        <section id="map" className="padded-section map-section">
+          <div className="container">
+            <h2 className="section-title">{homeMapSectionTitle}</h2>
+            <div className="section-subtitle">{homeMapSectionSubtitle}</div>
+            {!global.IS_SERVER_REQUEST && <StateMap dataSource={states} />}
+          </div>
         </section>
       )}
       <section className="padded-section testimonial-section">
-        <h2 className="section-title">{homeTestimonialSectionTitle}</h2>
+        <div className="container">
+          <h3 className="section-title">{homeTestimonialSectionTitle}</h3>
+          <div className="section-subtitle">{homeTestimonialSectionSubtitle}</div>
+        </div>
         <Testimonials testimonials={testimonials} timeInterval={6000} />
       </section>
       <section className="padded-section blog-section">
@@ -123,13 +139,18 @@ const mapStateToProps = ({
         page: {
           tagLine,
           introText,
-          introLinkText,
+          introDonateLabel,
+          introDonateUrl,
           number_groups_donated: groupNumber,
           goal,
           current,
-          homeTileSectionTitle,
-          homeTestimonialSectionTitle,
           homeTiles,
+          homeTileSectionTitle,
+          homeTileSectionSubtitle,
+          homeTestimonialSectionTitle,
+          homeTestimonialSectionSubtitle,
+          homeMapSectionTitle,
+          homeMapSectionSubtitle,
         },
       },
     },
@@ -140,13 +161,18 @@ const mapStateToProps = ({
 }) => ({
   tagLine,
   introText,
-  introLinkText,
+  introDonateLabel,
+  introDonateUrl,
   groupNumber,
   goal,
   current,
-  homeTileSectionTitle,
-  homeTestimonialSectionTitle,
   homeTiles,
+  homeTileSectionTitle,
+  homeTileSectionSubtitle,
+  homeTestimonialSectionTitle,
+  homeTestimonialSectionSubtitle,
+  homeMapSectionTitle,
+  homeMapSectionSubtitle,
   model,
   authCode,
 });

@@ -1,13 +1,20 @@
 .home .testimonial-section {
   background: $gradient-blue;
-  .section-title {
-    color: $white-trans;
+  .section-title,
+  .section-subtitle {
+    color: white;
+  }
+  .section-subtitle {
+    margin-bottom: 20px;
+    @include bp-md {
+      margin-bottom: 30px;
+    }
   }
 }
 .testimonial-button-area {
   overflow-x: scroll;
   overflow: -moz-hidden-unscrollable;
-  padding-left: 12px;
+  padding-left: 5%;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -22,21 +29,21 @@
     margin-bottom: 20px;
   }
   @include bp-lg {
-    margin-bottom: 40px;
+    margin-bottom: 50px;
   }
   &:after {
     content: '';
-    padding: 6px;
+    padding: 2.5%;
   }
 }
 .testimonial-button {
   border-radius: 3px;
   flex-shrink: 0;
-  color: rgba(white, 0.88);
-  background: rgba($bluegrey, 0.5);
+  color: white;
+  background: $bluegrey;
   line-height: 1.1;
-  padding: 4px;
-  font-weight: 900;
+  padding: 7px;
+  font-weight: 700;
   font-size: 11px;
   height: 38px;
   width: 88px;
@@ -47,19 +54,18 @@
   transition-property: transform;
   transition-duration: 0.2s;
   @include bp-md {
-    padding: 7px;
     width: 100px;
     height: 40px;
   }
   @include bp-lg {
     padding: 10px;
-    width: 125px;
-    height: 50px;
+    width: 115px;
+    height: 46px;
     font-size: 12.5px;
   }
   &:hover {
     color: white;
-    background: rgba(#70b4ef, 0.87);
+    background: #6aaeff;
   }
   & + .testimonial-button {
     margin-left: 14px;
@@ -71,10 +77,9 @@
     }
   }
   &.focused {
-    background: rgba(#70b4ef, 0.92);
+    background: #6aaeff;
     color: white;
     transform: scale(1.15);
-    @include z-depth-1;
     @include bp-md {
       transform: scale(1.12);
     }
@@ -118,24 +123,23 @@
   }
 }
 .testimonial-title {
-  font-weight: 900;
+  font-weight: 700;
   font-size: 19px;
   margin-bottom: 6px;
   @include bp-md {
     font-size: 22px;
   }
   @include bp-lg {
-    font-size: 25px;
+    font-size: 23px;
   }
 }
 .testimonial-body {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.4;
   font-weight: 300;
   margin-bottom: 10px;
   @include bp-lg {
-    font-size: 19px;
-    line-height: 1.5;
+    font-size: 16px;
   }
 }
 .testimonial-footer {
@@ -155,14 +159,14 @@
   font-weight: 700;
   margin: 5px 0 2px;
   @include bp-lg {
-    font-size: 19px;
+    font-size: 17px;
   }
 }
 .testimonial-author-title {
   line-height: 1.1;
-  font-size: 0.9em;
+  font-size: 0.8em;
   color: rgba(white, 0.9);
   @include bp-lg {
-    font-size: 16px;
+    font-size: 14px;
   }
 }

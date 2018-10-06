@@ -1,147 +1,133 @@
-.home .intro-section {
-  background: url('/images/hands-bg.jpg');
-  @include full-bg;
-  background-position: 20% 27%;
-  position: relative;
-  padding: 60px 0;
-  @include bp-sm {
-    padding: 70px 0;
-  }
-  @include bp-md {
-    padding: 95px 0;
-  }
-  @include bp-lg {
-    padding: 115px 0;
-  }
-
-  .intro-tagline {
-    color: $white;
-    font-weight: 900;
-    font-size: 26px;
-    line-height: 1.2;
-    text-align: center;
-    margin: 0 auto 20px;
+.home {
+  .intro-section {
+    background-image: url('/images/mvp-hands-bg-sm.jpg');
+    @include full-bg;
+    background-position: 38% 50%;
+    position: relative;
+    padding: 60px 0;
     @include bp-sm {
-      font-size: 28px;
+      padding: 70px 0;
     }
     @include bp-md {
-      font-size: 36px;
-      margin-bottom: 25px;
+      background-image: url('/images/mvp-hands-bg-lg.jpg');
+      padding: 95px 0;
     }
     @include bp-lg {
-      font-size: 44px;
+      padding: 130px 0 160px;
+    }
+    .container {
+      @include bp-md {
+        max-width: 90%;
+      }
+      @include bp-lg {
+        width: 85%;
+        max-width: 940px;
+        min-width: 0;
+      }
     }
   }
-
-  .thermometer-area {
-    margin: 0 auto;
-    max-width: 500px;
-  }
-
-  .thermometer {
-    overflow-x: hidden;
-    background-color: $white;
-    height: 12px;
-    border-radius: 12px;
+  .intro-content {
     @include bp-md {
-      height: 16px;
+      display: flex;
+      justify-content: space-between;
     }
   }
 
-  .mercury {
-    height: 100%;
-    background: $blue-base;
-    border-radius: 12px 0 0 12px;
-    transition: width 0.8s linear 0.6s;
-    width: 0;
-    &.loaded {
-      width: 100%;
-    }
-  }
-
-  .thermometer-numbers {
-    @include clearfix;
-    margin-top: 6px;
-    line-height: 1.33;
-    color: $white;
-    .amount {
-      font-size: 16px;
-      font-weight: 900;
-      @include bp-md {
-        font-size: 20px;
-      }
-    }
-    .label {
-      font-size: 13px;
-
-      @include bp-md {
-        font-size: 15px;
-      }
-    }
-  }
-
-  .thermometer-current {
-    float: left;
-  }
-
-  .thermometer-goal {
-    float: right;
-    text-align: right;
-  }
-}
-.home .intro-description {
-  background: $gradient-blue;
-  color: $white;
-  padding: 35px 0 20px;
-  @include bp-md {
+  .intro-header {
+    color: white;
+    font-weight: 900;
+    font-size: 28px;
     text-align: center;
-  }
-  @include bp-lg {
-    padding: 40px 0 35px;
-  }
-  .description-body {
-    font-size: 15px;
-    line-height: 1.33;
-    font-weight: 500;
+    line-height: 1.2;
+    margin: 0 auto 20px;
     @include bp-md {
-      font-size: 17px;
+      text-align: left;
+      font-size: 32px;
+      margin-bottom: 15px;
     }
     @include bp-lg {
-      max-width: 948px;
-      margin: 0 auto;
-      font-size: 20px;
-    }
-    p {
-      margin-bottom: 0.6em;
-      @include bp-md {
-        margin-bottom: 0.45em;
-      }
+      line-height: 1.15;
+      font-size: 42px;
+      margin-bottom: 20px;
     }
   }
-  a {
-    display: inline-block;
-    height: 2em;
-    line-height: 2em;
-    color: $blue-light-3;
-    font-size: 13.5px;
-    font-weight: 700;
-    &:hover {
-      color: white;
-    }
+
+  .intro-description {
+    color: white;
+    font-size: 14px;
+    line-height: 1.35;
+    text-align: justify;
     @include bp-md {
-      margin-top: 5px;
+      text-align: left;
       font-size: 15px;
     }
     @include bp-lg {
-      font-size: 17px;
+      font-size: 16px;
+      max-width: 505px;
+      line-height: 1.4;
     }
-    i {
-      font-size: 17px;
-      vertical-align: middle;
-      margin-bottom: 2px;
-      margin-left: 2px;
+    p + p {
+      margin-top: 0.45em;
+    }
+  }
+
+  .intro-widgets {
+    margin-top: 32px;
+    @include bp-md {
+      margin-top: 8px;
+      flex-shrink: 0;
+      margin-left: 60px;
+    }
+    .donate-button {
+      display: block;
+      margin: 0 auto 28px;
+      width: 246px;
+      height: 42px;
+      line-height: 42px;
+      border-radius: 100px;
+      background: $blue-light;
+      font-size: 16px;
+      font-weight: 700;
+      color: white;
+      text-align: center;
       @include bp-lg {
+        margin-bottom: 46px;
+        height: 48px;
+        line-height: 48px;
         font-size: 20px;
+        width: 278px;
+      }
+    }
+
+    .thermometer-area {
+      margin: 0 auto;
+      color: white;
+      font-size: 12px;
+      text-align: center;
+      @include bp-lg {
+        font-size: 13px;
+      }
+    }
+    .thermometer {
+      margin: 2px auto;
+      width: 216px;
+      overflow-x: hidden;
+      background-color: white;
+      height: 12px;
+      border-radius: 12px;
+      @include bp-lg {
+        height: 15px;
+        width: 260px;
+      }
+    }
+    .mercury {
+      height: 100%;
+      background: $red-light-2;
+      border-radius: 12px 0 0 12px;
+      transition: width 0.8s linear 0.6s;
+      width: 0;
+      &.loaded {
+        width: 100%;
       }
     }
   }

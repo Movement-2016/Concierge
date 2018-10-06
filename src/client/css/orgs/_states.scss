@@ -54,7 +54,7 @@
 
 .state {
   @include z-depth-1;
-  background-color: $white;
+  background-color: white;
   padding: 0;
   & + .state {
     margin-top: 50px;
