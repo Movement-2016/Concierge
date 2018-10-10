@@ -7,15 +7,13 @@ const Model = {
 
   component: ContentPage,
 
-  model: () =>
-    service.getPage('contest').then(page => {
-      return {
-        page,
-        pageName: 'contest',
-      };
-    }),
-
   title: '#MovementVote Poetry Contest',
+
+  model: () =>
+    service.getPage('contest').then(page => ({
+      page,
+      pageName: 'contest',
+    })),
 };
 
 module.exports = Model;

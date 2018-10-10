@@ -17,7 +17,7 @@ nav .brand-logo {
   font-weight: 900;
   font-style: italic;
   @include bp-lg {
-    font-size: 17px;
+    font-size: 18px;
   }
 }
 
@@ -55,7 +55,7 @@ nav .brand-logo {
   float: left;
   a {
     color: $trans-base;
-    font-size: 14px;
+    font-size: 15px;
     padding: 0 $menu-padding-lg;
     &:hover {
       background-color: color('grey', 'lighten-4');

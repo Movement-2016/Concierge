@@ -50,6 +50,9 @@
       font-size: 42px;
       margin-bottom: 20px;
     }
+    @include bp-xl {
+      font-size: 45px;
+    }
   }
 
   .intro-description {
@@ -64,7 +67,11 @@
     @include bp-lg {
       font-size: 16px;
       max-width: 505px;
-      line-height: 1.4;
+      line-height: 1.45;
+    }
+    @include bp-xl {
+      font-size: 17px;
+      max-width: 535px;
     }
     p + p {
       margin-top: 0.45em;
@@ -85,11 +92,15 @@
       height: 42px;
       line-height: 42px;
       border-radius: 100px;
+      @include z-depth-2;
       background: $blue-light;
       font-size: 16px;
       font-weight: 700;
       color: white;
       text-align: center;
+      &:hover {
+        background: $blue-base;
+      }
       @include bp-lg {
         margin-bottom: 46px;
         height: 48px;
@@ -105,7 +116,7 @@
       font-size: 12px;
       text-align: center;
       @include bp-lg {
-        font-size: 13px;
+        font-size: 14px;
       }
     }
     .thermometer {

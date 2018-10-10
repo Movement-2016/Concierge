@@ -1,20 +1,19 @@
-import {
-  ContactPage
-} from '../../client/components';
+import { ContentPage } from '../../client/components';
 
 import service from '../services/m-service';
 
-
 const ContactModel = {
+  paths: ['/contact'],
 
-  paths: [ '/contact' ],
+  component: ContentPage,
 
-  component: ContactPage,
+  title: 'Contact',
 
-  title: 'Contact Us',
-
-  model: () => service.getPage('contact').then( page => ({page}) ),
-
+  model: () =>
+    service.getPage('contact').then(page => ({
+      page,
+      pageName: 'contact',
+    })),
 };
 
 module.exports = ContactModel;

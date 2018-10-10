@@ -62,6 +62,11 @@ const PartnerLogos = () => (
         <img src="/images/partner-logos/dfa-logo@0,5x.png" />
       </a>
     </li>
+    <li className="partner-logo swingleft-logo">
+      <a href="https://swingleft.org/" target="_blank">
+        <img src="/images/partner-logos/swingleft-logo.png" />
+      </a>
+    </li>
   </ul>
 );
 
