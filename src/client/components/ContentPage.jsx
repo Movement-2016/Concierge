@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 const ContentPageShell = ({ name, title, children, big }) => (
   <main className={`content-page ${name}`}>
     <div className={'container ' + (big ? '' : 'small-container')}>
-      <h1 className="page-title">{title}</h1>
+      {title && <h1 className="page-title">{title}</h1>}
       {children}
     </div>
   </main>

@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import sanitizeHtml from 'sanitize-html';
 
-import DonateLink from './DonateLink.jsx';
-
 import Link from '../services/LinkToRoute';
 
 const cleanHtml = dirty =>

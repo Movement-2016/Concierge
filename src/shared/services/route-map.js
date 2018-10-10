@@ -1,5 +1,6 @@
 import About from '../models/about';
 import Advisors from '../models/advisors';
+import Blog from '../models/blog';
 import Contact from '../models/contact';
 import ContactAdvisor from '../models/contactAdvisor';
 import Contest from '../models/contest';
@@ -7,11 +8,11 @@ import DigitalToolkit from '../models/digitalToolkit';
 import Faq from '../models/faq';
 import Home from '../models/home';
 import Jobs from '../models/jobs';
-import Team from '../models/team';
 import OrganizersGuide from '../models/organizersGuide';
 import Party from '../models/party';
 import PartyToolkit from '../models/partyToolkit';
 import PuertoRico from '../models/puertoRico';
+import Team from '../models/team';
 import { FundsModel, FundModel } from '../models/funds';
 import { GroupsModel, GroupsSlugModel } from '../models/groups';
 import { Plan, PlanSummary, Profile, Consult } from '../models/plan';
@@ -28,6 +29,7 @@ const flattener = (accum, arrs) => [...accum, ...arrs];
 const RouteMap = [
   About,
   Advisors,
+  Blog,
   Consult,
   Contact,
   ContactAdvisor,
@@ -40,7 +42,6 @@ const RouteMap = [
   GroupsSlugModel,
   Home,
   Jobs,
-  Team,
   OrganizersGuide,
   Party,
   PartyToolkit,
@@ -48,6 +49,7 @@ const RouteMap = [
   PlanSummary,
   Profile,
   PuertoRico,
+  Team,
 ]
   .map(mapper)
   .reduce(flattener, []);

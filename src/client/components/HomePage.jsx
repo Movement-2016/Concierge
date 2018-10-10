@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import MediaQuery from 'react-responsive';
 
 import StateMap from './StateMap.jsx';
 import Thermometer from './Thermometer.jsx';
@@ -23,16 +22,6 @@ const Tile = ({ label, image, description, url }) => (
       <div className="tile-description">{description}</div>
     </div>
   </Link>
-);
-
-const StateMapBound = ({ states }) => (
-  <div className="container">
-    <h2 className="section-title">{'Find a Group'}</h2>
-    <div className="map-desc">
-      {'Click the map to browse Movement Voter Project groups in each state.'}
-    </div>
-    {!global.IS_SERVER_REQUEST && <StateMap dataSource={states} />}
-  </div>
 );
 
 const AuthCode = ({ code }) => (
@@ -61,7 +50,9 @@ const _HomePage = ({
   homeMapSectionTitle,
   homeMapSectionSubtitle,
   authCode,
-  model: { states, testimonials, blogPosts },
+  states,
+  testimonials,
+  blogPosts,
 }) =>
   authCode ? (
     <AuthCode code={authCode} />
@@ -112,8 +103,12 @@ const _HomePage = ({
       </section>
       <section className="padded-section blog-section">
         <div className="container">
-          <h2 className="section-title">{'Latest Updates'}</h2>
-          <BlogPosts posts={blogPosts} />
+          <h2 className="section-title">{'Latest Update'}</h2>
+          <BlogPosts posts={blogPosts.slice(0, 1)} />
+          <Link to="/blog" className="read-more-button">
+            {'More updates'}
+            <i className="material-icons">{'chevron_right'}</i>
+          </Link>
         </div>
       </section>
       <section className="padded-section social-feed-section">
@@ -134,8 +129,10 @@ const _HomePage = ({
 const mapStateToProps = ({
   router: {
     target: {
-      model,
       model: {
+        states,
+        testimonials,
+        blogPosts,
         page: {
           tagLine,
           introText,
@@ -173,7 +170,9 @@ const mapStateToProps = ({
   homeTestimonialSectionSubtitle,
   homeMapSectionTitle,
   homeMapSectionSubtitle,
-  model,
+  states,
+  testimonials,
+  blogPosts,
   authCode,
 });
 

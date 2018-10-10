@@ -195,3 +195,13 @@
     }
   }
 }
+
+.blog-page {
+  .page-title {
+    color: $trans-light;
+    font-size: 24px;
+    @include bp-lg {
+      font-size: 30px;
+    }
+  }
+}

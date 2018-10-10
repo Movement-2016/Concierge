@@ -36,10 +36,13 @@
   .intro-header {
     color: white;
     font-weight: 900;
-    font-size: 28px;
+    font-size: 26px;
     text-align: center;
     line-height: 1.2;
     margin: 0 auto 20px;
+    @include bp-sm {
+      font-size: 28px;
+    }
     @include bp-md {
       text-align: left;
       font-size: 32px;

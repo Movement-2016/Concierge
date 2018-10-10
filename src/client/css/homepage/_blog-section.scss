@@ -3,6 +3,32 @@
   .section-title {
     color: $trans-light;
   }
+  .read-more-button {
+    display: block;
+    margin: 40px auto 0;
+    width: 160px;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 100px;
+    background: #f7f7f7;
+    font-size: 13px;
+    font-weight: 500;
+    color: $trans-light;
+    text-align: center;
+    &:hover {
+      background: #efefef;
+    }
+    @include bp-md {
+      width: 170px;
+      font-size: 14px;
+      height: 38px;
+      line-height: 38px;
+    }
+    i {
+      vertical-align: middle;
+      font-size: 15px;
+    }
+  }
 }
 .blog-posts {
   max-width: 680px;
