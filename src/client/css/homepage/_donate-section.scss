@@ -17,11 +17,11 @@
   }
   .tile-description {
     color: $trans-base;
-    line-height: 1.2;
+    line-height: 1.3;
     font-size: 13px;
     @include bp-lg {
       text-align: left;
-      font-size: 14px;
+      font-size: 15px;
     }
   }
   .tile-label {

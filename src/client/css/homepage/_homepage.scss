@@ -23,14 +23,14 @@
   }
   .section-subtitle {
     line-height: 1.2;
-    font-size: 12px;
+    font-size: 13px;
     color: $trans-base;
     margin-bottom: 25px;
     @include bp-md {
       text-align: center;
     }
     @include bp-lg {
-      font-size: 14px;
+      font-size: 15px;
       margin-bottom: 38px;
     }
   }
@@ -65,17 +65,11 @@
     @include z-depth-2;
   }
   .feed-title {
-    text-transform: uppercase;
+    color: $trans-light;
     text-align: center;
     font-weight: 700;
     margin-bottom: 10px;
   }
-}
-.twitter-feed .feed-title {
-  color: $twitter-blue;
-}
-.facebook-feed .feed-title {
-  color: $facebook-blue;
 }
 
 %flex-container {
