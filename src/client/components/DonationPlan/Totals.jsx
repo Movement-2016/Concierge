@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import commaize from 'commaize';
 
 class _Totals extends React.Component {
   render() {
@@ -9,7 +8,7 @@ class _Totals extends React.Component {
     return (
       <div className="plan-total">
         <span className="label">{'Total'}</span>
-        <span className="total">{'$' + commaize(planTotal)}</span>
+        <span className="total">{'$' + planTotal.toLocaleString()}</span>
       </div>
     );
   }

@@ -88,14 +88,14 @@
 .testimonial-list {
   position: relative;
   max-width: 1100px;
-  min-height: 720px;
+  min-height: 650px;
 }
 .testimonial {
   position: absolute;
   visibility: hidden;
   opacity: 0;
   top: 0;
-  margin-top: 20px;
+  padding-top: 20px;
   color: white;
   transition-property: visibility, opacity;
   transition-duration: 0.2s;

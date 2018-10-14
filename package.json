@@ -1,23 +1,18 @@
 {
-  "name": "Movement2017",
-  "author": "Victor Stone",
-  "description": "Movement Vote Concierge",
-  "version": "0.1.0",
+  "name": "mvp-site",
+  "author": "Alex Melman & Victor Stone",
+  "description": "Movement Voter Project site",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/movement-2016/concierge"
   },
   "license": "MIT",
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
     "axios": "^0.16.2",
-    "babel-plugin-transform-async-to-generator": "^6.24.1",
-    "babel-preset-2017": "0.0.0",
-    "babel-preset-es2017": "^6.24.1",
     "bellman": "git+https://github.com/Movement-2016/bellman.git",
-    "commaize": "git+https://github.com/victor-stone/commaize.git",
     "compare-objects": "0.0.4",
-    "es6-promise-polyfill": "^1.2.0",
-    "es6-promisify": "^6.0.0",
     "express": "^4.16.3",
     "google-spreadsheet": "^2.0.5",
     "jquery": "^3.3.1",
@@ -52,29 +47,25 @@
     "deploy": "node bin/deploy"
   },
   "devDependencies": {
-    "autoprefixer": "^6.7.7",
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^9.2.0",
     "aws-sdk": "^2.284.1",
-    "babel-core": "6.17.0",
-    "babel-eslint": "^6.1.2",
-    "babel-plugin-transform-class-properties": "^6.11.5",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-es2015": "6.13.2",
-    "babel-preset-react": "6.11.1",
-    "babelify": "7.3.0",
+    "babelify": "^10.0.0",
     "browser-sync": "^2.24.6",
     "browserify": "^16.2.2",
-    "cssnano": "^3.10.0",
+    "cssnano": "^4.1.4",
     "eslint": "3.2.2",
-    "eslint-plugin-import": "1.12.0",
-    "eslint-plugin-jsx-a11y": "2.0.1",
-    "eslint-plugin-react": "6.0.0",
     "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.3",
+    "gulp-babel": "^8.0.0-beta.2",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.0",
     "gulp-ext": "^1.0.0",
     "gulp-load-plugins": "^1.5.0",
-    "gulp-postcss": "^6.4.0",
+    "gulp-postcss": "^8.0.0",
     "gulp-sass": "^3.2.1",
     "gulp-sourcemaps": "1.6.0",
     "gulp-uglify": "2.0.0",
@@ -87,6 +78,26 @@
     "vinyl-source-stream": "1.1.0",
     "warning": "^3.0.0",
     "watchify": "3.7.0"
+  },
+  "browserslist": [
+    "last 1 version",
+    "> 1% in US",
+    "maintained node versions",
+    "not dead"
+  ],
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "useBuiltIns": "entry"
+        }
+      ],
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
   },
   "engines": {
     "node": "8.11.0"

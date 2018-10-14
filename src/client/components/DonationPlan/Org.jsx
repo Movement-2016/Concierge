@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import path from 'jspath';
-import commaize from 'commaize';
 
 import ContributeButton from './ContributeButton.jsx';
 
@@ -83,7 +82,7 @@ class _Org extends React.Component {
               <div className="amount">
                 {readonly ? (
                   value ? (
-                    '$' + commaize(value)
+                    '$' + value.toLocaleString()
                   ) : (
                     '$0'
                   )

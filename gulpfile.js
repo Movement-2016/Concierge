@@ -28,15 +28,12 @@ const browserifyConfig = {
 };
 
 const babelifyOpts = {
-  presets: ['es2015', 'react'],
-  plugins: ['transform-class-properties', 'transform-object-rest-spread'],
+  presets: ['@babel/preset-env', '@babel/preset-react'],
 };
 
 const dependencies = [
   'axios',
-  'commaize',
   'crypto-js', // <-- imported from bellman
-  'es6-promise-polyfill',
   'events',
   'jspath',
   'lodash',
@@ -69,7 +66,7 @@ global.isProduction = false;
 let BASE = 'dist';
 
 var stdTasks = [
-  'indecies',
+  'indices',
   'html',
   'images',
   'server',
@@ -194,12 +191,12 @@ gulp.task('vendor', function() {
 });
 
 gulp.task('styles', function() {
-  var processors = [autoprefixer, cssnano];
+  var plugins = [autoprefixer(), cssnano()];
   return gulp
     .src('src/client/css/main.scss')
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
-    .pipe(postcss(processors))
+    .pipe(postcss(plugins))
     .pipe(sourcemaps.write('maps'))
     .pipe(gulp.dest(`${BASE}/public/css`))
     .pipe(browserSync.stream({ match: '**/*.css' }));
@@ -257,7 +254,7 @@ gulp.task('browserify', function() {
   return _rebundle(bundler);
 });
 
-gulp.task('indecies', () => {
+gulp.task('indices', () => {
   var dirs = ['src/client/components'];
 
   return gulp

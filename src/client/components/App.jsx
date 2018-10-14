@@ -1,3 +1,5 @@
+import '@babel/polyfill';
+
 import React from 'react';
 import MediaQuery from 'react-responsive';
 import { Provider, connect } from 'react-redux';
@@ -7,11 +9,7 @@ import Footer from './Footer.jsx';
 import TitleSetter from './TitleSetter.jsx';
 import Loading from './Loading.jsx';
 
-import '../lib/polyfills';
-
 import scrollToElement from '../lib/scrollToElement';
-
-const SCROLL_DELAY = 100;
 
 import { SITE_TITLE } from '../../config';
 

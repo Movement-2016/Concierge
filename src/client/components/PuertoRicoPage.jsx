@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ActionSection from './ActionSection.jsx';
 import { FundContent, FundAction } from './FundPage.jsx';
+// import ActionSection from './ActionSection.jsx';
 
 const Video = () => (
   <div className="prvp-video">
@@ -22,7 +22,7 @@ const Video = () => (
 );
 
 const _PuertoRicoPage = ({ mobile, funds, groups }) => {
-  const actionSectionProps = {
+  /* const actionSectionProps = {
     title: 'Join The Fight',
     description:
       'Pledge to help! Can you register as many voters as possible who are committed to fighting for the people of Puerto Rico both on the island and in the Diaspora? Will you hold candidates accountable to helping rebuild Puerto Rico and supporting the hundreds of thousands of Puerto Ricans living in the states? Together we can be the power and change our community needs!',
@@ -31,7 +31,7 @@ const _PuertoRicoPage = ({ mobile, funds, groups }) => {
       'Thanks for adding your name! We will follow up to let you know how you can help.',
     errorMessage:
       'Oops! There was an error and your information could not be submitted. Please try again or email info@movement.vote.',
-  };
+  }; */
   const fund = funds.find(el => el.slug === 'puertorico');
   return (
     <main className="puerto-rico-page fund-page">
@@ -41,7 +41,7 @@ const _PuertoRicoPage = ({ mobile, funds, groups }) => {
           <div>
             <Video />
             <FundContent mobile={mobile} fund={fund} groups={groups} />
-            <ActionSection {...actionSectionProps} />
+            {/* <ActionSection {...actionSectionProps} /> */}
           </div>
           <FundAction mobile={mobile} fund={fund} stickyTileBottom=".fund-page-body" />
         </div>

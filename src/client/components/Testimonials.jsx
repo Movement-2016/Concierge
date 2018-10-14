@@ -34,6 +34,7 @@ class Testimonials extends React.Component {
     super(...arguments);
     this.state = {
       focusIndex: 0,
+      listHeight: 300,
     };
   }
 
@@ -49,12 +50,12 @@ class Testimonials extends React.Component {
   setHeight = () => {
     const testimonials = document.querySelectorAll('.testimonial');
     let maxHeight = 0;
-    for (var t of testimonials) {
+    for (const t of testimonials) {
       if (t.offsetHeight > maxHeight) {
         maxHeight = t.offsetHeight;
       }
     }
-    document.querySelector('.testimonial-list').style.minHeight = maxHeight;
+    this.setState({ listHeight: maxHeight });
   };
 
   initTimer = () => {
@@ -87,7 +88,7 @@ class Testimonials extends React.Component {
             ))}
           </div>
         </div>
-        <div className="testimonial-list container">
+        <div className="testimonial-list container" style={{ minHeight: this.state.listHeight }}>
           {this.props.testimonials.map((t, i) => (
             <Testimonial key={i} focus={i === this.state.focusIndex} {...t} />
           ))}
