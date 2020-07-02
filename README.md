@@ -1,7 +1,7 @@
 
 # Movement Vote Concierge
 
-Web application for donor interaction with the groups supported by Movement
+Discontinued version of web application for donor interaction with the groups supported by Movement
 2018.
 
 ## Development setup
