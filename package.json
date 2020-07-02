@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "axios": "^0.16.2",
+    "axios": "^0.18.1",
     "bellman": "git+https://github.com/Movement-2016/bellman.git",
     "compare-objects": "0.0.4",
     "express": "^4.16.3",
